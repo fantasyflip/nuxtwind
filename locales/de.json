@@ -1,0 +1,10 @@
+{
+  "lang": "de",
+  "pages": {
+    "app": {
+      "content": {
+        "hello": "Hallo, {name}!"
+      }
+    }
+  }
+}
