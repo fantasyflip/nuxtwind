@@ -1,6 +1,23 @@
 {
   "lang": "de",
   "pages": {
+    "404": {
+      "meta": {
+        "title": "404",
+        "description": "Seite nicht gefunden",
+        "og": {
+          "title": "404 - Seite nicht gefunden | Component Flip",
+          "locale": "de_DE"
+        }
+      },
+      "content": {
+        "errorMessage": "Hoppla! Diese Seite existiert nicht.",
+        "urlDisplay": "Sie haben versucht auf <a class='text-cyan-800 hover:text-emerald-700' href='{path}'>{path}</a> zuzugreifen."
+      },
+      "buttons": {
+        "home": "Zurück zur Startseite"
+      }
+    },
     "index": {
       "meta": {
         "title": "Home",
@@ -12,6 +29,24 @@
       },
       "content": {
         "hello": "Hallo, {name}!"
+      }
+    },
+    "fallbackIndex": {
+      "meta": {
+        "title": "Hoppla",
+        "description": "Wir konnten deine Sprache nicht feststellen.",
+        "og": {
+          "title": "Hoppla - Sprache nicht gefunden | Component Flip",
+          "locale": "de_DE"
+        }
+      },
+      "content": {
+        "oops": "Hoppla",
+        "errorMessage": "Wir konnten deine Sprache nicht feststellen. Bitte wähle eine aus."
+      },
+      "buttons": {
+        "english": "Englisch",
+        "german": "Deutsch"
       }
     }
   }

@@ -1,9 +1,52 @@
 {
   "lang": "en",
   "pages": {
+    "404": {
+      "meta": {
+        "title": "404",
+        "description": "Page not found!",
+        "og": {
+          "title": "404 - Page not found | FantasyFlip.de",
+          "locale": "en_US"
+        }
+      },
+      "content": {
+        "errorMessage": "Shit happens! This site doesn't exist.",
+        "urlDisplay": "You tried to access <a class='text-cyan-800 hover:text-emerald-700' href='{path}'>{path}</a>."
+      },
+      "buttons": {
+        "home": "Back Home"
+      }
+    },
     "index": {
+      "meta": {
+        "title": "Home",
+        "description": "A Collection of Nuxt 3 Components powered by TailwindCSS",
+        "og": {
+          "title": "Home | Component Flip",
+          "locale": "en_US"
+        }
+      },
       "content": {
         "hello": "Hello, {name}!"
+      }
+    },
+    "fallbackIndex": {
+      "meta": {
+        "title": "Oops",
+        "description": "We coudn't detect your language.",
+        "og": {
+          "title": "Oops - Language not found | Component Flip",
+          "locale": "en_US"
+        }
+      },
+      "content": {
+        "oops": "Oops",
+        "errorMessage": "We coudn't detect your language. Please select one."
+      },
+      "buttons": {
+        "english": "English",
+        "german": "German"
       }
     }
   }
