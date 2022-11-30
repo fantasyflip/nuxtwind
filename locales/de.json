@@ -1,7 +1,7 @@
 {
   "lang": "de",
   "pages": {
-    "app": {
+    "index": {
       "content": {
         "hello": "Hallo, {name}!"
       }
