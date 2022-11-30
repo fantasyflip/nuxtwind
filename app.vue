@@ -19,4 +19,14 @@ watch(
   },
   { immediate: true }
 );
+useHead({
+  bodyAttrs: {
+    class: "bg-zinc-900 text-white",
+  },
+  htmlAttrs: {
+    lang: locale.value,
+  },
+  titleTemplate: "%s | Component Flip",
+  link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+});
 </script>

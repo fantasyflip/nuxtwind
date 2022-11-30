@@ -2,6 +2,14 @@
   "lang": "de",
   "pages": {
     "index": {
+      "meta": {
+        "title": "Home",
+        "description": "Eine Sammlung an Componenten für Nuxt 3 basierend auf Tailwind CSS.",
+        "og": {
+          "title": "Home | Component Flip",
+          "locale": "de_DE"
+        }
+      },
       "content": {
         "hello": "Hallo, {name}!"
       }
