@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="prevent-full-width mx-auto pt-16">
-      <slot />
+      <slot class="mx-2" />
     </div>
   </div>
 </template>

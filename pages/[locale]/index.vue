@@ -1,6 +1,14 @@
 <template>
-  <div>
-    {{ $t("pages.index.content.hello", { name: $route.path }) }}
+  <div class="center">
+    <div class="md:text-8xl sm:text-7xl text-5xl font-bold group">
+      <span>Component</span>
+      <span class="text-cyan-800 group-hover:text-emerald-700">Flip</span>
+    </div>
+    <div class="md:text-2xl sm:text-xl text-md text-center mt-4">
+      This is going to be a collection of components for Nuxt 3, powered by
+      TailwindCSS that I use in my projects.<br />
+      Come back soon to see what I have in store for you.
+    </div>
   </div>
 </template>
 
@@ -47,3 +55,13 @@ useHead({
   ],
 });
 </script>
+
+<style scoped>
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+</style>
