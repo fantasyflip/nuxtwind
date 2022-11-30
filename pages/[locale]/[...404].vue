@@ -8,6 +8,14 @@
       {{ $t("pages.404.content.errorMessage") }}
     </div>
     <div
+      v-if="$route.query.component"
+      class="md:text-2xl sm:text-xl text-lg"
+      v-html="
+        $t('pages.404.content.urlDisplay', { path: $route.query.component })
+      "
+    ></div>
+    <div
+      v-else
       class="md:text-2xl sm:text-xl text-lg"
       v-html="$t('pages.404.content.urlDisplay', { path: $route.path })"
     ></div>
