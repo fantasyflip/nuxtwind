@@ -1,11 +1,18 @@
 <template>
-  <NuxtLayout name="component">
-    <template #component> Test </template>
-  </NuxtLayout>
+  <div>
+    <NuxtLayout name="component">
+      <template #componentName> Button </template>
+      <template #component>
+        <div>Button</div>
+      </template>
+      <template #playground> Playground </template>
+      <template #props> Props </template>
+    </NuxtLayout>
+  </div>
 </template>
 <script setup>
-// definePageMeta({
-//   layout: "component",
-// });
+definePageMeta({
+  layout: false,
+});
 </script>
 <style scoped></style>

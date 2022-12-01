@@ -46,7 +46,7 @@ useHead({
     {
       hid: "og:url",
       property: "og:url",
-      content: "https://fantasyflip.de/",
+      content: "https://components.fantasyflip.de/",
     },
     {
       property: "og:locale",

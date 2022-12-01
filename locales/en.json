@@ -1,12 +1,28 @@
 {
   "lang": "en",
+  "layouts": {
+    "component": {
+      "meta": {
+        "title": "{componentName}",
+        "description": "Overview over the {componentName} component.",
+        "og": {
+          "title": "{componentName} | Component Flip",
+          "locale": "en_US"
+        }
+      },
+      "content": {
+        "playground": "Playground",
+        "properties": "Properties"
+      }
+    }
+  },
   "pages": {
     "404": {
       "meta": {
         "title": "404",
         "description": "Page not found!",
         "og": {
-          "title": "404 - Page not found | FantasyFlip.de",
+          "title": "404 - Page not found | Component Flip",
           "locale": "en_US"
         }
       },

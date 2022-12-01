@@ -25,6 +25,7 @@ useHead({
   },
   htmlAttrs: {
     lang: locale.value,
+    style: "scroll-behavior: smooth;",
   },
   titleTemplate: "%s | Component Flip",
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
