@@ -64,7 +64,7 @@ useHead({
     {
       hid: "description",
       name: "description",
-      content: t("layouts.component.meta.description"),
+      content: t("layouts.component.meta.description", { componentName }),
     },
     {
       hid: "og:title",
@@ -74,7 +74,7 @@ useHead({
     {
       hid: "og:description",
       property: "og:description",
-      content: t("layouts.component.meta.description"),
+      content: t("layouts.component.meta.description", { componentName }),
     },
     {
       hid: "og:type",
