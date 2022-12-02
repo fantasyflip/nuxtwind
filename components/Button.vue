@@ -1,7 +1,6 @@
 <template>
-  <div>Button-Test</div>
-  <div>
-    {{ props }}
+  <div :class="styleClass">
+    <slot>Button</slot>
   </div>
   <div>
     {{ styleClass }}
@@ -17,6 +16,7 @@ let defaults = {
     duration: 300,
   },
   outlined: "2",
+  shadow: "md",
 };
 
 const props = defineProps({
@@ -52,11 +52,12 @@ const props = defineProps({
     type: [Boolean, String],
     default: false,
   },
-  elevation: {
-    type: [String, Number],
-    default: 0,
+  shadow: {
+    type: [Boolean, String],
+    default: false,
   },
 });
+
 const styleClass = computed(() => {
   let styleClass = "";
 
@@ -71,18 +72,20 @@ const styleClass = computed(() => {
   } else {
     //OUTLINED
     if (props.outlined) {
+      if (typeof props.outlined === "string") {
+        styleClass += ` border-${props.outlined}`;
+      } else {
+        styleClass += ` border-${defaults.outlined}`;
+      }
+
       //COLOR
       if (props.color.includes("#")) {
         styleClass += ` border-[${props.color}] text-[${props.color}]`;
       } else {
         styleClass += ` border-${props.color} text-${props.color}`;
       }
-      if (typeof props.outlined === "string") {
-        styleClass += ` border-${props.outlined}`;
-      } else {
-        styleClass += ` border-${defaults.outlined}`;
-      }
     } else {
+      console.log("not outlined", props.color);
       //COLOR
       if (props.color.includes("#")) {
         styleClass += `bg-[${props.color}]`;
@@ -109,23 +112,34 @@ const styleClass = computed(() => {
     }
   }
 
-  //GROW
-  if (typeof props.grow === "object") {
-    styleClass += ` transition ease-in-out delay-${
-      props.grow.delay || defaults.grow.delay
-    } hover:scale-${props.grow.scale || defaults.grow.scale} duration-${
-      props.grow.duration || defaults.grow.duration
-    }`;
-  } else if (props.grow) {
-    styleClass += ` transition ease-in-out delay-${defaults.grow.delay} hover:scale-${defaults.grow.scale} duration-${defaults.grow.duration}`;
-  }
-
   //DISABLED
   if (props.disabled) {
     styleClass += ` opacity-50 cursor-not-allowed`;
   } else if (!props.loading) {
     styleClass += ` cursor-pointer`;
+
+    //GROW
+    if (typeof props.grow === "object") {
+      styleClass += ` transition ease-in-out delay-${
+        props.grow.delay || defaults.grow.delay
+      } hover:scale-${props.grow.scale || defaults.grow.scale} duration-${
+        props.grow.duration || defaults.grow.duration
+      }`;
+    } else if (props.grow) {
+      styleClass += ` transition ease-in-out delay-${defaults.grow.delay} hover:scale-${defaults.grow.scale} duration-${defaults.grow.duration}`;
+    }
   }
+
+  //SHADOW
+  if (typeof props.shadow === "string" && props.shadow.includes("px")) {
+    styleClass += ` shadow-[${props.shadow}]`;
+  } else if (typeof props.shadow === "string") {
+    styleClass += ` shadow-${props.shadow}`;
+  } else if (props.shadow) {
+    styleClass += ` shadow-${defaults.shadow}`;
+  }
+
+  styleClass += ` px-3 py-2`;
 
   return styleClass;
 });
