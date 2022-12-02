@@ -3,7 +3,7 @@
     <NuxtLayout name="component">
       <template #componentName> Button </template>
       <template #component>
-        <div>Button</div>
+        <Button />
       </template>
       <template #playground> Playground </template>
       <template #props> Props </template>
