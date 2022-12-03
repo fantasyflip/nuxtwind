@@ -4,7 +4,7 @@
   >
     <div>
       <slot name="componentName"></slot>
-      <span class="text-cyan-800 group-hover:text-emerald-700 -ml-2">.</span>
+      <span class="text-primary group-hover:text-secondary -ml-2">.</span>
     </div>
     <div>
       <!-- TODO replace with actual button component -->
@@ -21,7 +21,7 @@
         @click="copyIdLink('playground')"
       >
         <span>{{ $t("layouts.component.content.playground") }} - </span>
-        <span class="text-cyan-800">
+        <span class="text-primary">
           <slot name="componentName"></slot>
         </span>
       </div>
@@ -40,7 +40,7 @@
       @click="copyIdLink('properties')"
     >
       <span>{{ $t("layouts.component.content.properties") }} - </span>
-      <span class="text-cyan-800">
+      <span class="text-primary">
         <slot name="componentName"></slot>
       </span>
     </div>

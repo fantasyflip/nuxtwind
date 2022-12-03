@@ -2,7 +2,7 @@
   <div class="center">
     <div class="md:text-8xl sm:text-7xl text-5xl font-bold group">
       <span>Component</span>
-      <span class="text-cyan-800 group-hover:text-emerald-700">Flip</span>
+      <span class="text-primary group-hover:text-secondary">Flip</span>
     </div>
     <div class="md:text-2xl sm:text-xl text-md text-center mt-4">
       This is going to be a collection of components for Nuxt 3, powered by

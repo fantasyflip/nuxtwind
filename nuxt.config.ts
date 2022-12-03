@@ -5,7 +5,23 @@ import { fileURLToPath } from "url";
 import VueI18nVitePlugin from "@intlify/unplugin-vue-i18n/vite";
 
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: [
+    [
+      "@nuxtjs/tailwindcss",
+      {
+        config: {
+          theme: {
+            extend: {
+              colors: {
+                primary: "#155e75",
+                secondary: "#15803d",
+              },
+            },
+          },
+        },
+      },
+    ],
+  ],
   vite: {
     plugins: [
       VueI18nVitePlugin({

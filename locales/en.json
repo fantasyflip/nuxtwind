@@ -28,7 +28,7 @@
       },
       "content": {
         "errorMessage": "Shit happens! This site doesn't exist.",
-        "urlDisplay": "You tried to access <a class='text-cyan-800 hover:text-emerald-700' href='{path}'>{path}</a>."
+        "urlDisplay": "You tried to access <a class='text-primary hover:text-secondary' href='{path}'>{path}</a>."
       },
       "buttons": {
         "home": "Back Home"

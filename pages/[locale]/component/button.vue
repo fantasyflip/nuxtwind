@@ -14,7 +14,9 @@
         ></Button>
       </template>
       <template #playground> Playground </template>
-      <template #props> Props </template>
+      <template #props>
+        <PropDisplay />
+      </template>
     </NuxtLayout>
   </div>
 </template>
