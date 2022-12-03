@@ -1,28 +1,43 @@
 <template>
   <div :class="styleClass">
-    <slot>Button</slot>
-  </div>
-  <div>
-    {{ styleClass }}
+    <NuxtLink v-if="link" :to="link" :target="target">
+      <slot>Link-Button</slot>
+    </NuxtLink>
+
+    <slot v-else>Button</slot>
   </div>
 </template>
 
 <script setup>
 let defaults = {
-  borderRadius: "lg",
-  grow: {
-    delay: 150,
-    scale: 110,
-    duration: 300,
+  color: {
+    bg: "bg-cyan-900",
+    text: "text-white",
+    border: "border-white",
+    hover: "hover:bg-cyan-800",
   },
-  outlined: "2",
-  shadow: "md",
+  borderRadius: "rounded-md",
+  grow: {
+    delay: "delay-10",
+    scale: "hover:scale-110",
+  },
+  transition: {
+    duration: "duration-300",
+    ease: "ease-in-out",
+  },
+  outlined: "border-2",
+  shadow: "shadow-md",
 };
 
 const props = defineProps({
   color: {
-    type: String,
-    default: "gray-600",
+    type: Object,
+    default: {
+      bg: "bg-cyan-900",
+      text: "text-white",
+      border: "border-white",
+      hover: "hover:bg-cyan-800",
+    },
   },
   borderRadius: {
     type: [Boolean, String],
@@ -33,8 +48,12 @@ const props = defineProps({
     default: false,
   },
   link: {
-    type: Boolean,
-    default: false,
+    type: [Object, String],
+    default: null,
+  },
+  target: {
+    type: String,
+    default: "_self",
   },
   disabled: {
     type: Boolean,
@@ -49,100 +68,111 @@ const props = defineProps({
     default: false,
   },
   outlined: {
-    type: [Boolean, String],
+    type: Boolean,
     default: false,
   },
   shadow: {
     type: [Boolean, String],
+    default: true,
+  },
+  transition: {
+    type: [Object, Boolean],
+    default: true,
+  },
+  dense: {
+    type: Boolean,
     default: false,
+  },
+  width: {
+    type: String,
+    default: "w-full",
+  },
+  height: {
+    type: String,
+    default: "",
   },
 });
 
 const styleClass = computed(() => {
-  let styleClass = "";
+  let styleClasses = [];
 
-  //ICON
-  if (props.icon) {
-    //COLOR
-    if (props.color.includes("#")) {
-      styleClass += `text-[${props.color}]`;
-    } else {
-      styleClass += `text-${props.color}`;
-    }
-  } else {
+  //COLOR
+  if (props.color) {
     //OUTLINED
     if (props.outlined) {
-      if (typeof props.outlined === "string") {
-        styleClass += ` border-${props.outlined}`;
-      } else {
-        styleClass += ` border-${defaults.outlined}`;
-      }
-
-      //COLOR
-      if (props.color.includes("#")) {
-        styleClass += ` border-[${props.color}] text-[${props.color}]`;
-      } else {
-        styleClass += ` border-${props.color} text-${props.color}`;
-      }
+      styleClasses.push(props.color.text || defaults.color.text);
+      styleClasses.push(props.color.border || defaults.color.border);
+      styleClasses.push(defaults.outlined);
     } else {
-      console.log("not outlined", props.color);
-      //COLOR
-      if (props.color.includes("#")) {
-        styleClass += `bg-[${props.color}]`;
-      } else {
-        styleClass += `bg-${props.color}`;
+      styleClasses.push(props.color.bg || defaults.color.bg);
+      styleClasses.push(props.color.text || defaults.color.text);
+      if (!props.disabled && !props.loading) {
+        styleClasses.push(props.color.hover || defaults.color.hover);
       }
     }
+  }
 
-    //BORDER RADIUS
-    if (
-      typeof props.borderRadius === "string" &&
-      props.borderRadius.includes("px")
-    ) {
-      styleClass += ` rounded-[${props.borderRadius}]`;
-    } else if (typeof props.borderRadius === "string") {
-      styleClass += ` rounded-${props.borderRadius}`;
-    } else if (props.borderRadius) {
-      styleClass += ` rounded-${defaults.borderRadius}`;
-    }
-
-    //LOADING
-    if (props.loading) {
-      styleClass += ` opacity-50`;
-    }
+  //BORDER RADIUS
+  if (props.borderRadius) {
+    styleClasses.push(
+      typeof props.borderRadius === "string"
+        ? props.borderRadius
+        : defaults.borderRadius
+    );
   }
 
   //DISABLED
   if (props.disabled) {
-    styleClass += ` opacity-50 cursor-not-allowed`;
+    styleClasses.push("opacity-50 cursor-not-allowed");
   } else if (!props.loading) {
-    styleClass += ` cursor-pointer`;
-
+    styleClasses.push("cursor-pointer");
     //GROW
-    if (typeof props.grow === "object") {
-      styleClass += ` transition ease-in-out delay-${
-        props.grow.delay || defaults.grow.delay
-      } hover:scale-${props.grow.scale || defaults.grow.scale} duration-${
-        props.grow.duration || defaults.grow.duration
-      }`;
-    } else if (props.grow) {
-      styleClass += ` transition ease-in-out delay-${defaults.grow.delay} hover:scale-${defaults.grow.scale} duration-${defaults.grow.duration}`;
+    if (props.grow) {
+      styleClasses.push(props.grow.delay || defaults.grow.delay);
+      styleClasses.push(props.grow.scale || defaults.grow.scale);
     }
+  } else {
+    styleClasses.push("opacity-50");
+  }
+  if (props.disabled) {
+    styleClasses.push("opacity-50 cursor-not-allowed");
+  }
+
+  //TRANSITION
+  if (props.transition) {
+    styleClasses.push("transition");
+    styleClasses.push(
+      props.transition.duration || defaults.transition.duration
+    );
+    styleClasses.push(props.transition.ease || defaults.transition.ease);
   }
 
   //SHADOW
-  if (typeof props.shadow === "string" && props.shadow.includes("px")) {
-    styleClass += ` shadow-[${props.shadow}]`;
-  } else if (typeof props.shadow === "string") {
-    styleClass += ` shadow-${props.shadow}`;
-  } else if (props.shadow) {
-    styleClass += ` shadow-${defaults.shadow}`;
+  if (props.shadow) {
+    styleClasses.push(
+      typeof props.shadow === "string" ? props.shadow : defaults.shadow
+    );
   }
 
-  styleClass += ` px-3 py-2`;
+  //DENSE
+  if (props.dense) {
+    styleClasses.push("py-1 px-2 text-sm");
+  } else {
+    styleClasses.push("py-2 px-5");
+  }
 
-  return styleClass;
+  //WIDTH
+  if (props.width) {
+    styleClasses.push(props.width);
+  }
+
+  //HEIGHT
+  if (props.height) {
+    styleClasses.push(props.height);
+  }
+
+  styleClasses.push("flex justify-center items-center");
+
+  return styleClasses.join(" ");
 });
 </script>
-
-<style scoped></style>

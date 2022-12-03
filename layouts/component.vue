@@ -33,7 +33,7 @@
       <slot name="component"></slot>
     </div>
   </div>
-  <div class="mx-4 mt-4 h-screen">
+  <div class="mx-4 mt-4">
     <div
       class="lg:text-3xl text-2xl font-bold cursor-pointer"
       id="properties"
