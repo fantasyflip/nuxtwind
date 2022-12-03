@@ -7,10 +7,18 @@
       <span class="text-primary group-hover:text-secondary -ml-2">.</span>
     </div>
     <div>
-      <!-- TODO replace with actual button component -->
-      <NuxtLink target="_blank" :href="useGithubComponentUrl(componentName)"
-        >GH</NuxtLink
+      <Button
+        icon
+        :link="useGithubComponentUrl(componentName)"
+        target="_blank"
+        :color="{
+          text: 'text-primary',
+          hover: 'hover:text-secondary',
+        }"
+        grow
       >
+        <MdiGithub />
+      </Button>
     </div>
   </div>
   <div class="lg:flex lg:h-[75vh] h-[85vh] w-full mt-5">
@@ -48,6 +56,8 @@
   </div>
 </template>
 <script setup>
+import MdiGithub from "~icons/mdi/github";
+
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 

@@ -21,6 +21,7 @@ export default defineNuxtConfig({
         },
       },
     ],
+    "unplugin-icons/nuxt",
   ],
   vite: {
     plugins: [

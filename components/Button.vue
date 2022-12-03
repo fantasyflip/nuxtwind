@@ -103,6 +103,11 @@ const styleClass = computed(() => {
       styleClasses.push(props.color.text || defaults.color.text);
       styleClasses.push(props.color.border || defaults.color.border);
       styleClasses.push(defaults.outlined);
+    } else if (props.icon) {
+      styleClasses.push(props.color.text || defaults.color.text);
+      if (!props.disabled && !props.loading) {
+        styleClasses.push(props.color.hover || defaults.color.hover);
+      }
     } else {
       styleClasses.push(props.color.bg || defaults.color.bg);
       styleClasses.push(props.color.text || defaults.color.text);
@@ -149,9 +154,13 @@ const styleClass = computed(() => {
 
   //SHADOW
   if (props.shadow) {
-    styleClasses.push(
-      typeof props.shadow === "string" ? props.shadow : defaults.shadow
-    );
+    if (props.icon && typeof props.shadow === "boolean") {
+      styleClasses.push("shadow-none");
+    } else {
+      styleClasses.push(
+        typeof props.shadow === "string" ? props.shadow : defaults.shadow
+      );
+    }
   }
 
   //DENSE
