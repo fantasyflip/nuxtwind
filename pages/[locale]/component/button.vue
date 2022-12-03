@@ -3,7 +3,7 @@
     <NuxtLayout name="component">
       <template #componentName> Button </template>
       <template #component>
-        <Button color="red-500" outlined border-radius grow shadow>Test</Button>
+        <Button color="red-500" border-radius outlined>Test</Button>
       </template>
       <template #playground> Playground </template>
       <template #props> Props </template>
