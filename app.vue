@@ -31,3 +31,35 @@ useHead({
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
 });
 </script>
+
+<style>
+html {
+  overflow: auto;
+
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+/* width / */
+::-webkit-scrollbar {
+  width: 0.625em;
+}
+
+/* / Track / */
+::-webkit-scrollbar-track {
+  background: theme("colors.zinc.800");
+}
+
+/* / Handle / */
+::-webkit-scrollbar-thumb {
+  background: theme("colors.primary");
+}
+
+/* / Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.secondary");
+}
+</style>
