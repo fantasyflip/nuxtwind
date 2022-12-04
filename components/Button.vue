@@ -19,7 +19,7 @@ let defaults = {
     border: "border-white",
     hover: "hover:bg-cyan-800",
   },
-  borderRadius: "rounded-md",
+  rounded: "rounded-md",
   grow: {
     delay: "delay-10",
     scale: "hover:scale-110",
@@ -42,7 +42,7 @@ const props = defineProps({
       hover: "hover:bg-cyan-800",
     },
   },
-  borderRadius: {
+  rounded: {
     type: [Boolean, String],
     default: false,
   },
@@ -125,11 +125,9 @@ const styleClass = computed(() => {
   }
 
   //BORDER RADIUS
-  if (props.borderRadius) {
+  if (props.rounded) {
     styleClasses.push(
-      typeof props.borderRadius === "string"
-        ? props.borderRadius
-        : defaults.borderRadius
+      typeof props.rounded === "string" ? props.rounded : defaults.rounded
     );
   }
 

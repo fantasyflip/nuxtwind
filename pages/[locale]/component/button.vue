@@ -9,7 +9,7 @@
             text: 'text-red-500',
             border: 'border-red-500',
           }"
-          border-radius
+          rounded
           grow
           link="https://google.com"
           target="_blank"
@@ -47,11 +47,11 @@ let props = [
     ),
   },
   {
-    name: "borderRadius",
+    name: "rounded",
     type: "Boolean, String",
     default: "rounded-md",
     description: t(
-      "pages.component.button.content.properties.borderRadius.description"
+      "pages.component.button.content.properties.rounded.description"
     ),
   },
   {

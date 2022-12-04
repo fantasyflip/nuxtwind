@@ -25,7 +25,7 @@
             "color": {
               "description": "Prop to set the color of the button.<br>You can seperately set the background, text, border and hover color.<br>If the 'outlined' prop is set, only the border and the text color will be used.<br>If the 'disabled' or 'loading' prop is set, the opacity will be set to 50% and the hover color will no longer take effect.<br>If the 'icon' prop is set, only the text & hover color will take effect."
             },
-            "borderRadius": {
+            "rounded": {
               "description": "Prop to set the border radius of the button. The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
             },
             "grow": {
