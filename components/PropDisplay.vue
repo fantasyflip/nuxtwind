@@ -17,12 +17,12 @@
         <span class="pr-1 font-semibold">Type:</span>
         {{ props.item.type }}
       </div>
-      <div class="flex">
-        <div class="w-3/5">
+      <div class="sm:flex">
+        <div class="sm:w-3/5 sm:pr-5">
           <div class="text-lg font-semibold">Description</div>
           <div v-html="props.item.description"></div>
         </div>
-        <div>
+        <div class="sm:pt-0 pt-2">
           <div class="text-lg font-semibold">Default</div>
           <!-- v-if="typeof props.item.default === 'object'" -->
           <client-only

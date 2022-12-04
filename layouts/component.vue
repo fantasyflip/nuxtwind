@@ -21,7 +21,7 @@
       </Button>
     </div>
   </div>
-  <div class="lg:flex lg:h-[82vh] h-[85vh] w-full mt-5">
+  <div class="lg:flex lg:h-[83vh] h-[85vh] w-full mt-5">
     <div class="lg:w-1/2 lg:h-full h-1/2 mx-4">
       <div
         class="lg:text-3xl text-2xl font-bold cursor-pointer"

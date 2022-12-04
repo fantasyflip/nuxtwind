@@ -1,22 +1,14 @@
 <template>
-  <div :class="styleClass">
-    <NuxtLink
-      v-if="props.link"
-      :to="props.link"
-      :target="props.target"
-      :class="
-        props.disabled
-          ? 'cursor-not-allowed'
-          : props.loading
-          ? 'cursor-none'
-          : ''
-      "
-    >
-      <slot>Link-Button</slot>
-    </NuxtLink>
+  <NuxtLink
+    v-if="props.link"
+    :to="props.link"
+    :target="props.target"
+    :class="styleClass"
+  >
+    <slot>Link-Button</slot>
+  </NuxtLink>
 
-    <slot v-else>Button</slot>
-  </div>
+  <slot v-else :class="styleClass">Button</slot>
 </template>
 
 <script setup>
@@ -181,7 +173,7 @@ const styleClass = computed(() => {
   //DENSE
   if (props.dense) {
     styleClasses.push("py-1 px-2 text-sm");
-  } else {
+  } else if (!props.icon) {
     styleClasses.push("py-2 px-5");
   }
 
