@@ -1,6 +1,17 @@
 <template>
   <div :class="styleClass">
-    <NuxtLink v-if="link" :to="link" :target="target">
+    <NuxtLink
+      v-if="props.link"
+      :to="props.link"
+      :target="props.target"
+      :class="
+        props.disabled
+          ? 'cursor-not-allowed'
+          : props.loading
+          ? 'cursor-none'
+          : ''
+      "
+    >
       <slot>Link-Button</slot>
     </NuxtLink>
 
@@ -21,12 +32,12 @@ let defaults = {
     delay: "delay-10",
     scale: "hover:scale-110",
   },
+  outlined: "border-2",
+  shadow: "shadow-md",
   transition: {
     duration: "duration-300",
     ease: "ease-in-out",
   },
-  outlined: "border-2",
-  shadow: "shadow-md",
 };
 
 const props = defineProps({
@@ -68,7 +79,7 @@ const props = defineProps({
     default: false,
   },
   outlined: {
-    type: Boolean,
+    type: [Boolean, String],
     default: false,
   },
   shadow: {
@@ -76,7 +87,7 @@ const props = defineProps({
     default: true,
   },
   transition: {
-    type: [Object, Boolean],
+    type: [Boolean, Object],
     default: true,
   },
   dense: {
@@ -85,11 +96,11 @@ const props = defineProps({
   },
   width: {
     type: String,
-    default: "w-full",
+    default: undefined,
   },
   height: {
     type: String,
-    default: "",
+    default: undefined,
   },
 });
 
@@ -102,7 +113,11 @@ const styleClass = computed(() => {
     if (props.outlined) {
       styleClasses.push(props.color.text || defaults.color.text);
       styleClasses.push(props.color.border || defaults.color.border);
-      styleClasses.push(defaults.outlined);
+      if (typeof props.outlined === "string") {
+        styleClasses.push(props.outlined);
+      } else {
+        styleClasses.push(defaults.outlined);
+      }
     } else if (props.icon) {
       styleClasses.push(props.color.text || defaults.color.text);
       if (!props.disabled && !props.loading) {

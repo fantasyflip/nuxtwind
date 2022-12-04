@@ -21,12 +21,12 @@
       </Button>
     </div>
   </div>
-  <div class="lg:flex lg:h-[75vh] h-[85vh] w-full mt-5">
+  <div class="lg:flex lg:h-[82vh] h-[85vh] w-full mt-5">
     <div class="lg:w-1/2 lg:h-full h-1/2 mx-4">
       <div
         class="lg:text-3xl text-2xl font-bold cursor-pointer"
         id="playground"
-        @click="copyIdLink('playground')"
+        @click="$hashAndCopy('playground')"
       >
         <span>{{ $t("layouts.component.content.playground") }} - </span>
         <span class="text-primary">
@@ -45,9 +45,12 @@
     <div
       class="lg:text-3xl text-2xl font-bold cursor-pointer"
       id="properties"
-      @click="copyIdLink('properties')"
+      @click="$hashAndCopy('properties')"
     >
-      <span>{{ $t("layouts.component.content.properties") }} - </span>
+      <span
+        >{{ $t("layouts.component.content.properties") }}
+        <span class="font-normal"> (<slot name="propertyCount"></slot>)</span> -
+      </span>
       <span class="text-primary">
         <slot name="componentName"></slot>
       </span>
@@ -84,7 +87,12 @@ useHead({
     {
       hid: "og:description",
       property: "og:description",
-      content: t("layouts.component.meta.description", { componentName }),
+      content: route.hash
+        ? t("layouts.component.meta.hash-description", {
+            componentName,
+            hash: route.hash.split("#")[1],
+          })
+        : t("layouts.component.meta.description", { componentName }),
     },
     {
       hid: "og:type",
@@ -107,14 +115,5 @@ useHead({
     },
   ],
 });
-
-function copyIdLink(id) {
-  let path = route.path;
-  let hash = "#" + id;
-  let fullPath = path + hash;
-  let newUrl = window.location.origin + fullPath;
-  navigator.clipboard.writeText(newUrl);
-  navigateTo(fullPath);
-}
 </script>
 <style scoped></style>

@@ -5,6 +5,7 @@
       "meta": {
         "title": "{componentName}",
         "description": "Übersicht über die {componentName} Komponente.",
+        "hash-description": "Übersicht über die {componentName} Komponente. Erfahre mehr über die {hash} Eigenschaft.",
         "og": {
           "title": "{componentName} | Component Flip",
           "locale": "de_DE"
