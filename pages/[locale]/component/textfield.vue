@@ -3,14 +3,7 @@
     <NuxtLayout name="component">
       <template #componentName> Textfield </template>
       <template #component>
-        <Textfield
-          :color="{
-            bg: 'bg-cyan-900',
-            text: 'text-white',
-            ring: 'ring-white',
-            iconFocus: 'group-focus-within:text-green-800',
-          }"
-        >
+        <Textfield prepend-icon>
           <template #icon>
             <MdiMagnify />
           </template>
