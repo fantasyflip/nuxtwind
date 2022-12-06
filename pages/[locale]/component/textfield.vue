@@ -3,7 +3,18 @@
     <NuxtLayout name="component">
       <template #componentName> Textfield </template>
       <template #component>
-        <Textfield />
+        <Textfield
+          :color="{
+            bg: 'bg-cyan-900',
+            text: 'text-white',
+            ring: 'ring-white',
+            iconFocus: 'group-focus-within:text-green-800',
+          }"
+        >
+          <template #icon>
+            <MdiMagnify />
+          </template>
+        </Textfield>
       </template>
       <template #playground> Playground </template>
       <template #props>
@@ -19,6 +30,8 @@
   </div>
 </template>
 <script setup>
+import MdiMagnify from "~icons/mdi/magnify";
+
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 let props = [];

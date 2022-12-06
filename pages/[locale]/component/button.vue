@@ -6,14 +6,11 @@
         <Button
           :color="{
             bg: 'bg-red-500',
-            text: 'text-red-500',
             border: 'border-red-500',
           }"
           rounded
           grow
-          link="https://google.com"
-          target="_blank"
-          outlined="border"
+          :link="useLocaleUrl('')"
         ></Button>
       </template>
       <template #playground> Playground </template>
