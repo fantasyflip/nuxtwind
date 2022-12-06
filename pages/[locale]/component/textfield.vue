@@ -3,7 +3,13 @@
     <NuxtLayout name="component">
       <template #componentName> Textfield </template>
       <template #component>
-        <Textfield prepend-icon>
+        <Textfield
+          hint="This is a hint!"
+          placeholder="Placeholder"
+          outlined
+          rounded
+          prepend-icon
+        >
           <template #icon>
             <MdiMagnify />
           </template>

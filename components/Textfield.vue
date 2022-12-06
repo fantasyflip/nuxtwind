@@ -10,6 +10,7 @@
       :placeholder="props.placeholder"
       required
       :class="inputClass"
+      :disabled="props.disabled || props.loading"
     />
     <div for="username" :class="labelClass">Label</div>
     <div
@@ -110,28 +111,41 @@ const props = defineProps({
     type: [Boolean, Object],
     default: true,
   },
+  noAnimation: {
+    type: Boolean,
+    default: false,
+  },
   width: {
     type: String,
     default: undefined,
   },
 });
 
+//TODO consider using https://flowbite.com/docs/forms/floating-label/
+
 const hintClass = computed(() => {
   // class="absolute transition-all ease-in-out duration-500 text-xs font-light pl-2 group-focus-within:opacity-100 -translate-y-2 group-focus-within:-translate-y-0 opacity-0"
 
   let classes = [
     "absolute",
-    "transition-all",
-    "ease-in-out",
-    "duration-500",
     "text-xs",
     "font-light",
     "pl-2",
     "group-focus-within:opacity-100",
-    "-translate-y-2",
-    "group-focus-within:-translate-y-0",
     "opacity-0",
   ];
+
+  if (!props.noAnimation) {
+    classes.push(props.transition.duration || defaults.transition.duration);
+    classes.push(props.transition.ease || defaults.transition.ease);
+    classes.push(
+      "transition-all",
+      "-translate-y-2",
+      "group-focus-within:-translate-y-0"
+    );
+  } else {
+    classes.push("-translate-y-0");
+  }
 
   return classes.join(" ");
 });
@@ -141,7 +155,6 @@ const labelClass = computed(() => {
 
   let classes = [
     "transform",
-    "transition-all",
     "absolute",
     "top-0",
     "left-0",
@@ -155,32 +168,50 @@ const labelClass = computed(() => {
     "group-focus-within:font-semibold",
     "group-focus-within:text-white",
     "peer-valid:text-sm",
-    "group-focus-within:pb-2",
-    "group-focus-within:h-1/2",
-    "peer-valid:h-1/2",
-    "group-focus-within:-translate-y-full",
-    "peer-valid:-translate-y-full",
-    "cursor-text",
+    "peer-checked:text-green-500",
   ];
 
   classes.push(props.color.label || defaults.color.label);
   classes.push(props.color.labelFocus || defaults.color.labelFocus);
 
   //PREPEND ICON
-  if (props.prependIcon) {
+  if (props.prependIcon && !props.noAnimation) {
     classes.push("pl-8");
   } else {
     classes.push("pl-2");
   }
 
-  //TRANSITION
-  if (props.transition && typeof props.transition === "object") {
+  if (!props.noAnimation) {
     classes.push(
-      props.transition.duration || defaults.transition.duration,
-      props.transition.ease || defaults.transition.ease
+      "transition-all",
+      "group-focus-within:pb-2",
+      "group-focus-within:h-1/2",
+      "peer-valid:h-1/2",
+      "group-focus-within:-translate-y-full",
+      "peer-valid:-translate-y-full"
     );
+
+    //TRANSITION
+    if (props.transition && typeof props.transition === "object") {
+      classes.push(
+        props.transition.duration || defaults.transition.duration,
+        props.transition.ease || defaults.transition.ease
+      );
+    } else {
+      classes.push(defaults.transition.duration, defaults.transition.ease);
+    }
   } else {
-    classes.push(defaults.transition.duration, defaults.transition.ease);
+    //TODO H-1/2 may be responsible for jumping animation on safari
+    //https://www.reddit.com/r/tailwindcss/comments/sd2wxl/can_i_do_different_transition_duration_for/
+    classes.push("-translate-y-full", "h-1/2");
+    console.log("no animation");
+  }
+
+  //LOADING
+  if (props.loading) {
+    classes.push("animate-pulse", "cursor-wait");
+  } else {
+    classes.push("cursor-text");
   }
 
   return classes.join(" ");
@@ -196,14 +227,20 @@ const inputClass = computed(() => {
     "text-sm",
     "peer",
     "outline-none",
-    "appearance-none",
-    "placeholder:opacity-0",
-    "focus:placeholder:opacity-100",
-    "transition-all",
-    "placeholder:transition-all"
+    "appearance-none"
   );
   classes.push(props.color.bg || defaults.color.bg);
   classes.push(props.color.placeholderText || defaults.color.placeholderText);
+
+  //NO ANIMATION
+  if (!props.noAnimation) {
+    classes.push(
+      "placeholder:opacity-0",
+      "focus:placeholder:opacity-100",
+      "placeholder:transition-all",
+      "transition-all"
+    );
+  }
 
   //PREPEND ICON
   if (props.prependIcon) {
@@ -213,14 +250,19 @@ const inputClass = computed(() => {
   //OUTLINED
   if (props.outlined) {
     classes.push(props.color.ring || defaults.color.ring);
-    classes.push(props.color.ringFocus || defaults.color.ringFocus);
+    if (!props.noAnimation) {
+      classes.push(props.color.ringFocus || defaults.color.ringFocus);
+    }
+
     classes.push(
       typeof props.outlined === "string" ? props.outlined : defaults.outlined
     );
   } else {
     classes.push("border-b-2");
     classes.push(props.color.border || defaults.color.border);
-    classes.push(props.color.borderFocus || defaults.color.borderFocus);
+    if (!props.noAnimation) {
+      classes.push(props.color.borderFocus || defaults.color.borderFocus);
+    }
   }
 
   //ROUNDED
@@ -265,6 +307,13 @@ const inputClass = computed(() => {
     }
   }
 
+  //LOADING
+  if (props.loading) {
+    classes.push("cursor-wait");
+  } else {
+    classes.push("cursor-text");
+  }
+
   return classes.join(" ");
 });
 
@@ -283,15 +332,17 @@ const prependIconClass = computed(() => {
   );
 
   classes.push(props.color.placeholderText || defaults.color.placeholderText);
-  classes.push(props.color.iconFocus || defaults.color.iconFocus);
   classes.push(props.color.placeholderText || defaults.color.placeholderText);
+  if (!props.noAnimation) {
+    classes.push(props.color.iconFocus || defaults.color.iconFocus);
+    classes.push(props.transition.duration || defaults.transition.duration);
+    classes.push(props.transition.ease || defaults.transition.ease);
+  }
 
-  classes.push(props.transition.duration || defaults.transition.duration);
-  classes.push(props.transition.ease || defaults.transition.ease);
-
-  // classes.push("text-gray-600");
-  // classes.push("group-focus-within:text-cyan-800");
-  // classes.push("duration-500");
+  //LOADING
+  if (props.loading) {
+    classes.push("animate-pulse");
+  }
 
   return classes.join(" ");
 });
