@@ -22,6 +22,7 @@ watch(
 useHead({
   bodyAttrs: {
     class: "bg-zinc-900 text-white",
+    // class: "bg-white text-black",
   },
   htmlAttrs: {
     lang: locale.value,

@@ -1,18 +1,18 @@
 <template>
-  <div class="relative group" @click="$refs.input.focus()">
-    <span v-if="props.prependIcon" :class="prependIconClass">
-      <slot name="icon">IC</slot>
-    </span>
+  <div :class="wrapperClass">
+    <div v-if="props.prependIcon" :class="prependIconClass">
+      <slot name="icon" />
+    </div>
     <input
-      ref="input"
-      type="text"
-      id="username"
-      :placeholder="props.placeholder"
-      required
+      id="textfield"
       :class="inputClass"
-      :disabled="props.disabled || props.loading"
+      :type="props.type"
+      placeholder="Placeholder"
+      :disabled="props.disabled"
     />
-    <div for="username" :class="labelClass">Label</div>
+    <label for="textfield" :class="labelClass">
+      <slot name="label">Label</slot>
+    </label>
     <div
       v-if="
         props.hint && props.hint.length > 0 && !props.disabled && !props.loading
@@ -27,19 +27,19 @@
 <script setup>
 let defaults = {
   color: {
-    bg: "bg-zinc-800",
+    bg: "bg-zinc-900",
     text: "text-white",
-    ring: "ring-white",
     label: "text-white",
-    labelFocus: "group-focus-within:text-cyan-600",
-    ringFocus: "focus:ring-cyan-800",
+    labelFocus: "peer-focus:text-cyan-600",
     placeholderText: "placeholder:text-gray-600",
-    iconFocus: "group-focus-within:text-cyan-800",
+    icon: "text-white",
+    iconFocus: "group-focus-within:text-cyan-600",
     border: "border-white",
     borderFocus: "focus:border-cyan-800",
   },
   rounded: "rounded-md",
-  outlined: "ring-2",
+  outlined: "border",
+  filled: "border-b-2",
   shadow: "shadow-lg",
   transition: {
     duration: "duration-300",
@@ -55,14 +55,13 @@ const props = defineProps({
   color: {
     type: Object,
     default: {
-      bg: "bg-zinc-800",
+      bg: "bg-zinc-900",
       text: "text-white",
-      ring: "ring-white",
       label: "text-white",
-      labelFocus: "group-focus-within:text-cyan-600",
-      ringFocus: "focus:ring-cyan-800",
+      labelFocus: "peer-focus:text-cyan-600",
       placeholderText: "placeholder:text-gray-600",
-      iconFocus: "group-focus-within:text-cyan-800",
+      icon: "text-white",
+      iconFocus: "group-focus-within:text-cyan-600",
       border: "border-white",
       borderFocus: "focus:border-cyan-800",
     },
@@ -79,19 +78,15 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  label: {
-    type: String,
-    default: undefined,
-  },
   rounded: {
     type: [Boolean, String],
     default: false,
   },
-  dense: {
-    type: Boolean,
+  outlined: {
+    type: [Boolean, String],
     default: false,
   },
-  outlined: {
+  filled: {
     type: [Boolean, String],
     default: false,
   },
@@ -107,21 +102,298 @@ const props = defineProps({
     type: [Boolean, String],
     default: true,
   },
+  type: {
+    type: String,
+    default: "text",
+  },
   transition: {
     type: [Boolean, Object],
     default: true,
   },
-  noAnimation: {
-    type: Boolean,
-    default: false,
-  },
   width: {
     type: String,
-    default: undefined,
+    default: "w-full",
   },
 });
 
-//TODO consider using https://flowbite.com/docs/forms/floating-label/
+const wrapperClass = computed(() => {
+  let classes = [];
+  // class='relative'
+  classes.push("relative", "group");
+
+  //DEFAULT
+  if (!props.outlined && !props.filled) {
+    // class='z-0'
+    classes.push("z-0");
+  }
+
+  //DISABLED
+  if (props.disabled) {
+    classes.push("opacity-50", "cursor-not-allowed");
+  }
+
+  //LOADING
+  if (props.loading) {
+    classes.push("cursor-progress", "animate-pulse");
+  }
+
+  //WIDTH
+  classes.push(props.width || defaults.width);
+
+  return classes.join(" ");
+});
+
+const inputClass = computed(() => {
+  let classes = [];
+  // class='block w-full text-sm text-gray-900 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+  classes.push(
+    "block",
+    "w-full",
+    "text-sm",
+    "appearance-none",
+    "focus:outline-none",
+    "focus:ring-0",
+    "peer",
+    "placeholder:opacity-0",
+    "focus:placeholder:opacity-100",
+    "placeholder:transition-opacity"
+  );
+
+  //TRANSITION
+  if (props.transition && typeof props.transition === "object") {
+    classes.push(
+      props.transition.placeholder.duration ||
+        defaults.transition.placeholder.duration
+    );
+    classes.push(
+      props.transition.placeholder.ease || defaults.transition.placeholder.ease
+    );
+  } else if (props.transition) {
+    classes.push(defaults.transition.placeholder.duration);
+    classes.push(defaults.transition.placeholder.ease);
+  }
+
+  //BASIC APPEARANCE
+
+  if (props.filled) {
+    //FILLED
+    classes.push("rounded-t-lg", "pb-2.5", "px-2.5", "pt-5", "border-0");
+
+    if (typeof props.filled === "string") {
+      classes.push(props.filled);
+    } else {
+      classes.push(defaults.filled);
+    }
+
+    //COLOR
+    classes.push(props.color.bg || defaults.color.bg);
+
+    //ICON
+    if (props.prependIcon) {
+      classes.push("pl-8 pr-2.5");
+    } else {
+      classes.push("px-2.5");
+    }
+  } else if (props.outlined) {
+    //OUTLINED
+    classes.push("py-4", "bg-transparent", "rounded-lg");
+    if (typeof props.outlined === "string") {
+      classes.push(props.outlined);
+    } else {
+      classes.push(defaults.outlined);
+    }
+
+    //ICON
+    if (props.prependIcon) {
+      classes.push("pl-8 pr-2.5");
+    } else {
+      classes.push("px-2.5");
+    }
+  } else {
+    //DEFAULT
+    classes.push("py-2.5", "bg-transparent", "border-0", "border-b-2");
+
+    //ICON
+    if (props.prependIcon) {
+      classes.push("pl-8 pr-0");
+    } else {
+      classes.push("px-0");
+    }
+  }
+
+  //COLOR
+  if (props.color) {
+    classes.push(props.color.border || defaults.color.border);
+    classes.push(props.color.borderFocus || defaults.color.borderFocus);
+    classes.push(props.color.text || defaults.color.text);
+    classes.push(props.color.placeholderText || defaults.color.placeholderText);
+  }
+
+  //DISABLED
+  if (props.disabled) {
+    classes.push("cursor-not-allowed");
+  }
+
+  //LOADING
+  if (props.loading) {
+    classes.push("cursor-progress");
+  }
+
+  //SHADOW
+  if (props.shadow) {
+    if (typeof props.shadow === "string") {
+      classes.push(props.shadow);
+    } else {
+      classes.push(defaults.shadow);
+    }
+  }
+
+  return classes.join(" ");
+});
+
+const labelClass = computed(() => {
+  let classes = [];
+  classes.push(
+    "absolute",
+    "text-sm",
+    "transform",
+    "scale-75",
+    "origin-[0]",
+    "peer-placeholder-shown:scale-100",
+    "peer-focus:scale-75"
+  );
+
+  //TRANSITION
+  if (props.transition && typeof props.transition === "object") {
+    classes.push(props.transition.duration || defaults.transition.duration);
+    classes.push(props.transition.ease || defaults.transition.ease);
+  } else if (props.transition) {
+    classes.push(defaults.transition.duration);
+    classes.push(defaults.transition.ease);
+  }
+
+  //BASIC APPEARANCE
+  if (props.filled) {
+    //FILLED
+    classes.push(
+      "-translate-y-4",
+      "top-4",
+      "peer-focus:top-4",
+      "z-10",
+      "left-2.5",
+      "peer-placeholder-shown:translate-y-0",
+      "peer-focus:-translate-y-4"
+    );
+
+    //ICON
+    if (props.prependIcon) {
+      classes.push(
+        "peer-focus:translate-x-0",
+        "peer-placeholder-shown:translate-x-6",
+        "peer-placeholder-shown:top-5"
+      );
+    }
+  } else if (props.outlined) {
+    //OUTLINED
+    classes.push(
+      "-translate-y-4",
+      "top-2",
+      "z-10",
+      "px-2",
+      "peer-focus:px-2",
+      "peer-placeholder-shown:-translate-y-1/2",
+      "peer-placeholder-shown:top-1/2",
+      "peer-focus:top-2",
+      "peer-focus:-translate-y-4",
+      "left-1"
+    );
+
+    //COLOR
+    classes.push(props.color.bg || defaults.color.bg);
+
+    //ICON
+    if (props.prependIcon) {
+      classes.push(
+        "peer-focus:translate-x-0",
+        "peer-placeholder-shown:translate-x-6"
+      );
+    }
+  } else {
+    //DEFAULT
+    classes.push(
+      "-translate-y-6",
+      "top-3",
+      "-z-10",
+      "peer-focus:left-0",
+      "peer-placeholder-shown:translate-y-0",
+      "peer-focus:-translate-y-6"
+    );
+
+    //ICON
+    if (props.prependIcon) {
+      classes.push(
+        "peer-focus:translate-x-0",
+        "peer-placeholder-shown:translate-x-8"
+      );
+    }
+  }
+
+  //COLOR
+  if (props.color) {
+    classes.push(props.color.label || defaults.color.label);
+    classes.push(props.color.labelFocus || defaults.color.labelFocus);
+  }
+
+  //DISABLED
+  if (props.disabled) {
+    classes.push("cursor-not-allowed");
+  } else if (props.loading) {
+    classes.push("cursor-progress");
+  } else {
+    classes.push("cursor-text", "peer-focus:cursor-default");
+  }
+
+  return classes.join(" ");
+});
+
+const prependIconClass = computed(() => {
+  // class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-600 group-focus-within:text-cyan-800 transition-all ease-in-out duration-500"
+
+  let classes = [];
+  classes.push(
+    "absolute",
+    "inset-y-0",
+    "left-0",
+    "flex",
+    "items-center",
+    "pl-2",
+    "transition-all"
+  );
+
+  //TRANSITION
+  if (props.transition && typeof props.transition === "object") {
+    classes.push(props.transition.duration || defaults.transition.duration);
+    classes.push(props.transition.ease || defaults.transition.ease);
+  } else if (props.transition) {
+    classes.push(defaults.transition.duration);
+    classes.push(defaults.transition.ease);
+  }
+
+  if (props.filled) {
+    classes.push("top-2");
+  }
+
+  classes.push(props.color.placeholderText || defaults.color.placeholderText);
+  classes.push(props.color.icon || defaults.color.icon);
+  classes.push(props.color.iconFocus || defaults.color.iconFocus);
+
+  //LOADING
+  if (props.loading) {
+    classes.push("animate-pulse");
+  }
+
+  return classes.join(" ");
+});
 
 const hintClass = computed(() => {
   // class="absolute transition-all ease-in-out duration-500 text-xs font-light pl-2 group-focus-within:opacity-100 -translate-y-2 group-focus-within:-translate-y-0 opacity-0"
@@ -149,203 +421,4 @@ const hintClass = computed(() => {
 
   return classes.join(" ");
 });
-
-const labelClass = computed(() => {
-  // class="transform transition-all ease-in-out duration-500 absolute top-0 left-0 h-full flex items-center group-focus-within:pl-2 pl-8 text-sm group-focus-within:text-sm group-focus-within:font-semibold group-focus-within:text-white text-gray-600 peer-valid:text-xs group-focus-within:pb-2 group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full cursor-text"
-
-  let classes = [
-    "transform",
-    "absolute",
-    "top-0",
-    "left-0",
-    "h-full",
-    "flex",
-    "items-center",
-    "group-focus-within:pl-2",
-    "peer-valid:pl-2",
-    "text-sm",
-    "group-focus-within:text-sm",
-    "group-focus-within:font-semibold",
-    "group-focus-within:text-white",
-    "peer-valid:text-sm",
-    "peer-checked:text-green-500",
-  ];
-
-  classes.push(props.color.label || defaults.color.label);
-  classes.push(props.color.labelFocus || defaults.color.labelFocus);
-
-  //PREPEND ICON
-  if (props.prependIcon && !props.noAnimation) {
-    classes.push("pl-8");
-  } else {
-    classes.push("pl-2");
-  }
-
-  if (!props.noAnimation) {
-    classes.push(
-      "transition-all",
-      "group-focus-within:pb-2",
-      "group-focus-within:h-1/2",
-      "peer-valid:h-1/2",
-      "group-focus-within:-translate-y-full",
-      "peer-valid:-translate-y-full"
-    );
-
-    //TRANSITION
-    if (props.transition && typeof props.transition === "object") {
-      classes.push(
-        props.transition.duration || defaults.transition.duration,
-        props.transition.ease || defaults.transition.ease
-      );
-    } else {
-      classes.push(defaults.transition.duration, defaults.transition.ease);
-    }
-  } else {
-    //TODO H-1/2 may be responsible for jumping animation on safari
-    //https://www.reddit.com/r/tailwindcss/comments/sd2wxl/can_i_do_different_transition_duration_for/
-    classes.push("-translate-y-full", "h-1/2");
-    console.log("no animation");
-  }
-
-  //LOADING
-  if (props.loading) {
-    classes.push("animate-pulse", "cursor-wait");
-  } else {
-    classes.push("cursor-text");
-  }
-
-  return classes.join(" ");
-});
-
-const inputClass = computed(() => {
-  // class="bg-zinc-800 h-10 px-4 pl-8 text-sm peer outline-none ring-2 focus:ring-cyan-800 ring-white appearance-none rounded-md shadow-lg placeholder:opacity-0 focus:placeholder:opacity-100 transition-all ease-in-out duration-500 placeholder:transition-all placeholder:duration-500 placeholder:ease-in-out"
-
-  let classes = [];
-  classes.push(
-    "h-10",
-    "px-2",
-    "text-sm",
-    "peer",
-    "outline-none",
-    "appearance-none"
-  );
-  classes.push(props.color.bg || defaults.color.bg);
-  classes.push(props.color.placeholderText || defaults.color.placeholderText);
-
-  //NO ANIMATION
-  if (!props.noAnimation) {
-    classes.push(
-      "placeholder:opacity-0",
-      "focus:placeholder:opacity-100",
-      "placeholder:transition-all",
-      "transition-all"
-    );
-  }
-
-  //PREPEND ICON
-  if (props.prependIcon) {
-    classes.push("pl-8");
-  }
-
-  //OUTLINED
-  if (props.outlined) {
-    classes.push(props.color.ring || defaults.color.ring);
-    if (!props.noAnimation) {
-      classes.push(props.color.ringFocus || defaults.color.ringFocus);
-    }
-
-    classes.push(
-      typeof props.outlined === "string" ? props.outlined : defaults.outlined
-    );
-  } else {
-    classes.push("border-b-2");
-    classes.push(props.color.border || defaults.color.border);
-    if (!props.noAnimation) {
-      classes.push(props.color.borderFocus || defaults.color.borderFocus);
-    }
-  }
-
-  //ROUNDED
-  if (props.rounded) {
-    classes.push(
-      typeof props.rounded === "string" ? props.rounded : defaults.rounded
-    );
-  }
-
-  //SHADOW
-  if (props.shadow) {
-    classes.push(
-      typeof props.shadow === "string" ? props.shadow : defaults.shadow
-    );
-  }
-
-  //TRANSITION
-  if (props.transition) {
-    if (typeof props.transition === "object") {
-      classes.push(
-        props.transition.duration || defaults.transition.duration,
-        props.transition.ease || defaults.transition.ease
-      );
-      if (props.transition.placeholder) {
-        classes.push(
-          props.transition.placeholder.duration,
-          props.transition.placeholder.ease
-        );
-      } else {
-        classes.push(
-          defaults.transition.placeholder.duration,
-          defaults.transition.placeholder.ease
-        );
-      }
-    } else {
-      classes.push(
-        defaults.transition.duration,
-        defaults.transition.ease,
-        defaults.transition.placeholder.duration,
-        defaults.transition.placeholder.ease
-      );
-    }
-  }
-
-  //LOADING
-  if (props.loading) {
-    classes.push("cursor-wait");
-  } else {
-    classes.push("cursor-text");
-  }
-
-  return classes.join(" ");
-});
-
-const prependIconClass = computed(() => {
-  // class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-600 group-focus-within:text-cyan-800 transition-all ease-in-out duration-500"
-
-  let classes = [];
-  classes.push(
-    "absolute",
-    "inset-y-0",
-    "left-0",
-    "flex",
-    "items-center",
-    "pl-2",
-    "transition-all"
-  );
-
-  classes.push(props.color.placeholderText || defaults.color.placeholderText);
-  classes.push(props.color.placeholderText || defaults.color.placeholderText);
-  if (!props.noAnimation) {
-    classes.push(props.color.iconFocus || defaults.color.iconFocus);
-    classes.push(props.transition.duration || defaults.transition.duration);
-    classes.push(props.transition.ease || defaults.transition.ease);
-  }
-
-  //LOADING
-  if (props.loading) {
-    classes.push("animate-pulse");
-  }
-
-  return classes.join(" ");
-});
 </script>
-
-<style></style>
