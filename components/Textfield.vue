@@ -37,7 +37,7 @@ let defaults = {
     border: "border-white",
     borderFocus: "focus:border-cyan-800",
   },
-  rounded: "rounded-md",
+  rounded: "rounded-lg",
   outlined: "border",
   filled: "border-b-2",
   shadow: "shadow-lg",
@@ -68,7 +68,7 @@ const props = defineProps({
   },
   prependIcon: {
     type: Boolean,
-    default: null,
+    default: false,
   },
   disabled: {
     type: Boolean,
@@ -80,7 +80,7 @@ const props = defineProps({
   },
   rounded: {
     type: [Boolean, String],
-    default: false,
+    default: true,
   },
   outlined: {
     type: [Boolean, String],
@@ -118,12 +118,10 @@ const props = defineProps({
 
 const wrapperClass = computed(() => {
   let classes = [];
-  // class='relative'
   classes.push("relative", "group");
 
   //DEFAULT
   if (!props.outlined && !props.filled) {
-    // class='z-0'
     classes.push("z-0");
   }
 
@@ -196,12 +194,23 @@ const inputClass = computed(() => {
     }
   } else if (props.outlined) {
     //OUTLINED
-    classes.push("py-4", "bg-transparent", "rounded-lg");
+    classes.push("py-4", "bg-transparent");
     if (typeof props.outlined === "string") {
       classes.push(props.outlined);
     } else {
       classes.push(defaults.outlined);
     }
+
+    //ROUNDED
+    if (props.rounded) {
+      if (typeof props.rounded === "string") {
+        classes.push(props.rounded);
+      } else {
+        classes.push(defaults.rounded);
+      }
+    }
+
+    console.log(classes.join(" "));
 
     //ICON
     if (props.prependIcon) {

@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Oops",
+    "description": "We coudn't detect your language.",
+    "og": {
+      "title": "Oops - Language not found | Component Flip",
+      "locale": "en_US"
+    }
+  },
+  "content": {
+    "oops": "Oops",
+    "errorMessage": "We coudn't detect your language. Please select one."
+  },
+  "buttons": {
+    "english": "English",
+    "german": "German"
+  }
+}

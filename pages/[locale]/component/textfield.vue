@@ -3,7 +3,7 @@
     <NuxtLayout name="component">
       <template #componentName> Textfield </template>
       <template #component>
-        <Textfield prepend-icon hint="This is a hint!" outlined>
+        <Textfield prepend-icon hint="Enter a keyword!" outlined>
           <template #icon>
             <MdiMagnify />
           </template>
@@ -27,7 +27,129 @@ import MdiMagnify from "~icons/mdi/magnify";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
-let props = [];
+let props = [
+  {
+    name: "color",
+    type: "Object",
+    default: {
+      bg: "bg-zinc-900",
+      text: "text-white",
+      label: "text-white",
+      labelFocus: "peer-focus:text-cyan-600",
+      placeholderText: "placeholder:text-gray-600",
+      icon: "text-white",
+      iconFocus: "group-focus-within:text-cyan-600",
+      border: "border-white",
+      borderFocus: "focus:border-cyan-800",
+    },
+    description: t(
+      "pages.component.button.content.properties.color.description"
+    ),
+  },
+  {
+    name: "rounded",
+    type: "Boolean, String",
+    default: "rounded-lg",
+    description: t(
+      "pages.component.button.content.properties.rounded.description"
+    ),
+  },
+  {
+    name: "prepend-icon",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.button.content.properties.icon.description"
+    ),
+  },
+  {
+    name: "disabled",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.button.content.properties.disabled.description"
+    ),
+  },
+  {
+    name: "loading",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.button.content.properties.loading.description"
+    ),
+  },
+  {
+    name: "outlined",
+    type: "Boolean, String",
+    default: false,
+    description: t(
+      "pages.component.button.content.properties.outlined.description"
+    ),
+  },
+  {
+    name: "filled",
+    type: "Boolean",
+    default: "border-b-2",
+    description: t(
+      "pages.component.button.content.properties.outlined.description"
+    ),
+  },
+  {
+    name: "shadow",
+    type: "Boolean, String",
+    default: "shadow-lg",
+    description: t(
+      "pages.component.button.content.properties.shadow.description"
+    ),
+  },
+  {
+    name: "transition",
+    type: "Object, Boolean",
+    default: {
+      duration: "duration-300",
+      ease: "ease-in-out",
+      placeholder: {
+        duration: "placeholder:duration-500",
+        ease: "placeholder:ease-in-out",
+      },
+    },
+    description: t(
+      "pages.component.button.content.properties.transition.description"
+    ),
+  },
+  {
+    name: "placeholder",
+    type: "String",
+    default: "",
+    description: t(
+      "pages.component.button.content.properties.width.description"
+    ),
+  },
+  {
+    name: "hint",
+    type: "String",
+    default: undefined,
+    description: t(
+      "pages.component.button.content.properties.width.description"
+    ),
+  },
+  {
+    name: "type",
+    type: "String",
+    default: "text",
+    description: t(
+      "pages.component.button.content.properties.width.description"
+    ),
+  },
+  {
+    name: "width",
+    type: "String",
+    default: undefined,
+    description: t(
+      "pages.component.button.content.properties.width.description"
+    ),
+  },
+];
 
 definePageMeta({
   layout: false,

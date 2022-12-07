@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "title": "{componentName}",
+    "description": "Overview over the {componentName} component.",
+    "hash-description": "Overview over the {componentName} component. Learn more about the {hash} property.",
+    "og": {
+      "title": "{componentName} | Component Flip",
+      "locale": "en_US"
+    }
+  },
+  "content": {
+    "playground": "Playground",
+    "properties": "Properties"
+  }
+}

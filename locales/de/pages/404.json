@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "404",
+    "description": "Seite nicht gefunden",
+    "og": {
+      "title": "404 - Seite nicht gefunden | Component Flip",
+      "locale": "de_DE"
+    }
+  },
+  "content": {
+    "errorMessage": "Hoppla! Diese Seite existiert nicht.",
+    "urlDisplay": "Sie haben versucht auf <a class='text-primary hover:text-secondary' href='{path}'>{path}</a> zuzugreifen."
+  },
+  "buttons": {
+    "home": "Zurück zur Startseite"
+  }
+}

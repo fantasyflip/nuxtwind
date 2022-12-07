@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Hoppla",
+    "description": "Wir konnten deine Sprache nicht feststellen.",
+    "og": {
+      "title": "Hoppla - Sprache nicht gefunden | Component Flip",
+      "locale": "de_DE"
+    }
+  },
+  "content": {
+    "oops": "Hoppla",
+    "errorMessage": "Wir konnten deine Sprache nicht feststellen. Bitte wähle eine aus."
+  },
+  "buttons": {
+    "english": "Englisch",
+    "german": "Deutsch"
+  }
+}
