@@ -3,14 +3,23 @@
     <NuxtLayout name="component">
       <template #componentName> Textfield </template>
       <template #component>
-        <Textfield prepend-icon hint="Enter a keyword!" outlined>
-          <template #label> Textfield </template>
+        <Textfield
+          v-model="textfieldValue"
+          prepend-icon
+          hint="Enter a keyword!"
+          outlined
+          placeholder="Foo"
+        >
+          <!-- <template #label>Search</template> -->
           <template #icon>
             <MdiMagnify />
           </template>
         </Textfield>
       </template>
-      <template #playground> Playground </template>
+      <template #playground>
+        Playground
+        {{ textfieldValue }}
+      </template>
       <template #props>
         <div
           v-for="(prop, index) in props"
@@ -37,6 +46,9 @@ import MdiMagnify from "~icons/mdi/magnify";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
+
+let textfieldValue = ref("");
+
 let props = [
   {
     name: "color",

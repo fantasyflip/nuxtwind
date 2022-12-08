@@ -7,8 +7,10 @@
       id="textfield"
       :class="inputClass"
       :type="props.type"
-      placeholder="Placeholder"
+      :placeholder="placeholder"
       :disabled="props.disabled"
+      @input="$emit('update:modelValue', $event.target.value)"
+      :value="props.modelValue"
     />
     <label for="textfield" :class="labelClass">
       <slot name="label">Label</slot>
@@ -51,7 +53,10 @@ let defaults = {
   },
 };
 
+const emit = defineEmits(["update:modelValue"]);
+
 const props = defineProps({
+  modelValue: {},
   color: {
     type: Object,
     default: {
