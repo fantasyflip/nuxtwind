@@ -31,6 +31,15 @@
         </div>
       </template>
       <template #propertyCount>{{ props.length }}</template>
+      <template #events>
+        <div
+          v-for="(event, index) in events"
+          :class="index < events.length - 1 ? 'border-b' : ''"
+        >
+          <EventDisplay :item="event" />
+        </div>
+      </template>
+      <template #eventCount>{{ events.length }}</template>
       <template #slots>
         <div
           v-for="(slot, index) in slots"
@@ -198,6 +207,31 @@ let props = [
     default: undefined,
     description: t(
       "pages.component.textfield.content.properties.width.description"
+    ),
+  },
+];
+
+let events = [
+  {
+    name: "update:modelValue",
+    structure: "String",
+    description: t(
+      "pages.component.textfield.content.events.updateModelValue.description"
+    ),
+  },
+  {
+    name: "update:validation",
+    structure: {
+      isValid: "Boolean",
+      result: "String / Boolean",
+      value: "String",
+      source: {
+        name: "String",
+        type: "textfield",
+      },
+    },
+    description: t(
+      "pages.component.textfield.content.events.updateValidation.description"
     ),
   },
 ];

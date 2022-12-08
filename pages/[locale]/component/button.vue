@@ -23,6 +23,15 @@
         </div>
       </template>
       <template #propertyCount>{{ props.length }}</template>
+      <template #events>
+        <div
+          v-for="(event, index) in events"
+          :class="index < events.length - 1 ? 'border-b' : ''"
+        >
+          <EventDisplay :item="event" />
+        </div>
+      </template>
+      <template #eventCount>{{ events.length }}</template>
       <template #slots>
         <div
           v-for="(slot, index) in slots"
@@ -163,6 +172,8 @@ let props = [
     ),
   },
 ];
+
+let events = [];
 
 let slots = [
   {

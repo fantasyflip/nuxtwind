@@ -14,7 +14,8 @@
       "content": {
         "playground": "Playground",
         "properties": "Properties",
-        "slots": "Slots"
+        "slots": "Slots",
+        "events": "Events"
       }
     }
   },
@@ -64,6 +65,14 @@
             },
             "width": {
               "description": "Prop to set the width of the textfield. You can set it to a tailwind 'w'-class."
+            }
+          },
+          "events": {
+            "updateModelValue": {
+              "description": "Event that emits the value of the textfield on every input. This event is used to update v-model."
+            },
+            "updateValidation": {
+              "description": "Event that emits the validation state of the textfield. This event can be used to check validation of the component in the parent."
             }
           },
           "slots": {

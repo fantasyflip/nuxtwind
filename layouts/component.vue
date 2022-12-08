@@ -60,6 +60,22 @@
   <div class="mx-4 mt-4">
     <div
       class="lg:text-3xl text-2xl font-bold cursor-pointer"
+      id="events"
+      @click="$hashAndCopy('events')"
+    >
+      <span
+        >{{ $t("layouts.component.content.events") }}
+        <span class="font-normal"> (<slot name="eventCount"></slot>)</span> -
+      </span>
+      <span class="text-primary">
+        <slot name="componentName"></slot>
+      </span>
+    </div>
+    <slot name="events"></slot>
+  </div>
+  <div class="mx-4 mt-4">
+    <div
+      class="lg:text-3xl text-2xl font-bold cursor-pointer"
       id="slots"
       @click="$hashAndCopy('slots')"
     >
