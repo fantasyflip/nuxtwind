@@ -13,7 +13,8 @@
       },
       "content": {
         "playground": "Playground",
-        "properties": "Properties"
+        "properties": "Properties",
+        "slots": "Slots"
       }
     }
   },
@@ -60,6 +61,14 @@
             },
             "width": {
               "description": "Prop to set the width of the textfield. You can set it to a tailwind 'w'-class."
+            }
+          },
+          "slots": {
+            "icon": {
+              "description": "Slot to add an icon in front of the textfield. The icon will be displayed inside the textfield and will be aligned to the left. The 'prepend-icon' prop is required to apply the icon."
+            },
+            "label": {
+              "description": "Slot to set the label text of the textfield."
             }
           }
         }
@@ -108,6 +117,11 @@
             },
             "height": {
               "description": "Prop to set the height of the button. You can set it to a tailwind 'h'-class."
+            }
+          },
+          "slots": {
+            "default": {
+              "description": "Slot to set the content of the button."
             }
           }
         }

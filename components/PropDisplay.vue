@@ -1,14 +1,14 @@
 <template>
   <div class="py-3 px-2">
     <div
-      :id="props.item.name"
+      :id="'prop-' + props.item.name"
       class="text-2xl font-bold cursor-pointer"
       :class="
-        $route.hash === '#' + props.item.name
+        $route.hash === '#' + ('prop-' + props.item.name)
           ? 'text-secondary'
           : 'text-primary'
       "
-      @click="$hashAndCopy(props.item.name)"
+      @click="$hashAndCopy('prop-' + props.item.name)"
     >
       {{ props.item.name }}
     </div>

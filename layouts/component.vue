@@ -57,6 +57,22 @@
     </div>
     <slot name="props"></slot>
   </div>
+  <div class="mx-4 mt-4">
+    <div
+      class="lg:text-3xl text-2xl font-bold cursor-pointer"
+      id="slots"
+      @click="$hashAndCopy('slots')"
+    >
+      <span
+        >{{ $t("layouts.component.content.slots") }}
+        <span class="font-normal"> (<slot name="slotCount"></slot>)</span> -
+      </span>
+      <span class="text-primary">
+        <slot name="componentName"></slot>
+      </span>
+    </div>
+    <slot name="slots"></slot>
+  </div>
 </template>
 <script setup>
 import MdiGithub from "~icons/mdi/github";

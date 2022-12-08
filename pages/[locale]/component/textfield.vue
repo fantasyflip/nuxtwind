@@ -20,6 +20,15 @@
         </div>
       </template>
       <template #propertyCount>{{ props.length }}</template>
+      <template #slots>
+        <div
+          v-for="(slot, index) in slots"
+          :class="index < slots.length - 1 ? 'border-b' : ''"
+        >
+          <SlotDisplay :item="slot" />
+        </div>
+      </template>
+      <template #slotCount>{{ slots.length }}</template>
     </NuxtLayout>
   </div>
 </template>
@@ -149,6 +158,17 @@ let props = [
     description: t(
       "pages.component.textfield.content.properties.width.description"
     ),
+  },
+];
+
+let slots = [
+  {
+    name: "icon",
+    description: t("pages.component.textfield.content.slots.icon.description"),
+  },
+  {
+    name: "label",
+    description: t("pages.component.textfield.content.slots.label.description"),
   },
 ];
 
