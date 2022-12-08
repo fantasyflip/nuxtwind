@@ -20,6 +20,23 @@
     }
   },
   "pages": {
+    "404": {
+      "meta": {
+        "title": "404",
+        "description": "Page not found!",
+        "og": {
+          "title": "404 - Page not found | Component Flip",
+          "locale": "en_US"
+        }
+      },
+      "content": {
+        "errorMessage": "Shit happens! This site doesn't exist.",
+        "urlDisplay": "You tried to access <a class='text-primary hover:text-secondary' href='{path}'>{path}</a>."
+      },
+      "buttons": {
+        "home": "Back Home"
+      }
+    },
     "component": {
       "textfield": {
         "content": {
@@ -52,7 +69,7 @@
               "description": "Prop to add a shadow to the textfield. The default value can be toggled by just setting the prop or disabled by setting it to 'false'. To set a special value set it to a tailwind 'shadow'-class."
             },
             "transition": {
-              "description": "Prop to set the transition settings of the textfield and the placeholder.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'timing-function' seperately for the regular transitions and the transitions that apply on the placeholder."
+              "description": "Prop to set the transition settings of the textfield and the placeholder.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'ease' seperately for the regular transitions and the transitions that apply on the placeholder."
             },
             "placeholder": {
               "description": "Prop to set the placeholder of the textfield."
@@ -137,23 +154,6 @@
             }
           }
         }
-      }
-    },
-    "404": {
-      "meta": {
-        "title": "404",
-        "description": "Page not found!",
-        "og": {
-          "title": "404 - Page not found | Component Flip",
-          "locale": "en_US"
-        }
-      },
-      "content": {
-        "errorMessage": "Shit happens! This site doesn't exist.",
-        "urlDisplay": "You tried to access <a class='text-primary hover:text-secondary' href='{path}'>{path}</a>."
-      },
-      "buttons": {
-        "home": "Back Home"
       }
     },
     "index": {

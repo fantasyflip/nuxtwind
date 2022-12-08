@@ -307,8 +307,6 @@ const inputClass = computed(() => {
   classes.push(props.color.text || defaults.color.text);
   classes.push(props.color.placeholderText || defaults.color.placeholderText);
 
-  console.log(classes.join(" "));
-
   //DISABLED
   if (props.disabled) {
     classes.push("cursor-not-allowed");

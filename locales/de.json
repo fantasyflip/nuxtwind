@@ -13,7 +13,9 @@
       },
       "content": {
         "playground": "Test-Bereich",
-        "properties": "Eigenschaften"
+        "properties": "Eigenschaften",
+        "events": "Ereignisse",
+        "slots": "Platzhalter"
       }
     }
   },
@@ -64,6 +66,125 @@
       "buttons": {
         "english": "Englisch",
         "german": "Deutsch"
+      }
+    },
+    "component": {
+      "textfield": {
+        "content": {
+          "properties": {
+            "color": {
+              "description": "Eigenschaft zum Festlegen der Farben des Textfelds.<br>Sie können den Hintergrund, den Text, den Hinweis, den Fehler, die Beschriftung, die fokussierte Beschriftung, den Platzhalter, das Symbol, das fokussierte Symbol, den Rahmen, den fokussierten Rahmen, den Fehlerrahmen und die Farbe des fokussierten Fehlerrahmens separat festlegen. \n<br>Wenn das 'outlined' Prop gesetzt ist, ist die Hintergrundfarbe transparent.<br>Denken Sie daran, <span class='font-bold'>die Modifikatorklassen für spezielle Zustände so zu belassen</span>, wie sie in der Standardeinstellung sind, \nund nur die Farbklassen ändern."
+            },
+            "label": {
+              "description": "Eigenschaft um die Bezeichnung des Textfelds festzulegen. \nWird für das Validierungsereignis verwendet. \nDies sollte festgelegt und ein eindeutiger Wert sein. \nWenn der Label-Slot verwendet wird, wird die Label-Eigenschaft weiterhin für das Validierungsereignis verwendet."
+            },
+            "rounded": {
+              "description": "Eigenschaft um den Randradius des Textfeldes festzulegen. \nDies gilt nur für das Textfeld, wenn der 'outlined' Prop gesetzt ist.<br>Der Standardwert kann durch einen String oder 'false' ersetzt werden.<br>Um einen speziellen Wert einzustellen, stelle ihn auf eine Tailwind \n'rounded'-Klasse."
+            },
+            "icon": {
+              "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol vor dem Textfeld enthält.<br> Das Symbol wird innerhalb des Textfelds angezeigt und linksbündig ausgerichtet."
+            },
+            "disabled": {
+              "description": "Eigenschaft um das Textfeld zu deaktivieren. \nWenn deaktiviert, wird die Deckkraft auf 50 % gesetzt und das Textfeld ist nicht mehr anklickbar."
+            },
+            "loading": {
+              "description": "Eigenschaft um den Ladezustand des Textfeldes zu setzen. \nWenn sie angewendet wird, pulsiert das Textfeld und ein Ladecursor wird beim darüberschweben angezeigt."
+            },
+            "outlined": {
+              "description": "Eigenschaft um den Stil des Textfelds auf 'umrissen' zu setzen. \nWenn gesetzt, wird der Rahmen auf den Standardwert gesetzt.<br>Über eine Tailwind 'border'-Klasse kann die Rahmenbreite gesetzt werden.<br>Die Hintergrundfarbe ist transparent."
+            },
+            "filled": {
+              "description": "Eigenschaft um den Stil des Textfelds auf 'ausgefüllt' zu setzen. \nWenn gesetzt, wird die Border-Klasse auf den Default-Wert gesetzt.<br>Wenn eine Tailwind-'border'-Klasse übergeben wird, wird die Border-Breite gesetzt.<br>Für das beste Erscheinungsbild sollte eine 'border-t'-Klasse verwendet werden."
+            },
+            "shadow": {
+              "description": "Eigenschaft um dem Textfeld einen Schatten hinzuzufügen. \nDer Standardwert wird angewendet, wenn die Eigenschaft angewendet wird und keine Tailwind-Klasse übergeben wird. Übergibt man eine \"Shadow\"-Klasse kann der Effekt angepasst werden."
+            },
+            "transition": {
+              "description": "Eigenschaft um die Übergangseinstellungen des Textfelds und des Platzhalters festzulegen.<br>Wenn auf „true“ gesetzt, wird der Standardübergang angewendet.<br>Wenn ein Objekt übergeben wird, kann die „Dauer“ und der „Übergang“ unabhängig von einander für jeweils die regulären und die Platzhalter Übergänge angepasst werden."
+            },
+            "placeholder": {
+              "description": "Eigenschaft um den Platzhalter des Textfeldes zu setzen."
+            },
+            "hint": {
+              "description": "Eigenschaft um den Hinweis des Textfeldes zu setzen."
+            },
+            "type": {
+              "description": "Eigenschaft um den Typ des Textfelds festzulegen."
+            },
+            "width": {
+              "description": "Eigenschaft um die Breite des Textfeldes festzulegen. Die Breite kann mit Tailwind \"W\"-Klassen angepasst werden."
+            }
+          },
+          "events": {
+            "updateModelValue": {
+              "description": "Ereignis, das bei jeder Eingabe den Wert des Textfeldes ausgibt. \nDieses Ereignis wird verwendet, um v-model zu aktualisieren."
+            },
+            "updateValidation": {
+              "description": "Ereignis, das den Validierungsstatus des Textfelds ausgibt. \nDieses Ereignis kann verwendet werden, um die Validierung der Komponente im übergeordneten Element zu überprüfen."
+            }
+          },
+          "slots": {
+            "icon": {
+              "description": "Platzhalter zum Hinzufügen eines Symbols vor dem Textfeld. \nDas Symbol wird im Textfeld angezeigt und linksbündig ausgerichtet. \nDie Eigenschaft „prepend-icon“ ist erforderlich, um das Symbol anzuwenden."
+            },
+            "label": {
+              "description": "Slot zum Anpassen der Standardbeschriftung des Textfelds."
+            }
+          }
+        }
+      },
+      "button": {
+        "content": {
+          "slots": {
+            "default": {
+              "description": "Platzhalter zum Festlegen des Inhalts der Schaltfläche."
+            }
+          },
+          "properties": {
+            "rounded": {
+              "description": "Eigenschaft um den Randradius der Schaltfläche festzulegen. \nDer Standardwert kann aktiviert werden, indem die Eigenschaft gesetzt wird, oder deaktiviert werden, indem sie auf 'false' gesetzt wird.<br>Um einen speziellen Wert festzulegen, kann eine Tailwind' rounded'-Klasse übergeben werden."
+            },
+            "color": {
+              "description": "Eigenschaft um die Farbe des Buttons festzulegen.<br>Die Hintergrund-, Text-, Rand- und Hover-Farbe kann separat festgelegt werden.<br>Wenn die 'outlined'-Eigenschaft gesetzt ist, werden nur der Rand und die Textfarbe verwendet.< \nbr>Wenn die Eigenschaft „disabled“ oder „loading“ gesetzt ist, wird die Deckkraft auf 50 % gesetzt und die Hover-Farbe wird nicht mehr wirksam.<br>Wenn die Eigenschaft „icon“ gesetzt ist, wird nur die Text-Farbe angewandt."
+            },
+            "grow": {
+              "description": "Eigenschaft um einen Wachstumseffekt auf die Schaltfläche anzuwenden. \nDie Verzögerung und die Skalierung können separat eingestellt werden.<br>Um den Effekt beim Schweben anzuwenden, stellen Sie der Tailwind-'scale'-Klasse 'hover:' voran."
+            },
+            "link": {
+              "description": "Eigenschaft um die Schaltfläche zu einem Link zu machen. \nEs kann entweder ein vollständiger Link gesetzt oder ein Link-Objekt übergeben werden, wie Sie es bei der 'NuxtLink'-Komponente in der 'to'-Eigenschaft tun würden."
+            },
+            "target": {
+              "description": "Eigenschaft um das Ziel des Links festzulegen. \nWird nur angewendet, wenn die Eigenschaft „Link“ gesetzt ist."
+            },
+            "disabled": {
+              "description": "Eigenschaft um die Schaltfläche zu deaktivieren. \nWenn deaktiviert, wird die Deckkraft auf 50 % gesetzt und die Hover-Farbe ist nicht mehr wirksam.<br>Die Schaltfläche kann nicht mehr angeklickt werden.<br>Auch der Wachstumseffekt ist nicht mehr wirksam."
+            },
+            "icon": {
+              "description": "Eigenschaft um die Schaltfläche auf eine Symbolschaltfläche zu ändern. \nWenn gesetzt, werden nur die Text- und Hover-Farben wirksam."
+            },
+            "loading": {
+              "description": "Eigenschaft um die Schaltfläche auf Laden zu setzen. \nBeim Laden wird die Deckkraft auf 50% gesetzt und die Hover-Farbe wird nicht mehr wirksam.<br>Die Schaltfläche ist nicht mehr anklickbar.<br>Auch der Grow-Effekt tritt nicht mehr in Kraft. \nAnstelle des Schaltflächeninhalts wird ein Ladespinner angezeigt."
+            },
+            "outlined": {
+              "description": "Eigenschaft um die Schaltfläche auf 'umrissen' zu setzen. \nWenn gesetzt, wird der Rahmen auf den Standardwert gesetzt.<br>Wenn eine Tailwind-'Border'-Klasse übergeben wird, kann die Rahmenbreite gesetzt werden.<br>Die Hintergrundfarbe ist transparent.<br>Auch \nDie Hover-Farbe wird nicht mehr wirksam. \nStattdessen werden die Rahmen- und Textfarbe angewendet."
+            },
+            "shadow": {
+              "description": "Eigenschaft um der Schaltfläche einen Schatten hinzuzufügen. \nDer Standardwert kann aktiviert werden, indem die Eigenschaft gesetzt wird, oder deaktiviert werden, indem sie auf \"false\" gesetzt wird. \nUm einen speziellen Wert einzustellen, kann eine Tailwind-'shadow'-Klasse übergeben werden."
+            },
+            "transition": {
+              "description": "Eigenschaft um die Übergangseinstellungen der Schaltfläche festzulegen, die sich auf die Hover-Farbänderung und die Grow-Eigenschaft auswirken.<br>Bei Einstellung auf „false“ wird kein Übergang angewendet.<br>Bei Einstellung auf „true“ wird der \nStandardübergang angewendet.<br>Bei Einstellung auf ein Objekt kann die 'Dauer' und der 'Übergang' separat eingestellt werden."
+            },
+            "dense": {
+              "description": "Eigenschaft um die Höhe der Schaltfläche zu redizieren. \nWenn auf true gesetzt, wird das Padding reduziert und der Text klein."
+            },
+            "width": {
+              "description": "Eigenschaft um die Breite der Schaltfläche festzulegen. \nEs kann eine Tailwind \"w\"-Klasse übergeben werden."
+            },
+            "height": {
+              "description": "Eigenschaft um die Höhe der Schaltfläche festzulegen. \nEs kann eine Tailwind \"h\"-Klasse übergeben werden."
+            }
+          }
+        }
       }
     }
   }

@@ -1,11 +1,6 @@
 <template>
   <div :class="styleClass">
-    <NuxtLink
-      v-if="props.link"
-      :to="props.link"
-      :target="props.target"
-      :class="styleClass"
-    >
+    <NuxtLink v-if="props.link" :to="props.link" :target="props.target">
       <slot>Link-Button</slot>
     </NuxtLink>
 
