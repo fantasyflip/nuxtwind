@@ -36,14 +36,13 @@ let defaults = {
     error: "text-red-500",
     label: "text-white",
     labelFocus: "peer-focus:text-cyan-600",
-    labelError: "peer-focus:text-red-500",
     placeholderText: "placeholder:text-gray-600",
     icon: "text-white",
     iconFocus: "group-focus-within:text-cyan-600",
-    iconError: "group-focus-within:text-red-500",
     border: "border-white",
     borderFocus: "focus:border-cyan-800",
-    borderError: "focus:border-red-500",
+    borderError: "border-red-500",
+    borderFocusError: "focus:border-red-500",
   },
   rounded: "rounded-lg",
   outlined: "border",
@@ -70,14 +69,13 @@ const props = defineProps({
       error: "text-red-500",
       label: "text-white",
       labelFocus: "peer-focus:text-cyan-600",
-      labelError: "peer-focus:text-red-500",
       placeholderText: "placeholder:text-gray-600",
       icon: "text-white",
       iconFocus: "group-focus-within:text-cyan-600",
-      iconError: "group-focus-within:text-red-500",
       border: "border-white",
       borderFocus: "focus:border-cyan-800",
-      borderError: "focus:border-red-500",
+      borderError: "border-red-500",
+      borderFocusError: "focus:border-red-500",
     },
   },
   label: {
@@ -110,7 +108,7 @@ const props = defineProps({
   },
   placeholder: {
     type: String,
-    default: "",
+    default: " ",
   },
   hint: {
     type: String,
@@ -298,13 +296,18 @@ const inputClass = computed(() => {
   //COLOR
   if (isValid.value === true) {
     classes.push(props.color.border || defaults.color.border);
+    classes.push(props.color.borderFocus || defaults.color.borderFocus);
   } else {
     classes.push(props.color.borderError || defaults.color.borderError);
+    classes.push(
+      props.color.borderFocusError || defaults.color.borderFocusError
+    );
   }
 
-  classes.push(props.color.borderFocus || defaults.color.borderFocus);
   classes.push(props.color.text || defaults.color.text);
   classes.push(props.color.placeholderText || defaults.color.placeholderText);
+
+  console.log(classes.join(" "));
 
   //DISABLED
   if (props.disabled) {
@@ -420,7 +423,7 @@ const labelClass = computed(() => {
   if (isValid.value === true) {
     classes.push(props.color.labelFocus || defaults.color.labelFocus);
   } else {
-    classes.push(props.color.labelError || defaults.color.labelError);
+    classes.push(props.color.error || defaults.color.error);
   }
 
   //DISABLED
@@ -466,7 +469,7 @@ const prependIconClass = computed(() => {
   if (isValid.value === true) {
     classes.push(props.color.iconFocus || defaults.color.iconFocus);
   } else {
-    classes.push(props.color.iconError || defaults.color.iconError);
+    classes.push(props.color.error || defaults.color.error);
   }
 
   //LOADING

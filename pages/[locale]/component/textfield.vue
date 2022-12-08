@@ -9,18 +9,21 @@
           hint="Enter a keyword!"
           placeholder="Foo"
           :rules="[notEmpty, minChars(5)]"
-          outline
           label="Search"
+          :loading="loading"
         >
-          <!-- <template #label>Search</template> -->
           <template #icon>
             <MdiMagnify />
           </template>
         </Textfield>
       </template>
       <template #playground>
-        Playground
-        {{ textfieldValue }}
+        <div class="flex justify-center items-center h-full">
+          <!-- TODO Fix padding -->
+          <Button width="w-1/3" rounded grow @click="loading = !loading"
+            >Toggle Loading</Button
+          >
+        </div>
       </template>
       <template #props>
         <div
@@ -60,6 +63,8 @@ const { t } = useI18n();
 
 let textfieldValue = ref("");
 
+let loading = ref(false);
+
 let notEmpty = (value) => {
   if (!value) {
     return "This field is required";
@@ -93,14 +98,13 @@ let props = [
       error: "text-red-500",
       label: "text-white",
       labelFocus: "peer-focus:text-cyan-600",
-      labelError: "peer-focus:text-red-500",
       placeholderText: "placeholder:text-gray-600",
       icon: "text-white",
       iconFocus: "group-focus-within:text-cyan-600",
-      iconError: "group-focus-within:text-red-500",
       border: "border-white",
       borderFocus: "focus:border-cyan-800",
-      borderError: "focus:border-red-500",
+      borderError: "border-red-500",
+      borderFocusError: "focus:border-red-500",
     },
     description: t(
       "pages.component.textfield.content.properties.color.description"
@@ -180,7 +184,7 @@ let props = [
   {
     name: "placeholder",
     type: "String",
-    default: "",
+    default: " ",
     description: t(
       "pages.component.textfield.content.properties.placeholder.description"
     ),

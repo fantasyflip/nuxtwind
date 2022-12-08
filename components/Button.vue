@@ -1,17 +1,21 @@
 <template>
-  <NuxtLink
-    v-if="props.link"
-    :to="props.link"
-    :target="props.target"
-    :class="styleClass"
-  >
-    <slot>Link-Button</slot>
-  </NuxtLink>
+  <div :class="styleClass">
+    <NuxtLink
+      v-if="props.link"
+      :to="props.link"
+      :target="props.target"
+      :class="styleClass"
+    >
+      <slot>Link-Button</slot>
+    </NuxtLink>
 
-  <slot v-else :class="styleClass">Button</slot>
+    <slot v-else>Button</slot>
+  </div>
 </template>
 
 <script setup>
+//TODO Add automatic growth with child elements instead of full width
+//TODO reduce default growth
 let defaults = {
   color: {
     bg: "bg-cyan-900",

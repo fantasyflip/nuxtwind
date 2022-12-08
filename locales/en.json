@@ -28,7 +28,7 @@
               "description": "Prop to set the label of the textfield. Will be used for the validation event. This should be set and a unique value. If the label slot is used the label prop will still be used for the validation event."
             },
             "color": {
-              "description": "Prop to set the colors of the textfield.<br>You can seperately set the background, text, label, focused label, error label, placeholder, icon, focused icon, error icon, border, focused border and error border color.<br>If the outlined prop is set the background color will be transparent.<br>Keep in mind to <span class='font-bold'>keep the modifier classes</span> for special states like they are in the default configuration and only alter the color classes."
+              "description": "Prop to set the colors of the textfield.<br>You can seperately set the background, text, hint, error, label, focused label, placeholder, icon, focused icon, border, focused border, error border and focused error border color.<br>If the outlined prop is set the background color will be transparent.<br>Keep in mind to <span class='font-bold'>keep the modifier classes</span> for special states like they are in the default configuration and only alter the color classes."
             },
             "rounded": {
               "description": "Prop to set the border radius of the textfield. This only applies on the textfield if the outlined prop is set.<br>The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
