@@ -4,7 +4,20 @@
       <slot name="componentName"></slot>
       <span class="text-primary group-hover:text-secondary -ml-2">.</span>
     </div>
-    <div>
+    <div class="flex">
+      <Button
+        class="mr-2"
+        icon
+        @click="$switchLocale"
+        target="_blank"
+        :color="{
+          text: 'text-primary',
+          hover: 'hover:text-secondary',
+        }"
+        grow
+      >
+        <MdiTranslate />
+      </Button>
       <Button
         icon
         :link="useGithubComponentUrl(componentName)"
@@ -90,6 +103,7 @@
 </template>
 <script setup>
 import MdiGithub from "~icons/mdi/github";
+import MdiTranslate from "~icons/mdi/translate";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
