@@ -74,7 +74,7 @@ let props = [
     type: "Boolean, Object",
     default: {
       delay: "delay-10",
-      scale: "hover:scale-110",
+      scale: "hover:scale-105",
     },
     description: t(
       "pages.component.button.content.properties.grow.description"
@@ -166,7 +166,7 @@ let props = [
   {
     name: "height",
     type: "String",
-    default: undefined,
+    default: "w-fit",
     description: t(
       "pages.component.button.content.properties.height.description"
     ),

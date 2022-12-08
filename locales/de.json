@@ -130,6 +130,9 @@
             "label": {
               "description": "Slot zum Anpassen der Standardbeschriftung des Textfelds."
             }
+          },
+          "playground": {
+            "toggleLoadingButton": "Laden umschalten"
           }
         }
       },

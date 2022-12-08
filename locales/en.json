@@ -99,6 +99,9 @@
             "label": {
               "description": "Slot to customize the default label of the textfield."
             }
+          },
+          "playground": {
+            "toggleLoadingButton": "Toggle Loading"
           }
         }
       },

@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="m-4 lg:text-5xl text-4xl font-extrabold group flex justify-between"
-  >
-    <div>
+  <div class="m-4 lg:text-5xl text-4xl font-extrabold flex justify-between">
+    <div class="group">
       <slot name="componentName"></slot>
       <span class="text-primary group-hover:text-secondary -ml-2">.</span>
     </div>
@@ -21,18 +19,18 @@
       </Button>
     </div>
   </div>
-  <div class="lg:flex lg:h-[83vh] h-[85vh] w-full mt-5">
+  <div
+    class="lg:text-3xl text-2xl font-bold cursor-pointer mx-4"
+    id="playground"
+    @click="$hashAndCopy('playground')"
+  >
+    <span>{{ $t("layouts.component.content.playground") }} - </span>
+    <span class="text-primary">
+      <slot name="componentName"></slot>
+    </span>
+  </div>
+  <div class="lg:flex lg:h-[78vh] h-[79vh] w-full mt-5">
     <div class="lg:w-1/2 lg:h-full h-1/2 mx-4">
-      <div
-        class="lg:text-3xl text-2xl font-bold cursor-pointer"
-        id="playground"
-        @click="$hashAndCopy('playground')"
-      >
-        <span>{{ $t("layouts.component.content.playground") }} - </span>
-        <span class="text-primary">
-          <slot name="componentName"></slot>
-        </span>
-      </div>
       <slot name="playground"></slot>
     </div>
     <div

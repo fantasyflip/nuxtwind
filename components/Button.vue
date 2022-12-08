@@ -9,8 +9,6 @@
 </template>
 
 <script setup>
-//TODO Add automatic growth with child elements instead of full width
-//TODO reduce default growth
 let defaults = {
   color: {
     bg: "bg-cyan-900",
@@ -21,7 +19,7 @@ let defaults = {
   rounded: "rounded-md",
   grow: {
     delay: "delay-10",
-    scale: "hover:scale-110",
+    scale: "hover:scale-105",
   },
   outlined: "border-2",
   shadow: "shadow-md",
@@ -29,6 +27,7 @@ let defaults = {
     duration: "duration-300",
     ease: "ease-in-out",
   },
+  width: "w-fit",
 };
 
 const props = defineProps({
@@ -175,9 +174,7 @@ const styleClass = computed(() => {
   }
 
   //WIDTH
-  if (props.width) {
-    styleClasses.push(props.width);
-  }
+  styleClasses.push(props.width || defaults.width);
 
   //HEIGHT
   if (props.height) {

@@ -18,11 +18,15 @@
         </Textfield>
       </template>
       <template #playground>
-        <div class="flex justify-center items-center h-full">
+        <div class="h-full flex justify-center items-center">
           <!-- TODO Fix padding -->
-          <Button width="w-1/3" rounded grow @click="loading = !loading"
-            >Toggle Loading</Button
-          >
+          <Button rounded grow @click="loading = !loading"
+            >{{
+              $t(
+                "pages.component.textfield.content.playground.toggleLoadingButton"
+              )
+            }}
+          </Button>
         </div>
       </template>
       <template #props>
