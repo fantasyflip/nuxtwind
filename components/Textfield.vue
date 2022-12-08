@@ -9,11 +9,11 @@
       :type="props.type"
       :placeholder="placeholder"
       :disabled="props.disabled"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="handleInput"
       :value="props.modelValue"
     />
     <label for="textfield" :class="labelClass">
-      <slot name="label">Label</slot>
+      <slot name="label">{{ props.label }}</slot>
     </label>
     <div
       v-if="
@@ -21,23 +21,29 @@
       "
       :class="hintClass"
     >
-      {{ props.hint }}
+      {{ hint }}
     </div>
   </div>
 </template>
 
 <script setup>
+let isValid = ref(true);
 let defaults = {
   color: {
     bg: "bg-zinc-900",
     text: "text-white",
+    hint: "text-gray-400",
+    error: "text-red-500",
     label: "text-white",
     labelFocus: "peer-focus:text-cyan-600",
+    labelError: "peer-focus:text-red-500",
     placeholderText: "placeholder:text-gray-600",
     icon: "text-white",
     iconFocus: "group-focus-within:text-cyan-600",
+    iconError: "group-focus-within:text-red-500",
     border: "border-white",
     borderFocus: "focus:border-cyan-800",
+    borderError: "focus:border-red-500",
   },
   rounded: "rounded-lg",
   outlined: "border",
@@ -53,8 +59,6 @@ let defaults = {
   },
 };
 
-const emit = defineEmits(["update:modelValue"]);
-
 const props = defineProps({
   modelValue: {},
   color: {
@@ -62,14 +66,23 @@ const props = defineProps({
     default: {
       bg: "bg-zinc-900",
       text: "text-white",
+      hint: "text-gray-400",
+      error: "text-red-500",
       label: "text-white",
       labelFocus: "peer-focus:text-cyan-600",
+      labelError: "peer-focus:text-red-500",
       placeholderText: "placeholder:text-gray-600",
       icon: "text-white",
       iconFocus: "group-focus-within:text-cyan-600",
+      iconError: "group-focus-within:text-red-500",
       border: "border-white",
       borderFocus: "focus:border-cyan-800",
+      borderError: "focus:border-red-500",
     },
+  },
+  label: {
+    type: String,
+    default: "Label",
   },
   prependIcon: {
     type: Boolean,
@@ -119,6 +132,55 @@ const props = defineProps({
     type: String,
     default: "w-full",
   },
+  rules: {
+    type: Array,
+    default: [],
+  },
+});
+
+const emit = defineEmits(["update:modelValue", "update:validation"]);
+
+function handleInput(e) {
+  //UPDATE MODEL VALUE
+  emit("update:modelValue", e.target.value);
+
+  //VALIDATE INPUT AGAINST RULES
+  isValid.value = validate(e.target.value);
+
+  //EMIT VALIDATION RESULT
+  emit("update:validation", {
+    isValid: isValid.value === true ? true : false,
+    result: isValid.value,
+    value: e.target.value,
+    source: {
+      name: props.label,
+      type: "textfield",
+    },
+  });
+}
+
+function validate(value) {
+  if (props.rules.length > 0) {
+    let rules = props.rules;
+    //go through all rules; return true if all rules are valid; return first error if any rule is invalid
+    for (let i = 0; i < rules.length; i++) {
+      let rule = rules[i];
+      if (rule(value) !== true) {
+        return rule(value);
+      }
+    }
+    return true;
+  } else {
+    return true;
+  }
+}
+
+const hint = computed(() => {
+  if (isValid.value === true) {
+    return props.hint;
+  } else {
+    return isValid.value;
+  }
 });
 
 const wrapperClass = computed(() => {
@@ -215,8 +277,6 @@ const inputClass = computed(() => {
       }
     }
 
-    console.log(classes.join(" "));
-
     //ICON
     if (props.prependIcon) {
       classes.push("pl-8 pr-2.5");
@@ -236,12 +296,15 @@ const inputClass = computed(() => {
   }
 
   //COLOR
-  if (props.color) {
+  if (isValid.value === true) {
     classes.push(props.color.border || defaults.color.border);
-    classes.push(props.color.borderFocus || defaults.color.borderFocus);
-    classes.push(props.color.text || defaults.color.text);
-    classes.push(props.color.placeholderText || defaults.color.placeholderText);
+  } else {
+    classes.push(props.color.borderError || defaults.color.borderError);
   }
+
+  classes.push(props.color.borderFocus || defaults.color.borderFocus);
+  classes.push(props.color.text || defaults.color.text);
+  classes.push(props.color.placeholderText || defaults.color.placeholderText);
 
   //DISABLED
   if (props.disabled) {
@@ -353,9 +416,11 @@ const labelClass = computed(() => {
   }
 
   //COLOR
-  if (props.color) {
-    classes.push(props.color.label || defaults.color.label);
+  classes.push(props.color.label || defaults.color.label);
+  if (isValid.value === true) {
     classes.push(props.color.labelFocus || defaults.color.labelFocus);
+  } else {
+    classes.push(props.color.labelError || defaults.color.labelError);
   }
 
   //DISABLED
@@ -397,9 +462,12 @@ const prependIconClass = computed(() => {
     classes.push("top-2");
   }
 
-  classes.push(props.color.placeholderText || defaults.color.placeholderText);
   classes.push(props.color.icon || defaults.color.icon);
-  classes.push(props.color.iconFocus || defaults.color.iconFocus);
+  if (isValid.value === true) {
+    classes.push(props.color.iconFocus || defaults.color.iconFocus);
+  } else {
+    classes.push(props.color.iconError || defaults.color.iconError);
+  }
 
   //LOADING
   if (props.loading) {
@@ -419,18 +487,17 @@ const hintClass = computed(() => {
     "pl-2",
     "group-focus-within:opacity-100",
     "opacity-0",
+    "transition-all",
+    "-translate-y-2",
+    "group-focus-within:-translate-y-0",
   ];
 
-  if (!props.noAnimation) {
-    classes.push(props.transition.duration || defaults.transition.duration);
-    classes.push(props.transition.ease || defaults.transition.ease);
-    classes.push(
-      "transition-all",
-      "-translate-y-2",
-      "group-focus-within:-translate-y-0"
-    );
+  classes.push(props.transition.duration || defaults.transition.duration);
+  classes.push(props.transition.ease || defaults.transition.ease);
+  if (isValid.value === true) {
+    classes.push(props.color.hint || defaults.color.hint);
   } else {
-    classes.push("-translate-y-0");
+    classes.push(props.color.error || defaults.color.error);
   }
 
   return classes.join(" ");

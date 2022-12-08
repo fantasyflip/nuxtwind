@@ -7,8 +7,10 @@
           v-model="textfieldValue"
           prepend-icon
           hint="Enter a keyword!"
-          outlined
           placeholder="Foo"
+          :rules="[notEmpty, minChars(5)]"
+          outline
+          label="Search"
         >
           <!-- <template #label>Search</template> -->
           <template #icon>
@@ -49,20 +51,47 @@ const { t } = useI18n();
 
 let textfieldValue = ref("");
 
+let notEmpty = (value) => {
+  if (!value) {
+    return "This field is required";
+  }
+  return true;
+};
+
+let minChars = (min) => (value) => {
+  if (value.length < min) {
+    return `This field must be at least ${min} characters`;
+  }
+  return true;
+};
+
 let props = [
+  {
+    name: "label",
+    type: "String",
+    default: "Label",
+    description: t(
+      "pages.component.textfield.content.properties.label.description"
+    ),
+  },
   {
     name: "color",
     type: "Object",
     default: {
       bg: "bg-zinc-900",
       text: "text-white",
+      hint: "text-gray-400",
+      error: "text-red-500",
       label: "text-white",
       labelFocus: "peer-focus:text-cyan-600",
+      labelError: "peer-focus:text-red-500",
       placeholderText: "placeholder:text-gray-600",
       icon: "text-white",
       iconFocus: "group-focus-within:text-cyan-600",
+      iconError: "group-focus-within:text-red-500",
       border: "border-white",
       borderFocus: "focus:border-cyan-800",
+      borderError: "focus:border-red-500",
     },
     description: t(
       "pages.component.textfield.content.properties.color.description"
