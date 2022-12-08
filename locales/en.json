@@ -19,6 +19,51 @@
   },
   "pages": {
     "component": {
+      "textfield": {
+        "content": {
+          "properties": {
+            "color": {
+              "description": "Prop to set the colors of the textfield.<br>You can seperately set the background, text, label, focused label, placeholder, icon, focused icon, border and focused border color.<br>If the outlined prop is set the background color will be transparent.<br>Keep in mind to <span class='font-bold'>keep the modifier classes</span> for special states like they are in the default configuration and only alter the color classes."
+            },
+            "rounded": {
+              "description": "Prop to set the border radius of the textfield. This only applies on the textfield if the outlined prop is set.<br>The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
+            },
+            "icon": {
+              "description": "Prop to toggle the slot that includes an icon in front of the textfield.<br> The icon will be displayed inside the textfield and will be aligned to the left."
+            },
+            "disabled": {
+              "description": "Prop to set disable the textfield. When disabled the opacity will be set to 50% and the textfield won't be clickable anymore."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the textfield. If applied the textfield will pulsate and a loading cursor will be displayed on hover."
+            },
+            "outlined": {
+              "description": "Prop to set the textfield to outlined. When set to true the border will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>The background color will be transparent."
+            },
+            "filled": {
+              "description": "Prop to apply the filled style on the textfield. If set to true the border-class will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>For the best appearance you should use a 'border-t'-class."
+            },
+            "shadow": {
+              "description": "Prop to add a shadow to the textfield. The default value can be toggled by just setting the prop or disabled by setting it to 'false'. To set a special value set it to a tailwind 'shadow'-class."
+            },
+            "transition": {
+              "description": "Prop to set the transition settings of the textfield and the placeholder.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'timing-function' seperately for the regular transitions and the transitions that apply on the placeholder."
+            },
+            "placeholder": {
+              "description": "Prop to set the placeholder of the textfield."
+            },
+            "hint": {
+              "description": "Prop to set the hint of the textfield."
+            },
+            "type": {
+              "description": "Prop to set the type of the textfield."
+            },
+            "width": {
+              "description": "Prop to set the width of the textfield. You can set it to a tailwind 'w'-class."
+            }
+          }
+        }
+      },
       "button": {
         "content": {
           "properties": {

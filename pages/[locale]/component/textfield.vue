@@ -4,6 +4,7 @@
       <template #componentName> Textfield </template>
       <template #component>
         <Textfield prepend-icon hint="Enter a keyword!" outlined>
+          <template #label> Textfield </template>
           <template #icon>
             <MdiMagnify />
           </template>
@@ -43,7 +44,7 @@ let props = [
       borderFocus: "focus:border-cyan-800",
     },
     description: t(
-      "pages.component.button.content.properties.color.description"
+      "pages.component.textfield.content.properties.color.description"
     ),
   },
   {
@@ -51,7 +52,7 @@ let props = [
     type: "Boolean, String",
     default: "rounded-lg",
     description: t(
-      "pages.component.button.content.properties.rounded.description"
+      "pages.component.textfield.content.properties.rounded.description"
     ),
   },
   {
@@ -59,7 +60,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.button.content.properties.icon.description"
+      "pages.component.textfield.content.properties.icon.description"
     ),
   },
   {
@@ -67,7 +68,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.button.content.properties.disabled.description"
+      "pages.component.textfield.content.properties.disabled.description"
     ),
   },
   {
@@ -75,7 +76,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.button.content.properties.loading.description"
+      "pages.component.textfield.content.properties.loading.description"
     ),
   },
   {
@@ -83,7 +84,7 @@ let props = [
     type: "Boolean, String",
     default: false,
     description: t(
-      "pages.component.button.content.properties.outlined.description"
+      "pages.component.textfield.content.properties.outlined.description"
     ),
   },
   {
@@ -91,7 +92,7 @@ let props = [
     type: "Boolean",
     default: "border-b-2",
     description: t(
-      "pages.component.button.content.properties.outlined.description"
+      "pages.component.textfield.content.properties.filled.description"
     ),
   },
   {
@@ -99,7 +100,7 @@ let props = [
     type: "Boolean, String",
     default: "shadow-lg",
     description: t(
-      "pages.component.button.content.properties.shadow.description"
+      "pages.component.textfield.content.properties.shadow.description"
     ),
   },
   {
@@ -114,7 +115,7 @@ let props = [
       },
     },
     description: t(
-      "pages.component.button.content.properties.transition.description"
+      "pages.component.textfield.content.properties.transition.description"
     ),
   },
   {
@@ -122,7 +123,7 @@ let props = [
     type: "String",
     default: "",
     description: t(
-      "pages.component.button.content.properties.width.description"
+      "pages.component.textfield.content.properties.placeholder.description"
     ),
   },
   {
@@ -130,7 +131,7 @@ let props = [
     type: "String",
     default: undefined,
     description: t(
-      "pages.component.button.content.properties.width.description"
+      "pages.component.textfield.content.properties.hint.description"
     ),
   },
   {
@@ -138,7 +139,7 @@ let props = [
     type: "String",
     default: "text",
     description: t(
-      "pages.component.button.content.properties.width.description"
+      "pages.component.textfield.content.properties.type.description"
     ),
   },
   {
@@ -146,7 +147,7 @@ let props = [
     type: "String",
     default: undefined,
     description: t(
-      "pages.component.button.content.properties.width.description"
+      "pages.component.textfield.content.properties.width.description"
     ),
   },
 ];
