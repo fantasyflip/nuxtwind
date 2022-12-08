@@ -14,6 +14,34 @@ export default defineNuxtConfig({
         config: {
           theme: {
             extend: {
+              keyframes: {
+                "indeterminate-first": {
+                  "0%": {
+                    left: "-100%",
+                    width: "100%",
+                  },
+                  "100%": {
+                    left: "100%",
+                    width: "10%",
+                  },
+                },
+                "indeterminate-second": {
+                  "0%": {
+                    left: "-150%",
+                    width: "100%",
+                  },
+                  "100%": {
+                    left: "100%",
+                    width: "10%",
+                  },
+                },
+              },
+              animation: {
+                indeterminatebefore:
+                  "indeterminate-first 1.5s infinite ease-out",
+                indeterminateafter:
+                  "indeterminate-second 1.5s infinite ease-in",
+              },
               colors: {
                 primary: "#155e75",
                 secondary: "#15803d",

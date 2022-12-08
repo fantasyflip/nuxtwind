@@ -4,6 +4,7 @@
       <template #componentName> Textfield </template>
       <template #component>
         <Textfield
+          width="w-fit"
           v-model="textfieldValue"
           prepend-icon
           hint="Enter a keyword!"

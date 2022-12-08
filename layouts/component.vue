@@ -46,9 +46,7 @@
     <div class="lg:w-1/2 lg:h-full h-1/2 mx-4">
       <slot name="playground"></slot>
     </div>
-    <div
-      class="lg:w-1/2 lg:h-full h-1/2 grid content-center justify-center mx-4"
-    >
+    <div class="lg:w-1/2 lg:h-full h-1/2 flex items-center justify-center mx-4">
       <slot name="component"></slot>
     </div>
   </div>
