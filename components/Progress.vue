@@ -5,7 +5,7 @@
     :style="circularStyle"
     :class="circularStyleClass"
   >
-    <div class="relative w-full h-full">
+    <div v-if="!props.loading" class="relative w-full h-full">
       <slot name="inner-circle">
         <div
           class="h-full w-full grid place-items-center"
@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+const colorMode = useColorMode();
 let defaults = {
   size: {
     width: "w-full",
@@ -37,10 +38,12 @@ let defaults = {
     },
   },
   color: {
-    circle: "#27272a",
+    circle: "#e5e7eb",
+    circleDark: "#27272a",
     circleProgress: "#155e75",
-    circleCutout: "before:bg-zinc-900",
-    background: "bg-zinc-800",
+    circleProgressDark: "#155e75",
+    circleCutout: "before:bg-white dark:before:bg-zinc-900",
+    background: "bg-gray-200 dark:bg-zinc-800",
     firstStrike: "before:bg-cyan-800",
     secondStrike: "after:bg-cyan-600",
     linearProgress: "bg-cyan-800",
@@ -69,10 +72,12 @@ const props = defineProps({
   color: {
     type: Object,
     default: {
-      circle: "#27272a",
+      circle: "#e5e7eb",
+      circleDark: "#27272a",
       circleProgress: "#155e75",
-      circleCutout: "before:bg-zinc-900",
-      background: "bg-zinc-800",
+      circleProgressDark: "#155e75",
+      circleCutout: "before:bg-white dark:before:bg-zinc-900",
+      background: "bg-gray-200 dark:bg-zinc-800",
       firstStrike: "before:bg-cyan-800",
       secondStrike: "after:bg-cyan-600",
       linearProgress: "bg-cyan-800",
@@ -138,13 +143,19 @@ if (props.initialLoadTime && endValue.value > 0) {
 }
 
 const circularStyle = computed(() => {
+  let progressColor =
+    props.color.circleProgress || defaults.color.circleProgress;
+  let circleColor = props.color.circle || defaults.color.circle;
+
+  if (colorMode.value == "dark") {
+    progressColor =
+      props.color.circleProgressDark || defaults.color.circleProgressDark;
+    circleColor = props.color.circleDark || defaults.color.circleDark;
+  }
+
   return `background: conic-gradient(
-      ${props.color.circleProgress || defaults.color.circleProgress} ${
-    progressValue.value * 3.6
-  }deg,
-      ${props.color.circle || defaults.color.circle} ${
-    progressValue.value * 3.6
-  }deg);`;
+      ${progressColor} ${progressValue.value * 3.6}deg,
+      ${circleColor} ${progressValue.value * 3.6}deg);`;
 });
 
 const circularStyleClass = computed(() => {

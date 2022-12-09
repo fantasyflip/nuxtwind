@@ -3,15 +3,7 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Button
-          :color="{
-            bg: 'bg-red-500',
-            border: 'border-red-500',
-          }"
-          rounded
-          grow
-          :link="useLocaleUrl('')"
-        ></Button>
+        <Button rounded grow :link="useLocaleUrl('')"></Button>
       </template>
       <template #playground> Playground </template>
       <template #documentation>

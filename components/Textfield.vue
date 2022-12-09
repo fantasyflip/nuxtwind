@@ -30,17 +30,17 @@
 let isValid = ref(true);
 let defaults = {
   color: {
-    bg: "bg-zinc-900",
-    text: "text-white",
-    hint: "text-gray-400",
-    error: "text-red-500",
-    label: "text-white",
+    bg: "bg-gray-200 dark:bg-zinc-800",
+    text: "text-black dark:text-white",
+    hint: "text-gray-600 dark:text-gray-400",
+    error: "text-red-500 dark:text-red-500",
+    label: "text-black dark:text-white",
     labelFocus: "peer-focus:text-cyan-600",
-    placeholderText: "placeholder:text-gray-600",
-    icon: "text-white",
+    placeholderText: "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+    icon: "text-black dark:text-white",
     iconFocus: "group-focus-within:text-cyan-600",
-    border: "border-white",
-    borderFocus: "focus:border-cyan-800",
+    border: "border-black dark:border-white",
+    borderFocus: "focus:border-cyan-800 dark:focus:border-cyan-800",
     borderError: "border-red-500",
     borderFocusError: "focus:border-red-500",
   },
@@ -63,17 +63,18 @@ const props = defineProps({
   color: {
     type: Object,
     default: {
-      bg: "bg-zinc-900",
-      text: "text-white",
-      hint: "text-gray-400",
-      error: "text-red-500",
-      label: "text-white",
+      bg: "bg-gray-200 dark:bg-zinc-800",
+      text: "text-black dark:text-white",
+      hint: "text-gray-600 dark:text-gray-400",
+      error: "text-red-500 dark:text-red-500",
+      label: "text-black dark:text-white",
       labelFocus: "peer-focus:text-cyan-600",
-      placeholderText: "placeholder:text-gray-600",
-      icon: "text-white",
+      placeholderText:
+        "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+      icon: "text-black dark:text-white",
       iconFocus: "group-focus-within:text-cyan-600",
-      border: "border-white",
-      borderFocus: "focus:border-cyan-800",
+      border: "border-black dark:border-white",
+      borderFocus: "focus:border-cyan-800 dark:focus:border-cyan-800",
       borderError: "border-red-500",
       borderFocusError: "focus:border-red-500",
     },
@@ -417,8 +418,9 @@ const labelClass = computed(() => {
   }
 
   //COLOR
-  classes.push(props.color.label || defaults.color.label);
+
   if (isValid.value === true) {
+    classes.push(props.color.label || defaults.color.label);
     classes.push(props.color.labelFocus || defaults.color.labelFocus);
   } else {
     classes.push(props.color.error || defaults.color.error);
@@ -463,8 +465,8 @@ const prependIconClass = computed(() => {
     classes.push("top-2");
   }
 
-  classes.push(props.color.icon || defaults.color.icon);
   if (isValid.value === true) {
+    classes.push(props.color.icon || defaults.color.icon);
     classes.push(props.color.iconFocus || defaults.color.iconFocus);
   } else {
     classes.push(props.color.error || defaults.color.error);

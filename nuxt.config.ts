@@ -12,6 +12,7 @@ export default defineNuxtConfig({
       "@nuxtjs/tailwindcss",
       {
         config: {
+          darkMode: "class",
           theme: {
             extend: {
               keyframes: {
@@ -52,6 +53,16 @@ export default defineNuxtConfig({
       },
     ],
     "unplugin-icons/nuxt",
+    [
+      "@nuxtjs/color-mode",
+      {
+        preference: "system", // default value of $colorMode.preference
+        fallback: "dark", // fallback value if not system preference found
+        classSuffix: "",
+        classPrefix: "",
+        storageKey: "theme",
+      },
+    ],
   ],
   vite: {
     plugins: [

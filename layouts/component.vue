@@ -8,8 +8,19 @@
       <Button
         class="mr-2"
         icon
+        @click="$cycleTheme"
+        :color="{
+          text: 'text-primary',
+          hover: 'hover:text-secondary',
+        }"
+        grow
+      >
+        <MdiThemeLightDark />
+      </Button>
+      <Button
+        class="mr-2"
+        icon
         @click="$switchLocale"
-        target="_blank"
         :color="{
           text: 'text-primary',
           hover: 'hover:text-secondary',
@@ -57,6 +68,7 @@
 <script setup>
 import MdiGithub from "~icons/mdi/github";
 import MdiTranslate from "~icons/mdi/translate";
+import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
