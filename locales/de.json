@@ -12,10 +12,7 @@
         }
       },
       "content": {
-        "playground": "Test-Bereich",
-        "properties": "Eigenschaften",
-        "events": "Ereignisse",
-        "slots": "Platzhalter"
+        "playground": "Test-Bereich"
       }
     }
   },
@@ -215,8 +212,25 @@
             "innerCircle": {
               "description": "Platzhalter zum Anpassen des inneren Kreisbereichs bei der kreisförmigen Variante."
             }
+          },
+          "config": {
+            "linearAnimation": {
+              "name": "Lineare Lade-Animation",
+              "description": "Damit die lineare Ladeanimation richtig funktioniert, muss die Tailwind-Konfiguration um die angezeigten Optionen erweitert werden."
+            }
           }
         }
+      }
+    }
+  },
+  "components": {
+    "documentationDisplay": {
+      "content": {
+        "documentation": "Dokumentation",
+        "props": "Eigenschaften",
+        "events": "Ereignisse",
+        "slots": "Platzhalter",
+        "configs": "Konfigurationen"
       }
     }
   }

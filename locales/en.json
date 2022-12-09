@@ -12,10 +12,7 @@
         }
       },
       "content": {
-        "playground": "Playground",
-        "properties": "Properties",
-        "slots": "Slots",
-        "events": "Events"
+        "playground": "Playground"
       }
     }
   },
@@ -184,6 +181,12 @@
             "innerCircle": {
               "description": "Slot to customize the inner circle area on the circular variant."
             }
+          },
+          "config": {
+            "linearAnimation": {
+              "name": "Linear loading animation",
+              "description": "For the linear loading animation to work properly its required to extend the tailwind config by the shown options."
+            }
           }
         }
       }
@@ -217,6 +220,17 @@
       "buttons": {
         "english": "English",
         "german": "German"
+      }
+    }
+  },
+  "components": {
+    "documentationDisplay": {
+      "content": {
+        "documentation": "Documentation",
+        "props": "Properties",
+        "events": "Events",
+        "slots": "Slots",
+        "configs": "Configurations"
       }
     }
   }
