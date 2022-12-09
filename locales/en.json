@@ -157,6 +157,35 @@
             }
           }
         }
+      },
+      "progress": {
+        "content": {
+          "properties": {
+            "size": {
+              "description": "Only applies on linear progress variant. Prop to set the dimensions of the component."
+            },
+            "color": {
+              "description": "Prop to set the colors of the component. For the linear variant following colors can be set seperately: background, first animation strike, second animation strike, progress color and hover progress.<br>For the circular variant the following: circle itself, progress color and the inner cutout color."
+            },
+            "circular": {
+              "description": "Prop to set the component to the circular variant. The circular variant can be customized by setting it to an object with the following properties:<br><span class='font-bold'>width</span>: Can be set to any Tailwind 'w'-class.<br><span class='font-bold'>height</span>: Can be set to any Tailwind 'h'-class.<br><span class='font-bold'>cutout.width</span>: Can be set to any Tailwind 'w'-class combined with the 'before'-modifier.<br><span class='font-bold'>cutout.height</span>: Can be set to any Tailwind 'h'-class combined with the 'before'-modifier.<br><span class='font-bold'>cutout.text</span>: Can be set to any Tailwind 'text'-class to set the text size of the component."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the component."
+            },
+            "initialLoadTime": {
+              "description": "This prop behaves differently depending on the chosen variant.<br><span class='font-bold'>Linear</span>: The time in ms between creation of the component and actual displaying the progress. For the best effect make sure the transition prop is active.<br><span class='font-bold'>Circular</span>: The time in ms that the component takes to initially progress to the given value."
+            },
+            "rounded": {
+              "description": "Applies on the linear variant. Prop to set the border-radius of the component. Can be disabled by setting it to 'false' or customized by setting the prop to a Tailwind 'rounded'-class."
+            }
+          },
+          "slots": {
+            "innerCircle": {
+              "description": "Slot to customize the inner circle area on the circular variant."
+            }
+          }
+        }
       }
     },
     "index": {
