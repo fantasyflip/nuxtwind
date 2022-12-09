@@ -2,7 +2,7 @@
   <div class="py-3 px-2">
     <div
       :id="'prop-' + props.item.name"
-      class="text-2xl font-bold cursor-pointer"
+      class="text-xl font-bold cursor-pointer"
       :class="
         $route.hash === '#' + ('prop-' + props.item.name)
           ? 'text-secondary'
@@ -22,7 +22,7 @@
           <div class="text-lg font-semibold">Description</div>
           <div v-html="props.item.description"></div>
         </div>
-        <div class="sm:pt-0 pt-2">
+        <div class="sm:w-2/5 sm:pt-0 pt-2">
           <div class="text-lg font-semibold">Default</div>
           <!-- v-if="typeof props.item.default === 'object'" -->
           <client-only

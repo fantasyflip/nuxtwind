@@ -2,7 +2,7 @@
   <div class="py-3 px-2">
     <div
       :id="'slot-' + props.item.name"
-      class="text-2xl font-bold cursor-pointer"
+      class="text-xl font-bold cursor-pointer"
       :class="
         $route.hash === '#' + ('slot-' + props.item.name)
           ? 'text-secondary'
