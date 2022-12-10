@@ -18,7 +18,7 @@
 
         <span class="sr-only">Toast icon</span>
       </div>
-      <div class="ml-3">
+      <div class="ml-3 mr-3">
         <div v-if="props.title" class="font-bold">
           {{ props.title }}
         </div>

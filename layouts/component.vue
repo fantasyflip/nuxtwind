@@ -8,7 +8,7 @@
       <Button
         class="mr-2"
         icon
-        @click="$cycleTheme"
+        @click="handleThemeChange()"
         :color="{
           text: 'text-primary-800',
         }"
@@ -76,6 +76,18 @@ function capitalizeFirstLetter(string) {
 
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
+
+const createNotification = inject("create-notification");
+const themeNotificationIcon = markRaw(MdiThemeLightDark);
+const nuxtApp = useNuxtApp();
+function handleThemeChange() {
+  nuxtApp.$cycleTheme();
+  createNotification({
+    title: "Theme",
+    message: "Theme changed to: " + useColorMode().preference,
+    icon: themeNotificationIcon,
+  });
+}
 
 useHead({
   title: t("layouts.component.meta.title", { componentName }),

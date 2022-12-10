@@ -2,7 +2,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.provide("cycleTheme", () => {
     let colorMode = useColorMode();
 
-    //go to next theme in list: system, dark, light
     let nextTheme = "system";
     if (colorMode.preference === "system") {
       nextTheme = "dark";
@@ -13,7 +12,5 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
 
     colorMode.preference = nextTheme;
-
-    console.log("Theme set to: ", nextTheme);
   });
 });
