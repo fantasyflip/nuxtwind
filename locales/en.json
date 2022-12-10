@@ -189,6 +189,41 @@
             }
           }
         }
+      },
+      "toast": {
+        "content": {
+          "playground": {
+            "rule": {
+              "maxVal": "The value must be less or equal to {max}",
+              "notEmpty": "This field is required",
+              "isNumber": "This value must be a number"
+            },
+            "titleTextfield": {
+              "label": "Title",
+              "placeholder": "Example: 'Warning!'",
+              "hint": "Toast's title",
+              "default": "Test-Notification"
+            },
+            "messageTextfield": {
+              "label": "Message",
+              "placeholder": "Example: 'This is a message'",
+              "hint": "Toast's message",
+              "default": "This is a Test-Notification"
+            },
+            "durationTextfield": {
+              "label": "Duration",
+              "placeholder": "Example: '5'",
+              "hint": "Toast's duration"
+            }
+          },
+          "documentation": {
+            "props": {
+              "id": {
+                "description": "Prop to set the id of the notification. Required and must be unique."
+              }
+            }
+          }
+        }
       }
     },
     "index": {

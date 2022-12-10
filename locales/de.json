@@ -220,6 +220,41 @@
             }
           }
         }
+      },
+      "toast": {
+        "content": {
+          "playground": {
+            "titleTextfield": {
+              "label": "Titel",
+              "placeholder": "Beispiel: 'Warnung!'",
+              "hint": "Titel der Benachrichtigung",
+              "default": "Test-Benachrichtigung"
+            },
+            "messageTextfield": {
+              "label": "Nachricht",
+              "placeholder": "Beispiel: 'Dies ist eine Nachricht'",
+              "hint": "Nachricht der Benachrichtigung",
+              "default": "Dies ist eine Testbenachrichtigung"
+            },
+            "durationTextfield": {
+              "label": "Dauer",
+              "placeholder": "Beispiel: '5'",
+              "hint": "Dauer der Benachrichtigung"
+            },
+            "rule": {
+              "notEmpty": "Dieses Feld ist erforderlich",
+              "isNumber": "Der Wert muss eine Zahl sein",
+              "maxVal": "Der Wert muss kleiner oder gleich {max} sein"
+            }
+          },
+          "documentation": {
+            "props": {
+              "id": {
+                "description": "Prop, um die ID der Benachrichtigung festzulegen. \nErforderlich und muss eindeutig sein."
+              }
+            }
+          }
+        }
       }
     }
   },

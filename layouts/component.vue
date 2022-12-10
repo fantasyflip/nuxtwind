@@ -19,7 +19,7 @@
       <Button
         class="mr-2"
         icon
-        @click="$switchLocale"
+        @click="handleLocaleChange()"
         :color="{
           text: 'text-primary-800',
         }"
@@ -68,7 +68,7 @@ import MdiTranslate from "~icons/mdi/translate";
 import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
 
 import { useI18n } from "vue-i18n";
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -78,6 +78,7 @@ let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
 
 const createNotification = inject("create-notification");
+
 const themeNotificationIcon = markRaw(MdiThemeLightDark);
 const nuxtApp = useNuxtApp();
 function handleThemeChange() {
@@ -86,6 +87,16 @@ function handleThemeChange() {
     title: "Theme",
     message: "Theme changed to: " + useColorMode().preference,
     icon: themeNotificationIcon,
+  });
+}
+
+const localeNotificationIcon = markRaw(MdiTranslate);
+function handleLocaleChange() {
+  nuxtApp.$switchLocale();
+  createNotification({
+    title: "Locale",
+    message: "Locale changed to: " + (locale.value === "en" ? "DE" : "EN"),
+    icon: localeNotificationIcon,
   });
 }
 
