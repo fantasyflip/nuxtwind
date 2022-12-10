@@ -2,7 +2,7 @@
   <div class="m-4 lg:text-5xl text-4xl font-extrabold flex justify-between">
     <div class="group flex">
       <slot name="componentName"></slot>
-      <div class="text-primary group-hover:text-secondary">.</div>
+      <div class="text-primary-800 group-hover:text-secondary-800">.</div>
     </div>
     <div class="flex">
       <Button
@@ -10,8 +10,7 @@
         icon
         @click="$cycleTheme"
         :color="{
-          text: 'text-primary',
-          hover: 'hover:text-secondary',
+          text: 'text-primary-800',
         }"
         grow
       >
@@ -22,8 +21,7 @@
         icon
         @click="$switchLocale"
         :color="{
-          text: 'text-primary',
-          hover: 'hover:text-secondary',
+          text: 'text-primary-800',
         }"
         grow
       >
@@ -34,8 +32,7 @@
         :link="useGithubComponentUrl(componentName)"
         target="_blank"
         :color="{
-          text: 'text-primary',
-          hover: 'hover:text-secondary',
+          text: 'text-primary-800',
         }"
         grow
       >
@@ -49,7 +46,7 @@
     @click="$hashAndCopy('playground')"
   >
     <span>{{ $t("layouts.component.content.playground") }} - </span>
-    <span class="text-primary">
+    <span class="text-primary-800">
       <slot name="componentName"></slot>
     </span>
   </div>

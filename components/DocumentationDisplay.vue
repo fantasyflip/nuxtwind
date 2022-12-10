@@ -7,7 +7,7 @@
     <span
       >{{ $t("components.documentationDisplay.content.documentation") }} -
     </span>
-    <span class="text-primary">
+    <span class="text-primary-800">
       {{ props.componentName }}
     </span>
   </div>
@@ -22,7 +22,7 @@
           >{{ $t("components.documentationDisplay.content.props") }}
           <span class="font-normal"> ({{ props.props.length }})</span> -
         </span>
-        <span class="text-primary">
+        <span class="text-primary-800">
           {{ props.componentName }}
         </span>
       </div>
@@ -43,7 +43,7 @@
           >{{ $t("components.documentationDisplay.content.events") }}
           <span class="font-normal"> ({{ props.events.length }})</span> -
         </span>
-        <span class="text-primary">
+        <span class="text-primary-800">
           {{ props.componentName }}
         </span>
       </div>
@@ -64,7 +64,7 @@
           >{{ $t("components.documentationDisplay.content.slots") }}
           <span class="font-normal"> ({{ props.slots.length }})</span> -
         </span>
-        <span class="text-primary">
+        <span class="text-primary-800">
           {{ props.componentName }}
         </span>
       </div>
@@ -85,7 +85,7 @@
           >{{ $t("components.documentationDisplay.content.configs") }}
           <span class="font-normal"> ({{ props.configs.length }})</span> -
         </span>
-        <span class="text-primary">
+        <span class="text-primary-800">
           {{ props.componentName }}
         </span>
       </div>

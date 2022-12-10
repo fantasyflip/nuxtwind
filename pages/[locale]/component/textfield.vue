@@ -95,7 +95,7 @@ let props = [
       icon: "text-black dark:text-white",
       iconFocus: "group-focus-within:text-cyan-600",
       border: "border-black dark:border-white",
-      borderFocus: "focus:border-cyan-800 dark:focus:border-cyan-800",
+      borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
       borderError: "border-red-500",
       borderFocusError: "focus:border-red-500",
     },

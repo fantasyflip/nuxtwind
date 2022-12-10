@@ -2,7 +2,7 @@
   <div class="center">
     <div class="md:text-[230px] sm:text-[180px] text-8xl font-bold group">
       <span>{{ $t("pages.fallbackIndex.content.oops") }}</span>
-      <span class="text-primary group-hover:text-secondary">!</span>
+      <span class="text-primary-800 group-hover:text-secondary-800">!</span>
     </div>
     <div class="md:text-3xl sm:text-2xl text-xl mt-6">
       {{ $t("pages.fallbackIndex.content.errorMessage") }}

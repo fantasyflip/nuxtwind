@@ -55,11 +55,11 @@ html {
 
 /* / Handle / */
 ::-webkit-scrollbar-thumb {
-  background: theme("colors.primary");
+  background: theme("colors.primary.800");
 }
 
 /* / Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: theme("colors.secondary");
+  background: theme("colors.secondary.700");
 }
 </style>

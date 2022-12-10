@@ -3,7 +3,7 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Progress rounded loading> </Progress>
+        <Progress loading> </Progress>
       </template>
       <template #playground> Playground </template>
       <template #documentation>
@@ -39,16 +39,16 @@ let props = [
     name: "color",
     type: "Object",
     default: {
-      circle: "#e5e7eb",
-      circleDark: "#27272a",
-      circleProgress: "#155e75",
-      circleProgressDark: "#155e75",
+      circle: "gray-200",
+      circleDark: "zinc-800",
+      circleProgress: "primary-800",
+      circleProgressDark: "primary-800",
       circleCutout: "before:bg-white dark:before:bg-zinc-900",
       background: "bg-gray-200 dark:bg-zinc-800",
-      firstStrike: "before:bg-cyan-800",
-      secondStrike: "after:bg-cyan-600",
-      linearProgress: "bg-cyan-800",
-      linearProgressHover: "hover:bg-emerald-700",
+      firstStrike: "before:bg-primary-800",
+      secondStrike: "after:bg-primary-600",
+      linearProgress: "bg-primary-800",
+      linearProgressHover: "hover:bg-secondary-800",
     },
     description: t(
       "pages.component.progress.content.properties.color.description"

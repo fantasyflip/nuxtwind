@@ -14,7 +14,8 @@ let defaults = {
     bg: "bg-cyan-900",
     text: "text-white",
     border: "border-white",
-    hover: "hover:bg-cyan-800",
+    hover: "hover:bg-secondary-800",
+    iconHover: "hover:text-secondary-800",
   },
   rounded: "rounded-md",
   grow: {
@@ -37,7 +38,8 @@ const props = defineProps({
       bg: "bg-cyan-900",
       text: "text-white",
       border: "border-white",
-      hover: "hover:bg-cyan-800",
+      hover: "hover:bg-secondary-800",
+      iconHover: "hover:text-secondary-800",
     },
   },
   rounded: {
@@ -98,27 +100,25 @@ const styleClass = computed(() => {
   let styleClasses = [];
 
   //COLOR
-  if (props.color) {
-    //OUTLINED
-    if (props.outlined) {
-      styleClasses.push(props.color.text || defaults.color.text);
-      styleClasses.push(props.color.border || defaults.color.border);
-      if (typeof props.outlined === "string") {
-        styleClasses.push(props.outlined);
-      } else {
-        styleClasses.push(defaults.outlined);
-      }
-    } else if (props.icon) {
-      styleClasses.push(props.color.text || defaults.color.text);
-      if (!props.disabled && !props.loading) {
-        styleClasses.push(props.color.hover || defaults.color.hover);
-      }
+  //OUTLINED
+  if (props.outlined) {
+    styleClasses.push(props.color.text || defaults.color.text);
+    styleClasses.push(props.color.border || defaults.color.border);
+    if (typeof props.outlined === "string") {
+      styleClasses.push(props.outlined);
     } else {
-      styleClasses.push(props.color.bg || defaults.color.bg);
-      styleClasses.push(props.color.text || defaults.color.text);
-      if (!props.disabled && !props.loading) {
-        styleClasses.push(props.color.hover || defaults.color.hover);
-      }
+      styleClasses.push(defaults.outlined);
+    }
+  } else if (props.icon) {
+    styleClasses.push(props.color.text || defaults.color.text);
+    if (!props.disabled && !props.loading) {
+      styleClasses.push(props.color.iconHover || defaults.color.iconHover);
+    }
+  } else {
+    styleClasses.push(props.color.bg || defaults.color.bg);
+    styleClasses.push(props.color.text || defaults.color.text);
+    if (!props.disabled && !props.loading) {
+      styleClasses.push(props.color.hover || defaults.color.hover);
     }
   }
 

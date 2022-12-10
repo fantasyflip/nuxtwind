@@ -30,7 +30,8 @@ let props = [
       bg: "bg-cyan-900",
       text: "text-white",
       border: "border-white",
-      hover: "hover:bg-cyan-800",
+      hover: "hover:bg-secondary-800",
+      iconHover: "hover:text-secondary-800",
     },
     description: t(
       "pages.component.button.content.properties.color.description"

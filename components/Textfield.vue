@@ -40,7 +40,7 @@ let defaults = {
     icon: "text-black dark:text-white",
     iconFocus: "group-focus-within:text-cyan-600",
     border: "border-black dark:border-white",
-    borderFocus: "focus:border-cyan-800 dark:focus:border-cyan-800",
+    borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
     borderError: "border-red-500",
     borderFocusError: "focus:border-red-500",
   },
@@ -74,7 +74,7 @@ const props = defineProps({
       icon: "text-black dark:text-white",
       iconFocus: "group-focus-within:text-cyan-600",
       border: "border-black dark:border-white",
-      borderFocus: "focus:border-cyan-800 dark:focus:border-cyan-800",
+      borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
       borderError: "border-red-500",
       borderFocusError: "focus:border-red-500",
     },
@@ -439,7 +439,7 @@ const labelClass = computed(() => {
 });
 
 const prependIconClass = computed(() => {
-  // class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-600 group-focus-within:text-cyan-800 transition-all ease-in-out duration-500"
+  // class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-600 group-focus-within:text-primary-800 transition-all ease-in-out duration-500"
 
   let classes = [];
   classes.push(

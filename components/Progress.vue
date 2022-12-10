@@ -2,7 +2,7 @@
   <div
     id="circular-progress"
     v-if="props.circular"
-    :style="circularStyle"
+    class="conic-gradient"
     :class="circularStyleClass"
   >
     <div v-if="!props.loading" class="relative w-full h-full">
@@ -22,6 +22,11 @@
 </template>
 
 <script setup>
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../tailwind.config.js";
+
+const tw = resolveConfig(tailwindConfig);
+
 const colorMode = useColorMode();
 let defaults = {
   size: {
@@ -38,16 +43,16 @@ let defaults = {
     },
   },
   color: {
-    circle: "#e5e7eb",
-    circleDark: "#27272a",
-    circleProgress: "#155e75",
-    circleProgressDark: "#155e75",
+    circle: "gray-200",
+    circleDark: "zinc-800",
+    circleProgress: "primary-800",
+    circleProgressDark: "primary-800",
     circleCutout: "before:bg-white dark:before:bg-zinc-900",
     background: "bg-gray-200 dark:bg-zinc-800",
-    firstStrike: "before:bg-cyan-800",
-    secondStrike: "after:bg-cyan-600",
-    linearProgress: "bg-cyan-800",
-    linearProgressHover: "hover:bg-emerald-700",
+    firstStrike: "before:bg-primary-800",
+    secondStrike: "after:bg-primary-600",
+    linearProgress: "bg-primary-800",
+    linearProgressHover: "hover:bg-secondary-800",
   },
   loading: false,
   transition: {
@@ -72,16 +77,16 @@ const props = defineProps({
   color: {
     type: Object,
     default: {
-      circle: "#e5e7eb",
-      circleDark: "#27272a",
-      circleProgress: "#155e75",
-      circleProgressDark: "#155e75",
+      circle: "gray-200",
+      circleDark: "zinc-800",
+      circleProgress: "primary-800",
+      circleProgressDark: "primary-800",
       circleCutout: "before:bg-white dark:before:bg-zinc-900",
       background: "bg-gray-200 dark:bg-zinc-800",
-      firstStrike: "before:bg-cyan-800",
-      secondStrike: "after:bg-cyan-600",
-      linearProgress: "bg-cyan-800",
-      linearProgressHover: "hover:bg-emerald-700",
+      firstStrike: "before:bg-primary-800",
+      secondStrike: "after:bg-primary-600",
+      linearProgress: "bg-primary-800",
+      linearProgressHover: "hover:bg-secondary-800",
     },
   },
   circular: {
@@ -142,20 +147,33 @@ if (props.initialLoadTime && endValue.value > 0) {
   progressValue.value = endValue.value;
 }
 
-const circularStyle = computed(() => {
-  let progressColor =
-    props.color.circleProgress || defaults.color.circleProgress;
-  let circleColor = props.color.circle || defaults.color.circle;
+const gradientProgress = computed(() => {
+  return progressValue.value * 3.6 + "deg";
+});
 
+const circularColorCss = computed(() => {
   if (colorMode.value == "dark") {
-    progressColor =
-      props.color.circleProgressDark || defaults.color.circleProgressDark;
-    circleColor = props.color.circleDark || defaults.color.circleDark;
+    let color = props.color.circleDark || defaults.color.circleDark;
+    let colorSegments = color.split("-");
+    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  } else {
+    let color = props.color.circle || defaults.color.circle;
+    let colorSegments = color.split("-");
+    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
   }
+});
 
-  return `background: conic-gradient(
-      ${progressColor} ${progressValue.value * 3.6}deg,
-      ${circleColor} ${progressValue.value * 3.6}deg);`;
+const circularColorProgressCss = computed(() => {
+  if (colorMode.value == "dark") {
+    let color =
+      props.color.circleProgressDark || defaults.color.circleProgressDark;
+    let colorSegments = color.split("-");
+    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  } else {
+    let color = props.color.circleProgress || defaults.color.circleProgress;
+    let colorSegments = color.split("-");
+    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  }
 });
 
 const circularStyleClass = computed(() => {
@@ -275,3 +293,12 @@ const linearProgressStyle = computed(() => {
   }
 });
 </script>
+
+<style scoped>
+.conic-gradient {
+  background: conic-gradient(
+    v-bind(circularColorProgressCss) v-bind(gradientProgress),
+    v-bind(circularColorCss) v-bind(gradientProgress)
+  );
+}
+</style>

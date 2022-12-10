@@ -28,7 +28,7 @@
       },
       "content": {
         "errorMessage": "Hoppla! Diese Seite existiert nicht.",
-        "urlDisplay": "Sie haben versucht auf <a class='text-primary hover:text-secondary' href='{path}'>{path}</a> zuzugreifen."
+        "urlDisplay": "Sie haben versucht auf <a class='text-primary-800 hover:text-secondary-800' href='{path}'>{path}</a> zuzugreifen."
       },
       "buttons": {
         "home": "Zurück zur Startseite"
@@ -145,7 +145,7 @@
               "description": "Eigenschaft um den Randradius der Schaltfläche festzulegen. \nDer Standardwert kann aktiviert werden, indem die Eigenschaft gesetzt wird, oder deaktiviert werden, indem sie auf 'false' gesetzt wird.<br>Um einen speziellen Wert festzulegen, kann eine Tailwind' rounded'-Klasse übergeben werden."
             },
             "color": {
-              "description": "Eigenschaft um die Farbe des Buttons festzulegen.<br>Die Hintergrund-, Text-, Rand- und Hover-Farbe kann separat festgelegt werden.<br>Wenn die 'outlined'-Eigenschaft gesetzt ist, werden nur der Rand und die Textfarbe verwendet.< \nbr>Wenn die Eigenschaft „disabled“ oder „loading“ gesetzt ist, wird die Deckkraft auf 50 % gesetzt und die Hover-Farbe wird nicht mehr wirksam.<br>Wenn die Eigenschaft „icon“ gesetzt ist, wird nur die Text-Farbe angewandt."
+              "description": "Eigenschaft um die Farbe des Buttons festzulegen.<br>Die Hintergrund-, Text-, Rand- und Hover-Farbe kann separat festgelegt werden.<br>Wenn die 'outlined'-Eigenschaft gesetzt ist, werden nur der Rand und die Textfarbe verwendet.< \nbr>Wenn die Eigenschaft „disabled“ oder „loading“ gesetzt ist, wird die Deckkraft auf 50 % gesetzt und die Hover-Farbe wird nicht mehr wirksam.<br>Wenn die Eigenschaft „icon“ gesetzt ist, wird nur die Text und iconHover-Farbe angewandt."
             },
             "grow": {
               "description": "Eigenschaft um einen Wachstumseffekt auf die Schaltfläche anzuwenden. \nDie Verzögerung und die Skalierung können separat eingestellt werden.<br>Um den Effekt beim Schweben anzuwenden, stellen Sie der Tailwind-'scale'-Klasse 'hover:' voran."

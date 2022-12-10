@@ -5,8 +5,8 @@
       class="text-xl font-bold cursor-pointer"
       :class="
         $route.hash === '#' + ('slot-' + props.item.name)
-          ? 'text-secondary'
-          : 'text-primary'
+          ? 'text-secondary-800'
+          : 'text-primary-800'
       "
       @click="$hashAndCopy('slot-' + props.item.name)"
     >

@@ -5,8 +5,8 @@
       class="text-xl font-bold cursor-pointer"
       :class="
         $route.hash === '#' + ('event-' + props.item.name)
-          ? 'text-secondary'
-          : 'text-primary'
+          ? 'text-secondary-800'
+          : 'text-primary-800'
       "
       @click="$hashAndCopy('event-' + props.item.name)"
     >
@@ -78,7 +78,7 @@ function getClassByType(item) {
 <style>
 .vjs-tree-node.is-highlight,
 .vjs-tree-node:hover {
-  background-color: theme("colors.primary") !important;
+  background-color: theme("colors.primary.700") !important;
 }
 
 .vjs-value-string {
