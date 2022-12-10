@@ -253,6 +253,35 @@
                 "description": "Prop, um die ID der Benachrichtigung festzulegen. \nErforderlich und muss eindeutig sein."
               }
             }
+          },
+          "properties": {
+            "autoClose": {
+              "description": "Eigenschaft zum Aktivieren oder Deaktivieren des automatischen Schließens der Benachrichtigung nach einer bestimmten Dauer."
+            },
+            "color": {
+              "description": "Eigenschaft um die Farben der Benachrichtigung festzulegen. \nDie Farbe des Texts und den Hintergrunds für die Benachrichtigung selbst und für jeden Typ kann individuell festgelegt werden."
+            },
+            "duration": {
+              "description": "Dauer, die der Toast angezeigt wird. \nGilt wenn „autoClose“ auf „true“ gesetzt ist."
+            },
+            "rounded": {
+              "description": "Eigenschaft um den Randradius der Benachrichtigung festzulegen. \nKann entweder mit einem booleschen Wert umgeschaltet oder durch Übergabe einer beliebigen Tailwind 'rounded' Klasse angegeben werden."
+            },
+            "type": {
+              "description": "Einstellen des Benachrichtigung-Typs. \nKann eines der Folgenden sein: info, warning, error, success."
+            },
+            "title": {
+              "description": "Einstellung um den Titel der Benachrichtigung festzulegen."
+            },
+            "message": {
+              "description": "Einstellung um die Nachricht der Benachrichtigung festzulegen."
+            },
+            "shadow": {
+              "description": "Eigenschaft um den Schatten der Benachrichtigung festzulegen. \nKann auf jede Tailwind 'shadow'-Klasse eingestellt werden."
+            },
+            "width": {
+              "description": "Eigenschaft um die Breite der Benachrichtigung einzustellen. \nKann auf jede Tailwind \"w\"-Klasse eingestellt werden."
+            }
           }
         }
       }

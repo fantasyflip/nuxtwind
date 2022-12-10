@@ -222,6 +222,35 @@
                 "description": "Prop to set the id of the notification. Required and must be unique."
               }
             }
+          },
+          "properties": {
+            "autoClose": {
+              "description": "Prop to activate or deactivate automatic closing of the notification after given duration."
+            },
+            "color": {
+              "description": "Prop to set the colors of the toast. You can separatly set the text, background color for the base toast and for each toast type individually."
+            },
+            "duration": {
+              "description": "Duration the toast will be displayed. Applies when 'autoClose' is set to 'true'."
+            },
+            "rounded": {
+              "description": "Prop to set the border-radius of the toast. Can either be toggled with a Boolean-Value or specified by handing any Tailwind 'rounded'-class."
+            },
+            "type": {
+              "description": "Setting the toast's type. Can be one of the following: info, warning, error, success."
+            },
+            "title": {
+              "description": "Prop to set the toast's title."
+            },
+            "message": {
+              "description": "Prop to set the toast's message."
+            },
+            "shadow": {
+              "description": "Prop to set the toast's shadow. Can be set to any Tailwind 'shadow'-class."
+            },
+            "width": {
+              "description": "Prop to set the toast's width. Can be set to any Tailwind \"w\"-class."
+            }
           }
         }
       }
