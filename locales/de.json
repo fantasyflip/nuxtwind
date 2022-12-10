@@ -13,6 +13,15 @@
       },
       "content": {
         "playground": "Test-Bereich"
+      },
+      "function": {
+        "themeSwitch": {
+          "message": "Designwechsel zu: {theme}"
+        },
+        "localeSwitch": {
+          "title": "Sprache",
+          "message": "Sprache auf {locale} umgestellt"
+        }
       }
     }
   },

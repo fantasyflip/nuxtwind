@@ -85,7 +85,9 @@ function handleThemeChange() {
   nuxtApp.$cycleTheme();
   createNotification({
     title: "Theme",
-    message: "Theme changed to: " + useColorMode().preference,
+    message: t("layouts.component.function.themeSwitch.message", {
+      theme: capitalizeFirstLetter(useColorMode().preference),
+    }),
     icon: themeNotificationIcon,
   });
 }
@@ -94,8 +96,10 @@ const localeNotificationIcon = markRaw(MdiTranslate);
 function handleLocaleChange() {
   nuxtApp.$switchLocale();
   createNotification({
-    title: "Locale",
-    message: "Locale changed to: " + (locale.value === "en" ? "DE" : "EN"),
+    title: t("layouts.component.function.localeSwitch.title"),
+    message: t("layouts.component.function.localeSwitch.message", {
+      locale: locale.value === "en" ? "german" : "Englisch",
+    }),
     icon: localeNotificationIcon,
   });
 }

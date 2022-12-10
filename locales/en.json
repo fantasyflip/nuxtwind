@@ -13,6 +13,15 @@
       },
       "content": {
         "playground": "Playground"
+      },
+      "function": {
+        "themeSwitch": {
+          "message": "Theme change to: {theme}"
+        },
+        "localeSwitch": {
+          "title": "Language",
+          "message": "Language switched to {locale}"
+        }
       }
     }
   },
