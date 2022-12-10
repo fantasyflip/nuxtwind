@@ -96,6 +96,27 @@
         <ConfigDisplay :item="config" />
       </div>
     </div>
+    <div v-if="props.caveats.length > 0" class="mx-4 mt-4">
+      <div
+        class="lg:text-2xl text-xl font-bold cursor-pointer"
+        id="caveats"
+        @click="$hashAndCopy('caveats')"
+      >
+        <span
+          >{{ $t("components.documentationDisplay.content.caveats") }}
+          <span class="font-normal"> ({{ props.caveats.length }})</span> -
+        </span>
+        <span class="text-primary-800">
+          {{ props.componentName }}
+        </span>
+      </div>
+      <div
+        v-for="(caveat, index) in props.caveats"
+        :class="index < props.caveats.length - 1 ? 'border-b' : ''"
+      >
+        <CaveatDisplay :item="caveat" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -118,6 +139,10 @@ const props = defineProps({
     default: [],
   },
   configs: {
+    type: Array,
+    default: [],
+  },
+  caveats: {
     type: Array,
     default: [],
   },

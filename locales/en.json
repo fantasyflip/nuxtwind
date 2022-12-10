@@ -251,6 +251,12 @@
             "width": {
               "description": "Prop to set the toast's width. Can be set to any Tailwind \"w\"-class."
             }
+          },
+          "caveats": {
+            "icon": {
+              "title": "Unplugin Icons Package",
+              "description": "The icon on the toast will change accordingly to the set type. The icons that are displayed are taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Package</a>."
+            }
           }
         }
       }
@@ -294,7 +300,8 @@
         "props": "Properties",
         "events": "Events",
         "slots": "Slots",
-        "configs": "Configurations"
+        "configs": "Configurations",
+        "caveats": "Caveats"
       }
     }
   }

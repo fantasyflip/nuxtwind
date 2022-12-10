@@ -103,7 +103,7 @@
         <DocumentationDisplay
           :componentName="componentName"
           :props="props"
-          :slots="slots"
+          :caveats="caveats"
         />
       </template>
     </NuxtLayout>
@@ -260,7 +260,14 @@ let props = [
   },
 ];
 
-let slots = [];
+let caveats = [
+  {
+    name: t("pages.component.toast.content.caveats.icon.title"),
+    description: t("pages.component.toast.content.caveats.icon.description", {
+      url: "https://github.com/antfu/unplugin-icons",
+    }),
+  },
+];
 
 definePageMeta({
   layout: false,

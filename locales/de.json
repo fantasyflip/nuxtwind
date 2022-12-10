@@ -282,6 +282,12 @@
             "width": {
               "description": "Eigenschaft um die Breite der Benachrichtigung einzustellen. \nKann auf jede Tailwind \"w\"-Klasse eingestellt werden."
             }
+          },
+          "caveats": {
+            "icon": {
+              "title": "Unplugin Icons Paket",
+              "description": "Das Symbol auf der Benachrichtigung ändert sich entsprechend dem eingestellten Typ. \nDie angezeigten Icons stammen aus dem <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Paket</a>."
+            }
           }
         }
       }
@@ -294,7 +300,8 @@
         "props": "Eigenschaften",
         "events": "Ereignisse",
         "slots": "Platzhalter",
-        "configs": "Konfigurationen"
+        "configs": "Konfigurationen",
+        "caveats": "Vorbehalte"
       }
     }
   }
