@@ -251,9 +251,11 @@ const linearStyleClass = computed(() => {
     classes.push(
       props.color.linearProgressHover || defaults.color.linearProgressHover
     );
-    classes.push("transition-all");
-    classes.push(props.transition.duration || defaults.transition.duration);
-    classes.push(props.transition.ease || defaults.transition.ease);
+    if (props.transition) {
+      classes.push("transition-all");
+      classes.push(props.transition.duration || defaults.transition.duration);
+      classes.push(props.transition.ease || defaults.transition.ease);
+    }
   }
 
   //ROUNDED

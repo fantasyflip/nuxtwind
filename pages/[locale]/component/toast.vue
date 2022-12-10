@@ -3,9 +3,23 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Toast></Toast>
+        <Toast id="playground"></Toast>
       </template>
-      <template #playground> Playground </template>
+      <template #playground>
+        Playground
+        <Button
+          @click="
+            createNotification({
+              title: 'Title',
+              message: 'Message',
+              type: 'warning',
+              icon: iconToast,
+              autoClose: false,
+            })
+          "
+          >Notify</Button
+        >
+      </template>
       <template #documentation>
         <DocumentationDisplay
           :componentName="componentName"
@@ -17,8 +31,13 @@
   </div>
 </template>
 <script setup>
+import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
 import { useI18n } from "vue-i18n";
+
+const iconToast = markRaw(MdiThemeLightDark);
 const { t } = useI18n();
+
+const createNotification = inject("create-notification");
 
 let componentName = "Toast";
 

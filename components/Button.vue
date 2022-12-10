@@ -44,7 +44,7 @@ const props = defineProps({
   },
   rounded: {
     type: [Boolean, String],
-    default: false,
+    default: true,
   },
   grow: {
     type: [Boolean, Object],

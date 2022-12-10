@@ -4,6 +4,36 @@
       <NuxtPage />
     </NuxtLayout>
   </div>
+  <div
+    class="fixed z-[100] bottom-2 bottom-2 px-1 sm:right-2 lg:w-96 sm:w-72 w-full sm:max-h-full max-h-96"
+  >
+    <transition-group
+      name="toast-notification"
+      tag="div"
+      class="flex flex-col-reverse gap-3 w-full"
+      @before-enter="stopBodyOverflow"
+      @after-enter="allowBodyOverflow"
+      @before-leave="stopBodyOverflow"
+      @after-leave="allowBodyOverflow"
+    >
+      <Toast
+        v-for="item in notifications"
+        :key="item.id"
+        :id="item.id"
+        :type="item.type"
+        :title="item.title"
+        :message="item.message"
+        :auto-close="item.autoClose"
+        :duration="item.duration"
+        :icon="item.icon"
+        @close="
+          () => {
+            removeNotifications(item.id);
+          }
+        "
+      />
+    </transition-group>
+  </div>
 </template>
 
 <script setup>
@@ -30,6 +60,16 @@ useHead({
   titleTemplate: "%s | Component Flip",
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
 });
+
+const {
+  notifications,
+  createNotification,
+  removeNotifications,
+  stopBodyOverflow,
+  allowBodyOverflow,
+} = useNotifications();
+
+provide("create-notification", createNotification);
 </script>
 
 <style>
@@ -61,5 +101,25 @@ html {
 /* / Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: theme("colors.secondary.700");
+}
+</style>
+
+<style lang="scss">
+.toast-notification-enter-active {
+  animation: toast-fade-in 0.5s ease-in-out;
+}
+.toast-notification-leave-active {
+  animation: toast-fade-in 0.5s ease-in-out reverse;
+}
+
+@keyframes toast-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 </style>

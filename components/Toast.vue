@@ -1,41 +1,242 @@
 <template>
   <div
+    :ref="props.id"
     id="toast-default"
-    class="flex items-center p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
     role="alert"
+    :class="toastWrapperStyleClass"
+    class="toast-notification"
   >
-    <div
-      class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-blue-500 bg-blue-100 rounded-lg dark:bg-blue-800 dark:text-blue-200"
-    >
-      <svg
-        aria-hidden="true"
-        class="w-5 h-5"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
+    <div class="flex items-center p-4">
+      <div :class="iconStyleClass">
+        <component v-if="props.icon" :is="props.icon" />
+        <div v-else>
+          <MdiInformationOutline v-if="props.type === 'info'" />
+          <MdiAlertRhombus v-else-if="props.type === 'warning'" />
+          <MdiCheckCircle v-else-if="props.type === 'success'" />
+          <MdiAlertDecagram v-else-if="props.type === 'error'" />
+        </div>
+
+        <span class="sr-only">Toast icon</span>
+      </div>
+      <div class="ml-3">
+        <div v-if="props.title" class="font-bold">
+          {{ props.title }}
+        </div>
+        <div v-if="props.message" class="text-sm font-normal">
+          {{ props.message }}
+        </div>
+      </div>
+      <Button
+        class="ml-auto"
+        icon
+        :color="{
+          text: 'text-gray-700 dark:text-gray-300',
+          iconHover: 'hover:text-gray-400 dark:hover:text-gray-500',
+        }"
+        @click="close()"
       >
-        <path
-          fill-rule="evenodd"
-          d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
-          clip-rule="evenodd"
-        ></path>
-      </svg>
-      <span class="sr-only">Fire icon</span>
+        <MdiClose />
+      </Button>
     </div>
-    <div class="ml-3 text-sm font-normal">Set yourself free.</div>
-    <Button
-      class="ml-auto"
-      icon
+    <Progress
+      v-if="props.autoClose"
+      v-model="progressValue"
+      :initial-load-time="false"
+      :transition="false"
       :color="{
-        text: 'text-gray-700 dark:text-gray-300',
-        iconHover: 'hover:text-gray-500 dark:hover:text-gray-400',
+        background: 'bg-gray-100 dark:bg-zinc-700',
       }"
-    >
-      <MdiClose />
-    </Button>
+      rounded="false"
+    />
   </div>
 </template>
 
 <script setup>
 import MdiClose from "~icons/mdi/close";
+import MdiInformationOutline from "~icons/mdi/information-outline";
+import MdiAlertRhombus from "~icons/mdi/alert-rhombus";
+import MdiCheckCircle from "~icons/mdi/check-circle";
+import MdiAlertDecagram from "~icons/mdi/alert-decagram";
+
+let defaults = {
+  color: {
+    text: "text-gray-700 dark:text-gray-300",
+    bg: "bg-gray-100 dark:bg-zinc-800",
+    icon: {
+      info: {
+        text: "text-blue-500 dark:text-blue-200",
+        bg: "bg-blue-200 dark:bg-blue-800",
+      },
+      warning: {
+        text: "text-yellow-500 dark:text-yellow-200",
+        bg: "bg-yellow-200 dark:bg-yellow-800",
+      },
+      error: {
+        text: "text-red-500 dark:text-red-200",
+        bg: "bg-red-200 dark:bg-red-800",
+      },
+      success: {
+        text: "text-green-500 dark:text-green-200",
+        bg: "bg-green-200 dark:bg-green-800",
+      },
+    },
+  },
+  rounded: "rounded-lg",
+  shadow: "shadow-lg",
+};
+
+const emit = defineEmits(["close"]);
+
+let props = defineProps({
+  id: {
+    type: String,
+    required: true,
+  },
+  color: {
+    type: Object,
+    default: {
+      text: "text-gray-700 dark:text-gray-300",
+      bg: "bg-gray-100 dark:bg-zinc-800",
+      icon: {
+        info: {
+          text: "text-blue-500 dark:text-blue-200",
+          bg: "bg-blue-200 dark:bg-blue-800",
+        },
+        warning: {
+          text: "text-yellow-500 dark:text-yellow-200",
+          bg: "bg-yellow-200 dark:bg-yellow-800",
+        },
+        error: {
+          text: "text-red-500 dark:text-red-200",
+          bg: "bg-red-200 dark:bg-red-800",
+        },
+        success: {
+          text: "text-green-500 dark:text-green-200",
+          bg: "bg-green-200 dark:bg-green-800",
+        },
+      },
+    },
+  },
+  autoClose: { type: Boolean, default: true },
+  duration: { type: Number, default: 5 },
+  rounded: {
+    type: [Boolean, String],
+    default: true,
+  },
+  type: {
+    type: String,
+    default: "info",
+    validator(value) {
+      return ["info", "warning", "error", "success"].includes(value);
+    },
+  },
+  title: {
+    type: String,
+    default: "Toast-Title",
+  },
+  message: {
+    type: String,
+    default: "Toast-Message-Line",
+  },
+  shadow: {
+    type: [Boolean, String],
+    default: true,
+  },
+  icon: {
+    type: Object,
+  },
+  width: {
+    type: String,
+    default: "w-full",
+  },
+});
+
+let progressValue = ref(100);
+
+if (props.autoClose) {
+  let progress = setInterval(() => {
+    progressValue.value -= 1;
+    if (progressValue.value <= 0) {
+      clearInterval(progress);
+      close();
+    }
+  }, props.duration * 10);
+}
+
+const close = () => {
+  emit("close");
+};
+
+const toastWrapperStyleClass = computed(() => {
+  let classes = [];
+  // class="flex items-center p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+  classes.push("overflow-hidden");
+
+  //COLOR
+  classes.push(props.color.text || defaults.color.text);
+  classes.push(props.color.bg || defaults.color.bg);
+
+  //ROUNDED
+  if (typeof props.rounded === "string") {
+    classes.push(props.rounded);
+  } else if (props.rounded) {
+    classes.push(defaults.rounded);
+  }
+
+  //WIDTH
+  classes.push(props.width);
+
+  //SHADOW
+  if (typeof props.shadow === "string") {
+    classes.push(props.shadow);
+  } else if (props.shadow) {
+    classes.push(defaults.shadow);
+  }
+
+  return classes.join(" ");
+});
+
+const iconStyleClass = computed(() => {
+  let classes = [];
+  // class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-blue-500 bg-blue-100 rounded-lg dark:bg-blue-800 dark:text-green-700"
+  classes.push(
+    "inline-flex",
+    "flex-shrink-0",
+    "justify-center",
+    "items-center",
+    "w-8",
+    "h-8",
+    "rounded-lg"
+  );
+
+  //COLOR
+  let iconText = "";
+  let iconBg = "";
+  if (props.type === "warning") {
+    iconText =
+      props.color.icon?.warning?.text || defaults.color.icon.warning.text;
+    iconBg = props.color.icon?.warning?.bg || defaults.color.icon.warning.bg;
+  } else if (props.type === "error") {
+    iconText = props.color.icon?.error?.text || defaults.color.icon.error.text;
+    iconBg = props.color.icon?.error?.bg || defaults.color.icon.error.bg;
+  } else if (props.type === "success") {
+    iconText =
+      props.color.icon?.success?.text || defaults.color.icon.success.text;
+    iconBg = props.color.icon?.success?.bg || defaults.color.icon.success.bg;
+  } else {
+    iconText = props.color.icon?.info?.text || defaults.color.icon.info.text;
+    iconBg = props.color.icon?.info?.bg || defaults.color.icon.info.bg;
+  }
+
+  classes.push(iconText);
+  classes.push(iconBg);
+
+  return classes.join(" ");
+});
 </script>
+
+<style scoped>
+.toast-notification {
+  transition: all 0.3s ease-in-out;
+}
+</style>
