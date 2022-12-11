@@ -87,8 +87,11 @@
             "rounded": {
               "description": "Eigenschaft um den Randradius des Textfeldes festzulegen. \nDies gilt nur für das Textfeld, wenn der 'outlined' Prop gesetzt ist.<br>Der Standardwert kann durch einen String oder 'false' ersetzt werden.<br>Um einen speziellen Wert einzustellen, stelle ihn auf eine Tailwind \n'rounded'-Klasse."
             },
-            "icon": {
+            "prependIcon": {
               "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol vor dem Textfeld enthält.<br> Das Symbol wird innerhalb des Textfelds angezeigt und linksbündig ausgerichtet."
+            },
+            "appendIcon": {
+              "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol am Ende des Textfelds enthält.<br> Das Symbol wird innerhalb des Textfelds angezeigt und rechtsbündig ausgerichtet."
             },
             "disabled": {
               "description": "Eigenschaft um das Textfeld zu deaktivieren. \nWenn deaktiviert, wird die Deckkraft auf 50 % gesetzt und das Textfeld ist nicht mehr anklickbar."
@@ -119,6 +122,9 @@
             },
             "width": {
               "description": "Eigenschaft um die Breite des Textfeldes festzulegen. Die Breite kann mit Tailwind \"W\"-Klassen angepasst werden."
+            },
+            "autocomplete": {
+              "description": "Eigenschaft um den Autocomplete-Wert der Eingabe festzulegen."
             }
           },
           "events": {
@@ -127,6 +133,12 @@
             },
             "updateValidation": {
               "description": "Ereignis, das den Validierungsstatus des Textfelds ausgibt. \nDieses Ereignis kann verwendet werden, um die Validierung der Komponente im übergeordneten Element zu überprüfen."
+            },
+            "focusIn": {
+              "description": "Ereignis, das ausgegeben wird, wenn das Textfeld fokussiert wurde."
+            },
+            "focusOut": {
+              "description": "Ereignis, das ausgegeben wird, wenn das Textfeld den Fokus verliert."
             }
           },
           "slots": {
@@ -296,6 +308,14 @@
             "icon": {
               "title": "Unplugin Icons Paket",
               "description": "Das Symbol auf der Benachrichtigung ändert sich entsprechend dem eingestellten Typ. \nDie angezeigten Icons stammen aus dem <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Paket</a>."
+            },
+            "button": {
+              "title": "Button Komponente",
+              "description": "Die Benachrichtigungs-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Button-Komponente</a>."
+            },
+            "progress": {
+              "title": "Progress Komponente",
+              "description": "Die Benachritigungs-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress-Komponente</a>. \nSie wird zum Anzeigen der Zeitleiste verwendet, wenn die AutoClose-Eigenschaft aktiviert ist."
             }
           }
         }

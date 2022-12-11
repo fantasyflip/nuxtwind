@@ -1,8 +1,8 @@
 <template>
   <div
     class="lg:text-3xl text-2xl font-bold cursor-pointer mx-4"
-    id="playground"
-    @click="$hashAndCopy('playground')"
+    id="documentation"
+    @click="$hashAndCopy('documentation')"
   >
     <span
       >{{ $t("components.documentationDisplay.content.documentation") }} -

@@ -267,6 +267,21 @@ let caveats = [
       url: "https://github.com/antfu/unplugin-icons",
     }),
   },
+  {
+    name: t("pages.component.toast.content.caveats.button.title"),
+    description: t("pages.component.toast.content.caveats.button.description", {
+      url: useLocaleUrl("component/button"),
+    }),
+  },
+  {
+    name: t("pages.component.toast.content.caveats.progress.title"),
+    description: t(
+      "pages.component.toast.content.caveats.progress.description",
+      {
+        url: useLocaleUrl("component/progress"),
+      }
+    ),
+  },
 ];
 
 definePageMeta({

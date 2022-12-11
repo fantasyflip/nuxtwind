@@ -56,8 +56,11 @@
             "rounded": {
               "description": "Prop to set the border radius of the textfield. This only applies on the textfield if the outlined prop is set.<br>The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
             },
-            "icon": {
+            "prependIcon": {
               "description": "Prop to toggle the slot that includes an icon in front of the textfield.<br> The icon will be displayed inside the textfield and will be aligned to the left."
+            },
+            "appendIcon": {
+              "description": "Prop to toggle the slot that includes an icon at the end of the textfield.<br> The icon will be displayed inside the textfield and will be aligned to the right."
             },
             "disabled": {
               "description": "Prop to set disable the textfield. When disabled the opacity will be set to 50% and the textfield won't be clickable anymore."
@@ -88,6 +91,9 @@
             },
             "width": {
               "description": "Prop to set the width of the textfield. You can set it to a tailwind 'w'-class."
+            },
+            "autocomplete": {
+              "description": "Prop to set the input's autocomplete value."
             }
           },
           "events": {
@@ -96,6 +102,12 @@
             },
             "updateValidation": {
               "description": "Event that emits the validation state of the textfield. This event can be used to check validation of the component in the parent."
+            },
+            "focusIn": {
+              "description": "Event that will be emitted when the textfield got focused."
+            },
+            "focusOut": {
+              "description": "Event that will be emitted when the textfield loses focus."
             }
           },
           "slots": {
@@ -265,6 +277,14 @@
             "icon": {
               "title": "Unplugin Icons Package",
               "description": "The icon on the toast will change accordingly to the set type. The icons that are displayed are taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Package</a>."
+            },
+            "button": {
+              "title": "Button Component",
+              "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Button Component</a>."
+            },
+            "progress": {
+              "title": "Progress Component",
+              "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>. It'll be used for displaying the timeline when the autoClose prop is enabled."
             }
           }
         }

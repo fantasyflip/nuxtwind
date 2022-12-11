@@ -1,14 +1,14 @@
 <template>
   <div class="py-3 px-2">
     <div
-      :id="'slot-' + props.item.name"
+      :id="'caveat-' + props.item.name.replace(/\s+/g, '-')"
       class="text-xl font-bold cursor-pointer"
       :class="
-        $route.hash === '#' + ('slot-' + props.item.name)
+        $route.hash === '#' + ('caveat-' + props.item.name.replace(/\s+/g, '-'))
           ? 'text-secondary-800'
           : 'text-primary-800'
       "
-      @click="$hashAndCopy('slot-' + props.item.name)"
+      @click="$hashAndCopy('caveat-' + props.item.name.replace(/\s+/g, '-'))"
     >
       {{ props.item.name }}
     </div>

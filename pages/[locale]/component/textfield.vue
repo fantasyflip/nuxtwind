@@ -6,18 +6,20 @@
         <Textfield
           width="w-fit"
           v-model="textfieldValue"
-          prepend-icon
+          append-icon
           hint="Enter a keyword!"
           placeholder="Foo"
           :rules="[notEmpty, minChars(5)]"
           label="Search"
           :loading="loading"
-          outlined
           :color="{
             bg: 'bg-white dark:bg-zinc-900',
           }"
         >
-          <template #icon>
+          <template #prepend-icon>
+            <MdiMagnify />
+          </template>
+          <template #append-icon>
             <MdiMagnify />
           </template>
         </Textfield>
@@ -104,6 +106,14 @@ let props = [
     ),
   },
   {
+    name: "autocomplete",
+    type: "String",
+    default: "on",
+    description: t(
+      "pages.component.textfield.content.properties.autocomplete.description"
+    ),
+  },
+  {
     name: "rounded",
     type: "Boolean, String",
     default: "rounded-lg",
@@ -112,11 +122,19 @@ let props = [
     ),
   },
   {
-    name: "prepend-icon",
+    name: "prependIcon",
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.textfield.content.properties.icon.description"
+      "pages.component.textfield.content.properties.prependIcon.description"
+    ),
+  },
+  {
+    name: "appendIcon",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.textfield.content.properties.appendIcon.description"
     ),
   },
   {
@@ -229,6 +247,20 @@ let events = [
     },
     description: t(
       "pages.component.textfield.content.events.updateValidation.description"
+    ),
+  },
+  {
+    name: "focusIn",
+    structure: undefined,
+    description: t(
+      "pages.component.textfield.content.events.focusIn.description"
+    ),
+  },
+  {
+    name: "focusOut",
+    structure: undefined,
+    description: t(
+      "pages.component.textfield.content.events.focusOut.description"
     ),
   },
 ];

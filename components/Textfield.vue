@@ -1,7 +1,10 @@
 <template>
   <div :class="wrapperClass">
     <div v-if="props.prependIcon" :class="prependIconClass">
-      <slot name="icon" />
+      <slot name="prepend-icon" />
+    </div>
+    <div v-if="props.appendIcon" :class="appendIconClass">
+      <slot name="append-icon" />
     </div>
     <input
       id="textfield"
@@ -11,7 +14,13 @@
       :disabled="props.disabled"
       @input="handleInput"
       :value="props.modelValue"
+      @focusin="$emit('focusIn')"
+      @focusout="$emit('focusOut')"
+      :autocomplete="autocomplete"
     />
+    <div v-if="props.prependIcon" :class="appendIconClass">
+      <slot name="icon" />
+    </div>
     <label for="textfield" :class="labelClass">
       <slot name="label">{{ props.label }}</slot>
     </label>
@@ -79,11 +88,23 @@ const props = defineProps({
       borderFocusError: "focus:border-red-500",
     },
   },
+  select: {
+    type: Boolean,
+    default: false,
+  },
   label: {
     type: String,
     default: "Label",
   },
+  autocomplete: {
+    type: String,
+    default: "on",
+  },
   prependIcon: {
+    type: Boolean,
+    default: false,
+  },
+  appendIcon: {
     type: Boolean,
     default: false,
   },
@@ -137,7 +158,12 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:modelValue", "update:validation"]);
+const emit = defineEmits([
+  "update:modelValue",
+  "update:validation",
+  "focusIn",
+  "focusOut",
+]);
 
 function handleInput(e) {
   //UPDATE MODEL VALUE
@@ -253,7 +279,11 @@ const inputClass = computed(() => {
     classes.push(props.color.bg || defaults.color.bg);
 
     //ICON
-    if (props.prependIcon) {
+    if (props.appendIcon && props.prependIcon) {
+      classes.push("px-8");
+    } else if (props.appendIcon) {
+      classes.push("pr-8 pl-2.5");
+    } else if (props.prependIcon) {
       classes.push("pl-8 pr-2.5");
     } else {
       classes.push("px-2.5");
@@ -277,7 +307,11 @@ const inputClass = computed(() => {
     }
 
     //ICON
-    if (props.prependIcon) {
+    if (props.appendIcon && props.prependIcon) {
+      classes.push("px-8");
+    } else if (props.appendIcon) {
+      classes.push("pr-8 pl-2.5");
+    } else if (props.prependIcon) {
       classes.push("pl-8 pr-2.5");
     } else {
       classes.push("px-2.5");
@@ -287,7 +321,11 @@ const inputClass = computed(() => {
     classes.push("py-2.5", "bg-transparent", "border-0", "border-b-2");
 
     //ICON
-    if (props.prependIcon) {
+    if (props.appendIcon && props.prependIcon) {
+      classes.push("px-8");
+    } else if (props.appendIcon) {
+      classes.push("pr-8 pl-0");
+    } else if (props.prependIcon) {
       classes.push("pl-8 pr-0");
     } else {
       classes.push("px-0");
@@ -449,6 +487,48 @@ const prependIconClass = computed(() => {
     "flex",
     "items-center",
     "pl-2",
+    "transition-all"
+  );
+
+  //TRANSITION
+  if (props.transition && typeof props.transition === "object") {
+    classes.push(props.transition.duration || defaults.transition.duration);
+    classes.push(props.transition.ease || defaults.transition.ease);
+  } else if (props.transition) {
+    classes.push(defaults.transition.duration);
+    classes.push(defaults.transition.ease);
+  }
+
+  if (props.filled) {
+    classes.push("top-2");
+  }
+
+  if (isValid.value === true) {
+    classes.push(props.color.icon || defaults.color.icon);
+    classes.push(props.color.iconFocus || defaults.color.iconFocus);
+  } else {
+    classes.push(props.color.error || defaults.color.error);
+  }
+
+  //LOADING
+  if (props.loading) {
+    classes.push("animate-pulse");
+  }
+
+  return classes.join(" ");
+});
+
+const appendIconClass = computed(() => {
+  // class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-600 group-focus-within:text-primary-800 transition-all ease-in-out duration-500"
+
+  let classes = [];
+  classes.push(
+    "absolute",
+    "inset-y-0",
+    "right-0",
+    "flex",
+    "items-center",
+    "pr-2",
     "transition-all"
   );
 
