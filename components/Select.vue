@@ -8,20 +8,17 @@
       :filled="props.filled"
       :disabled="props.disabled"
       :placeholder="props.placeholder"
-      :color="props.color?.textfield"
+      :color="props.color?.textfield || defaults.color.textfield"
       :loading="props.loading"
+      :width="props.width?.textfield || defaults.width.textfield"
+      :label="props.label"
     />
-    <div
-      v-if="showSelect"
-      class="overflow-auto w-full max-h-48 z-50 absolute shadow-xl rounded-lg"
-    >
+    <div v-if="showSelect" :class="dropDownStyleCass">
       <ul>
         <li
-          class="p-2 hover:bg-black"
+          class="p-2"
           v-for="(item, index) in selectItems"
-          :class="
-            index < selectItems.length - 1 ? 'border-b border-zinc-700' : ''
-          "
+          :class="index < selectItems.length - 1 ? itemStyleClass : ''"
           :key="index"
           @click.stop="setItem(item)"
         >
@@ -36,6 +33,20 @@
 let showSelect = ref(false);
 let selectSearch = ref(props.modelValue || "");
 
+let defaults = {
+  color: {
+    textfield: {},
+    bg: "bg-gray-200 dark:bg-zinc-800",
+    text: "text-black dark:text-white",
+    border: "border-gray-300 dark:border-zinc-700",
+  },
+  width: {
+    textfield: "",
+    select: "w-full",
+  },
+  shadow: "shadow-lg",
+};
+
 let props = defineProps({
   modelValue: {},
   items: {
@@ -44,7 +55,17 @@ let props = defineProps({
   },
   color: {
     type: Object,
-    default: {},
+    default: {
+      textfield: {},
+      bg: "bg-gray-200 dark:bg-zinc-800",
+      text: "text-black dark:text-white",
+      border: "border-gray-300 dark:border-zinc-700",
+      hover: "hover:bg-primary-700",
+    },
+  },
+  label: {
+    type: String,
+    default: "",
   },
   outlined: {
     type: Boolean,
@@ -64,7 +85,22 @@ let props = defineProps({
   },
   placeholder: {
     type: String,
-    default: "Select",
+    default: " ",
+  },
+  shadow: {
+    type: [Boolean, String],
+    default: true,
+  },
+  width: {
+    type: Object,
+    default: {
+      textfield: "",
+      select: "w-full",
+    },
+  },
+  height: {
+    type: String,
+    default: "max-h-48",
   },
 });
 
@@ -89,4 +125,41 @@ function setItem(value) {
   emit("update:modelValue", value);
   showSelect.value = false;
 }
+
+let dropDownStyleCass = computed(() => {
+  let classes = [];
+  // class="overflow-auto w-full max-h-48 z-50 absolute shadow-xl"
+  classes.push("overflow-auto", "z-50", "absolute");
+
+  //WIDTH
+  classes.push(props.width.select || defaults.width.select);
+
+  //HEIGHT
+  classes.push(props.height);
+
+  //SHADOW
+  if (props.shadow && typeof props.shadow === "string") {
+    classes.push(props.shadow);
+  } else if (props.shadow) {
+    classes.push(defaults.shadow);
+  }
+
+  //COLOR
+  classes.push(props.color.bg || defaults.color.bg);
+
+  return classes.join(" ");
+});
+
+let itemStyleClass = computed(() => {
+  let classes = [];
+  // class='border-b'
+  classes.push("border-b");
+
+  //COLOR
+  classes.push(props.color.border || defaults.color.border);
+  classes.push(props.color.text || defaults.color.text);
+  classes.push(props.color.hover || defaults.color.hover);
+
+  return classes.join(" ");
+});
 </script>

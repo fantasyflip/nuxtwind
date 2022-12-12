@@ -7,7 +7,8 @@
           :items="['Foo', 'Bar', 'Boo', 'Far', 'Foo', 'Bar', 'Boo', 'Far']"
           v-model="selectValue"
           filled
-          loading
+          label="Select"
+          placeholder="Select an item"
         />
       </template>
       <template #playground>
@@ -27,7 +28,7 @@
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
-let selectValue = ref("F");
+let selectValue = ref("");
 
 //DOCUMENTATION
 let componentName = "Select";
