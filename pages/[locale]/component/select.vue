@@ -6,9 +6,9 @@
         <Select
           :items="['Foo', 'Bar', 'Boo', 'Far', 'Foo', 'Bar', 'Boo', 'Far']"
           v-model="selectValue"
-          filled
           label="Select"
           placeholder="Select an item"
+          outlined
         />
       </template>
       <template #playground>

@@ -12,13 +12,18 @@
       :loading="props.loading"
       :width="props.width?.textfield || defaults.width.textfield"
       :label="props.label"
+      v-on:focusIn="saveInput"
     />
     <div v-if="showSelect" :class="dropDownStyleCass">
       <ul>
         <li
           class="p-2"
           v-for="(item, index) in selectItems"
-          :class="index < selectItems.length - 1 ? itemStyleClass : ''"
+          :class="
+            index < selectItems.length - 1
+              ? itemStyleClass
+              : props.color?.hover || defaults.color.hover
+          "
           :key="index"
           @click.stop="setItem(item)"
         >
@@ -31,6 +36,7 @@
 
 <script setup>
 let showSelect = ref(false);
+let savedInput = ref("");
 let selectSearch = ref(props.modelValue || "");
 
 let defaults = {
@@ -39,6 +45,7 @@ let defaults = {
     bg: "bg-gray-200 dark:bg-zinc-800",
     text: "text-black dark:text-white",
     border: "border-gray-300 dark:border-zinc-700",
+    hover: "hover:bg-primary-700",
   },
   width: {
     textfield: "",
@@ -62,6 +69,10 @@ let props = defineProps({
       border: "border-gray-300 dark:border-zinc-700",
       hover: "hover:bg-primary-700",
     },
+  },
+  autocomplete: {
+    type: Boolean,
+    default: false,
   },
   label: {
     type: String,
@@ -109,18 +120,36 @@ let emit = defineEmits(["update:modelValue"]);
 onMounted(() => {
   window.addEventListener("click", function (e) {
     if (!document.getElementById("select").contains(e.target)) {
+      if (!props.autocomplete) {
+        selectSearch.value = savedInput.value;
+      } else {
+        //check if selectSearch is in items
+        if (!props.items.includes(selectSearch.value)) {
+          selectSearch.value = savedInput.value;
+        }
+      }
       showSelect.value = false;
     }
   });
 });
 
 let selectItems = computed(() => {
-  return props.items.filter((item) => {
-    return item.toLowerCase().includes(selectSearch.value.toLowerCase());
-  });
+  if (props.autocomplete) {
+    return props.items.filter((item) => {
+      return item.toLowerCase().includes(selectSearch.value.toLowerCase());
+    });
+  } else {
+    return props.items;
+  }
 });
 
+function saveInput() {
+  savedInput.value = selectSearch.value;
+  console.log("saved", savedInput.value);
+}
+
 function setItem(value) {
+  selectSearch.value = "";
   selectSearch.value = value;
   emit("update:modelValue", value);
   showSelect.value = false;
@@ -146,6 +175,17 @@ let dropDownStyleCass = computed(() => {
 
   //COLOR
   classes.push(props.color.bg || defaults.color.bg);
+
+  //AUTOCOMPLETE
+  if (!props.autocomplete) {
+    if (props.outlined) {
+      classes.push("top-3", "max-w-[96%]", "left-1");
+    } else if (props.filled) {
+      classes.push("top-5");
+    } else {
+      classes.push("top-2");
+    }
+  }
 
   return classes.join(" ");
 });
