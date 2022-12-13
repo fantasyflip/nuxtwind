@@ -12,16 +12,22 @@
       :loading="props.loading"
       :width="props.width?.textfield || defaults.width.textfield"
       :label="props.label"
+      :transition="props.transition"
       v-on:focusIn="saveInput"
       :appendIcon="props.appendIcon"
       :prependIcon="props.prependIcon"
     >
       <template v-if="props.prependIcon" #prepend-icon>
-        <component :is="props.prependIcon" />
+        <slot name="prepend-icon">
+          <component :is="props.prependIcon" />
+        </slot>
       </template>
       <template v-if="props.appendIcon" #append-icon>
-        <component :is="props.appendIcon" />
+        <slot name="append-icon">
+          <component :is="props.appendIcon" />
+        </slot>
       </template>
+      <template #label> <slot name="label"></slot> </template>
     </Textfield>
     <div v-if="showSelect" :class="dropDownStyleCass">
       <ul>
@@ -79,7 +85,7 @@ let props = defineProps({
       hover: "hover:bg-primary-700",
     },
   },
-  autocomplete: {
+  search: {
     type: Boolean,
     default: false,
   },
@@ -107,17 +113,21 @@ let props = defineProps({
     type: String,
     default: " ",
   },
+  transition: {
+    type: String,
+    default: "",
+  },
   shadow: {
     type: [Boolean, String],
     default: true,
   },
   appendIcon: {
     type: Object,
-    default: false,
+    default: null,
   },
   prependIcon: {
     type: Object,
-    default: false,
+    default: null,
   },
   width: {
     type: Object,
@@ -137,7 +147,7 @@ let emit = defineEmits(["update:modelValue"]);
 onMounted(() => {
   window.addEventListener("click", function (e) {
     if (!document.getElementById("select").contains(e.target)) {
-      if (!props.autocomplete) {
+      if (!props.search) {
         selectSearch.value = savedInput.value;
       } else {
         //check if selectSearch is in items
@@ -151,7 +161,7 @@ onMounted(() => {
 });
 
 let selectItems = computed(() => {
-  if (props.autocomplete) {
+  if (props.search) {
     return props.items.filter((item) => {
       return item.toLowerCase().includes(selectSearch.value.toLowerCase());
     });
@@ -193,8 +203,8 @@ let dropDownStyleCass = computed(() => {
   //COLOR
   classes.push(props.color.bg || defaults.color.bg);
 
-  //AUTOCOMPLETE
-  if (!props.autocomplete) {
+  //search
+  if (!props.search) {
     if (props.outlined) {
       classes.push("top-3", "max-w-[96%]", "left-1");
     } else if (props.filled) {

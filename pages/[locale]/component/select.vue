@@ -8,7 +8,7 @@
           v-model="selectValue"
           label="Select"
           placeholder="Select an item"
-          autocomplete
+          search
           filled
           :append-icon="selectIcon"
         />
