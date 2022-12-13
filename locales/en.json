@@ -323,6 +323,19 @@
                 "description": "Prop to set the height of the select drop down."
               }
             }
+          },
+          "slots": {
+            "referComponent": {
+              "textfield": {
+                "description": "This slot just redirects to the identically named slot of the 'textfield'-component. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More</a> information about it."
+              }
+            }
+          },
+          "caveats": {
+            "textfield": {
+              "title": "Textfield-Component",
+              "description": "The select component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">textfield Component</a>."
+            }
           }
         }
       }

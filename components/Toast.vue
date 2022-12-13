@@ -52,6 +52,7 @@
 </template>
 
 <script setup>
+//TODO Add event when autoclose timer is over to react on it
 import MdiClose from "~icons/mdi/close";
 import MdiInformationOutline from "~icons/mdi/information-outline";
 import MdiAlertRhombus from "~icons/mdi/alert-rhombus";

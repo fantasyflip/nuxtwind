@@ -354,6 +354,19 @@
                 "description": "Eigenschaft um die Höhe des Auswahl-Dropdowns festzulegen."
               }
             }
+          },
+          "slots": {
+            "referComponent": {
+              "textfield": {
+                "description": "Dieser Platzhalter leitet nur auf den gleichnamigen Platzhalter der 'textfield'-Komponente um. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere</a> Informationen darüber."
+              }
+            }
+          },
+          "caveats": {
+            "textfield": {
+              "title": "Textfield Komponente",
+              "description": "Die Select-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Textfield-Komponente</a>."
+            }
           }
         }
       }

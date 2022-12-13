@@ -20,6 +20,7 @@
         <DocumentationDisplay
           :componentName="componentName"
           :props="props"
+          :slots="slots"
           :caveats="caveats"
         />
       </template>
@@ -180,7 +181,43 @@ let props = [
   },
 ];
 
-let caveats = [];
+let slots = [
+  {
+    name: "prepend-icon",
+    description: t(
+      "pages.component.select.content.slots.referComponent.textfield.description",
+      { url: useComponentReferUrl("textfield", "slot", "prepend-icon") }
+    ),
+  },
+  {
+    name: "append-icon",
+    description: t(
+      "pages.component.select.content.slots.referComponent.textfield.description",
+      { url: useComponentReferUrl("textfield", "slot", "append-icon") }
+    ),
+  },
+  {
+    name: "label",
+    description: t(
+      "pages.component.select.content.slots.referComponent.textfield.description",
+      {
+        url: useComponentReferUrl("textfield", "slot", "label"),
+      }
+    ),
+  },
+];
+
+let caveats = [
+  {
+    name: t("pages.component.select.content.caveats.textfield.title"),
+    description: t(
+      "pages.component.select.content.caveats.textfield.description",
+      {
+        url: useLocaleUrl("component/textfield"),
+      }
+    ),
+  },
+];
 
 definePageMeta({
   layout: false,
