@@ -111,11 +111,14 @@
             }
           },
           "slots": {
-            "icon": {
-              "description": "Slot to add an icon in front of the textfield. The icon will be displayed inside the textfield and will be aligned to the left. The 'prepend-icon' prop is required to apply the icon."
-            },
             "label": {
               "description": "Slot to customize the default label of the textfield."
+            },
+            "prependIcon": {
+              "description": "Slot to add an icon in front of the textfield. The icon will be displayed inside the textfield and will be aligned to the left. The 'prepend-icon' prop is required to apply the icon."
+            },
+            "appendIcon": {
+              "description": "Slot to add an icon at the end of the textfield. The icon will be displayed inside the textfield and will be aligned to the right. The 'append-icon' prop is required to apply the icon."
             }
           },
           "playground": {

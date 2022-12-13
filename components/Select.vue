@@ -13,7 +13,16 @@
       :width="props.width?.textfield || defaults.width.textfield"
       :label="props.label"
       v-on:focusIn="saveInput"
-    />
+      :appendIcon="props.appendIcon"
+      :prependIcon="props.prependIcon"
+    >
+      <template v-if="props.prependIcon" #prepend-icon>
+        <component :is="props.prependIcon" />
+      </template>
+      <template v-if="props.appendIcon" #append-icon>
+        <component :is="props.appendIcon" />
+      </template>
+    </Textfield>
     <div v-if="showSelect" :class="dropDownStyleCass">
       <ul>
         <li
@@ -101,6 +110,14 @@ let props = defineProps({
   shadow: {
     type: [Boolean, String],
     default: true,
+  },
+  appendIcon: {
+    type: Object,
+    default: false,
+  },
+  prependIcon: {
+    type: Object,
+    default: false,
   },
   width: {
     type: Object,

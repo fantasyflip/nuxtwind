@@ -142,11 +142,14 @@
             }
           },
           "slots": {
-            "icon": {
-              "description": "Platzhalter zum Hinzufügen eines Symbols vor dem Textfeld. \nDas Symbol wird im Textfeld angezeigt und linksbündig ausgerichtet. \nDie Eigenschaft „prepend-icon“ ist erforderlich, um das Symbol anzuwenden."
-            },
             "label": {
               "description": "Slot zum Anpassen der Standardbeschriftung des Textfelds."
+            },
+            "prependIcon": {
+              "description": "Platzhalter zum Hinzufügen eines Symbols vor dem Textfeld. \nDas Symbol wird im Textfeld angezeigt und linksbündig ausgerichtet. \nDie Eigenschaft „prepend-icon“ ist erforderlich, um das Symbol anzuwenden."
+            },
+            "appendIcon": {
+              "description": "Platzhalter zum Hinzufügen eines Symbols hinter dem Textfeld. \nDas Symbol wird im Textfeld angezeigt und rechtsbündig ausgerichtet. \nDie Eigenschaft „append-icon“ ist erforderlich, um das Symbol anzuwenden."
             }
           },
           "playground": {

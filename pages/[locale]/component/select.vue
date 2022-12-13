@@ -8,7 +8,9 @@
           v-model="selectValue"
           label="Select"
           placeholder="Select an item"
-          outlined
+          autocomplete
+          filled
+          :append-icon="selectIcon"
         />
       </template>
       <template #playground>
@@ -25,10 +27,12 @@
   </div>
 </template>
 <script setup>
+import MdiMenuDown from "~icons/mdi/menu-down";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 let selectValue = ref("");
+let selectIcon = markRaw(MdiMenuDown);
 
 //DOCUMENTATION
 let componentName = "Select";

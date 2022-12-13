@@ -1,9 +1,11 @@
 <template>
   <div :class="wrapperClass">
     <div v-if="props.prependIcon" :class="prependIconClass">
+      <!-- TODO Change to <component :is /> -->
       <slot name="prepend-icon" />
     </div>
     <div v-if="props.appendIcon" :class="appendIconClass">
+      <!-- TODO Change to <component :is /> -->
       <slot name="append-icon" />
     </div>
     <input
@@ -18,9 +20,6 @@
       @focusout="$emit('focusOut')"
       :autocomplete="autocomplete"
     />
-    <div v-if="props.prependIcon" :class="appendIconClass">
-      <slot name="icon" />
-    </div>
     <label for="textfield" :class="labelClass">
       <slot name="label">{{ props.label }}</slot>
     </label>

@@ -267,8 +267,16 @@ let events = [
 
 let slots = [
   {
-    name: "icon",
-    description: t("pages.component.textfield.content.slots.icon.description"),
+    name: "prepend-icon",
+    description: t(
+      "pages.component.textfield.content.slots.prependIcon.description"
+    ),
+  },
+  {
+    name: "append-icon",
+    description: t(
+      "pages.component.textfield.content.slots.appendIcon.description"
+    ),
   },
   {
     name: "label",
