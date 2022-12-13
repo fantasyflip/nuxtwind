@@ -291,6 +291,40 @@
             }
           }
         }
+      },
+      "select": {
+        "content": {
+          "documentation": {
+            "props": {
+              "referComponent": {
+                "textfield": {
+                  "description": "This prop only applies on the integrated textfield component. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about its behavior."
+                }
+              },
+              "items": {
+                "description": "Prop to fill the select component's items."
+              },
+              "color": {
+                "description": "Prop to set the color for the background, text, border and hover color of the drop down that appears when clicking the select field. With a nested 'textfield'-Object the colors of the textfield itself can be set. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More</a> information on the textfield color prop."
+              },
+              "search": {
+                "description": "Prop to lower the drop down of the select field and show a search field to filter the select's items."
+              },
+              "disabled": {
+                "description": "Prop to disable the select field. The dropdown will no longer appear when this prop is set. Also the effects of the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">'disabled'-prop of the textfield</a> will apply."
+              },
+              "loading": {
+                "description": "Prop to set the loading-state of the select field. The dropdown will no longer appear when this prop is set. Also the effects of the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">'loading'-prop of the textfield</a> will apply."
+              },
+              "width": {
+                "description": "Prop to set the width of the select drop down. The width of the textfield can also be set."
+              },
+              "height": {
+                "description": "Prop to set the height of the select drop down."
+              }
+            }
+          }
+        }
       }
     },
     "index": {

@@ -10,7 +10,7 @@
       "
       @click="$hashAndCopy('prop-' + props.item.name)"
     >
-      {{ props.item.name }}
+      <span class="hover:text-secondary-800">{{ props.item.name }}</span>
     </div>
     <div class="pl-2">
       <div class="text-lg">

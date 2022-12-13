@@ -10,7 +10,7 @@
       "
       @click="$hashAndCopy('caveat-' + props.item.name.replace(/\s+/g, '-'))"
     >
-      {{ props.item.name }}
+      <span class="hover:text-secondary-800">{{ props.item.name }}</span>
     </div>
     <div class="pl-2">
       <div class="text-lg font-semibold">Description</div>

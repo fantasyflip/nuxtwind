@@ -12,7 +12,7 @@
     </span>
   </div>
   <div class="mx-2">
-    <div v-if="props.props.length > 0" class="mx-4 mt-4">
+    <div v-if="sortedProps.length > 0" class="mx-4 mt-4">
       <div
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="properties"
@@ -20,15 +20,15 @@
       >
         <span
           >{{ $t("components.documentationDisplay.content.props") }}
-          <span class="font-normal"> ({{ props.props.length }})</span> -
+          <span class="font-normal"> ({{ sortedProps.length }})</span> -
         </span>
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
       </div>
       <div
-        v-for="(prop, index) in props.props"
-        :class="index < props.props.length - 1 ? 'border-b' : ''"
+        v-for="(prop, index) in sortedProps"
+        :class="index < sortedProps.length - 1 ? 'border-b' : ''"
       >
         <PropDisplay :item="prop" />
       </div>
@@ -54,7 +54,7 @@
         <EventDisplay :item="event" />
       </div>
     </div>
-    <div v-if="props.slots.length > 0" class="mx-4 mt-4">
+    <div v-if="sortedSlots.length > 0" class="mx-4 mt-4">
       <div
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="slots"
@@ -62,20 +62,20 @@
       >
         <span
           >{{ $t("components.documentationDisplay.content.slots") }}
-          <span class="font-normal"> ({{ props.slots.length }})</span> -
+          <span class="font-normal"> ({{ sortedSlots.length }})</span> -
         </span>
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
       </div>
       <div
-        v-for="(slot, index) in props.slots"
-        :class="index < props.slots.length - 1 ? 'border-b' : ''"
+        v-for="(slot, index) in sortedSlots"
+        :class="index < sortedSlots.length - 1 ? 'border-b' : ''"
       >
         <SlotDisplay :item="slot" />
       </div>
     </div>
-    <div v-if="props.configs.length > 0" class="mx-4 mt-4">
+    <div v-if="sortedConfigs.length > 0" class="mx-4 mt-4">
       <div
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="configs"
@@ -83,20 +83,20 @@
       >
         <span
           >{{ $t("components.documentationDisplay.content.configs") }}
-          <span class="font-normal"> ({{ props.configs.length }})</span> -
+          <span class="font-normal"> ({{ sortedConfigs.length }})</span> -
         </span>
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
       </div>
       <div
-        v-for="(config, index) in props.configs"
-        :class="index < props.configs.length - 1 ? 'border-b' : ''"
+        v-for="(config, index) in sortedConfigs"
+        :class="index < sortedConfigs.length - 1 ? 'border-b' : ''"
       >
         <ConfigDisplay :item="config" />
       </div>
     </div>
-    <div v-if="props.caveats.length > 0" class="mx-4 mt-4">
+    <div v-if="sortedCaveats.length > 0" class="mx-4 mt-4">
       <div
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="caveats"
@@ -104,15 +104,15 @@
       >
         <span
           >{{ $t("components.documentationDisplay.content.caveats") }}
-          <span class="font-normal"> ({{ props.caveats.length }})</span> -
+          <span class="font-normal"> ({{ sortedCaveats.length }})</span> -
         </span>
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
       </div>
       <div
-        v-for="(caveat, index) in props.caveats"
-        :class="index < props.caveats.length - 1 ? 'border-b' : ''"
+        v-for="(caveat, index) in sortedCaveats"
+        :class="index < sortedCaveats.length - 1 ? 'border-b' : ''"
       >
         <CaveatDisplay :item="caveat" />
       </div>
@@ -146,5 +146,53 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+});
+
+let sortedProps = computed(() => {
+  return props.props.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+});
+
+let sortedSlots = computed(() => {
+  return props.slots.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+});
+
+let sortedConfigs = computed(() => {
+  return props.configs.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+});
+
+let sortedCaveats = computed(() => {
+  return props.caveats.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
 });
 </script>

@@ -7,5 +7,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     let newUrl = window.location.origin + fullPath;
     navigator.clipboard.writeText(newUrl);
     navigateTo(fullPath);
+    //TODO add notification on copy
   });
 });

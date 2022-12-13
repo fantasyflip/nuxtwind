@@ -94,11 +94,11 @@ let props = defineProps({
     default: "",
   },
   outlined: {
-    type: Boolean,
+    type: [Boolean, String],
     default: false,
   },
   filled: {
-    type: Boolean,
+    type: [Boolean, String],
     default: false,
   },
   disabled: {
@@ -114,8 +114,8 @@ let props = defineProps({
     default: " ",
   },
   transition: {
-    type: String,
-    default: "",
+    type: [Object, Boolean],
+    default: true,
   },
   shadow: {
     type: [Boolean, String],
