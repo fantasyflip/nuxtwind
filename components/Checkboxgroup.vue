@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="props.width">
     <div>
       <slot name="group-label">
         <div :class="labelStyleClass">
@@ -14,14 +14,16 @@
     </div>
     <div>
       <slot name="group-items">
-        <div v-for="(item, index) in props.items" :key="item.id">
+        <div v-for="(item, index) in props.items" :key="item.id" class="pt-2">
           <Checkbox
+            v-model="checkboxValues[index]"
             :label="item.label"
             :description="item.description"
             :color="item.color"
             :text="item.text"
             :disabled="item.disabled"
             :loading="item.loading"
+            :radio="!props.multiple && !props.noRadio"
           />
         </div>
       </slot>
@@ -72,7 +74,90 @@ let props = defineProps({
     type: Boolean,
     default: false,
   },
+  noRadio: {
+    type: Boolean,
+    default: false,
+  },
+  width: {
+    type: String,
+    default: "w-full",
+  },
 });
+
+let emit = defineEmits(["update:modelValue"]);
+
+let checkboxValues = ref([]);
+let savedIndex = ref(-1);
+
+initializeCheckboxes();
+
+//watch for changes of the length of props.items
+watch(
+  () => props.items.length,
+  (newLength) => {
+    initializeCheckboxes();
+  }
+);
+
+watch(
+  () => props.modelValue,
+  (newValues) => {
+    checkboxValues.value = newValues;
+  },
+  { deep: true }
+);
+
+watch(
+  checkboxValues,
+  (newValues) => {
+    if (props.multiple) {
+      emit("update:modelValue", newValues);
+    } else {
+      if (savedIndex.value != -1) {
+        //count how often true is in the array
+        let trueCount = newValues.filter((value) => value).length;
+        if (trueCount > 1) {
+          //if more than one checkbox is true, set all to false except the one that is not savedIndex
+          console.log("saved", savedIndex.value);
+          newValues[savedIndex.value] = false;
+          savedIndex.value = checkboxValues.value.findIndex(
+            (value) => value === true
+          );
+          console.log(newValues.length, newValues);
+        }
+        emit("update:modelValue", newValues);
+      }
+    }
+  },
+  { deep: true }
+);
+
+function initializeCheckboxes() {
+  checkboxValues.value = props.modelValue;
+  if (checkboxValues.value.length < props.items.length) {
+    checkboxValues.value = checkboxValues.value.concat(
+      Array(props.items.length - checkboxValues.value.length).fill(false)
+    );
+    emit("update:modelValue", checkboxValues.value);
+  }
+
+  if (!props.multiple) {
+    savedIndex.value = checkboxValues.value.findIndex(
+      (value) => value === true
+    );
+    //count hof often true is in the array
+    let trueCount = checkboxValues.value.filter((value) => value).length;
+    if (trueCount > 1) {
+      let values = checkboxValues.value;
+      for (let i = 0; i < values.length; i++) {
+        if (i != savedIndex.value) {
+          values[i] = false;
+        }
+      }
+      checkboxValues.value = values;
+    }
+  }
+}
 
 let labelStyleClass = computed(() => {
   let classes = [];

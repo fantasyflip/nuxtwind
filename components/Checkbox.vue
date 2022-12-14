@@ -1,8 +1,22 @@
 <template>
   <div class="flex">
     <div :class="iconStyleClass" id="checkbox">
-      <MdiCheckboxMarked v-if="modelValue" @click="updateModelValue(false)" />
-      <MdiCheckboxBlankOutline v-else @click="updateModelValue(true)" />
+      <MdiCheckboxMarked
+        v-if="modelValue && !props.radio"
+        @click="updateModelValue(false)"
+      />
+      <MdiCheckboxBlankOutline
+        v-else-if="!modelValue && !props.radio"
+        @click="updateModelValue(true)"
+      />
+      <MdiCheckboxMarkedCircle
+        v-if="modelValue && props.radio"
+        @click="updateModelValue(false)"
+      />
+      <MdiCheckboxBlankCircleOutline
+        v-else-if="!modelValue && props.radio"
+        @click="updateModelValue(true)"
+      />
     </div>
     <div v-if="props.label" :class="labelStyleClass">
       <label
@@ -26,6 +40,8 @@
 <script setup>
 import MdiCheckboxBlankOutline from "~icons/mdi/checkbox-blank-outline";
 import MdiCheckboxMarked from "~icons/mdi/checkbox-marked";
+import MdiCheckboxBlankCircleOutline from "~icons/mdi/checkbox-blank-circle-outline";
+import MdiCheckboxMarkedCircle from "~icons/mdi/checkbox-marked-circle";
 
 let defaults = {
   color: {
@@ -70,6 +86,10 @@ let props = defineProps({
       label: "text-sm font-medium",
       description: "text-xs font-normal",
     },
+  },
+  radio: {
+    type: Boolean,
+    default: false,
   },
   disabled: {
     type: Boolean,
