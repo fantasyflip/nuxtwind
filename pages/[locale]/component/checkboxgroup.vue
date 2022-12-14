@@ -3,7 +3,7 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <div class="max-h-full overflow-auto grid place-items-center">
+        <div class="max-h-full overflow-auto grid place-items-center m-3">
           <Checkboxgroup
             v-model="checkboxValues"
             label="Checkbox-Group"
@@ -12,8 +12,6 @@
               JSON.stringify(checkboxValues).replace(/,/g, ', ')
             "
             :items="checkboxes"
-            width="w-1/2"
-            multiple
           />
         </div>
       </template>
@@ -74,11 +72,131 @@ setTimeout(() => {
 //DOCUMENTATION
 let componentName = "Checkboxgroup";
 
-let props = [];
+let props = [
+  {
+    name: "color",
+    type: "Object",
+    default: {
+      label: "text-primary-800 dark:text-primary-800",
+      description: "text-gray-500 dark:text-gray-400",
+    },
+    description: t(
+      "pages.component.checkboxgroup.content.properties.color.description"
+    ),
+  },
+  {
+    name: "text",
+    type: "Object",
+    default: {
+      label: "text-lg font-medium",
+      description: "text-sm",
+    },
+    description: t(
+      "pages.component.checkboxgroup.content.properties.text.description"
+    ),
+  },
+  {
+    name: "label",
+    type: "String",
+    default: "",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.label.description"
+    ),
+  },
+  {
+    name: "description",
+    type: "String",
+    default: "",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.description.description"
+    ),
+  },
+  {
+    name: "items",
+    type: "Array",
+    default: "[]",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.items.description",
+      { url: useComponentReferUrl("checkbox", "props") }
+    ),
+  },
+  {
+    name: "multiple",
+    type: "Boolean",
+    default: "false",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.multiple.description"
+    ),
+  },
+  {
+    name: "loading",
+    type: "Boolean",
+    default: "false",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.loading.description"
+    ),
+  },
+  {
+    name: "disabled",
+    type: "Boolean",
+    default: "false",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.disabled.description"
+    ),
+  },
+  {
+    name: "width",
+    type: "String",
+    default: "w-full",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.width.description"
+    ),
+  },
+  {
+    name: "generalCheckboxProps",
+    type: "Object",
+    default: "{}",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.generalCheckboxProps.description",
+      { url: useComponentReferUrl("checkbox", "props") }
+    ),
+  },
+  {
+    name: "notZero",
+    type: "Boolean",
+    default: "false",
+    description: t(
+      "pages.component.checkboxgroup.content.properties.notZero.description"
+    ),
+  },
+];
 
-let slots = [];
+let slots = [
+  {
+    name: "group-label",
+    description: t(
+      "pages.component.checkboxgroup.content.slots.groupLabel.description"
+    ),
+  },
+  {
+    name: "group-description",
+    description: t(
+      "pages.component.checkboxgroup.content.slots.groupDescription.description"
+    ),
+  },
+];
 
-let caveats = [];
+let caveats = [
+  {
+    name: t("pages.component.checkboxgroup.content.caveats.checkbox.title"),
+    description: t(
+      "pages.component.checkboxgroup.content.caveats.checkbox.description",
+      {
+        url: useLocaleUrl("component/checkbox"),
+      }
+    ),
+  },
+];
 
 definePageMeta({
   layout: false,

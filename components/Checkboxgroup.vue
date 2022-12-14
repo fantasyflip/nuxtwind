@@ -13,22 +13,20 @@
       </slot>
     </div>
     <div>
-      <slot name="group-items">
-        <div v-for="(item, index) in props.items" :key="item.id" class="pt-2">
-          <Checkbox
-            v-model="checkboxValues[index]"
-            :label="props.generalCheckboxProps?.label || item.label"
-            :description="
-              props.generalCheckboxProps?.description || item.description
-            "
-            :color="props.generalCheckboxProps?.color || item.color"
-            :text="props.generalCheckboxProps?.text || item.text"
-            :disabled="props.disabled || item.disabled"
-            :loading="props.loading || item.loading"
-            :radio="!props.multiple && !props.noRadio"
-          />
-        </div>
-      </slot>
+      <div v-for="(item, index) in props.items" :key="item.id" class="pt-2">
+        <Checkbox
+          v-model="checkboxValues[index]"
+          :label="props.generalCheckboxProps?.label || item.label"
+          :description="
+            props.generalCheckboxProps?.description || item.description
+          "
+          :color="props.generalCheckboxProps?.color || item.color"
+          :text="props.generalCheckboxProps?.text || item.text"
+          :disabled="props.disabled || item.disabled"
+          :loading="props.loading || item.loading"
+          :radio="!props.multiple && !props.noRadio"
+        />
+      </div>
     </div>
   </div>
 </template>
