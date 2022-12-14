@@ -390,6 +390,9 @@
             },
             "loading": {
               "description": "Eigenschaft um den Ladezustand der Checkbox festzulegen."
+            },
+            "radio": {
+              "description": "Eigenschaft, die die Symbole in runde ändert."
             }
           },
           "slots": {

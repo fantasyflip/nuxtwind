@@ -91,6 +91,14 @@ let props = [
       "pages.component.checkbox.content.properties.loading.description"
     ),
   },
+  {
+    name: "radio",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.checkbox.content.properties.radio.description"
+    ),
+  },
 ];
 
 let slots = [

@@ -12,8 +12,8 @@
               JSON.stringify(checkboxValues).replace(/,/g, ', ')
             "
             :items="checkboxes"
-            multiple
             width="w-1/2"
+            multiple
           />
         </div>
       </template>
@@ -36,7 +36,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
-let checkboxValues = ref([false, true, true]);
+let checkboxValues = ref([false, true, false]);
 let checkboxes = ref([
   {
     label: "Checkbox 1",

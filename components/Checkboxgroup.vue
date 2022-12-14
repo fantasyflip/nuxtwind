@@ -96,12 +96,17 @@ let props = defineProps({
     type: Object,
     default: {},
   },
+  notZero: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 let emit = defineEmits(["update:modelValue"]);
 
 let checkboxValues = ref([]);
 let savedIndex = ref(-1);
+let lastCheckedIndex = ref(-1);
 
 initializeCheckboxes();
 
@@ -125,6 +130,16 @@ watch(
   checkboxValues,
   (newValues) => {
     if (props.multiple) {
+      if (props.notZero) {
+        let trueCount = newValues.filter((value) => value).length;
+        if (trueCount === 1) {
+          lastCheckedIndex.value = newValues.findIndex(
+            (value) => value === true
+          );
+        } else if (trueCount === 0) {
+          newValues[lastCheckedIndex.value] = true;
+        }
+      }
       emit("update:modelValue", newValues);
     } else {
       if (savedIndex.value != -1) {
@@ -132,12 +147,17 @@ watch(
         let trueCount = newValues.filter((value) => value).length;
         if (trueCount > 1) {
           //if more than one checkbox is true, set all to false except the one that is not savedIndex
-          console.log("saved", savedIndex.value);
           newValues[savedIndex.value] = false;
           savedIndex.value = checkboxValues.value.findIndex(
             (value) => value === true
           );
-          console.log(newValues.length, newValues);
+        } else if (trueCount === 0 && props.notZero) {
+          for (let i = 0; i < newValues.length; i++) {
+            if (i != savedIndex.value) {
+              newValues[i] = false;
+            }
+          }
+          newValues[savedIndex.value] = true;
         }
         emit("update:modelValue", newValues);
       }
@@ -169,6 +189,10 @@ function initializeCheckboxes() {
         }
       }
       checkboxValues.value = values;
+    } else if (trueCount == 0 && props.notZero) {
+      checkboxValues.value[0] = true;
+      savedIndex.value = 0;
+      console.log("checkboxValues.value", checkboxValues.value);
     }
   }
 }

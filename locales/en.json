@@ -359,6 +359,9 @@
             },
             "loading": {
               "description": "Prop to set the loading state of the checkbox."
+            },
+            "radio": {
+              "description": "Prop that changes the icons to round ones."
             }
           },
           "slots": {
