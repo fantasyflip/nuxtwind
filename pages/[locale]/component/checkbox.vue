@@ -116,6 +116,15 @@ let caveats = [
       }
     ),
   },
+  {
+    name: t("pages.component.checkbox.content.caveats.group.title"),
+    description: t(
+      "pages.component.checkbox.content.caveats.group.description",
+      {
+        url: useLocaleUrl("component/checkboxgroup"),
+      }
+    ),
+  },
 ];
 
 definePageMeta({

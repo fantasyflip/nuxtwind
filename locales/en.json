@@ -373,6 +373,10 @@
             "icon": {
               "title": "Unplugin Icons Package",
               "description": "The icon of the checkbox changes according to its value. The icons that are displayed are taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Package</a>."
+            },
+            "group": {
+              "title": "Checkbox Groups",
+              "description": "For better handling of groups of checkboxes have a look at the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">'Checkboxgroup'-Component</a>."
             }
           }
         }
