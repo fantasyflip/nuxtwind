@@ -1,17 +1,15 @@
 <template>
   <div class="flex">
     <div :class="iconStyleClass" id="checkbox">
-      <MdiCheckboxMarked
-        v-if="modelValue"
-        @click="$emit('update:modelValue', false)"
-      />
-      <MdiCheckboxBlankOutline
-        v-else
-        @click="$emit('update:modelValue', true)"
-      />
+      <MdiCheckboxMarked v-if="modelValue" @click="updateModelValue(false)" />
+      <MdiCheckboxBlankOutline v-else @click="updateModelValue(true)" />
     </div>
     <div v-if="props.label" :class="labelStyleClass">
-      <label for="checkbox">
+      <label
+        for="checkbox"
+        @click="updateModelValue(!props.modelValue)"
+        :class="props.disabled || props.loading ? '' : 'cursor-pointer'"
+      >
         <slot name="label">{{ label }}</slot>
       </label>
       <p
@@ -85,9 +83,13 @@ let props = defineProps({
 
 let emit = defineEmits(["update:modelValue"]);
 
+function updateModelValue(value) {
+  if (props.disabled || props.loading) return;
+  emit("update:modelValue", value);
+}
+
 let iconStyleClass = computed(() => {
   let classes = [];
-  //   class="flex items-center h-5"
   classes.push("flex", "items-center", "h-5");
 
   //COLOR
@@ -115,7 +117,6 @@ let iconStyleClass = computed(() => {
 
 let labelStyleClass = computed(() => {
   let classes = [];
-  //   class="ml-3 text-sm font-medium text-gray-700"
   classes.push("ml-2");
 
   classes.push(props.text?.label || defaults.text.label);
@@ -127,7 +128,6 @@ let labelStyleClass = computed(() => {
 
 let descriptionStyleClass = computed(() => {
   let classes = [];
-  //   class="text-sm text-gray-500"
 
   classes.push(props.text?.description || defaults.text.description);
 

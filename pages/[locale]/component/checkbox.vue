@@ -33,11 +33,90 @@ let checkValue = ref(true);
 //DOCUMENTATION
 let componentName = "Checkbox";
 
-let props = [];
+let props = [
+  {
+    name: "color",
+    type: "Object",
+    default: {
+      label: "text-black dark:text-gray-300",
+      description: "text-gray-500 dark:text-gray-400",
+      iconInactive: "text-gray-500 dark:text-gray-400",
+      iconActive: "text-primary-800 dark:text-primary-800",
+      hover: "hover:text-secondary-700 dark:hover:text-secondary-700",
+    },
+    description: t(
+      "pages.component.checkbox.content.properties.color.description"
+    ),
+  },
+  {
+    name: "label",
+    type: "String",
+    default: "",
+    description: t(
+      "pages.component.checkbox.content.properties.label.description"
+    ),
+  },
+  {
+    name: "description",
+    type: "String",
+    default: "",
+    description: t(
+      "pages.component.checkbox.content.properties.description.description"
+    ),
+  },
+  {
+    name: "text",
+    type: "Object",
+    default: {
+      label: "text-sm font-medium",
+      description: "text-xs font-normal",
+    },
+    description: t(
+      "pages.component.checkbox.content.properties.text.description"
+    ),
+  },
+  {
+    name: "disabled",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.checkbox.content.properties.disabled.description"
+    ),
+  },
+  {
+    name: "loading",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.checkbox.content.properties.loading.description"
+    ),
+  },
+];
 
-let slots = [];
+let slots = [
+  {
+    name: "label",
+    description: t("pages.component.checkbox.content.slots.label.description"),
+  },
+  {
+    name: "description",
+    description: t(
+      "pages.component.checkbox.content.slots.description.description"
+    ),
+  },
+];
 
-let caveats = [];
+let caveats = [
+  {
+    name: t("pages.component.checkbox.content.caveats.icon.title"),
+    description: t(
+      "pages.component.checkbox.content.caveats.icon.description",
+      {
+        url: "https://github.com/antfu/unplugin-icons",
+      }
+    ),
+  },
+];
 
 definePageMeta({
   layout: false,

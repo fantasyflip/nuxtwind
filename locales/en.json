@@ -338,6 +338,44 @@
             }
           }
         }
+      },
+      "checkbox": {
+        "content": {
+          "properties": {
+            "color": {
+              "description": "Prop to set the color of the following parts of the chechbox component: label, description, iconInactiive, iconActive and hover."
+            },
+            "label": {
+              "description": "Prop to set the label text of the checkbox."
+            },
+            "description": {
+              "description": "Prop to set the description of the checkbox."
+            },
+            "text": {
+              "description": "Prop to change the text appearance of the label and the description."
+            },
+            "disabled": {
+              "description": "Prop to disable the checkbox."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the checkbox."
+            }
+          },
+          "slots": {
+            "label": {
+              "description": "Slot to change the standard appearance of the checkbox's label."
+            },
+            "description": {
+              "description": "Slot to change the standard appearance of the checkbox's description."
+            }
+          },
+          "caveats": {
+            "icon": {
+              "title": "Unplugin Icons Package",
+              "description": "The icon of the checkbox changes according to its value. The icons that are displayed are taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Package</a>."
+            }
+          }
+        }
       }
     },
     "index": {
