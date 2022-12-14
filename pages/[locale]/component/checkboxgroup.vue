@@ -3,17 +3,19 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Checkboxgroup
-          v-model="checkboxValues"
-          label="Checkbox-Group"
-          :description="
-            'This is a group of checkboxes. The returned value is an array of booleans. Current values: ' +
-            checkboxValues
-          "
-          :items="checkboxes"
-          multiple
-          width="w-1/2"
-        />
+        <div class="max-h-full overflow-auto grid place-items-center">
+          <Checkboxgroup
+            v-model="checkboxValues"
+            label="Checkbox-Group"
+            :description="
+              'This is a group of checkboxes. The returned value is an array of booleans. Current values: ' +
+              JSON.stringify(checkboxValues).replace(/,/g, ', ')
+            "
+            :items="checkboxes"
+            multiple
+            width="w-1/2"
+          />
+        </div>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">Playground</div>

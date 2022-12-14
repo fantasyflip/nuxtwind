@@ -17,12 +17,14 @@
         <div v-for="(item, index) in props.items" :key="item.id" class="pt-2">
           <Checkbox
             v-model="checkboxValues[index]"
-            :label="item.label"
-            :description="item.description"
-            :color="item.color"
-            :text="item.text"
-            :disabled="item.disabled"
-            :loading="item.loading"
+            :label="props.generalCheckboxProps?.label || item.label"
+            :description="
+              props.generalCheckboxProps?.description || item.description
+            "
+            :color="props.generalCheckboxProps?.color || item.color"
+            :text="props.generalCheckboxProps?.text || item.text"
+            :disabled="props.disabled || item.disabled"
+            :loading="props.loading || item.loading"
             :radio="!props.multiple && !props.noRadio"
           />
         </div>
@@ -78,9 +80,21 @@ let props = defineProps({
     type: Boolean,
     default: false,
   },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   width: {
     type: String,
     default: "w-full",
+  },
+  generalCheckboxProps: {
+    type: Object,
+    default: {},
   },
 });
 
@@ -94,7 +108,7 @@ initializeCheckboxes();
 //watch for changes of the length of props.items
 watch(
   () => props.items.length,
-  (newLength) => {
+  () => {
     initializeCheckboxes();
   }
 );
