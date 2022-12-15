@@ -55,12 +55,12 @@
               :items="toggleProps"
               :label="
                 $t(
-                  'pages.component.textfield.content.playground.textfield.label'
+                  'pages.component.textfield.content.playground.checkboxgroup.label'
                 )
               "
               :description="
                 $t(
-                  'pages.component.textfield.content.playground.textfield.description'
+                  'pages.component.textfield.content.playground.checkboxgroup.description'
                 )
               "
             />

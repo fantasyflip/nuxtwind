@@ -134,6 +134,8 @@ if (props.modelValue === undefined && props.loading) {
   endValue.value = props.modelValue;
 }
 
+//TODO handle further increase or decrease of progressValue
+
 if (props.initialLoadTime && endValue.value > 0) {
   let speed = props.initialLoadTime / endValue.value;
 

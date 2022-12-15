@@ -154,7 +154,7 @@
           },
           "playground": {
             "toggleLoadingButton": "Laden umschalten",
-            "textfield": {
+            "checkboxgroup": {
               "label": "Bool-Eigenschaften Auswahl",
               "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
             }
@@ -265,6 +265,20 @@
             "linearAnimation": {
               "name": "Lineare Lade-Animation",
               "description": "Damit die lineare Ladeanimation richtig funktioniert, muss die Tailwind-Konfiguration um die angezeigten Optionen erweitert werden."
+            }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt.",
+              "items": {
+                "rounded": {
+                  "description": "Gilt nur für die lineare Variante."
+                }
+              }
+            },
+            "valueText": {
+              "label": "Wert"
             }
           }
         }

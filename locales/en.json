@@ -123,7 +123,7 @@
           },
           "playground": {
             "toggleLoadingButton": "Toggle Loading",
-            "textfield": {
+            "checkboxgroup": {
               "label": "Bool-Prop Selection",
               "description": "By checking or unchecking the boxes the props will be handled accordingly."
             }
@@ -234,6 +234,20 @@
             "linearAnimation": {
               "name": "Linear loading animation",
               "description": "For the linear loading animation to work properly its required to extend the tailwind config by the shown options."
+            }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly.",
+              "items": {
+                "rounded": {
+                  "description": "Only applies on the linear variant."
+                }
+              }
+            },
+            "valueText": {
+              "label": "Value"
             }
           }
         }

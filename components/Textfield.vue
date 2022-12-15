@@ -9,7 +9,7 @@
       <slot name="append-icon" />
     </div>
     <input
-      id="textfield"
+      :id="textfieldId"
       :class="inputClass"
       :type="props.type"
       :placeholder="placeholder"
@@ -20,7 +20,7 @@
       @focusout="$emit('focusOut')"
       :autocomplete="autocomplete"
     />
-    <label for="textfield" :class="labelClass">
+    <label :for="textfieldId" :class="labelClass">
       <slot name="label">{{ props.label }}</slot>
     </label>
     <div
@@ -35,6 +35,20 @@
 </template>
 
 <script setup>
+//function to generate random 8 digit id with numbers and letters
+function generateId() {
+  let result = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let charactersLength = characters.length;
+  for (let i = 0; i < 8; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+let textfieldId = generateId();
+
 let isValid = ref(true);
 let defaults = {
   color: {

@@ -3,9 +3,56 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Progress loading> </Progress>
+        <Progress
+          v-model="progressValue"
+          :circular="
+            checkedBoxes[0]
+              ? {
+                  width: 'w-40',
+                  height: 'h-40',
+                  cutout: {
+                    text: 'text-2xl',
+                  },
+                }
+              : false
+          "
+          :loading="checkedBoxes[1]"
+          :rounded="checkedBoxes[2]"
+        >
+        </Progress>
       </template>
-      <template #playground> Playground </template>
+      <template #playground>
+        <div class="grid place-items-center h-full w-full">
+          <div class="md:w-2/3 w-full">
+            <Textfield
+              class="mb-4"
+              v-model="progressValue"
+              :label="
+                $t(
+                  'pages.component.progress.content.playground.valueText.label'
+                )
+              "
+              type="number"
+              filled
+            />
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+              :label="
+                $t(
+                  'pages.component.progress.content.playground.checkboxgroup.label'
+                )
+              "
+              :description="
+                $t(
+                  'pages.component.progress.content.playground.checkboxgroup.description'
+                )
+              "
+            />
+          </div>
+        </div>
+      </template>
       <template #documentation>
         <DocumentationDisplay
           :componentName="componentName"
@@ -22,6 +69,33 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 let componentName = "Progress";
+
+//PLAYGROUND
+
+let progressValue = ref(30);
+
+let checkedBoxes = ref([true, false, false]);
+
+let toggleProps = ref([
+  {
+    label: "Circular",
+  },
+  {
+    label: "Loading",
+  },
+  {
+    label: "Rounded",
+    description: t(
+      "pages.component.progress.content.playground.checkboxgroup.items.rounded.description"
+    ),
+  },
+]);
+
+setTimeout(() => {
+  progressValue.value = 100;
+}, 3000);
+
+//DOCUMENTATION
 
 let props = [
   {
