@@ -47,7 +47,7 @@ let checkboxes = ref([
   {
     label: "Checkbox 2",
     description:
-      "This is a checkbox with long text. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur possimus odit est nulla! Culpa amet veritatis, voluptatum, ipsum possimus, adipisci dolorem itaque maxime reprehenderit magnam sit similique id? Ipsum, voluptas! Odit in aspernatur debitis quibusdam magni id non enim voluptatibus optio ea et unde molestias reprehenderit fuga, ipsum nihil modi quis. Laborum accusamus ad repellendus sit architecto explicabo ea numquam.",
+      "This is a checkbox with long text.  Lorem ipsum dolor, sit amet consectetur adipisicing elit. In atque quaerat temporibus aspernatur tempora culpa magni quis necessitatibus ducimus, error dolore, dolorem molestias esse nam amet vitae, maxime possimus sunt.",
   },
   {
     label: "Checkbox 3",

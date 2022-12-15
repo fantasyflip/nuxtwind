@@ -1,5 +1,5 @@
 <template>
-  <div class="m-4 lg:text-5xl text-4xl font-extrabold flex justify-between">
+  <div class="m-4 lg:text-3xl text-2xl font-extrabold flex justify-between">
     <div class="group flex">
       <slot name="componentName"></slot>
       <div class="text-primary-800 group-hover:text-secondary-800">.</div>
@@ -41,7 +41,7 @@
     </div>
   </div>
   <div
-    class="lg:text-3xl text-2xl font-bold cursor-pointer mx-4"
+    class="lg:text-2xl text-xl font-bold cursor-pointer mx-4"
     id="playground"
     @click="$hashAndCopy('playground')"
   >
