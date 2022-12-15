@@ -1,10 +1,37 @@
 <template>
   <div :class="styleClass">
-    <NuxtLink v-if="props.link" :to="props.link" :target="props.target">
-      <slot>Link-Button</slot>
-    </NuxtLink>
-
-    <slot v-else>Button</slot>
+    <div @click="handleClick" class="relative">
+      <div
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      >
+        <Progress
+          v-if="props.loading"
+          loading
+          :circular="{
+            width: props.dense ? 'w-4' : 'w-6',
+            height: props.dense ? 'h-4' : 'h-6',
+          }"
+          :color="{
+            circle: props.color?.loadingCircle || defaults.color.loadingCircle,
+            circleDark:
+              props.color?.loadingCircleDark ||
+              defaults.color.loadingCircleDark,
+            circleProgress:
+              props.color?.loadingCircleProgress ||
+              defaults.color.loadingCircleProgress,
+            circleProgressDark:
+              props.color?.loadingCircleProgressDark ||
+              defaults.color.loadingCircleProgressDark,
+            circleCutout:
+              props.color?.loadingCircleCutout ||
+              defaults.color.loadingCircleCutout,
+          }"
+        />
+      </div>
+      <div :class="props.loading ? 'opacity-0 cursor-wait' : ''">
+        <slot>Button</slot>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,6 +43,11 @@ let defaults = {
     border: "border-white",
     hover: "hover:bg-secondary-800",
     iconHover: "hover:text-secondary-800",
+    loadingCircle: "gray-400",
+    loadingCircleDark: "gray-700",
+    loadingCircleProgress: "primary-400",
+    loadingCircleProgressDark: "primary-400",
+    loadingCircleCutout: "before:bg-cyan-900",
   },
   rounded: "rounded-md",
   grow: {
@@ -40,6 +72,11 @@ const props = defineProps({
       border: "border-white",
       hover: "hover:bg-secondary-800",
       iconHover: "hover:text-secondary-800",
+      loadingCircle: "gray-400",
+      loadingCircleDark: "gray-700",
+      loadingCircleProgress: "primary-400",
+      loadingCircleProgressDark: "primary-400",
+      loadingCircleCutout: "before:bg-cyan-900",
     },
   },
   rounded: {
@@ -96,6 +133,12 @@ const props = defineProps({
   },
 });
 
+function handleClick() {
+  if (props.link && !(props.loading || props.disabled)) {
+    window.open(props.link, props.target);
+  }
+}
+
 const styleClass = computed(() => {
   let styleClasses = [];
 
@@ -140,7 +183,7 @@ const styleClass = computed(() => {
       styleClasses.push(props.grow.scale || defaults.grow.scale);
     }
   } else {
-    styleClasses.push("opacity-50");
+    styleClasses.push("cursor-wait opacity-50");
   }
   if (props.disabled) {
     styleClasses.push("opacity-50 cursor-not-allowed");
@@ -168,9 +211,9 @@ const styleClass = computed(() => {
 
   //DENSE
   if (props.dense) {
-    styleClasses.push("py-1 px-2 text-sm");
+    styleClasses.push("py-1 px-2 text-sm min-h-[28px] min-w-[24px]");
   } else if (!props.icon) {
-    styleClasses.push("py-2 px-5");
+    styleClasses.push("py-2 px-5 min-h-[40px]");
   }
 
   //WIDTH

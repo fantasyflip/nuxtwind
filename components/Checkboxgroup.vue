@@ -165,32 +165,34 @@ watch(
 );
 
 function initializeCheckboxes() {
-  checkboxValues.value = props.modelValue;
-  if (checkboxValues.value.length < props.items.length) {
-    checkboxValues.value = checkboxValues.value.concat(
-      Array(props.items.length - checkboxValues.value.length).fill(false)
-    );
-    emit("update:modelValue", checkboxValues.value);
-  }
+  if (props.modelValue) {
+    checkboxValues.value = props.modelValue;
+    if (checkboxValues.value.length < props.items.length) {
+      checkboxValues.value = checkboxValues.value.concat(
+        Array(props.items.length - checkboxValues.value.length).fill(false)
+      );
+      emit("update:modelValue", checkboxValues.value);
+    }
 
-  if (!props.multiple) {
-    savedIndex.value = checkboxValues.value.findIndex(
-      (value) => value === true
-    );
-    //count hof often true is in the array
-    let trueCount = checkboxValues.value.filter((value) => value).length;
-    if (trueCount > 1) {
-      let values = checkboxValues.value;
-      for (let i = 0; i < values.length; i++) {
-        if (i != savedIndex.value) {
-          values[i] = false;
+    if (!props.multiple) {
+      savedIndex.value = checkboxValues.value.findIndex(
+        (value) => value === true
+      );
+      //count hof often true is in the array
+      let trueCount = checkboxValues.value.filter((value) => value).length;
+      if (trueCount > 1) {
+        let values = checkboxValues.value;
+        for (let i = 0; i < values.length; i++) {
+          if (i != savedIndex.value) {
+            values[i] = false;
+          }
         }
+        checkboxValues.value = values;
+      } else if (trueCount == 0 && props.notZero) {
+        checkboxValues.value[0] = true;
+        savedIndex.value = 0;
+        console.log("checkboxValues.value", checkboxValues.value);
       }
-      checkboxValues.value = values;
-    } else if (trueCount == 0 && props.notZero) {
-      checkboxValues.value[0] = true;
-      savedIndex.value = 0;
-      console.log("checkboxValues.value", checkboxValues.value);
     }
   }
 }

@@ -3,14 +3,43 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Button rounded grow :link="useLocaleUrl('')"></Button>
+        <Button
+          :link="useLocaleUrl('')"
+          target="_blank"
+          :dense="checkedBoxes[0]"
+          :disabled="checkedBoxes[1]"
+          :loading="checkedBoxes[2]"
+          :grow="checkedBoxes[3]"
+          :rounded="checkedBoxes[4]"
+        >
+          {{ buttonLabel }}
+        </Button>
       </template>
-      <template #playground> Playground </template>
+      <template #playground>
+        <div class="grid place-items-center w-full h-full">
+          <div class="md:w-2/3 w-full">
+            <Textfield
+              class="mb-4"
+              v-model="buttonLabel"
+              label="Button-Label"
+              filled
+            />
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+              label="Bool-Prop Selection"
+              description="By checking or unchecking the boxes the props will be handled accordingly."
+            />
+          </div>
+        </div>
+      </template>
       <template #documentation>
         <DocumentationDisplay
           :componentName="componentName"
           :props="props"
           :slots="slots"
+          :caveats="caveats"
         />
       </template>
     </NuxtLayout>
@@ -22,6 +51,33 @@ const { t } = useI18n();
 
 let componentName = "Button";
 
+//PLAYGROUND
+
+let checkedBoxes = ref([false, false, false, true, true]);
+
+let toggleProps = ref([
+  {
+    label: "Dense",
+  },
+  {
+    label: "Disabled",
+  },
+  {
+    label: "Loading",
+  },
+  {
+    label: "Grow",
+    description: "Only applies to non-mobile devices.",
+  },
+  {
+    label: "Rounded",
+  },
+]);
+
+let buttonLabel = ref("Click me!");
+
+//DOCUMENTATION
+
 let props = [
   {
     name: "color",
@@ -32,6 +88,11 @@ let props = [
       border: "border-white",
       hover: "hover:bg-secondary-800",
       iconHover: "hover:text-secondary-800",
+      loadingCircle: "gray-400",
+      loadingCircleDark: "gray-700",
+      loadingCircleProgress: "primary-400",
+      loadingCircleProgressDark: "primary-400",
+      loadingCircleCutout: "before:bg-cyan-900",
     },
     description: t(
       "pages.component.button.content.properties.color.description"
@@ -153,6 +214,18 @@ let slots = [
   {
     name: "default",
     description: t("pages.component.button.content.slots.default.description"),
+  },
+];
+
+let caveats = [
+  {
+    name: t("pages.component.button.content.caveats.progress.title"),
+    description: t(
+      "pages.component.button.content.caveats.progress.description",
+      {
+        url: useLocaleUrl("component/progress"),
+      }
+    ),
   },
 ];
 

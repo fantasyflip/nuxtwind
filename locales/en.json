@@ -139,7 +139,7 @@
               "description": "Prop to apply a grow effect to the button. The delay and scale can be set seperately.<br>To apply the effect on hover prefix the tailwind 'scale'-class with 'hover:'."
             },
             "link": {
-              "description": "Prop to make the button a link. You either can set a complete link or provide a link object as you would on the 'NuxtLink'-component in the 'to' prop."
+              "description": "Prop to make the button a link. You either can set a complete link or a realtive url."
             },
             "target": {
               "description": "Prop to set the target of the link. Only applied when the 'link' prop is set."
@@ -175,6 +175,12 @@
           "slots": {
             "default": {
               "description": "Slot to set the content of the button."
+            }
+          },
+          "caveats": {
+            "progress": {
+              "description": "The button component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>.",
+              "title": "Progress component"
             }
           }
         }

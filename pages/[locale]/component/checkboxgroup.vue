@@ -114,7 +114,7 @@ let props = [
   {
     name: "items",
     type: "Array",
-    default: "[]",
+    default: [],
     description: t(
       "pages.component.checkboxgroup.content.properties.items.description",
       { url: useComponentReferUrl("checkbox", "props") }
@@ -123,7 +123,7 @@ let props = [
   {
     name: "multiple",
     type: "Boolean",
-    default: "false",
+    default: false,
     description: t(
       "pages.component.checkboxgroup.content.properties.multiple.description"
     ),
@@ -131,7 +131,7 @@ let props = [
   {
     name: "loading",
     type: "Boolean",
-    default: "false",
+    default: false,
     description: t(
       "pages.component.checkboxgroup.content.properties.loading.description"
     ),
@@ -139,7 +139,7 @@ let props = [
   {
     name: "disabled",
     type: "Boolean",
-    default: "false",
+    default: false,
     description: t(
       "pages.component.checkboxgroup.content.properties.disabled.description"
     ),
@@ -155,7 +155,7 @@ let props = [
   {
     name: "generalCheckboxProps",
     type: "Object",
-    default: "{}",
+    default: {},
     description: t(
       "pages.component.checkboxgroup.content.properties.generalCheckboxProps.description",
       { url: useComponentReferUrl("checkbox", "props") }
@@ -164,7 +164,7 @@ let props = [
   {
     name: "notZero",
     type: "Boolean",
-    default: "false",
+    default: false,
     description: t(
       "pages.component.checkboxgroup.content.properties.notZero.description"
     ),

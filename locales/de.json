@@ -175,7 +175,7 @@
               "description": "Eigenschaft um einen Wachstumseffekt auf die Schaltfläche anzuwenden. \nDie Verzögerung und die Skalierung können separat eingestellt werden.<br>Um den Effekt beim Schweben anzuwenden, stellen Sie der Tailwind-'scale'-Klasse 'hover:' voran."
             },
             "link": {
-              "description": "Eigenschaft um die Schaltfläche zu einem Link zu machen. \nEs kann entweder ein vollständiger Link gesetzt oder ein Link-Objekt übergeben werden, wie Sie es bei der 'NuxtLink'-Komponente in der 'to'-Eigenschaft tun würden."
+              "description": "Eigenschaft um die Schaltfläche zu einem Link zu machen. \nEs kann entweder eine vollständige oder eine relative URL übergeben werden."
             },
             "target": {
               "description": "Eigenschaft um das Ziel des Links festzulegen. \nWird nur angewendet, wenn die Eigenschaft „Link“ gesetzt ist."
@@ -206,6 +206,12 @@
             },
             "height": {
               "description": "Eigenschaft um die Höhe der Schaltfläche festzulegen. \nEs kann eine Tailwind \"h\"-Klasse übergeben werden."
+            }
+          },
+          "caveats": {
+            "progress": {
+              "description": "Die Button-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress-Komponente</a>.",
+              "title": "Progress Komponente"
             }
           }
         }

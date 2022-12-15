@@ -152,27 +152,28 @@ const gradientProgress = computed(() => {
 });
 
 const circularColorCss = computed(() => {
+  let color = props.color.circle || defaults.color.circle;
   if (colorMode.value == "dark") {
-    let color = props.color.circleDark || defaults.color.circleDark;
+    color = props.color.circleDark || defaults.color.circleDark;
+  }
+  if (color.includes("-")) {
     let colorSegments = color.split("-");
     return tw.theme.colors[colorSegments[0]][colorSegments[1]];
   } else {
-    let color = props.color.circle || defaults.color.circle;
-    let colorSegments = color.split("-");
-    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+    return tw.theme.colors[color];
   }
 });
 
 const circularColorProgressCss = computed(() => {
+  let color = props.color.circleProgress || defaults.color.circleProgress;
   if (colorMode.value == "dark") {
-    let color =
-      props.color.circleProgressDark || defaults.color.circleProgressDark;
+    color = props.color.circleProgressDark || defaults.color.circleProgressDark;
+  }
+  if (color.includes("-")) {
     let colorSegments = color.split("-");
     return tw.theme.colors[colorSegments[0]][colorSegments[1]];
   } else {
-    let color = props.color.circleProgress || defaults.color.circleProgress;
-    let colorSegments = color.split("-");
-    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+    return tw.theme.colors[color];
   }
 });
 
