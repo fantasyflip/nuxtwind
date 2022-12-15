@@ -122,7 +122,11 @@
             }
           },
           "playground": {
-            "toggleLoadingButton": "Toggle Loading"
+            "toggleLoadingButton": "Toggle Loading",
+            "textfield": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            }
           }
         }
       },
@@ -185,13 +189,15 @@
           },
           "playground": {
             "textfield": {
-              "label": "Bool-Prop Selection",
-              "description": "By checking or unchecking the boxes the props will be handled accordingly.",
               "initialValue": "Click me!"
             },
             "checkboxgroup": {
-              "grow": {
-                "description": "Only applies to non-mobile devices."
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly.",
+              "items": {
+                "grow": {
+                  "description": "Only applies to non-mobile devices."
+                }
               }
             }
           }

@@ -5,16 +5,20 @@
       <template #component>
         <Textfield
           width="w-fit"
-          v-model="textfieldValue"
-          append-icon
-          hint="Enter a keyword!"
-          placeholder="Foo"
+          v-model="textfield.value"
+          :hint="textfield.hint"
+          :placeholder="textfield.placeholder"
           :rules="[notEmpty, minChars(5)]"
-          label="Search"
-          :loading="loading"
+          :label="textfield.label"
           :color="{
-            bg: 'bg-white dark:bg-zinc-900',
+            bg: checkedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
           }"
+          :filled="checkedBoxes[0]"
+          :outlined="checkedBoxes[1]"
+          :loading="checkedBoxes[2]"
+          :disabled="checkedBoxes[3]"
+          :append-icon="checkedBoxes[4]"
+          :prepend-icon="checkedBoxes[5]"
         >
           <template #prepend-icon>
             <MdiMagnify />
@@ -25,15 +29,42 @@
         </Textfield>
       </template>
       <template #playground>
-        <div class="h-full flex justify-center items-center">
-          <!-- TODO Fix padding -->
-          <Button rounded grow @click="loading = !loading"
-            >{{
-              $t(
-                "pages.component.textfield.content.playground.toggleLoadingButton"
-              )
-            }}
-          </Button>
+        <div class="grid place-items-center h-full w-full">
+          <div class="md:w-2/3 w-full">
+            <Textfield
+              class="mb-4"
+              v-model="textfield.label"
+              label="Textfield-Label"
+              filled
+            />
+            <Textfield
+              class="mb-4"
+              v-model="textfield.placeholder"
+              label="Placeholder"
+              filled
+            />
+            <Textfield
+              class="mb-4"
+              v-model="textfield.hint"
+              label="Hint"
+              filled
+            />
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+              :label="
+                $t(
+                  'pages.component.textfield.content.playground.textfield.label'
+                )
+              "
+              :description="
+                $t(
+                  'pages.component.textfield.content.playground.textfield.description'
+                )
+              "
+            />
+          </div>
         </div>
       </template>
       <template #documentation>
@@ -55,9 +86,37 @@ const { t } = useI18n();
 
 let componentName = "Textfield";
 
-let textfieldValue = ref("");
+//PLAYGROUND
 
-let loading = ref(false);
+let textfield = ref({
+  label: "Textfield-Label",
+  placeholder: "Placeholder",
+  hint: "Hint",
+  value: "",
+});
+
+let checkedBoxes = ref([false, true, false, false, false, true]);
+
+let toggleProps = ref([
+  {
+    label: "Filled",
+  },
+  {
+    label: "Outlined",
+  },
+  {
+    label: "Loading",
+  },
+  {
+    label: "Disabled",
+  },
+  {
+    label: "Append-Icon",
+  },
+  {
+    label: "Prepend-Icon",
+  },
+]);
 
 let notEmpty = (value) => {
   if (!value) {
@@ -72,6 +131,8 @@ let minChars = (min) => (value) => {
   }
   return true;
 };
+
+//DOCUMENTATION
 
 let props = [
   {

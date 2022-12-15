@@ -29,11 +29,13 @@
               multiple
               :items="toggleProps"
               :label="
-                $t('pages.component.button.content.playground.textfield.label')
+                $t(
+                  'pages.component.button.content.playground.checkboxgroup.label'
+                )
               "
               :description="
                 $t(
-                  'pages.component.button.content.playground.textfield.description'
+                  'pages.component.button.content.playground.checkboxgroup.description'
                 )
               "
             />
@@ -74,7 +76,7 @@ let toggleProps = ref([
   {
     label: "Grow",
     description: t(
-      "pages.component.button.content.playground.checkboxgroup.grow.description"
+      "pages.component.button.content.playground.checkboxgroup.items.grow.description"
     ),
   },
   {

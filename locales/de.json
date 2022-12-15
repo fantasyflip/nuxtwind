@@ -153,7 +153,11 @@
             }
           },
           "playground": {
-            "toggleLoadingButton": "Laden umschalten"
+            "toggleLoadingButton": "Laden umschalten",
+            "textfield": {
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
+            }
           }
         }
       },
@@ -216,13 +220,15 @@
           },
           "playground": {
             "textfield": {
-              "label": "Bool-Eigenschaften Auswahl",
-              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt.",
               "initialValue": "Klick mich!"
             },
             "checkboxgroup": {
-              "grow": {
-                "description": "Gilt nur für nicht mobile Geräte."
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt.",
+              "items": {
+                "grow": {
+                  "description": "Gilt nur für nicht mobile Geräte."
+                }
               }
             }
           }
