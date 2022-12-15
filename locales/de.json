@@ -213,6 +213,18 @@
               "description": "Die Button-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress-Komponente</a>.",
               "title": "Progress Komponente"
             }
+          },
+          "playground": {
+            "textfield": {
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt.",
+              "initialValue": "Klick mich!"
+            },
+            "checkboxgroup": {
+              "grow": {
+                "description": "Gilt nur für nicht mobile Geräte."
+              }
+            }
           }
         }
       },

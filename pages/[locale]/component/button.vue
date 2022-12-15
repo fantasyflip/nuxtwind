@@ -28,8 +28,14 @@
               v-model="checkedBoxes"
               multiple
               :items="toggleProps"
-              label="Bool-Prop Selection"
-              description="By checking or unchecking the boxes the props will be handled accordingly."
+              :label="
+                $t('pages.component.button.content.playground.textfield.label')
+              "
+              :description="
+                $t(
+                  'pages.component.button.content.playground.textfield.description'
+                )
+              "
             />
           </div>
         </div>
@@ -67,7 +73,9 @@ let toggleProps = ref([
   },
   {
     label: "Grow",
-    description: "Only applies to non-mobile devices.",
+    description: t(
+      "pages.component.button.content.playground.checkboxgroup.grow.description"
+    ),
   },
   {
     label: "Rounded",
@@ -75,6 +83,9 @@ let toggleProps = ref([
 ]);
 
 let buttonLabel = ref("Click me!");
+buttonLabel.value = t(
+  "pages.component.button.content.playground.textfield.initialValue"
+);
 
 //DOCUMENTATION
 

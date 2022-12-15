@@ -182,6 +182,18 @@
               "description": "The button component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>.",
               "title": "Progress component"
             }
+          },
+          "playground": {
+            "textfield": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly.",
+              "initialValue": "Click me!"
+            },
+            "checkboxgroup": {
+              "grow": {
+                "description": "Only applies to non-mobile devices."
+              }
+            }
           }
         }
       },
