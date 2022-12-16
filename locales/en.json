@@ -219,7 +219,7 @@
               "description": "Prop to set the loading state of the component."
             },
             "initialLoadTime": {
-              "description": "This prop behaves differently depending on the chosen variant.<br><span class='font-bold'>Linear</span>: The time in ms between creation of the component and actual displaying the progress. For the best effect make sure the transition prop is active.<br><span class='font-bold'>Circular</span>: The time in ms that the component takes to initially progress to the given value."
+              "description": "This prop behaves differently depending on the chosen variant.<br><span class='font-bold'>Linear</span>: The time in ms between creation of the component and actual displaying the progress. For the best effect make sure the transition prop is active.<br><span class='font-bold'>Circular</span>: The time in ms that the component takes to progress to the given value."
             },
             "rounded": {
               "description": "Applies on the linear variant. Prop to set the border-radius of the component. Can be disabled by setting it to 'false' or customized by setting the prop to a Tailwind 'rounded'-class."

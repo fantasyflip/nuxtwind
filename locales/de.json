@@ -250,7 +250,7 @@
               "description": "Eigenschaft um den Ladezustand der Komponente festzulegen."
             },
             "initialLoadTime": {
-              "description": "Diese Eigenschaft verhält sich je nach gewählter Variante unterschiedlich.<br><span class='font-bold'>Linear</span>: Die Zeit in ms zwischen der Erstellung der Komponente und der tatsächlichen Anzeige des Fortschritts. \nFür den besten Effekt sollte das Transition-Prop aktiv sein.<br><span class='font-bold'>Circular</span>: Die Zeit in ms, die die Komponente benötigt, um anfänglich den angegebenen Wert zu erreichen."
+              "description": "Diese Eigenschaft verhält sich je nach gewählter Variante unterschiedlich.<br><span class='font-bold'>Linear</span>: Die Zeit in ms zwischen der Erstellung der Komponente und der tatsächlichen Anzeige des Fortschritts. \nFür den besten Effekt sollte das Transition-Prop aktiv sein.<br><span class='font-bold'>Circular</span>: Die Zeit in ms, die die Komponente benötigt, um den angegebenen Wert zu erreichen."
             },
             "rounded": {
               "description": "Gilt für die lineare Variante. \nEigenschaft um den Randradius der Komponente festzulegen. \nKann deaktiviert werden, indem es auf „false“ gesetzt wird, oder angepasst werden, indem die Eigenschaft auf eine Tailwind „rounded“-Klasse eingestellt wird."

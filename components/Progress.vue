@@ -154,6 +154,7 @@ function getCircularProgress(inputValue) {
   let progressValue = ref(lastInputValue);
   let speed = 0;
   if (props.initialLoadTime) {
+    //TODO add fix speed for every percent, not complete time for given value like below
     speed = props.initialLoadTime / endValue;
   }
 
