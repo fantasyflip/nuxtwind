@@ -91,10 +91,6 @@ let toggleProps = ref([
   },
 ]);
 
-setTimeout(() => {
-  progressValue.value = 100;
-}, 3000);
-
 //DOCUMENTATION
 
 let props = [

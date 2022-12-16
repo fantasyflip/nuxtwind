@@ -11,7 +11,7 @@
           class="h-full w-full grid place-items-center"
           :class="props.circular.cutout?.text || defaults.circular.cutout.text"
         >
-          {{ progressValue }}%
+          {{ textProgress }}%
         </div>
       </slot>
     </div>
@@ -119,83 +119,81 @@ if (props.initialLoadTime) {
   }, props.initialLoadTime);
 }
 
-let progressValue = ref(0);
-let endValue = ref(0);
-
-// let modelValueComputed = computed(() => {
-//   return props.modelValue;
-// });
-
-// //watch endValue
-// watch(modelValueComputed, (newValue, oldValue) => {
-//   console.log(
-//     "modelValueComputed changed from " + oldValue + " to " + newValue
-//   );
-//   console.log("progress", progressValue.value);
-// });
-
-if (props.modelValue === undefined && props.loading) {
-  endValue.value = 30;
-} else if (props.modelValue > 100) {
-  endValue.value = 100;
-} else if (props.modelValue < 0) {
-  endValue.value = 0;
-} else if (props.modelValue === undefined) {
-  endValue.value = 0;
-} else {
-  endValue.value = props.modelValue;
-}
-
-//TODO handle further increase or decrease of progressValue
-
-if (props.initialLoadTime && endValue.value > 0) {
-  let speed = props.initialLoadTime / endValue.value;
-
-  let progress = setInterval(() => {
-    progressValue.value++;
-    if (progressValue.value == endValue.value) {
-      clearInterval(progress);
-    }
-  }, speed);
-} else {
-  progressValue.value = endValue.value;
-}
-
-// let progress = computed(() => {
-//   let currentValue = props.modelValue;
-//   let endValue = -1;
-
-//   if (currentValue === undefined && props.loading) {
-//     endValue = 30;
-//   } else if (currentValue > 100) {
-//     endValue = 100;
-//   } else if (currentValue < 0) {
-//     endValue = 0;
-//   } else if (currentValue === undefined) {
-//     endValue = 0;
-//   } else {
-//     endValue = currentValue;
-//   }
-
-//   if (props.initialLoadTime && endValue.value > 0) {
-//     let speed = props.initialLoadTime / endValue.value;
-
-//     let progress = setInterval(() => {
-//       currentValue++;
-//       if (currentValue == endValue.value) {
-//         clearInterval(progress);
-//       }
-//     }, speed);
-//   } else {
-//     currentValue = endValue.value;
-//   }
-//   console.log("currentValue", currentValue);
-//   return currentValue;
-// });
-
-const gradientProgress = computed(() => {
-  return progressValue.value * 3.6 + "deg";
+let modelValueComputed = computed(() => {
+  return props.modelValue;
 });
+
+let lastInputValue = 0;
+
+let gradientProgress = ref(lastInputValue);
+
+let textProgress = ref(lastInputValue);
+
+watch(
+  modelValueComputed,
+  (newValue, oldValue) => {
+    gradientProgress.value = getCircularProgress(newValue);
+  },
+  { immediate: true }
+);
+
+function getCircularProgress(inputValue) {
+  let endValue = 0;
+  if (inputValue === undefined && props.loading) {
+    endValue = 30;
+  } else if (inputValue > 100) {
+    endValue = 100;
+  } else if (inputValue < 0) {
+    endValue = 0;
+  } else if (inputValue === undefined) {
+    endValue = 0;
+  } else {
+    endValue = inputValue;
+  }
+
+  let progressValue = ref(lastInputValue);
+  let speed = 0;
+  if (props.initialLoadTime) {
+    speed = props.initialLoadTime / endValue;
+  }
+
+  if (lastInputValue < endValue) {
+    //increase
+    if (speed > 0) {
+      let progressInterval = setInterval(() => {
+        if (progressValue.value < endValue) {
+          progressValue.value++;
+          gradientProgress.value = progressValue.value * 3.6 + "deg";
+          textProgress.value = progressValue.value;
+        } else {
+          clearInterval(progressInterval);
+        }
+      }, speed);
+    } else {
+      progressValue.value = endValue;
+      gradientProgress.value = progressValue.value * 3.6 + "deg";
+      textProgress.value = progressValue.value;
+    }
+  } else {
+    //decresing
+    if (speed > 0) {
+      let progressInterval = setInterval(() => {
+        if (progressValue.value > endValue) {
+          progressValue.value--;
+          gradientProgress.value = progressValue.value * 3.6 + "deg";
+          textProgress.value = progressValue.value;
+        } else {
+          clearInterval(progressInterval);
+        }
+      }, speed);
+    } else {
+      progressValue.value = endValue;
+      gradientProgress.value = progressValue.value * 3.6 + "deg";
+      textProgress.value = progressValue.value;
+    }
+  }
+  lastInputValue = endValue;
+}
 
 const circularColorCss = computed(() => {
   let color = props.color.circle || defaults.color.circle;
