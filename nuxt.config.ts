@@ -25,6 +25,7 @@ export default defineNuxtConfig({
         storageKey: "theme",
       },
     ],
+    "@vueuse/nuxt",
   ],
   vite: {
     plugins: [
