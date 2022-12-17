@@ -70,10 +70,6 @@ import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
 import { useI18n } from "vue-i18n";
 const { t, locale } = useI18n();
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
 
