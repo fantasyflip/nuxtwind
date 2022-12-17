@@ -62,6 +62,20 @@ useHead({
 });
 
 const { toasts, removeToast, stopBodyOverflow, allowBodyOverflow } = useToast();
+
+const { data } = useBroadcastChannel("broadcast");
+
+watch(data, (newData) => {
+  if (newData && newData.type === "toast" && newData.payload) {
+    if (newData.method === "create" && !document.hidden) {
+      useToast(newData.payload, false);
+    }
+
+    if (newData.method === "remove") {
+      removeToast(newData.payload);
+    }
+  }
+});
 </script>
 
 <style>

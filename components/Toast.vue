@@ -1,7 +1,7 @@
 <template>
   <div
     :ref="props.id"
-    id="toast-default"
+    :id="props.id"
     role="alert"
     :class="toastWrapperStyleClass"
     class="toast-notification"

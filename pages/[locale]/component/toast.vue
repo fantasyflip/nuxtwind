@@ -88,11 +88,15 @@
             <Button
               grow
               @click="
-                useToast({
-                  title: testNotification.title,
-                  message: testNotification.message,
-                  duration: testNotification.duration,
-                })
+                useToast(
+                  {
+                    title: testNotification.title,
+                    message: testNotification.message,
+                    duration: testNotification.duration,
+                    autoClose: false,
+                  },
+                  true
+                )
               "
               >Notify</Button
             >
