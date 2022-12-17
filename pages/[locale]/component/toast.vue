@@ -88,7 +88,7 @@
             <Button
               grow
               @click="
-                createNotification({
+                useToast({
                   title: testNotification.title,
                   message: testNotification.message,
                   duration: testNotification.duration,
@@ -114,7 +114,6 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
-const createNotification = inject("create-notification");
 let testNotification = ref({
   title: t("pages.component.toast.content.playground.titleTextfield.default"),
   message: t(

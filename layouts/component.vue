@@ -77,13 +77,11 @@ function capitalizeFirstLetter(string) {
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
 
-const createNotification = inject("create-notification");
-
 const themeNotificationIcon = markRaw(MdiThemeLightDark);
 const nuxtApp = useNuxtApp();
 function handleThemeChange() {
   nuxtApp.$cycleTheme();
-  createNotification({
+  useToast({
     title: "Theme",
     message: t("layouts.component.function.themeSwitch.message", {
       theme: capitalizeFirstLetter(useColorMode().preference),
@@ -95,7 +93,7 @@ function handleThemeChange() {
 const localeNotificationIcon = markRaw(MdiTranslate);
 function handleLocaleChange() {
   nuxtApp.$switchLocale();
-  createNotification({
+  useToast({
     title: t("layouts.component.function.localeSwitch.title"),
     message: t("layouts.component.function.localeSwitch.message", {
       locale: locale.value === "en" ? "german" : "Englisch",

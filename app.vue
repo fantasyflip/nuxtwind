@@ -17,7 +17,7 @@
       @after-leave="allowBodyOverflow"
     >
       <Toast
-        v-for="item in notifications"
+        v-for="item in toasts"
         :key="item.id"
         :id="item.id"
         :type="item.type"
@@ -28,7 +28,7 @@
         :icon="item.icon"
         @close="
           () => {
-            removeNotifications(item.id);
+            removeToast(item.id);
           }
         "
       />
@@ -61,15 +61,7 @@ useHead({
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
 });
 
-const {
-  notifications,
-  createNotification,
-  removeNotifications,
-  stopBodyOverflow,
-  allowBodyOverflow,
-} = useNotifications();
-
-provide("create-notification", createNotification);
+const { toasts, removeToast, stopBodyOverflow, allowBodyOverflow } = useToast();
 </script>
 
 <style>
