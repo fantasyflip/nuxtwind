@@ -8,7 +8,7 @@
       <Button
         class="mr-2"
         icon
-        @click="handleThemeChange()"
+        @click="$cycleTheme"
         :color="{
           text: 'text-primary-800',
         }"
@@ -73,18 +73,7 @@ const { t, locale } = useI18n();
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
 
-const themeNotificationIcon = markRaw(MdiThemeLightDark);
 const nuxtApp = useNuxtApp();
-function handleThemeChange() {
-  nuxtApp.$cycleTheme();
-  useToast({
-    title: "Theme",
-    message: t("layouts.component.function.themeSwitch.message", {
-      theme: capitalizeFirstLetter(useColorMode().preference),
-    }),
-    icon: themeNotificationIcon,
-  });
-}
 
 const localeNotificationIcon = markRaw(MdiTranslate);
 function handleLocaleChange() {
