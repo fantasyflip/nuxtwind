@@ -19,7 +19,7 @@
       <Button
         class="mr-2"
         icon
-        @click="handleLocaleChange()"
+        @click="$switchLocale"
         :color="{
           text: 'text-primary-800',
         }"
@@ -68,24 +68,10 @@ import MdiTranslate from "~icons/mdi/translate";
 import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
 
 import { useI18n } from "vue-i18n";
-const { t, locale } = useI18n();
+const { t } = useI18n();
 
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
-
-const nuxtApp = useNuxtApp();
-
-const localeNotificationIcon = markRaw(MdiTranslate);
-function handleLocaleChange() {
-  nuxtApp.$switchLocale();
-  useToast({
-    title: t("layouts.component.function.localeSwitch.title"),
-    message: t("layouts.component.function.localeSwitch.message", {
-      locale: locale.value === "en" ? "german" : "Englisch",
-    }),
-    icon: localeNotificationIcon,
-  });
-}
 
 useHead({
   title: t("layouts.component.meta.title", { componentName }),
