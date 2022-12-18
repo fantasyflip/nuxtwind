@@ -75,6 +75,12 @@ watch(data, (newData) => {
       removeToast(newData.payload);
     }
   }
+
+  if (newData && newData.type === "theme") {
+    if (newData.method === "cycle") {
+      useNuxtApp().$cycleTheme(document.hidden);
+    }
+  }
 });
 </script>
 

@@ -8,7 +8,7 @@
       <Button
         class="mr-2"
         icon
-        @click="$cycleTheme"
+        @click="handleCycleTheme()"
         :color="{
           text: 'text-primary-800',
         }"
@@ -72,6 +72,11 @@ const { t } = useI18n();
 
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
+
+function handleCycleTheme() {
+  const { post } = useBroadcastChannel("broadcast");
+  post({ type: "theme", method: "cycle" });
+}
 
 useHead({
   title: t("layouts.component.meta.title", { componentName }),

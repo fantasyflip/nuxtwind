@@ -2,7 +2,7 @@ import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const themeNotificationIcon = markRaw(MdiThemeLightDark);
-  nuxtApp.provide("cycleTheme", () => {
+  nuxtApp.provide("cycleTheme", (noToast) => {
     const route = useRoute();
     const currentLocale = route.params.locale;
 
@@ -17,13 +17,16 @@ export default defineNuxtPlugin((nuxtApp) => {
       nextTheme = "system";
     }
 
-    useToast({
-      title: "Theme",
-      message:
-        (currentLocale === "de" ? "Designwechsel zu: " : "Theme change to: ") +
-        capitalizeFirstLetter(nextTheme),
-      icon: themeNotificationIcon,
-    });
+    if (!noToast) {
+      useToast({
+        title: "Theme",
+        message:
+          (currentLocale === "de"
+            ? "Designwechsel zu: "
+            : "Theme change to: ") + capitalizeFirstLetter(nextTheme),
+        icon: themeNotificationIcon,
+      });
+    }
 
     colorMode.preference = nextTheme;
   });
