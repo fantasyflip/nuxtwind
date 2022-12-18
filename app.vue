@@ -81,6 +81,12 @@ watch(data, (newData) => {
       useNuxtApp().$cycleTheme(document.hidden);
     }
   }
+
+  if (newData && newData.type === "locale") {
+    if (newData.method === "switch") {
+      useNuxtApp().$switchLocale(document.hidden);
+    }
+  }
 });
 </script>
 

@@ -19,7 +19,7 @@
       <Button
         class="mr-2"
         icon
-        @click="$switchLocale"
+        @click="handleSwitchLocale()"
         :color="{
           text: 'text-primary-800',
         }"
@@ -76,6 +76,11 @@ let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
 function handleCycleTheme() {
   const { post } = useBroadcastChannel("broadcast");
   post({ type: "theme", method: "cycle" });
+}
+
+function handleSwitchLocale() {
+  const { post } = useBroadcastChannel("broadcast");
+  post({ type: "locale", method: "switch" });
 }
 
 useHead({
