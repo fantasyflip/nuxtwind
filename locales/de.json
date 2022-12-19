@@ -461,6 +461,15 @@
               "title": "Checkbox Gruppen",
               "description": "Zur besseren Handhabung von Gruppen von Checkboxen gibt es die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">'Checkboxgroup' \n-Komponente</a>."
             }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
+            },
+            "textfieldDescription": {
+              "label": "Checkbox Beschreibung"
+            }
           }
         }
       },

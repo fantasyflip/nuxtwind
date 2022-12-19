@@ -4,13 +4,50 @@
       <template #componentName> {{ componentName }} </template>
       <template #component>
         <Checkbox
-          v-model="checkValue"
-          :label="checkValue ? 'Uncheck me!' : 'Check me!'"
-          description="This is a chechbox!"
+          v-model="checkbox.value"
+          :label="checkbox.label"
+          :description="checkbox.description"
+          :disabled="checkedBoxes[0]"
+          :loading="checkedBoxes[1]"
+          :radio="checkedBoxes[2]"
         />
       </template>
       <template #playground>
-        <div class="grid place-items-center h-full w-full">Playground</div>
+        <div class="grid place-items-center h-full w-full">
+          <div class="md:w-2/3 w-full">
+            <Textfield
+              v-model="checkbox.label"
+              class="mb-4"
+              label="Checkbox Label"
+              filled
+            />
+            <Textfield
+              v-model="checkbox.description"
+              class="mb-4"
+              :label="
+                $t(
+                  'pages.component.checkbox.content.playground.textfieldDescription.label'
+                )
+              "
+              filled
+            />
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+              :label="
+                $t(
+                  'pages.component.checkbox.content.playground.checkboxgroup.label'
+                )
+              "
+              :description="
+                $t(
+                  'pages.component.checkbox.content.playground.checkboxgroup.description'
+                )
+              "
+            />
+          </div>
+        </div>
       </template>
       <template #documentation>
         <DocumentationDisplay
@@ -28,7 +65,25 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
-let checkValue = ref(true);
+let checkbox = ref({
+  value: false,
+  label: "Checkbox Label",
+  description: "Checkbox Description",
+});
+
+let checkedBoxes = ref([false, false, false]);
+
+let toggleProps = [
+  {
+    label: "Disabled",
+  },
+  {
+    label: "Loading",
+  },
+  {
+    label: "Radio",
+  },
+];
 
 //DOCUMENTATION
 let componentName = "Checkbox";

@@ -430,6 +430,15 @@
               "title": "Checkbox Groups",
               "description": "For better handling of groups of checkboxes have a look at the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">'Checkboxgroup'-Component</a>."
             }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            },
+            "textfieldDescription": {
+              "label": "Checkbox description"
+            }
           }
         }
       },
