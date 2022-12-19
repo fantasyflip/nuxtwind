@@ -492,6 +492,15 @@
               "title": "Checkbox component",
               "description": "The checkboxgroup component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Checkbox Component</a>."
             }
+          },
+          "playground": {
+            "textfieldDescription": {
+              "label": "Checkboxgroup description"
+            },
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            }
           }
         }
       }

@@ -3,20 +3,57 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <div class="max-h-full overflow-auto grid place-items-center m-3">
+        <div
+          class="max-h-full overflow-auto grid place-items-center m-3 md:w-2/3"
+        >
           <Checkboxgroup
-            v-model="checkboxValues"
-            label="Checkbox-Group"
-            :description="
-              'This is a group of checkboxes. The returned value is an array of booleans. Current values: ' +
-              JSON.stringify(checkboxValues).replace(/,/g, ', ')
-            "
+            v-model="checkboxgroup.values"
+            :label="checkboxgroup.label"
+            :description="checkboxgroup.description"
             :items="checkboxes"
+            :multiple="checkedBoxes[0]"
+            :not-zero="checkedBoxes[1]"
+            :disabled="checkedBoxes[2]"
+            :loading="checkedBoxes[3]"
           />
         </div>
       </template>
       <template #playground>
-        <div class="grid place-items-center h-full w-full">Playground</div>
+        <div class="grid place-items-center h-full w-full">
+          <div class="md:w-2/3 w-full">
+            <Textfield
+              v-model="checkboxgroup.label"
+              class="mb-4"
+              label="Checkbox Label"
+              filled
+            />
+            <Textfield
+              v-model="checkboxgroup.description"
+              class="mb-4"
+              :label="
+                $t(
+                  'pages.component.checkboxgroup.content.playground.textfieldDescription.label'
+                )
+              "
+              filled
+            />
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+              :label="
+                $t(
+                  'pages.component.checkboxgroup.content.playground.checkboxgroup.label'
+                )
+              "
+              :description="
+                $t(
+                  'pages.component.checkboxgroup.content.playground.checkboxgroup.description'
+                )
+              "
+            />
+          </div>
+        </div>
       </template>
       <template #documentation>
         <DocumentationDisplay
@@ -34,7 +71,30 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
-let checkboxValues = ref([false, true, false]);
+let checkboxgroup = ref({
+  values: [false, true, false],
+  label: "Checkbox Label",
+  description:
+    "This is a group of checkboxes. The returned value is an array of booleans.",
+});
+
+let checkedBoxes = ref([false, true, false, false]);
+
+let toggleProps = [
+  {
+    label: "Multiple",
+  },
+  {
+    label: "Not-Zero",
+  },
+  {
+    label: "Disabled",
+  },
+  {
+    label: "Loading",
+  },
+];
+
 let checkboxes = ref([
   {
     label: "Checkbox 1",
@@ -59,11 +119,14 @@ let checkboxes = ref([
     description: "This is a disabled checkbox.",
     disabled: true,
   },
+  {
+    label: "Checkbox 5",
+  },
 ]);
 
 setTimeout(() => {
   checkboxes.value.push({
-    label: "Checkbox 5",
+    label: "Checkbox 6",
     description:
       "This is a checkbox that appears 3s after page load, showing that the component is reactive.",
   });
