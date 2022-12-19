@@ -9,6 +9,7 @@
           :title="testNotification.title"
           :message="testNotification.message"
           :auto-close="testNotification.autoClose"
+          :type="testNotification.type"
         ></Toast>
       </template>
       <template #playground>
@@ -56,6 +57,12 @@
                 )
               "
             />
+            <Select
+              filled
+              label="Type"
+              :items="toastTypes"
+              v-model="testNotification.type"
+            />
             <Textfield
               class="mb-4"
               :label="
@@ -92,6 +99,7 @@
                     message: testNotification.message,
                     duration: testNotification.duration,
                     autoClose: testNotification.autoClose,
+                    type: testNotification.type,
                   },
                   true
                 )
@@ -117,6 +125,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
+let toastTypes = ["info", "warning", "error", "success"];
 let testNotification = ref({
   title: t("pages.component.toast.content.playground.titleTextfield.default"),
   message: t(
@@ -124,6 +133,7 @@ let testNotification = ref({
   ),
   duration: 5,
   autoClose: false,
+  type: "info",
 });
 
 function notEmpty(value) {
