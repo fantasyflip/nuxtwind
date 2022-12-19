@@ -6,23 +6,22 @@
         <Toast
           id="playground"
           width="sm:w-1/2 max-w-4/5"
-          :auto-close="false"
+          :title="testNotification.title"
+          :message="testNotification.message"
+          :auto-close="testNotification.autoClose"
         ></Toast>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
           <div class="grid place-items-center sm:w-1/2 gap-3 py-2">
             <Textfield
-              class="my-3"
+              class="mb-4"
               :label="
                 $t(
                   'pages.component.toast.content.playground.titleTextfield.label'
                 )
               "
-              outlined
-              :color="{
-                bg: 'bg-white dark:bg-zinc-900',
-              }"
+              filled
               :placeholder="
                 $t(
                   'pages.component.toast.content.playground.titleTextfield.placeholder'
@@ -37,16 +36,13 @@
               "
             />
             <Textfield
-              class="my-3"
+              class="mb-4"
               :label="
                 $t(
                   'pages.component.toast.content.playground.messageTextfield.label'
                 )
               "
-              outlined
-              :color="{
-                bg: 'bg-white dark:bg-zinc-900',
-              }"
+              filled
               :placeholder="
                 $t(
                   'pages.component.toast.content.playground.messageTextfield.placeholder'
@@ -61,16 +57,13 @@
               "
             />
             <Textfield
-              class="my-3"
+              class="mb-4"
               :label="
                 $t(
                   'pages.component.toast.content.playground.durationTextfield.label'
                 )
               "
-              outlined
-              :color="{
-                bg: 'bg-white dark:bg-zinc-900',
-              }"
+              filled
               :placeholder="
                 $t(
                   'pages.component.toast.content.playground.durationTextfield.placeholder'
@@ -85,6 +78,11 @@
               "
               type="number"
             />
+            <Checkbox
+              class="mb-4"
+              label="Auto-Close"
+              v-model="testNotification.autoClose"
+            />
             <Button
               grow
               @click="
@@ -93,7 +91,7 @@
                     title: testNotification.title,
                     message: testNotification.message,
                     duration: testNotification.duration,
-                    autoClose: false,
+                    autoClose: testNotification.autoClose,
                   },
                   true
                 )
@@ -125,6 +123,7 @@ let testNotification = ref({
     "pages.component.toast.content.playground.messageTextfield.default"
   ),
   duration: 5,
+  autoClose: false,
 });
 
 function notEmpty(value) {
