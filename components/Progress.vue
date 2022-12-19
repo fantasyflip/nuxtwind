@@ -172,10 +172,11 @@ function getCircularProgress(inputValue) {
     //increase
     if (speed > 0) {
       let progressInterval = setInterval(() => {
-        if (progressValue.value < endValue) {
+        if (progressValue.value < endValue && inputValue === props.modelValue) {
           progressValue.value++;
           gradientProgress.value = progressValue.value * 3.6 + "deg";
           textProgress.value = progressValue.value;
+          lastInputValue = progressValue.value;
         } else {
           clearInterval(progressInterval);
         }
@@ -189,10 +190,11 @@ function getCircularProgress(inputValue) {
     //decresing
     if (speed > 0) {
       let progressInterval = setInterval(() => {
-        if (progressValue.value > endValue) {
+        if (progressValue.value > endValue && inputValue === props.modelValue) {
           progressValue.value--;
           gradientProgress.value = progressValue.value * 3.6 + "deg";
           textProgress.value = progressValue.value;
+          lastInputValue = progressValue.value;
         } else {
           clearInterval(progressInterval);
         }
@@ -203,7 +205,6 @@ function getCircularProgress(inputValue) {
       textProgress.value = progressValue.value;
     }
   }
-  lastInputValue = endValue;
 }
 
 const circularColorCss = computed(() => {
