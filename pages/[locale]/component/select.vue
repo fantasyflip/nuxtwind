@@ -20,6 +20,9 @@
               bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
             },
           }"
+          :width="{
+            select: 'w-fit',
+          }"
         />
       </template>
       <template #playground>

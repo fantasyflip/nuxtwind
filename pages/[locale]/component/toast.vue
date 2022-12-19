@@ -62,6 +62,8 @@
               label="Type"
               :items="toastTypes"
               v-model="testNotification.type"
+              class="mb-4"
+              search
             />
             <Textfield
               class="mb-4"
