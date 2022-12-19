@@ -391,10 +391,10 @@
                 "description": "Eigenschaft um das Dropdown-Menü des Auswahlfelds zu senken und ein Suchfeld anzuzeigen, um die Elemente des Select-Feldes zu filtern."
               },
               "disabled": {
-                "description": "Eigenschaft um das Auswahlfeld zu deaktivieren. \nDas Dropdown wird nicht mehr angezeigt, wenn diese Eigenschaft gesetzt ist. \nAuch die Effekte der <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">'disabled'-Eigenschaft des Textfeldes</ \na> werden angewendet."
+                "description": "Eigenschaft um das Auswahlfeld zu deaktivieren. \nDas Dropdown wird nicht mehr angezeigt, wenn diese Eigenschaft gesetzt ist. \nAuch die Effekte der <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">'disabled'-Eigenschaft</a> des Textfeldes werden angewendet."
               },
               "loading": {
-                "description": "Eigenschaft um den Ladestatus des ausgewählten Felds festzulegen. \nDas Dropdown wird nicht mehr angezeigt, wenn diese Eigenschaft gesetzt ist. \nAuch die Auswirkungen der <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">'loading'-Eigenschaft des Textfelds</ \na> werden angewendet."
+                "description": "Eigenschaft um den Ladestatus des ausgewählten Felds festzulegen. \nDas Dropdown wird nicht mehr angezeigt, wenn diese Eigenschaft gesetzt ist. \nAuch die Auswirkungen der <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">'loading'-Eigenschaft</a> des Textfelds werden angewendet."
               },
               "width": {
                 "description": "Eigenschaft um die Breite des Auswahl-Dropdowns festzulegen. \nDie Breite des Textfeldes kann ebenfalls eingestellt werden."
