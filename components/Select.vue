@@ -172,7 +172,6 @@ let selectItems = computed(() => {
 
 function saveInput() {
   savedInput.value = selectSearch.value;
-  console.log("saved", savedInput.value);
 }
 
 function setItem(value) {
