@@ -11,14 +11,14 @@
           :rules="[notEmpty, minChars(5)]"
           :label="textfield.label"
           :color="{
-            bg: checkedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
+            bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
           }"
-          :filled="checkedBoxes[0]"
-          :outlined="checkedBoxes[1]"
-          :loading="checkedBoxes[2]"
-          :disabled="checkedBoxes[3]"
-          :append-icon="checkedBoxes[4] ? textfieldIcon : false"
-          :prepend-icon="checkedBoxes[5] ? textfieldIcon : false"
+          :filled="styleCheckedBoxes[0]"
+          :outlined="styleCheckedBoxes[1]"
+          :loading="checkedBoxes[0]"
+          :disabled="checkedBoxes[1]"
+          :append-icon="checkedBoxes[2] ? textfieldIcon : false"
+          :prepend-icon="checkedBoxes[3] ? textfieldIcon : false"
         />
       </template>
       <template #playground>
@@ -43,9 +43,8 @@
               filled
             />
             <Checkboxgroup
-              v-model="checkedBoxes"
-              multiple
-              :items="toggleProps"
+              v-model="styleCheckedBoxes"
+              :items="styleProps"
               :label="
                 $t(
                   'pages.component.textfield.content.playground.checkboxgroup.label'
@@ -56,6 +55,11 @@
                   'pages.component.textfield.content.playground.checkboxgroup.description'
                 )
               "
+            />
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
             />
           </div>
         </div>
@@ -90,15 +94,23 @@ let textfield = ref({
   value: "",
 });
 
-let checkedBoxes = ref([false, true, false, false, false, true]);
+let styleCheckedBoxes = ref([false, true, false]);
 
-let toggleProps = ref([
+let styleProps = ref([
   {
     label: "Filled",
   },
   {
     label: "Outlined",
   },
+  {
+    label: "Regular",
+  },
+]);
+
+let checkedBoxes = ref([false, false, false, true]);
+
+let toggleProps = ref([
   {
     label: "Loading",
   },
