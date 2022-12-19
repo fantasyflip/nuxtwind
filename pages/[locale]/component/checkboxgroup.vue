@@ -117,7 +117,7 @@ let props = [
     default: [],
     description: t(
       "pages.component.checkboxgroup.content.properties.items.description",
-      { url: useComponentReferUrl("checkbox", "props") }
+      { url: useComponentReferUrl("checkbox", "properties") }
     ),
   },
   {
@@ -158,7 +158,7 @@ let props = [
     default: {},
     description: t(
       "pages.component.checkboxgroup.content.properties.generalCheckboxProps.description",
-      { url: useComponentReferUrl("checkbox", "props") }
+      { url: useComponentReferUrl("checkbox", "properties") }
     ),
   },
   {
