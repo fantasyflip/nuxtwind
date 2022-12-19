@@ -1,5 +1,5 @@
 <template>
-  <div class="relative" id="select">
+  <div class="relative" :class="props.width?.select" id="select">
     <Textfield
       @click="disabled || loading ? '' : (showSelect = true)"
       autocomplete="off"
