@@ -1,5 +1,5 @@
 <template>
-  <div class="relative" :class="props.width?.select" id="select">
+  <div class="relative" :class="props.width?.textfield" id="select">
     <Textfield
       @click="disabled || loading ? '' : (showSelect = true)"
       autocomplete="off"
@@ -132,7 +132,7 @@ let props = defineProps({
   width: {
     type: Object,
     default: {
-      textfield: "",
+      textfield: "w-full",
       select: "w-full",
     },
   },

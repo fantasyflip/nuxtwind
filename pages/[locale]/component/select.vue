@@ -21,7 +21,7 @@
             },
           }"
           :width="{
-            select: 'w-fit',
+            textfield: 'w-fit',
           }"
         />
       </template>
