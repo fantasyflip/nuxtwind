@@ -149,6 +149,14 @@ let props = [
     ),
   },
   {
+    name: "initialLoadTimeType",
+    type: "String",
+    default: "calc",
+    description: t(
+      "pages.component.progress.content.properties.initialLoadTimeType.description"
+    ),
+  },
+  {
     name: "transition",
     type: "Boolean, Object",
     default: true,

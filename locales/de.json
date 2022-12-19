@@ -254,6 +254,9 @@
             },
             "rounded": {
               "description": "Gilt für die lineare Variante. \nEigenschaft um den Randradius der Komponente festzulegen. \nKann deaktiviert werden, indem es auf „false“ gesetzt wird, oder angepasst werden, indem die Eigenschaft auf eine Tailwind „rounded“-Klasse eingestellt wird."
+            },
+            "initialLoadTimeType": {
+              "description": "Eigenschaft um festzulegen, wie die Wachstumsgeschwindigkeit des kreisförmigen Fortschritts interpretiert wird.<br>Gültige Optionen sind:<br><span class='font-bold'>calc</span>: Die Geschwindigkeit wird \nfür jeden Wachstum einzeln berechnet, wodurch jeder Wachstum die gleiche Geschwindigkeit hat.<br><span class='font-bold'>static</span>: Die Geschwindigkeit wird auf den angegebenen Wert gesetzt. \nJeder einzelne Schritt dauert gleich lange."
             }
           },
           "slots": {

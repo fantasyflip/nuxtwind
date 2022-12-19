@@ -101,6 +101,13 @@ const props = defineProps({
     type: [Number, Boolean],
     default: 100,
   },
+  initialLoadTimeType: {
+    type: String,
+    default: "calc",
+    validator(value) {
+      return ["calc", "static"].includes(value);
+    },
+  },
   transition: {
     type: [Boolean, Object],
     default: true,
@@ -154,8 +161,11 @@ function getCircularProgress(inputValue) {
   let progressValue = ref(lastInputValue);
   let speed = 0;
   if (props.initialLoadTime) {
-    //TODO add fix speed for every percent, not complete time for given value like below
-    speed = props.initialLoadTime / endValue;
+    if (props.initialLoadTimeType === "static") {
+      speed = props.initialLoadTime;
+    } else {
+      speed = props.initialLoadTime / endValue;
+    }
   }
 
   if (lastInputValue < endValue) {
