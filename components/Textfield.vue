@@ -1,12 +1,20 @@
 <template>
   <div :class="wrapperClass">
     <div v-if="props.prependIcon" :class="prependIconClass">
-      <!-- TODO Change to <component :is /> -->
-      <slot name="prepend-icon" />
+      <slot name="prepend-icon">
+        <component
+          v-if="typeof props.prependIcon === 'object'"
+          :is="props.prependIcon"
+        />
+      </slot>
     </div>
     <div v-if="props.appendIcon" :class="appendIconClass">
-      <!-- TODO Change to <component :is /> -->
-      <slot name="append-icon" />
+      <slot name="append-icon">
+        <component
+          v-if="typeof props.appendIcon === 'object'"
+          :is="props.appendIcon"
+        />
+      </slot>
     </div>
     <input
       :id="textfieldId"
@@ -102,11 +110,11 @@ const props = defineProps({
     default: "on",
   },
   prependIcon: {
-    type: Boolean,
+    type: [Boolean, Object],
     default: false,
   },
   appendIcon: {
-    type: Boolean,
+    type: [Boolean, Object],
     default: false,
   },
   disabled: {

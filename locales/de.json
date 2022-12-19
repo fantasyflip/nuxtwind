@@ -88,10 +88,10 @@
               "description": "Eigenschaft um den Randradius des Textfeldes festzulegen. \nDies gilt nur für das Textfeld, wenn der 'outlined' Prop gesetzt ist.<br>Der Standardwert kann durch einen String oder 'false' ersetzt werden.<br>Um einen speziellen Wert einzustellen, stelle ihn auf eine Tailwind \n'rounded'-Klasse."
             },
             "prependIcon": {
-              "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol vor dem Textfeld enthält.<br> Das Symbol wird innerhalb des Textfelds angezeigt und linksbündig ausgerichtet."
+              "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol vor dem Textfeld enthält. Es kann auch eine Komponente als Objekt übergeben werden anstatt den Slot zu verwenden.<br> Das Symbol wird innerhalb des Textfelds angezeigt und linksbündig ausgerichtet."
             },
             "appendIcon": {
-              "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol am Ende des Textfelds enthält.<br> Das Symbol wird innerhalb des Textfelds angezeigt und rechtsbündig ausgerichtet."
+              "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol am Ende des Textfelds enthält. Es kann auch eine Komponente als Objekt übergeben werden anstatt den Slot zu verwenden.<br> Das Symbol wird innerhalb des Textfelds angezeigt und rechtsbündig ausgerichtet."
             },
             "disabled": {
               "description": "Eigenschaft um das Textfeld zu deaktivieren. \nWenn deaktiviert, wird die Deckkraft auf 50 % gesetzt und das Textfeld ist nicht mehr anklickbar."

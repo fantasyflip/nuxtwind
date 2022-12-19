@@ -57,10 +57,10 @@
               "description": "Prop to set the border radius of the textfield. This only applies on the textfield if the outlined prop is set.<br>The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
             },
             "prependIcon": {
-              "description": "Prop to toggle the slot that includes an icon in front of the textfield.<br> The icon will be displayed inside the textfield and will be aligned to the left."
+              "description": "Prop to toggle the slot that includes an icon in front of the textfield or handing a component via the prop.<br> The icon will be displayed inside the textfield and will be aligned to the left."
             },
             "appendIcon": {
-              "description": "Prop to toggle the slot that includes an icon at the end of the textfield.<br> The icon will be displayed inside the textfield and will be aligned to the right."
+              "description": "Prop to toggle the slot that includes an icon at the end of the textfield or handing a component via the prop.<br> The icon will be displayed inside the textfield and will be aligned to the right."
             },
             "disabled": {
               "description": "Prop to set disable the textfield. When disabled the opacity will be set to 50% and the textfield won't be clickable anymore."

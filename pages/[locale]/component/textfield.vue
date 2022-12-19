@@ -17,16 +17,9 @@
           :outlined="checkedBoxes[1]"
           :loading="checkedBoxes[2]"
           :disabled="checkedBoxes[3]"
-          :append-icon="checkedBoxes[4]"
-          :prepend-icon="checkedBoxes[5]"
-        >
-          <template #prepend-icon>
-            <MdiMagnify />
-          </template>
-          <template #append-icon>
-            <MdiMagnify />
-          </template>
-        </Textfield>
+          :append-icon="checkedBoxes[4] ? textfieldIcon : false"
+          :prepend-icon="checkedBoxes[5] ? textfieldIcon : false"
+        />
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -87,6 +80,8 @@ const { t } = useI18n();
 let componentName = "Textfield";
 
 //PLAYGROUND
+
+const textfieldIcon = markRaw(MdiMagnify);
 
 let textfield = ref({
   label: "Textfield-Label",
@@ -184,7 +179,7 @@ let props = [
   },
   {
     name: "prependIcon",
-    type: "Boolean",
+    type: "Boolean, Object",
     default: false,
     description: t(
       "pages.component.textfield.content.properties.prependIcon.description"
@@ -192,7 +187,7 @@ let props = [
   },
   {
     name: "appendIcon",
-    type: "Boolean",
+    type: "Boolean, Object",
     default: false,
     description: t(
       "pages.component.textfield.content.properties.appendIcon.description"
