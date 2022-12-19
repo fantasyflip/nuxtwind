@@ -52,7 +52,6 @@
 </template>
 
 <script setup>
-//TODO Add event when autoclose timer is over to react on it
 import MdiClose from "~icons/mdi/close";
 import MdiInformationOutline from "~icons/mdi/information-outline";
 import MdiAlertRhombus from "~icons/mdi/alert-rhombus";
@@ -86,7 +85,7 @@ let defaults = {
   shadow: "shadow-lg",
 };
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "autoClose"]);
 
 let props = defineProps({
   id: {
@@ -160,6 +159,7 @@ if (props.autoClose) {
     if (progressValue.value <= 0) {
       clearInterval(progress);
       close();
+      emit("autoClose");
     }
   }, props.duration * 10);
 }

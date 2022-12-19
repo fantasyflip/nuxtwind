@@ -358,6 +358,14 @@
               "title": "Progress Komponente",
               "description": "Die Benachritigungs-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress-Komponente</a>. \nSie wird zum Anzeigen der Zeitleiste verwendet, wenn die AutoClose-Eigenschaft aktiviert ist."
             }
+          },
+          "events": {
+            "close": {
+              "description": "Ereignis, das ausgelöst wird, wenn die Benachrichtigung geschlossen wird. Entweder durch das klicken des 'x' oder nach dem ablauf des autoClose-Timers."
+            },
+            "autoClose": {
+              "description": "Ereignis, das ausgegeben wird, wenn der Toast aufgrund eines autoClose-Timers geschlossen wird."
+            }
           }
         }
       },

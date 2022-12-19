@@ -108,6 +108,7 @@
           :componentName="componentName"
           :props="props"
           :caveats="caveats"
+          :events="events"
         />
       </template>
     </NuxtLayout>
@@ -283,6 +284,19 @@ let caveats = [
       {
         url: useLocaleUrl("component/progress"),
       }
+    ),
+  },
+];
+
+let events = [
+  {
+    name: "close",
+    description: t("pages.component.toast.content.events.close.description"),
+  },
+  {
+    name: "autoClose",
+    description: t(
+      "pages.component.toast.content.events.autoClose.description"
     ),
   },
 ];

@@ -3,5 +3,4 @@ export const useComponentReferUrl = (component, documentationType, item) => {
   return `/${route.params.locale}/component/${component}${
     documentationType ? "#" + documentationType + (item ? "-" + item : "") : ""
   }`;
-  //TODO add support for only component and documentationType
 };

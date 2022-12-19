@@ -327,6 +327,14 @@
               "title": "Progress Component",
               "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>. It'll be used for displaying the timeline when the autoClose prop is enabled."
             }
+          },
+          "events": {
+            "close": {
+              "description": "Event that gets emitted when the toast closes. Either by clicking the 'x' or after the autoClose timer."
+            },
+            "autoClose": {
+              "description": "Event that gets emitted when the toast closes due to an autoClose timer."
+            }
           }
         }
       },
