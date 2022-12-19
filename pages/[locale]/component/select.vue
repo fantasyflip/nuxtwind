@@ -5,16 +5,59 @@
       <template #component>
         <Select
           :items="['Foo', 'Bar', 'Boo', 'Far', 'Foo', 'Bar', 'Boo', 'Far']"
-          v-model="selectValue"
-          label="Select"
-          placeholder="Select an item"
-          search
-          filled
-          :append-icon="selectIcon"
+          v-model="select.value"
+          :label="select.label"
+          :placeholder="select.placeholder"
+          :filled="styleCheckedBoxes[0]"
+          :outlined="styleCheckedBoxes[1]"
+          :loading="checkedBoxes[0]"
+          :disabled="checkedBoxes[1]"
+          :append-icon="checkedBoxes[2] ? selectIcon : null"
+          :prepend-icon="checkedBoxes[3] ? selectIcon : null"
+          :search="checkedBoxes[4]"
+          :color="{
+            textfield: {
+              bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
+            },
+          }"
         />
       </template>
       <template #playground>
-        <div class="grid place-items-center h-full w-full">Playground</div>
+        <div class="grid place-items-center h-full w-full">
+          <div class="md:w-2/3 w-full">
+            <Textfield
+              class="mb-4"
+              v-model="select.label"
+              label="Select-Label"
+              filled
+            />
+            <Textfield
+              class="mb-4"
+              v-model="select.placeholder"
+              label="Placeholder"
+              filled
+            />
+            <Checkboxgroup
+              v-model="styleCheckedBoxes"
+              :items="styleProps"
+              :label="
+                $t(
+                  'pages.component.select.content.playground.checkboxgroup.label'
+                )
+              "
+              :description="
+                $t(
+                  'pages.component.select.content.playground.checkboxgroup.description'
+                )
+              "
+            />
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+            />
+          </div>
+        </div>
       </template>
       <template #documentation>
         <DocumentationDisplay
@@ -32,8 +75,48 @@ import MdiMenuDown from "~icons/mdi/menu-down";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
-let selectValue = ref("");
-let selectIcon = markRaw(MdiMenuDown);
+//PLAYGROUND
+const selectIcon = markRaw(MdiMenuDown);
+
+let select = ref({
+  label: "Textfield-Label",
+  placeholder: "Placeholder",
+  value: "",
+});
+
+let styleCheckedBoxes = ref([false, false, true]);
+
+let styleProps = ref([
+  {
+    label: "Filled",
+  },
+  {
+    label: "Outlined",
+  },
+  {
+    label: "Regular",
+  },
+]);
+
+let checkedBoxes = ref([false, false, true, false, true]);
+
+let toggleProps = ref([
+  {
+    label: "Loading",
+  },
+  {
+    label: "Disabled",
+  },
+  {
+    label: "Append-Icon",
+  },
+  {
+    label: "Prepend-Icon",
+  },
+  {
+    label: "Search",
+  },
+]);
 
 //DOCUMENTATION
 let componentName = "Select";

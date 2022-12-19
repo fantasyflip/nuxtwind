@@ -385,6 +385,12 @@
               "title": "Textfield-Component",
               "description": "The select component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">textfield Component</a>."
             }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            }
           }
         }
       },

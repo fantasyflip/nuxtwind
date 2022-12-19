@@ -416,6 +416,12 @@
               "title": "Textfield Komponente",
               "description": "Die Select-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Textfield-Komponente</a>."
             }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
+            }
           }
         }
       },
