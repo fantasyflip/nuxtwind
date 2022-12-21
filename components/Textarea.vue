@@ -275,6 +275,7 @@ const inputClass = computed(() => {
   //BASIC APPEARANCE
 
   if (props.filled) {
+    //TODO Fix overflow issue with input below label on scrollable textarea
     //FILLED
     classes.push("rounded-t-lg", "pb-2.5", "px-2.5", "pt-5", "border-0");
 
@@ -298,8 +299,9 @@ const inputClass = computed(() => {
       classes.push("px-2.5");
     }
   } else if (props.outlined) {
+    //TODO Fix overflow issue with input close to border on scrollable textarea
     //OUTLINED
-    classes.push("py-4", "bg-transparent");
+    classes.push("py-4", "bg-transparent", "mt-1");
     if (typeof props.outlined === "string") {
       classes.push(props.outlined);
     } else {
@@ -327,7 +329,7 @@ const inputClass = computed(() => {
     }
   } else {
     //DEFAULT
-    classes.push("py-2.5", "bg-transparent", "border-0", "border-b-2");
+    classes.push("py-2.5", "bg-transparent", "border-0", "border-b-2", "mt-1");
 
     //ICON
     if (props.appendIcon && props.prependIcon) {
@@ -407,7 +409,7 @@ const labelClass = computed(() => {
       "peer-focus:top-4",
       "z-10",
       "left-2.5",
-      "peer-placeholder-shown:translate-y-0",
+      "peer-placeholder-shown:translate-y-1",
       "peer-focus:-translate-y-4"
     );
 
@@ -427,8 +429,7 @@ const labelClass = computed(() => {
       "z-10",
       "px-2",
       "peer-focus:px-2",
-      "peer-placeholder-shown:-translate-y-1/2",
-      "peer-placeholder-shown:top-1/2",
+      "peer-placeholder-shown:translate-y-3",
       "peer-focus:top-2",
       "peer-focus:-translate-y-4",
       "left-1"
@@ -491,13 +492,20 @@ const prependIconClass = computed(() => {
   let classes = [];
   classes.push(
     "absolute",
-    "inset-y-0",
     "left-0",
     "flex",
     "items-center",
     "pl-2",
     "transition-all"
   );
+
+  if (props.filled) {
+    classes.push("top-6");
+  } else if (props.outlined) {
+    classes.push("top-5");
+  } else {
+    classes.push("top-3");
+  }
 
   //TRANSITION
   if (props.transition && typeof props.transition === "object") {
@@ -533,13 +541,20 @@ const appendIconClass = computed(() => {
   let classes = [];
   classes.push(
     "absolute",
-    "inset-y-0",
     "right-0",
     "flex",
     "items-center",
     "pr-2",
     "transition-all"
   );
+
+  if (props.filled) {
+    classes.push("top-6");
+  } else if (props.outlined) {
+    classes.push("top-5");
+  } else {
+    classes.push("top-3");
+  }
 
   //TRANSITION
   if (props.transition && typeof props.transition === "object") {
