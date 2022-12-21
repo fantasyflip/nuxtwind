@@ -540,6 +540,16 @@
             }
           }
         }
+      },
+      "textarea": {
+        "content": {
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
+            }
+          }
+        }
       }
     }
   },
