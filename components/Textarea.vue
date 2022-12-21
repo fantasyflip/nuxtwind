@@ -17,7 +17,7 @@
       </slot>
     </div>
     <textarea
-      :id="textfieldId"
+      :id="textareaId"
       :class="inputClass"
       :type="props.type"
       :placeholder="placeholder"
@@ -28,7 +28,7 @@
       @focusout="$emit('focusOut')"
       :autocomplete="autocomplete"
     />
-    <label :for="textfieldId" :class="labelClass">
+    <label :for="textareaId" :class="labelClass">
       <slot name="label">{{ props.label }}</slot>
     </label>
     <div
@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-let textfieldId = generateId();
+let textareaId = generateId();
 
 let isValid = ref(true);
 let defaults = {
@@ -188,7 +188,7 @@ function handleInput(e) {
     value: e.target.value,
     source: {
       name: props.label,
-      type: "textfield",
+      type: "textarea",
     },
   });
 }
