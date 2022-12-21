@@ -144,6 +144,8 @@ let props = [];
 
 let events = [];
 
+let slots = [];
+
 definePageMeta({
   layout: false,
 });
