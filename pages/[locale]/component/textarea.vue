@@ -18,6 +18,7 @@
           :disabled="checkedBoxes[1]"
           :append-icon="checkedBoxes[2] ? textareaIcon : false"
           :prepend-icon="checkedBoxes[3] ? textareaIcon : false"
+          :counter="checkedBoxes[4]"
         />
       </template>
       <template #playground>
@@ -107,7 +108,7 @@ let styleProps = ref([
   },
 ]);
 
-let checkedBoxes = ref([false, false, false, true]);
+let checkedBoxes = ref([false, false, false, true, true]);
 
 let toggleProps = ref([
   {
@@ -121,6 +122,9 @@ let toggleProps = ref([
   },
   {
     label: "Prepend-Icon",
+  },
+  {
+    label: "Counter",
   },
 ]);
 

@@ -32,6 +32,18 @@
         <slot name="label">{{ props.label }}</slot>
       </label>
       <div
+        :for="textareaId"
+        v-if="props.counter"
+        class="transition peer-focus:opacity-100 opacity-0 peer-focus:translate-y-0 -translate-y-3 absolute top-0 w-full flex justify-end"
+      >
+        <div
+          class="pr-3 pt-1 text-xs"
+          :class="props.color?.hint || defaults.color.hint"
+        >
+          {{ props.modelValue.length }}
+        </div>
+      </div>
+      <div
         v-if="
           props.hint &&
           props.hint.length > 0 &&
@@ -154,6 +166,9 @@ const props = defineProps({
   transition: {
     type: [Boolean, Object],
     default: true,
+  },
+  counter: {
+    type: Boolean,
   },
   width: {
     type: String,
@@ -300,8 +315,6 @@ const textareaWrapperClass = computed(() => {
       classes.push(defaults.shadow);
     }
   }
-
-  console.log(classes.join(" "));
 
   return classes.join(" ");
 });
