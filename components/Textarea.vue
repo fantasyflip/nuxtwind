@@ -91,6 +91,7 @@ let defaults = {
       ease: "placeholder:ease-in-out",
     },
   },
+  height: "min-h-[40px]",
 };
 
 const props = defineProps({
@@ -169,6 +170,10 @@ const props = defineProps({
   },
   counter: {
     type: Boolean,
+  },
+  height: {
+    type: String,
+    default: "min-h-[40px]",
   },
   width: {
     type: String,
@@ -427,6 +432,9 @@ const inputClass = computed(() => {
   if (props.loading) {
     classes.push("cursor-progress");
   }
+
+  //HEIGHT
+  classes.push(props.height || defaults.height);
 
   return classes.join(" ");
 });
