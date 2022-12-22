@@ -1,48 +1,53 @@
 <template>
-  <Navbar />
-  <div class="m-4 lg:text-3xl text-2xl font-extrabold flex justify-between">
-    <div class="group flex">
-      <slot name="componentName"></slot>
-      <div class="text-primary-800 group-hover:text-secondary-800">.</div>
+  <Navbar fixed elevate-on-scroll>
+    <div class="w-full h-full grid content-center">
+      <div
+        class="mx-4 lg:text-3xl text-2xl font-extrabold flex justify-between"
+      >
+        <div class="group flex">
+          <slot name="componentName"></slot>
+          <div class="text-primary-800 group-hover:text-secondary-800">.</div>
+        </div>
+        <div class="flex">
+          <Button
+            class="mr-2"
+            icon
+            @click="handleCycleTheme()"
+            :color="{
+              text: 'text-primary-800',
+            }"
+            grow
+          >
+            <MdiThemeLightDark />
+          </Button>
+          <Button
+            class="mr-2"
+            icon
+            @click="handleSwitchLocale()"
+            :color="{
+              text: 'text-primary-800',
+            }"
+            grow
+          >
+            <MdiTranslate />
+          </Button>
+          <Button
+            icon
+            :link="useGithubComponentUrl(componentName)"
+            target="_blank"
+            :color="{
+              text: 'text-primary-800',
+            }"
+            grow
+          >
+            <MdiGithub />
+          </Button>
+        </div>
+      </div>
     </div>
-    <div class="flex">
-      <Button
-        class="mr-2"
-        icon
-        @click="handleCycleTheme()"
-        :color="{
-          text: 'text-primary-800',
-        }"
-        grow
-      >
-        <MdiThemeLightDark />
-      </Button>
-      <Button
-        class="mr-2"
-        icon
-        @click="handleSwitchLocale()"
-        :color="{
-          text: 'text-primary-800',
-        }"
-        grow
-      >
-        <MdiTranslate />
-      </Button>
-      <Button
-        icon
-        :link="useGithubComponentUrl(componentName)"
-        target="_blank"
-        :color="{
-          text: 'text-primary-800',
-        }"
-        grow
-      >
-        <MdiGithub />
-      </Button>
-    </div>
-  </div>
+  </Navbar>
   <div
-    class="lg:text-2xl text-xl font-bold cursor-pointer mx-4"
+    class="lg:text-2xl text-xl font-bold cursor-pointer mx-4 pt-16"
     id="playground"
     @click="$hashAndCopy('playground')"
   >
