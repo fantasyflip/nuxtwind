@@ -97,10 +97,6 @@ const props = defineProps({
       borderFocusError: "focus:border-red-500",
     },
   },
-  select: {
-    type: Boolean,
-    default: false,
-  },
   label: {
     type: String,
     default: "Label",
