@@ -170,6 +170,7 @@ const props = defineProps({
   },
   counter: {
     type: Boolean,
+    default: false,
   },
   height: {
     type: String,

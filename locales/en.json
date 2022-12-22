@@ -512,6 +512,84 @@
       },
       "textarea": {
         "content": {
+          "properties": {
+            "label": {
+              "description": "Prop to set the label of the textarea. Will be used for the validation event. This should be set and a unique value. If the label slot is used the label prop will still be used for the validation event."
+            },
+            "color": {
+              "description": "Prop to set the colors of the textarea.<br>You can seperately set the background, text, hint, error, label, focused label, placeholder, icon, focused icon, border, focused border, error border and focused error border color.<br>If the outlined prop is set the background color will be transparent.<br>Keep in mind to <span class='font-bold'>keep the modifier classes</span> for special states like they are in the default configuration and only alter the color classes."
+            },
+            "rounded": {
+              "description": "Prop to set the border radius of the textarea. This only applies on the textarea if the outlined prop is set.<br>The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
+            },
+            "prependIcon": {
+              "description": "Prop to toggle the slot that includes an icon in front of the textarea or handing a component via the prop.<br> The icon will be displayed inside the textarea and will be aligned to the left."
+            },
+            "appendIcon": {
+              "description": "Prop to toggle the slot that includes an icon at the end of the textarea or handing a component via the prop.<br> The icon will be displayed inside the textarea and will be aligned to the right."
+            },
+            "disabled": {
+              "description": "Prop to disable the textarea. When disabled the opacity will be set to 50% and the textarea won't be clickable anymore."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the textarea. If applied the textarea will pulsate and a loading cursor will be displayed on hover."
+            },
+            "outlined": {
+              "description": "Prop to set the textarea to outlined. When set to true the border will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>The background color will be transparent."
+            },
+            "filled": {
+              "description": "Prop to apply the filled style on the textarea. If set to true the border-class will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>For the best appearance you should use a 'border-t'-class."
+            },
+            "shadow": {
+              "description": "Prop to add a shadow to the textarea. The default value can be toggled by just setting the prop or disabled by setting it to 'false'. To set a special value set it to a tailwind 'shadow'-class."
+            },
+            "transition": {
+              "description": "Prop to set the transition settings of the textarea and the placeholder.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'ease' seperately for the regular transitions and the transitions that apply on the placeholder."
+            },
+            "placeholder": {
+              "description": "Prop to set the placeholder of the textarea."
+            },
+            "hint": {
+              "description": "Prop to set the hint of the textarea."
+            },
+            "height": {
+              "description": "Prop to set the height of the textarea. You can set it to a tailwind 'h'-class."
+            },
+            "width": {
+              "description": "Prop to set the width of the textarea. You can set it to a tailwind 'w'-class."
+            },
+            "autocomplete": {
+              "description": "Prop to set the textarea's autocomplete value."
+            },
+            "counter": {
+              "description": "Prop to show a counter in the top right corner of the textarea, that counts the input characters."
+            }
+          },
+          "events": {
+            "updateModelValue": {
+              "description": "Event that emits the value of the textarea on every input. This event is used to update v-model."
+            },
+            "updateValidation": {
+              "description": "Event that emits the validation state of the textarea. This event can be used to check validation of the component in the parent."
+            },
+            "focusIn": {
+              "description": "Event that will be emitted when the textarea got focused."
+            },
+            "focusOut": {
+              "description": "Event that will be emitted when the textarea loses focus."
+            }
+          },
+          "slots": {
+            "label": {
+              "description": "Slot to customize the default label of the textarea."
+            },
+            "prependIcon": {
+              "description": "Slot to add an icon in front of the textarea. The icon will be displayed inside the textarea and will be aligned to the left. The 'prepend-icon' prop is required to apply the icon."
+            },
+            "appendIcon": {
+              "description": "Slot to add an icon at the end of the textarea. The icon will be displayed inside the textarea and will be aligned to the right. The 'append-icon' prop is required to apply the icon."
+            }
+          },
           "playground": {
             "checkboxgroup": {
               "label": "Bool-Prop Selection",
