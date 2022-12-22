@@ -147,13 +147,8 @@ let emit = defineEmits(["update:modelValue"]);
 onMounted(() => {
   window.addEventListener("click", function (e) {
     if (!document.getElementById("select").contains(e.target)) {
-      if (!props.search) {
+      if (!props.items.includes(selectSearch.value)) {
         selectSearch.value = savedInput.value;
-      } else {
-        //check if selectSearch is in items
-        if (!props.items.includes(selectSearch.value)) {
-          selectSearch.value = savedInput.value;
-        }
       }
       showSelect.value = false;
     }
