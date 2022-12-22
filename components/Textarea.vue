@@ -16,28 +16,33 @@
         />
       </slot>
     </div>
-    <textarea
-      :id="textareaId"
-      :class="inputClass"
-      :type="props.type"
-      :placeholder="placeholder"
-      :disabled="props.disabled"
-      @input="handleInput"
-      :value="props.modelValue"
-      @focusin="$emit('focusIn')"
-      @focusout="$emit('focusOut')"
-      :autocomplete="autocomplete"
-    />
-    <label :for="textareaId" :class="labelClass">
-      <slot name="label">{{ props.label }}</slot>
-    </label>
-    <div
-      v-if="
-        props.hint && props.hint.length > 0 && !props.disabled && !props.loading
-      "
-      :class="hintClass"
-    >
-      {{ hint }}
+    <div :class="textareaWrapperClass">
+      <textarea
+        :id="textareaId"
+        :class="inputClass"
+        :type="props.type"
+        :placeholder="placeholder"
+        :disabled="props.disabled"
+        @input="handleInput"
+        :value="props.modelValue"
+        @focusin="$emit('focusIn')"
+        @focusout="$emit('focusOut')"
+        :autocomplete="autocomplete"
+      />
+      <label :for="textareaId" :class="labelClass">
+        <slot name="label">{{ props.label }}</slot>
+      </label>
+      <div
+        v-if="
+          props.hint &&
+          props.hint.length > 0 &&
+          !props.disabled &&
+          !props.loading
+        "
+        :class="hintClass"
+      >
+        {{ hint }}
+      </div>
     </div>
   </div>
 </template>
@@ -58,7 +63,8 @@ let defaults = {
     icon: "text-black dark:text-white",
     iconFocus: "group-focus-within:text-cyan-600",
     border: "border-black dark:border-white",
-    borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
+    borderFocus:
+      "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800",
     borderError: "border-red-500",
     borderFocusError: "focus:border-red-500",
   },
@@ -92,7 +98,8 @@ const props = defineProps({
       icon: "text-black dark:text-white",
       iconFocus: "group-focus-within:text-cyan-600",
       border: "border-black dark:border-white",
-      borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
+      borderFocus:
+        "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800",
       borderError: "border-red-500",
       borderFocusError: "focus:border-red-500",
     },
@@ -242,6 +249,72 @@ const wrapperClass = computed(() => {
   return classes.join(" ");
 });
 
+const textareaWrapperClass = computed(() => {
+  let classes = [];
+  classes.push(
+    "block",
+    "w-full",
+    "text-sm",
+    "appearance-none",
+    "peer-focus:outline-none",
+    "peer-focus:ring-0",
+    "placeholder:opacity-0",
+    "peer-focus:placeholder:opacity-100",
+    "placeholder:transition-opacity"
+  );
+  classes.push("pt-4");
+
+  if (props.filled) {
+    classes.push("rounded-t-lg");
+
+    //COLOR
+    classes.push(props.color.bg || defaults.color.bg);
+  } else if (props.outlined) {
+    classes.push("bg-transparent");
+
+    //OUTLINED
+    if (typeof props.outlined === "string") {
+      classes.push(props.outlined);
+    } else {
+      classes.push(defaults.outlined);
+    }
+
+    //ROUNDED
+    if (props.rounded) {
+      if (typeof props.rounded === "string") {
+        classes.push(props.rounded);
+      } else {
+        classes.push(defaults.rounded);
+      }
+    }
+  } else {
+  }
+
+  // COLOR
+  if (isValid.value === true) {
+    classes.push(props.color.border || defaults.color.border);
+    classes.push(props.color.borderFocus || defaults.color.borderFocus);
+  } else {
+    classes.push(props.color.borderError || defaults.color.borderError);
+    classes.push(
+      props.color.borderFocusError || defaults.color.borderFocusError
+    );
+  }
+
+  //SHADOW
+  if (props.shadow) {
+    if (typeof props.shadow === "string") {
+      classes.push(props.shadow);
+    } else {
+      classes.push(defaults.shadow);
+    }
+  }
+
+  console.log(classes.join(" "));
+
+  return classes.join(" ");
+});
+
 const inputClass = computed(() => {
   let classes = [];
   // class='block w-full text-sm text-gray-900 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
@@ -275,9 +348,8 @@ const inputClass = computed(() => {
   //BASIC APPEARANCE
 
   if (props.filled) {
-    //TODO Fix overflow issue with input below label on scrollable textarea
     //FILLED
-    classes.push("rounded-t-lg", "pb-2.5", "px-2.5", "pt-5", "border-0");
+    classes.push("pb-2.5", "px-2.5", "pt-2", "border-0");
 
     if (typeof props.filled === "string") {
       classes.push(props.filled);
@@ -299,23 +371,8 @@ const inputClass = computed(() => {
       classes.push("px-2.5");
     }
   } else if (props.outlined) {
-    //TODO Fix overflow issue with input close to border on scrollable textarea
     //OUTLINED
-    classes.push("py-4", "bg-transparent", "mt-1");
-    if (typeof props.outlined === "string") {
-      classes.push(props.outlined);
-    } else {
-      classes.push(defaults.outlined);
-    }
-
-    //ROUNDED
-    if (props.rounded) {
-      if (typeof props.rounded === "string") {
-        classes.push(props.rounded);
-      } else {
-        classes.push(defaults.rounded);
-      }
-    }
+    classes.push("pb-4", "pt-1", "bg-transparent");
 
     //ICON
     if (props.appendIcon && props.prependIcon) {
@@ -329,7 +386,7 @@ const inputClass = computed(() => {
     }
   } else {
     //DEFAULT
-    classes.push("py-2.5", "bg-transparent", "border-0", "border-b-2", "mt-1");
+    classes.push("pb-2.5", "bg-transparent", "border-0", "border-b-2");
 
     //ICON
     if (props.appendIcon && props.prependIcon) {
@@ -365,15 +422,6 @@ const inputClass = computed(() => {
   //LOADING
   if (props.loading) {
     classes.push("cursor-progress");
-  }
-
-  //SHADOW
-  if (props.shadow) {
-    if (typeof props.shadow === "string") {
-      classes.push(props.shadow);
-    } else {
-      classes.push(defaults.shadow);
-    }
   }
 
   return classes.join(" ");
@@ -449,7 +497,7 @@ const labelClass = computed(() => {
     //DEFAULT
     classes.push(
       "-translate-y-6",
-      "top-3",
+      "top-4",
       "-z-10",
       "peer-focus:left-0",
       "peer-placeholder-shown:translate-y-0",
@@ -504,7 +552,7 @@ const prependIconClass = computed(() => {
   } else if (props.outlined) {
     classes.push("top-5");
   } else {
-    classes.push("top-3");
+    classes.push("top-4");
   }
 
   //TRANSITION
@@ -553,7 +601,7 @@ const appendIconClass = computed(() => {
   } else if (props.outlined) {
     classes.push("top-5");
   } else {
-    classes.push("top-3");
+    classes.push("top-4");
   }
 
   //TRANSITION
