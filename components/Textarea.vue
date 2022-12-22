@@ -20,7 +20,6 @@
       <textarea
         :id="textareaId"
         :class="inputClass"
-        :type="props.type"
         :placeholder="placeholder"
         :disabled="props.disabled"
         @input="handleInput"
@@ -104,10 +103,6 @@ const props = defineProps({
       borderFocusError: "focus:border-red-500",
     },
   },
-  select: {
-    type: Boolean,
-    default: false,
-  },
   label: {
     type: String,
     default: "Label",
@@ -155,10 +150,6 @@ const props = defineProps({
   shadow: {
     type: [Boolean, String],
     default: true,
-  },
-  type: {
-    type: String,
-    default: "text",
   },
   transition: {
     type: [Boolean, Object],
