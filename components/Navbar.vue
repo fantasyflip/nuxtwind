@@ -1,30 +1,73 @@
 <template>
-  <div :class="navbarWrapperClass">Navbar</div>
+  <div :class="navbarWrapperClass">
+    <div :class="props.height">
+      <slot> Navigation-Bar </slot>
+    </div>
+    <TransitionGroup name="fade">
+      <div
+        v-if="
+          props.extension
+            ? props.shrinkOnScroll
+              ? y > 0
+                ? false
+                : true
+              : true
+            : false
+        "
+      >
+        <slot name="extension"></slot>
+      </div>
+    </TransitionGroup>
+  </div>
 </template>
 
 <script setup>
 let defaults = {
   color: {
-    bg: "bg-primary-800",
+    bg: "bg-white dark:bg-zinc-900",
   },
+  elevateOnScroll: "drop-shadow-md",
 };
 
 let props = defineProps({
   color: {
     type: Object,
     default: {
-      bg: "bg-primary-800",
+      bg: "bg-white dark:bg-zinc-900",
     },
   },
   fixed: {
     type: Boolean,
-    default: true,
+    default: false,
+  },
+  absolute: {
+    type: Boolean,
+    default: false,
+  },
+
+  bottom: {
+    type: Boolean,
+    default: false,
+  },
+  extension: {
+    type: Boolean,
+    default: false,
+  },
+  shrinkOnScroll: {
+    type: Boolean,
+    default: false,
+  },
+  elevateOnScroll: {
+    type: Boolean,
+    default: false,
   },
   height: {
     type: String,
     default: "h-14",
   },
 });
+
+let { y } = useWindowScroll();
 
 let navbarWrapperClass = computed(() => {
   let classes = [];
@@ -35,12 +78,63 @@ let navbarWrapperClass = computed(() => {
 
   if (props.fixed) {
     classes.push("fixed");
-    classes.push("top-0");
+  }
+
+  if (props.absolute) {
+    classes.push("absolute");
+  }
+
+  if (props.absolute || props.fixed) {
+    if (props.bottom) {
+      classes.push("bottom-0");
+    } else {
+      classes.push("top-0");
+    }
     classes.push("left-0");
     classes.push("right-0");
     classes.push("z-50");
   }
 
+  if (props.elevateOnScroll) {
+    let shadowClass = "drop-shadow-none";
+    if (useWindowScroll().y.value > 0 && useWindowScroll().y.value < 20) {
+      shadowClass = "drop-shadow-sm";
+    } else if (
+      useWindowScroll().y.value > 20 &&
+      useWindowScroll().y.value < 40
+    ) {
+      shadowClass = "drop-shadow-md";
+    } else if (
+      useWindowScroll().y.value > 40 &&
+      useWindowScroll().y.value < 80
+    ) {
+      shadowClass = "drop-shadow-lg";
+    } else if (useWindowScroll().y.value > 80) {
+      shadowClass = "drop-shadow-xl";
+    }
+
+    classes.push(shadowClass, "transition-all");
+  }
+
   return classes.join(" ");
 });
 </script>
+
+<style scoped>
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scaleY(0.01) translate(0px, 0);
+}
+
+.fade-leave-active {
+  position: absolute;
+  width: 100%;
+}
+</style>
