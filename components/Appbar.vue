@@ -1,5 +1,5 @@
 <template>
-  <div :class="navbarWrapperClass">
+  <div :class="appbarWrapperClass">
     <div v-if="props.navigationIcon" :class="navigationIconClass">
       <slot name="navigation-icon">
         <Button
@@ -113,7 +113,7 @@ let extensionIsActive = computed(() => {
   return extensionState;
 });
 
-let navbarWrapperClass = computed(() => {
+let appbarWrapperClass = computed(() => {
   let classes = [];
 
   //   if (!props.extension) {

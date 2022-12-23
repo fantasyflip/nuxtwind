@@ -8,7 +8,7 @@
           class="w-2/3 h-2/3 overflow-y-auto overflow-x-hidden bg-gray-200 dark:bg-zinc-800"
         >
           <div class="w-full h-screen relative">
-            <Navbar
+            <Appbar
               navigation-icon
               sticky
               elevate-on-scroll
@@ -32,7 +32,7 @@
                 <div class="p-4">
                   <div class="font-bold">Extension</div>
                   <div class="py-2">This Extension shrinks on scroll.</div>
-                  <div>
+                  <div class="text-justify" style="hyphens: auto">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     Similique recusandae, ducimus ut sequi quasi ullam quia cum
                     minima ab sapiente non nisi unde soluta pariatur aspernatur,
@@ -40,8 +40,8 @@
                   </div>
                 </div>
               </template>
-            </Navbar>
-            <div>
+            </Appbar>
+            <div class="p-4 text-justify" style="hyphens: auto">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
               minima veniam ipsam aspernatur tenetur ad dolore nisi, adipisci
               deserunt voluptas assumenda a iste non rerum modi inventore sit
@@ -107,8 +107,28 @@ const scroll = ref(null);
 
 const { y } = useScroll(scroll);
 
+let checkedBoxes = ref([false, false, false, true, true]);
+
+let toggleProps = ref([
+  {
+    label: "Loading",
+  },
+  {
+    label: "Disabled",
+  },
+  {
+    label: "Append-Icon",
+  },
+  {
+    label: "Prepend-Icon",
+  },
+  {
+    label: "Counter",
+  },
+]);
+
 //DOCUMENTATION
-let componentName = "Navbar";
+let componentName = "Appbar";
 
 let props = [];
 

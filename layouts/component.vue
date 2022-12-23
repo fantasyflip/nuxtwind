@@ -1,5 +1,5 @@
 <template>
-  <Navbar fixed elevate-on-scroll>
+  <Appbar fixed elevate-on-scroll>
     <div class="w-full h-full grid content-center">
       <div
         class="mx-4 lg:text-3xl text-2xl font-extrabold flex justify-between"
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-  </Navbar>
+  </Appbar>
   <div
     class="lg:text-2xl text-xl font-bold cursor-pointer mx-4 pt-16"
     id="playground"
