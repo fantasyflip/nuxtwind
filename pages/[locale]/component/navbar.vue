@@ -15,7 +15,7 @@
               shrink-on-scroll
               extension
               :color="{
-                bg: 'bg-gray-300',
+                bg: 'bg-gray-300 dark:bg-zinc-700',
               }"
             >
               <template #default>
