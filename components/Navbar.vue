@@ -3,8 +3,10 @@
     <div :class="props.height">
       <slot> Navigation-Bar </slot>
     </div>
-    <TransitionGroup name="fade">
+    <TransitionGroup name="list">
+      <!-- TODO fix z index issue  -->
       <div
+        key="extension"
         v-if="
           props.extension
             ? props.shrinkOnScroll
@@ -14,8 +16,10 @@
               : true
             : false
         "
+        :class="props.color?.bg || defaults.color.bg"
+        class="w-full"
       >
-        <slot name="extension"></slot>
+        <slot name="extension"> Extension Slot </slot>
       </div>
     </TransitionGroup>
   </div>
@@ -72,7 +76,9 @@ let { y } = useWindowScroll();
 let navbarWrapperClass = computed(() => {
   let classes = [];
 
+  //   if (!props.extension) {
   classes.push(props.height);
+  //   }
 
   classes.push(props.color?.bg || defaults.color.bg);
 
@@ -121,20 +127,13 @@ let navbarWrapperClass = computed(() => {
 </script>
 
 <style scoped>
-.fade-move,
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s ease;
 }
-
-.fade-enter-from,
-.fade-leave-to {
+.list-enter-from,
+.list-leave-to {
   opacity: 0;
-  transform: scaleY(0.01) translate(0px, 0);
-}
-
-.fade-leave-active {
-  position: absolute;
-  width: 100%;
+  transform: translateY(-20px);
 }
 </style>
