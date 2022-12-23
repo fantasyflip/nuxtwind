@@ -77,7 +77,7 @@ let extensionIsActive = computed(() => {
 
   if (props.extension) {
     if (props.shrinkOnScroll) {
-      if (props.scrollOffset) {
+      if (typeof props.scrollOffset === "number") {
         if (props.scrollOffset <= 0) {
           extensionState = true;
         }
@@ -90,6 +90,8 @@ let extensionIsActive = computed(() => {
       extensionState = true;
     }
   }
+
+  console.log("extensionIsActive", extensionState);
 
   return extensionState;
 });
