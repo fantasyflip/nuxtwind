@@ -48,7 +48,10 @@ let props = defineProps({
     type: Boolean,
     default: false,
   },
-
+  sticky: {
+    type: Boolean,
+    default: false,
+  },
   bottom: {
     type: Boolean,
     default: false,
@@ -90,7 +93,11 @@ let navbarWrapperClass = computed(() => {
     classes.push("absolute");
   }
 
-  if (props.absolute || props.fixed) {
+  if (props.sticky) {
+    classes.push("sticky");
+  }
+
+  if (props.absolute || props.fixed || props.sticky) {
     if (props.bottom) {
       classes.push("bottom-0");
     } else {
