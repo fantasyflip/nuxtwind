@@ -9,6 +9,7 @@
         >
           <div class="w-full h-screen relative">
             <Navbar
+              navigation-icon
               sticky
               elevate-on-scroll
               :scroll-offset="y"
@@ -105,11 +106,6 @@ const { t } = useI18n();
 const scroll = ref(null);
 
 const { y } = useScroll(scroll);
-
-// onMounted(() => {
-//   scrollbox.value = document.getElementById("scrollbox");
-//   console.log(scrollbox.value);
-// });
 
 //DOCUMENTATION
 let componentName = "Navbar";

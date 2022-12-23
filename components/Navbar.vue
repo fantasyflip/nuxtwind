@@ -1,5 +1,18 @@
 <template>
   <div :class="navbarWrapperClass">
+    <div v-if="props.navigationIcon" :class="navigationIconClass">
+      <slot name="navigation-icon">
+        <Button
+          @click="emit('navigation-icon-click')"
+          icon
+          :color="
+            typeof props.navigationIcon === 'object' ? props.navigationIcon : {}
+          "
+        >
+          <MdiMenu />
+        </Button>
+      </slot>
+    </div>
     <div :class="props.height">
       <slot> Navigation-Bar </slot>
     </div>
@@ -18,6 +31,7 @@
 </template>
 
 <script setup>
+import MdiMenu from "~icons/mdi/menu";
 let defaults = {
   color: {
     bg: "bg-white dark:bg-zinc-900",
@@ -64,11 +78,16 @@ let props = defineProps({
     type: Number,
     default: null,
   },
+  navigationIcon: {
+    type: [Boolean, Object],
+    default: false,
+  },
   height: {
     type: String,
     default: "h-14",
   },
 });
+let emit = defineEmits(["navigation-icon-click"]);
 
 let { y } = useWindowScroll();
 
@@ -90,8 +109,6 @@ let extensionIsActive = computed(() => {
       extensionState = true;
     }
   }
-
-  console.log("extensionIsActive", extensionState);
 
   return extensionState;
 });
@@ -160,6 +177,22 @@ let navbarWrapperClass = computed(() => {
 
     classes.push(shadowClass, "transition-all");
   }
+
+  return classes.join(" ");
+});
+
+let navigationIconClass = computed(() => {
+  let classes = [];
+
+  classes.push(
+    "absolute",
+    "text-2xl",
+    "top-1/2",
+    "transform",
+    "-translate-y-1/2",
+    "left-3",
+    "z-50"
+  );
 
   return classes.join(" ");
 });
