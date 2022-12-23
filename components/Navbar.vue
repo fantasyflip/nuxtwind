@@ -68,6 +68,10 @@ let props = defineProps({
     type: Boolean,
     default: false,
   },
+  scrollOffset: {
+    type: Number,
+    default: null,
+  },
   height: {
     type: String,
     default: "h-14",
@@ -110,20 +114,32 @@ let navbarWrapperClass = computed(() => {
 
   if (props.elevateOnScroll) {
     let shadowClass = "drop-shadow-none";
-    if (useWindowScroll().y.value > 0 && useWindowScroll().y.value < 20) {
-      shadowClass = "drop-shadow-sm";
-    } else if (
-      useWindowScroll().y.value > 20 &&
-      useWindowScroll().y.value < 40
-    ) {
-      shadowClass = "drop-shadow-md";
-    } else if (
-      useWindowScroll().y.value > 40 &&
-      useWindowScroll().y.value < 80
-    ) {
-      shadowClass = "drop-shadow-lg";
-    } else if (useWindowScroll().y.value > 80) {
-      shadowClass = "drop-shadow-xl";
+    if (props.fixed) {
+      if (useWindowScroll().y.value > 0 && useWindowScroll().y.value < 20) {
+        shadowClass = "drop-shadow-sm";
+      } else if (
+        useWindowScroll().y.value > 20 &&
+        useWindowScroll().y.value < 40
+      ) {
+        shadowClass = "drop-shadow-md";
+      } else if (
+        useWindowScroll().y.value > 40 &&
+        useWindowScroll().y.value < 80
+      ) {
+        shadowClass = "drop-shadow-lg";
+      } else if (useWindowScroll().y.value > 80) {
+        shadowClass = "drop-shadow-xl";
+      }
+    } else if (props.sticky && props.scrollOffset) {
+      if (props.scrollOffset > 0 && props.scrollOffset < 20) {
+        shadowClass = "drop-shadow-sm";
+      } else if (props.scrollOffset > 20 && props.scrollOffset < 40) {
+        shadowClass = "drop-shadow-md";
+      } else if (props.scrollOffset > 40 && props.scrollOffset < 80) {
+        shadowClass = "drop-shadow-lg";
+      } else if (props.scrollOffset > 80) {
+        shadowClass = "drop-shadow-xl";
+      }
     }
 
     classes.push(shadowClass, "transition-all");
