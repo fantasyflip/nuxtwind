@@ -7,15 +7,7 @@
       <!-- TODO fix z index issue  -->
       <div
         key="extension"
-        v-if="
-          props.extension
-            ? props.shrinkOnScroll
-              ? y > 0
-                ? false
-                : true
-              : true
-            : false
-        "
+        v-if="extensionIsActive"
         :class="props.color?.bg || defaults.color.bg"
         class="w-full"
       >
@@ -79,6 +71,28 @@ let props = defineProps({
 });
 
 let { y } = useWindowScroll();
+
+let extensionIsActive = computed(() => {
+  let extensionState = false;
+
+  if (props.extension) {
+    if (props.shrinkOnScroll) {
+      if (props.scrollOffset) {
+        if (props.scrollOffset <= 0) {
+          extensionState = true;
+        }
+      } else {
+        if (y.value <= 0) {
+          extensionState = true;
+        }
+      }
+    } else {
+      extensionState = true;
+    }
+  }
+
+  return extensionState;
+});
 
 let navbarWrapperClass = computed(() => {
   let classes = [];
