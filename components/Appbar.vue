@@ -135,7 +135,7 @@ let appbarWrapperClass = computed(() => {
   }
 
   if (props.absolute || props.fixed || props.sticky) {
-    if (props.bottom) {
+    if (props.bottom && (props.absolute || props.fixed)) {
       classes.push("bottom-0");
     } else {
       classes.push("top-0");
