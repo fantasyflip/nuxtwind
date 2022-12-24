@@ -11,6 +11,10 @@ let defaults = {
     bg: "bg-white dark:bg-gray-800",
     overlayBg: "bg-black/50",
   },
+  expandOnHover: {
+    width: "w-12",
+    hoverWidth: "hover:w-80",
+  },
 };
 
 let props = defineProps({
@@ -37,6 +41,10 @@ let props = defineProps({
   disableOverflow: {
     type: Boolean,
     default: true,
+  },
+  expandOnHover: {
+    type: [Boolean, Object],
+    default: false,
   },
   height: {
     type: String,
@@ -105,10 +113,28 @@ let drawerWrapperClass = computed(() => {
     "ease-in-out",
     "transform"
   );
-  if (props.modelValue) {
-    classes.push("translate-x-0");
+  if (props.expandOnHover) {
+    classes.push("overflow-x-hidden");
+
+    if (typeof props.expandOnHover === "object") {
+      classes.push(props.expandOnHover?.width || defaults.expandOnHover.width);
+      classes.push(
+        props.expandOnHover?.hoverWidth || defaults.expandOnHover.hoverWidth
+      );
+    } else {
+      classes.push(
+        defaults.expandOnHover.width,
+        defaults.expandOnHover.hoverWidth
+      );
+    }
   } else {
-    classes.push("-translate-x-full");
+    if (props.modelValue) {
+      classes.push("translate-x-0");
+    } else {
+      classes.push("-translate-x-full");
+    }
+
+    classes.push(props.width);
   }
 
   classes.push(props.color?.bg || defaults.color.bg);
@@ -120,7 +146,6 @@ let drawerWrapperClass = computed(() => {
   classes.push(props.zIndex);
 
   classes.push(props.height);
-  classes.push(props.width);
 
   return classes.join(" ");
 });
