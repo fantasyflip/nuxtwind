@@ -612,7 +612,9 @@
                 "bottom": {
                   "description": "Requires position 'absolute' or 'fixed'"
                 }
-              }
+              },
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
             }
           },
           "properties": {
