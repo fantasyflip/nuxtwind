@@ -1,10 +1,16 @@
 <template>
-  <Appbar fixed elevate-on-scroll>
+  <Drawer v-model="showDrawer" />
+  <Appbar
+    fixed
+    elevate-on-scroll
+    navigation-icon
+    @navigation-icon-click="showDrawer = true"
+  >
     <div class="w-full h-full grid content-center">
       <div
-        class="mx-4 lg:text-3xl text-2xl font-extrabold flex justify-between"
+        class="mx-4 ml-14 lg:text-3xl text-2xl font-extrabold flex justify-between"
       >
-        <div class="group flex">
+        <div class="group flex pb-1">
           <slot name="componentName"></slot>
           <div class="text-primary-800 group-hover:text-secondary-800">.</div>
         </div>
@@ -77,6 +83,8 @@ import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
+
+let showDrawer = ref(false);
 
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
