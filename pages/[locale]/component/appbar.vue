@@ -9,12 +9,19 @@
         >
           <div class="w-full h-screen relative">
             <Appbar
-              navigation-icon
-              sticky
-              elevate-on-scroll
-              :scroll-offset="y"
-              shrink-on-scroll
-              extension
+              :absolute="checkedPositionBoxes[0]"
+              :sticky="checkedPositionBoxes[1]"
+              :fixed="checkedPositionBoxes[2]"
+              :extension="checkedBoxes[0]"
+              :shrink-on-scroll="checkedBoxes[1]"
+              :elevate-on-scroll="checkedBoxes[2]"
+              :navigation-icon="checkedBoxes[3]"
+              :bottom="checkedBoxes[4]"
+              :scroll-offset="
+                checkedPositionBoxes[2] && checkedBoxes[0] && checkedBoxes[1]
+                  ? null
+                  : y
+              "
               :color="{
                 bg: 'bg-gray-300 dark:bg-zinc-700',
               }"
@@ -89,11 +96,36 @@
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
-          <div class="grid place-items-center sm:w-1/2 gap-3 py-2"></div>
+          <div class="grid place-items-center sm:w-1/2 gap-3 py-2">
+            <Checkboxgroup
+              v-model="checkedPositionBoxes"
+              not-zero
+              :items="postitionProps"
+              :label="
+                $t(
+                  'pages.component.appbar.content.playground.checkboxgroup.label'
+                )
+              "
+              :description="
+                $t(
+                  'pages.component.appbar.content.playground.checkboxgroup.description'
+                )
+              "
+            />
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+            />
+          </div>
         </div>
       </template>
       <template #documentation>
-        <DocumentationDisplay :componentName="componentName" :props="props" />
+        <DocumentationDisplay
+          :componentName="componentName"
+          :props="props"
+          :events="events"
+        />
       </template>
     </NuxtLayout>
   </div>
@@ -107,30 +139,192 @@ const scroll = ref(null);
 
 const { y } = useScroll(scroll);
 
-let checkedBoxes = ref([false, false, false, true, true]);
+let checkedPositionBoxes = ref([false, true, false]);
 
-let toggleProps = ref([
+let postitionProps = ref([
   {
-    label: "Loading",
+    label: "Absolute",
   },
   {
-    label: "Disabled",
+    label: "Sticky",
   },
   {
-    label: "Append-Icon",
-  },
-  {
-    label: "Prepend-Icon",
-  },
-  {
-    label: "Counter",
+    label: "Fixed",
   },
 ]);
+
+let checkedBoxes = ref([false, false, true, true, false]);
+
+let toggleProps = computed(() => {
+  return [
+    {
+      label: "Extension",
+    },
+    {
+      label: "Shrink-On-Scroll",
+      disabled: !checkedBoxes.value[0],
+      description: t(
+        "pages.component.appbar.content.playground.checkboxgroup.item.shrinkOnScroll.description"
+      ),
+    },
+    {
+      label: "Elevate-On-Scroll",
+      disabled: checkedPositionBoxes.value[0],
+      description: t(
+        "pages.component.appbar.content.playground.checkboxgroup.item.elevateOnScroll.description"
+      ),
+    },
+    {
+      label: "Navigation-Icon",
+    },
+    {
+      label: "Bottom",
+      disabled: checkedPositionBoxes.value[1],
+      description: t(
+        "pages.component.appbar.content.playground.checkboxgroup.item.bottom.description"
+      ),
+    },
+  ];
+});
 
 //DOCUMENTATION
 let componentName = "Appbar";
 
-let props = [];
+let props = [
+  {
+    name: "color",
+    type: "Object",
+    default: {
+      bg: "bg-white dark:bg-zinc-900",
+    },
+    description: t(
+      "pages.component.appbar.content.properties.color.description"
+    ),
+  },
+  {
+    name: "fixed",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.appbar.content.properties.fixed.description"
+    ),
+  },
+  {
+    name: "absolute",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.appbar.content.properties.absolute.description"
+    ),
+  },
+  {
+    name: "sticky",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.appbar.content.properties.sticky.description"
+    ),
+  },
+  {
+    name: "bottom",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.appbar.content.properties.bottom.description"
+    ),
+  },
+  {
+    name: "extension",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.appbar.content.properties.extension.description"
+    ),
+  },
+  {
+    name: "shrinkOnScroll",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.appbar.content.properties.shrinkOnScroll.description"
+    ),
+  },
+  {
+    name: "elevateOnScroll",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.appbar.content.properties.elevateOnScroll.description"
+    ),
+  },
+  {
+    name: "navigationIcon",
+    type: "Boolean, Object",
+    default: false,
+    description: t(
+      "pages.component.appbar.content.properties.navigationIcon.description"
+    ),
+  },
+  {
+    name: "scrollOffset",
+    type: "Number",
+    default: null,
+    description: t(
+      "pages.component.appbar.content.properties.scrollOffset.description"
+    ),
+  },
+  {
+    name: "height",
+    type: "String",
+    default: "h-14",
+    description: t(
+      "pages.component.appbar.content.properties.height.description"
+    ),
+  },
+];
+
+let events = [
+  {
+    name: "navigation-icon-click",
+    structure: undefined,
+    description: t(
+      "pages.component.appbar.content.events.navigationIconClick.description"
+    ),
+  },
+];
+
+let slots = [
+  {
+    name: "navigation-icon",
+    description: t(
+      "pages.component.appbar.content.slots.navigationIcon.description"
+    ),
+  },
+];
+
+let caveats = [
+  {
+    name: t("pages.component.appbar.content.caveats.icon.title"),
+    description: t("pages.component.appbar.content.caveats.icon.description", {
+      url: "https://github.com/antfu/unplugin-icons",
+    }),
+  },
+  {
+    name: t("pages.component.appbar.content.caveats.button.title"),
+    description: t(
+      "pages.component.appbar.content.caveats.button.description",
+      {
+        url: useLocaleUrl("component/button"),
+      }
+    ),
+  },
+  {
+    name: t("pages.component.toast.content.caveats.button.title"),
+    description: t("pages.component.toast.content.caveats.button.description", {
+      url: useLocaleUrl("component/button"),
+    }),
+  },
+];
 
 definePageMeta({
   layout: false,
