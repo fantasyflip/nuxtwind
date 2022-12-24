@@ -15,6 +15,10 @@ let defaults = {
     width: "w-12",
     hoverWidth: "hover:w-80",
   },
+  transition: {
+    duration: "duration-300",
+    ease: "ease-in-out",
+  },
 };
 
 let props = defineProps({
@@ -45,6 +49,10 @@ let props = defineProps({
   expandOnHover: {
     type: [Boolean, Object],
     default: false,
+  },
+  transition: {
+    type: [Boolean, Object],
+    default: true,
   },
   height: {
     type: String,
@@ -106,13 +114,8 @@ let overlayClass = computed(() => {
 let drawerWrapperClass = computed(() => {
   let classes = [];
 
-  classes.push(
-    "overflow-y-auto",
-    "transition-all",
-    "duration-300",
-    "ease-in-out",
-    "transform"
-  );
+  classes.push("overflow-y-auto", "transition-all", "transform");
+
   if (props.expandOnHover) {
     classes.push("overflow-x-hidden");
 
@@ -135,6 +138,15 @@ let drawerWrapperClass = computed(() => {
     }
 
     classes.push(props.width);
+  }
+
+  if (props.transition) {
+    if (typeof props.transition === "object") {
+      classes.push(props.transition?.duration || defaults.transition.duration);
+      classes.push(props.transition?.ease || defaults.transition.ease);
+    } else {
+      classes.push(defaults.transition.duration, defaults.transition.ease);
+    }
   }
 
   classes.push(props.color?.bg || defaults.color.bg);
