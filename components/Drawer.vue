@@ -1,6 +1,8 @@
 <template>
   <div v-if="props.modelValue" :class="overlayClass"></div>
-  <div ref="drawer" :class="drawerWrapperClass"></div>
+  <div ref="drawer" :class="drawerWrapperClass">
+    <slot></slot>
+  </div>
 </template>
 
 <script setup>
