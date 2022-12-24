@@ -90,8 +90,6 @@ let overlayClass = computed(() => {
     classes.push(props.color?.overlayBg || defaults.color.overlayBg);
   }
 
-  console.log(classes.join(" "));
-
   return classes.join(" ");
 });
 
