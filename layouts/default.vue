@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <Appbar></Appbar>
     <div class="prevent-full-width mx-auto pt-16">
       <slot class="mx-2" />
     </div>
