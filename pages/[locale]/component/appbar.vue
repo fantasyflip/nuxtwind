@@ -126,6 +126,7 @@
           :props="props"
           :events="events"
           :caveats="caveats"
+          :slots="slots"
         />
       </template>
     </NuxtLayout>

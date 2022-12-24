@@ -52,6 +52,16 @@
             "height": {
               "description": "Prop to set the appbar's height."
             }
+          },
+          "events": {
+            "navigationIconClick": {
+              "description": "Event that will be emitted when the default navigation-icon is clicked."
+            }
+          },
+          "slots": {
+            "navigationIcon": {
+              "description": "Slot to provide a custom navigation-icon."
+            }
           }
         }
       }

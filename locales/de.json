@@ -643,7 +643,7 @@
                   "description": "Benötigt Position „fixed“ oder „sticky“."
                 },
                 "bottom": {
-                  "description": "Erfordert Position 'absolut' oder 'fixed'"
+                  "description": "Benötigt Position 'absolut' oder 'fixed'"
                 }
               }
             }
@@ -681,6 +681,16 @@
             },
             "height": {
               "description": "Eigenschaft um die Höhe der Appbar festzulegen."
+            }
+          },
+          "events": {
+            "navigationIconClick": {
+              "description": "Ereignis, das ausgegeben wird, wenn auf das Standardnavigationssymbol geklickt wird."
+            }
+          },
+          "slots": {
+            "navigationIcon": {
+              "description": "Platzhalter zum Bereitstellen eines benutzerdefinierten Navigationssymbols."
             }
           }
         }
