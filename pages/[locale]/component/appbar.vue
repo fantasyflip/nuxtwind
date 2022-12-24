@@ -125,6 +125,7 @@
           :componentName="componentName"
           :props="props"
           :events="events"
+          :caveats="caveats"
         />
       </template>
     </NuxtLayout>
@@ -317,12 +318,6 @@ let caveats = [
         url: useLocaleUrl("component/button"),
       }
     ),
-  },
-  {
-    name: t("pages.component.toast.content.caveats.button.title"),
-    description: t("pages.component.toast.content.caveats.button.description", {
-      url: useLocaleUrl("component/button"),
-    }),
   },
 ];
 
