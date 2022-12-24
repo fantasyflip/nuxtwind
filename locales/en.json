@@ -1,6 +1,603 @@
 {
-  "pages": {
+  "lang": "en",
+  "layouts": {
     "component": {
+      "meta": {
+        "title": "{componentName}",
+        "description": "Overview over the {componentName} component.",
+        "hash-description": "Overview over the {componentName} component. Learn more about the {hash} property.",
+        "og": {
+          "title": "{componentName} | Component Flip",
+          "locale": "en_US"
+        }
+      },
+      "content": {
+        "playground": "Playground"
+      },
+      "function": {
+        "themeSwitch": {
+          "message": "Theme change to: {theme}"
+        },
+        "localeSwitch": {
+          "title": "Language",
+          "message": "Language switched to {locale}"
+        }
+      }
+    }
+  },
+  "pages": {
+    "404": {
+      "meta": {
+        "title": "404",
+        "description": "Page not found!",
+        "og": {
+          "title": "404 - Page not found | Component Flip",
+          "locale": "en_US"
+        }
+      },
+      "content": {
+        "errorMessage": "Shit happens! This site doesn't exist.",
+        "urlDisplay": "You tried to access <a class='text-primary-800 hover:text-secondary-800' href='{path}'>{path}</a>."
+      },
+      "buttons": {
+        "home": "Back Home"
+      }
+    },
+    "component": {
+      "textfield": {
+        "content": {
+          "properties": {
+            "label": {
+              "description": "Prop to set the label of the textfield. Will be used for the validation event. This should be set and a unique value. If the label slot is used the label prop will still be used for the validation event."
+            },
+            "color": {
+              "description": "Prop to set the colors of the textfield.<br>You can seperately set the background, text, hint, error, label, focused label, placeholder, icon, focused icon, border, focused border, error border and focused error border color.<br>If the outlined prop is set the background color will be transparent.<br>Keep in mind to <span class='font-bold'>keep the modifier classes</span> for special states like they are in the default configuration and only alter the color classes."
+            },
+            "rounded": {
+              "description": "Prop to set the border radius of the textfield. This only applies on the textfield if the outlined prop is set.<br>The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
+            },
+            "prependIcon": {
+              "description": "Prop to toggle the slot that includes an icon in front of the textfield or handing a component via the prop.<br> The icon will be displayed inside the textfield and will be aligned to the left."
+            },
+            "appendIcon": {
+              "description": "Prop to toggle the slot that includes an icon at the end of the textfield or handing a component via the prop.<br> The icon will be displayed inside the textfield and will be aligned to the right."
+            },
+            "disabled": {
+              "description": "Prop to set disable the textfield. When disabled the opacity will be set to 50% and the textfield won't be clickable anymore."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the textfield. If applied the textfield will pulsate and a loading cursor will be displayed on hover."
+            },
+            "outlined": {
+              "description": "Prop to set the textfield to outlined. When set to true the border will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>The background color will be transparent."
+            },
+            "filled": {
+              "description": "Prop to apply the filled style on the textfield. If set to true the border-class will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>For the best appearance you should use a 'border-t'-class."
+            },
+            "shadow": {
+              "description": "Prop to add a shadow to the textfield. The default value can be toggled by just setting the prop or disabled by setting it to 'false'. To set a special value set it to a tailwind 'shadow'-class."
+            },
+            "transition": {
+              "description": "Prop to set the transition settings of the textfield and the placeholder.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'ease' seperately for the regular transitions and the transitions that apply on the placeholder."
+            },
+            "placeholder": {
+              "description": "Prop to set the placeholder of the textfield."
+            },
+            "hint": {
+              "description": "Prop to set the hint of the textfield."
+            },
+            "type": {
+              "description": "Prop to set the type of the textfield."
+            },
+            "width": {
+              "description": "Prop to set the width of the textfield. You can set it to a tailwind 'w'-class."
+            },
+            "autocomplete": {
+              "description": "Prop to set the input's autocomplete value."
+            }
+          },
+          "events": {
+            "updateModelValue": {
+              "description": "Event that emits the value of the textfield on every input. This event is used to update v-model."
+            },
+            "updateValidation": {
+              "description": "Event that emits the validation state of the textfield. This event can be used to check validation of the component in the parent."
+            },
+            "focusIn": {
+              "description": "Event that will be emitted when the textfield got focused."
+            },
+            "focusOut": {
+              "description": "Event that will be emitted when the textfield loses focus."
+            }
+          },
+          "slots": {
+            "label": {
+              "description": "Slot to customize the default label of the textfield."
+            },
+            "prependIcon": {
+              "description": "Slot to add an icon in front of the textfield. The icon will be displayed inside the textfield and will be aligned to the left. The 'prepend-icon' prop is required to apply the icon."
+            },
+            "appendIcon": {
+              "description": "Slot to add an icon at the end of the textfield. The icon will be displayed inside the textfield and will be aligned to the right. The 'append-icon' prop is required to apply the icon."
+            }
+          },
+          "playground": {
+            "toggleLoadingButton": "Toggle Loading",
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            }
+          }
+        }
+      },
+      "button": {
+        "content": {
+          "properties": {
+            "color": {
+              "description": "Prop to set the color of the button.<br>You can seperately set the background, text, border and hover color.<br>If the 'outlined' prop is set, only the border and the text color will be used.<br>If the 'disabled' or 'loading' prop is set, the opacity will be set to 50% and the hover color will no longer take effect.<br>If the 'icon' prop is set, only the text & iconHover color will take effect."
+            },
+            "rounded": {
+              "description": "Prop to set the border radius of the button. The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
+            },
+            "grow": {
+              "description": "Prop to apply a grow effect to the button. The delay and scale can be set seperately.<br>To apply the effect on hover prefix the tailwind 'scale'-class with 'hover:'."
+            },
+            "link": {
+              "description": "Prop to make the button a link. You either can set a complete link or a realtive url."
+            },
+            "target": {
+              "description": "Prop to set the target of the link. Only applied when the 'link' prop is set."
+            },
+            "disabled": {
+              "description": "Prop to set the button to disabled. When disabled the opacity will be set to 50% and the hover color will no longer take effect.<br>The button won't be clickable anymore.<br>Also the grow effect no longer takes effect."
+            },
+            "icon": {
+              "description": "Prop to set the button to an icon button. If set to true only the text and hover color will take effect."
+            },
+            "loading": {
+              "description": "Prop to set the button to loading. When loading the opacity will be set to 50% and the hover color will no longer take effect.<br>The button won't be clickable anymore.<br>Also the grow effect no longer takes effect. A loading spinner will be displayed instead of the button content."
+            },
+            "outlined": {
+              "description": "Prop to set the button to outlined. When set to true the border will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>The background color will be transparent.<br>Also the hover color will no longer take effect. Instead the border and text color will be applied."
+            },
+            "shadow": {
+              "description": "Prop to add a shadow to the button. The default value can be toggled by just setting the prop or disabled by setting it to 'false'. To set a special value set it to a tailwind 'shadow'-class."
+            },
+            "transition": {
+              "description": "Prop to set the transition settings of the button, that will take effect on hover-color-change and the grow prop.<br>When set to 'false' no transition will be applied.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'timing-function' seperately."
+            },
+            "dense": {
+              "description": "Prop to set the button to dense. When set to true the padding will be reduced and the text will be set to small."
+            },
+            "width": {
+              "description": "Prop to set the width of the button. You can set it to a tailwind 'w'-class."
+            },
+            "height": {
+              "description": "Prop to set the height of the button. You can set it to a tailwind 'h'-class."
+            }
+          },
+          "slots": {
+            "default": {
+              "description": "Slot to set the content of the button."
+            }
+          },
+          "caveats": {
+            "progress": {
+              "description": "The button component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>.",
+              "title": "Progress component"
+            }
+          },
+          "playground": {
+            "textfield": {
+              "initialValue": "Click me!"
+            },
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly.",
+              "items": {
+                "grow": {
+                  "description": "Only applies to non-mobile devices."
+                }
+              }
+            }
+          }
+        }
+      },
+      "progress": {
+        "content": {
+          "properties": {
+            "size": {
+              "description": "Only applies on linear progress variant. Prop to set the dimensions of the component."
+            },
+            "color": {
+              "description": "Prop to set the colors of the component. For the linear variant following colors can be set seperately: background, first animation strike, second animation strike, progress color and hover progress.<br>For the circular variant the following: circle itself, progress color and the inner cutout color."
+            },
+            "circular": {
+              "description": "Prop to set the component to the circular variant. The circular variant can be customized by setting it to an object with the following properties:<br><span class='font-bold'>width</span>: Can be set to any Tailwind 'w'-class.<br><span class='font-bold'>height</span>: Can be set to any Tailwind 'h'-class.<br><span class='font-bold'>cutout.width</span>: Can be set to any Tailwind 'w'-class combined with the 'before'-modifier.<br><span class='font-bold'>cutout.height</span>: Can be set to any Tailwind 'h'-class combined with the 'before'-modifier.<br><span class='font-bold'>cutout.text</span>: Can be set to any Tailwind 'text'-class to set the text size of the component."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the component."
+            },
+            "initialLoadTime": {
+              "description": "This prop behaves differently depending on the chosen variant.<br><span class='font-bold'>Linear</span>: The time in ms between creation of the component and actual displaying the progress. For the best effect make sure the transition prop is active.<br><span class='font-bold'>Circular</span>: The time in ms that the component takes to progress to the given value."
+            },
+            "rounded": {
+              "description": "Applies on the linear variant. Prop to set the border-radius of the component. Can be disabled by setting it to 'false' or customized by setting the prop to a Tailwind 'rounded'-class."
+            },
+            "initialLoadTimeType": {
+              "description": "Prop to set the way how the speed of the growth of the circular progress will be interpreted.<br>Valid options are:<br><span class='font-bold'>calc</span>: The speed will be calculated for every growth individually, making each growth the same speed.<br><span class='font-bold'>static</span>: The speed will be set to the given value. Every single step will take the same time."
+            }
+          },
+          "slots": {
+            "innerCircle": {
+              "description": "Slot to customize the inner circle area on the circular variant."
+            }
+          },
+          "config": {
+            "linearAnimation": {
+              "name": "Linear loading animation",
+              "description": "For the linear loading animation to work properly its required to extend the tailwind config by the shown options."
+            }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly.",
+              "items": {
+                "rounded": {
+                  "description": "Only applies on the linear variant."
+                }
+              }
+            },
+            "valueText": {
+              "label": "Value"
+            }
+          }
+        }
+      },
+      "toast": {
+        "content": {
+          "playground": {
+            "rule": {
+              "maxVal": "The value must be less or equal to {max}",
+              "notEmpty": "This field is required",
+              "isNumber": "This value must be a number"
+            },
+            "titleTextfield": {
+              "label": "Title",
+              "placeholder": "Example: 'Warning!'",
+              "hint": "Toast's title",
+              "default": "Test-Notification"
+            },
+            "messageTextfield": {
+              "label": "Message",
+              "placeholder": "Example: 'This is a message'",
+              "hint": "Toast's message",
+              "default": "This is a Test-Notification"
+            },
+            "durationTextfield": {
+              "label": "Duration",
+              "placeholder": "Example: '5'",
+              "hint": "Toast's duration"
+            }
+          },
+          "documentation": {
+            "props": {
+              "id": {
+                "description": "Prop to set the id of the notification. Required and must be unique."
+              }
+            }
+          },
+          "properties": {
+            "autoClose": {
+              "description": "Prop to activate or deactivate automatic closing of the notification after given duration."
+            },
+            "color": {
+              "description": "Prop to set the colors of the toast. You can separatly set the text, background color for the base toast and for each toast type individually."
+            },
+            "duration": {
+              "description": "Duration the toast will be displayed. Applies when 'autoClose' is set to 'true'."
+            },
+            "rounded": {
+              "description": "Prop to set the border-radius of the toast. Can either be toggled with a Boolean-Value or specified by handing any Tailwind 'rounded'-class."
+            },
+            "type": {
+              "description": "Setting the toast's type. Can be one of the following: info, warning, error, success."
+            },
+            "title": {
+              "description": "Prop to set the toast's title."
+            },
+            "message": {
+              "description": "Prop to set the toast's message."
+            },
+            "shadow": {
+              "description": "Prop to set the toast's shadow. Can be set to any Tailwind 'shadow'-class."
+            },
+            "width": {
+              "description": "Prop to set the toast's width. Can be set to any Tailwind \"w\"-class."
+            }
+          },
+          "caveats": {
+            "icon": {
+              "title": "Unplugin Icons Package",
+              "description": "The icon on the toast will change accordingly to the set type. The icons that are displayed are taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Package</a>."
+            },
+            "button": {
+              "title": "Button Component",
+              "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Button Component</a>."
+            },
+            "progress": {
+              "title": "Progress Component",
+              "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>. It'll be used for displaying the timeline when the autoClose prop is enabled."
+            }
+          },
+          "events": {
+            "close": {
+              "description": "Event that gets emitted when the toast closes. Either by clicking the 'x' or after the autoClose timer."
+            },
+            "autoClose": {
+              "description": "Event that gets emitted when the toast closes due to an autoClose timer."
+            }
+          }
+        }
+      },
+      "select": {
+        "content": {
+          "documentation": {
+            "props": {
+              "referComponent": {
+                "textfield": {
+                  "description": "This prop only applies on the integrated textfield component. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about its behavior."
+                }
+              },
+              "items": {
+                "description": "Prop to fill the select component's items."
+              },
+              "color": {
+                "description": "Prop to set the color for the background, text, border and hover color of the drop down that appears when clicking the select field. With a nested 'textfield'-Object the colors of the textfield itself can be set. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More</a> information on the textfield color prop."
+              },
+              "search": {
+                "description": "Prop to lower the drop down of the select field and show a search field to filter the select's items."
+              },
+              "disabled": {
+                "description": "Prop to disable the select field. The dropdown will no longer appear when this prop is set. Also the effects of the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">'disabled'-prop</a> of the textfield will apply."
+              },
+              "loading": {
+                "description": "Prop to set the loading-state of the select field. The dropdown will no longer appear when this prop is set. Also the effects of the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">'loading'-prop</a> of the textfield will apply."
+              },
+              "width": {
+                "description": "Prop to set the width of the select drop down. The width of the textfield can also be set."
+              },
+              "height": {
+                "description": "Prop to set the height of the select drop down."
+              }
+            }
+          },
+          "slots": {
+            "referComponent": {
+              "textfield": {
+                "description": "This slot just redirects to the identically named slot of the 'textfield'-component. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More</a> information about it."
+              }
+            }
+          },
+          "caveats": {
+            "textfield": {
+              "title": "Textfield-Component",
+              "description": "The select component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">textfield Component</a>."
+            }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            }
+          }
+        }
+      },
+      "checkbox": {
+        "content": {
+          "properties": {
+            "color": {
+              "description": "Prop to set the color of the following parts of the chechbox component: label, description, iconInactiive, iconActive and hover."
+            },
+            "label": {
+              "description": "Prop to set the label text of the checkbox."
+            },
+            "description": {
+              "description": "Prop to set the description of the checkbox."
+            },
+            "text": {
+              "description": "Prop to change the text appearance of the label and the description."
+            },
+            "disabled": {
+              "description": "Prop to disable the checkbox."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the checkbox."
+            },
+            "radio": {
+              "description": "Prop that changes the icons to round ones."
+            }
+          },
+          "slots": {
+            "label": {
+              "description": "Slot to change the standard appearance of the checkbox's label."
+            },
+            "description": {
+              "description": "Slot to change the standard appearance of the checkbox's description."
+            }
+          },
+          "caveats": {
+            "icon": {
+              "title": "Unplugin Icons Package",
+              "description": "The icon of the checkbox changes according to its value. The icons that are displayed are taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Package</a>."
+            },
+            "group": {
+              "title": "Checkbox Groups",
+              "description": "For better handling of groups of checkboxes have a look at the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">'Checkboxgroup'-Component</a>."
+            }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            },
+            "textfieldDescription": {
+              "label": "Checkbox description"
+            }
+          }
+        }
+      },
+      "checkboxgroup": {
+        "content": {
+          "properties": {
+            "color": {
+              "description": "Prop to set the color of the label and the description of the checkboxgroup individually."
+            },
+            "text": {
+              "description": "Prop to change the appearance of the label and the description of the checkboxgroup component."
+            },
+            "label": {
+              "description": "Prop to set the checkboxgroup's title."
+            },
+            "description": {
+              "description": "Prop to set the checkboxgroup's description."
+            },
+            "items": {
+              "description": "Prop to set the items of the group. The items must be objects that include valid props for the checkbox-component. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about it."
+            },
+            "multiple": {
+              "description": "Prop to allow multiple checkboxes to be selected at once. If not set the group will only allow one checked box at a time. Also the icons will be changed to rounded ones. This can be changed by setting the 'no-radio'-prop."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the component."
+            },
+            "disabled": {
+              "description": "Prop to disable the checkboxgroup."
+            },
+            "width": {
+              "description": "Prop to change the checkboxgroup's width."
+            },
+            "generalCheckboxProps": {
+              "description": "Prop to easily set same props for multiple checkboxes. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about possible props."
+            },
+            "notZero": {
+              "description": "Prop to make sure that at least one checkbox is checked."
+            }
+          },
+          "slots": {
+            "groupLabel": {
+              "description": "Slot for the checkboxgroup's label."
+            },
+            "groupDescription": {
+              "description": "Slot for the checkboxgroup's description."
+            }
+          },
+          "caveats": {
+            "checkbox": {
+              "title": "Checkbox component",
+              "description": "The checkboxgroup component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Checkbox Component</a>."
+            }
+          },
+          "playground": {
+            "textfieldDescription": {
+              "label": "Checkboxgroup description"
+            },
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            }
+          }
+        }
+      },
+      "textarea": {
+        "content": {
+          "properties": {
+            "label": {
+              "description": "Prop to set the label of the textarea. Will be used for the validation event. This should be set and a unique value. If the label slot is used the label prop will still be used for the validation event."
+            },
+            "color": {
+              "description": "Prop to set the colors of the textarea.<br>You can seperately set the background, text, hint, error, label, focused label, placeholder, icon, focused icon, border, focused border, error border and focused error border color.<br>If the outlined prop is set the background color will be transparent.<br>Keep in mind to <span class='font-bold'>keep the modifier classes</span> for special states like they are in the default configuration and only alter the color classes."
+            },
+            "rounded": {
+              "description": "Prop to set the border radius of the textarea. This only applies on the textarea if the outlined prop is set.<br>The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
+            },
+            "prependIcon": {
+              "description": "Prop to toggle the slot that includes an icon in front of the textarea or handing a component via the prop.<br> The icon will be displayed inside the textarea and will be aligned to the left."
+            },
+            "appendIcon": {
+              "description": "Prop to toggle the slot that includes an icon at the end of the textarea or handing a component via the prop.<br> The icon will be displayed inside the textarea and will be aligned to the right."
+            },
+            "disabled": {
+              "description": "Prop to disable the textarea. When disabled the opacity will be set to 50% and the textarea won't be clickable anymore."
+            },
+            "loading": {
+              "description": "Prop to set the loading state of the textarea. If applied the textarea will pulsate and a loading cursor will be displayed on hover."
+            },
+            "outlined": {
+              "description": "Prop to set the textarea to outlined. When set to true the border will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>The background color will be transparent."
+            },
+            "filled": {
+              "description": "Prop to apply the filled style on the textarea. If set to true the border-class will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>For the best appearance you should use a 'border-t'-class."
+            },
+            "shadow": {
+              "description": "Prop to add a shadow to the textarea. The default value can be toggled by just setting the prop or disabled by setting it to 'false'. To set a special value set it to a tailwind 'shadow'-class."
+            },
+            "transition": {
+              "description": "Prop to set the transition settings of the textarea and the placeholder.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'ease' seperately for the regular transitions and the transitions that apply on the placeholder."
+            },
+            "placeholder": {
+              "description": "Prop to set the placeholder of the textarea."
+            },
+            "hint": {
+              "description": "Prop to set the hint of the textarea."
+            },
+            "height": {
+              "description": "Prop to set the height of the textarea. You can set it to a tailwind 'h'-class."
+            },
+            "width": {
+              "description": "Prop to set the width of the textarea. You can set it to a tailwind 'w'-class."
+            },
+            "autocomplete": {
+              "description": "Prop to set the textarea's autocomplete value."
+            },
+            "counter": {
+              "description": "Prop to show a counter in the top right corner of the textarea, that counts the input characters."
+            }
+          },
+          "events": {
+            "updateModelValue": {
+              "description": "Event that emits the value of the textarea on every input. This event is used to update v-model."
+            },
+            "updateValidation": {
+              "description": "Event that emits the validation state of the textarea. This event can be used to check validation of the component in the parent."
+            },
+            "focusIn": {
+              "description": "Event that will be emitted when the textarea got focused."
+            },
+            "focusOut": {
+              "description": "Event that will be emitted when the textarea loses focus."
+            }
+          },
+          "slots": {
+            "label": {
+              "description": "Slot to customize the default label of the textarea."
+            },
+            "prependIcon": {
+              "description": "Slot to add an icon in front of the textarea. The icon will be displayed inside the textarea and will be aligned to the left. The 'prepend-icon' prop is required to apply the icon."
+            },
+            "appendIcon": {
+              "description": "Slot to add an icon at the end of the textarea. The icon will be displayed inside the textarea and will be aligned to the right. The 'append-icon' prop is required to apply the icon."
+            }
+          },
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            }
+          }
+        }
+      },
       "appbar": {
         "content": {
           "playground": {
@@ -77,6 +674,49 @@
             }
           }
         }
+      }
+    },
+    "index": {
+      "meta": {
+        "title": "Home",
+        "description": "A Collection of Nuxt 3 Components powered by TailwindCSS",
+        "og": {
+          "title": "Home | Component Flip",
+          "locale": "en_US"
+        }
+      },
+      "content": {
+        "hello": "Hello, {name}!"
+      }
+    },
+    "fallbackIndex": {
+      "meta": {
+        "title": "Oops",
+        "description": "We coudn't detect your language.",
+        "og": {
+          "title": "Oops - Language not found | Component Flip",
+          "locale": "en_US"
+        }
+      },
+      "content": {
+        "oops": "Oops",
+        "errorMessage": "We coudn't detect your language. Please select one."
+      },
+      "buttons": {
+        "english": "English",
+        "german": "German"
+      }
+    }
+  },
+  "components": {
+    "documentationDisplay": {
+      "content": {
+        "documentation": "Documentation",
+        "props": "Properties",
+        "events": "Events",
+        "slots": "Slots",
+        "configs": "Configurations",
+        "caveats": "Caveats"
       }
     }
   }
