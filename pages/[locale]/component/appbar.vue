@@ -5,7 +5,7 @@
       <template #component>
         <div
           ref="scroll"
-          class="w-2/3 h-2/3 overflow-y-auto overflow-x-hidden bg-gray-200 dark:bg-zinc-800"
+          class="lg:w-2/3 lg:h-2/3 w-9/10 h-[50vh] overflow-y-auto overflow-x-hidden bg-gray-200 dark:bg-zinc-800"
         >
           <div class="w-full h-screen relative">
             <Appbar
