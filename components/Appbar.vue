@@ -9,7 +9,11 @@
             typeof props.navigationIcon === 'object' ? props.navigationIcon : {}
           "
         >
-          <MdiMenu />
+          <component
+            v-if="typeof props.navigationIcon === 'object'"
+            :is="props.navigationIcon"
+          />
+          <MdiMenu v-else />
         </Button>
       </slot>
     </div>
