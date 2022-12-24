@@ -1,5 +1,13 @@
 <template>
-  <Drawer v-model="showDrawer" />
+  <Drawer v-model="showDrawer">
+    <div
+      v-for="route in routes"
+      class="p-2 text-md w-full hover:bg-primary-800"
+      @click="navigateTo(route.path.replace(':locale/', ''))"
+    >
+      {{ capitalizeFirstLetter(route.name) }}
+    </div>
+  </Drawer>
   <Appbar
     fixed
     elevate-on-scroll
@@ -85,6 +93,22 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 let showDrawer = ref(false);
+
+let routes = computed(() => {
+  let routeList = useRouter().options.routes;
+  routeList = routeList.filter((route) => {
+    return route.path.includes("component");
+  });
+  let componentRoutes = [];
+  for (let i = 0; i < routeList.length; i++) {
+    let route = routeList[i];
+    componentRoutes.push({
+      path: route.path,
+      name: route.path.split("component/")[1],
+    });
+  }
+  return componentRoutes;
+});
 
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
