@@ -25,7 +25,7 @@
               :color="{
                 bg: 'bg-gray-300 dark:bg-zinc-700',
               }"
-              :z-index="checkedPositionBoxes[2] ? 'z-50' : 'z-40'"
+              :z-index="checkedPositionBoxes[2] ? 'z-[11]' : 'z-[9]'"
             >
               <template #default>
                 <div class="w-full h-full relative">

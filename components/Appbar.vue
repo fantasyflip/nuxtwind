@@ -88,7 +88,7 @@ let props = defineProps({
   },
   zIndex: {
     type: String,
-    default: "z-50",
+    default: "z-10",
   },
   height: {
     type: String,
