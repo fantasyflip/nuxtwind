@@ -51,6 +51,9 @@
             },
             "height": {
               "description": "Prop to set the appbar's height."
+            },
+            "zIndex": {
+              "description": "Prop to set the appbar's z-index."
             }
           },
           "events": {

@@ -86,6 +86,10 @@ let props = defineProps({
     type: [Boolean, Object],
     default: false,
   },
+  zIndex: {
+    type: String,
+    default: "z-50",
+  },
   height: {
     type: String,
     default: "h-14",
@@ -146,7 +150,7 @@ let appbarWrapperClass = computed(() => {
     }
     classes.push("left-0");
     classes.push("right-0");
-    classes.push("z-50");
+    classes.push(props.zIndex);
   }
 
   if (props.elevateOnScroll) {
@@ -194,9 +198,10 @@ let navigationIconClass = computed(() => {
     "top-1/2",
     "transform",
     "-translate-y-1/2",
-    "left-3",
-    "z-50"
+    "left-3"
   );
+
+  classes.push(props.zIndex);
 
   return classes.join(" ");
 });

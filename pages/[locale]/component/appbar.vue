@@ -25,6 +25,7 @@
               :color="{
                 bg: 'bg-gray-300 dark:bg-zinc-700',
               }"
+              z-index="z-40"
             >
               <template #default>
                 <div class="w-full h-full relative">
@@ -193,6 +194,14 @@ let toggleProps = computed(() => {
 let componentName = "Appbar";
 
 let props = [
+  {
+    name: "zIndex",
+    type: "String",
+    default: "z-50",
+    description: t(
+      "pages.component.appbar.content.properties.zIndex.description"
+    ),
+  },
   {
     name: "color",
     type: "Object",

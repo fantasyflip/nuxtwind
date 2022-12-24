@@ -681,6 +681,9 @@
             },
             "height": {
               "description": "Eigenschaft um die Höhe der Appbar festzulegen."
+            },
+            "zIndex": {
+              "description": "Eigenschaft um den Z-Index der Appbar festzulegen."
             }
           },
           "events": {
