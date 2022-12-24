@@ -692,6 +692,16 @@
             "navigationIcon": {
               "description": "Platzhalter zum Bereitstellen eines benutzerdefinierten Navigationssymbols."
             }
+          },
+          "caveats": {
+            "icon": {
+              "description": "Das Standard Navigationssymbol stammt aus dem <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Paket</a>.",
+              "title": "Unplugins Icon Paket"
+            },
+            "button": {
+              "title": "Button Komponente",
+              "description": "Die Appbar benötigt die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Button-Komponente</a>."
+            }
           }
         }
       }

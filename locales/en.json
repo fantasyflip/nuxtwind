@@ -62,6 +62,16 @@
             "navigationIcon": {
               "description": "Slot to provide a custom navigation-icon."
             }
+          },
+          "caveats": {
+            "icon": {
+              "description": "The default navigation-icon is taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Packet</a>.",
+              "title": "Unplugins Icon Packet"
+            },
+            "button": {
+              "title": "Button component ",
+              "description": "The appbar requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Button-Component</a>."
+            }
           }
         }
       }
