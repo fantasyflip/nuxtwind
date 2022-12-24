@@ -25,7 +25,7 @@
               :color="{
                 bg: 'bg-gray-300 dark:bg-zinc-700',
               }"
-              z-index="z-40"
+              :z-index="checkedPositionBoxes[2] ? 'z-50' : 'z-40'"
             >
               <template #default>
                 <div class="w-full h-full relative">
@@ -188,6 +188,32 @@ let toggleProps = computed(() => {
       ),
     },
   ];
+});
+
+let isFixed = computed(() => {
+  return checkedPositionBoxes.value[2];
+});
+
+watch(isFixed, (value) => {
+  if (value) {
+    let timeout = 10;
+    useToast(
+      {
+        title: "Fixed-Prop",
+        message:
+          "Since the fixed prop overlays the standard appbar, it'll be reset after " +
+          timeout +
+          " seconds.",
+        autoClose: true,
+        duration: timeout,
+        type: "info",
+      },
+      true
+    );
+    setTimeout(() => {
+      checkedPositionBoxes.value = [false, true, false];
+    }, timeout * 1000);
+  }
 });
 
 //DOCUMENTATION
