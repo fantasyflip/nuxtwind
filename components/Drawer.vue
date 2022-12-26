@@ -30,6 +30,10 @@ let props = defineProps({
       overlayBg: "bg-black/50",
     },
   },
+  absolute: {
+    type: Boolean,
+    default: true,
+  },
   fixed: {
     type: Boolean,
     default: true,
@@ -95,7 +99,6 @@ let overlayClass = computed(() => {
   classes.push(
     "h-full",
     "w-full",
-    "fixed",
     "top-0",
     "left-0",
     "right-0",
@@ -103,6 +106,12 @@ let overlayClass = computed(() => {
     "z-[99]",
     "overflow-hidden"
   );
+
+  if (props.absolute) {
+    classes.push("absolute");
+  } else if (props.fixed) {
+    classes.push("fixed");
+  }
 
   if (props.overlay) {
     classes.push(props.color?.overlayBg || defaults.color.overlayBg);
@@ -132,12 +141,10 @@ let drawerWrapperClass = computed(() => {
     }
   } else {
     if (props.modelValue) {
-      classes.push("translate-x-0");
+      classes.push(props.width);
     } else {
-      classes.push("-translate-x-full");
+      classes.push("w-0");
     }
-
-    classes.push(props.width);
   }
 
   if (props.transition) {
@@ -151,7 +158,9 @@ let drawerWrapperClass = computed(() => {
 
   classes.push(props.color?.bg || defaults.color.bg);
 
-  if (props.fixed) {
+  if (props.absolute) {
+    classes.push("absolute");
+  } else if (props.fixed) {
     classes.push("fixed");
   }
 
