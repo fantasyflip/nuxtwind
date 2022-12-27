@@ -18,17 +18,31 @@
               <Appbar :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }">
                 <div class="w-full h-full grid place-items-center">Drawer</div>
               </Appbar>
-              <div class="w-full flex">
-                <div class="bg-red-700">
-                  <div class="w-12"></div>
+              <div
+                v-for="item in drawerItems"
+                :key="item.name"
+                :class="
+                  (item.name === 'Logout' ? 'fixed bottom-1' : '') +
+                  ' w-full flex h-12 hover:bg-primary-800 cursor-pointer'
+                "
+                @click="
+                  useToast({
+                    title: 'Example Drawer Notification',
+                    message: 'You clicked on ' + item.name + '!',
+                    autoClose: true,
+                    type: 'info',
+                  })
+                "
+              >
+                <div
+                  class="h-full grid place-items-center text-xl"
+                  :id="'icon-' + item.name"
+                >
+                  <component class="w-12" :is="item.icon" />
                 </div>
-                <div class="w-12">Test</div>
-              </div>
-              <div class="h-24 whitespace-pre">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas accusantium impedit quasi ex laborum eveniet a ea
-                asperiores, expedita saepe iusto dolor quisquam minus nisi,
-                repellat adipisci minima ipsa amet!
+                <div class="h-full grid content-center">
+                  {{ item.name }}
+                </div>
               </div>
             </Drawer>
             <Appbar
@@ -62,12 +76,36 @@
   </div>
 </template>
 <script setup>
+import MdiHome from "~icons/mdi/home";
+import MdiCog from "~icons/mdi/cog";
+import MdiLogout from "~icons/mdi/logout";
+import MdiPhone from "~icons/mdi/phone";
+
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
 
 let showDrawer = ref(false);
+
+let drawerItems = [
+  {
+    name: "Home",
+    icon: MdiHome,
+  },
+  {
+    name: "Settings",
+    icon: MdiCog,
+  },
+  {
+    name: "Logout",
+    icon: MdiLogout,
+  },
+  {
+    name: "Phone",
+    icon: MdiPhone,
+  },
+];
 
 //DOCUMENTATION
 let componentName = "Drawer";
