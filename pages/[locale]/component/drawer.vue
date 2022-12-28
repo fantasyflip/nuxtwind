@@ -3,7 +3,7 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <div class="lg:w-2/3 lg:h-2/3 w-9/10 bg-gray-200 dark:bg-zinc-800">
+        <div class="lg:w-2/3 lg:h-2/3 w-full h-80 bg-gray-200 dark:bg-zinc-800">
           <div class="w-full h-full relative">
             <Drawer
               v-model="showDrawer"
@@ -12,7 +12,6 @@
               :color="{
                 bg: 'bg-gray-200 dark:bg-zinc-800',
               }"
-              expand-on-hover
               z-index="z-[99]"
               :disable-overflow="false"
             >
@@ -52,17 +51,18 @@
               navigation-icon
               @navigation-icon-click="showDrawer = true"
               :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }"
+              absolute
             >
               <div class="w-full h-full grid place-items-center">
                 Application-Bar
               </div>
             </Appbar>
-            <div class="p-4 text-justify text-ellipsis h-full">
+            <!-- <div class="p-4 pt-16 text-justify text-ellipsis h-full">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
               voluptas suscipit perspiciatis unde pariatur! Reiciendis quibusdam
               aut tempora at eveniet fugiat nemo, doloribus eum, dolore
               asperiores debitis modi, quisquam ab?
-            </div>
+            </div> -->
           </div>
         </div>
       </template>
