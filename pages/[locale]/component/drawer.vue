@@ -13,6 +13,7 @@
                 bg: 'bg-gray-200 dark:bg-zinc-800',
               }"
               expand-on-hover
+              z-index="z-[99]"
             >
               <!-- https://medium.com/@9cv9official/create-a-beautiful-hover-triggered-expandable-sidebar-with-simple-html-css-and-javascript-9f5f80a908d1 -->
               <Appbar :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }">
