@@ -1,8 +1,12 @@
 <template>
   <div v-if="props.modelValue" :class="overlayClass"></div>
-  <div ref="drawer" :class="drawerWrapperClass">
+  <div
+    ref="drawer"
+    @mouseenter="hanldeHoverEnter"
+    @mouseleave="handleHoverLeave"
+    :class="drawerWrapperClass"
+  >
     <slot></slot>
-    {{ isMobile }}
   </div>
 </template>
 
@@ -20,6 +24,7 @@ let defaults = {
     duration: "duration-300",
     ease: "ease-in-out",
   },
+  border: "border-r dark:border-zinc-700 border-gray-500",
 };
 
 let props = defineProps({
@@ -66,6 +71,10 @@ let props = defineProps({
   mobileWidth: {
     type: Number,
     default: 768,
+  },
+  border: {
+    type: [Boolean, String],
+    default: true,
   },
   height: {
     type: String,
@@ -116,6 +125,18 @@ onMounted(() => {
     }
   });
 });
+
+function hanldeHoverEnter() {
+  if (props.expandOnHover && (!isMobile.value || props.noMobile)) {
+    emit("update:modelValue", true);
+  }
+}
+
+function handleHoverLeave() {
+  if (props.expandOnHover && (!isMobile.value || props.noMobile)) {
+    emit("update:modelValue", false);
+  }
+}
 
 let overlayClass = computed(() => {
   let classes = [];
@@ -185,6 +206,14 @@ let drawerWrapperClass = computed(() => {
     classes.push("absolute");
   } else if (props.fixed) {
     classes.push("fixed");
+  }
+
+  if (props.border && (props.modelValue || props.expandOnHover)) {
+    if (typeof props.border === "string") {
+      classes.push(props.border);
+    } else {
+      classes.push(defaults.border);
+    }
   }
 
   classes.push(props.zIndex);
