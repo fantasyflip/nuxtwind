@@ -1,9 +1,19 @@
 <template>
   <Drawer v-model="showDrawer">
+    <Appbar
+      :color="{
+        bg: 'dark:bg-zinc-800 bg-gray-300',
+      }"
+    >
+      <div class="w-full h-full grid place-items-center font-semibold">
+        Component-Flip
+      </div>
+    </Appbar>
     <div
       v-for="route in routes"
-      class="p-2 text-md w-full hover:bg-primary-800"
+      class="p-2 text-md w-full hover:bg-secondary-700"
       @click="navigateTo(route.path.replace(':locale/', ''))"
+      :class="$route.matched[0].path === route.path ? 'bg-primary-800' : ''"
     >
       {{ capitalizeFirstLetter(route.name) }}
     </div>

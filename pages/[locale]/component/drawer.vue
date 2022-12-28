@@ -14,6 +14,7 @@
               }"
               z-index="z-[99]"
               :disable-overflow="false"
+              expand-on-hover
             >
               <Appbar :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }">
                 <div class="w-full h-full grid place-items-center">
@@ -57,12 +58,12 @@
                 Application-Bar
               </div>
             </Appbar>
-            <!-- <div class="p-4 pt-16 text-justify text-ellipsis h-full">
+            <div class="p-4 pt-16 text-justify text-ellipsis h-full">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
               voluptas suscipit perspiciatis unde pariatur! Reiciendis quibusdam
               aut tempora at eveniet fugiat nemo, doloribus eum, dolore
               asperiores debitis modi, quisquam ab?
-            </div> -->
+            </div>
           </div>
         </div>
       </template>
