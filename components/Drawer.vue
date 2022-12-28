@@ -76,6 +76,10 @@ let props = defineProps({
     type: [Boolean, String],
     default: true,
   },
+  right: {
+    type: Boolean,
+    default: false,
+  },
   height: {
     type: String,
     default: "h-screen",
@@ -88,6 +92,16 @@ let props = defineProps({
 
 let emit = defineEmits(["update:modelValue"]);
 
+function setDocumentOverflow(type) {
+  if (type === "auto") {
+    document.body.classList.remove("overflow-hidden");
+    document.getElementsByTagName("html")[0].style.overflow = "auto";
+  } else if (type === "hidden") {
+    document.body.classList.add("overflow-hidden");
+    document.getElementsByTagName("html")[0].style.overflow = "hidden";
+  }
+}
+
 let modelValueComputed = computed(() => {
   return props.modelValue;
 });
@@ -96,8 +110,7 @@ let modelValueComputed = computed(() => {
 watch(modelValueComputed, (newVal, oldVal) => {
   if (newVal) {
     if (props.disableOverflow) {
-      document.body.classList.add("overflow-hidden");
-      document.getElementsByTagName("html")[0].style.overflow = "hidden";
+      setDocumentOverflow("hidden");
     }
   }
 });
@@ -107,8 +120,7 @@ const drawer = ref(null);
 onClickOutside(drawer, () => {
   emit("update:modelValue", false);
   if (props.disableOverflow) {
-    document.body.classList.remove("overflow-hidden");
-    document.getElementsByTagName("html")[0].style.overflow = "auto";
+    setDocumentOverflow("auto");
   }
 });
 
@@ -135,6 +147,9 @@ function hanldeHoverEnter() {
 function handleHoverLeave() {
   if (props.expandOnHover && (!isMobile.value || props.noMobile)) {
     emit("update:modelValue", false);
+    if (props.disableOverflow) {
+      setDocumentOverflow("auto");
+    }
   }
 }
 
@@ -219,6 +234,12 @@ let drawerWrapperClass = computed(() => {
   classes.push(props.zIndex);
 
   classes.push(props.height);
+
+  if (props.right) {
+    classes.push("right-0");
+  }
+
+  console.log(classes.join(" "));
 
   return classes.join(" ");
 });
