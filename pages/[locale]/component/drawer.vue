@@ -14,10 +14,12 @@
               }"
               expand-on-hover
               z-index="z-[99]"
+              :disable-overflow="false"
             >
-              <!-- https://medium.com/@9cv9official/create-a-beautiful-hover-triggered-expandable-sidebar-with-simple-html-css-and-javascript-9f5f80a908d1 -->
               <Appbar :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }">
-                <div class="w-full h-full grid place-items-center">Drawer</div>
+                <div class="w-full h-full grid place-items-center">
+                  {{ showDrawer ? "Drawer" : "" }}
+                </div>
               </Appbar>
               <div
                 v-for="item in drawerItems"
@@ -49,13 +51,18 @@
             <Appbar
               navigation-icon
               @navigation-icon-click="showDrawer = true"
-              absolute
               :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }"
             >
               <div class="w-full h-full grid place-items-center">
                 Application-Bar
               </div>
             </Appbar>
+            <div class="p-4 text-justify text-ellipsis h-full">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+              voluptas suscipit perspiciatis unde pariatur! Reiciendis quibusdam
+              aut tempora at eveniet fugiat nemo, doloribus eum, dolore
+              asperiores debitis modi, quisquam ab?
+            </div>
           </div>
         </div>
       </template>

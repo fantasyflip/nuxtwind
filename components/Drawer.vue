@@ -38,7 +38,7 @@ let props = defineProps({
   },
   absolute: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   fixed: {
     type: Boolean,
@@ -238,8 +238,6 @@ let drawerWrapperClass = computed(() => {
   if (props.right) {
     classes.push("right-0");
   }
-
-  console.log(classes.join(" "));
 
   return classes.join(" ");
 });
