@@ -2,6 +2,7 @@
   <div v-if="props.modelValue" :class="overlayClass"></div>
   <div ref="drawer" :class="drawerWrapperClass">
     <slot></slot>
+    {{ isMobile }}
   </div>
 </template>
 
@@ -58,6 +59,14 @@ let props = defineProps({
     type: [Boolean, Object],
     default: true,
   },
+  noMobile: {
+    type: Boolean,
+    default: false,
+  },
+  mobileWidth: {
+    type: Number,
+    default: 768,
+  },
   height: {
     type: String,
     default: "h-screen",
@@ -94,6 +103,20 @@ onClickOutside(drawer, () => {
   }
 });
 
+let isMobile = ref(false);
+onMounted(() => {
+  if (window.innerWidth < props.mobileWidth) {
+    isMobile.value = true;
+  }
+  addEventListener("resize", (event) => {
+    if (event.target.innerWidth < props.mobileWidth) {
+      isMobile.value = true;
+    } else {
+      isMobile.value = false;
+    }
+  });
+});
+
 let overlayClass = computed(() => {
   let classes = [];
   classes.push(
@@ -125,7 +148,7 @@ let drawerWrapperClass = computed(() => {
 
   classes.push("overflow-y-auto", "transition-all", "transform");
 
-  if (props.expandOnHover) {
+  if (props.expandOnHover && (!isMobile.value || props.noMobile)) {
     classes.push("overflow-x-hidden");
 
     if (typeof props.expandOnHover === "object") {
