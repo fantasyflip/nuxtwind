@@ -184,7 +184,12 @@ let props = [
   },
 ];
 
-let slots = [];
+let slots = [
+  {
+    name: "tooltip",
+    description: t("pages.component.tooltip.content.slots.tooltip.description"),
+  },
+];
 
 definePageMeta({
   layout: false,
