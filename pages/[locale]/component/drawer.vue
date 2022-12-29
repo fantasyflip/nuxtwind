@@ -13,8 +13,11 @@
                 bg: 'bg-gray-200 dark:bg-zinc-800',
               }"
               z-index="z-[99]"
-              :disable-overflow="false"
-              expand-on-hover
+              :disable-overflow="checkedBoxes[0]"
+              :expand-on-hover="checkedBoxes[1]"
+              :overlay="checkedBoxes[2]"
+              :no-mobile="checkedBoxes[3]"
+              :right="checkedBoxes[4]"
             >
               <Appbar :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }">
                 <div class="w-full h-full grid place-items-center">
@@ -58,7 +61,12 @@
                 Application-Bar
               </div>
             </Appbar>
-            <div class="p-4 pt-16 text-justify text-ellipsis h-full">
+            <div
+              class="p-4 pt-16 text-justify text-ellipsis h-full"
+              :class="
+                checkedBoxes[1] ? (checkedBoxes[4] ? 'pr-14' : 'pl-14') : ''
+              "
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
               voluptas suscipit perspiciatis unde pariatur! Reiciendis quibusdam
               aut tempora at eveniet fugiat nemo, doloribus eum, dolore
@@ -69,7 +77,23 @@
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
-          <div class="grid place-items-center sm:w-1/2 gap-3 py-2"></div>
+          <div class="grid place-items-center sm:w-1/2 gap-3 py-2">
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+              :label="
+                $t(
+                  'pages.component.drawer.content.playground.checkboxgroup.label'
+                )
+              "
+              :description="
+                $t(
+                  'pages.component.drawer.content.playground.checkboxgroup.description'
+                )
+              "
+            />
+          </div>
         </div>
       </template>
       <template #documentation>
@@ -115,6 +139,28 @@ let drawerItems = [
     icon: MdiPhone,
   },
 ];
+
+let checkedBoxes = ref([true, true, true, false, false]);
+
+let toggleProps = computed(() => {
+  return [
+    {
+      label: "Disable Overflow",
+    },
+    {
+      label: "Expand on Hover",
+    },
+    {
+      label: "Overlay",
+    },
+    {
+      label: "No Mobile",
+    },
+    {
+      label: "Right",
+    },
+  ];
+});
 
 //DOCUMENTATION
 let componentName = "Drawer";
