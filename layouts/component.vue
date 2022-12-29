@@ -12,7 +12,7 @@
       }"
     >
       <div class="w-full h-full grid place-items-center font-semibold">
-        Component-Flip
+        NuxtWind
       </div>
     </Appbar>
     <div class="lg:h-[82vh] h-[72vh] overflow-y-auto">
