@@ -1,5 +1,10 @@
 <template>
-  <Drawer v-model="showDrawer">
+  <Drawer
+    v-model="showDrawer"
+    :overlay="permanentDrawer ? false : true"
+    :z-index="permanentDrawer ? 'z-[9]' : 'z-[100]'"
+    :permanent="permanentDrawer"
+  >
     <Appbar
       :color="{
         bg: 'dark:bg-zinc-800 bg-gray-300',
@@ -16,6 +21,12 @@
       :class="$route.matched[0].path === route.path ? 'bg-primary-800' : ''"
     >
       {{ capitalizeFirstLetter(route.name) }}
+    </div>
+    <div class="absolute bottom-3 right-3 text-lg">
+      <Button @click="permanentDrawer = !permanentDrawer" icon>
+        <MdiPin v-if="!permanentDrawer" />
+        <MdiPinOff v-else />
+      </Button>
     </div>
   </Drawer>
   <Appbar
@@ -70,37 +81,43 @@
       </div>
     </div>
   </Appbar>
-  <div
-    class="lg:text-2xl text-xl font-bold cursor-pointer mx-4 pt-16"
-    id="playground"
-    @click="$hashAndCopy('playground')"
-  >
-    <span>{{ $t("layouts.component.content.playground") }} - </span>
-    <span class="text-primary-800">
-      <slot name="componentName"></slot>
-    </span>
-  </div>
-  <div class="lg:flex lg:h-[88vh] w-full mt-5">
+  <div class="transition-all" :class="permanentDrawer ? 'ml-[330px]' : ''">
     <div
-      class="lg:w-1/2 lg:h-full h-1/2 flex items-center justify-center mx-4 lg:mb-0 mb-4 lg:p-0 py-12"
+      class="lg:text-2xl text-xl font-bold cursor-pointer mx-4 pt-16"
+      id="playground"
+      @click="$hashAndCopy('playground')"
     >
-      <slot name="component"></slot>
+      <span>{{ $t("layouts.component.content.playground") }} - </span>
+      <span class="text-primary-800">
+        <slot name="componentName"></slot>
+      </span>
     </div>
-    <div class="lg:w-1/2 lg:h-full h-1/2 mx-4 lg:my-0 my-6">
-      <slot name="playground"></slot>
+    <div class="lg:flex lg:h-[88vh] w-full mt-5">
+      <div
+        class="lg:w-1/2 lg:h-full h-1/2 flex items-center justify-center mx-4 lg:mb-0 mb-4 lg:p-0 py-12"
+      >
+        <slot name="component"></slot>
+      </div>
+      <div class="lg:w-1/2 lg:h-full h-1/2 mx-4 lg:my-0 my-6">
+        <slot name="playground"></slot>
+      </div>
     </div>
-  </div>
-  <div>
-    <slot name="documentation"> Documentation </slot>
+    <div>
+      <slot name="documentation"> Documentation </slot>
+    </div>
   </div>
 </template>
 <script setup>
 import MdiGithub from "~icons/mdi/github";
 import MdiTranslate from "~icons/mdi/translate";
 import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
+import MdiPin from "~icons/mdi/pin";
+import MdiPinOff from "~icons/mdi/pin-off";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
+
+let permanentDrawer = ref(false);
 
 let showDrawer = ref(false);
 
