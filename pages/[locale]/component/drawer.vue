@@ -167,6 +167,14 @@ let componentName = "Drawer";
 
 let props = [
   {
+    name: "permanent",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.drawer.content.properties.permanent.description"
+    ),
+  },
+  {
     name: "color",
     type: "Object",
     default: {
