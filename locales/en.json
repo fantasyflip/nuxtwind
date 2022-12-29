@@ -727,6 +727,9 @@
             },
             "width": {
               "description": "Prop to set the width of the drawer."
+            },
+            "permanent": {
+              "description": "Prop to disable closing the drawer on clicking outside."
             }
           }
         }

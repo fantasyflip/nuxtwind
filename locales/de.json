@@ -758,6 +758,9 @@
             },
             "width": {
               "description": "Eigenschaft um die Breite der Schublade einzustellen."
+            },
+            "permanent": {
+              "description": "Eigenschaft um das Schließen des Drawers beim Klicken außerhalb zu deaktivieren."
             }
           }
         }
