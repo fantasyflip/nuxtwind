@@ -684,6 +684,50 @@
               "label": "Bool-Prop Selection",
               "description": "By checking or unchecking the boxes the props will be handled accordingly."
             }
+          },
+          "properties": {
+            "color": {
+              "description": "Prop to set the drawer and overlay color."
+            },
+            "absolute": {
+              "description": "Prop to set the position of the drawer to 'absolute'."
+            },
+            "fixed": {
+              "description": "Prop to set the position of the drawer to 'fixed'."
+            },
+            "zIndex": {
+              "description": "Prop to set the Z-Index of the Drawer."
+            },
+            "overlay": {
+              "description": "Prop to enable or disable the overlay."
+            },
+            "disableOverflow": {
+              "description": "Prop to disable or enable the Page-Overflow when the drawer is opened."
+            },
+            "expandOnHover": {
+              "description": "Prop to expand the drawer on hover."
+            },
+            "transition": {
+              "description": "Prop to set the transition settings of the drawer. The duration and ease can be set separately."
+            },
+            "noMobile": {
+              "description": "Prop to prevent the drawer from disabling the expand-on-hover prop when using a mobile device."
+            },
+            "mobileWidth": {
+              "description": "Prop to set the threshhold when the noMobile-Prop should take effect."
+            },
+            "border": {
+              "description": "Prop to set the border settings of the drawer. If the 'right'-prop is set this prop must be altered accordingly."
+            },
+            "right": {
+              "description": "Prop to place the drawer on the right side."
+            },
+            "height": {
+              "description": "Prop to set the height of the drawer."
+            },
+            "width": {
+              "description": "Prop to set the width of the drawer."
+            }
           }
         }
       }

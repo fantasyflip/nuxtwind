@@ -715,6 +715,50 @@
               "label": "Bool-Eigenschaften Auswahl",
               "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
             }
+          },
+          "properties": {
+            "color": {
+              "description": "Eigenschaft um die Drawer- und Overlayfarbe einzustellen."
+            },
+            "absolute": {
+              "description": "Eigenschaft um die Position des Drawers auf 'absolut' zu setzen."
+            },
+            "fixed": {
+              "description": "Eigenschaft um die Position des Drawers auf 'fixed' zu setzen."
+            },
+            "zIndex": {
+              "description": "Eigenschaft um den Z-Index des Drawers einzustellen."
+            },
+            "overlay": {
+              "description": "Eigenschaft um das Overlay zu aktivieren oder zu deaktivieren."
+            },
+            "disableOverflow": {
+              "description": "Eigenschaft zum Deaktivieren oder Aktivieren des Seiten-Overflows beim Öffnen des Drawers."
+            },
+            "expandOnHover": {
+              "description": "Eigenschaft um den Drawer beim Darüberschweben zu öffnen."
+            },
+            "transition": {
+              "description": "Eigenschaft um die Übergangseinstellungen des Drawers festzulegen. \nDauer und Ease können separat eingestellt werden."
+            },
+            "noMobile": {
+              "description": "Eigenschaft um zu verhindern, dass der Drawer die Expand-on-Hover-Eigenschaft deaktiviert, wenn ein mobiles Gerät verwendet wird."
+            },
+            "mobileWidth": {
+              "description": "Eigenschaft um den Schwellwert festzulegen, wann die noMobile-Eigenschaft greifen soll."
+            },
+            "border": {
+              "description": "Eigenschaft um die Randeinstellungen des Drawers festzulegen. \nIst das 'right'-Prop eingestellt, muss das 'border'-Prop entsprechend geändert werden."
+            },
+            "right": {
+              "description": "Eigenschaft um den Drawer auf der rechten Seite zu platzieren."
+            },
+            "height": {
+              "description": "Eigenschaft um die Höhe des Drawers einzustellen."
+            },
+            "width": {
+              "description": "Eigenschaft um die Breite der Schublade einzustellen."
+            }
           }
         }
       }
