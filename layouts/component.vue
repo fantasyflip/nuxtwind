@@ -23,13 +23,20 @@
     >
       {{ capitalizeFirstLetter(route.name) }}
     </div>
-    <div class="absolute bottom-3 right-3 text-lg md:visible invisible">
-      <Button @click="handlePinDrawer" icon>
-        <MdiPin v-if="!usePermanentDrawer()" />
-        <MdiPinOff v-else />
-      </Button>
+    <div
+      class="w-full flex h-12 hover:bg-primary-800 cursor-pointer fixed bottom-1"
+      @click="handlePinDrawer"
+    >
+      <div class="h-full grid place-items-center text-xl">
+        <MdiPin class="w-12" v-if="!usePermanentDrawer()" />
+        <MdiPinOff class="w-12" v-else />
+      </div>
+      <div class="h-full grid content-center">
+        {{ usePermanentDrawer() ? "Unpin Drawer" : "Pin Drawer" }}
+      </div>
     </div>
   </Drawer>
+
   <Appbar
     fixed
     :elevate-on-scroll="!usePermanentDrawer()"
