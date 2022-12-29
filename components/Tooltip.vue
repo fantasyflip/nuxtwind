@@ -72,7 +72,7 @@ let props = defineProps({
   },
   width: {
     type: String,
-    default: "w-2/3",
+    default: "w-full",
   },
 });
 
