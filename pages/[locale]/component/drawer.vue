@@ -165,7 +165,123 @@ let toggleProps = computed(() => {
 //DOCUMENTATION
 let componentName = "Drawer";
 
-let props = [];
+let props = [
+  {
+    name: "color",
+    type: "Object",
+    default: {
+      bg: "bg-white dark:bg-gray-800",
+      overlayBg: "bg-black/50",
+    },
+    description: t(
+      "pages.component.drawer.content.properties.color.description"
+    ),
+  },
+  {
+    name: "absolute",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.drawer.content.properties.absolute.description"
+    ),
+  },
+  {
+    name: "fixed",
+    type: "Boolean",
+    default: true,
+    description: t(
+      "pages.component.drawer.content.properties.fixed.description"
+    ),
+  },
+  {
+    name: "zIndex",
+    type: "String",
+    default: "z-[100]",
+    description: t(
+      "pages.component.drawer.content.properties.zIndex.description"
+    ),
+  },
+  {
+    name: "overlay",
+    type: "Boolean",
+    default: true,
+    description: t(
+      "pages.component.drawer.content.properties.overlay.description"
+    ),
+  },
+  {
+    name: "disableOverflow",
+    type: "Boolean",
+    default: true,
+    description: t(
+      "pages.component.drawer.content.properties.disableOverflow.description"
+    ),
+  },
+  {
+    name: "expandOnHover",
+    type: "Boolean, Object",
+    default: false,
+    description: t(
+      "pages.component.drawer.content.properties.expandOnHover.description"
+    ),
+  },
+  {
+    name: "transition",
+    type: "Boolean, Object",
+    default: true,
+    description: t(
+      "pages.component.drawer.content.properties.transition.description"
+    ),
+  },
+  {
+    name: "noMobile",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.drawer.content.properties.noMobile.description"
+    ),
+  },
+  {
+    name: "mobileWidth",
+    type: "Number",
+    default: 768,
+    description: t(
+      "pages.component.drawer.content.properties.mobileWidth.description"
+    ),
+  },
+  {
+    name: "border",
+    type: "Boolean, String",
+    default: true,
+    description: t(
+      "pages.component.drawer.content.properties.border.description"
+    ),
+  },
+  {
+    name: "right",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.drawer.content.properties.right.description"
+    ),
+  },
+  {
+    name: "height",
+    type: "String",
+    default: "h-screen",
+    description: t(
+      "pages.component.drawer.content.properties.height.description"
+    ),
+  },
+  {
+    name: "width",
+    type: "String",
+    default: "md:w-80 w-60",
+    description: t(
+      "pages.component.drawer.content.properties.width.description"
+    ),
+  },
+];
 
 let events = [];
 
