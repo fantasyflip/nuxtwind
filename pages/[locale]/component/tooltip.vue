@@ -14,9 +14,11 @@
             @click="
               useToast({
                 title: '(╯°□°)╯︵ ┻━┻',
-                message: 'You´re supposed to hover over me and not click!',
+                message: $t(
+                  'pages.component.tooltip.content.playground.toast.message'
+                ),
                 autoClose: true,
-                type: 'warning',
+                type: 'error',
               })
             "
             >Hover over me!</Button
@@ -72,7 +74,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
-let tooltip = ref("This is a tooltip telling you not to click the button! :)");
+let tooltip = ref(t("pages.component.tooltip.content.playground.tooltip"));
 let checkedPositionBoxes = ref([true, false, false, false]);
 
 let postitionProps = ref([
@@ -95,7 +97,92 @@ let rounded = ref(true);
 //DOCUMENTATION
 let componentName = "Tooltip";
 
-let props = [];
+let props = [
+  {
+    name: "color",
+    type: "Object",
+    default: {
+      text: "dark:text-white text-black",
+      bg: "bg-primary-800",
+      bgPointer: "text-primary-800",
+    },
+    description: t(
+      "pages.component.tooltip.content.properties.color.description"
+    ),
+  },
+  {
+    name: "top",
+    type: "Boolean",
+    default: true,
+    description: t(
+      "pages.component.tooltip.content.properties.top.description"
+    ),
+  },
+  {
+    name: "bottom",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.tooltip.content.properties.bottom.description"
+    ),
+  },
+  {
+    name: "left",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.tooltip.content.properties.left.description"
+    ),
+  },
+  {
+    name: "right",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.tooltip.content.properties.right.description"
+    ),
+  },
+  {
+    name: "transition",
+    type: "Boolean, Object",
+    default: true,
+    description: t(
+      "pages.component.tooltip.content.properties.transition.description"
+    ),
+  },
+  {
+    name: "text",
+    type: "String",
+    default: "text-xs text-center",
+    description: t(
+      "pages.component.tooltip.content.properties.text.description"
+    ),
+  },
+  {
+    name: "rounded",
+    type: "Boolean, String",
+    default: true,
+    description: t(
+      "pages.component.tooltip.content.properties.rounded.description"
+    ),
+  },
+  {
+    name: "zIndex",
+    type: "String",
+    default: "z-10",
+    description: t(
+      "pages.component.tooltip.content.properties.zIndex.description"
+    ),
+  },
+  {
+    name: "width",
+    type: "String",
+    default: "w-full",
+    description: t(
+      "pages.component.tooltip.content.properties.width.description"
+    ),
+  },
+];
 
 let slots = [];
 

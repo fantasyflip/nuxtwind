@@ -740,6 +740,10 @@
             "checkboxgroup": {
               "label": "Bool-Prop Selection",
               "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            },
+            "tooltip": "This is a tooltip telling you not to click the button! :)",
+            "toast": {
+              "message": "You´re supposed to hover over me and not click!"
             }
           }
         }
