@@ -121,12 +121,34 @@ import MdiPinOff from "~icons/mdi/pin-off";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
-let showDrawer = ref(false);
+let showDrawer = ref(usePermanentDrawer());
 
+let isMobile = ref(false);
 onMounted(() => {
-  showDrawer.value = usePermanentDrawer(
-    localStorage.getItem("permanentDrawer") === "true"
-  );
+  if (window.innerWidth < 768) {
+    isMobile.value = true;
+    console.log(usePermanentDrawer(false, false));
+    usePermanentDrawer(false, false);
+  } else {
+    showDrawer.value = usePermanentDrawer(
+      localStorage.getItem("permanentDrawer") === "true",
+      false
+    );
+  }
+  addEventListener("resize", (event) => {
+    if (event.target.innerWidth < 768) {
+      isMobile.value = true;
+      usePermanentDrawer(false, false);
+    } else {
+      isMobile.value = false;
+      if (process.client) {
+        showDrawer.value = usePermanentDrawer(
+          localStorage.getItem("permanentDrawer") === "true",
+          false
+        );
+      }
+    }
+  });
 });
 
 function handlePinDrawer() {
