@@ -1,9 +1,10 @@
 <template>
   <Drawer
     v-model="showDrawer"
-    :overlay="permanentDrawer ? false : true"
-    :z-index="permanentDrawer ? 'z-[9]' : 'z-[100]'"
-    :permanent="permanentDrawer"
+    :overlay="usePermanentDrawer() ? false : true"
+    :z-index="usePermanentDrawer() ? 'z-[9]' : 'z-[100]'"
+    :permanent="usePermanentDrawer()"
+    width="md:w-60 w-40"
   >
     <Appbar
       :color="{
@@ -22,16 +23,16 @@
     >
       {{ capitalizeFirstLetter(route.name) }}
     </div>
-    <div class="absolute bottom-3 right-3 text-lg">
-      <Button @click="permanentDrawer = !permanentDrawer" icon>
-        <MdiPin v-if="!permanentDrawer" />
+    <div class="absolute bottom-3 right-3 text-lg md:visible invisible">
+      <Button @click="handlePinDrawer" icon>
+        <MdiPin v-if="!usePermanentDrawer()" />
         <MdiPinOff v-else />
       </Button>
     </div>
   </Drawer>
   <Appbar
     fixed
-    elevate-on-scroll
+    :elevate-on-scroll="!usePermanentDrawer()"
     navigation-icon
     @navigation-icon-click="showDrawer = true"
   >
@@ -81,7 +82,10 @@
       </div>
     </div>
   </Appbar>
-  <div class="transition-all" :class="permanentDrawer ? 'ml-[330px]' : ''">
+  <div
+    class="transition-all duration-300"
+    :class="usePermanentDrawer() ? 'md:ml-[240px] ml-[160px]' : ''"
+  >
     <div
       class="lg:text-2xl text-xl font-bold cursor-pointer mx-4 pt-16"
       id="playground"
@@ -117,9 +121,23 @@ import MdiPinOff from "~icons/mdi/pin-off";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
-let permanentDrawer = ref(false);
-
 let showDrawer = ref(false);
+
+onMounted(() => {
+  showDrawer.value = usePermanentDrawer(
+    localStorage.getItem("permanentDrawer") === "true"
+  );
+});
+
+function handlePinDrawer() {
+  if (usePermanentDrawer()) {
+    usePermanentDrawer(false);
+    showDrawer.value = false;
+  } else {
+    usePermanentDrawer(true);
+    showDrawer.value = true;
+  }
+}
 
 let routes = computed(() => {
   let routeList = useRouter().options.routes;

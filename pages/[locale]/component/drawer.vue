@@ -97,13 +97,7 @@
         </div>
       </template>
       <template #documentation>
-        <DocumentationDisplay
-          :componentName="componentName"
-          :props="props"
-          :events="events"
-          :caveats="caveats"
-          :slots="slots"
-        />
+        <DocumentationDisplay :componentName="componentName" :props="props" />
       </template>
     </NuxtLayout>
   </div>
