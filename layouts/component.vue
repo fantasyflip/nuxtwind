@@ -15,16 +15,18 @@
         Component-Flip
       </div>
     </Appbar>
-    <div
-      v-for="route in routes"
-      class="p-2 text-md w-full hover:bg-secondary-700"
-      @click="navigateTo(route.path.replace(':locale/', ''))"
-      :class="$route.matched[0].path === route.path ? 'bg-primary-800' : ''"
-    >
-      {{ capitalizeFirstLetter(route.name) }}
+    <div class="lg:h-[82vh] h-[72vh] overflow-y-auto">
+      <div
+        v-for="route in routes"
+        class="p-2 text-md w-full hover:bg-secondary-700"
+        @click="navigateTo(route.path.replace(':locale/', ''))"
+        :class="$route.matched[0].path === route.path ? 'bg-primary-800' : ''"
+      >
+        {{ capitalizeFirstLetter(route.name) }}
+      </div>
     </div>
     <div
-      class="w-full flex h-12 hover:bg-primary-800 cursor-pointer fixed bottom-1"
+      class="w-full flex h-12 hover:bg-primary-800 cursor-pointer fixed bottom-0"
       @click="handlePinDrawer"
     >
       <div class="h-full grid place-items-center text-xl">
