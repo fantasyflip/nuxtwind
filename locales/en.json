@@ -12,7 +12,16 @@
         }
       },
       "content": {
-        "playground": "Playground"
+        "playground": "Playground",
+        "cycleTheme": {
+          "tooltip": "Change Theme"
+        },
+        "switchLocale": {
+          "tooltip": "Change Language"
+        },
+        "github": {
+          "tooltip": "Open on Github"
+        }
       },
       "function": {
         "themeSwitch": {

@@ -54,39 +54,54 @@
           <div class="text-primary-800 group-hover:text-secondary-800">.</div>
         </div>
         <div class="flex">
-          <Button
-            class="mr-2"
-            icon
-            @click="handleCycleTheme()"
-            :color="{
-              text: 'text-primary-800',
-            }"
-            grow
-          >
-            <MdiThemeLightDark />
-          </Button>
-          <Button
-            class="mr-2"
-            icon
-            @click="handleSwitchLocale()"
-            :color="{
-              text: 'text-primary-800',
-            }"
-            grow
-          >
-            <MdiTranslate />
-          </Button>
-          <Button
-            icon
-            :link="useGithubComponentUrl(componentName)"
-            target="_blank"
-            :color="{
-              text: 'text-primary-800',
-            }"
-            grow
-          >
-            <MdiGithub />
-          </Button>
+          <Tooltip bottom width="w-fit">
+            <Button
+              class="mr-2"
+              icon
+              @click="handleCycleTheme()"
+              :color="{
+                text: 'text-primary-800',
+              }"
+              grow
+            >
+              <MdiThemeLightDark />
+            </Button>
+            <template #tooltip>
+              {{ $t("layouts.component.content.cycleTheme.tooltip") }}
+            </template>
+          </Tooltip>
+          <Tooltip bottom width="w-fit">
+            <Button
+              class="mr-2"
+              icon
+              @click="handleSwitchLocale()"
+              :color="{
+                text: 'text-primary-800',
+              }"
+              grow
+            >
+              <MdiTranslate />
+            </Button>
+            <template #tooltip>
+              {{ $t("layouts.component.content.switchLocale.tooltip") }}
+            </template>
+          </Tooltip>
+          <Tooltip bottom width="w-fit">
+            <Button
+              icon
+              :link="useGithubComponentUrl(componentName)"
+              target="_blank"
+              :color="{
+                text: 'text-primary-800',
+              }"
+              grow
+            >
+              <MdiGithub />
+            </Button>
+            <template #tooltip>
+              {{ $t("layouts.component.content.github.tooltip") }}
+            </template>
+          </Tooltip>
         </div>
       </div>
     </div>

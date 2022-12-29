@@ -12,7 +12,16 @@
         }
       },
       "content": {
-        "playground": "Test-Bereich"
+        "playground": "Test-Bereich",
+        "cycleTheme": {
+          "tooltip": "Thema ändern"
+        },
+        "switchLocale": {
+          "tooltip": "Sprache ändern"
+        },
+        "github": {
+          "tooltip": "Auf Github öffnen"
+        }
       },
       "function": {
         "themeSwitch": {
