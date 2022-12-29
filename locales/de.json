@@ -776,6 +776,43 @@
             "toast": {
               "message": "Du sollst über mir schweben und nicht klicken!"
             }
+          },
+          "properties": {
+            "color": {
+              "description": "Eigenschaft um die Farbe des Tooltips festzulegen. \nDie Farbe des Textes, des Tooltip-Hintergrunds und des Zeigerhintergrunds kann separat eingestellt werden."
+            },
+            "top": {
+              "description": "Eigenschaft um den Tooltip über dem Inhalt zu positionieren."
+            },
+            "bottom": {
+              "description": "Eigenschaft um den Tooltip unter dem Inhalt zu positionieren."
+            },
+            "left": {
+              "description": "Eigenschaft um den Tooltip links vom Inhalt zu positionieren."
+            },
+            "right": {
+              "description": "Eigenschaft um den Tooltip rechts vom Inhalt zu positionieren."
+            },
+            "transition": {
+              "description": "Eigenschaft um die Dauer und Ease des Deckkraftübergangs festzulegen."
+            },
+            "text": {
+              "description": "Eigenschaft um die Standard-Textdarstellung festzulegen."
+            },
+            "rounded": {
+              "description": "Eigenschaft um den Randradius des Tooltips festzulegen oder zu deaktivieren."
+            },
+            "zIndex": {
+              "description": "Eigenschaft um den Z-Index des Tooltips festzulegen."
+            },
+            "width": {
+              "description": "Eigenschaft um die Breite des Tooltips festzulegen."
+            }
+          },
+          "slots": {
+            "tooltip": {
+              "description": "Platzhalter zum Einfügen des Inhalts des Tooltips."
+            }
           }
         }
       }

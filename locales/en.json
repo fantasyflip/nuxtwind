@@ -745,6 +745,43 @@
             "toast": {
               "message": "You´re supposed to hover over me and not click!"
             }
+          },
+          "properties": {
+            "color": {
+              "description": "Prop to set the color of the tooltip. The color of the text, tooltip background and the pointer background can be set separately."
+            },
+            "top": {
+              "description": "Prop to position the tooltip above the content."
+            },
+            "bottom": {
+              "description": "Prop to position the tooltip below the content."
+            },
+            "left": {
+              "description": "Prop to position the tooltip left of the content."
+            },
+            "right": {
+              "description": "Prop to position the tooltip right of the content."
+            },
+            "transition": {
+              "description": "Prop to set the duration and ease of the opacity-transition."
+            },
+            "text": {
+              "description": "Prop to set the default text appearance."
+            },
+            "rounded": {
+              "description": "Prop to set or disable the tooltip's border radius."
+            },
+            "zIndex": {
+              "description": "Prop to set the z-index of the tooltip."
+            },
+            "width": {
+              "description": "Prop to set the tooltip's width."
+            }
+          },
+          "slots": {
+            "tooltip": {
+              "description": "Slot to insert the tooltip's content."
+            }
           }
         }
       }
