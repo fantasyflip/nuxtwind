@@ -733,6 +733,16 @@
             }
           }
         }
+      },
+      "tooltip": {
+        "content": {
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            }
+          }
+        }
       }
     },
     "index": {
