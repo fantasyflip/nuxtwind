@@ -80,6 +80,10 @@ let props = defineProps({
     type: Boolean,
     default: false,
   },
+  permanent: {
+    type: Boolean,
+    default: false,
+  },
   height: {
     type: String,
     default: "h-screen",
@@ -102,6 +106,18 @@ function setDocumentOverflow(type) {
   }
 }
 
+let permanentComputed = computed(() => {
+  return props.permanent;
+});
+
+watch(permanentComputed, (newVal, oldVal) => {
+  if (newVal) {
+    setDocumentOverflow("auto");
+  } else {
+    emit("update:modelValue", false);
+  }
+});
+
 let modelValueComputed = computed(() => {
   return props.modelValue;
 });
@@ -109,7 +125,7 @@ let modelValueComputed = computed(() => {
 //watch modelValueComputed
 watch(modelValueComputed, (newVal, oldVal) => {
   if (newVal) {
-    if (props.disableOverflow) {
+    if (props.disableOverflow && !props.permanent) {
       setDocumentOverflow("hidden");
     }
   }
@@ -118,9 +134,11 @@ watch(modelValueComputed, (newVal, oldVal) => {
 const drawer = ref(null);
 
 onClickOutside(drawer, () => {
-  emit("update:modelValue", false);
-  if (props.disableOverflow) {
-    setDocumentOverflow("auto");
+  if (!props.permanent) {
+    emit("update:modelValue", false);
+    if (props.disableOverflow) {
+      setDocumentOverflow("auto");
+    }
   }
 });
 
@@ -147,7 +165,7 @@ function hanldeHoverEnter() {
 function handleHoverLeave() {
   if (props.expandOnHover && (!isMobile.value || props.noMobile)) {
     emit("update:modelValue", false);
-    if (props.disableOverflow) {
+    if (props.disableOverflow && !props.permanent) {
       setDocumentOverflow("auto");
     }
   }
