@@ -223,7 +223,7 @@ let props = [
   {
     name: "zIndex",
     type: "String",
-    default: "z-50",
+    default: "z-10",
     description: t(
       "pages.component.appbar.content.properties.zIndex.description"
     ),
