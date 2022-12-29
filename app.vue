@@ -57,7 +57,7 @@ useHead({
     lang: locale.value,
     style: "scroll-behavior: smooth;",
   },
-  titleTemplate: "%s | Component Flip",
+  titleTemplate: "%s | NuxtWind",
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
 });
 

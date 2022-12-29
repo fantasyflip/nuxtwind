@@ -7,7 +7,7 @@
         "description": "Übersicht über die {componentName} Komponente.",
         "hash-description": "Übersicht über die {componentName} Komponente. Erfahre mehr über die {hash} Eigenschaft.",
         "og": {
-          "title": "{componentName} | Component Flip",
+          "title": "{componentName} | NuxtWind",
           "locale": "de_DE"
         }
       },
@@ -31,7 +31,7 @@
         "title": "404",
         "description": "Seite nicht gefunden",
         "og": {
-          "title": "404 - Seite nicht gefunden | Component Flip",
+          "title": "404 - Seite nicht gefunden | NuxtWind",
           "locale": "de_DE"
         }
       },
@@ -48,7 +48,7 @@
         "title": "Home",
         "description": "Eine Sammlung an Componenten für Nuxt 3 basierend auf Tailwind CSS.",
         "og": {
-          "title": "Home | Component Flip",
+          "title": "Home | NuxtWind",
           "locale": "de_DE"
         }
       },
@@ -61,7 +61,7 @@
         "title": "Hoppla",
         "description": "Wir konnten deine Sprache nicht feststellen.",
         "og": {
-          "title": "Hoppla - Sprache nicht gefunden | Component Flip",
+          "title": "Hoppla - Sprache nicht gefunden | NuxtWind",
           "locale": "de_DE"
         }
       },

@@ -7,7 +7,7 @@
         "description": "Overview over the {componentName} component.",
         "hash-description": "Overview over the {componentName} component. Learn more about the {hash} property.",
         "og": {
-          "title": "{componentName} | Component Flip",
+          "title": "{componentName} | NuxtWind",
           "locale": "en_US"
         }
       },
@@ -31,7 +31,7 @@
         "title": "404",
         "description": "Page not found!",
         "og": {
-          "title": "404 - Page not found | Component Flip",
+          "title": "404 - Page not found | NuxtWind",
           "locale": "en_US"
         }
       },
@@ -740,7 +740,7 @@
         "title": "Home",
         "description": "A Collection of Nuxt 3 Components powered by TailwindCSS",
         "og": {
-          "title": "Home | Component Flip",
+          "title": "Home | NuxtWind",
           "locale": "en_US"
         }
       },
@@ -753,7 +753,7 @@
         "title": "Oops",
         "description": "We coudn't detect your language.",
         "og": {
-          "title": "Oops - Language not found | Component Flip",
+          "title": "Oops - Language not found | NuxtWind",
           "locale": "en_US"
         }
       },
