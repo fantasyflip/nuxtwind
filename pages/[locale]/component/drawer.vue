@@ -283,12 +283,6 @@ let props = [
   },
 ];
 
-let events = [];
-
-let slots = [];
-
-let caveats = [];
-
 definePageMeta({
   layout: false,
 });
