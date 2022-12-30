@@ -214,6 +214,19 @@ function handleSwitchLocale() {
   post({ type: "locale", method: "switch" });
 }
 
+function getI18nCategoryKey(category) {
+  switch (category) {
+    case "prop":
+      return "properties";
+    case "event":
+      return "events";
+    case "slot":
+      return "slots";
+    case "caveat":
+      return "caveats";
+  }
+}
+
 function getOgpDescription() {
   if (route.query && route.query.hash) {
     let hash = route.query.hash;
@@ -225,8 +238,18 @@ function getOgpDescription() {
         "pages.component." +
           route.path.split("/")[3] +
           ".content.documentation." +
-          category +
-          "s." +
+          getI18nCategoryKey(category) +
+          "." +
+          item +
+          ".description"
+      );
+
+      console.log(
+        "pages.component." +
+          route.path.split("/")[3] +
+          ".content.documentation." +
+          getI18nCategoryKey(category) +
+          "." +
           item +
           ".description"
       );
