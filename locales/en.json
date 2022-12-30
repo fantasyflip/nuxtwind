@@ -5,8 +5,9 @@
       "meta": {
         "title": "{componentName}",
         "description": "Overview over the {componentName} component.",
-        "category-description": "Overview over the {componentName} component. Learn more about its {category}.",
-        "item-description": "Overview over the {componentName} component. Learn more about the '{item}'-{category}.",
+        "categoryDescription": "Overview over the {componentName} component. Learn more about its {category}.",
+        "itemDescription": "Overview over the {componentName} component. Learn more about the '{item}'-{category}.",
+        "itemContentDescription": "Overview over the {componentName} component. Learn more about the '{item}'-{category}:\n{content}",
         "og": {
           "title": "{componentName} | NuxtWind",
           "locale": "en_US"

@@ -221,13 +221,37 @@ function getOgpDescription() {
     if (hash.includes("-")) {
       let item = hash.split("-")[1];
       let category = hash.split("-")[0];
-      return t("layouts.component.meta.item-description", {
-        componentName,
-        item,
-        category: capitalizeFirstLetter(category),
-      });
+      let content = t(
+        "pages.component." +
+          route.path.split("/")[3] +
+          ".content.documentation." +
+          category +
+          "s." +
+          item +
+          ".description"
+      );
+
+      //check if first 5 characters are "pages"
+      if (content.substring(0, 5) === "pages") {
+        return t("layouts.component.meta.itemDescription", {
+          componentName,
+          item,
+          category: capitalizeFirstLetter(category),
+        });
+      } else {
+        //check if content includes html tags
+        if (content.includes("<")) {
+          content = content.replace(/<[^>]*>?/gm, "");
+        }
+        return t("layouts.component.meta.itemContentDescription", {
+          componentName,
+          item,
+          category: capitalizeFirstLetter(category),
+          content,
+        });
+      }
     } else {
-      return t("layouts.component.meta.category-description", {
+      return t("layouts.component.meta.categoryDescription", {
         componentName,
         category: capitalizeFirstLetter(hash),
       });
