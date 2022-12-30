@@ -337,38 +337,40 @@
       },
       "progress": {
         "content": {
-          "properties": {
-            "size": {
-              "description": "Gilt nur für die lineare Variante. \nEigenschaft um die Abmessungen der Komponente festzulegen."
+          "documentation": {
+            "properties": {
+              "size": {
+                "description": "Gilt nur für die lineare Variante. \nEigenschaft um die Abmessungen der Komponente festzulegen."
+              },
+              "color": {
+                "description": "Prop, um die Farben der Komponente festzulegen. \nFür die lineare Variante können folgende Farben separat eingestellt werden: Hintergrund, erster Animationsstrich, zweiter Animationsstrich, Fortschrittsfarbe und Hover-Fortschritt.<br>Für die kreisförmige Variante: Kreis, Fortschrittsfarbe und die Farbe des inneren Ausschnitts."
+              },
+              "circular": {
+                "description": "Eigenschaft um die Komponente auf die kreisförmige Variante einzustellen. \nDie kreisförmige Variante kann angepasst werden, indem sie auf ein Objekt mit den folgenden Eigenschaften gesetzt wird:<br><span class='font-bold'>Breite</span>: Kann auf jede Tailwind 'w'-Klasse gesetzt werden.<br \n><span class='font-bold'>Höhe</span>: Kann auf jede Tailwind 'h'-Klasse eingestellt werden.<br><span class='font-bold'>cutout.width</span>: \nKann auf jede Tailwind 'w'-Klasse in Kombination mit dem 'before'-Modifier gesetzt werden.<br><span class='font-bold'>cutout.height</span>: Kann auf jede Tailwind 'h'-Klasse in Kombination mit dem 'before'-Modifier gesetzt werden.<br><span class='font-bold'>cutout.text</span>: Kann auf jede Tailwind 'Text'-Klasse gesetzt werden, um die Textgröße festzulegen."
+              },
+              "loading": {
+                "description": "Eigenschaft um den Ladezustand der Komponente festzulegen."
+              },
+              "initialLoadTime": {
+                "description": "Diese Eigenschaft verhält sich je nach gewählter Variante unterschiedlich.<br><span class='font-bold'>Linear</span>: Die Zeit in ms zwischen der Erstellung der Komponente und der tatsächlichen Anzeige des Fortschritts. \nFür den besten Effekt sollte das Transition-Prop aktiv sein.<br><span class='font-bold'>Circular</span>: Die Zeit in ms, die die Komponente benötigt, um den angegebenen Wert zu erreichen."
+              },
+              "rounded": {
+                "description": "Gilt für die lineare Variante. \nEigenschaft um den Randradius der Komponente festzulegen. \nKann deaktiviert werden, indem es auf „false“ gesetzt wird, oder angepasst werden, indem die Eigenschaft auf eine Tailwind „rounded“-Klasse eingestellt wird."
+              },
+              "initialLoadTimeType": {
+                "description": "Eigenschaft um festzulegen, wie die Wachstumsgeschwindigkeit des kreisförmigen Fortschritts interpretiert wird.<br>Gültige Optionen sind:<br><span class='font-bold'>calc</span>: Die Geschwindigkeit wird \nfür jeden Wachstum einzeln berechnet, wodurch jeder Wachstum die gleiche Geschwindigkeit hat.<br><span class='font-bold'>static</span>: Die Geschwindigkeit wird auf den angegebenen Wert gesetzt. \nJeder einzelne Schritt dauert gleich lange."
+              }
             },
-            "color": {
-              "description": "Prop, um die Farben der Komponente festzulegen. \nFür die lineare Variante können folgende Farben separat eingestellt werden: Hintergrund, erster Animationsstrich, zweiter Animationsstrich, Fortschrittsfarbe und Hover-Fortschritt.<br>Für die kreisförmige Variante: Kreis, Fortschrittsfarbe und die Farbe des inneren Ausschnitts."
+            "slots": {
+              "innerCircle": {
+                "description": "Platzhalter zum Anpassen des inneren Kreisbereichs bei der kreisförmigen Variante."
+              }
             },
-            "circular": {
-              "description": "Eigenschaft um die Komponente auf die kreisförmige Variante einzustellen. \nDie kreisförmige Variante kann angepasst werden, indem sie auf ein Objekt mit den folgenden Eigenschaften gesetzt wird:<br><span class='font-bold'>Breite</span>: Kann auf jede Tailwind 'w'-Klasse gesetzt werden.<br \n><span class='font-bold'>Höhe</span>: Kann auf jede Tailwind 'h'-Klasse eingestellt werden.<br><span class='font-bold'>cutout.width</span>: \nKann auf jede Tailwind 'w'-Klasse in Kombination mit dem 'before'-Modifier gesetzt werden.<br><span class='font-bold'>cutout.height</span>: Kann auf jede Tailwind 'h'-Klasse in Kombination mit dem 'before'-Modifier gesetzt werden.<br><span class='font-bold'>cutout.text</span>: Kann auf jede Tailwind 'Text'-Klasse gesetzt werden, um die Textgröße festzulegen."
-            },
-            "loading": {
-              "description": "Eigenschaft um den Ladezustand der Komponente festzulegen."
-            },
-            "initialLoadTime": {
-              "description": "Diese Eigenschaft verhält sich je nach gewählter Variante unterschiedlich.<br><span class='font-bold'>Linear</span>: Die Zeit in ms zwischen der Erstellung der Komponente und der tatsächlichen Anzeige des Fortschritts. \nFür den besten Effekt sollte das Transition-Prop aktiv sein.<br><span class='font-bold'>Circular</span>: Die Zeit in ms, die die Komponente benötigt, um den angegebenen Wert zu erreichen."
-            },
-            "rounded": {
-              "description": "Gilt für die lineare Variante. \nEigenschaft um den Randradius der Komponente festzulegen. \nKann deaktiviert werden, indem es auf „false“ gesetzt wird, oder angepasst werden, indem die Eigenschaft auf eine Tailwind „rounded“-Klasse eingestellt wird."
-            },
-            "initialLoadTimeType": {
-              "description": "Eigenschaft um festzulegen, wie die Wachstumsgeschwindigkeit des kreisförmigen Fortschritts interpretiert wird.<br>Gültige Optionen sind:<br><span class='font-bold'>calc</span>: Die Geschwindigkeit wird \nfür jeden Wachstum einzeln berechnet, wodurch jeder Wachstum die gleiche Geschwindigkeit hat.<br><span class='font-bold'>static</span>: Die Geschwindigkeit wird auf den angegebenen Wert gesetzt. \nJeder einzelne Schritt dauert gleich lange."
-            }
-          },
-          "slots": {
-            "innerCircle": {
-              "description": "Platzhalter zum Anpassen des inneren Kreisbereichs bei der kreisförmigen Variante."
-            }
-          },
-          "config": {
-            "linearAnimation": {
-              "name": "Lineare Lade-Animation",
-              "description": "Damit die lineare Ladeanimation richtig funktioniert, muss die Tailwind-Konfiguration um die angezeigten Optionen erweitert werden."
+            "config": {
+              "linearAnimation": {
+                "name": "Lineare Lade-Animation",
+                "description": "Damit die lineare Ladeanimation richtig funktioniert, muss die Tailwind-Konfiguration um die angezeigten Optionen erweitert werden."
+              }
             }
           },
           "playground": {

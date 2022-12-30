@@ -102,7 +102,7 @@ let props = [
       height: "h-1",
     },
     description: t(
-      "pages.component.progress.content.properties.size.description"
+      "pages.component.progress.content.documentation.properties.size.description"
     ),
   },
   {
@@ -121,7 +121,7 @@ let props = [
       linearProgressHover: "hover:bg-secondary-800",
     },
     description: t(
-      "pages.component.progress.content.properties.color.description"
+      "pages.component.progress.content.documentation.properties.color.description"
     ),
   },
   {
@@ -129,7 +129,7 @@ let props = [
     type: "Boolean, Object",
     default: false,
     description: t(
-      "pages.component.progress.content.properties.circular.description"
+      "pages.component.progress.content.documentation.properties.circular.description"
     ),
   },
   {
@@ -137,7 +137,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.progress.content.properties.loading.description"
+      "pages.component.progress.content.documentation.properties.loading.description"
     ),
   },
   {
@@ -145,7 +145,7 @@ let props = [
     type: "Number, Boolean",
     default: 100,
     description: t(
-      "pages.component.progress.content.properties.initialLoadTime.description"
+      "pages.component.progress.content.documentation.properties.initialLoadTime.description"
     ),
   },
   {
@@ -153,7 +153,7 @@ let props = [
     type: "String",
     default: "calc",
     description: t(
-      "pages.component.progress.content.properties.initialLoadTimeType.description"
+      "pages.component.progress.content.documentation.properties.initialLoadTimeType.description"
     ),
   },
   {
@@ -166,7 +166,7 @@ let props = [
     type: "Boolean, String",
     default: true,
     description: t(
-      "pages.component.progress.content.properties.rounded.description"
+      "pages.component.progress.content.documentation.properties.rounded.description"
     ),
   },
 ];
@@ -175,16 +175,18 @@ let slots = [
   {
     name: "inner-circle",
     description: t(
-      "pages.component.progress.content.slots.innerCircle.description"
+      "pages.component.progress.content.documentation.slots.innerCircle.description"
     ),
   },
 ];
 
 let configs = [
   {
-    name: t("pages.component.progress.content.config.linearAnimation.name"),
+    name: t(
+      "pages.component.progress.content.documentation.config.linearAnimation.name"
+    ),
     description: t(
-      "pages.component.progress.content.config.linearAnimation.description"
+      "pages.component.progress.content.documentation.config.linearAnimation.description"
     ),
     structure: {
       theme: {
