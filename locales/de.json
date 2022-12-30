@@ -660,62 +660,64 @@
               }
             }
           },
-          "properties": {
-            "color": {
-              "description": "Eigenschaft um die Farbe der Appbar festzulegen."
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Eigenschaft um die Farbe der Appbar festzulegen."
+              },
+              "fixed": {
+                "description": "Eigenschaft um die Position der Appbar auf „fixed“ zu setzen."
+              },
+              "absolute": {
+                "description": "Eigenschaft um die Position der Appbar auf „absolut“ zu setzen."
+              },
+              "sticky": {
+                "description": "Eigenschaft um die Position der Appbar auf „sticky“ zu setzen."
+              },
+              "bottom": {
+                "description": "Eigenschaft um die Position der Appbar nach unten zu ändern. \nErfordert Position 'absolut' oder 'fixed'."
+              },
+              "extension": {
+                "description": "Eigenschaft um den Erweiterungsplatzhalter zu aktivieren, der zusätzlichen Platz unter der Appbar bietet."
+              },
+              "shrinkOnScroll": {
+                "description": "Eigenschaft um den Erweiterungsplatzhalter beim Scrollen zu verkleinern."
+              },
+              "elevateOnScroll": {
+                "description": "Eigenschaft um der Appbar beim Scrollen einen Schlagschatten hinzuzufügen."
+              },
+              "navigationIcon": {
+                "description": "Eigenschaft um den Navigationssymbol-Platzhalter zu aktivieren. \nEs ist auch möglich, der Eigenschaft eine Komponente bereitzustellen. \nDas Standardsymbol ist MDI-Menü."
+              },
+              "scrollOffset": {
+                "description": "Eigenschaft um den Y-Scroll-Offset zu setzen, wenn die Appbar in einem relativen, übergeordneten Overflow-Element verwendet wird."
+              },
+              "height": {
+                "description": "Eigenschaft um die Höhe der Appbar festzulegen."
+              },
+              "zIndex": {
+                "description": "Eigenschaft um den Z-Index der Appbar festzulegen."
+              }
             },
-            "fixed": {
-              "description": "Eigenschaft um die Position der Appbar auf „fixed“ zu setzen."
+            "events": {
+              "navigationIconClick": {
+                "description": "Ereignis, das ausgegeben wird, wenn auf das Standardnavigationssymbol geklickt wird."
+              }
             },
-            "absolute": {
-              "description": "Eigenschaft um die Position der Appbar auf „absolut“ zu setzen."
+            "slots": {
+              "navigationIcon": {
+                "description": "Platzhalter zum Bereitstellen eines benutzerdefinierten Navigationssymbols."
+              }
             },
-            "sticky": {
-              "description": "Eigenschaft um die Position der Appbar auf „sticky“ zu setzen."
-            },
-            "bottom": {
-              "description": "Eigenschaft um die Position der Appbar nach unten zu ändern. \nErfordert Position 'absolut' oder 'fixed'."
-            },
-            "extension": {
-              "description": "Eigenschaft um den Erweiterungsplatzhalter zu aktivieren, der zusätzlichen Platz unter der Appbar bietet."
-            },
-            "shrinkOnScroll": {
-              "description": "Eigenschaft um den Erweiterungsplatzhalter beim Scrollen zu verkleinern."
-            },
-            "elevateOnScroll": {
-              "description": "Eigenschaft um der Appbar beim Scrollen einen Schlagschatten hinzuzufügen."
-            },
-            "navigationIcon": {
-              "description": "Eigenschaft um den Navigationssymbol-Platzhalter zu aktivieren. \nEs ist auch möglich, der Eigenschaft eine Komponente bereitzustellen. \nDas Standardsymbol ist MDI-Menü."
-            },
-            "scrollOffset": {
-              "description": "Eigenschaft um den Y-Scroll-Offset zu setzen, wenn die Appbar in einem relativen, übergeordneten Overflow-Element verwendet wird."
-            },
-            "height": {
-              "description": "Eigenschaft um die Höhe der Appbar festzulegen."
-            },
-            "zIndex": {
-              "description": "Eigenschaft um den Z-Index der Appbar festzulegen."
-            }
-          },
-          "events": {
-            "navigationIconClick": {
-              "description": "Ereignis, das ausgegeben wird, wenn auf das Standardnavigationssymbol geklickt wird."
-            }
-          },
-          "slots": {
-            "navigationIcon": {
-              "description": "Platzhalter zum Bereitstellen eines benutzerdefinierten Navigationssymbols."
-            }
-          },
-          "caveats": {
-            "icon": {
-              "description": "Das Standard Navigationssymbol stammt aus dem <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Paket</a>.",
-              "title": "Unplugins Icon Paket"
-            },
-            "button": {
-              "title": "Button Komponente",
-              "description": "Die Appbar benötigt die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Button-Komponente</a>."
+            "caveats": {
+              "icon": {
+                "description": "Das Standard Navigationssymbol stammt aus dem <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Paket</a>.",
+                "title": "Unplugins Icon Paket"
+              },
+              "button": {
+                "title": "Button Komponente",
+                "description": "Die Appbar benötigt die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Button-Komponente</a>."
+              }
             }
           }
         }

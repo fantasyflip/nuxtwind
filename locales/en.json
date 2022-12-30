@@ -628,62 +628,64 @@
               "description": "By checking or unchecking the boxes the props will be handled accordingly."
             }
           },
-          "properties": {
-            "color": {
-              "description": "Prop to set the appbar's color."
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Prop to set the appbar's color."
+              },
+              "fixed": {
+                "description": "Prop to set the appbar's position to 'fixed'."
+              },
+              "absolute": {
+                "description": "Prop to set the appbar's position to 'absolute'."
+              },
+              "sticky": {
+                "description": "Prop to set the appbar's position to 'sticky'."
+              },
+              "bottom": {
+                "description": "Prop to change the appbar's position to the bottom. Requires position 'absolute' or 'fixed'."
+              },
+              "extension": {
+                "description": "Prop to activate the extension-slot providing extra space below the appbar."
+              },
+              "shrinkOnScroll": {
+                "description": "Prop to shrink the extension slot on scroll."
+              },
+              "elevateOnScroll": {
+                "description": "Prop to add a drop shadow to the appbar on scroll."
+              },
+              "navigationIcon": {
+                "description": "Prop to activate the navigation-icon-slot. It's also possible to provide a component to the prop. The default icon is MDI-Menu."
+              },
+              "scrollOffset": {
+                "description": "Prop to set the Y-Scroll-Offset if the appbar is used in a relative overflow parent element."
+              },
+              "height": {
+                "description": "Prop to set the appbar's height."
+              },
+              "zIndex": {
+                "description": "Prop to set the appbar's z-index."
+              }
             },
-            "fixed": {
-              "description": "Prop to set the appbar's position to 'fixed'."
+            "events": {
+              "navigationIconClick": {
+                "description": "Event that will be emitted when the default navigation-icon is clicked."
+              }
             },
-            "absolute": {
-              "description": "Prop to set the appbar's position to 'absolute'."
+            "slots": {
+              "navigationIcon": {
+                "description": "Slot to provide a custom navigation-icon."
+              }
             },
-            "sticky": {
-              "description": "Prop to set the appbar's position to 'sticky'."
-            },
-            "bottom": {
-              "description": "Prop to change the appbar's position to the bottom. Requires position 'absolute' or 'fixed'."
-            },
-            "extension": {
-              "description": "Prop to activate the extension-slot providing extra space below the appbar."
-            },
-            "shrinkOnScroll": {
-              "description": "Prop to shrink the extension slot on scroll."
-            },
-            "elevateOnScroll": {
-              "description": "Prop to add a drop shadow to the appbar on scroll."
-            },
-            "navigationIcon": {
-              "description": "Prop to activate the navigation-icon-slot. It's also possible to provide a component to the prop. The default icon is MDI-Menu."
-            },
-            "scrollOffset": {
-              "description": "Prop to set the Y-Scroll-Offset if the appbar is used in a relative overflow parent element."
-            },
-            "height": {
-              "description": "Prop to set the appbar's height."
-            },
-            "zIndex": {
-              "description": "Prop to set the appbar's z-index."
-            }
-          },
-          "events": {
-            "navigationIconClick": {
-              "description": "Event that will be emitted when the default navigation-icon is clicked."
-            }
-          },
-          "slots": {
-            "navigationIcon": {
-              "description": "Slot to provide a custom navigation-icon."
-            }
-          },
-          "caveats": {
-            "icon": {
-              "description": "The default navigation-icon is taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Packet</a>.",
-              "title": "Unplugins Icon Packet"
-            },
-            "button": {
-              "title": "Button component ",
-              "description": "The appbar requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Button-Component</a>."
+            "caveats": {
+              "icon": {
+                "description": "The default navigation-icon is taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Packet</a>.",
+                "title": "Unplugins Icon Packet"
+              },
+              "button": {
+                "title": "Button component ",
+                "description": "The appbar requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Button-Component</a>."
+              }
             }
           }
         }

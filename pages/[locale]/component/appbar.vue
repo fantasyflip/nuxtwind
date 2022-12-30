@@ -225,7 +225,7 @@ let props = [
     type: "String",
     default: "z-10",
     description: t(
-      "pages.component.appbar.content.properties.zIndex.description"
+      "pages.component.appbar.content.documentation.properties.zIndex.description"
     ),
   },
   {
@@ -235,7 +235,7 @@ let props = [
       bg: "bg-white dark:bg-zinc-900",
     },
     description: t(
-      "pages.component.appbar.content.properties.color.description"
+      "pages.component.appbar.content.documentation.properties.color.description"
     ),
   },
   {
@@ -243,7 +243,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.appbar.content.properties.fixed.description"
+      "pages.component.appbar.content.documentation.properties.fixed.description"
     ),
   },
   {
@@ -251,7 +251,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.appbar.content.properties.absolute.description"
+      "pages.component.appbar.content.documentation.properties.absolute.description"
     ),
   },
   {
@@ -259,7 +259,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.appbar.content.properties.sticky.description"
+      "pages.component.appbar.content.documentation.properties.sticky.description"
     ),
   },
   {
@@ -267,7 +267,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.appbar.content.properties.bottom.description"
+      "pages.component.appbar.content.documentation.properties.bottom.description"
     ),
   },
   {
@@ -275,7 +275,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.appbar.content.properties.extension.description"
+      "pages.component.appbar.content.documentation.properties.extension.description"
     ),
   },
   {
@@ -283,7 +283,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.appbar.content.properties.shrinkOnScroll.description"
+      "pages.component.appbar.content.documentation.properties.shrinkOnScroll.description"
     ),
   },
   {
@@ -291,7 +291,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.appbar.content.properties.elevateOnScroll.description"
+      "pages.component.appbar.content.documentation.properties.elevateOnScroll.description"
     ),
   },
   {
@@ -299,7 +299,7 @@ let props = [
     type: "Boolean, Object",
     default: false,
     description: t(
-      "pages.component.appbar.content.properties.navigationIcon.description"
+      "pages.component.appbar.content.documentation.properties.navigationIcon.description"
     ),
   },
   {
@@ -307,7 +307,7 @@ let props = [
     type: "Number",
     default: null,
     description: t(
-      "pages.component.appbar.content.properties.scrollOffset.description"
+      "pages.component.appbar.content.documentation.properties.scrollOffset.description"
     ),
   },
   {
@@ -315,7 +315,7 @@ let props = [
     type: "String",
     default: "h-14",
     description: t(
-      "pages.component.appbar.content.properties.height.description"
+      "pages.component.appbar.content.documentation.properties.height.description"
     ),
   },
 ];
@@ -325,7 +325,7 @@ let events = [
     name: "navigation-icon-click",
     structure: undefined,
     description: t(
-      "pages.component.appbar.content.events.navigationIconClick.description"
+      "pages.component.appbar.content.documentation.events.navigationIconClick.description"
     ),
   },
 ];
@@ -334,22 +334,27 @@ let slots = [
   {
     name: "navigation-icon",
     description: t(
-      "pages.component.appbar.content.slots.navigationIcon.description"
+      "pages.component.appbar.content.documentation.slots.navigationIcon.description"
     ),
   },
 ];
 
 let caveats = [
   {
-    name: t("pages.component.appbar.content.caveats.icon.title"),
-    description: t("pages.component.appbar.content.caveats.icon.description", {
-      url: "https://github.com/antfu/unplugin-icons",
-    }),
+    name: t("pages.component.appbar.content.documentation.caveats.icon.title"),
+    description: t(
+      "pages.component.appbar.content.documentation.caveats.icon.description",
+      {
+        url: "https://github.com/antfu/unplugin-icons",
+      }
+    ),
   },
   {
-    name: t("pages.component.appbar.content.caveats.button.title"),
+    name: t(
+      "pages.component.appbar.content.documentation.caveats.button.title"
+    ),
     description: t(
-      "pages.component.appbar.content.caveats.button.description",
+      "pages.component.appbar.content.documentation.caveats.button.description",
       {
         url: useLocaleUrl("component/button"),
       }
