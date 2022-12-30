@@ -2,7 +2,7 @@
   <Drawer
     v-model="showDrawer"
     :overlay="usePermanentDrawer() ? false : true"
-    :z-index="usePermanentDrawer() ? 'z-[9]' : 'z-[100]'"
+    :z-index="usePermanentDrawer() ? 'z-[99]' : 'z-[101]'"
     :permanent="usePermanentDrawer()"
     width="md:w-72 w-52"
   >
@@ -45,6 +45,7 @@
     :elevate-on-scroll="!usePermanentDrawer()"
     :navigation-icon="!usePermanentDrawer()"
     @navigation-icon-click="showDrawer = true"
+    z-index="z-[100]"
   >
     <div class="w-full h-full grid content-center">
       <div
