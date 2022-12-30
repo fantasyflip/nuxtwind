@@ -151,7 +151,7 @@ let props = [
     type: "String",
     default: "Label",
     description: t(
-      "pages.component.textarea.content.properties.label.description"
+      "pages.component.textarea.content.documentation.properties.label.description"
     ),
   },
   {
@@ -175,7 +175,7 @@ let props = [
       borderFocusError: "focus:border-red-500",
     },
     description: t(
-      "pages.component.textarea.content.properties.color.description"
+      "pages.component.textarea.content.documentation.properties.color.description"
     ),
   },
   {
@@ -183,7 +183,7 @@ let props = [
     type: "String",
     default: "on",
     description: t(
-      "pages.component.textarea.content.properties.autocomplete.description"
+      "pages.component.textarea.content.documentation.properties.autocomplete.description"
     ),
   },
   {
@@ -191,7 +191,7 @@ let props = [
     type: "Boolean, String",
     default: "rounded-lg",
     description: t(
-      "pages.component.textarea.content.properties.rounded.description"
+      "pages.component.textarea.content.documentation.properties.rounded.description"
     ),
   },
   {
@@ -199,7 +199,7 @@ let props = [
     type: "Boolean, Object",
     default: false,
     description: t(
-      "pages.component.textarea.content.properties.prependIcon.description"
+      "pages.component.textarea.content.documentation.properties.prependIcon.description"
     ),
   },
   {
@@ -207,7 +207,7 @@ let props = [
     type: "Boolean, Object",
     default: false,
     description: t(
-      "pages.component.textarea.content.properties.appendIcon.description"
+      "pages.component.textarea.content.documentation.properties.appendIcon.description"
     ),
   },
   {
@@ -215,7 +215,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.textarea.content.properties.disabled.description"
+      "pages.component.textarea.content.documentation.properties.disabled.description"
     ),
   },
   {
@@ -223,7 +223,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.textarea.content.properties.loading.description"
+      "pages.component.textarea.content.documentation.properties.loading.description"
     ),
   },
   {
@@ -231,7 +231,7 @@ let props = [
     type: "Boolean, String",
     default: false,
     description: t(
-      "pages.component.textarea.content.properties.outlined.description"
+      "pages.component.textarea.content.documentation.properties.outlined.description"
     ),
   },
   {
@@ -239,7 +239,7 @@ let props = [
     type: "Boolean",
     default: "border-b-2",
     description: t(
-      "pages.component.textarea.content.properties.filled.description"
+      "pages.component.textarea.content.documentation.properties.filled.description"
     ),
   },
   {
@@ -247,7 +247,7 @@ let props = [
     type: "Boolean, String",
     default: "shadow-lg",
     description: t(
-      "pages.component.textarea.content.properties.shadow.description"
+      "pages.component.textarea.content.documentation.properties.shadow.description"
     ),
   },
   {
@@ -262,7 +262,7 @@ let props = [
       },
     },
     description: t(
-      "pages.component.textarea.content.properties.transition.description"
+      "pages.component.textarea.content.documentation.properties.transition.description"
     ),
   },
   {
@@ -270,7 +270,7 @@ let props = [
     type: "String",
     default: " ",
     description: t(
-      "pages.component.textarea.content.properties.placeholder.description"
+      "pages.component.textarea.content.documentation.properties.placeholder.description"
     ),
   },
   {
@@ -278,7 +278,7 @@ let props = [
     type: "String",
     default: undefined,
     description: t(
-      "pages.component.textarea.content.properties.hint.description"
+      "pages.component.textarea.content.documentation.properties.hint.description"
     ),
   },
   {
@@ -286,7 +286,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.textarea.content.properties.counter.description"
+      "pages.component.textarea.content.documentation.properties.counter.description"
     ),
   },
   {
@@ -294,7 +294,7 @@ let props = [
     type: "String",
     default: "min-h-[40px]",
     description: t(
-      "pages.component.textarea.content.properties.height.description"
+      "pages.component.textarea.content.documentation.properties.height.description"
     ),
   },
   {
@@ -302,7 +302,7 @@ let props = [
     type: "String",
     default: undefined,
     description: t(
-      "pages.component.textarea.content.properties.width.description"
+      "pages.component.textarea.content.documentation.properties.width.description"
     ),
   },
 ];
@@ -312,7 +312,7 @@ let events = [
     name: "update:modelValue",
     structure: "String",
     description: t(
-      "pages.component.textarea.content.events.updateModelValue.description"
+      "pages.component.textarea.content.documentation.events.updateModelValue.description"
     ),
   },
   {
@@ -327,21 +327,21 @@ let events = [
       },
     },
     description: t(
-      "pages.component.textarea.content.events.updateValidation.description"
+      "pages.component.textarea.content.documentation.events.updateValidation.description"
     ),
   },
   {
     name: "focusIn",
     structure: undefined,
     description: t(
-      "pages.component.textarea.content.events.focusIn.description"
+      "pages.component.textarea.content.documentation.events.focusIn.description"
     ),
   },
   {
     name: "focusOut",
     structure: undefined,
     description: t(
-      "pages.component.textarea.content.events.focusOut.description"
+      "pages.component.textarea.content.documentation.events.focusOut.description"
     ),
   },
 ];
@@ -350,18 +350,20 @@ let slots = [
   {
     name: "prepend-icon",
     description: t(
-      "pages.component.textarea.content.slots.prependIcon.description"
+      "pages.component.textarea.content.documentation.slots.prependIcon.description"
     ),
   },
   {
     name: "append-icon",
     description: t(
-      "pages.component.textarea.content.slots.appendIcon.description"
+      "pages.component.textarea.content.documentation.slots.appendIcon.description"
     ),
   },
   {
     name: "label",
-    description: t("pages.component.textarea.content.slots.label.description"),
+    description: t(
+      "pages.component.textarea.content.documentation.slots.label.description"
+    ),
   },
 ];
 

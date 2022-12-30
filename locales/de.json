@@ -180,82 +180,84 @@
               "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
             }
           },
-          "properties": {
-            "color": {
-              "description": "Eigenschaft zum Festlegen der Farben der Textbox.<br>Sie können den Hintergrund, den Text, den Hinweis, den Fehler, die Beschriftung, die fokussierte Beschriftung, den Platzhalter, das Symbol, das fokussierte Symbol, den Rahmen, den fokussierten Rahmen, den Fehlerrahmen und die Farbe des fokussierten Fehlerrahmens separat festlegen. \n<br>Wenn das 'outlined' Prop gesetzt ist, ist die Hintergrundfarbe transparent.<br>Denken Sie daran, <span class='font-bold'>die Modifikatorklassen für spezielle Zustände so zu belassen</span>, wie sie in der Standardeinstellung sind, \nund nur die Farbklassen ändern."
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Eigenschaft zum Festlegen der Farben der Textbox.<br>Sie können den Hintergrund, den Text, den Hinweis, den Fehler, die Beschriftung, die fokussierte Beschriftung, den Platzhalter, das Symbol, das fokussierte Symbol, den Rahmen, den fokussierten Rahmen, den Fehlerrahmen und die Farbe des fokussierten Fehlerrahmens separat festlegen. \n<br>Wenn das 'outlined' Prop gesetzt ist, ist die Hintergrundfarbe transparent.<br>Denken Sie daran, <span class='font-bold'>die Modifikatorklassen für spezielle Zustände so zu belassen</span>, wie sie in der Standardeinstellung sind, \nund nur die Farbklassen ändern."
+              },
+              "label": {
+                "description": "Eigenschaft um die Bezeichnung der Textbox festzulegen. \nWird für das Validierungsereignis verwendet. \nDies sollte festgelegt und ein eindeutiger Wert sein. \nWenn der Label-Slot verwendet wird, wird die Label-Eigenschaft weiterhin für das Validierungsereignis verwendet."
+              },
+              "rounded": {
+                "description": "Eigenschaft um den Randradius der Textbox festzulegen. \nDies gilt nur für die Textbox, wenn die 'outlined' Eigenschaft gesetzt ist.<br>Der Standardwert kann durch einen String oder 'false' ersetzt werden.<br>Um einen speziellen Wert einzustellen, stelle ihn auf eine Tailwind \n'rounded'-Klasse."
+              },
+              "prependIcon": {
+                "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol vor der Textbox enthält. Es kann auch eine Komponente als Objekt übergeben werden anstatt den Slot zu verwenden.<br> Das Symbol wird innerhalb der Textbox angezeigt und linksbündig ausgerichtet."
+              },
+              "appendIcon": {
+                "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol am Ende der Textbox enthält. Es kann auch eine Komponente als Objekt übergeben werden anstatt den Slot zu verwenden.<br> Das Symbol wird innerhalb der Textbox angezeigt und rechtsbündig ausgerichtet."
+              },
+              "disabled": {
+                "description": "Eigenschaft um die Textbox zu deaktivieren. \nWenn deaktiviert, wird die Deckkraft auf 50 % gesetzt und die Textbox ist nicht mehr anklickbar."
+              },
+              "loading": {
+                "description": "Eigenschaft um den Ladezustand der Textbox zu setzen. \nWenn sie angewendet wird, pulsiert die Textbox und ein Ladecursor wird beim darüberschweben angezeigt."
+              },
+              "outlined": {
+                "description": "Eigenschaft um den Stil der Textbox auf 'outlined' zu setzen. \nWenn gesetzt, wird der Rahmen auf den Standardwert gesetzt.<br>Über eine Tailwind 'border'-Klasse kann die Rahmenbreite gesetzt werden.<br>Die Hintergrundfarbe ist transparent."
+              },
+              "filled": {
+                "description": "Eigenschaft um den Stil der Textbox auf 'filled' zu setzen. \nWenn gesetzt, wird die Border-Klasse auf den Default-Wert gesetzt.<br>Wenn eine Tailwind-'border'-Klasse übergeben wird, wird die Border-Breite gesetzt.<br>Für das beste Erscheinungsbild sollte eine 'border-t'-Klasse verwendet werden."
+              },
+              "shadow": {
+                "description": "Eigenschaft um der Textbox einen Schatten hinzuzufügen. \nDer Standardwert wird angewendet, wenn die Eigenschaft angewendet wird und keine Tailwind-Klasse übergeben wird. Übergibt man eine \"Shadow\"-Klasse kann der Effekt angepasst werden."
+              },
+              "transition": {
+                "description": "Eigenschaft um die Übergangseinstellungen der Textbox und des Platzhalters festzulegen.<br>Wenn auf „true“ gesetzt, wird der Standardübergang angewendet.<br>Wenn ein Objekt übergeben wird, kann die „Dauer“ und der „Übergang“ unabhängig von einander für jeweils die regulären und die Platzhalter Übergänge angepasst werden."
+              },
+              "placeholder": {
+                "description": "Eigenschaft um den Platzhalter der Textbox zu setzen."
+              },
+              "hint": {
+                "description": "Eigenschaft um den Hinweis der Textbox zu setzen."
+              },
+              "height": {
+                "description": "Eigenschaft um die Höhe der Textbox festzulegen. Die Höhe kann mit Tailwind \"H\"-Klassen angepasst werden."
+              },
+              "width": {
+                "description": "Eigenschaft um die Breite der Textbox festzulegen. Die Breite kann mit Tailwind \"W\"-Klassen angepasst werden."
+              },
+              "autocomplete": {
+                "description": "Eigenschaft um den Autocomplete-Wert der Textbox festzulegen."
+              },
+              "counter": {
+                "description": "Eigenschaft um einen Zähler in der oberen rechten Ecke der Textbox anzuzeigen, der die eingegebenen Zeichen zählt."
+              }
             },
-            "label": {
-              "description": "Eigenschaft um die Bezeichnung der Textbox festzulegen. \nWird für das Validierungsereignis verwendet. \nDies sollte festgelegt und ein eindeutiger Wert sein. \nWenn der Label-Slot verwendet wird, wird die Label-Eigenschaft weiterhin für das Validierungsereignis verwendet."
+            "events": {
+              "updateModelValue": {
+                "description": "Ereignis, das bei jeder Eingabe den Wert der Textbox ausgibt. \nDieses Ereignis wird verwendet, um v-model zu aktualisieren."
+              },
+              "updateValidation": {
+                "description": "Ereignis, das den Validierungsstatus der Textbox ausgibt. \nDieses Ereignis kann verwendet werden, um die Validierung der Komponente im übergeordneten Element zu überprüfen."
+              },
+              "focusIn": {
+                "description": "Ereignis, das ausgegeben wird, wenn die Textbox fokussiert wurde."
+              },
+              "focusOut": {
+                "description": "Ereignis, das ausgegeben wird, wenn die Textbox den Fokus verliert."
+              }
             },
-            "rounded": {
-              "description": "Eigenschaft um den Randradius der Textbox festzulegen. \nDies gilt nur für die Textbox, wenn die 'outlined' Eigenschaft gesetzt ist.<br>Der Standardwert kann durch einen String oder 'false' ersetzt werden.<br>Um einen speziellen Wert einzustellen, stelle ihn auf eine Tailwind \n'rounded'-Klasse."
-            },
-            "prependIcon": {
-              "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol vor der Textbox enthält. Es kann auch eine Komponente als Objekt übergeben werden anstatt den Slot zu verwenden.<br> Das Symbol wird innerhalb der Textbox angezeigt und linksbündig ausgerichtet."
-            },
-            "appendIcon": {
-              "description": "Eigenschaft um den Platzhalter zu aktivieren, der ein Symbol am Ende der Textbox enthält. Es kann auch eine Komponente als Objekt übergeben werden anstatt den Slot zu verwenden.<br> Das Symbol wird innerhalb der Textbox angezeigt und rechtsbündig ausgerichtet."
-            },
-            "disabled": {
-              "description": "Eigenschaft um die Textbox zu deaktivieren. \nWenn deaktiviert, wird die Deckkraft auf 50 % gesetzt und die Textbox ist nicht mehr anklickbar."
-            },
-            "loading": {
-              "description": "Eigenschaft um den Ladezustand der Textbox zu setzen. \nWenn sie angewendet wird, pulsiert die Textbox und ein Ladecursor wird beim darüberschweben angezeigt."
-            },
-            "outlined": {
-              "description": "Eigenschaft um den Stil der Textbox auf 'outlined' zu setzen. \nWenn gesetzt, wird der Rahmen auf den Standardwert gesetzt.<br>Über eine Tailwind 'border'-Klasse kann die Rahmenbreite gesetzt werden.<br>Die Hintergrundfarbe ist transparent."
-            },
-            "filled": {
-              "description": "Eigenschaft um den Stil der Textbox auf 'filled' zu setzen. \nWenn gesetzt, wird die Border-Klasse auf den Default-Wert gesetzt.<br>Wenn eine Tailwind-'border'-Klasse übergeben wird, wird die Border-Breite gesetzt.<br>Für das beste Erscheinungsbild sollte eine 'border-t'-Klasse verwendet werden."
-            },
-            "shadow": {
-              "description": "Eigenschaft um der Textbox einen Schatten hinzuzufügen. \nDer Standardwert wird angewendet, wenn die Eigenschaft angewendet wird und keine Tailwind-Klasse übergeben wird. Übergibt man eine \"Shadow\"-Klasse kann der Effekt angepasst werden."
-            },
-            "transition": {
-              "description": "Eigenschaft um die Übergangseinstellungen der Textbox und des Platzhalters festzulegen.<br>Wenn auf „true“ gesetzt, wird der Standardübergang angewendet.<br>Wenn ein Objekt übergeben wird, kann die „Dauer“ und der „Übergang“ unabhängig von einander für jeweils die regulären und die Platzhalter Übergänge angepasst werden."
-            },
-            "placeholder": {
-              "description": "Eigenschaft um den Platzhalter der Textbox zu setzen."
-            },
-            "hint": {
-              "description": "Eigenschaft um den Hinweis der Textbox zu setzen."
-            },
-            "height": {
-              "description": "Eigenschaft um die Höhe der Textbox festzulegen. Die Höhe kann mit Tailwind \"H\"-Klassen angepasst werden."
-            },
-            "width": {
-              "description": "Eigenschaft um die Breite der Textbox festzulegen. Die Breite kann mit Tailwind \"W\"-Klassen angepasst werden."
-            },
-            "autocomplete": {
-              "description": "Eigenschaft um den Autocomplete-Wert der Textbox festzulegen."
-            },
-            "counter": {
-              "description": "Eigenschaft um einen Zähler in der oberen rechten Ecke der Textbox anzuzeigen, der die eingegebenen Zeichen zählt."
-            }
-          },
-          "events": {
-            "updateModelValue": {
-              "description": "Ereignis, das bei jeder Eingabe den Wert der Textbox ausgibt. \nDieses Ereignis wird verwendet, um v-model zu aktualisieren."
-            },
-            "updateValidation": {
-              "description": "Ereignis, das den Validierungsstatus der Textbox ausgibt. \nDieses Ereignis kann verwendet werden, um die Validierung der Komponente im übergeordneten Element zu überprüfen."
-            },
-            "focusIn": {
-              "description": "Ereignis, das ausgegeben wird, wenn die Textbox fokussiert wurde."
-            },
-            "focusOut": {
-              "description": "Ereignis, das ausgegeben wird, wenn die Textbox den Fokus verliert."
-            }
-          },
-          "slots": {
-            "label": {
-              "description": "Slot zum Anpassen der Standardbeschriftung der Textbox."
-            },
-            "prependIcon": {
-              "description": "Platzhalter zum Hinzufügen eines Symbols vor der Textbox. \nDas Symbol wird in der Textbox angezeigt und linksbündig ausgerichtet. \nDie Eigenschaft „prepend-icon“ ist erforderlich, um das Symbol anzuwenden."
-            },
-            "appendIcon": {
-              "description": "Platzhalter zum Hinzufügen eines Symbols hinter der Textbox. \nDas Symbol wird in der Textbox angezeigt und rechtsbündig ausgerichtet. \nDie Eigenschaft „append-icon“ ist erforderlich, um das Symbol anzuwenden."
+            "slots": {
+              "label": {
+                "description": "Slot zum Anpassen der Standardbeschriftung der Textbox."
+              },
+              "prependIcon": {
+                "description": "Platzhalter zum Hinzufügen eines Symbols vor der Textbox. \nDas Symbol wird in der Textbox angezeigt und linksbündig ausgerichtet. \nDie Eigenschaft „prepend-icon“ ist erforderlich, um das Symbol anzuwenden."
+              },
+              "appendIcon": {
+                "description": "Platzhalter zum Hinzufügen eines Symbols hinter der Textbox. \nDas Symbol wird in der Textbox angezeigt und rechtsbündig ausgerichtet. \nDie Eigenschaft „append-icon“ ist erforderlich, um das Symbol anzuwenden."
+              }
             }
           }
         }
