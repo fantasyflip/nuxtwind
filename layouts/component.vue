@@ -12,7 +12,7 @@
       }"
     >
       <div class="w-full h-full grid place-items-center font-semibold">
-        NuxtWind
+        <NuxtWindIcon :height="40" />
       </div>
     </Appbar>
     <div class="lg:h-[82vh] h-[72vh] overflow-y-auto">
@@ -53,6 +53,7 @@
           <slot name="componentName"></slot>
           <div class="text-primary-800 group-hover:text-secondary-800">.</div>
         </div>
+        <NuxtWindName :height="40" />
         <div class="flex">
           <Tooltip bottom width="w-fit">
             <Button
