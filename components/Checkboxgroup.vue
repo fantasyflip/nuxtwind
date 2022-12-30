@@ -43,7 +43,12 @@ let defaults = {
   },
 };
 let props = defineProps({
-  modelValue: {},
+  modelValue: {
+    default() {
+      return [];
+    },
+    type: Array,
+  },
   items: {
     type: Array,
     default() {
