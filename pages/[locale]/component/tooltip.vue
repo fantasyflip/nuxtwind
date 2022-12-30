@@ -15,7 +15,7 @@
               useToast({
                 title: '(╯°□°)╯︵ ┻━┻',
                 message: $t(
-                  'pages.component.tooltip.content.playground.toast.message'
+                  'pages.component.tooltip.content.documentation.playground.toast.message'
                 ),
                 autoClose: true,
                 type: 'error',
@@ -44,12 +44,12 @@
               :items="postitionProps"
               :label="
                 $t(
-                  'pages.component.tooltip.content.playground.checkboxgroup.label'
+                  'pages.component.tooltip.content.documentation.playground.checkboxgroup.label'
                 )
               "
               :description="
                 $t(
-                  'pages.component.tooltip.content.playground.checkboxgroup.description'
+                  'pages.component.tooltip.content.documentation.playground.checkboxgroup.description'
                 )
               "
             />
@@ -74,7 +74,9 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
-let tooltip = ref(t("pages.component.tooltip.content.playground.tooltip"));
+let tooltip = ref(
+  t("pages.component.tooltip.content.documentation.playground.tooltip")
+);
 let checkedPositionBoxes = ref([true, false, false, false]);
 
 let postitionProps = ref([
@@ -107,7 +109,7 @@ let props = [
       bgPointer: "text-primary-800",
     },
     description: t(
-      "pages.component.tooltip.content.properties.color.description"
+      "pages.component.tooltip.content.documentation.properties.color.description"
     ),
   },
   {
@@ -115,7 +117,7 @@ let props = [
     type: "Boolean",
     default: true,
     description: t(
-      "pages.component.tooltip.content.properties.top.description"
+      "pages.component.tooltip.content.documentation.properties.top.description"
     ),
   },
   {
@@ -123,7 +125,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.tooltip.content.properties.bottom.description"
+      "pages.component.tooltip.content.documentation.properties.bottom.description"
     ),
   },
   {
@@ -131,7 +133,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.tooltip.content.properties.left.description"
+      "pages.component.tooltip.content.documentation.properties.left.description"
     ),
   },
   {
@@ -139,7 +141,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.tooltip.content.properties.right.description"
+      "pages.component.tooltip.content.documentation.properties.right.description"
     ),
   },
   {
@@ -147,7 +149,7 @@ let props = [
     type: "Boolean, Object",
     default: true,
     description: t(
-      "pages.component.tooltip.content.properties.transition.description"
+      "pages.component.tooltip.content.documentation.properties.transition.description"
     ),
   },
   {
@@ -155,7 +157,7 @@ let props = [
     type: "String",
     default: "text-xs text-center",
     description: t(
-      "pages.component.tooltip.content.properties.text.description"
+      "pages.component.tooltip.content.documentation.properties.text.description"
     ),
   },
   {
@@ -163,7 +165,7 @@ let props = [
     type: "Boolean, String",
     default: true,
     description: t(
-      "pages.component.tooltip.content.properties.rounded.description"
+      "pages.component.tooltip.content.documentation.properties.rounded.description"
     ),
   },
   {
@@ -171,7 +173,7 @@ let props = [
     type: "String",
     default: "z-10",
     description: t(
-      "pages.component.tooltip.content.properties.zIndex.description"
+      "pages.component.tooltip.content.documentation.properties.zIndex.description"
     ),
   },
   {
@@ -179,7 +181,7 @@ let props = [
     type: "String",
     default: "w-full",
     description: t(
-      "pages.component.tooltip.content.properties.width.description"
+      "pages.component.tooltip.content.documentation.properties.width.description"
     ),
   },
 ];
@@ -187,7 +189,9 @@ let props = [
 let slots = [
   {
     name: "tooltip",
-    description: t("pages.component.tooltip.content.slots.tooltip.description"),
+    description: t(
+      "pages.component.tooltip.content.documentation.slots.tooltip.description"
+    ),
   },
 ];
 
