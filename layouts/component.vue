@@ -62,7 +62,8 @@
         </div>
         <NuxtWindName
           :height="40"
-          class="invisible md:visible absolute left-1/2 transform -translate-x-1/2 top-1"
+          class="invisible md:visible absolute left-1/2 transform -translate-x-1/2 top-1 cursor-pointer"
+          @click="$router.push('/')"
         />
         <div class="flex">
           <Tooltip bottom width="w-fit">
