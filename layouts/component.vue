@@ -214,6 +214,29 @@ function handleSwitchLocale() {
   post({ type: "locale", method: "switch" });
 }
 
+function getOgpDescription() {
+  if (route.query && route.query.hash) {
+    let hash = route.query.hash;
+
+    if (hash.includes("-")) {
+      let item = hash.split("-")[1];
+      let category = hash.split("-")[0];
+      return t("layouts.component.meta.item-description", {
+        componentName,
+        item,
+        category: capitalizeFirstLetter(category),
+      });
+    } else {
+      return t("layouts.component.meta.category-description", {
+        componentName,
+        category: capitalizeFirstLetter(hash),
+      });
+    }
+  } else {
+    return t("layouts.component.meta.description", { componentName });
+  }
+}
+
 useHead({
   title: t("layouts.component.meta.title", { componentName }),
   meta: [
@@ -230,12 +253,7 @@ useHead({
     {
       hid: "og:description",
       property: "og:description",
-      content: route.hash
-        ? t("layouts.component.meta.hash-description", {
-            componentName,
-            hash: route.hash.split("#")[1],
-          })
-        : t("layouts.component.meta.description", { componentName }),
+      content: getOgpDescription(),
     },
     {
       hid: "og:type",
@@ -257,6 +275,14 @@ useHead({
       content: t("layouts.component.meta.og.locale"),
     },
   ],
+});
+
+onBeforeMount(() => {
+  if (route.query && route.query.hash) {
+    let hash = route.query.hash;
+    let hashPath = route.path + "#" + hash;
+    navigateTo(hashPath);
+  }
 });
 </script>
 <style scoped></style>

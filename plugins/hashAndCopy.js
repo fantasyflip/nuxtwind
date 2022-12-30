@@ -9,9 +9,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     let path = route.path;
     let hash = "#" + id;
     let fullPath = path + hash;
-    let newUrl = window.location.origin + fullPath;
-    navigator.clipboard.writeText(newUrl);
     navigateTo(fullPath);
+
+    let copyPath = window.location.origin + path + "?hash=" + id;
+    navigator.clipboard.writeText(copyPath);
 
     useToast({
       title:

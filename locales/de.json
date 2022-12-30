@@ -5,7 +5,8 @@
       "meta": {
         "title": "{componentName}",
         "description": "Übersicht über die {componentName} Komponente.",
-        "hash-description": "Übersicht über die {componentName} Komponente. Erfahre mehr über die {hash} Eigenschaft.",
+        "category-description": "Übersicht über die {componentName} Komponente. Erfahre mehr über {category}.",
+        "item-description": "Übersicht über die {componentName} Komponente. Erfahre mehr über '{item}'-{category}.",
         "og": {
           "title": "{componentName} | NuxtWind",
           "locale": "de_DE"
