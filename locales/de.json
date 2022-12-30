@@ -412,65 +412,64 @@
             }
           },
           "documentation": {
-            "props": {
+            "properties": {
               "id": {
                 "description": "Prop, um die ID der Benachrichtigung festzulegen. \nErforderlich und muss eindeutig sein."
+              },
+              "autoClose": {
+                "description": "Eigenschaft zum Aktivieren oder Deaktivieren des automatischen Schließens der Benachrichtigung nach einer bestimmten Dauer."
+              },
+              "color": {
+                "description": "Eigenschaft um die Farben der Benachrichtigung festzulegen. \nDie Farbe des Texts und den Hintergrunds für die Benachrichtigung selbst und für jeden Typ kann individuell festgelegt werden."
+              },
+              "duration": {
+                "description": "Dauer, die der Toast angezeigt wird. \nGilt wenn „autoClose“ auf „true“ gesetzt ist."
+              },
+              "rounded": {
+                "description": "Eigenschaft um den Randradius der Benachrichtigung festzulegen. \nKann entweder mit einem booleschen Wert umgeschaltet oder durch Übergabe einer beliebigen Tailwind 'rounded' Klasse angegeben werden."
+              },
+              "type": {
+                "description": "Einstellen des Benachrichtigung-Typs. \nKann eines der Folgenden sein: info, warning, error, success."
+              },
+              "title": {
+                "description": "Einstellung um den Titel der Benachrichtigung festzulegen."
+              },
+              "message": {
+                "description": "Einstellung um die Nachricht der Benachrichtigung festzulegen."
+              },
+              "shadow": {
+                "description": "Eigenschaft um den Schatten der Benachrichtigung festzulegen. \nKann auf jede Tailwind 'shadow'-Klasse eingestellt werden."
+              },
+              "width": {
+                "description": "Eigenschaft um die Breite der Benachrichtigung einzustellen. \nKann auf jede Tailwind \"w\"-Klasse eingestellt werden."
               }
-            }
-          },
-          "properties": {
-            "autoClose": {
-              "description": "Eigenschaft zum Aktivieren oder Deaktivieren des automatischen Schließens der Benachrichtigung nach einer bestimmten Dauer."
             },
-            "color": {
-              "description": "Eigenschaft um die Farben der Benachrichtigung festzulegen. \nDie Farbe des Texts und den Hintergrunds für die Benachrichtigung selbst und für jeden Typ kann individuell festgelegt werden."
+            "caveats": {
+              "icon": {
+                "title": "Unplugin Icons Paket",
+                "description": "Das Symbol auf der Benachrichtigung ändert sich entsprechend dem eingestellten Typ. \nDie angezeigten Icons stammen aus dem <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Paket</a>."
+              },
+              "button": {
+                "title": "Button Komponente",
+                "description": "Die Benachrichtigungs-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Button-Komponente</a>."
+              },
+              "progress": {
+                "title": "Progress Komponente",
+                "description": "Die Benachritigungs-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress-Komponente</a>. \nSie wird zum Anzeigen der Zeitleiste verwendet, wenn die AutoClose-Eigenschaft aktiviert ist."
+              }
             },
-            "duration": {
-              "description": "Dauer, die der Toast angezeigt wird. \nGilt wenn „autoClose“ auf „true“ gesetzt ist."
-            },
-            "rounded": {
-              "description": "Eigenschaft um den Randradius der Benachrichtigung festzulegen. \nKann entweder mit einem booleschen Wert umgeschaltet oder durch Übergabe einer beliebigen Tailwind 'rounded' Klasse angegeben werden."
-            },
-            "type": {
-              "description": "Einstellen des Benachrichtigung-Typs. \nKann eines der Folgenden sein: info, warning, error, success."
-            },
-            "title": {
-              "description": "Einstellung um den Titel der Benachrichtigung festzulegen."
-            },
-            "message": {
-              "description": "Einstellung um die Nachricht der Benachrichtigung festzulegen."
-            },
-            "shadow": {
-              "description": "Eigenschaft um den Schatten der Benachrichtigung festzulegen. \nKann auf jede Tailwind 'shadow'-Klasse eingestellt werden."
-            },
-            "width": {
-              "description": "Eigenschaft um die Breite der Benachrichtigung einzustellen. \nKann auf jede Tailwind \"w\"-Klasse eingestellt werden."
-            }
-          },
-          "caveats": {
-            "icon": {
-              "title": "Unplugin Icons Paket",
-              "description": "Das Symbol auf der Benachrichtigung ändert sich entsprechend dem eingestellten Typ. \nDie angezeigten Icons stammen aus dem <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Paket</a>."
-            },
-            "button": {
-              "title": "Button Komponente",
-              "description": "Die Benachrichtigungs-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Button-Komponente</a>."
-            },
-            "progress": {
-              "title": "Progress Komponente",
-              "description": "Die Benachritigungs-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress-Komponente</a>. \nSie wird zum Anzeigen der Zeitleiste verwendet, wenn die AutoClose-Eigenschaft aktiviert ist."
-            }
-          },
-          "events": {
-            "close": {
-              "description": "Ereignis, das ausgelöst wird, wenn die Benachrichtigung geschlossen wird. Entweder durch das klicken des 'x' oder nach dem ablauf des autoClose-Timers."
-            },
-            "autoClose": {
-              "description": "Ereignis, das ausgegeben wird, wenn der Toast aufgrund eines autoClose-Timers geschlossen wird."
+            "events": {
+              "close": {
+                "description": "Ereignis, das ausgelöst wird, wenn die Benachrichtigung geschlossen wird. Entweder durch das klicken des 'x' oder nach dem ablauf des autoClose-Timers."
+              },
+              "autoClose": {
+                "description": "Ereignis, das ausgegeben wird, wenn der Toast aufgrund eines autoClose-Timers geschlossen wird."
+              }
             }
           }
         }
       },
+
       "select": {
         "content": {
           "documentation": {

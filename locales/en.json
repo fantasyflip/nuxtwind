@@ -293,61 +293,59 @@
             }
           },
           "documentation": {
-            "props": {
+            "properties": {
               "id": {
                 "description": "Prop to set the id of the notification. Required and must be unique."
+              },
+              "autoClose": {
+                "description": "Prop to activate or deactivate automatic closing of the notification after given duration."
+              },
+              "color": {
+                "description": "Prop to set the colors of the toast. You can separatly set the text, background color for the base toast and for each toast type individually."
+              },
+              "duration": {
+                "description": "Duration the toast will be displayed. Applies when 'autoClose' is set to 'true'."
+              },
+              "rounded": {
+                "description": "Prop to set the border-radius of the toast. Can either be toggled with a Boolean-Value or specified by handing any Tailwind 'rounded'-class."
+              },
+              "type": {
+                "description": "Setting the toast's type. Can be one of the following: info, warning, error, success."
+              },
+              "title": {
+                "description": "Prop to set the toast's title."
+              },
+              "message": {
+                "description": "Prop to set the toast's message."
+              },
+              "shadow": {
+                "description": "Prop to set the toast's shadow. Can be set to any Tailwind 'shadow'-class."
+              },
+              "width": {
+                "description": "Prop to set the toast's width. Can be set to any Tailwind \"w\"-class."
               }
-            }
-          },
-          "properties": {
-            "autoClose": {
-              "description": "Prop to activate or deactivate automatic closing of the notification after given duration."
             },
-            "color": {
-              "description": "Prop to set the colors of the toast. You can separatly set the text, background color for the base toast and for each toast type individually."
+            "caveats": {
+              "icon": {
+                "title": "Unplugin Icons Package",
+                "description": "The icon on the toast will change accordingly to the set type. The icons that are displayed are taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Package</a>."
+              },
+              "button": {
+                "title": "Button Component",
+                "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Button Component</a>."
+              },
+              "progress": {
+                "title": "Progress Component",
+                "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>. It'll be used for displaying the timeline when the autoClose prop is enabled."
+              }
             },
-            "duration": {
-              "description": "Duration the toast will be displayed. Applies when 'autoClose' is set to 'true'."
-            },
-            "rounded": {
-              "description": "Prop to set the border-radius of the toast. Can either be toggled with a Boolean-Value or specified by handing any Tailwind 'rounded'-class."
-            },
-            "type": {
-              "description": "Setting the toast's type. Can be one of the following: info, warning, error, success."
-            },
-            "title": {
-              "description": "Prop to set the toast's title."
-            },
-            "message": {
-              "description": "Prop to set the toast's message."
-            },
-            "shadow": {
-              "description": "Prop to set the toast's shadow. Can be set to any Tailwind 'shadow'-class."
-            },
-            "width": {
-              "description": "Prop to set the toast's width. Can be set to any Tailwind \"w\"-class."
-            }
-          },
-          "caveats": {
-            "icon": {
-              "title": "Unplugin Icons Package",
-              "description": "The icon on the toast will change accordingly to the set type. The icons that are displayed are taken from the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" href=\"{url}\" target=\"_blank\">Unplugin-Icons-Package</a>."
-            },
-            "button": {
-              "title": "Button Component",
-              "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Button Component</a>."
-            },
-            "progress": {
-              "title": "Progress Component",
-              "description": "The toast component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>. It'll be used for displaying the timeline when the autoClose prop is enabled."
-            }
-          },
-          "events": {
-            "close": {
-              "description": "Event that gets emitted when the toast closes. Either by clicking the 'x' or after the autoClose timer."
-            },
-            "autoClose": {
-              "description": "Event that gets emitted when the toast closes due to an autoClose timer."
+            "events": {
+              "close": {
+                "description": "Event that gets emitted when the toast closes. Either by clicking the 'x' or after the autoClose timer."
+              },
+              "autoClose": {
+                "description": "Event that gets emitted when the toast closes due to an autoClose timer."
+              }
             }
           }
         }

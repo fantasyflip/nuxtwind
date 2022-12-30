@@ -178,7 +178,7 @@ let props = [
     type: "String",
     default: undefined,
     description: t(
-      "pages.component.toast.content.documentation.props.id.description"
+      "pages.component.toast.content.documentation.properties.id.description"
     ),
   },
   {
@@ -207,7 +207,7 @@ let props = [
       },
     },
     description: t(
-      "pages.component.toast.content.properties.color.description"
+      "pages.component.toast.content.documentation.properties.color.description"
     ),
   },
   {
@@ -215,7 +215,7 @@ let props = [
     type: "Boolean",
     default: true,
     description: t(
-      "pages.component.toast.content.properties.autoClose.description"
+      "pages.component.toast.content.documentation.properties.autoClose.description"
     ),
   },
   {
@@ -223,7 +223,7 @@ let props = [
     type: "Number",
     default: 5,
     description: t(
-      "pages.component.toast.content.properties.duration.description"
+      "pages.component.toast.content.documentation.properties.duration.description"
     ),
   },
   {
@@ -231,21 +231,23 @@ let props = [
     type: "Boolean, String",
     default: true,
     description: t(
-      "pages.component.toast.content.properties.rounded.description"
+      "pages.component.toast.content.documentation.properties.rounded.description"
     ),
   },
   {
     name: "type",
     type: "String",
     default: "info",
-    description: t("pages.component.toast.content.properties.type.description"),
+    description: t(
+      "pages.component.toast.content.documentation.properties.type.description"
+    ),
   },
   {
     name: "title",
     type: "String",
     default: "Toast-Title",
     description: t(
-      "pages.component.toast.content.properties.title.description"
+      "pages.component.toast.content.documentation.properties.title.description"
     ),
   },
   {
@@ -253,7 +255,7 @@ let props = [
     type: "String",
     default: "Toast-Message-Line",
     description: t(
-      "pages.component.toast.content.properties.message.description"
+      "pages.component.toast.content.documentation.properties.message.description"
     ),
   },
   {
@@ -261,7 +263,7 @@ let props = [
     type: "Boolean, String",
     default: true,
     description: t(
-      "pages.component.toast.content.properties.shadow.description"
+      "pages.component.toast.content.documentation.properties.shadow.description"
     ),
   },
   {
@@ -269,28 +271,36 @@ let props = [
     type: "String",
     default: "w-full",
     description: t(
-      "pages.component.toast.content.properties.width.description"
+      "pages.component.toast.content.documentation.properties.width.description"
     ),
   },
 ];
 
 let caveats = [
   {
-    name: t("pages.component.toast.content.caveats.icon.title"),
-    description: t("pages.component.toast.content.caveats.icon.description", {
-      url: "https://github.com/antfu/unplugin-icons",
-    }),
-  },
-  {
-    name: t("pages.component.toast.content.caveats.button.title"),
-    description: t("pages.component.toast.content.caveats.button.description", {
-      url: useLocaleUrl("component/button"),
-    }),
-  },
-  {
-    name: t("pages.component.toast.content.caveats.progress.title"),
+    name: t("pages.component.toast.content.documentation.caveats.icon.title"),
     description: t(
-      "pages.component.toast.content.caveats.progress.description",
+      "pages.component.toast.content.documentation.caveats.icon.description",
+      {
+        url: "https://github.com/antfu/unplugin-icons",
+      }
+    ),
+  },
+  {
+    name: t("pages.component.toast.content.documentation.caveats.button.title"),
+    description: t(
+      "pages.component.toast.content.documentation.caveats.button.description",
+      {
+        url: useLocaleUrl("component/button"),
+      }
+    ),
+  },
+  {
+    name: t(
+      "pages.component.toast.content.documentation.caveats.progress.title"
+    ),
+    description: t(
+      "pages.component.toast.content.documentation.caveats.progress.description",
       {
         url: useLocaleUrl("component/progress"),
       }
@@ -301,12 +311,14 @@ let caveats = [
 let events = [
   {
     name: "close",
-    description: t("pages.component.toast.content.events.close.description"),
+    description: t(
+      "pages.component.toast.content.documentation.events.close.description"
+    ),
   },
   {
     name: "autoClose",
     description: t(
-      "pages.component.toast.content.events.autoClose.description"
+      "pages.component.toast.content.documentation.events.autoClose.description"
     ),
   },
 ];
