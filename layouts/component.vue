@@ -305,7 +305,7 @@ useHead({
     {
       hid: "og:url",
       property: "og:url",
-      content: "https://components.fantasyflip.de/",
+      content: "https://nuxtwind.com/",
     },
     {
       property: "og:locale",
