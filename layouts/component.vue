@@ -48,9 +48,13 @@
     z-index="z-[100]"
   >
     <div class="w-full h-full grid content-center">
+      <NuxtWindIcon
+        v-if="usePermanentDrawer()"
+        :height="35"
+        class="absolute top-2 left-3"
+      />
       <div
-        :class="usePermanentDrawer() ? '' : 'ml-14'"
-        class="mx-4 lg:text-3xl text-2xl font-extrabold flex justify-between"
+        class="mx-4 ml-14 lg:text-3xl text-2xl font-extrabold flex justify-between"
       >
         <div class="group flex pb-1">
           <slot name="componentName"></slot>
