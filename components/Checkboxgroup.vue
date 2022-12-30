@@ -46,20 +46,26 @@ let props = defineProps({
   modelValue: {},
   items: {
     type: Array,
-    default: [],
+    default() {
+      return [];
+    },
   },
   color: {
     type: Object,
-    default: {
-      label: "text-primary-800 dark:text-primary-800",
-      description: "text-gray-500 dark:text-gray-400",
+    default() {
+      return {
+        label: "text-primary-800 dark:text-primary-800",
+        description: "text-gray-500 dark:text-gray-400",
+      };
     },
   },
   text: {
     type: Object,
-    default: {
-      label: "text-lg font-medium",
-      description: "text-sm",
+    default() {
+      return {
+        label: "text-lg font-medium",
+        description: "text-sm",
+      };
     },
   },
   label: {
@@ -92,7 +98,9 @@ let props = defineProps({
   },
   generalCheckboxProps: {
     type: Object,
-    default: {},
+    default() {
+      return {};
+    },
   },
   notZero: {
     type: Boolean,

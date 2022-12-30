@@ -32,10 +32,12 @@ let defaults = {
 let props = defineProps({
   color: {
     type: Object,
-    default: {
-      text: "dark:text-white text-black",
-      bg: "bg-primary-800",
-      bgPointer: "text-primary-800",
+    default() {
+      return {
+        text: "dark:text-white text-black",
+        bg: "bg-primary-800",
+        bgPointer: "text-primary-800",
+      };
     },
   },
   top: {

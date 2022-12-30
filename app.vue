@@ -18,8 +18,8 @@
     >
       <Toast
         v-for="item in toasts"
-        :key="item.id"
         :id="item.id"
+        :key="item.id"
         :type="item.type"
         :title="item.title"
         :message="item.message"

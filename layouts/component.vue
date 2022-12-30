@@ -12,16 +12,17 @@
       }"
     >
       <div class="w-full h-full grid place-items-center font-semibold">
-        <NuxtWindIcon :height="40" v-if="!isMobile" />
-        <NuxtWindName :height="30" v-else />
+        <NuxtWindIcon v-if="!isMobile" :height="40" />
+        <NuxtWindName v-else :height="30" />
       </div>
     </Appbar>
     <div class="lg:h-[82vh] h-[72vh] overflow-y-auto">
       <div
         v-for="route in routes"
+        :key="route.name"
         class="p-2 text-md w-full hover:bg-secondary-700"
-        @click="navigateTo(route.path.replace(':locale/', ''))"
         :class="$route.matched[0].path === route.path ? 'bg-primary-800' : ''"
+        @click="navigateTo(route.path.replace(':locale/', ''))"
       >
         {{ capitalizeFirstLetter(route.name) }}
       </div>
@@ -31,8 +32,8 @@
       @click="handlePinDrawer"
     >
       <div class="h-full grid place-items-center text-xl">
-        <MdiPin class="w-12" v-if="!usePermanentDrawer()" />
-        <MdiPinOff class="w-12" v-else />
+        <MdiPin v-if="!usePermanentDrawer()" class="w-12" />
+        <MdiPinOff v-else class="w-12" />
       </div>
       <div class="h-full grid content-center">
         {{ usePermanentDrawer() ? "Unpin Drawer" : "Pin Drawer" }}
@@ -44,8 +45,8 @@
     fixed
     :elevate-on-scroll="!usePermanentDrawer()"
     :navigation-icon="!usePermanentDrawer()"
-    @navigation-icon-click="showDrawer = true"
     z-index="z-[100]"
+    @navigation-icon-click="showDrawer = true"
   >
     <div class="w-full h-full grid content-center">
       <NuxtWindIcon
@@ -70,11 +71,11 @@
             <Button
               class="mr-2"
               icon
-              @click="handleCycleTheme()"
               :color="{
                 text: 'text-primary-800',
               }"
               grow
+              @click="handleCycleTheme()"
             >
               <MdiThemeLightDark />
             </Button>
@@ -86,11 +87,11 @@
             <Button
               class="mr-2"
               icon
-              @click="handleSwitchLocale()"
               :color="{
                 text: 'text-primary-800',
               }"
               grow
+              @click="handleSwitchLocale()"
             >
               <MdiTranslate />
             </Button>
@@ -123,8 +124,8 @@
     :class="usePermanentDrawer() ? 'md:ml-[288px] ml-[208px]' : ''"
   >
     <div
-      class="lg:text-2xl text-xl font-bold cursor-pointer mx-4 pt-16"
       id="playground"
+      class="lg:text-2xl text-xl font-bold cursor-pointer mx-4 pt-16"
       @click="$hashAndCopy('playground')"
     >
       <span>{{ $t("layouts.component.content.playground") }} - </span>

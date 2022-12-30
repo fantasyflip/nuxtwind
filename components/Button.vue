@@ -1,6 +1,6 @@
 <template>
   <div :class="styleClass">
-    <div @click="handleClick" class="relative">
+    <div class="relative" @click="handleClick">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
@@ -66,17 +66,19 @@ let defaults = {
 const props = defineProps({
   color: {
     type: Object,
-    default: {
-      bg: "bg-cyan-900 dark:bg-cyan-900",
-      text: "dark:text-white text-black",
-      border: "dark:border-white border-black",
-      hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
-      iconHover: "hover:text-secondary-800 dark:hover:text-secondary-800",
-      loadingCircle: "gray-400 dark:gray-400",
-      loadingCircleDark: "gray-700 dark:gray-700",
-      loadingCircleProgress: "primary-400 dark:primary-400",
-      loadingCircleProgressDark: "primary-400 dark:primary-400",
-      loadingCircleCutout: "before:bg-cyan-900 dark:before:bg-cyan-900",
+    default() {
+      return {
+        bg: "bg-cyan-900 dark:bg-cyan-900",
+        text: "dark:text-white text-black",
+        border: "dark:border-white border-black",
+        hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
+        iconHover: "hover:text-secondary-800 dark:hover:text-secondary-800",
+        loadingCircle: "gray-400 dark:gray-400",
+        loadingCircleDark: "gray-700 dark:gray-700",
+        loadingCircleProgress: "primary-400 dark:primary-400",
+        loadingCircleProgressDark: "primary-400 dark:primary-400",
+        loadingCircleCutout: "before:bg-cyan-900 dark:before:bg-cyan-900",
+      };
     },
   },
   rounded: {

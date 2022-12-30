@@ -4,8 +4,8 @@
       <template #componentName> {{ componentName }} </template>
       <template #component>
         <Select
-          :items="['Foo', 'Bar', 'Boo', 'Far', 'Foo', 'Bar', 'Boo', 'Far']"
           v-model="select.value"
+          :items="['Foo', 'Bar', 'Boo', 'Far', 'Foo', 'Bar', 'Boo', 'Far']"
           :label="select.label"
           :placeholder="select.placeholder"
           :filled="styleCheckedBoxes[0]"
@@ -29,14 +29,14 @@
         <div class="grid place-items-center h-full w-full">
           <div class="md:w-2/3 w-full">
             <Textfield
-              class="mb-4"
               v-model="select.label"
+              class="mb-4"
               label="Select-Label"
               filled
             />
             <Textfield
-              class="mb-4"
               v-model="select.placeholder"
+              class="mb-4"
               label="Placeholder"
               filled
             />
@@ -64,7 +64,7 @@
       </template>
       <template #documentation>
         <DocumentationDisplay
-          :componentName="componentName"
+          :component-name="componentName"
           :props="props"
           :slots="slots"
           :caveats="caveats"

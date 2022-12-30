@@ -123,7 +123,7 @@
       </template>
       <template #documentation>
         <DocumentationDisplay
-          :componentName="componentName"
+          :component-name="componentName"
           :props="props"
           :events="events"
           :caveats="caveats"

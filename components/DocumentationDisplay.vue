@@ -1,7 +1,7 @@
 <template>
   <div
-    class="lg:text-3xl text-2xl font-bold cursor-pointer mx-4"
     id="documentation"
+    class="lg:text-3xl text-2xl font-bold cursor-pointer mx-4"
     @click="$hashAndCopy('documentation')"
   >
     <span
@@ -14,8 +14,8 @@
   <div class="mx-2">
     <div v-if="sortedProps.length > 0" class="mx-4 mt-4">
       <div
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="properties"
+        class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('properties')"
       >
         <span
@@ -28,6 +28,7 @@
       </div>
       <div
         v-for="(prop, index) in sortedProps"
+        :key="index"
         :class="index < sortedProps.length - 1 ? 'border-b' : ''"
       >
         <PropDisplay :item="prop" />
@@ -35,8 +36,8 @@
     </div>
     <div v-if="props.events.length > 0" class="mx-4 mt-4">
       <div
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="events"
+        class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('events')"
       >
         <span
@@ -49,6 +50,7 @@
       </div>
       <div
         v-for="(event, index) in props.events"
+        :key="index"
         :class="index < props.events.length - 1 ? 'border-b' : ''"
       >
         <EventDisplay :item="event" />
@@ -56,8 +58,8 @@
     </div>
     <div v-if="sortedSlots.length > 0" class="mx-4 mt-4">
       <div
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="slots"
+        class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('slots')"
       >
         <span
@@ -70,6 +72,7 @@
       </div>
       <div
         v-for="(slot, index) in sortedSlots"
+        :key="index"
         :class="index < sortedSlots.length - 1 ? 'border-b' : ''"
       >
         <SlotDisplay :item="slot" />
@@ -77,8 +80,8 @@
     </div>
     <div v-if="sortedConfigs.length > 0" class="mx-4 mt-4">
       <div
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="configs"
+        class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('configs')"
       >
         <span
@@ -91,6 +94,7 @@
       </div>
       <div
         v-for="(config, index) in sortedConfigs"
+        :key="index"
         :class="index < sortedConfigs.length - 1 ? 'border-b' : ''"
       >
         <ConfigDisplay :item="config" />
@@ -98,8 +102,8 @@
     </div>
     <div v-if="sortedCaveats.length > 0" class="mx-4 mt-4">
       <div
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
         id="caveats"
+        class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('caveats')"
       >
         <span
@@ -112,6 +116,7 @@
       </div>
       <div
         v-for="(caveat, index) in sortedCaveats"
+        :key="index"
         :class="index < sortedCaveats.length - 1 ? 'border-b' : ''"
       >
         <CaveatDisplay :item="caveat" />
@@ -128,28 +133,39 @@ const props = defineProps({
   },
   props: {
     type: Array,
-    default: [],
+    default() {
+      return [];
+    },
   },
   events: {
     type: Array,
-    default: [],
+    default() {
+      return [];
+    },
   },
   slots: {
     type: Array,
-    default: [],
+    default() {
+      return [];
+    },
   },
   configs: {
     type: Array,
-    default: [],
+    default() {
+      return [];
+    },
   },
   caveats: {
     type: Array,
-    default: [],
+    default() {
+      return [];
+    },
   },
 });
 
 let sortedProps = computed(() => {
-  return props.props.sort((a, b) => {
+  let propsArray = props.props;
+  return propsArray.sort((a, b) => {
     if (a.name < b.name) {
       return -1;
     }
@@ -161,7 +177,8 @@ let sortedProps = computed(() => {
 });
 
 let sortedSlots = computed(() => {
-  return props.slots.sort((a, b) => {
+  let slotsArray = props.slots;
+  return slotsArray.sort((a, b) => {
     if (a.name < b.name) {
       return -1;
     }
@@ -173,7 +190,8 @@ let sortedSlots = computed(() => {
 });
 
 let sortedConfigs = computed(() => {
-  return props.configs.sort((a, b) => {
+  let configsArray = props.configs;
+  return configsArray.sort((a, b) => {
     if (a.name < b.name) {
       return -1;
     }
@@ -185,7 +203,8 @@ let sortedConfigs = computed(() => {
 });
 
 let sortedCaveats = computed(() => {
-  return props.caveats.sort((a, b) => {
+  let caveatsArray = props.caveats;
+  return caveatsArray.sort((a, b) => {
     if (a.name < b.name) {
       return -1;
     }

@@ -25,8 +25,8 @@
         <div class="grid place-items-center h-full w-full">
           <div class="md:w-2/3 w-full">
             <Textfield
-              class="mb-4"
               v-model="progressValue"
+              class="mb-4"
               :label="
                 $t(
                   'pages.component.progress.content.playground.valueText.label'
@@ -55,7 +55,7 @@
       </template>
       <template #documentation>
         <DocumentationDisplay
-          :componentName="componentName"
+          :component-name="componentName"
           :props="props"
           :slots="slots"
           :configs="configs"

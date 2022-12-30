@@ -28,9 +28,11 @@
 const props = defineProps({
   item: {
     type: Object,
-    default: {
-      name: "SlotName",
-      description: "Slot Description",
+    default() {
+      return {
+        name: "SlotName",
+        description: "Slot Description",
+      };
     },
   },
 });

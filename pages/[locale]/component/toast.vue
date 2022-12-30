@@ -16,6 +16,7 @@
         <div class="grid place-items-center h-full w-full">
           <div class="grid place-items-center sm:w-1/2 gap-3 py-2">
             <Textfield
+              v-model="testNotification.title"
               class="mb-4"
               :label="
                 $t(
@@ -28,7 +29,6 @@
                   'pages.component.toast.content.playground.titleTextfield.placeholder'
                 )
               "
-              v-model="testNotification.title"
               :rules="[notEmpty]"
               :hint="
                 $t(
@@ -37,6 +37,7 @@
               "
             />
             <Textfield
+              v-model="testNotification.message"
               class="mb-4"
               :label="
                 $t(
@@ -49,7 +50,6 @@
                   'pages.component.toast.content.playground.messageTextfield.placeholder'
                 )
               "
-              v-model="testNotification.message"
               :rules="[notEmpty]"
               :hint="
                 $t(
@@ -58,13 +58,14 @@
               "
             />
             <Select
+              v-model="testNotification.type"
               filled
               label="Type"
               :items="toastTypes"
-              v-model="testNotification.type"
               class="mb-4"
             />
             <Textfield
+              v-model="testNotification.duration"
               class="mb-4"
               :label="
                 $t(
@@ -77,7 +78,6 @@
                   'pages.component.toast.content.playground.durationTextfield.placeholder'
                 )
               "
-              v-model="testNotification.duration"
               :rules="[notEmpty, isNumber, maxVal(10), minVal(1)]"
               :hint="
                 $t(
@@ -87,9 +87,9 @@
               type="number"
             />
             <Checkbox
+              v-model="testNotification.autoClose"
               class="mb-4"
               label="Auto-Close"
-              v-model="testNotification.autoClose"
             />
             <Button
               grow
@@ -112,7 +112,7 @@
       </template>
       <template #documentation>
         <DocumentationDisplay
-          :componentName="componentName"
+          :component-name="componentName"
           :props="props"
           :caveats="caveats"
           :events="events"

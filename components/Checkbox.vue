@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div :class="iconStyleClass" id="checkbox">
+    <div id="checkbox" :class="iconStyleClass">
       <MdiCheckboxMarked
         v-if="modelValue && !props.radio"
         @click="updateModelValue(false)"
@@ -21,8 +21,8 @@
     <div v-if="props.label" :class="labelStyleClass">
       <label
         for="checkbox"
-        @click="updateModelValue(!props.modelValue)"
         :class="props.disabled || props.loading ? '' : 'cursor-pointer'"
+        @click="updateModelValue(!props.modelValue)"
       >
         <slot name="label">{{ label }}</slot>
       </label>
@@ -64,12 +64,14 @@ let props = defineProps({
   },
   color: {
     type: Object,
-    default: {
-      label: "text-black dark:text-gray-300",
-      description: "text-gray-500 dark:text-gray-400",
-      iconInactive: "text-gray-500 dark:text-gray-400",
-      iconActive: "text-primary-800 dark:text-primary-800",
-      hover: "hover:text-secondary-700 dark:hover:text-secondary-700",
+    default() {
+      return {
+        label: "text-black dark:text-gray-300",
+        description: "text-gray-500 dark:text-gray-400",
+        iconInactive: "text-gray-500 dark:text-gray-400",
+        iconActive: "text-primary-800 dark:text-primary-800",
+        hover: "hover:text-secondary-700 dark:hover:text-secondary-700",
+      };
     },
   },
   label: {
@@ -82,9 +84,11 @@ let props = defineProps({
   },
   text: {
     type: Object,
-    default: {
-      label: "text-sm font-medium",
-      description: "text-xs font-normal",
+    default() {
+      return {
+        label: "text-sm font-medium",
+        description: "text-xs font-normal",
+      };
     },
   },
   radio: {

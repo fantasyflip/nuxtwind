@@ -4,8 +4,8 @@
       <template #componentName> {{ componentName }} </template>
       <template #component>
         <Textarea
-          width="w-fit"
           v-model="textarea.value"
+          width="w-fit"
           :hint="textarea.hint"
           :placeholder="textarea.placeholder"
           :rules="[notEmpty, minChars(5)]"
@@ -26,20 +26,20 @@
         <div class="grid place-items-center h-full w-full">
           <div class="md:w-2/3 w-full">
             <Textfield
-              class="mb-4"
               v-model="textarea.label"
+              class="mb-4"
               label="Textarea-Label"
               filled
             />
             <Textfield
-              class="mb-4"
               v-model="textarea.placeholder"
+              class="mb-4"
               label="Placeholder"
               filled
             />
             <Textfield
-              class="mb-4"
               v-model="textarea.hint"
+              class="mb-4"
               label="Hint"
               filled
             />
@@ -67,7 +67,7 @@
       </template>
       <template #documentation>
         <DocumentationDisplay
-          :componentName="componentName"
+          :component-name="componentName"
           :props="props"
           :events="events"
           :slots="slots"

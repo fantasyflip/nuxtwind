@@ -28,9 +28,11 @@
 const props = defineProps({
   item: {
     type: Object,
-    default: {
-      name: "CaveatName",
-      description: "Caveat Description",
+    default() {
+      return {
+        name: "CaveatName",
+        description: "Caveat Description",
+      };
     },
   },
 });

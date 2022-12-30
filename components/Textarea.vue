@@ -3,16 +3,16 @@
     <div v-if="props.prependIcon" :class="prependIconClass">
       <slot name="prepend-icon">
         <component
-          v-if="typeof props.prependIcon === 'object'"
           :is="props.prependIcon"
+          v-if="typeof props.prependIcon === 'object'"
         />
       </slot>
     </div>
     <div v-if="props.appendIcon" :class="appendIconClass">
       <slot name="append-icon">
         <component
-          v-if="typeof props.appendIcon === 'object'"
           :is="props.appendIcon"
+          v-if="typeof props.appendIcon === 'object'"
         />
       </slot>
     </div>
@@ -22,18 +22,18 @@
         :class="inputClass"
         :placeholder="placeholder"
         :disabled="props.disabled"
-        @input="handleInput"
         :value="props.modelValue"
+        :autocomplete="autocomplete"
+        @input="handleInput"
         @focusin="$emit('focusIn')"
         @focusout="$emit('focusOut')"
-        :autocomplete="autocomplete"
       />
       <label :for="textareaId" :class="labelClass">
         <slot name="label">{{ props.label }}</slot>
       </label>
       <div
-        :for="textareaId"
         v-if="props.counter"
+        :for="textareaId"
         class="transition peer-focus:opacity-100 opacity-0 peer-focus:translate-y-0 -translate-y-3 absolute top-0 w-full flex justify-end"
       >
         <div
@@ -98,22 +98,24 @@ const props = defineProps({
   modelValue: {},
   color: {
     type: Object,
-    default: {
-      bg: "bg-gray-200 dark:bg-zinc-800",
-      text: "text-black dark:text-white",
-      hint: "text-gray-600 dark:text-gray-400",
-      error: "text-red-500 dark:text-red-500",
-      label: "text-black dark:text-white",
-      labelFocus: "peer-focus:text-cyan-600",
-      placeholderText:
-        "placeholder:text-gray-400 dark:placeholder:text-gray-600",
-      icon: "text-black dark:text-white",
-      iconFocus: "group-focus-within:text-cyan-600",
-      border: "border-black dark:border-white",
-      borderFocus:
-        "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800",
-      borderError: "border-red-500",
-      borderFocusError: "focus:border-red-500",
+    default() {
+      return {
+        bg: "bg-gray-200 dark:bg-zinc-800",
+        text: "text-black dark:text-white",
+        hint: "text-gray-600 dark:text-gray-400",
+        error: "text-red-500 dark:text-red-500",
+        label: "text-black dark:text-white",
+        labelFocus: "peer-focus:text-cyan-600",
+        placeholderText:
+          "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+        icon: "text-black dark:text-white",
+        iconFocus: "group-focus-within:text-cyan-600",
+        border: "border-black dark:border-white",
+        borderFocus:
+          "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800",
+        borderError: "border-red-500",
+        borderFocusError: "focus:border-red-500",
+      };
     },
   },
   label: {
@@ -182,7 +184,9 @@ const props = defineProps({
   },
   rules: {
     type: Array,
-    default: [],
+    default() {
+      return [];
+    },
   },
 });
 

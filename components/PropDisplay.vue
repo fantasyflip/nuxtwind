@@ -31,13 +31,13 @@
           <div class="text-lg font-semibold">Default</div>
           <!-- v-if="typeof props.item.default === 'object'" -->
           <client-only
-            placeholder="Loading Default..."
             v-if="typeof props.item.default === 'object'"
+            placeholder="Loading Default..."
           >
             <vue-json-pretty
               class="json-pretty"
-              :highlightSelectedNode="true"
-              :showDoubleQuotes="false"
+              :highlight-selected-node="true"
+              :show-double-quotes="false"
               :data="props.item.default"
             />
           </client-only>
@@ -60,14 +60,16 @@
 const props = defineProps({
   item: {
     type: Object,
-    default: {
-      name: "PropName",
-      type: "Object",
-      default: {
-        name: "object-item",
-        count: 2,
-      },
-      description: "This is a description of the prop",
+    default() {
+      return {
+        name: "PropName",
+        type: "Object",
+        default: {
+          name: "object-item",
+          count: 2,
+        },
+        description: "This is a description of the prop",
+      };
     },
   },
 });

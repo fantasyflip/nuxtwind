@@ -41,10 +41,10 @@
                 "
               >
                 <div
-                  class="h-full grid place-items-center text-xl"
                   :id="'icon-' + item.name"
+                  class="h-full grid place-items-center text-xl"
                 >
-                  <component class="w-12" :is="item.icon" />
+                  <component :is="item.icon" class="w-12" />
                 </div>
                 <div class="h-full grid content-center">
                   {{ item.name }}
@@ -53,9 +53,9 @@
             </Drawer>
             <Appbar
               navigation-icon
-              @navigation-icon-click="showDrawer = true"
               :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }"
               absolute
+              @navigation-icon-click="showDrawer = true"
             >
               <div class="w-full h-full grid place-items-center">
                 Application-Bar
@@ -97,7 +97,7 @@
         </div>
       </template>
       <template #documentation>
-        <DocumentationDisplay :componentName="componentName" :props="props" />
+        <DocumentationDisplay :component-name="componentName" :props="props" />
       </template>
     </NuxtLayout>
   </div>

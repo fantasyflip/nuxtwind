@@ -2,9 +2,9 @@
   <div v-if="props.modelValue && props.overlay" :class="overlayClass"></div>
   <div
     ref="drawer"
+    :class="drawerWrapperClass"
     @mouseenter="hanldeHoverEnter"
     @mouseleave="handleHoverLeave"
-    :class="drawerWrapperClass"
   >
     <slot></slot>
   </div>
@@ -31,9 +31,11 @@ let props = defineProps({
   modelValue: {},
   color: {
     type: Object,
-    default: {
-      bg: "bg-white dark:bg-zinc-900",
-      overlayBg: "bg-black/50",
+    default() {
+      return {
+        bg: "bg-white dark:bg-zinc-900",
+        overlayBg: "bg-black/50",
+      };
     },
   },
   absolute: {
@@ -110,7 +112,7 @@ let permanentComputed = computed(() => {
   return props.permanent;
 });
 
-watch(permanentComputed, (newVal, oldVal) => {
+watch(permanentComputed, (newVal) => {
   if (newVal) {
     setDocumentOverflow("auto");
   } else {
@@ -123,7 +125,7 @@ let modelValueComputed = computed(() => {
 });
 
 //watch modelValueComputed
-watch(modelValueComputed, (newVal, oldVal) => {
+watch(modelValueComputed, (newVal) => {
   if (newVal) {
     if (props.disableOverflow && !props.permanent) {
       setDocumentOverflow("hidden");

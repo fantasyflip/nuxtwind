@@ -1,9 +1,8 @@
 <template>
-  <div class="relative" :class="props.width?.textfield" id="select">
+  <div id="select" class="relative" :class="props.width?.textfield">
     <Textfield
-      @click="disabled || loading ? '' : (showSelect = true)"
-      autocomplete="off"
       v-model="selectSearch"
+      autocomplete="off"
       :outlined="props.outlined"
       :filled="props.filled"
       :disabled="props.disabled"
@@ -13,9 +12,10 @@
       :width="props.width?.textfield || defaults.width.textfield"
       :label="props.label"
       :transition="props.transition"
-      v-on:focusIn="saveInput"
-      :appendIcon="props.appendIcon"
-      :prependIcon="props.prependIcon"
+      :append-icon="props.appendIcon"
+      :prepend-icon="props.prependIcon"
+      @click="disabled || loading ? '' : (showSelect = true)"
+      @focusIn="saveInput"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -32,14 +32,14 @@
     <div v-if="showSelect" :class="dropDownStyleCass">
       <ul>
         <li
-          class="p-2"
           v-for="(item, index) in selectItems"
+          :key="index"
+          class="p-2"
           :class="
             index < selectItems.length - 1
               ? itemStyleClass
               : props.color?.hover || defaults.color.hover
           "
-          :key="index"
           @click.stop="setItem(item)"
         >
           {{ item }}
@@ -77,12 +77,14 @@ let props = defineProps({
   },
   color: {
     type: Object,
-    default: {
-      textfield: {},
-      bg: "bg-gray-200 dark:bg-zinc-800",
-      text: "text-black dark:text-white",
-      border: "border-gray-300 dark:border-zinc-700",
-      hover: "hover:bg-primary-700",
+    default() {
+      return {
+        textfield: {},
+        bg: "bg-gray-200 dark:bg-zinc-800",
+        text: "text-black dark:text-white",
+        border: "border-gray-300 dark:border-zinc-700",
+        hover: "hover:bg-primary-700",
+      };
     },
   },
   search: {
@@ -131,9 +133,11 @@ let props = defineProps({
   },
   width: {
     type: Object,
-    default: {
-      textfield: "w-full",
-      select: "w-full",
+    default() {
+      return {
+        textfield: "w-full",
+        select: "w-full",
+      };
     },
   },
   height: {

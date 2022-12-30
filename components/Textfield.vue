@@ -3,16 +3,16 @@
     <div v-if="props.prependIcon" :class="prependIconClass">
       <slot name="prepend-icon">
         <component
-          v-if="typeof props.prependIcon === 'object'"
           :is="props.prependIcon"
+          v-if="typeof props.prependIcon === 'object'"
         />
       </slot>
     </div>
     <div v-if="props.appendIcon" :class="appendIconClass">
       <slot name="append-icon">
         <component
-          v-if="typeof props.appendIcon === 'object'"
           :is="props.appendIcon"
+          v-if="typeof props.appendIcon === 'object'"
         />
       </slot>
     </div>
@@ -22,11 +22,11 @@
       :type="props.type"
       :placeholder="placeholder"
       :disabled="props.disabled"
-      @input="handleInput"
       :value="props.modelValue"
+      :autocomplete="autocomplete"
+      @input="handleInput"
       @focusin="$emit('focusIn')"
       @focusout="$emit('focusOut')"
-      :autocomplete="autocomplete"
     />
     <label :for="textfieldId" :class="labelClass">
       <slot name="label">{{ props.label }}</slot>
@@ -80,21 +80,23 @@ const props = defineProps({
   modelValue: {},
   color: {
     type: Object,
-    default: {
-      bg: "bg-gray-200 dark:bg-zinc-800",
-      text: "text-black dark:text-white",
-      hint: "text-gray-600 dark:text-gray-400",
-      error: "text-red-500 dark:text-red-500",
-      label: "text-black dark:text-white",
-      labelFocus: "peer-focus:text-cyan-600",
-      placeholderText:
-        "placeholder:text-gray-400 dark:placeholder:text-gray-600",
-      icon: "text-black dark:text-white",
-      iconFocus: "group-focus-within:text-cyan-600",
-      border: "border-black dark:border-white",
-      borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
-      borderError: "border-red-500",
-      borderFocusError: "focus:border-red-500",
+    default() {
+      return {
+        bg: "bg-gray-200 dark:bg-zinc-800",
+        text: "text-black dark:text-white",
+        hint: "text-gray-600 dark:text-gray-400",
+        error: "text-red-500 dark:text-red-500",
+        label: "text-black dark:text-white",
+        labelFocus: "peer-focus:text-cyan-600",
+        placeholderText:
+          "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+        icon: "text-black dark:text-white",
+        iconFocus: "group-focus-within:text-cyan-600",
+        border: "border-black dark:border-white",
+        borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
+        borderError: "border-red-500",
+        borderFocusError: "focus:border-red-500",
+      };
     },
   },
   label: {
@@ -159,7 +161,9 @@ const props = defineProps({
   },
   rules: {
     type: Array,
-    default: [],
+    default() {
+      return [];
+    },
   },
 });
 

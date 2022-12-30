@@ -74,11 +74,13 @@ let props = defineProps({
   height: Number,
   color: {
     type: Object,
-    default: {
-      nuxtHillRight: "fill-[#047857]",
-      nuxtHillLeft: "fill-[#10b881]",
-      tailwindCloudTop: "fill-[#165e75]",
-      tailwindCloudBottom: "fill-[#0891b1]",
+    default() {
+      return {
+        nuxtHillRight: "fill-[#047857]",
+        nuxtHillLeft: "fill-[#10b881]",
+        tailwindCloudTop: "fill-[#165e75]",
+        tailwindCloudBottom: "fill-[#0891b1]",
+      };
     },
   },
 });

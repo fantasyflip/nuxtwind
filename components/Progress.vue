@@ -1,7 +1,7 @@
 <template>
   <div
-    id="circular-progress"
     v-if="props.circular"
+    id="circular-progress"
     class="conic-gradient"
     :class="circularStyleClass"
   >
@@ -69,24 +69,28 @@ const props = defineProps({
   },
   size: {
     type: Object,
-    default: {
-      width: "w-full",
-      height: "h-1",
+    default() {
+      return {
+        width: "w-full",
+        height: "h-1",
+      };
     },
   },
   color: {
     type: Object,
-    default: {
-      circle: "gray-200",
-      circleDark: "zinc-800",
-      circleProgress: "primary-800",
-      circleProgressDark: "primary-800",
-      circleCutout: "before:bg-white dark:before:bg-zinc-900",
-      background: "bg-gray-200 dark:bg-zinc-800",
-      firstStrike: "before:bg-primary-800",
-      secondStrike: "after:bg-primary-600",
-      linearProgress: "bg-primary-800",
-      linearProgressHover: "hover:bg-secondary-800",
+    default() {
+      return {
+        circle: "gray-200",
+        circleDark: "zinc-800",
+        circleProgress: "primary-800",
+        circleProgressDark: "primary-800",
+        circleCutout: "before:bg-white dark:before:bg-zinc-900",
+        background: "bg-gray-200 dark:bg-zinc-800",
+        firstStrike: "before:bg-primary-800",
+        secondStrike: "after:bg-primary-600",
+        linearProgress: "bg-primary-800",
+        linearProgressHover: "hover:bg-secondary-800",
+      };
     },
   },
   circular: {
@@ -138,7 +142,7 @@ let textProgress = ref(lastInputValue);
 
 watch(
   modelValueComputed,
-  (newValue, oldValue) => {
+  (newValue) => {
     gradientProgress.value = getCircularProgress(newValue);
   },
   { immediate: true }

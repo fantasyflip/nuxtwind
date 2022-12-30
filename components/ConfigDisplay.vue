@@ -27,13 +27,13 @@
           <div class="text-lg font-semibold">Structure</div>
           <!-- v-if="typeof props.item.default === 'object'" -->
           <client-only
-            placeholder="Loading Default..."
             v-if="typeof props.item.structure === 'object'"
+            placeholder="Loading Default..."
           >
             <vue-json-pretty
               class="json-pretty"
-              :highlightSelectedNode="true"
-              :showDoubleQuotes="false"
+              :highlight-selected-node="true"
+              :show-double-quotes="false"
               :data="props.item.structure"
             />
           </client-only>
@@ -56,13 +56,15 @@
 const props = defineProps({
   item: {
     type: Object,
-    default: {
-      name: "ConfigExtend",
-      structure: {
-        name: "object-item",
-        count: 2,
-      },
-      description: "This is a description of the config extend",
+    default() {
+      return {
+        name: "ConfigExtend",
+        structure: {
+          name: "object-item",
+          count: 2,
+        },
+        description: "This is a description of the config extend",
+      };
     },
   },
 });

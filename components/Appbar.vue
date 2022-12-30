@@ -3,15 +3,15 @@
     <div v-if="props.navigationIcon" :class="navigationIconClass">
       <slot name="navigation-icon">
         <Button
-          @click="emit('navigation-icon-click')"
           icon
           :color="
             typeof props.navigationIcon === 'object' ? props.navigationIcon : {}
           "
+          @click="emit('navigation-icon-click')"
         >
           <component
-            v-if="typeof props.navigationIcon === 'object'"
             :is="props.navigationIcon"
+            v-if="typeof props.navigationIcon === 'object'"
           />
           <MdiMenu v-else />
         </Button>
@@ -23,8 +23,8 @@
     <TransitionGroup name="list">
       <!-- TODO fix z index issue  -->
       <div
-        key="extension"
         v-if="extensionIsActive"
+        key="extension"
         :class="props.color?.bg || defaults.color.bg"
         class="w-full"
       >
@@ -46,8 +46,10 @@ let defaults = {
 let props = defineProps({
   color: {
     type: Object,
-    default: {
-      bg: "bg-white dark:bg-zinc-900",
+    default() {
+      return {
+        bg: "bg-white dark:bg-zinc-900",
+      };
     },
   },
   fixed: {
