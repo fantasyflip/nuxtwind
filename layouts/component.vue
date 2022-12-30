@@ -43,12 +43,13 @@
   <Appbar
     fixed
     :elevate-on-scroll="!usePermanentDrawer()"
-    navigation-icon
+    :navigation-icon="!usePermanentDrawer()"
     @navigation-icon-click="showDrawer = true"
   >
     <div class="w-full h-full grid content-center">
       <div
-        class="mx-4 ml-14 lg:text-3xl text-2xl font-extrabold flex justify-between"
+        :class="usePermanentDrawer() ? '' : 'ml-14'"
+        class="mx-4 lg:text-3xl text-2xl font-extrabold flex justify-between"
       >
         <div class="group flex pb-1">
           <slot name="componentName"></slot>
@@ -110,7 +111,7 @@
   </Appbar>
   <div
     class="transition-all duration-300"
-    :class="usePermanentDrawer() ? 'md:ml-[240px] ml-[160px]' : ''"
+    :class="usePermanentDrawer() ? 'md:ml-[288px] ml-[208px]' : ''"
   >
     <div
       class="lg:text-2xl text-xl font-bold cursor-pointer mx-4 pt-16"
