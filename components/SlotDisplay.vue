@@ -10,7 +10,12 @@
       "
       @click="$hashAndCopy('slot-' + props.item.name)"
     >
-      {{ props.item.name }}
+      <Tooltip right width="w-40">
+        <span class="hover:text-secondary-800">{{ props.item.name }}</span>
+        <template #tooltip>{{
+          $t("components.slotDisplay.content.copyTooltip")
+        }}</template>
+      </Tooltip>
     </div>
     <div class="pl-2">
       <div class="text-lg font-semibold">Description</div>

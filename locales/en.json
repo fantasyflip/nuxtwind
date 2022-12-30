@@ -846,6 +846,31 @@
     }
   },
   "components": {
+    "propDisplay": {
+      "content": {
+        "copyTooltip": "Click to copy a direct link"
+      }
+    },
+    "slotDisplay": {
+      "content": {
+        "copyTooltip": "Click to copy a direct link"
+      }
+    },
+    "eventDisplay": {
+      "content": {
+        "copyTooltip": "Click to copy a direct link"
+      }
+    },
+    "configDisplay": {
+      "content": {
+        "copyTooltip": "Click to copy a direct link"
+      }
+    },
+    "caveatDisplay": {
+      "content": {
+        "copyTooltip": "Click to copy a direct link"
+      }
+    },
     "documentationDisplay": {
       "content": {
         "documentation": "Documentation",

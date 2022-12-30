@@ -847,6 +847,31 @@
     }
   },
   "components": {
+    "propDisplay": {
+      "content": {
+        "copyTooltip": "Klicken um einen direkten Link zu kopieren"
+      }
+    },
+    "slotDisplay": {
+      "content": {
+        "copyTooltip": "Klicken um einen direkten Link zu kopieren"
+      }
+    },
+    "eventDisplay": {
+      "content": {
+        "copyTooltip": "Klicken um einen direkten Link zu kopieren"
+      }
+    },
+    "configDisplay": {
+      "content": {
+        "copyTooltip": "Klicken um einen direkten Link zu kopieren"
+      }
+    },
+    "caveatDisplay": {
+      "content": {
+        "copyTooltip": "Klicken um einen direkten Link zu kopieren"
+      }
+    },
     "documentationDisplay": {
       "content": {
         "documentation": "Dokumentation",
