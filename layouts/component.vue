@@ -4,7 +4,7 @@
     :overlay="usePermanentDrawer() ? false : true"
     :z-index="usePermanentDrawer() ? 'z-[9]' : 'z-[100]'"
     :permanent="usePermanentDrawer()"
-    width="md:w-60 w-40"
+    width="md:w-72 w-52"
   >
     <Appbar
       :color="{
@@ -12,7 +12,8 @@
       }"
     >
       <div class="w-full h-full grid place-items-center font-semibold">
-        <NuxtWindIcon :height="40" />
+        <NuxtWindIcon :height="40" v-if="!isMobile" />
+        <NuxtWindName :height="30" v-else />
       </div>
     </Appbar>
     <div class="lg:h-[82vh] h-[72vh] overflow-y-auto">
@@ -53,7 +54,7 @@
           <slot name="componentName"></slot>
           <div class="text-primary-800 group-hover:text-secondary-800">.</div>
         </div>
-        <NuxtWindName :height="40" />
+        <NuxtWindName :height="40" class="invisible md:visible" />
         <div class="flex">
           <Tooltip bottom width="w-fit">
             <Button
