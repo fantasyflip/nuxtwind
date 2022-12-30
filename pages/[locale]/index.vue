@@ -1,9 +1,6 @@
 <template>
   <div class="center">
-    <div class="md:text-8xl sm:text-7xl text-5xl font-bold group">
-      <span>Nuxt</span>
-      <span class="text-primary-800 group-hover:text-secondary-800">Wind</span>
-    </div>
+    <NuxtWindIconName />
     <div class="md:text-2xl sm:text-xl text-md text-center mt-4">
       This is going to be a collection of components for Nuxt 3, powered by
       TailwindCSS that I use in my projects.<br />
