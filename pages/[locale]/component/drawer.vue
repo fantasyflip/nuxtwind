@@ -165,7 +165,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.drawer.content.properties.permanent.description"
+      "pages.component.drawer.content.documentation.properties.permanent.description"
     ),
   },
   {
@@ -176,7 +176,7 @@ let props = [
       overlayBg: "bg-black/50",
     },
     description: t(
-      "pages.component.drawer.content.properties.color.description"
+      "pages.component.drawer.content.documentation.properties.color.description"
     ),
   },
   {
@@ -184,7 +184,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.drawer.content.properties.absolute.description"
+      "pages.component.drawer.content.documentation.properties.absolute.description"
     ),
   },
   {
@@ -192,7 +192,7 @@ let props = [
     type: "Boolean",
     default: true,
     description: t(
-      "pages.component.drawer.content.properties.fixed.description"
+      "pages.component.drawer.content.documentation.properties.fixed.description"
     ),
   },
   {
@@ -200,7 +200,7 @@ let props = [
     type: "String",
     default: "z-[100]",
     description: t(
-      "pages.component.drawer.content.properties.zIndex.description"
+      "pages.component.drawer.content.documentation.properties.zIndex.description"
     ),
   },
   {
@@ -208,7 +208,7 @@ let props = [
     type: "Boolean",
     default: true,
     description: t(
-      "pages.component.drawer.content.properties.overlay.description"
+      "pages.component.drawer.content.documentation.properties.overlay.description"
     ),
   },
   {
@@ -216,7 +216,7 @@ let props = [
     type: "Boolean",
     default: true,
     description: t(
-      "pages.component.drawer.content.properties.disableOverflow.description"
+      "pages.component.drawer.content.documentation.properties.disableOverflow.description"
     ),
   },
   {
@@ -224,7 +224,7 @@ let props = [
     type: "Boolean, Object",
     default: false,
     description: t(
-      "pages.component.drawer.content.properties.expandOnHover.description"
+      "pages.component.drawer.content.documentation.properties.expandOnHover.description"
     ),
   },
   {
@@ -232,7 +232,7 @@ let props = [
     type: "Boolean, Object",
     default: true,
     description: t(
-      "pages.component.drawer.content.properties.transition.description"
+      "pages.component.drawer.content.documentation.properties.transition.description"
     ),
   },
   {
@@ -240,7 +240,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.drawer.content.properties.noMobile.description"
+      "pages.component.drawer.content.documentation.properties.noMobile.description"
     ),
   },
   {
@@ -248,7 +248,7 @@ let props = [
     type: "Number",
     default: 768,
     description: t(
-      "pages.component.drawer.content.properties.mobileWidth.description"
+      "pages.component.drawer.content.documentation.properties.mobileWidth.description"
     ),
   },
   {
@@ -256,7 +256,7 @@ let props = [
     type: "Boolean, String",
     default: true,
     description: t(
-      "pages.component.drawer.content.properties.border.description"
+      "pages.component.drawer.content.documentation.properties.border.description"
     ),
   },
   {
@@ -264,7 +264,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.drawer.content.properties.right.description"
+      "pages.component.drawer.content.documentation.properties.right.description"
     ),
   },
   {
@@ -272,7 +272,7 @@ let props = [
     type: "String",
     default: "h-screen",
     description: t(
-      "pages.component.drawer.content.properties.height.description"
+      "pages.component.drawer.content.documentation.properties.height.description"
     ),
   },
   {
@@ -280,7 +280,7 @@ let props = [
     type: "String",
     default: "md:w-80 w-60",
     description: t(
-      "pages.component.drawer.content.properties.width.description"
+      "pages.component.drawer.content.documentation.properties.width.description"
     ),
   },
 ];
