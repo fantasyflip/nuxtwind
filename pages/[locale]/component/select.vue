@@ -130,7 +130,7 @@ let props = [
     type: "Array",
     default: undefined,
     description: t(
-      "pages.component.select.content.documentation.props.items.description"
+      "pages.component.select.content.documentation.properties.items.description"
     ),
   },
   {
@@ -144,7 +144,7 @@ let props = [
       hover: "hover:bg-primary-700",
     },
     description: t(
-      "pages.component.select.content.documentation.props.color.description",
+      "pages.component.select.content.documentation.properties.color.description",
       { url: useComponentReferUrl("textfield", "prop", "color") }
     ),
   },
@@ -153,7 +153,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.select.content.documentation.props.search.description"
+      "pages.component.select.content.documentation.properties.search.description"
     ),
   },
   {
@@ -161,7 +161,7 @@ let props = [
     type: "String",
     default: "",
     description: t(
-      "pages.component.select.content.documentation.props.referComponent.textfield.description",
+      "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "label") }
     ),
   },
@@ -170,7 +170,7 @@ let props = [
     type: "Boolean, String",
     default: false,
     description: t(
-      "pages.component.select.content.documentation.props.referComponent.textfield.description",
+      "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "outlined") }
     ),
   },
@@ -179,7 +179,7 @@ let props = [
     type: "Boolean, String",
     default: false,
     description: t(
-      "pages.component.select.content.documentation.props.referComponent.textfield.description",
+      "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "filled") }
     ),
   },
@@ -188,7 +188,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.select.content.documentation.props.disabled.description",
+      "pages.component.select.content.documentation.properties.disabled.description",
       { url: useComponentReferUrl("textfield", "prop", "disabled") }
     ),
   },
@@ -197,7 +197,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.select.content.documentation.props.loading.description",
+      "pages.component.select.content.documentation.properties.loading.description",
       { url: useComponentReferUrl("textfield", "prop", "loading") }
     ),
   },
@@ -206,7 +206,7 @@ let props = [
     type: "String",
     default: " ",
     description: t(
-      "pages.component.select.content.documentation.props.referComponent.textfield.description",
+      "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "placeholder") }
     ),
   },
@@ -215,7 +215,7 @@ let props = [
     type: "Object, Boolean",
     default: "",
     description: t(
-      "pages.component.select.content.documentation.props.referComponent.textfield.description",
+      "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "transition") }
     ),
   },
@@ -224,7 +224,7 @@ let props = [
     type: "Boolean, String",
     default: true,
     description: t(
-      "pages.component.select.content.documentation.props.referComponent.textfield.description",
+      "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "shadow") }
     ),
   },
@@ -233,7 +233,7 @@ let props = [
     type: "Object",
     default: null,
     description: t(
-      "pages.component.select.content.documentation.props.referComponent.textfield.description",
+      "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "appendIcon") }
     ),
   },
@@ -242,7 +242,7 @@ let props = [
     type: "Object",
     default: null,
     description: t(
-      "pages.component.select.content.documentation.props.referComponent.textfield.description",
+      "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "prependIcon") }
     ),
   },
@@ -254,7 +254,7 @@ let props = [
       select: "w-full",
     },
     description: t(
-      "pages.component.select.content.documentation.props.width.description"
+      "pages.component.select.content.documentation.properties.width.description"
     ),
   },
   {
@@ -262,7 +262,7 @@ let props = [
     type: "String",
     default: "max-h-48",
     description: t(
-      "pages.component.select.content.documentation.props.height.description"
+      "pages.component.select.content.documentation.properties.height.description"
     ),
   },
 ];
@@ -271,21 +271,21 @@ let slots = [
   {
     name: "prepend-icon",
     description: t(
-      "pages.component.select.content.slots.referComponent.textfield.description",
+      "pages.component.select.content.documentation.slots.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "slot", "prepend-icon") }
     ),
   },
   {
     name: "append-icon",
     description: t(
-      "pages.component.select.content.slots.referComponent.textfield.description",
+      "pages.component.select.content.documentation.slots.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "slot", "append-icon") }
     ),
   },
   {
     name: "label",
     description: t(
-      "pages.component.select.content.slots.referComponent.textfield.description",
+      "pages.component.select.content.documentation.slots.referComponent.textfield.description",
       {
         url: useComponentReferUrl("textfield", "slot", "label"),
       }
@@ -295,9 +295,11 @@ let slots = [
 
 let caveats = [
   {
-    name: t("pages.component.select.content.caveats.textfield.title"),
+    name: t(
+      "pages.component.select.content.documentation.caveats.textfield.title"
+    ),
     description: t(
-      "pages.component.select.content.caveats.textfield.description",
+      "pages.component.select.content.documentation.caveats.textfield.description",
       {
         url: useLocaleUrl("component/textfield"),
       }
