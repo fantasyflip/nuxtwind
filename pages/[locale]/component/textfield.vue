@@ -147,7 +147,7 @@ let props = [
     type: "String",
     default: "Label",
     description: t(
-      "pages.component.textfield.content.properties.label.description"
+      "pages.component.textfield.content.documentation.properties.label.description"
     ),
   },
   {
@@ -170,7 +170,7 @@ let props = [
       borderFocusError: "focus:border-red-500",
     },
     description: t(
-      "pages.component.textfield.content.properties.color.description"
+      "pages.component.textfield.content.documentation.properties.color.description"
     ),
   },
   {
@@ -178,7 +178,7 @@ let props = [
     type: "String",
     default: "on",
     description: t(
-      "pages.component.textfield.content.properties.autocomplete.description"
+      "pages.component.textfield.content.documentation.properties.autocomplete.description"
     ),
   },
   {
@@ -186,7 +186,7 @@ let props = [
     type: "Boolean, String",
     default: "rounded-lg",
     description: t(
-      "pages.component.textfield.content.properties.rounded.description"
+      "pages.component.textfield.content.documentation.properties.rounded.description"
     ),
   },
   {
@@ -194,7 +194,7 @@ let props = [
     type: "Boolean, Object",
     default: false,
     description: t(
-      "pages.component.textfield.content.properties.prependIcon.description"
+      "pages.component.textfield.content.documentation.properties.prependIcon.description"
     ),
   },
   {
@@ -202,7 +202,7 @@ let props = [
     type: "Boolean, Object",
     default: false,
     description: t(
-      "pages.component.textfield.content.properties.appendIcon.description"
+      "pages.component.textfield.content.documentation.properties.appendIcon.description"
     ),
   },
   {
@@ -210,7 +210,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.textfield.content.properties.disabled.description"
+      "pages.component.textfield.content.documentation.properties.disabled.description"
     ),
   },
   {
@@ -218,7 +218,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.textfield.content.properties.loading.description"
+      "pages.component.textfield.content.documentation.properties.loading.description"
     ),
   },
   {
@@ -226,7 +226,7 @@ let props = [
     type: "Boolean, String",
     default: false,
     description: t(
-      "pages.component.textfield.content.properties.outlined.description"
+      "pages.component.textfield.content.documentation.properties.outlined.description"
     ),
   },
   {
@@ -234,7 +234,7 @@ let props = [
     type: "Boolean",
     default: "border-b-2",
     description: t(
-      "pages.component.textfield.content.properties.filled.description"
+      "pages.component.textfield.content.documentation.properties.filled.description"
     ),
   },
   {
@@ -242,7 +242,7 @@ let props = [
     type: "Boolean, String",
     default: "shadow-lg",
     description: t(
-      "pages.component.textfield.content.properties.shadow.description"
+      "pages.component.textfield.content.documentation.properties.shadow.description"
     ),
   },
   {
@@ -257,7 +257,7 @@ let props = [
       },
     },
     description: t(
-      "pages.component.textfield.content.properties.transition.description"
+      "pages.component.textfield.content.documentation.properties.transition.description"
     ),
   },
   {
@@ -265,7 +265,7 @@ let props = [
     type: "String",
     default: " ",
     description: t(
-      "pages.component.textfield.content.properties.placeholder.description"
+      "pages.component.textfield.content.documentation.properties.placeholder.description"
     ),
   },
   {
@@ -273,7 +273,7 @@ let props = [
     type: "String",
     default: undefined,
     description: t(
-      "pages.component.textfield.content.properties.hint.description"
+      "pages.component.textfield.content.documentation.properties.hint.description"
     ),
   },
   {
@@ -281,7 +281,7 @@ let props = [
     type: "String",
     default: "text",
     description: t(
-      "pages.component.textfield.content.properties.type.description"
+      "pages.component.textfield.content.documentation.properties.type.description"
     ),
   },
   {
@@ -289,7 +289,7 @@ let props = [
     type: "String",
     default: undefined,
     description: t(
-      "pages.component.textfield.content.properties.width.description"
+      "pages.component.textfield.content.documentation.properties.width.description"
     ),
   },
 ];
@@ -299,7 +299,7 @@ let events = [
     name: "update:modelValue",
     structure: "String",
     description: t(
-      "pages.component.textfield.content.events.updateModelValue.description"
+      "pages.component.textfield.content.documentation.events.updateModelValue.description"
     ),
   },
   {
@@ -314,21 +314,21 @@ let events = [
       },
     },
     description: t(
-      "pages.component.textfield.content.events.updateValidation.description"
+      "pages.component.textfield.content.documentation.events.updateValidation.description"
     ),
   },
   {
     name: "focusIn",
     structure: undefined,
     description: t(
-      "pages.component.textfield.content.events.focusIn.description"
+      "pages.component.textfield.content.documentation.events.focusIn.description"
     ),
   },
   {
     name: "focusOut",
     structure: undefined,
     description: t(
-      "pages.component.textfield.content.events.focusOut.description"
+      "pages.component.textfield.content.documentation.events.focusOut.description"
     ),
   },
 ];
@@ -337,18 +337,20 @@ let slots = [
   {
     name: "prepend-icon",
     description: t(
-      "pages.component.textfield.content.slots.prependIcon.description"
+      "pages.component.textfield.content.documentation.slots.prependIcon.description"
     ),
   },
   {
     name: "append-icon",
     description: t(
-      "pages.component.textfield.content.slots.appendIcon.description"
+      "pages.component.textfield.content.documentation.slots.appendIcon.description"
     ),
   },
   {
     name: "label",
-    description: t("pages.component.textfield.content.slots.label.description"),
+    description: t(
+      "pages.component.textfield.content.documentation.slots.label.description"
+    ),
   },
 ];
 
