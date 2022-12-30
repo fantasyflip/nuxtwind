@@ -108,7 +108,7 @@ let props = [
       loadingCircleCutout: "before:bg-cyan-900 dark:before:bg-cyan-900",
     },
     description: t(
-      "pages.component.button.content.properties.color.description"
+      "pages.component.button.content.documentation.properties.color.description"
     ),
   },
   {
@@ -116,7 +116,7 @@ let props = [
     type: "Boolean, String",
     default: "rounded-md",
     description: t(
-      "pages.component.button.content.properties.rounded.description"
+      "pages.component.button.content.documentation.properties.rounded.description"
     ),
   },
   {
@@ -127,7 +127,7 @@ let props = [
       scale: "hover:scale-105",
     },
     description: t(
-      "pages.component.button.content.properties.grow.description"
+      "pages.component.button.content.documentation.properties.grow.description"
     ),
   },
   {
@@ -135,7 +135,7 @@ let props = [
     type: "Object, String",
     default: undefined,
     description: t(
-      "pages.component.button.content.properties.link.description"
+      "pages.component.button.content.documentation.properties.link.description"
     ),
   },
   {
@@ -143,7 +143,7 @@ let props = [
     type: "String",
     default: "_self",
     description: t(
-      "pages.component.button.content.properties.target.description"
+      "pages.component.button.content.documentation.properties.target.description"
     ),
   },
   {
@@ -151,7 +151,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.button.content.properties.disabled.description"
+      "pages.component.button.content.documentation.properties.disabled.description"
     ),
   },
   {
@@ -159,7 +159,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.button.content.properties.icon.description"
+      "pages.component.button.content.documentation.properties.icon.description"
     ),
   },
   {
@@ -167,7 +167,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.button.content.properties.loading.description"
+      "pages.component.button.content.documentation.properties.loading.description"
     ),
   },
   {
@@ -175,7 +175,7 @@ let props = [
     type: "Boolean",
     default: "border-2",
     description: t(
-      "pages.component.button.content.properties.outlined.description"
+      "pages.component.button.content.documentation.properties.outlined.description"
     ),
   },
   {
@@ -183,7 +183,7 @@ let props = [
     type: "Boolean",
     default: "shadow-md",
     description: t(
-      "pages.component.button.content.properties.shadow.description"
+      "pages.component.button.content.documentation.properties.shadow.description"
     ),
   },
   {
@@ -194,7 +194,7 @@ let props = [
       ease: "ease-in-out",
     },
     description: t(
-      "pages.component.button.content.properties.transition.description"
+      "pages.component.button.content.documentation.properties.transition.description"
     ),
   },
   {
@@ -202,7 +202,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.button.content.properties.dense.description"
+      "pages.component.button.content.documentation.properties.dense.description"
     ),
   },
   {
@@ -210,7 +210,7 @@ let props = [
     type: "String",
     default: undefined,
     description: t(
-      "pages.component.button.content.properties.width.description"
+      "pages.component.button.content.documentation.properties.width.description"
     ),
   },
   {
@@ -218,7 +218,7 @@ let props = [
     type: "String",
     default: "w-fit",
     description: t(
-      "pages.component.button.content.properties.height.description"
+      "pages.component.button.content.documentation.properties.height.description"
     ),
   },
 ];
@@ -226,15 +226,19 @@ let props = [
 let slots = [
   {
     name: "default",
-    description: t("pages.component.button.content.slots.default.description"),
+    description: t(
+      "pages.component.button.content.documentation.slots.default.description"
+    ),
   },
 ];
 
 let caveats = [
   {
-    name: t("pages.component.button.content.caveats.progress.title"),
+    name: t(
+      "pages.component.button.content.documentation.caveats.progress.title"
+    ),
     description: t(
-      "pages.component.button.content.caveats.progress.description",
+      "pages.component.button.content.documentation.caveats.progress.description",
       {
         url: useLocaleUrl("component/progress"),
       }

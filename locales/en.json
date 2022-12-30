@@ -143,59 +143,61 @@
       },
       "button": {
         "content": {
-          "properties": {
-            "color": {
-              "description": "Prop to set the color of the button.<br>You can seperately set the background, text, border and hover color.<br>If the 'outlined' prop is set, only the border and the text color will be used.<br>If the 'disabled' or 'loading' prop is set, the opacity will be set to 50% and the hover color will no longer take effect.<br>If the 'icon' prop is set, only the text & iconHover color will take effect."
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Prop to set the color of the button.<br>You can seperately set the background, text, border and hover color.<br>If the 'outlined' prop is set, only the border and the text color will be used.<br>If the 'disabled' or 'loading' prop is set, the opacity will be set to 50% and the hover color will no longer take effect.<br>If the 'icon' prop is set, only the text & iconHover color will take effect."
+              },
+              "rounded": {
+                "description": "Prop to set the border radius of the button. The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
+              },
+              "grow": {
+                "description": "Prop to apply a grow effect to the button. The delay and scale can be set seperately.<br>To apply the effect on hover prefix the tailwind 'scale'-class with 'hover:'."
+              },
+              "link": {
+                "description": "Prop to make the button a link. You either can set a complete link or a realtive url."
+              },
+              "target": {
+                "description": "Prop to set the target of the link. Only applied when the 'link' prop is set."
+              },
+              "disabled": {
+                "description": "Prop to set the button to disabled. When disabled the opacity will be set to 50% and the hover color will no longer take effect.<br>The button won't be clickable anymore.<br>Also the grow effect no longer takes effect."
+              },
+              "icon": {
+                "description": "Prop to set the button to an icon button. If set to true only the text and hover color will take effect."
+              },
+              "loading": {
+                "description": "Prop to set the button to loading. When loading the opacity will be set to 50% and the hover color will no longer take effect.<br>The button won't be clickable anymore.<br>Also the grow effect no longer takes effect. A loading spinner will be displayed instead of the button content."
+              },
+              "outlined": {
+                "description": "Prop to set the button to outlined. When set to true the border will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>The background color will be transparent.<br>Also the hover color will no longer take effect. Instead the border and text color will be applied."
+              },
+              "shadow": {
+                "description": "Prop to add a shadow to the button. The default value can be toggled by just setting the prop or disabled by setting it to 'false'. To set a special value set it to a tailwind 'shadow'-class."
+              },
+              "transition": {
+                "description": "Prop to set the transition settings of the button, that will take effect on hover-color-change and the grow prop.<br>When set to 'false' no transition will be applied.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'timing-function' seperately."
+              },
+              "dense": {
+                "description": "Prop to set the button to dense. When set to true the padding will be reduced and the text will be set to small."
+              },
+              "width": {
+                "description": "Prop to set the width of the button. You can set it to a tailwind 'w'-class."
+              },
+              "height": {
+                "description": "Prop to set the height of the button. You can set it to a tailwind 'h'-class."
+              }
             },
-            "rounded": {
-              "description": "Prop to set the border radius of the button. The default value can be toggled by just setting the prop or disabled by setting it to 'false'.<br>To set a special value set it to a tailwind 'rounded'-class."
+            "slots": {
+              "default": {
+                "description": "Slot to set the content of the button."
+              }
             },
-            "grow": {
-              "description": "Prop to apply a grow effect to the button. The delay and scale can be set seperately.<br>To apply the effect on hover prefix the tailwind 'scale'-class with 'hover:'."
-            },
-            "link": {
-              "description": "Prop to make the button a link. You either can set a complete link or a realtive url."
-            },
-            "target": {
-              "description": "Prop to set the target of the link. Only applied when the 'link' prop is set."
-            },
-            "disabled": {
-              "description": "Prop to set the button to disabled. When disabled the opacity will be set to 50% and the hover color will no longer take effect.<br>The button won't be clickable anymore.<br>Also the grow effect no longer takes effect."
-            },
-            "icon": {
-              "description": "Prop to set the button to an icon button. If set to true only the text and hover color will take effect."
-            },
-            "loading": {
-              "description": "Prop to set the button to loading. When loading the opacity will be set to 50% and the hover color will no longer take effect.<br>The button won't be clickable anymore.<br>Also the grow effect no longer takes effect. A loading spinner will be displayed instead of the button content."
-            },
-            "outlined": {
-              "description": "Prop to set the button to outlined. When set to true the border will be set to the default-value.<br>If provided with a tailwind 'border'-class the border-width can be set.<br>The background color will be transparent.<br>Also the hover color will no longer take effect. Instead the border and text color will be applied."
-            },
-            "shadow": {
-              "description": "Prop to add a shadow to the button. The default value can be toggled by just setting the prop or disabled by setting it to 'false'. To set a special value set it to a tailwind 'shadow'-class."
-            },
-            "transition": {
-              "description": "Prop to set the transition settings of the button, that will take effect on hover-color-change and the grow prop.<br>When set to 'false' no transition will be applied.<br>When set to 'true' the default transition will be applied.<br>When set to an object you can set the 'duration' and 'timing-function' seperately."
-            },
-            "dense": {
-              "description": "Prop to set the button to dense. When set to true the padding will be reduced and the text will be set to small."
-            },
-            "width": {
-              "description": "Prop to set the width of the button. You can set it to a tailwind 'w'-class."
-            },
-            "height": {
-              "description": "Prop to set the height of the button. You can set it to a tailwind 'h'-class."
-            }
-          },
-          "slots": {
-            "default": {
-              "description": "Slot to set the content of the button."
-            }
-          },
-          "caveats": {
-            "progress": {
-              "description": "The button component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>.",
-              "title": "Progress component"
+            "caveats": {
+              "progress": {
+                "description": "The button component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Progress Component</a>.",
+                "title": "Progress component"
+              }
             }
           },
           "playground": {
