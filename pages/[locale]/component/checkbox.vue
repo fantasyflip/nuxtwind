@@ -100,7 +100,7 @@ let props = [
       hover: "hover:text-secondary-700 dark:hover:text-secondary-700",
     },
     description: t(
-      "pages.component.checkbox.content.properties.color.description"
+      "pages.component.checkbox.content.documentation.properties.color.description"
     ),
   },
   {
@@ -108,7 +108,7 @@ let props = [
     type: "String",
     default: "",
     description: t(
-      "pages.component.checkbox.content.properties.label.description"
+      "pages.component.checkbox.content.documentation.properties.label.description"
     ),
   },
   {
@@ -116,7 +116,7 @@ let props = [
     type: "String",
     default: "",
     description: t(
-      "pages.component.checkbox.content.properties.description.description"
+      "pages.component.checkbox.content.documentation.properties.description.description"
     ),
   },
   {
@@ -127,7 +127,7 @@ let props = [
       description: "text-xs font-normal",
     },
     description: t(
-      "pages.component.checkbox.content.properties.text.description"
+      "pages.component.checkbox.content.documentation.properties.text.description"
     ),
   },
   {
@@ -135,7 +135,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.checkbox.content.properties.disabled.description"
+      "pages.component.checkbox.content.documentation.properties.disabled.description"
     ),
   },
   {
@@ -143,7 +143,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.checkbox.content.properties.loading.description"
+      "pages.component.checkbox.content.documentation.properties.loading.description"
     ),
   },
   {
@@ -151,7 +151,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.checkbox.content.properties.radio.description"
+      "pages.component.checkbox.content.documentation.properties.radio.description"
     ),
   },
 ];
@@ -159,30 +159,36 @@ let props = [
 let slots = [
   {
     name: "label",
-    description: t("pages.component.checkbox.content.slots.label.description"),
+    description: t(
+      "pages.component.checkbox.content.documentation.slots.label.description"
+    ),
   },
   {
     name: "description",
     description: t(
-      "pages.component.checkbox.content.slots.description.description"
+      "pages.component.checkbox.content.documentation.slots.description.description"
     ),
   },
 ];
 
 let caveats = [
   {
-    name: t("pages.component.checkbox.content.caveats.icon.title"),
+    name: t(
+      "pages.component.checkbox.content.documentation.caveats.icon.title"
+    ),
     description: t(
-      "pages.component.checkbox.content.caveats.icon.description",
+      "pages.component.checkbox.content.documentation.caveats.icon.description",
       {
         url: "https://github.com/antfu/unplugin-icons",
       }
     ),
   },
   {
-    name: t("pages.component.checkbox.content.caveats.group.title"),
+    name: t(
+      "pages.component.checkbox.content.documentation.caveats.group.title"
+    ),
     description: t(
-      "pages.component.checkbox.content.caveats.group.description",
+      "pages.component.checkbox.content.documentation.caveats.group.description",
       {
         url: useLocaleUrl("component/checkboxgroup"),
       }
