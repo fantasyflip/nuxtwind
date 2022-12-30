@@ -244,16 +244,6 @@ function getOgpDescription() {
           ".description"
       );
 
-      console.log(
-        "pages.component." +
-          route.path.split("/")[3] +
-          ".content.documentation." +
-          getI18nCategoryKey(category) +
-          "." +
-          item +
-          ".description"
-      );
-
       //check if first 5 characters are "pages"
       if (content.substring(0, 5) === "pages") {
         return t("layouts.component.meta.itemDescription", {

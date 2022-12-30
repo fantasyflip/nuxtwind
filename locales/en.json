@@ -461,53 +461,55 @@
       },
       "checkboxgroup": {
         "content": {
-          "properties": {
-            "color": {
-              "description": "Prop to set the color of the label and the description of the checkboxgroup individually."
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Prop to set the color of the label and the description of the checkboxgroup individually."
+              },
+              "text": {
+                "description": "Prop to change the appearance of the label and the description of the checkboxgroup component."
+              },
+              "label": {
+                "description": "Prop to set the checkboxgroup's title."
+              },
+              "description": {
+                "description": "Prop to set the checkboxgroup's description."
+              },
+              "items": {
+                "description": "Prop to set the items of the group. The items must be objects that include valid props for the checkbox-component. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about it."
+              },
+              "multiple": {
+                "description": "Prop to allow multiple checkboxes to be selected at once. If not set the group will only allow one checked box at a time. Also the icons will be changed to rounded ones. This can be changed by setting the 'no-radio'-prop."
+              },
+              "loading": {
+                "description": "Prop to set the loading state of the component."
+              },
+              "disabled": {
+                "description": "Prop to disable the checkboxgroup."
+              },
+              "width": {
+                "description": "Prop to change the checkboxgroup's width."
+              },
+              "generalCheckboxProps": {
+                "description": "Prop to easily set same props for multiple checkboxes. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about possible props."
+              },
+              "notZero": {
+                "description": "Prop to make sure that at least one checkbox is checked."
+              }
             },
-            "text": {
-              "description": "Prop to change the appearance of the label and the description of the checkboxgroup component."
+            "slots": {
+              "groupLabel": {
+                "description": "Slot for the checkboxgroup's label."
+              },
+              "groupDescription": {
+                "description": "Slot for the checkboxgroup's description."
+              }
             },
-            "label": {
-              "description": "Prop to set the checkboxgroup's title."
-            },
-            "description": {
-              "description": "Prop to set the checkboxgroup's description."
-            },
-            "items": {
-              "description": "Prop to set the items of the group. The items must be objects that include valid props for the checkbox-component. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about it."
-            },
-            "multiple": {
-              "description": "Prop to allow multiple checkboxes to be selected at once. If not set the group will only allow one checked box at a time. Also the icons will be changed to rounded ones. This can be changed by setting the 'no-radio'-prop."
-            },
-            "loading": {
-              "description": "Prop to set the loading state of the component."
-            },
-            "disabled": {
-              "description": "Prop to disable the checkboxgroup."
-            },
-            "width": {
-              "description": "Prop to change the checkboxgroup's width."
-            },
-            "generalCheckboxProps": {
-              "description": "Prop to easily set same props for multiple checkboxes. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about possible props."
-            },
-            "notZero": {
-              "description": "Prop to make sure that at least one checkbox is checked."
-            }
-          },
-          "slots": {
-            "groupLabel": {
-              "description": "Slot for the checkboxgroup's label."
-            },
-            "groupDescription": {
-              "description": "Slot for the checkboxgroup's description."
-            }
-          },
-          "caveats": {
-            "checkbox": {
-              "title": "Checkbox component",
-              "description": "The checkboxgroup component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Checkbox Component</a>."
+            "caveats": {
+              "checkbox": {
+                "title": "Checkbox component",
+                "description": "The checkboxgroup component requires the <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Checkbox Component</a>."
+              }
             }
           },
           "playground": {
@@ -747,17 +749,17 @@
       },
       "tooltip": {
         "content": {
-          "documentation": {
-            "playground": {
-              "checkboxgroup": {
-                "label": "Bool-Prop Selection",
-                "description": "By checking or unchecking the boxes the props will be handled accordingly."
-              },
-              "tooltip": "This is a tooltip telling you not to click the button! :)",
-              "toast": {
-                "message": "You´re supposed to hover over me and not click!"
-              }
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
             },
+            "tooltip": "This is a tooltip telling you not to click the button! :)",
+            "toast": {
+              "message": "You´re supposed to hover over me and not click!"
+            }
+          },
+          "documentation": {
             "properties": {
               "color": {
                 "description": "Prop to set the color of the tooltip. The color of the text, tooltip background and the pointer background can be set separately."

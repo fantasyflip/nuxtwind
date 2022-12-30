@@ -15,7 +15,7 @@
               useToast({
                 title: '(╯°□°)╯︵ ┻━┻',
                 message: $t(
-                  'pages.component.tooltip.content.documentation.playground.toast.message'
+                  'pages.component.tooltip.content.playground.toast.message'
                 ),
                 autoClose: true,
                 type: 'error',
@@ -44,12 +44,12 @@
               :items="postitionProps"
               :label="
                 $t(
-                  'pages.component.tooltip.content.documentation.playground.checkboxgroup.label'
+                  'pages.component.tooltip.content.playground.checkboxgroup.label'
                 )
               "
               :description="
                 $t(
-                  'pages.component.tooltip.content.documentation.playground.checkboxgroup.description'
+                  'pages.component.tooltip.content.playground.checkboxgroup.description'
                 )
               "
             />
@@ -74,9 +74,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
-let tooltip = ref(
-  t("pages.component.tooltip.content.documentation.playground.tooltip")
-);
+let tooltip = ref(t("pages.component.tooltip.content.playground.tooltip"));
 let checkedPositionBoxes = ref([true, false, false, false]);
 
 let postitionProps = ref([

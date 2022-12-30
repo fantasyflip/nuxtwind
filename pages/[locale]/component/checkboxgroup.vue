@@ -144,7 +144,7 @@ let props = [
       description: "text-gray-500 dark:text-gray-400",
     },
     description: t(
-      "pages.component.checkboxgroup.content.properties.color.description"
+      "pages.component.checkboxgroup.content.documentation.properties.color.description"
     ),
   },
   {
@@ -155,7 +155,7 @@ let props = [
       description: "text-sm",
     },
     description: t(
-      "pages.component.checkboxgroup.content.properties.text.description"
+      "pages.component.checkboxgroup.content.documentation.properties.text.description"
     ),
   },
   {
@@ -163,7 +163,7 @@ let props = [
     type: "String",
     default: "",
     description: t(
-      "pages.component.checkboxgroup.content.properties.label.description"
+      "pages.component.checkboxgroup.content.documentation.properties.label.description"
     ),
   },
   {
@@ -171,7 +171,7 @@ let props = [
     type: "String",
     default: "",
     description: t(
-      "pages.component.checkboxgroup.content.properties.description.description"
+      "pages.component.checkboxgroup.content.documentation.properties.description.description"
     ),
   },
   {
@@ -179,7 +179,7 @@ let props = [
     type: "Array",
     default: [],
     description: t(
-      "pages.component.checkboxgroup.content.properties.items.description",
+      "pages.component.checkboxgroup.content.documentation.properties.items.description",
       { url: useComponentReferUrl("checkbox", "properties") }
     ),
   },
@@ -188,7 +188,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.checkboxgroup.content.properties.multiple.description"
+      "pages.component.checkboxgroup.content.documentation.properties.multiple.description"
     ),
   },
   {
@@ -196,7 +196,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.checkboxgroup.content.properties.loading.description"
+      "pages.component.checkboxgroup.content.documentation.properties.loading.description"
     ),
   },
   {
@@ -204,7 +204,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.checkboxgroup.content.properties.disabled.description"
+      "pages.component.checkboxgroup.content.documentation.properties.disabled.description"
     ),
   },
   {
@@ -212,7 +212,7 @@ let props = [
     type: "String",
     default: "w-full",
     description: t(
-      "pages.component.checkboxgroup.content.properties.width.description"
+      "pages.component.checkboxgroup.content.documentation.properties.width.description"
     ),
   },
   {
@@ -220,7 +220,7 @@ let props = [
     type: "Object",
     default: {},
     description: t(
-      "pages.component.checkboxgroup.content.properties.generalCheckboxProps.description",
+      "pages.component.checkboxgroup.content.documentation.properties.generalCheckboxProps.description",
       { url: useComponentReferUrl("checkbox", "properties") }
     ),
   },
@@ -229,7 +229,7 @@ let props = [
     type: "Boolean",
     default: false,
     description: t(
-      "pages.component.checkboxgroup.content.properties.notZero.description"
+      "pages.component.checkboxgroup.content.documentation.properties.notZero.description"
     ),
   },
 ];
@@ -238,22 +238,24 @@ let slots = [
   {
     name: "group-label",
     description: t(
-      "pages.component.checkboxgroup.content.slots.groupLabel.description"
+      "pages.component.checkboxgroup.content.documentation.slots.groupLabel.description"
     ),
   },
   {
     name: "group-description",
     description: t(
-      "pages.component.checkboxgroup.content.slots.groupDescription.description"
+      "pages.component.checkboxgroup.content.documentation.slots.groupDescription.description"
     ),
   },
 ];
 
 let caveats = [
   {
-    name: t("pages.component.checkboxgroup.content.caveats.checkbox.title"),
+    name: t(
+      "pages.component.checkboxgroup.content.documentation.caveats.checkbox.title"
+    ),
     description: t(
-      "pages.component.checkboxgroup.content.caveats.checkbox.description",
+      "pages.component.checkboxgroup.content.documentation.caveats.checkbox.description",
       {
         url: useLocaleUrl("component/checkbox"),
       }

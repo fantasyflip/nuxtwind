@@ -580,53 +580,55 @@
       },
       "checkboxgroup": {
         "content": {
-          "properties": {
-            "color": {
-              "description": "Eigenschaft um die Farbe des Labels und die Beschreibung der Checkboxgruppe individuell einzustellen."
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Eigenschaft um die Farbe des Labels und die Beschreibung der Checkboxgruppe individuell einzustellen."
+              },
+              "text": {
+                "description": "Eigenschaft zum Ändern des Aussehens des Labels und der Beschreibung der Checkboxgroup-Kompon.ente"
+              },
+              "label": {
+                "description": "Eigenschaft um die Beschreibung der Checkboxgruppe Titel."
+              },
+              "description": {
+                "description": "Eigenschaft um die Beschreibung der Checkboxgruppe festzulegen."
+              },
+              "items": {
+                "description": "Eigenschaft um die Elemente der Gruppe festzulegen. \nDie Elemente müssen Objekte sein, die gültige Eigenschaften für die Checkbox-Komponente enthalten. \nLesen Sie <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">mehr</a> darüber."
+              },
+              "multiple": {
+                "description": "Eigenschaft, die es ermöglicht mehrere Kontrollkästchen gleichzeitig auszuwählen. \nWenn nicht gesetzt, lässt die Gruppe jeweils nur ein aktiviertes Kästchen zu. \nAußerdem werden die Symbole in abgerundete geändert. \nDies kann durch Setzen der 'no-radio'-Eigenschaft geändert werden."
+              },
+              "loading": {
+                "description": "Eigenschaft um den Ladezustand der Komponente festzulegen."
+              },
+              "disabled": {
+                "description": "Eigenschaft zum Deaktivieren der Checkboxgroup."
+              },
+              "width": {
+                "description": "Eigenschaft um die Breite der Checkbox-Gruppe zu ändern."
+              },
+              "generalCheckboxProps": {
+                "description": "Eigenschadt um einfach dieselben Eigenschaften für mehrere Kontrollkästchen festzulegen. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Mehr</a> über mögliche Eigenschaften."
+              },
+              "notZero": {
+                "description": "Eigenschaft um sicherzustellen, dass mindestens ein Kontrollkästchen aktiviert ist."
+              }
             },
-            "text": {
-              "description": "Eigenschaft zum Ändern des Aussehens des Labels und der Beschreibung der Checkboxgroup-Kompon.ente"
+            "slots": {
+              "groupLabel": {
+                "description": "Platzhalter für das Label der Checkboxgruppe."
+              },
+              "groupDescription": {
+                "description": "Platzhalter für die Beschreibung der Checkboxgruppe."
+              }
             },
-            "label": {
-              "description": "Eigenschaft um die Beschreibung der Checkboxgruppe Titel."
-            },
-            "description": {
-              "description": "Eigenschaft um die Beschreibung der Checkboxgruppe festzulegen."
-            },
-            "items": {
-              "description": "Eigenschaft um die Elemente der Gruppe festzulegen. \nDie Elemente müssen Objekte sein, die gültige Eigenschaften für die Checkbox-Komponente enthalten. \nLesen Sie <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">mehr</a> darüber."
-            },
-            "multiple": {
-              "description": "Eigenschaft, die es ermöglicht mehrere Kontrollkästchen gleichzeitig auszuwählen. \nWenn nicht gesetzt, lässt die Gruppe jeweils nur ein aktiviertes Kästchen zu. \nAußerdem werden die Symbole in abgerundete geändert. \nDies kann durch Setzen der 'no-radio'-Eigenschaft geändert werden."
-            },
-            "loading": {
-              "description": "Eigenschaft um den Ladezustand der Komponente festzulegen."
-            },
-            "disabled": {
-              "description": "Eigenschaft zum Deaktivieren der Checkboxgroup."
-            },
-            "width": {
-              "description": "Eigenschaft um die Breite der Checkbox-Gruppe zu ändern."
-            },
-            "generalCheckboxProps": {
-              "description": "Eigenschadt um einfach dieselben Eigenschaften für mehrere Kontrollkästchen festzulegen. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Mehr</a> über mögliche Eigenschaften."
-            },
-            "notZero": {
-              "description": "Eigenschaft um sicherzustellen, dass mindestens ein Kontrollkästchen aktiviert ist."
-            }
-          },
-          "slots": {
-            "groupLabel": {
-              "description": "Platzhalter für das Label der Checkboxgruppe."
-            },
-            "groupDescription": {
-              "description": "Platzhalter für die Beschreibung der Checkboxgruppe."
-            }
-          },
-          "caveats": {
-            "checkbox": {
-              "title": "Checkbox Komponente",
-              "description": "Die Checkboxgroup-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Checkbox-Komponente</a>."
+            "caveats": {
+              "checkbox": {
+                "title": "Checkbox Komponente",
+                "description": "Die Checkboxgroup-Komponente erfordert die <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Checkbox-Komponente</a>."
+              }
             }
           },
           "playground": {
@@ -778,17 +780,17 @@
       },
       "tooltip": {
         "content": {
-          "documentation": {
-            "playground": {
-              "checkboxgroup": {
-                "label": "Bool-Eigenschaften Auswahl",
-                "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
-              },
-              "tooltip": "Dies ist ein Tooltip, der dich auffordert, nicht auf die Schaltfläche zu klicken! \n:)",
-              "toast": {
-                "message": "Du sollst über mir schweben und nicht klicken!"
-              }
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
             },
+            "tooltip": "Dies ist ein Tooltip, der dich auffordert, nicht auf die Schaltfläche zu klicken! \n:)",
+            "toast": {
+              "message": "Du sollst über mir schweben und nicht klicken!"
+            }
+          },
+          "documentation": {
             "properties": {
               "color": {
                 "description": "Eigenschaft um die Farbe des Tooltips festzulegen. \nDie Farbe des Textes, des Tooltip-Hintergrunds und des Zeigerhintergrunds kann separat eingestellt werden."
