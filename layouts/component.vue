@@ -55,7 +55,10 @@
           <slot name="componentName"></slot>
           <div class="text-primary-800 group-hover:text-secondary-800">.</div>
         </div>
-        <NuxtWindName :height="40" class="invisible md:visible" />
+        <NuxtWindName
+          :height="40"
+          class="invisible md:visible absolute left-1/2 transform -translate-x-1/2 top-1"
+        />
         <div class="flex">
           <Tooltip bottom width="w-fit">
             <Button
