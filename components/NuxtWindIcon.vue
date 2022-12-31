@@ -40,8 +40,14 @@ let defaults = {
 };
 
 let props = defineProps({
-  width: Number,
-  height: Number,
+  width: {
+    type: Number,
+    default: 200,
+  },
+  height: {
+    type: Number,
+    default: 200,
+  },
   color: {
     type: Object,
     default() {
