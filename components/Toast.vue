@@ -146,6 +146,7 @@ let props = defineProps({
   },
   icon: {
     type: Object,
+    default: null,
   },
   width: {
     type: String,
