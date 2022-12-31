@@ -77,7 +77,10 @@ let defaults = {
 };
 
 const props = defineProps({
-  modelValue: {},
+  modelValue: {
+    type: String,
+    default: "",
+  },
   color: {
     type: Object,
     default() {
