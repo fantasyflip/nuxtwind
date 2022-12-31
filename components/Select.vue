@@ -15,7 +15,7 @@
       :append-icon="props.appendIcon"
       :prepend-icon="props.prependIcon"
       @click="disabled || loading ? '' : (showSelect = true)"
-      @focusIn="saveInput"
+      @focus-in="saveInput"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -70,7 +70,10 @@ let defaults = {
 };
 
 let props = defineProps({
-  modelValue: {},
+  modelValue: {
+    type: String,
+    default: "",
+  },
   items: {
     type: Array,
     required: true,
