@@ -28,7 +28,10 @@ let defaults = {
 };
 
 let props = defineProps({
-  modelValue: {},
+  modelValue: {
+    type: Boolean,
+    default: false,
+  },
   color: {
     type: Object,
     default() {
