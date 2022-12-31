@@ -70,8 +70,18 @@ let defaults = {
 };
 
 let props = defineProps({
-  width: Number,
-  height: Number,
+  width: {
+    type: Number,
+    default: null,
+  },
+  height: {
+    type: Number,
+    default: null,
+  },
+  ratio: {
+    type: Number,
+    default: 0.1953125,
+  },
   color: {
     type: Object,
     default() {
@@ -89,12 +99,18 @@ let svgHeight = computed(() => {
   if (props.height && props.height > 0) {
     return props.height;
   }
+  if (props.width && props.width > 0) {
+    return props.width * props.ratio;
+  }
   return "100%";
 });
 
 let svgWidth = computed(() => {
   if (props.width && props.width > 0) {
     return props.width;
+  }
+  if (props.height && props.height > 0) {
+    return props.height * props.ratio;
   }
   return "100%";
 });
