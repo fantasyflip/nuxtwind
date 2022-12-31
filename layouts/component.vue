@@ -18,13 +18,15 @@
     </Appbar>
     <div class="lg:h-[82vh] h-[72vh] overflow-y-auto">
       <div
-        v-for="route in routes"
-        :key="route.name"
+        v-for="routeItem in routes"
+        :key="routeItem.name"
         class="p-2 text-md w-full hover:bg-secondary-700"
-        :class="$route.matched[0].path === route.path ? 'bg-primary-800' : ''"
+        :class="
+          $route.matched[0].path === routeItem.path ? 'bg-primary-800' : ''
+        "
         @click="navigateTo(route.path.replace(':locale/', ''))"
       >
-        {{ capitalizeFirstLetter(route.name) }}
+        {{ capitalizeFirstLetter(routeItem.name) }}
       </div>
     </div>
     <div
