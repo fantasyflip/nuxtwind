@@ -66,6 +66,7 @@ const props = defineProps({
   modelValue: {
     type: Number,
     String,
+    default: 0,
   },
   size: {
     type: Object,
