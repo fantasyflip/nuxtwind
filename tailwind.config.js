@@ -1,6 +1,13 @@
 export default {
   darkMode: "class",
   theme: {
+    screens: {
+      sm: "640px",
+      md: "750px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
     extend: {
       backgroundImage: {
         "layered-waves-bottom": "url('/layered-waves-bottom.svg')",

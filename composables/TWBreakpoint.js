@@ -1,6 +1,14 @@
-import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+import { useBreakpoints } from "@vueuse/core";
 
-const nuxtBreakpoints = useBreakpoints(breakpointsTailwind);
+let defaultBreakpoints = {
+  sm: "640px",
+  md: "750px",
+  lg: "1024px",
+  xl: "1280px",
+  "2xl": "1536px",
+};
+
+const nuxtBreakpoints = useBreakpoints(defaultBreakpoints);
 
 export const useTWBreakpoint = (breakpointValues) => {
   let breakpoints = ref({
@@ -17,27 +25,27 @@ export const useTWBreakpoint = (breakpointValues) => {
       value: breakpointValues?.base || null,
     },
     sm: {
-      width: 640,
+      width: defaultBreakpoints.sm,
       state: nuxtBreakpoints.sm.value,
       value: breakpointValues?.sm || null,
     },
     md: {
-      width: 768,
+      width: defaultBreakpoints.md,
       state: nuxtBreakpoints.md.value,
       value: breakpointValues?.md || null,
     },
     lg: {
-      width: 1024,
+      width: defaultBreakpoints.lg,
       state: nuxtBreakpoints.lg.value,
       value: breakpointValues?.lg || null,
     },
     xl: {
-      width: 1280,
+      width: defaultBreakpoints.xl,
       state: nuxtBreakpoints.xl.value,
       value: breakpointValues?.xl || null,
     },
     "2xl": {
-      width: 1536,
+      width: defaultBreakpoints["2xl"],
       state: nuxtBreakpoints["2xl"].value,
       value: breakpointValues?.["2xl"] || null,
     },
@@ -80,6 +88,16 @@ export const useTWBreakpoint = (breakpointValues) => {
       value: breakpoints.value.base.value,
       name: "base",
     };
+  }
+
+  if (
+    breakpoints.value.lg.state ||
+    breakpoints.value.xl.state ||
+    breakpoints.value["2xl"].state
+  ) {
+    breakpoints.value.current.isMobile = false;
+  } else {
+    breakpoints.value.current.isMobile = true;
   }
 
   return breakpoints;
