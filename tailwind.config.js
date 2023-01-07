@@ -2,6 +2,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      backgroundImage: {
+        "layered-waves-bottom": "url('/layered-waves-bottom.svg')",
+      },
       keyframes: {
         "indeterminate-first": {
           "0%": {
