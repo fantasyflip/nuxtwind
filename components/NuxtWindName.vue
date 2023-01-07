@@ -70,7 +70,7 @@ let props = defineProps({
   },
   ratio: {
     type: Number,
-    default: 0.1953125,
+    default: 5.12,
   },
   color: {
     type: Object,
