@@ -34,18 +34,21 @@
         </div>
       </div>
       <div class="lg:w-[40%] md:w-[30%] align-center hidden md:flex">
-        <NuxtWindIconName
-          :width="
-            useTWBreakpoint({
-              base: '70%',
-              sm: '70%',
-              md: '70%',
-              lg: '50%',
-              xl: '50%',
-              '2xl': '50%',
-            }).value.current.value
-          "
-        />
+        <ClientOnly>
+          <!-- TODO remove client-only -->
+          <NuxtWindIconName
+            :width="
+              useTWBreakpoint({
+                base: '70%',
+                sm: '70%',
+                md: '70%',
+                lg: '50%',
+                xl: '50%',
+                '2xl': '50%',
+              }).value.current.value
+            "
+          />
+        </ClientOnly>
       </div>
     </div>
   </div>
