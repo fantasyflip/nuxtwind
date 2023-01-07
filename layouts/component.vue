@@ -24,7 +24,7 @@
         :class="
           $route.matched[0].path === routeItem.path ? 'bg-primary-800' : ''
         "
-        @click="navigateTo(route.path.replace(':locale/', ''))"
+        @click="navigateTo(routeItem.path.replace(':locale/', ''))"
       >
         {{ capitalizeFirstLetter(routeItem.name) }}
       </div>
