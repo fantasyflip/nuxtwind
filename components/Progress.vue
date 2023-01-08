@@ -66,7 +66,7 @@ const props = defineProps({
   modelValue: {
     type: Number,
     String,
-    default: 0,
+    default: null,
   },
   size: {
     type: Object,
@@ -151,7 +151,7 @@ watch(
 
 function getCircularProgress(inputValue) {
   let endValue = 0;
-  if (inputValue === undefined && props.loading) {
+  if (inputValue === null && props.loading) {
     endValue = 30;
   } else if (inputValue > 100) {
     endValue = 100;

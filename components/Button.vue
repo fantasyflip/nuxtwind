@@ -1,9 +1,11 @@
 <template>
   <div :class="styleClass">
+    <!-- TODO Add NuxtLink on link prop -->
     <div class="relative" @click="handleClick">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
+        <!--TODO Fix loading -->
         <Progress
           v-if="props.loading"
           loading
