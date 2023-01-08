@@ -1,5 +1,6 @@
 <template>
   <div class="h-screen bg-layered-waves-bottom bg-no-repeat bg-center bg-cover">
+    <!-- TODO Animate bg https://codepen.io/lykos-manolis/pen/qBoyaLW -->
     <div class="h-[60vh] md:flex">
       <div
         class="w-full h-[70%] md:p-0 p-14 align-center md:hidden flex justify-center"
@@ -23,7 +24,7 @@
           <div class="flex pt-8 md:justify-start justify-center">
             <Button class="mr-4" link="/getting-started">Get Started</Button>
             <Button
-              link="/documentation"
+              link="/component/button"
               :color="{
                 bg: 'bg-primary-700 dark:bg-primary-700',
                 hover: 'hover:bg-secondary-600 dark:hover:bg-secondary-600',
