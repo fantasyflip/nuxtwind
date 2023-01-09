@@ -816,14 +816,19 @@
     "index": {
       "meta": {
         "title": "Home",
-        "description": "A Collection of Nuxt 3 Components powered by TailwindCSS",
+        "description": "NuxtWind Component Library - Created for Nuxt 3. Made with TailwindCSS. Inspired by Vuetify.",
         "og": {
-          "title": "Home | NuxtWind",
+          "title": "NuxtWind",
           "locale": "en_US"
         }
       },
       "content": {
-        "hello": "Hello, {name}!"
+        "nuxtwind": "NuxtWind Component Library",
+        "description": "Created for Nuxt 3. Made with TailwindCSS. Inspired by Vuetify."
+      },
+      "buttons": {
+        "getStarted": "Get Started",
+        "documentation": "Documentation"
       }
     },
     "fallbackIndex": {

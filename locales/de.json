@@ -57,14 +57,19 @@
     "index": {
       "meta": {
         "title": "Home",
-        "description": "Eine Sammlung an Componenten für Nuxt 3 basierend auf Tailwind CSS.",
+        "description": "NuxtWind Komponenten Sammlung - Gemacht für Nuxt 3. Erstellt mit TailwindCSS. Inspiriert von Vuetify.",
         "og": {
-          "title": "Home | NuxtWind",
+          "title": "NuxtWind",
           "locale": "de_DE"
         }
       },
       "content": {
-        "hello": "Hallo, {name}!"
+        "nuxtwind": "NuxtWind Komponenten Sammlung",
+        "description": "Gemacht für Nuxt 3. Erstellt mit TailwindCSS. Inspiriert von Vuetify."
+      },
+      "buttons": {
+        "getStarted": "Loslegen",
+        "documentation": "Dokumentation"
       }
     },
     "fallbackIndex": {
