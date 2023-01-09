@@ -5,14 +5,13 @@
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
-        <!--TODO Fix loading -->
         <Progress
           v-if="props.loading"
-          loading
           :circular="{
             width: props.dense ? 'w-4' : 'w-6',
             height: props.dense ? 'h-4' : 'h-6',
           }"
+          loading
           :color="{
             circle: props.color?.loadingCircle || defaults.color.loadingCircle,
             circleDark:
@@ -45,10 +44,10 @@ let defaults = {
     border: "dark:border-white border-black",
     hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
     iconHover: "hover:text-secondary-800 dark:hover:text-secondary-800",
-    loadingCircle: "gray-400 dark:gray-400",
-    loadingCircleDark: "gray-700 dark:gray-700",
-    loadingCircleProgress: "primary-400 dark:primary-400",
-    loadingCircleProgressDark: "primary-400 dark:primary-400",
+    loadingCircle: "gray-400",
+    loadingCircleDark: "gray-700",
+    loadingCircleProgress: "primary-400",
+    loadingCircleProgressDark: "primary-400",
     loadingCircleCutout: "before:bg-cyan-900 dark:before:bg-cyan-900",
   },
   rounded: "rounded-md",
@@ -75,10 +74,10 @@ const props = defineProps({
         border: "dark:border-white border-black",
         hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
         iconHover: "hover:text-secondary-800 dark:hover:text-secondary-800",
-        loadingCircle: "gray-400 dark:gray-400",
-        loadingCircleDark: "gray-700 dark:gray-700",
-        loadingCircleProgress: "primary-400 dark:primary-400",
-        loadingCircleProgressDark: "primary-400 dark:primary-400",
+        loadingCircle: "gray-400",
+        loadingCircleDark: "gray-700",
+        loadingCircleProgress: "primary-400",
+        loadingCircleProgressDark: "primary-400",
         loadingCircleCutout: "before:bg-cyan-900 dark:before:bg-cyan-900",
       };
     },
