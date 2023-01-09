@@ -20,9 +20,11 @@
       <div
         v-for="routeItem in routes"
         :key="routeItem.name"
-        class="p-2 text-md w-full hover:bg-secondary-700"
+        class="p-2 text-md w-full relative z-20 transition-all ease-[cubic-bezier(0,0,0,1)] duration-300 before:bg-gradient-to-r before:from-secondary-700 after:bg-gradient-to-r after:from-secondary-700 before:content-[''] after:content-[''] before:absolute after:absolute before:z-[-1] after:z-[-1] before:transition-all after:transition-all before:duration-300 after:duration-300 before:ease-[cubic-bezier(0,0,0,1)] after:ease-[cubic-bezier(0,0,0,1)] after:h-full after:w-0 after:top-0 hover:after:w-full after:left-0 before:shadow-lg after:shadow-lg"
         :class="
-          $route.matched[0].path === routeItem.path ? 'bg-primary-800' : ''
+          $route.matched[0].path === routeItem.path
+            ? 'bg-gradient-to-r from-secondary-700 to-primary-800 shadow-xl'
+            : ''
         "
         @click="navigateTo(routeItem.path.replace(':locale/', ''))"
       >
