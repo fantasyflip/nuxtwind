@@ -1,6 +1,6 @@
 <template>
-  <div :class="styleClass">
-    <NuxtLink v-if="props.link" :to="props.link" class="relative">
+  <NuxtLink v-if="props.link" :to="props.link" :class="styleClass">
+    <div class="relative">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
@@ -31,8 +31,10 @@
       <div :class="props.loading ? 'opacity-0 cursor-wait' : ''">
         <slot>Button</slot>
       </div>
-    </NuxtLink>
-    <div v-else class="relative">
+    </div>
+  </NuxtLink>
+  <div v-else :class="styleClass">
+    <div class="relative">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
