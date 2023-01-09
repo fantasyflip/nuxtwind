@@ -1,7 +1,38 @@
 <template>
   <div :class="styleClass">
-    <!-- TODO Add NuxtLink on link prop -->
-    <div class="relative" @click="handleClick">
+    <NuxtLink v-if="props.link" :to="props.link" class="relative">
+      <div
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      >
+        <Progress
+          v-if="props.loading"
+          :circular="{
+            width: props.dense ? 'w-4' : 'w-6',
+            height: props.dense ? 'h-4' : 'h-6',
+          }"
+          loading
+          :color="{
+            circle: props.color?.loadingCircle || defaults.color.loadingCircle,
+            circleDark:
+              props.color?.loadingCircleDark ||
+              defaults.color.loadingCircleDark,
+            circleProgress:
+              props.color?.loadingCircleProgress ||
+              defaults.color.loadingCircleProgress,
+            circleProgressDark:
+              props.color?.loadingCircleProgressDark ||
+              defaults.color.loadingCircleProgressDark,
+            circleCutout:
+              props.color?.loadingCircleCutout ||
+              defaults.color.loadingCircleCutout,
+          }"
+        />
+      </div>
+      <div :class="props.loading ? 'opacity-0 cursor-wait' : ''">
+        <slot>Button</slot>
+      </div>
+    </NuxtLink>
+    <div v-else class="relative">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
@@ -135,12 +166,6 @@ const props = defineProps({
     default: undefined,
   },
 });
-
-function handleClick() {
-  if (props.link && !(props.loading || props.disabled)) {
-    window.open(props.link, props.target);
-  }
-}
 
 const styleClass = computed(() => {
   let styleClasses = [];

@@ -22,8 +22,11 @@
             Created for Nuxt 3. Made with TailwindCSS. Inspired by Vuetify.
           </div>
           <div class="flex pt-8 md:justify-start justify-center">
-            <Button class="mr-4" link="/getting-started">Get Started</Button>
+            <Button class="mr-4" link="/getting-started" grow
+              >Get Started</Button
+            >
             <Button
+              grow
               link="/component/button"
               :color="{
                 bg: 'bg-primary-700 dark:bg-primary-700',
