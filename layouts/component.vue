@@ -291,6 +291,12 @@ function getOgpDescription() {
   }
 }
 
+let ogpImageUrl = useOgpImageUrl(
+  componentName,
+  getOgpDescription(),
+  "components"
+);
+
 useHead({
   title: t("layouts.component.meta.title", { componentName }),
   meta: [
@@ -317,7 +323,17 @@ useHead({
     {
       hid: "og:image",
       property: "og:image",
-      content: "/favicon.png",
+      content: ogpImageUrl,
+    },
+    {
+      hid: "twitter:image",
+      property: "twitter:image",
+      content: ogpImageUrl,
+    },
+    {
+      hid: "twitter:card",
+      property: "twitter:card",
+      content: "summary_large_image",
     },
     {
       hid: "og:url",
