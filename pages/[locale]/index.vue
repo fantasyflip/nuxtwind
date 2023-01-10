@@ -61,6 +61,7 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
+let ogpImageUrl = useOgpImageUrl();
 definePageMeta({
   layout: false,
 });
@@ -90,12 +91,12 @@ useHead({
     {
       hid: "og:image",
       property: "og:image",
-      content: "https://og.nuxtwind.com/api/nuxtwind/component",
+      content: ogpImageUrl,
     },
     {
       hid: "twitter:image",
       property: "twitter:image",
-      content: "https://og.nuxtwind.com/api/nuxtwind/component",
+      content: ogpImageUrl,
     },
     {
       hid: "twitter:card",
