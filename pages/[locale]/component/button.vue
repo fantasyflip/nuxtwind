@@ -4,7 +4,6 @@
       <template #componentName> {{ componentName }} </template>
       <template #component>
         <Button
-          :link="useLocaleUrl('')"
           target="_blank"
           :dense="checkedBoxes[0]"
           :disabled="checkedBoxes[1]"

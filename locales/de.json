@@ -513,7 +513,6 @@
                 "description": "Eigenschaft um die Höhe des Auswahl-Dropdowns festzulegen."
               }
             },
-
             "slots": {
               "referComponent": {
                 "textfield": {
@@ -845,6 +844,23 @@
               "tooltip": {
                 "description": "Platzhalter zum Einfügen des Inhalts des Tooltips."
               }
+            }
+          }
+        }
+      },
+      "badge": {
+        "content": {
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Eigenschaften Auswahl",
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
+            },
+            "textfield": {
+              "label": "Badge Inhalt"
+            },
+            "checkbox": {
+              "label": "Icon (Ausrufezeichen)",
+              "description": "Zeigt anstelle des obigen Textes ein Symbol an."
             }
           }
         }

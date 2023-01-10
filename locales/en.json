@@ -811,6 +811,23 @@
             }
           }
         }
+      },
+      "badge": {
+        "content": {
+          "playground": {
+            "checkboxgroup": {
+              "label": "Bool-Prop Selection",
+              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+            },
+            "textfield": {
+              "label": "Badge Content"
+            },
+            "checkbox": {
+              "label": "Icon (Exclamation-Mark)",
+              "description": "Displays an icon instead of the text above."
+            }
+          }
+        }
       }
     },
     "index": {
