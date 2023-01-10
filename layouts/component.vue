@@ -305,45 +305,45 @@ useHead({
       name: "description",
       content: t("layouts.component.meta.description", { componentName }),
     },
-    {
-      hid: "og:title",
-      property: "og:title",
-      content: t("layouts.component.meta.og.title"),
-    },
-    {
-      hid: "og:description",
-      property: "og:description",
-      content: getOgpDescription(),
-    },
-    {
-      hid: "og:type",
-      property: "og:type",
-      content: "website",
-    },
+    // {
+    //   hid: "og:title",
+    //   property: "og:title",
+    //   content: t("layouts.component.meta.og.title"),
+    // },
+    // {
+    //   hid: "og:description",
+    //   property: "og:description",
+    //   content: getOgpDescription(),
+    // },
+    // {
+    //   hid: "og:type",
+    //   property: "og:type",
+    //   content: "website",
+    // },
     {
       hid: "og:image",
       property: "og:image",
       content: ogpImageUrl,
     },
-    {
-      hid: "twitter:image",
-      property: "twitter:image",
-      content: ogpImageUrl,
-    },
+    // {
+    //   hid: "twitter:image",
+    //   property: "twitter:image",
+    //   content: ogpImageUrl,
+    // },
     {
       hid: "twitter:card",
       property: "twitter:card",
       content: "summary_large_image",
     },
-    {
-      hid: "og:url",
-      property: "og:url",
-      content: "https://nuxtwind.com/",
-    },
-    {
-      property: "og:locale",
-      content: t("layouts.component.meta.og.locale"),
-    },
+    // {
+    //   hid: "og:url",
+    //   property: "og:url",
+    //   content: "https://nuxtwind.com/",
+    // },
+    // {
+    //   property: "og:locale",
+    //   content: t("layouts.component.meta.og.locale"),
+    // },
   ],
 });
 
