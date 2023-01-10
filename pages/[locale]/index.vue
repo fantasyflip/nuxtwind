@@ -90,7 +90,17 @@ useHead({
     {
       hid: "og:image",
       property: "og:image",
-      content: "/favicon.png",
+      content: "https://og.nuxtwind.com/api/nuxtwind/component",
+    },
+    {
+      hid: "twitter:image",
+      property: "twitter:image",
+      content: "https://og.nuxtwind.com/api/nuxtwind/component",
+    },
+    {
+      hid: "twitter:card",
+      property: "twitter:card",
+      content: "summary_large_image",
     },
     {
       hid: "og:url",
