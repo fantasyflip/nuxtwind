@@ -862,6 +862,45 @@
               "label": "Icon (Ausrufezeichen)",
               "description": "Zeigt anstelle des obigen Textes ein Symbol an."
             }
+          },
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Eigenschaft um die Farben des Badges festzulegen. \nHintergrund-, Rahmen- und Textfarbe können separat eingestellt werden."
+              },
+              "top": {
+                "description": "Eigenschaft um das Badge an der Oberseite seines Geschwisters zu positionieren."
+              },
+              "bottom": {
+                "description": "Eigenschaft um das Badge an der Unterseite seines Geschwisters zu positionieren."
+              },
+              "left": {
+                "description": "Eigenschaft um das Badge links von seinem Geschwister zu positionieren."
+              },
+              "right": {
+                "description": "Eigenschaft um das Badge rechts von seinem Geschwister zu positionieren."
+              },
+              "text": {
+                "description": "Eigenschaft um die Texteinstellungen des Badge-Inhalts festzulegen."
+              },
+              "border": {
+                "description": "Eigenschaft um den Rand des Badges festzulegen. \nSie kann auch deaktiviert werden, indem diese Eigenschaft auf „false“ gesetzt wird."
+              },
+              "width": {
+                "description": "Eigenschaft um die Breite des Badges festzulegen."
+              },
+              "height": {
+                "description": "Eigenschaft um die Höhe des Badges einzustellen."
+              }
+            },
+            "slots": {
+              "referComponent": {
+                "textfield": {
+                  "default": "Platzhalter für die Geschwisterkomponente, auf der das Badge angebracht wird.",
+                  "badgeContent": "Platzhalter für den Badge-Inhalt."
+                }
+              }
+            }
           }
         }
       }

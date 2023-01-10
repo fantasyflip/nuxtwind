@@ -826,6 +826,45 @@
               "label": "Icon (Exclamation-Mark)",
               "description": "Displays an icon instead of the text above."
             }
+          },
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Prop to set the colors of the badge. The background, border and text color can be set separately."
+              },
+              "top": {
+                "description": "Prop to position the badge at the top of its sibling."
+              },
+              "bottom": {
+                "description": "Prop to position the badge at the bottom of its sibling."
+              },
+              "left": {
+                "description": "Prop to position the badge at the left of its sibling."
+              },
+              "right": {
+                "description": "Prop to position the badge at the right of its sibling."
+              },
+              "text": {
+                "description": "Prop to set the text settings of the badge content."
+              },
+              "border": {
+                "description": "Prop to set the border of the badge. It can also be disabled by setting this prop to false."
+              },
+              "width": {
+                "description": "Prop to set the width of the badge."
+              },
+              "height": {
+                "description": "Prop to set the height of the badge."
+              }
+            },
+            "slots": {
+              "referComponent": {
+                "textfield": {
+                  "default": "Slot for the sibling component on which the badge will be applied.",
+                  "badgeContent": "Slot for the badge content."
+                }
+              }
+            }
           }
         }
       }

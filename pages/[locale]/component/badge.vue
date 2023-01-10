@@ -119,9 +119,99 @@ let toggleProps = ref([
 //DOCUMENTATION
 let componentName = "Badge";
 
-let props = [];
+let props = [
+  {
+    name: "color",
+    type: "Object",
+    default: {
+      bg: "bg-red-500 dark:bg-red-500",
+      border: "border-white dark:border-zinc-900",
+      text: "text-white",
+    },
+    description: t(
+      "pages.component.badge.content.documentation.properties.color.description"
+    ),
+  },
+  {
+    name: "top",
+    type: "Boolean",
+    default: true,
+    description: t(
+      "pages.component.badge.content.documentation.properties.top.description"
+    ),
+  },
+  {
+    name: "bottom",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.badge.content.documentation.properties.bottom.description"
+    ),
+  },
+  {
+    name: "left",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.badge.content.documentation.properties.left.description"
+    ),
+  },
+  {
+    name: "right",
+    type: "Boolean",
+    default: true,
+    description: t(
+      "pages.component.badge.content.documentation.properties.right.description"
+    ),
+  },
+  {
+    name: "text",
+    type: "String",
+    default: "text-xs font-bold",
+    description: t(
+      "pages.component.badge.content.documentation.properties.text.description"
+    ),
+  },
+  {
+    name: "border",
+    type: "Boolean, String",
+    default: true,
+    description: t(
+      "pages.component.badge.content.documentation.properties.border.description"
+    ),
+  },
+  {
+    name: "width",
+    type: "String",
+    default: "min-w-[24px]",
+    description: t(
+      "pages.component.badge.content.documentation.properties.width.description"
+    ),
+  },
+  {
+    name: "height",
+    type: "String",
+    default: "min-h-[24px]",
+    description: t(
+      "pages.component.badge.content.documentation.properties.height.description"
+    ),
+  },
+];
 
-let slots = [];
+let slots = [
+  {
+    name: "default",
+    description: t(
+      "pages.component.badge.content.documentation.slots.referComponent.textfield.default"
+    ),
+  },
+  {
+    name: "badge-content",
+    description: t(
+      "pages.component.badge.content.documentation.slots.referComponent.textfield.badgeContent"
+    ),
+  },
+];
 
 definePageMeta({
   layout: false,

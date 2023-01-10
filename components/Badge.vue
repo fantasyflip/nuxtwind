@@ -55,7 +55,7 @@ let props = defineProps({
   },
   width: {
     type: String,
-    default: "min-w-[24px] max-w-10",
+    default: "min-w-[24px]",
   },
   height: {
     type: String,
@@ -115,8 +115,6 @@ const styleClass = computed(() => {
 
   //HEIGHT
   classes.push(props.height);
-
-  console.log(classes.join(" "));
 
   return classes.join(" ");
 });

@@ -204,7 +204,6 @@ function initializeCheckboxes() {
       } else if (trueCount == 0 && props.notZero) {
         checkboxValues.value[0] = true;
         savedIndex.value = 0;
-        console.log("checkboxValues.value", checkboxValues.value);
       }
     }
   }

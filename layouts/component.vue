@@ -162,13 +162,13 @@ import MdiPinOff from "~icons/mdi/pin-off";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
+// TODO rework usePermanentDrawer
 let showDrawer = ref(usePermanentDrawer());
 
 let isMobile = ref(false);
 onMounted(() => {
   if (window.innerWidth < 768) {
     isMobile.value = true;
-    console.log(usePermanentDrawer(false, false));
     usePermanentDrawer(false, false);
   } else {
     showDrawer.value = usePermanentDrawer(
