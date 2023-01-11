@@ -867,6 +867,49 @@
             }
           }
         }
+      },
+      "slider": {
+        "content": {
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Prop to set the slider's colors. The description-text, slider-line and slider-thumb can be set separately."
+              },
+              "label": {
+                "description": "Prop to set the label of the slider. It can also be fully customized by using the equally named slot."
+              },
+              "description": {
+                "description": "Prop to set the description of the slider. It can also be fully customized by using the equally named slot."
+              },
+              "min": {
+                "description": "Prop to set the minimum value of the slider range."
+              },
+              "max": {
+                "description": "Prop to set the maximum value of the slider range."
+              },
+              "thumbSize": {
+                "description": "Prop to set the size of the slider-thumb in px."
+              },
+              "rounded": {
+                "description": "Prop to either disable the rounded prop of the slider by setting it to false or customizing it by providing a Tailwind-'rounded'-class."
+              },
+              "width": {
+                "description": "Prop to set the width of the slider."
+              },
+              "height": {
+                "description": "Prop to set the height of the slider."
+              }
+            },
+            "slots": {
+              "label": {
+                "description": "Slot to customize the label."
+              },
+              "description": {
+                "description": "Slot to customize the description."
+              }
+            }
+          }
+        }
       }
     },
     "index": {

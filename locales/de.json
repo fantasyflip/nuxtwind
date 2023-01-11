@@ -903,6 +903,49 @@
             }
           }
         }
+      },
+      "slider": {
+        "content": {
+          "documentation": {
+            "properties": {
+              "color": {
+                "description": "Eigenschaft um die Farben des Sliders einzustellen. \nDer Beschreibungstext, die Slider-Linie und der Slider-Regler können separat eingestellt werden."
+              },
+              "label": {
+                "description": "Eigenschaft um die Bezeichnung des Sliders festzulegen. \nEs kann auch vollständig angepasst werden, indem der gleichnamige Platzhalter verwendet wird."
+              },
+              "description": {
+                "description": "Eigenschaft um die Beschreibung des Sliders festzulegen. \nEs kann auch vollständig angepasst werden, indem der gleichnamige Platzhalter verwendet wird."
+              },
+              "min": {
+                "description": "Eigenschaft um den Mindestwert des Sliderbereichs festzulegen."
+              },
+              "max": {
+                "description": "Eigenschaft um den Maximalwert des Sliderbereichs festzulegen."
+              },
+              "thumbSize": {
+                "description": "Eigenschaft um die Größe des Slider-Reglers in px einzustellen."
+              },
+              "rounded": {
+                "description": "Eigenschaft um entweder die rounded-Eigenschaft des Schiebereglers zu deaktivieren, indem Sie ihn auf „false“ setzen, oder ihn anpassen, indem Sie eine Tailwind-'rounded'-Klasse bereitstellen."
+              },
+              "width": {
+                "description": "Eigenschaft um die Breite des Sliders einzustellen."
+              },
+              "height": {
+                "description": "Eigenschaft um die Höhe des Sliders festzulegen."
+              }
+            },
+            "slots": {
+              "label": {
+                "description": "Platzhalter zum Anpassen des Labels."
+              },
+              "description": {
+                "description": "Platzhalter zum Anpassen der Beschreibung."
+              }
+            }
+          }
+        }
       }
     }
   },
