@@ -1,7 +1,28 @@
 {
-  "name": "my-module",
-  "version": "1.0.0",
+  "name": "@nuxtwind/components",
+  "version": "0.1.0",
   "license": "MIT",
+  "description": "Component Library for Nuxt 3 using TailwindCSS",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fantasyflip/nuxtwind.git"
+  },
+  "keywords": [
+    "Nuxt3",
+    "TailwindCSS",
+    "Component",
+    "Library",
+    "Nuxtwind",
+    "Reusable",
+    "Nuxt",
+    "Vue",
+    "SSR"
+  ],
+  "author": "fantasyflip <flip@fantasyflip.de> (https://fantasyflip.de)",
+  "bugs": {
+    "url": "https://github.com/fantasyflip/nuxtwind/issues"
+  },
+  "homepage": "https://nuxtwind.com",
   "type": "module",
   "exports": {
     ".": {
@@ -27,7 +48,14 @@
     "@nuxt/module-builder": "^0.2.1",
     "@nuxt/schema": "^3.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "eslint": "^8.29.0",
+    "@typescript-eslint/eslint-plugin": "^5.34.0",
+    "@typescript-eslint/parser": "^5.34.0",
+    "@vue/eslint-config-standard": "^8.0.1",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-nuxt": "^3.2.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.4.0",
     "nuxt": "^3.0.0"
   }
 }
