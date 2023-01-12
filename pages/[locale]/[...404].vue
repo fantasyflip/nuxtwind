@@ -2,12 +2,20 @@
   <div class="center">
     <div class="md:text-[230px] sm:text-[180px] text-8xl font-bold group">
       <span>404</span>
-      <span class="text-cyan-800 group-hover:text-emerald-700">.</span>
+      <span class="text-primary-800 group-hover:text-secondary-800">.</span>
     </div>
     <div class="md:text-3xl sm:text-2xl text-xl">
       {{ $t("pages.404.content.errorMessage") }}
     </div>
     <div
+      v-if="$route.query.component"
+      class="md:text-2xl sm:text-xl text-lg"
+      v-html="
+        $t('pages.404.content.urlDisplay', { path: $route.query.component })
+      "
+    ></div>
+    <div
+      v-else
       class="md:text-2xl sm:text-xl text-lg"
       v-html="$t('pages.404.content.urlDisplay', { path: $route.path })"
     ></div>
@@ -24,6 +32,11 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
+let ogpImageUrl = useOgpImageUrl(
+  "404",
+  t("pages.404.content.errorMessage"),
+  null
+);
 useHead({
   title: t("pages.404.meta.title"),
   meta: [
@@ -50,12 +63,22 @@ useHead({
     {
       hid: "og:image",
       property: "og:image",
-      content: "/favicon.png",
+      content: ogpImageUrl,
+    },
+    {
+      hid: "twitter:image",
+      property: "twitter:image",
+      content: ogpImageUrl,
+    },
+    {
+      hid: "twitter:card",
+      property: "twitter:card",
+      content: "summary_large_image",
     },
     {
       hid: "og:url",
       property: "og:url",
-      content: "https://fantasyflip.de/",
+      content: "https://nuxtwind.com/",
     },
     {
       property: "og:locale",

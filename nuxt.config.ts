@@ -5,7 +5,28 @@ import { fileURLToPath } from "url";
 import VueI18nVitePlugin from "@intlify/unplugin-vue-i18n/vite";
 
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss"],
+  css: ["vue-json-pretty/lib/styles.css"],
+  plugins: ["@/plugins/vue-json-pretty"],
+  modules: [
+    [
+      "@nuxtjs/tailwindcss",
+      {
+        configPath: "~/tailwind.config.js",
+      },
+    ],
+    "unplugin-icons/nuxt",
+    [
+      "@nuxtjs/color-mode",
+      {
+        preference: "system", // default value of $colorMode.preference
+        fallback: "dark", // fallback value if not system preference found
+        classSuffix: "",
+        classPrefix: "",
+        storageKey: "theme",
+      },
+    ],
+    "@vueuse/nuxt",
+  ],
   vite: {
     plugins: [
       VueI18nVitePlugin({
