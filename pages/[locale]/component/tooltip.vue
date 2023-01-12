@@ -8,7 +8,8 @@
           :bottom="checkedPositionBoxes[1]"
           :right="checkedPositionBoxes[2]"
           :left="checkedPositionBoxes[3]"
-          :rounded="rounded"
+          :rounded="checkedBoxes[0]"
+          :interactive="checkedBoxes[1]"
         >
           <Button
             @click="
@@ -53,9 +54,11 @@
                 )
               "
             />
-            <div class="w-full">
-              <Checkbox v-model="rounded" label="Rounded" />
-            </div>
+            <Checkboxgroup
+              v-model="checkedBoxes"
+              multiple
+              :items="toggleProps"
+            />
           </div>
         </div>
       </template>
@@ -92,12 +95,32 @@ let postitionProps = ref([
   },
 ]);
 
-let rounded = ref(true);
+let checkedBoxes = ref([true, false]);
+
+let toggleProps = ref([
+  {
+    label: "Rounded",
+  },
+  {
+    label: "Interactive",
+    description: t(
+      "pages.component.tooltip.content.playground.checkboxgroup.items.interactive.description"
+    ),
+  },
+]);
 
 //DOCUMENTATION
 let componentName = "Tooltip";
 
 let props = [
+  {
+    name: "interactive",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.tooltip.content.documentation.properties.interactive.description"
+    ),
+  },
   {
     name: "color",
     type: "Object",

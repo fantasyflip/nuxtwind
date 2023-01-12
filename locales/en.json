@@ -764,7 +764,12 @@
           "playground": {
             "checkboxgroup": {
               "label": "Bool-Prop Selection",
-              "description": "By checking or unchecking the boxes the props will be handled accordingly."
+              "description": "By checking or unchecking the boxes the props will be handled accordingly.",
+              "items": {
+                "interactive": {
+                  "description": "Makes the tooltip hoverable."
+                }
+              }
             },
             "tooltip": "This is a tooltip telling you not to click the button! :)",
             "toast": {
@@ -802,6 +807,9 @@
               },
               "width": {
                 "description": "Prop to set the tooltip's width."
+              },
+              "interactive": {
+                "description": "Prop to make the tooltip interactive."
               }
             },
             "slots": {

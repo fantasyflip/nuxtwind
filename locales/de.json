@@ -800,7 +800,12 @@
           "playground": {
             "checkboxgroup": {
               "label": "Bool-Eigenschaften Auswahl",
-              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt."
+              "description": "Durch Aktivieren oder Deaktivieren der Kontrollkästchen werden die Eigenschaften entsprechend angewandt.",
+              "items": {
+                "interactive": {
+                  "description": "Ermöglicht es über den Tooltip zu hovern."
+                }
+              }
             },
             "tooltip": "Dies ist ein Tooltip, der dich auffordert, nicht auf die Schaltfläche zu klicken! \n:)",
             "toast": {
@@ -838,6 +843,9 @@
               },
               "width": {
                 "description": "Eigenschaft um die Breite des Tooltips festzulegen."
+              },
+              "interactive": {
+                "description": "Eigenschaft um den Tooltip interaktiv zu machen."
               }
             },
             "slots": {

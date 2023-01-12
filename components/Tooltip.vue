@@ -72,6 +72,10 @@ let props = defineProps({
     type: String,
     default: "z-10",
   },
+  interactive: {
+    type: Boolean,
+    default: false,
+  },
   width: {
     type: String,
     default: "w-full",
@@ -92,8 +96,11 @@ let tooltipWrapperClass = computed(() => {
     "absolute",
     "group-hover:opacity-100",
     "px-3",
-    "pointer-events-none",
   ];
+
+  if (!props.interactive) {
+    classes.push("pointer-events-none");
+  }
 
   classes.push(props.color?.bg || defaults.color.bg);
   classes.push(props.color?.text || defaults.color.text);
