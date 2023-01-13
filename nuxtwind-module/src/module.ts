@@ -1,24 +1,28 @@
-import { fileURLToPath } from 'url'
-import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addComponent, createResolver } from "@nuxt/kit";
+import { resolve } from "path";
 
-export interface ModuleOptions {
-  addPlugin: boolean
-}
+import { name, version } from "../package.json";
 
-export default defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule({
   meta: {
-    name: 'my-module',
-    configKey: 'myModule'
+    name,
+    version,
+    configKey: "nuxtwind",
+    compatibility: {
+      nuxt: "^3.0.0",
+    },
   },
-  defaults: {
-    addPlugin: true
+  setup(options, nuxt) {
+    const reslover = createResolver(import.meta.url);
+    const runtimeDir = reslover.resolve("./runtime");
+
+    nuxt.options.build.transpile.push(runtimeDir);
+
+    const componentsDir = reslover.resolve(runtimeDir, "components");
+    const prefix = options.customPrefix || "NXW-";
+    addComponent({
+      name: prefix + "Badge", // name of the component to be used in vue templates
+      filePath: resolve(componentsDir, "Badge.vue"), // resolve(runtimeDir, 'components', 'MyComponent.vue')
+    });
   },
-  setup (options, nuxt) {
-    if (options.addPlugin) {
-      const { resolve } = createResolver(import.meta.url)
-      const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-      nuxt.options.build.transpile.push(runtimeDir)
-      addPlugin(resolve(runtimeDir, 'plugin'))
-    }
-  }
-})
+});
