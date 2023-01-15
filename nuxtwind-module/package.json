@@ -1,11 +1,11 @@
 {
   "name": "nuxtwind-test",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "license": "MIT",
   "description": "Component Library for Nuxt 3 using TailwindCSS",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fantasyflip/nuxtwind.git"
+    "url": "https://github.com/fantasyflip/nuxtwind.git"
   },
   "keywords": [
     "Nuxt3",
