@@ -24,5 +24,9 @@ export default defineNuxtModule({
       name: prefix + "Badge", // name of the component to be used in vue templates
       filePath: resolve(componentsDir, "Badge.vue"), // resolve(runtimeDir, 'components', 'MyComponent.vue')
     });
+    addComponent({
+      name: prefix + "Textfield", // name of the component to be used in vue templates
+      filePath: resolve(componentsDir, "Textfield.vue"), // resolve(runtimeDir, 'components', 'MyComponent.vue')
+    });
   },
 });
