@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     [
       "@nuxtjs/tailwindcss",
       {
-        configPath: "../../docs/tailwind.config.js",
+        configPath: "~/tailwind.config.js",
       },
     ],
     "unplugin-icons/nuxt",
