@@ -10,10 +10,58 @@
       <div :class="iconStyleClass">
         <component :is="props.icon" v-if="props.icon" />
         <div v-else>
-          <MdiInformationOutline v-if="props.type === 'info'" />
-          <MdiAlertRhombus v-else-if="props.type === 'warning'" />
-          <MdiCheckCircle v-else-if="props.type === 'success'" />
-          <MdiAlertDecagram v-else-if="props.type === 'error'" />
+          <svg
+            v-if="props.type === 'info'"
+            viewBox="0 0 24 24"
+            width="1.2em"
+            height="1.2em"
+            data-v-3fc632e9=""
+          >
+            <path
+              fill="currentColor"
+              d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"
+            ></path>
+          </svg>
+          <!-- <MdiInformationOutline v-if="props.type === 'info'" /> -->
+          <svg
+            v-else-if="props.type === 'warning'"
+            viewBox="0 0 24 24"
+            width="1.2em"
+            height="1.2em"
+            data-v-3fc632e9=""
+          >
+            <path
+              fill="currentColor"
+              d="M12 2c-.5 0-1 .19-1.41.59l-8 8c-.79.78-.79 2.04 0 2.82l8 8c.78.79 2.04.79 2.82 0l8-8c.79-.78.79-2.04 0-2.82l-8-8C13 2.19 12.5 2 12 2m-1 5h2v6h-2V7m0 8h2v2h-2v-2Z"
+            ></path>
+          </svg>
+          <!-- <MdiAlertRhombus v-else-if="props.type === 'warning'" /> -->
+          <svg
+            v-else-if="props.type === 'success'"
+            viewBox="0 0 24 24"
+            width="1.2em"
+            height="1.2em"
+            data-v-3fc632e9=""
+          >
+            <path
+              fill="currentColor"
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z"
+            ></path>
+          </svg>
+          <!-- <MdiCheckCircle v-else-if="props.type === 'success'" /> -->
+          <svg
+            v-else-if="props.type === 'error'"
+            viewBox="0 0 24 24"
+            width="1.2em"
+            height="1.2em"
+            data-v-3fc632e9=""
+          >
+            <path
+              fill="currentColor"
+              d="m23 12l-2.44-2.78l.34-3.68l-3.61-.82l-1.89-3.18L12 3L8.6 1.54L6.71 4.72l-3.61.81l.34 3.68L1 12l2.44 2.78l-.34 3.69l3.61.82l1.89 3.18L12 21l3.4 1.46l1.89-3.18l3.61-.82l-.34-3.68L23 12m-10 5h-2v-2h2v2m0-4h-2V7h2v6Z"
+            ></path>
+          </svg>
+          <!-- <MdiAlertDecagram v-else-if="props.type === 'error'" /> -->
         </div>
 
         <span class="sr-only">Toast icon</span>
@@ -35,7 +83,18 @@
         }"
         @click="close()"
       >
-        <MdiClose />
+        <!-- <MdiClose /> -->
+        <svg
+          viewBox="0 0 24 24"
+          width="1.2em"
+          height="1.2em"
+          data-v-3fc632e9=""
+        >
+          <path
+            fill="currentColor"
+            d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+          ></path>
+        </svg>
       </Button>
     </div>
     <Progress
@@ -52,12 +111,6 @@
 </template>
 
 <script setup>
-import MdiClose from "~icons/mdi/close";
-import MdiInformationOutline from "~icons/mdi/information-outline";
-import MdiAlertRhombus from "~icons/mdi/alert-rhombus";
-import MdiCheckCircle from "~icons/mdi/check-circle";
-import MdiAlertDecagram from "~icons/mdi/alert-decagram";
-
 let defaults = {
   color: {
     text: "text-gray-700 dark:text-gray-300",
