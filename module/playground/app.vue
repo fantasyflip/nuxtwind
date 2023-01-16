@@ -4,7 +4,7 @@
       <div>Test</div>
       <template #badge-content>10</template>
     </NXW-Badge> -->
-    <NXW-Textfield />
+    <NXW-Checkbox label="Checkbox" />
   </div>
 </template>
 

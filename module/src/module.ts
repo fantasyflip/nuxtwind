@@ -28,5 +28,13 @@ export default defineNuxtModule({
       name: prefix + "Textfield", // name of the component to be used in vue templates
       filePath: resolve(componentsDir, "Textfield.vue"), // resolve(runtimeDir, 'components', 'MyComponent.vue')
     });
+    addComponent({
+      name: prefix + "Checkbox", // name of the component to be used in vue templates
+      filePath: resolve(componentsDir, "Checkbox.vue"), // resolve(runtimeDir, 'components', 'MyComponent.vue')
+    });
+    addComponent({
+      name: prefix + "Checkboxgroup", // name of the component to be used in vue templates
+      filePath: resolve(componentsDir, "Checkboxgroup.vue"), // resolve(runtimeDir, 'components', 'MyComponent.vue')
+    });
   },
 });
