@@ -1,22 +1,67 @@
 <template>
   <div class="flex">
     <div id="checkbox" :class="iconStyleClass">
-      <MdiCheckboxMarked
+      <!-- <MdiCheckboxMarked
         v-if="modelValue && !props.radio"
         @click="updateModelValue(false)"
-      />
-      <MdiCheckboxBlankOutline
+      /> -->
+      <svg
+        v-if="modelValue && !props.radio"
+        viewBox="0 0 24 24"
+        width="1.2em"
+        height="1.2em"
+        @click="updateModelValue(false)"
+      >
+        <path
+          fill="currentColor"
+          d="m10 17l-5-5l1.41-1.42L10 14.17l7.59-7.59L19 8m0-5H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"
+        ></path>
+      </svg>
+      <!-- <MdiCheckboxBlankOutline /> -->
+      <svg
         v-else-if="!modelValue && !props.radio"
+        viewBox="0 0 24 24"
+        width="1.2em"
+        height="1.2em"
         @click="updateModelValue(true)"
-      />
-      <MdiCheckboxMarkedCircle
+      >
+        <path
+          fill="currentColor"
+          d="M19 3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 2v14H5V5h14Z"
+        ></path>
+      </svg>
+      <!-- <MdiCheckboxMarkedCircle
         v-if="modelValue && props.radio"
         @click="updateModelValue(false)"
-      />
-      <MdiCheckboxBlankCircleOutline
+      /> -->
+      <svg
+        v-if="modelValue && props.radio"
+        viewBox="0 0 24 24"
+        width="1.2em"
+        height="1.2em"
+        @click="updateModelValue(false)"
+      >
+        <path
+          fill="currentColor"
+          d="m10 17l-5-5l1.41-1.42L10 14.17l7.59-7.59L19 8m-7-6A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
+        ></path>
+      </svg>
+      <!-- <MdiCheckboxBlankCircleOutline
         v-else-if="!modelValue && props.radio"
         @click="updateModelValue(true)"
-      />
+      /> -->
+      <svg
+        v-else-if="!modelValue && props.radio"
+        viewBox="0 0 24 24"
+        width="1.2em"
+        height="1.2em"
+        @click="updateModelValue(true)"
+      >
+        <path
+          fill="currentColor"
+          d="M12 20a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
+        ></path>
+      </svg>
     </div>
     <div v-if="props.label" :class="labelStyleClass">
       <label
@@ -38,11 +83,6 @@
 </template>
 
 <script setup>
-import MdiCheckboxBlankOutline from "~icons/mdi/checkbox-blank-outline";
-import MdiCheckboxMarked from "~icons/mdi/checkbox-marked";
-import MdiCheckboxBlankCircleOutline from "~icons/mdi/checkbox-blank-circle-outline";
-import MdiCheckboxMarkedCircle from "~icons/mdi/checkbox-marked-circle";
-
 let defaults = {
   color: {
     label: "text-black dark:text-gray-300",
