@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 let defaults = {
   color: {
     bg: "bg-red-500 dark:bg-red-500",
