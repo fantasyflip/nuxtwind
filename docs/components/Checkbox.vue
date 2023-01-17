@@ -83,6 +83,7 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 let defaults = {
   color: {
     label: "text-black dark:text-gray-300",
