@@ -28,12 +28,45 @@
 </template>
 
 <script setup>
+import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../tailwind.config.js";
 
 const tw = resolveConfig(tailwindConfig);
 
-const colorMode = useColorMode();
+let colorMode = ref("dark");
+let htmlElement = ref(null);
+let observer = null;
+
+function getColorMode() {
+  // get class of html element
+  let htmlClass = document.querySelector("html").classList;
+  // check if dark mode is enabled
+  if (htmlClass.contains("dark")) {
+    return "dark";
+  } else {
+    return "light";
+  }
+}
+
+onMounted(() => {
+  colorMode.value = getColorMode();
+
+  htmlElement.value = document.querySelector("html");
+
+  observer = new MutationObserver(() => {
+    colorMode.value = getColorMode();
+  });
+
+  observer.observe(htmlElement.value, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+});
+
+onBeforeUnmount(() => {
+  observer.disconnect();
+});
 
 let defaults = {
   color: {
