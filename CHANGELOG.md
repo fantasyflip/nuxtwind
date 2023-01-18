@@ -1,3 +1,12 @@
+## [0.2.4](https://github.com/fantasyflip/nuxtwind/compare/v0.2.3...v0.2.4) (2023-01-18)
+
+
+### Bug Fixes
+
+* **workflow:** Bump setup-node version to latest ([17fd14c](https://github.com/fantasyflip/nuxtwind/commit/17fd14cd91f75fbf6f133da6fcdb337728218a47))
+
+
+
 ## [0.2.3](https://github.com/fantasyflip/nuxtwind/compare/v0.2.2...v0.2.3) (2023-01-18)
 
 
