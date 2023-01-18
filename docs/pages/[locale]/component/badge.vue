@@ -78,6 +78,11 @@
   </div>
 </template>
 <script setup>
+import Badge from "../../../../module/src/runtime/components/Badge.vue";
+import Checkboxgroup from "../../../../module/src/runtime/components/Checkboxgroup.vue";
+import Checkbox from "../../../../module/src/runtime/components/Checkbox.vue";
+import Textfield from "../../../../module/src/runtime/components/Textfield.vue";
+import Button from "../../../../module/src/runtime/components/Button.vue";
 import MdiExclamationThick from "~icons/mdi/exclamation-thick";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();

@@ -103,6 +103,9 @@
   </div>
 </template>
 <script setup>
+import Drawer from "../../../../module/src/runtime/components/Drawer.vue";
+import Checkboxgroup from "../../../../module/src/runtime/components/Checkboxgroup.vue";
+import Appbar from "../../../../module/src/runtime/components/Appbar.vue";
 import MdiHome from "~icons/mdi/home";
 import MdiCog from "~icons/mdi/cog";
 import MdiLogout from "~icons/mdi/logout";

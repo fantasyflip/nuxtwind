@@ -65,6 +65,9 @@
   </div>
 </template>
 <script setup>
+import Progress from "../../../../module/src/runtime/components/Progress.vue";
+import Checkboxgroup from "../../../../module/src/runtime/components/Checkboxgroup.vue";
+import Textfield from "../../../../module/src/runtime/components/Textfield.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 

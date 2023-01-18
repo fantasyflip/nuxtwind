@@ -52,6 +52,9 @@
   </div>
 </template>
 <script setup>
+import Slider from "../../../../module/src/runtime/components/Slider.vue";
+import Textfield from "../../../../module/src/runtime/components/Textfield.vue";
+import Textarea from "../../../../module/src/runtime/components/Textarea.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 

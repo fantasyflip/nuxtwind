@@ -37,6 +37,7 @@
 </template>
 
 <script setup>
+import Toast from "../module/src/runtime/components/Toast.vue";
 import { useI18n } from "vue-i18n";
 const route = useRoute();
 const { locale } = useI18n();

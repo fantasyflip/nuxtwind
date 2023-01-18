@@ -74,6 +74,9 @@
   </div>
 </template>
 <script setup>
+import Select from "../../../../module/src/runtime/components/Select.vue";
+import Textfield from "../../../../module/src/runtime/components/Textfield.vue";
+import Checkboxgroup from "../../../../module/src/runtime/components/Checkboxgroup.vue";
 import MdiMenuDown from "~icons/mdi/menu-down";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
