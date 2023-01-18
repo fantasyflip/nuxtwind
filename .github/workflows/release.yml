@@ -26,16 +26,18 @@ jobs:
           body: ${{ steps.changelog.outputs.clean_changelog }}
 
       - uses: actions/setup-node@v3
-        working-directory: ./module
         with:
+          working-directory: ./module
           node-version: 12
       - run: npm install
-        working-directory: ./module
-      - run: npm test
-        working-directory: ./module
-      - uses: JS-DevTools/npm-publish@v1
-        working-directory: ./module
         with:
+          working-directory: ./module
+      - run: npm test
+        with:
+          working-directory: ./module
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          working-directory: ./module
           token: ${{ secrets.NPM_TOKEN }}
           package: "./module/package.json"
           access: "public"
