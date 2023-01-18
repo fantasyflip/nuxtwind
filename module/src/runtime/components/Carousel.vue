@@ -17,7 +17,18 @@
           @click="nextItem"
         >
           <div class="relative w-8 h-8 grid place-items-center">
-            <MdiChevronRight class="text-xl z-10" />
+            <!-- <MdiChevronRight class="text-xl z-10" /> -->
+            <svg
+              viewBox="0 0 24 24"
+              width="1.2em"
+              height="1.2em"
+              class="text-xl z-10"
+            >
+              <path
+                fill="currentColor"
+                d="M8.59 16.58L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.42Z"
+              ></path>
+            </svg>
             <div :class="backgroundNavigationStyleClass"></div>
           </div>
         </Button>
@@ -32,7 +43,18 @@
           @click="prevItem"
         >
           <div class="relative w-8 h-8 grid place-items-center">
-            <MdiChevronLeft class="text-xl z-10" />
+            <!-- <MdiChevronLeft class="text-xl z-10" /> -->
+            <svg
+              viewBox="0 0 24 24"
+              width="1.2em"
+              height="1.2em"
+              class="text-xl z-10"
+            >
+              <path
+                fill="currentColor"
+                d="M15.41 16.58L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.42Z"
+              ></path>
+            </svg>
             <div :class="backgroundNavigationStyleClass"></div>
           </div>
         </Button>
@@ -42,8 +64,26 @@
     <div v-if="!props.hidePagination" :class="paginationWrapperStyleClass">
       <div v-for="(item, index) in itemCount" :key="index">
         <Button icon @click="$emit('update:modelValue', index + 1)">
-          <MdiCheckboxBlankCircle v-if="props.modelValue === index + 1" />
-          <MdiCheckboxBlankCircleOutline v-else />
+          <svg
+            v-if="props.modelValue === index + 1"
+            viewBox="0 0 24 24"
+            width="1.2em"
+            height="1.2em"
+          >
+            <path
+              fill="currentColor"
+              d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
+            ></path>
+          </svg>
+          <svg v-else viewBox="0 0 24 24" width="1.2em" height="1.2em">
+            <path
+              fill="currentColor"
+              d="M12 20a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
+            ></path>
+          </svg>
+
+          <!-- <MdiCheckboxBlankCircle v-if="props.modelValue === index + 1" />
+          <MdiCheckboxBlankCircleOutline v-else /> -->
         </Button>
       </div>
     </div>
@@ -51,11 +91,8 @@
 </template>
 
 <script setup>
-import MdiChevronRight from "~icons/mdi/chevron-right";
-import MdiChevronLeft from "~icons/mdi/chevron-left";
-import MdiCheckboxBlankCircleOutline from "~icons/mdi/checkbox-blank-circle-outline";
-import MdiCheckboxBlankCircle from "~icons/mdi/checkbox-blank-circle";
-
+import Button from "./Button.vue";
+import { computed, ref, onMounted } from "vue";
 let defaults = {
   shadow: "shadow-xl",
   transition: {

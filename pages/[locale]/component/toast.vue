@@ -122,6 +122,11 @@
   </div>
 </template>
 <script setup>
+import Toast from "../../../module/src/runtime/components/Toast.vue";
+import Textfield from "../../../module/src/runtime/components/Textfield.vue";
+import Select from "../../../module/src/runtime/components/Select.vue";
+import Checkbox from "../../../module/src/runtime/components/Checkbox.vue";
+import Button from "../../../module/src/runtime/components/Button.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 

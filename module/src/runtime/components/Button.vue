@@ -70,6 +70,8 @@
 </template>
 
 <script setup>
+import Progress from "./Progress.vue";
+import { computed } from "vue";
 let defaults = {
   color: {
     bg: "bg-cyan-900 dark:bg-cyan-900",

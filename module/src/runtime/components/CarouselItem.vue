@@ -13,6 +13,7 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
 let props = defineProps({
   step: {
     type: Number,

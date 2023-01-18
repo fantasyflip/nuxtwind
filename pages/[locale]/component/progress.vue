@@ -65,6 +65,9 @@
   </div>
 </template>
 <script setup>
+import Progress from "../../../module/src/runtime/components/Progress.vue";
+import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
+import Textfield from "../../../module/src/runtime/components/Textfield.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
@@ -109,10 +112,10 @@ let props = [
     name: "color",
     type: "Object",
     default: {
-      circle: "gray-200",
-      circleDark: "zinc-800",
-      circleProgress: "primary-800",
-      circleProgressDark: "primary-800",
+      circle: "#e5e7eb",
+      circleDark: "#27272a",
+      circleProgress: "#155e75",
+      circleProgressDark: "#155e75",
       circleCutout: "before:bg-white dark:before:bg-zinc-900",
       background: "bg-gray-200 dark:bg-zinc-800",
       firstStrike: "before:bg-primary-800",

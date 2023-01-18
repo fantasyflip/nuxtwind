@@ -28,21 +28,50 @@
 </template>
 
 <script setup>
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../tailwind.config.js";
+import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
 
-const tw = resolveConfig(tailwindConfig);
+let colorMode = ref("dark");
+let htmlElement = ref(null);
+let observer = null;
 
-const colorMode = useColorMode();
+function getColorMode() {
+  // get class of html element
+  let htmlClass = document.querySelector("html").classList;
+  // check if dark mode is enabled
+  if (htmlClass.contains("dark")) {
+    return "dark";
+  } else {
+    return "light";
+  }
+}
+
+onMounted(() => {
+  colorMode.value = getColorMode();
+
+  htmlElement.value = document.querySelector("html");
+
+  observer = new MutationObserver(() => {
+    colorMode.value = getColorMode();
+  });
+
+  observer.observe(htmlElement.value, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+});
+
+onBeforeUnmount(() => {
+  observer.disconnect();
+});
 
 let defaults = {
   color: {
     description: "text-zinc-400",
     sliderLine: "bg-zinc-600 dark:bg-zinc-600",
-    sliderThumb: "primary-500",
-    sliderThumbDark: "primary-500",
-    sliderThumbBorder: "primary-800",
-    sliderThumbBorderDark: "primary-800",
+    sliderThumb: "#06b6d4",
+    sliderThumbDark: "#06b6d4",
+    sliderThumbBorder: "#155e75",
+    sliderThumbBorderDark: "#155e75",
   },
   rounded: "rounded-lg",
 };
@@ -58,10 +87,10 @@ const props = defineProps({
       return {
         description: "text-zinc-400",
         sliderLine: "bg-zinc-600 dark:bg-zinc-600",
-        sliderThumb: "primary-500",
-        sliderThumbDark: "primary-500",
-        sliderThumbBorder: "primary-800",
-        sliderThumbBorderDark: "primary-800",
+        sliderThumb: "#06b6d4",
+        sliderThumbDark: "#06b6d4",
+        sliderThumbBorder: "#155e75",
+        sliderThumbBorderDark: "#155e75",
       };
     },
   },
@@ -141,29 +170,20 @@ watch(
 );
 
 const thumbColor = computed(() => {
-  let color = props.color.sliderThumb || defaults.color.sliderThumb;
-  if (colorMode.value == "dark") {
-    color = props.color.sliderThumbDark || defaults.color.sliderThumbDark;
-  }
-  if (color.includes("-")) {
-    let colorSegments = color.split("-");
-    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  if (colorMode.value === "light") {
+    return props.color.sliderThumb || defaults.color.sliderThumb;
   } else {
-    return tw.theme.colors[color];
+    return props.color.sliderThumbDark || defaults.color.sliderThumbDark;
   }
 });
 
 const thumbBorderColor = computed(() => {
-  let color = props.color.sliderThumbBorder || defaults.color.sliderThumbBorder;
-  if (colorMode.value == "dark") {
-    color =
-      props.color.sliderThumbBorderDark || defaults.color.sliderThumbBorderDark;
-  }
-  if (color.includes("-")) {
-    let colorSegments = color.split("-");
-    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  if (colorMode.value === "light") {
+    return props.color.sliderThumbBorder || defaults.color.sliderThumbBorder;
   } else {
-    return tw.theme.colors[color];
+    return (
+      props.color.sliderThumbBorderDark || defaults.color.sliderThumbBorderDark
+    );
   }
 });
 

@@ -11,6 +11,8 @@
 </template>
 
 <script setup>
+import { computed, ref, watch, onMounted } from "vue";
+import { onClickOutside } from "@vueuse/core";
 let defaults = {
   color: {
     bg: "bg-white dark:bg-gray-800",

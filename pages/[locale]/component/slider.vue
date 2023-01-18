@@ -52,6 +52,9 @@
   </div>
 </template>
 <script setup>
+import Slider from "../../../module/src/runtime/components/Slider.vue";
+import Textfield from "../../../module/src/runtime/components/Textfield.vue";
+import Textarea from "../../../module/src/runtime/components/Textarea.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
@@ -75,10 +78,10 @@ let props = [
     default: {
       description: "text-zinc-400",
       sliderLine: "bg-zinc-600 dark:bg-zinc-600",
-      sliderThumb: "primary-500",
-      sliderThumbDark: "primary-500",
-      sliderThumbBorder: "primary-800",
-      sliderThumbBorderDark: "primary-800",
+      sliderThumb: "#06b6d4",
+      sliderThumbDark: "#06b6d4",
+      sliderThumbBorder: "#155e75",
+      sliderThumbBorderDark: "#155e75",
     },
     description: t(
       "pages.component.slider.content.documentation.properties.color.description"

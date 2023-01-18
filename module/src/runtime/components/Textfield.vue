@@ -16,50 +16,45 @@
         />
       </slot>
     </div>
-    <div :class="textareaWrapperClass">
-      <textarea
-        :id="textareaId"
-        :class="inputClass"
-        :placeholder="placeholder"
-        :disabled="props.disabled"
-        :value="props.modelValue"
-        :autocomplete="autocomplete"
-        @input="handleInput"
-        @focusin="$emit('focusIn')"
-        @focusout="$emit('focusOut')"
-      />
-      <label :for="textareaId" :class="labelClass">
-        <slot name="label">{{ props.label }}</slot>
-      </label>
-      <div
-        v-if="props.counter"
-        :for="textareaId"
-        class="transition peer-focus:opacity-100 opacity-0 peer-focus:translate-y-0 -translate-y-3 absolute top-0 w-full flex justify-end"
-      >
-        <div
-          class="pr-3 pt-1 text-xs"
-          :class="props.color?.hint || defaults.color.hint"
-        >
-          {{ props.modelValue.length }}
-        </div>
-      </div>
-      <div
-        v-if="
-          props.hint &&
-          props.hint.length > 0 &&
-          !props.disabled &&
-          !props.loading
-        "
-        :class="hintClass"
-      >
-        {{ hint }}
-      </div>
+    <input
+      :id="textfieldId"
+      :class="inputClass"
+      :type="props.type"
+      :placeholder="placeholder"
+      :disabled="props.disabled"
+      :value="props.modelValue"
+      :autocomplete="autocomplete"
+      @input="handleInput"
+      @focusin="$emit('focusIn')"
+      @focusout="$emit('focusOut')"
+    />
+    <label :for="textfieldId" :class="labelClass">
+      <slot name="label">{{ props.label }}</slot>
+    </label>
+    <div
+      v-if="
+        props.hint && props.hint.length > 0 && !props.disabled && !props.loading
+      "
+      :class="hintClass"
+    >
+      {{ hint }}
     </div>
   </div>
 </template>
 
 <script setup>
-let textareaId = generateId();
+import { computed, ref } from "vue";
+function generateId() {
+  let result = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let charactersLength = characters.length;
+  for (let i = 0; i < 8; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+let textfieldId = generateId();
 
 let isValid = ref(true);
 let defaults = {
@@ -74,8 +69,7 @@ let defaults = {
     icon: "text-black dark:text-white",
     iconFocus: "group-focus-within:text-cyan-600",
     border: "border-black dark:border-white",
-    borderFocus:
-      "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800",
+    borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
     borderError: "border-red-500",
     borderFocusError: "focus:border-red-500",
   },
@@ -91,11 +85,13 @@ let defaults = {
       ease: "placeholder:ease-in-out",
     },
   },
-  height: "min-h-[40px]",
 };
 
 const props = defineProps({
-  modelValue: {},
+  modelValue: {
+    type: [String, Number],
+    default: "",
+  },
   color: {
     type: Object,
     default() {
@@ -111,8 +107,7 @@ const props = defineProps({
         icon: "text-black dark:text-white",
         iconFocus: "group-focus-within:text-cyan-600",
         border: "border-black dark:border-white",
-        borderFocus:
-          "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800",
+        borderFocus: "focus:border-primary-800 dark:focus:border-primary-800",
         borderError: "border-red-500",
         borderFocusError: "focus:border-red-500",
       };
@@ -166,17 +161,13 @@ const props = defineProps({
     type: [Boolean, String],
     default: true,
   },
+  type: {
+    type: String,
+    default: "text",
+  },
   transition: {
     type: [Boolean, Object],
     default: true,
-  },
-  counter: {
-    type: Boolean,
-    default: false,
-  },
-  height: {
-    type: String,
-    default: "min-h-[40px]",
   },
   width: {
     type: String,
@@ -211,7 +202,7 @@ function handleInput(e) {
     value: e.target.value,
     source: {
       name: props.label,
-      type: "textarea",
+      type: "textfield",
     },
   });
 }
@@ -265,70 +256,6 @@ const wrapperClass = computed(() => {
   return classes.join(" ");
 });
 
-const textareaWrapperClass = computed(() => {
-  let classes = [];
-  classes.push(
-    "block",
-    "w-full",
-    "text-sm",
-    "appearance-none",
-    "peer-focus:outline-none",
-    "peer-focus:ring-0",
-    "placeholder:opacity-0",
-    "peer-focus:placeholder:opacity-100",
-    "placeholder:transition-opacity"
-  );
-  classes.push("pt-4");
-
-  if (props.filled) {
-    classes.push("rounded-t-lg");
-
-    //COLOR
-    classes.push(props.color.bg || defaults.color.bg);
-  } else if (props.outlined) {
-    classes.push("bg-transparent");
-
-    //OUTLINED
-    if (typeof props.outlined === "string") {
-      classes.push(props.outlined);
-    } else {
-      classes.push(defaults.outlined);
-    }
-
-    //ROUNDED
-    if (props.rounded) {
-      if (typeof props.rounded === "string") {
-        classes.push(props.rounded);
-      } else {
-        classes.push(defaults.rounded);
-      }
-    }
-  } else {
-  }
-
-  // COLOR
-  if (isValid.value === true) {
-    classes.push(props.color.border || defaults.color.border);
-    classes.push(props.color.borderFocus || defaults.color.borderFocus);
-  } else {
-    classes.push(props.color.borderError || defaults.color.borderError);
-    classes.push(
-      props.color.borderFocusError || defaults.color.borderFocusError
-    );
-  }
-
-  //SHADOW
-  if (props.shadow) {
-    if (typeof props.shadow === "string") {
-      classes.push(props.shadow);
-    } else {
-      classes.push(defaults.shadow);
-    }
-  }
-
-  return classes.join(" ");
-});
-
 const inputClass = computed(() => {
   let classes = [];
   // class='block w-full text-sm text-gray-900 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
@@ -363,7 +290,7 @@ const inputClass = computed(() => {
 
   if (props.filled) {
     //FILLED
-    classes.push("pb-2.5", "px-2.5", "pt-2", "border-0");
+    classes.push("rounded-t-lg", "pb-2.5", "px-2.5", "pt-5", "border-0");
 
     if (typeof props.filled === "string") {
       classes.push(props.filled);
@@ -386,7 +313,21 @@ const inputClass = computed(() => {
     }
   } else if (props.outlined) {
     //OUTLINED
-    classes.push("pb-4", "pt-1", "bg-transparent");
+    classes.push("py-4", "bg-transparent");
+    if (typeof props.outlined === "string") {
+      classes.push(props.outlined);
+    } else {
+      classes.push(defaults.outlined);
+    }
+
+    //ROUNDED
+    if (props.rounded) {
+      if (typeof props.rounded === "string") {
+        classes.push(props.rounded);
+      } else {
+        classes.push(defaults.rounded);
+      }
+    }
 
     //ICON
     if (props.appendIcon && props.prependIcon) {
@@ -400,7 +341,7 @@ const inputClass = computed(() => {
     }
   } else {
     //DEFAULT
-    classes.push("pb-2.5", "bg-transparent", "border-0", "border-b-2");
+    classes.push("py-2.5", "bg-transparent", "border-0", "border-b-2");
 
     //ICON
     if (props.appendIcon && props.prependIcon) {
@@ -438,8 +379,14 @@ const inputClass = computed(() => {
     classes.push("cursor-progress");
   }
 
-  //HEIGHT
-  classes.push(props.height || defaults.height);
+  //SHADOW
+  if (props.shadow) {
+    if (typeof props.shadow === "string") {
+      classes.push(props.shadow);
+    } else {
+      classes.push(defaults.shadow);
+    }
+  }
 
   return classes.join(" ");
 });
@@ -474,7 +421,7 @@ const labelClass = computed(() => {
       "peer-focus:top-4",
       "z-10",
       "left-2.5",
-      "peer-placeholder-shown:translate-y-1",
+      "peer-placeholder-shown:translate-y-0",
       "peer-focus:-translate-y-4"
     );
 
@@ -494,7 +441,8 @@ const labelClass = computed(() => {
       "z-10",
       "px-2",
       "peer-focus:px-2",
-      "peer-placeholder-shown:translate-y-3",
+      "peer-placeholder-shown:-translate-y-1/2",
+      "peer-placeholder-shown:top-1/2",
       "peer-focus:top-2",
       "peer-focus:-translate-y-4",
       "left-1"
@@ -514,7 +462,7 @@ const labelClass = computed(() => {
     //DEFAULT
     classes.push(
       "-translate-y-6",
-      "top-4",
+      "top-3",
       "-z-10",
       "peer-focus:left-0",
       "peer-placeholder-shown:translate-y-0",
@@ -557,20 +505,13 @@ const prependIconClass = computed(() => {
   let classes = [];
   classes.push(
     "absolute",
+    "inset-y-0",
     "left-0",
     "flex",
     "items-center",
     "pl-2",
     "transition-all"
   );
-
-  if (props.filled) {
-    classes.push("top-6");
-  } else if (props.outlined) {
-    classes.push("top-5");
-  } else {
-    classes.push("top-4");
-  }
 
   //TRANSITION
   if (props.transition && typeof props.transition === "object") {
@@ -606,20 +547,13 @@ const appendIconClass = computed(() => {
   let classes = [];
   classes.push(
     "absolute",
+    "inset-y-0",
     "right-0",
     "flex",
     "items-center",
     "pr-2",
     "transition-all"
   );
-
-  if (props.filled) {
-    classes.push("top-6");
-  } else if (props.outlined) {
-    classes.push("top-5");
-  } else {
-    classes.push("top-4");
-  }
 
   //TRANSITION
   if (props.transition && typeof props.transition === "object") {

@@ -22,12 +22,42 @@
 </template>
 
 <script setup>
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../tailwind.config.js";
+import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
 
-const tw = resolveConfig(tailwindConfig);
+let colorMode = ref("dark");
+let htmlElement = ref(null);
+let observer = null;
 
-const colorMode = useColorMode();
+function getColorMode() {
+  // get class of html element
+  let htmlClass = document.querySelector("html").classList;
+  // check if dark mode is enabled
+  if (htmlClass.contains("dark")) {
+    return "dark";
+  } else {
+    return "light";
+  }
+}
+
+onMounted(() => {
+  colorMode.value = getColorMode();
+
+  htmlElement.value = document.querySelector("html");
+
+  observer = new MutationObserver(() => {
+    colorMode.value = getColorMode();
+  });
+
+  observer.observe(htmlElement.value, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+});
+
+onBeforeUnmount(() => {
+  observer.disconnect();
+});
+
 let defaults = {
   size: {
     width: "w-full",
@@ -43,10 +73,10 @@ let defaults = {
     },
   },
   color: {
-    circle: "gray-200",
-    circleDark: "zinc-800",
-    circleProgress: "primary-800",
-    circleProgressDark: "primary-800",
+    circle: "#e5e7eb",
+    circleDark: "#27272a",
+    circleProgress: "#155e75",
+    circleProgressDark: "#155e75",
     circleCutout: "before:bg-white dark:before:bg-zinc-900",
     background: "bg-gray-200 dark:bg-zinc-800",
     firstStrike: "before:bg-primary-800",
@@ -81,10 +111,10 @@ const props = defineProps({
     type: Object,
     default() {
       return {
-        circle: "gray-200",
-        circleDark: "zinc-800",
-        circleProgress: "primary-800",
-        circleProgressDark: "primary-800",
+        circle: "#e5e7eb",
+        circleDark: "#27272a",
+        circleProgress: "#155e75",
+        circleProgressDark: "#155e75",
         circleCutout: "before:bg-white dark:before:bg-zinc-900",
         background: "bg-gray-200 dark:bg-zinc-800",
         firstStrike: "before:bg-primary-800",
@@ -213,28 +243,18 @@ function getCircularProgress(inputValue) {
 }
 
 const circularColorCss = computed(() => {
-  let color = props.color.circle || defaults.color.circle;
-  if (colorMode.value == "dark") {
-    color = props.color.circleDark || defaults.color.circleDark;
-  }
-  if (color.includes("-")) {
-    let colorSegments = color.split("-");
-    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  if (colorMode.value === "light") {
+    return props.color.circle || defaults.color.circle;
   } else {
-    return tw.theme.colors[color];
+    return props.color.circleDark || defaults.color.circleDark;
   }
 });
 
 const circularColorProgressCss = computed(() => {
-  let color = props.color.circleProgress || defaults.color.circleProgress;
-  if (colorMode.value == "dark") {
-    color = props.color.circleProgressDark || defaults.color.circleProgressDark;
-  }
-  if (color.includes("-")) {
-    let colorSegments = color.split("-");
-    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  if (colorMode.value === "light") {
+    return props.color.circleProgress || defaults.color.circleProgress;
   } else {
-    return tw.theme.colors[color];
+    return props.color.circleProgressDark || defaults.color.circleProgressDark;
   }
 });
 

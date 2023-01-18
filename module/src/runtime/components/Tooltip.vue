@@ -16,6 +16,7 @@
   </div>
 </template>
 <script setup>
+import { computed } from "vue";
 let defaults = {
   color: {
     text: "dark:text-white text-black",

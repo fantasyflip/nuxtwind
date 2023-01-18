@@ -32,6 +32,8 @@
 </template>
 
 <script setup>
+import Checkbox from "./Checkbox.vue";
+import { computed, ref, watch } from "vue";
 let defaults = {
   color: {
     label: "text-primary-800 dark:text-primary-800",

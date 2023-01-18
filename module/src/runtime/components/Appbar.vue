@@ -13,7 +13,13 @@
             :is="props.navigationIcon"
             v-if="typeof props.navigationIcon === 'object'"
           />
-          <MdiMenu v-else />
+          <!-- <MdiMenu  /> -->
+          <svg v-else viewBox="0 0 24 24" width="1.2em" height="1.2em">
+            <path
+              fill="currentColor"
+              d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"
+            ></path>
+          </svg>
         </Button>
       </slot>
     </div>
@@ -35,7 +41,9 @@
 </template>
 
 <script setup>
-import MdiMenu from "~icons/mdi/menu";
+import Button from "./Button.vue";
+import { computed } from "vue";
+import { useWindowScroll } from "@vueuse/core";
 let defaults = {
   color: {
     bg: "bg-white dark:bg-zinc-900",
