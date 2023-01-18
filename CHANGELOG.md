@@ -1,4 +1,15 @@
-# 0.2.0 (2023-01-18)
+## [0.2.1](https://github.com/fantasyflip/nuxtwind/compare/v0.2.0...v0.2.1) (2023-01-18)
+
+
+### Bug Fixes
+
+* **workflow:** Add working directory to npm publish steps ([851ae06](https://github.com/fantasyflip/nuxtwind/commit/851ae069cdf5f59f09f4eb7d1d7dce40e0dc40ea))
+* **workflow:** Move working-directory out of 'with'-statement for 'run'-tasks ([bd6c565](https://github.com/fantasyflip/nuxtwind/commit/bd6c56513b0f44b5f4079707ff7f5b8941c76385))
+* **workflow:** Move working-directory within 'with'-statement ([2f34427](https://github.com/fantasyflip/nuxtwind/commit/2f34427bf3e22a93c5dd11fbc214b16ef235ee07))
+
+
+
+# [0.2.0](https://github.com/fantasyflip/nuxtwind/compare/ffb1b6f3288c6e9bf460202f533ceed9364e5997...v0.2.0) (2023-01-18)
 
 
 ### Bug Fixes
