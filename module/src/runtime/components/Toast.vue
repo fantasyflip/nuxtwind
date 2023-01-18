@@ -112,6 +112,7 @@
 
 <script setup>
 import Progress from "./Progress.vue";
+import Button from "./Button.vue";
 import { computed, ref } from "vue";
 let defaults = {
   color: {
