@@ -26,9 +26,9 @@ jobs:
           body: ${{ steps.changelog.outputs.clean_changelog }}
 
       - name: 🟢 node
-        uses: actions/setup-node@v1.4.2
+        uses: actions/setup-node@v3.6.0
         with:
-          node-version: 12
+          node-version: 16
           registry-url: https://registry.npmjs.org
 
       - name: 🚀 publish
