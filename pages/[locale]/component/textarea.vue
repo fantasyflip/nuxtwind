@@ -77,9 +77,9 @@
   </div>
 </template>
 <script setup>
-import Textarea from "../../../../module/src/runtime/components/Textarea.vue";
-import Textfield from "../../../../module/src/runtime/components/Textfield.vue";
-import Checkboxgroup from "../../../../module/src/runtime/components/Checkboxgroup.vue";
+import Textarea from "../../../module/src/runtime/components/Textarea.vue";
+import Textfield from "../../../module/src/runtime/components/Textfield.vue";
+import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
 import MdiMagnify from "~icons/mdi/magnify";
 
 import { useI18n } from "vue-i18n";

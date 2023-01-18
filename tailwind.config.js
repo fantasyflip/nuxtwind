@@ -1,6 +1,6 @@
 export default {
   darkMode: "class",
-  content: ["../module/src/runtime/components/**/*.vue"],
+  content: ["./module/src/runtime/components/**/*.vue"],
   theme: {
     screens: {
       sm: "640px",

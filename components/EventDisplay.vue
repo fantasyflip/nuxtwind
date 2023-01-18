@@ -13,7 +13,7 @@
       <Tooltip right width="w-40">
         <span class="hover:text-secondary-800">{{ props.item.name }}</span>
         <template #tooltip>{{
-          $t("components.configDisplay.content.copyTooltip")
+          $t("components.eventDisplay.content.copyTooltip")
         }}</template>
       </Tooltip>
     </div>
@@ -53,18 +53,18 @@
 </template>
 
 <script setup>
-import Tooltip from "../../module/src/runtime/components/Tooltip.vue";
+import Tooltip from "../module/src/runtime/components/Tooltip.vue";
 const props = defineProps({
   item: {
     type: Object,
     default() {
       return {
-        name: "ConfigExtend",
+        name: "EventName",
         structure: {
           name: "object-item",
           count: 2,
         },
-        description: "This is a description of the config extend",
+        description: "This is a description of an event",
       };
     },
   },

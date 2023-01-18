@@ -153,10 +153,10 @@
   </div>
 </template>
 <script setup>
-import Button from "../../module/src/runtime/components/Button.vue";
-import Appbar from "../../module/src/runtime/components/Appbar.vue";
-import Drawer from "../../module/src/runtime/components/Drawer.vue";
-import Tooltip from "../../module/src/runtime/components/Tooltip.vue";
+import Button from "../module/src/runtime/components/Button.vue";
+import Appbar from "../module/src/runtime/components/Appbar.vue";
+import Drawer from "../module/src/runtime/components/Drawer.vue";
+import Tooltip from "../module/src/runtime/components/Tooltip.vue";
 import MdiGithub from "~icons/mdi/github";
 import MdiTranslate from "~icons/mdi/translate";
 import MdiThemeLightDark from "~icons/mdi/theme-light-dark";

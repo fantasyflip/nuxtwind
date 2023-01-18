@@ -73,10 +73,10 @@
   </div>
 </template>
 <script setup>
-import Tooltip from "../../../../module/src/runtime/components/Tooltip.vue";
-import Button from "../../../../module/src/runtime/components/Button.vue";
-import Textfield from "../../../../module/src/runtime/components/Textfield.vue";
-import Checkboxgroup from "../../../../module/src/runtime/components/Checkboxgroup.vue";
+import Tooltip from "../../../module/src/runtime/components/Tooltip.vue";
+import Button from "../../../module/src/runtime/components/Button.vue";
+import Textfield from "../../../module/src/runtime/components/Textfield.vue";
+import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 

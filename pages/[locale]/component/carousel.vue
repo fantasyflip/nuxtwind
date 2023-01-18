@@ -63,9 +63,9 @@
   </div>
 </template>
 <script setup>
-import Carousel from "../../../../module/src/runtime/components/Carousel.vue";
-import CarouselItem from "../../../../module/src/runtime/components/CarouselItem.vue";
-import Slider from "../../../../module/src/runtime/components/Slider.vue";
+import Carousel from "../../../module/src/runtime/components/Carousel.vue";
+import CarouselItem from "../../../module/src/runtime/components/CarouselItem.vue";
+import Slider from "../../../module/src/runtime/components/Slider.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 

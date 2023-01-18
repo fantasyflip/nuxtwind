@@ -134,8 +134,8 @@
   </div>
 </template>
 <script setup>
-import Appbar from "../../../../module/src/runtime/components/Appbar.vue";
-import Checkboxgroup from "../../../../module/src/runtime/components/Checkboxgroup.vue";
+import Appbar from "../../../module/src/runtime/components/Appbar.vue";
+import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
