@@ -91,6 +91,7 @@
 </template>
 
 <script setup>
+import Button from "./Button.vue";
 import { computed, ref, onMounted } from "vue";
 let defaults = {
   shadow: "shadow-xl",
