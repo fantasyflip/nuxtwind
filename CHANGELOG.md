@@ -1,3 +1,12 @@
+## [0.2.7](https://github.com/fantasyflip/nuxtwind/compare/v0.2.6...v0.2.7) (2023-01-18)
+
+
+### Bug Fixes
+
+* **module:** Remove unnecessary modules from playground ([9d5d36e](https://github.com/fantasyflip/nuxtwind/commit/9d5d36eae96d5be3da3a8e81e1498451dad909e4))
+
+
+
 ## [0.2.6](https://github.com/fantasyflip/nuxtwind/compare/v0.2.5...v0.2.6) (2023-01-18)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **workflow:** Rework publish workflow ([5886ab3](https://github.com/fantasyflip/nuxtwind/commit/5886ab333e6e1df952136840da63f7dfedbdc26d))
-
-
-
-## [0.2.2](https://github.com/fantasyflip/nuxtwind/compare/v0.2.1...v0.2.2) (2023-01-18)
-
-
-### Bug Fixes
-
-* **workflow:** Change publish workflow provider ([50b4699](https://github.com/fantasyflip/nuxtwind/commit/50b4699db3d72f91d528887c22190ebccb76ec1f))
 
 
 
