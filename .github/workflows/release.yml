@@ -23,13 +23,14 @@ jobs:
           tag: ${{ steps.changelog.outputs.tag }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
 
-      - name: Publish Release
-        uses: actions/checkout@v3
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 12
-        run: npm install
-        run: npm test
-        uses: JS-DevTools/npm-publish@v1
+      - run: npm install
+      - run: npm test
+      - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          package: "./module/package.json"
+          access: "public"
