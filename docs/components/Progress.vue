@@ -23,10 +23,6 @@
 
 <script setup>
 import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "@/tailwind.config.js";
-
-const tw = resolveConfig(tailwindConfig);
 
 let colorMode = ref("dark");
 let htmlElement = ref(null);
@@ -77,10 +73,10 @@ let defaults = {
     },
   },
   color: {
-    circle: "gray-200",
-    circleDark: "zinc-800",
-    circleProgress: "primary-800",
-    circleProgressDark: "primary-800",
+    circle: "#e5e7eb",
+    circleDark: "#27272a",
+    circleProgress: "#155e75",
+    circleProgressDark: "#155e75",
     circleCutout: "before:bg-white dark:before:bg-zinc-900",
     background: "bg-gray-200 dark:bg-zinc-800",
     firstStrike: "before:bg-primary-800",
@@ -115,10 +111,10 @@ const props = defineProps({
     type: Object,
     default() {
       return {
-        circle: "gray-200",
-        circleDark: "zinc-800",
-        circleProgress: "primary-800",
-        circleProgressDark: "primary-800",
+        circle: "#e5e7eb",
+        circleDark: "#27272a",
+        circleProgress: "#155e75",
+        circleProgressDark: "#155e75",
         circleCutout: "before:bg-white dark:before:bg-zinc-900",
         background: "bg-gray-200 dark:bg-zinc-800",
         firstStrike: "before:bg-primary-800",
@@ -247,28 +243,18 @@ function getCircularProgress(inputValue) {
 }
 
 const circularColorCss = computed(() => {
-  let color = props.color.circle || defaults.color.circle;
-  if (colorMode.value == "dark") {
-    color = props.color.circleDark || defaults.color.circleDark;
-  }
-  if (color.includes("-")) {
-    let colorSegments = color.split("-");
-    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  if (colorMode.value === "light") {
+    return props.color.circle || defaults.color.circle;
   } else {
-    return tw.theme.colors[color];
+    return props.color.circleDark || defaults.color.circleDark;
   }
 });
 
 const circularColorProgressCss = computed(() => {
-  let color = props.color.circleProgress || defaults.color.circleProgress;
-  if (colorMode.value == "dark") {
-    color = props.color.circleProgressDark || defaults.color.circleProgressDark;
-  }
-  if (color.includes("-")) {
-    let colorSegments = color.split("-");
-    return tw.theme.colors[colorSegments[0]][colorSegments[1]];
+  if (colorMode.value === "light") {
+    return props.color.circleProgress || defaults.color.circleProgress;
   } else {
-    return tw.theme.colors[color];
+    return props.color.circleProgressDark || defaults.color.circleProgressDark;
   }
 });
 
