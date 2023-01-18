@@ -60,7 +60,6 @@
 
 <script setup>
 import { computed, ref } from "vue";
-// TODO Move to composables
 function generateId() {
   let result = "";
   let characters =

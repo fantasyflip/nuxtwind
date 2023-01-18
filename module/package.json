@@ -1,6 +1,6 @@
 {
   "name": "nuxtwind-test",
-  "version": "0.1.14",
+  "version": "0.1.18",
   "license": "MIT",
   "description": "Component Library for Nuxt 3 using TailwindCSS",
   "repository": {
