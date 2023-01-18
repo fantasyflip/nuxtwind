@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/fantasyflip/nuxtwind/compare/v0.2.2...v0.2.3) (2023-01-18)
+
+
+### Bug Fixes
+
+* **workflow:** Rework publish workflow ([5886ab3](https://github.com/fantasyflip/nuxtwind/commit/5886ab333e6e1df952136840da63f7dfedbdc26d))
+
+
+
 ## [0.2.2](https://github.com/fantasyflip/nuxtwind/compare/v0.2.1...v0.2.2) (2023-01-18)
 
 
