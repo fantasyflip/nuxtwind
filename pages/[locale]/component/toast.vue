@@ -283,15 +283,6 @@ let props = [
 
 let caveats = [
   {
-    name: t("pages.component.toast.content.documentation.caveats.icon.title"),
-    description: t(
-      "pages.component.toast.content.documentation.caveats.icon.description",
-      {
-        url: "https://github.com/antfu/unplugin-icons",
-      }
-    ),
-  },
-  {
     name: t("pages.component.toast.content.documentation.caveats.button.title"),
     description: t(
       "pages.component.toast.content.documentation.caveats.button.description",
