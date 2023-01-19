@@ -59,6 +59,7 @@
           :props="props"
           :slots="slots"
           :configs="configs"
+          :caveats="caveats"
         />
       </template>
     </NuxtLayout>
@@ -179,6 +180,20 @@ let slots = [
     name: "inner-circle",
     description: t(
       "pages.component.progress.content.documentation.slots.innerCircle.description"
+    ),
+  },
+];
+
+let caveats = [
+  {
+    name: t(
+      "pages.component.progress.content.documentation.caveats.resolveConfig.title"
+    ),
+    description: t(
+      "pages.component.progress.content.documentation.caveats.resolveConfig.description",
+      {
+        url: "https://tailwindcss.com/docs/configuration#referencing-in-java-script",
+      }
     ),
   },
 ];

@@ -380,6 +380,12 @@
                 "name": "Lineare Lade-Animation",
                 "description": "Damit die lineare Ladeanimation richtig funktioniert, muss die Tailwind-Konfiguration um die angezeigten Optionen erweitert werden."
               }
+            },
+            "caveats": {
+              "resolveConfig": {
+                "title": "Tailwind-Farben in Hex-Farben auflösen",
+                "description": "Da die Komponente Hex-Farben für zusätzliches benutzerdefiniertes CSS benötigt, ist es möglich die Tailwind-Farbe in einen Hex-Farbcode aufzulösen, indem man <a class='font-bold underline text-primary-800 hover:text-secondary-700' href=' verwenden. \n{url}' target='_blank'>diese Methode</a> nutzt."
+              }
             }
           },
           "playground": {
@@ -950,6 +956,12 @@
               },
               "description": {
                 "description": "Platzhalter zum Anpassen der Beschreibung."
+              }
+            },
+            "caveats": {
+              "resolveConfig": {
+                "title": "Tailwind-Farben in Hex-Farben auflösen",
+                "description": "Da die Komponente Hex-Farben für zusätzliches benutzerdefiniertes CSS benötigt, ist es möglich die Tailwind-Farbe in einen Hex-Farbcode aufzulösen, indem man <a class='font-bold underline text-primary-800 hover:text-secondary-700' href=' verwenden. \n{url}' target='_blank'>diese Methode</a> nutzt."
               }
             }
           }

@@ -254,6 +254,12 @@
                 "name": "Linear loading animation",
                 "description": "For the linear loading animation to work properly its required to extend the tailwind config by the shown options."
               }
+            },
+            "caveats": {
+              "resolveConfig": {
+                "title": "Resolve Tailwind-colors to hex-colors",
+                "description": "Since the component requires hex-colors for additional custom CSS you can easily resolve the hex-color from a tailwind color by using <a class='font-bold underline text-primary-800 hover:text-secondary-700' href='{url}' target='_blank'>this method</a>."
+              }
             }
           },
           "playground": {
@@ -914,6 +920,12 @@
               },
               "description": {
                 "description": "Slot to customize the description."
+              }
+            },
+            "caveats": {
+              "resolveConfig": {
+                "title": "Resolve Tailwind-colors to hex-colors",
+                "description": "Since the component requires hex-colors for additional custom CSS you can easily resolve the hex-color from a tailwind color by using <a class='font-bold underline text-primary-800 hover:text-secondary-700' href='{url}' target='_blank'>this method</a>."
               }
             }
           }
