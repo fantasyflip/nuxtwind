@@ -137,7 +137,7 @@ let drawerItems = [
   },
 ];
 
-let checkedBoxes = ref([true, true, true, false, false]);
+let checkedBoxes = ref([false, true, true, false, false]);
 
 let toggleProps = computed(() => {
   return [
