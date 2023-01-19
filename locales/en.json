@@ -930,6 +930,40 @@
             }
           }
         }
+      },
+      "carousel": {
+        "content": {
+          "documentation": {
+            "properties": {
+              "autoplay": {
+                "description": "Prop to enable or disable auto playing the carousel."
+              },
+              "timeout": {
+                "description": "Prop to set the timeout per carousel-item."
+              },
+              "disableAutoPlayOnHover": {
+                "description": "Prop to pause auto-play when hovering over the carousel."
+              },
+              "hideNavigation": {
+                "description": "Prop to hide the navigation on both sides."
+              },
+              "hidePagination": {
+                "description": "Prop to hide the the pagination."
+              },
+              "shadow": {
+                "description": "Prop to add a shadow to the carousel. Can be disabled by setting it to 'false' or customized by providing a tailwind-'shadow'-class."
+              },
+              "transition": {
+                "description": "Prop to add or customize the transitions on the Carousel."
+              }
+            },
+            "slots": {
+              "default": {
+                "description": "Default Slot that must be filled with one or more \"CarouselItem\"-elements in which custom content can be added. The CarouselItem must have the step prop set to a number. CarouselItems must be direct childs of Carousel!"
+              }
+            }
+          }
+        }
       }
     },
     "index": {

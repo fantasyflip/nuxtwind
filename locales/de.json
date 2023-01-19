@@ -966,6 +966,40 @@
             }
           }
         }
+      },
+      "carousel": {
+        "content": {
+          "documentation": {
+            "properties": {
+              "autoplay": {
+                "description": "Eigenschaft zum Aktivieren oder Deaktivieren des automatischen Abspielens des Carousel."
+              },
+              "timeout": {
+                "description": "Eigenschaft zum Festlegen des Timeouts pro Carousel-Element."
+              },
+              "disableAutoPlayOnHover": {
+                "description": "Eigenschaft um die automatische Wiedergabe anzuhalten, wenn die Maus über das Carousel schwebt."
+              },
+              "hideNavigation": {
+                "description": "Eigenschaft um die Navigation auf beiden Seiten auszublenden."
+              },
+              "hidePagination": {
+                "description": "Eigenschaft um die Paginierung zu verbergen."
+              },
+              "shadow": {
+                "description": "Eigenschaft um dem Carousel einen Schatten hinzuzufügen. \nKann deaktiviert werden, indem es auf „false“ gesetzt wird, oder angepasst werden, indem eine Tailwind-„Schatten“-Klasse übergeben wird."
+              },
+              "transition": {
+                "description": "Eigenschaft zum Hinzufügen oder Anpassen der Übergänge auf dem Carousel."
+              }
+            },
+            "slots": {
+              "default": {
+                "description": "Standard-Platzhalter, der mit einem oder mehreren \"CarouselItem\"-Elementen gefüllt werden muss, in denen benutzerdefinierte Inhalte hinzugefügt werden können. Das CarouselItem-Element muss die \"step\"-Eigenschaft mit einer Nummer haben.\nCarouselItems müssen direkte untergeordnete Elemente von Carousel sein!"
+              }
+            }
+          }
+        }
       }
     }
   },
