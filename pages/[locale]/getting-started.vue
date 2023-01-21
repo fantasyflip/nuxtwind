@@ -2,14 +2,16 @@
   <div>
     <NuxtLayout name="docs">
       <NuxtLayout name="default">
-        <h1 class="text-5xl font-bold">
+        <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold">
           {{ $t("pages.gettingStarted.content.title") }}
         </h1>
         <p class="py-6">
           {{ $t("pages.gettingStarted.content.description") }}
         </p>
         <div class="border-[0.5px] border-zinc-500 my-4"></div>
-        <h2 class="text-4xl font-semibold py-4">Installation</h2>
+        <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold py-4">
+          Installation
+        </h2>
         <div
           class="py-3"
           v-html="
@@ -51,7 +53,7 @@
           {{ $t("pages.gettingStarted.content.installation.done") }}
         </p>
         <div class="border-[0.5px] border-zinc-500 my-4"></div>
-        <h2 class="text-4xl font-semibold py-4">
+        <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold py-4">
           {{ $t("pages.gettingStarted.content.options.title") }}
         </h2>
         <div

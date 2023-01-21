@@ -71,5 +71,7 @@ function handleCopy() {
 <style lang="scss" scoped>
 :deep(.shiki) {
   background-color: transparent !important;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 </style>
