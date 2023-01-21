@@ -1001,6 +1001,26 @@
           }
         }
       }
+    },
+    "gettingStarted": {
+      "content": {
+        "installation": {
+          "firstStep": "1. Fügen Sie Ihrem Projekt das Paket <code class='dark:bg-zinc-800 bg-gray-200 round-lg p-1'>{package}</code> hinzu:",
+          "secondStep": "2. Fügen Sie es dem\n          \n<code class=\"dark:bg-zinc-800 bg-gray-200 abgerundet-lg p-1\"\n            \n>Module</code\n          \n>\n          \nAbschnitt in Ihrer\n          \n<code class=\"dark:bg-zinc-800 bg-gray-200 abgerundet-lg p-1\"\n            \n>nuxt.config</code\n          \n> hinzu:",
+          "thirdStep": "3. Fügen Sie den Modulpfad zum Content-Array in Ihrer\n          \n<code class=\"dark:bg-zinc-800 bg-gray-200 abgerundet-lg p-1\"\n            \n>tailwind.config</code\n          \n> hinzu. \nDies ist erforderlich, damit TailwindCSS alle Hilfsklassen laden kann, die\n          \nin Nuxtwind verwendet werden:",
+          "done": "Das wars! \nSie können jetzt alle Nuxtwind-Komponenten in Ihrem Projekt verwenden."
+        },
+        "options": {
+          "description": "Sie können das Verhalten des Moduls anpassen, indem Sie verfügbare Optionen \n          \nim\n          \n<code class=\"dark:bg-zinc-800 bg-gray-200 abgerundet-lg p-1\"\n            \n>Module</code\n          \n>\n          \nArray Ihrer nuxt.config bereitstellen:",
+          "link": {
+            "prefix": "Mehr zu",
+            "text": "Moduloptionen"
+          },
+          "title": "Optionen"
+        },
+        "description": "Die Verwendung von Nuxtwind ist so einfach wie das Hinzufügen eines Moduls zu Ihrem Nuxt.js-Projekt\n          \nund kleinere Änderungen an Ihrer TailwindCSS-Konfiguration vorzunehmen.",
+        "title": "Loslegen"
+      }
     }
   },
   "components": {
