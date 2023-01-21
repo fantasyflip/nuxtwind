@@ -67,3 +67,9 @@ function handleCopy() {
   });
 }
 </script>
+
+<style lang="scss" scoped>
+:deep(.shiki) {
+  background-color: transparent !important;
+}
+</style>

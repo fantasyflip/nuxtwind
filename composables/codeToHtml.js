@@ -7,17 +7,5 @@ export async function useCodeToHtml(code, lang) {
     theme: theme,
     langs: [lang],
   });
-  let html = highlighter.codeToHtml(code, { lang: lang });
-  if (colorMode === "light") {
-    html = html.replace(
-      'class="shiki" style="background-color: #ffffff"',
-      'class="shiki bg-gray-300"'
-    );
-  } else {
-    html = html.replace(
-      'class="shiki" style="background-color: #0d1117"',
-      'class="shiki bg-zinc-800"'
-    );
-  }
-  return html;
+  return highlighter.codeToHtml(code, { lang: lang });
 }
