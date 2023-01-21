@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-zinc-800 rounded-lg p-4 flex group relative">
+  <div class="bg-gray-300 dark:bg-zinc-800 rounded-lg p-4 flex group relative">
     <div class="pr-2 h-full pt-1 text-primary-700">
       <MdiChevronRight />
     </div>
-    <code class="text-white pr-8">
+    <code class="pr-8">
       {{ props.content }}
     </code>
     <div
