@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     "vue/script-setup-no-uses-vars": "off",
     "vue/multi-word-component-names": "off",
+    "vue/no-v-html": "off",
     eqeqeq: "off",
     "vue/v-slot-style": "off",
     "prettier/prettier": [
