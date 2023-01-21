@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-zinc-800 rounded-lg p-4 flex group relative group">
+  <div
+    class="bg-gray-300 dark:bg-zinc-800 rounded-lg p-4 flex group relative group"
+  >
     <div
       v-if="props.path"
       class="absolute opacity-100 group-hover:opacity-0 transition-opacity top-2 right-3 text-sm"
@@ -21,18 +23,6 @@
 import Button from "../module/src/runtime/components/Button.vue";
 import MdiBash from "~icons/mdi/bash";
 import MdiContentCopy from "~icons/mdi/content-copy";
-import { getHighlighter } from "shiki-es";
-
-const highlighter = await getHighlighter({
-  theme: "github-dark",
-  langs: ["js", "vue", "json", "ts"],
-});
-
-let html = highlighter.codeToHtml(props.content, { lang: props.lang });
-html = html.replace(
-  'class="shiki" style="background-color: #0d1117"',
-  'class="shiki bg-zinc-800"'
-);
 
 const props = defineProps({
   content: {
@@ -49,12 +39,24 @@ const props = defineProps({
   },
 });
 
+let html = ref("");
+onMounted(async () => {
+  html.value = await useCodeToHtml(props.content, props.lang);
+});
+
+watch(
+  () => useColorMode().value,
+  async () => {
+    console.log("color mode changed");
+    html.value = await useCodeToHtml(props.content, props.lang);
+  }
+);
+
 const bashIcon = markRaw(MdiBash);
 const route = useRoute();
 const currentLocale = route.params.locale;
 
 function handleCopy() {
-  console.log("copy");
   navigator.clipboard.writeText(props.content);
   useToast({
     title:
