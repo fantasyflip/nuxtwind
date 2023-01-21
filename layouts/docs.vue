@@ -127,7 +127,11 @@
   <div class="pt-16">
     <div
       class="transition-all duration-300"
-      :class="usePermanentDrawer() ? 'md:ml-[288px] ml-[208px]' : ''"
+      :class="
+        usePermanentDrawer() && $route.fullPath.includes('component')
+          ? 'md:ml-[288px] ml-[208px]'
+          : ''
+      "
     >
       <slot />
     </div>
