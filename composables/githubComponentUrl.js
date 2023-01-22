@@ -1,3 +1,7 @@
 export const useGithubComponentUrl = (componentName) => {
-  return `https://github.com/fantasyflip/nuxt3-tailwind-components/tree/main/components/${componentName}.vue`;
+  if (componentName) {
+    return `https://github.com/fantasyflip/nuxtwind/tree/main/module/src/runtime/components/${componentName}.vue`;
+  } else {
+    return "https://github.com/fantasyflip/nuxtwind";
+  }
 };

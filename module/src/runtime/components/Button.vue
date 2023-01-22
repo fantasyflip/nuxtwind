@@ -1,5 +1,10 @@
 <template>
-  <NuxtLink v-if="props.link" :to="props.link" :class="styleClass">
+  <NuxtLink
+    v-if="props.link"
+    :to="props.link"
+    :class="styleClass"
+    :target="props.target"
+  >
     <div class="relative">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
