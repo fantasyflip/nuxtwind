@@ -2,23 +2,25 @@
   <div>
     <NuxtLayout name="docs">
       <NuxtLayout name="default">
-        <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold">
-          {{ $t("pages.theme.content.title") }}
-        </h1>
+        <HeadingHash element="h1" hash="start">{{
+          $t("pages.theme.content.title")
+        }}</HeadingHash>
         <p class="py-6">
           {{ $t("pages.theme.content.description") }}
         </p>
         <div class="border-[0.5px] border-zinc-500 my-4"></div>
-        <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold py-4">
-          {{ $t("pages.theme.content.tailwindconfig.title") }}
-        </h2>
+        <HeadingHash
+          element="h2"
+          hash="customize-theme-tailwind"
+          class="py-4"
+          >{{ $t("pages.theme.content.tailwindconfig.title") }}</HeadingHash
+        >
         <p class="py-3">
           {{ $t("pages.theme.content.tailwindconfig.firstStep") }}
         </p>
-
-        <h3 class="text-xl md:text-2xl xl:text-3xl font-semibold py-6">
-          {{ $t("pages.theme.content.tailwindconfig.custom.title") }}
-        </h3>
+        <HeadingHash element="h3" hash="custom-theme" class="py-6">{{
+          $t("pages.theme.content.tailwindconfig.custom.title")
+        }}</HeadingHash>
         <p class="py-3">
           {{ $t("pages.theme.content.tailwindconfig.custom.description") }}
         </p>
@@ -85,9 +87,9 @@
           >
           {{ $t("pages.theme.content.info.darkMode.suffix") }}
         </div>
-        <h3 class="text-xl md:text-2xl xl:text-3xl font-semibold py-6">
-          {{ $t("pages.theme.content.tailwindconfig.default.title") }}
-        </h3>
+        <HeadingHash element="h3" hash="nuxtwind-theme" class="py-6">{{
+          $t("pages.theme.content.tailwindconfig.default.title")
+        }}</HeadingHash>
         <div
           class="py-3"
           v-html="$t('pages.theme.content.tailwindconfig.default.description')"
