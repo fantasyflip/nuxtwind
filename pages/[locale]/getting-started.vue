@@ -2,16 +2,16 @@
   <div>
     <NuxtLayout name="docs">
       <NuxtLayout name="default">
-        <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold">
-          {{ $t("pages.gettingStarted.content.title") }}
-        </h1>
+        <HeadingHash element="h1" hash="start">{{
+          $t("pages.gettingStarted.content.title")
+        }}</HeadingHash>
         <p class="py-6">
           {{ $t("pages.gettingStarted.content.description") }}
         </p>
         <div class="border-[0.5px] border-zinc-500 my-4"></div>
-        <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold py-4">
-          Installation
-        </h2>
+        <HeadingHash class="py-4" element="h2" hash="installation"
+          >Installation</HeadingHash
+        >
         <div
           class="py-3"
           v-html="
@@ -66,9 +66,9 @@
           {{ $t("pages.gettingStarted.content.attention.theme.suffix") }}
         </div>
         <div class="border-[0.5px] border-zinc-500 my-4"></div>
-        <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold py-4">
-          {{ $t("pages.gettingStarted.content.options.title") }}
-        </h2>
+        <HeadingHash class="py-4" element="h2" hash="options">{{
+          $t("pages.gettingStarted.content.options.title")
+        }}</HeadingHash>
         <div
           class="py-3"
           v-html="$t('pages.gettingStarted.content.options.description')"
