@@ -210,6 +210,14 @@ let routes = [
     path: "/:locale/getting-started",
     name: "Getting Started",
   },
+  {
+    path: "/:locale/options",
+    name: "Options",
+  },
+  {
+    path: "/:locale/theme",
+    name: "Theme",
+  },
 ];
 
 routes.push(...componentRoutes.value);

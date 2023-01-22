@@ -1019,7 +1019,79 @@
           "title": "Optionen"
         },
         "description": "Die Verwendung von Nuxtwind ist so einfach wie das Hinzufügen eines Moduls zu Ihrem Nuxt.js-Projekt\n          \nund kleinere Änderungen an Ihrer TailwindCSS-Konfiguration vorzunehmen.",
-        "title": "Loslegen"
+        "title": "Loslegen",
+        "attention": {
+          "theme": {
+            "prefix": "Die meisten Ihrer Komponenten werden an dieser Stelle schwarz und weiß sein. \nWenn Sie jede Komponente einzeln gestalten möchten, wird dies funktionieren. \nUm einen Standardstil für alle Komponenten auf einmal bereitzustellen, informieren Sie sich über die Anwendung eines ",
+            "link": "Farbschemas",
+            "suffix": "."
+          }
+        }
+      },
+      "meta": {
+        "title": "Loslegen",
+        "description": "Erfahre wie du loslegen kannst Nuxtwind Komponenten zu verwenden.",
+        "og": {
+          "locale": "de_DE"
+        }
+      }
+    },
+    "options": {
+      "content": {
+        "title": "Modul-Optionen",
+        "description": "Erfahren Sie mehr über die verfügbaren Optionen zum Anpassen Ihrer Installation von Nuxtwind.",
+        "customPrefix": {
+          "default": "Standard",
+          "description": "Ermöglicht es Ihnen, die Namen Ihrer Komponenten anzupassen, indem Sie den Präfix ändern.",
+          "example": {
+            "title": "Beispiel",
+            "description": "In diesem Beispiel ist das Präfix auf\n          \n<code class=\"dark:bg-zinc-800 bg-gray-200 rounded-lg p-1\">My-</code> gesetzt.\n          \nDas bedeutet, dass die Nuxtwind-Komponenten nicht mehr mit dem \n          \n<code class=\"dark:bg-zinc-800 bg-gray-200 rounded-lg p-1\">NXW-</code\n          \n>-Präfix erreichbar sind. \nZum Beispiel, um einen Button zu erstellen können Sie\n          \n<code class=\"dark:bg-zinc-800 bg-gray-200 rounded-lg p-1\"\n            \n>NXW-Button</code\n          \n>\n          \nnicht mehr nutzen. \nSie müssen jetzt \n          \n<code class=\"dark:bg-zinc-800 bg-gray-200 rounded-lg p-1\"\n            \n>My-Button</code\n          \n> verwenden."
+          }
+        }
+      },
+      "meta": {
+        "title": "Modul-Optionen",
+        "description": "Erfahre mehr darüber, wie das Nuxtwind-Modul angepasst werden kann.",
+        "og": {
+          "locale": "de_DE"
+        }
+      }
+    },
+    "theme": {
+      "content": {
+        "title": "Farbschema",
+        "description": "Erfahren Sie, wie Sie ganz einfach einen Standardstil für alle Ihre Nuxtwind-Komponenten bereitstellen.",
+        "tailwindconfig": {
+          "title": "Anpassungen an Ihrer TailwindCSS-Config",
+          "firstStep": "Um ein Farbschema auf alle Nuxtwind-Komponenten anzuwenden, müssen Sie einige Änderungen an Ihrer TailwindCSS-Config vornehmen.",
+          "default": {
+            "title": "Nuxtwind Farbschema",
+            "description": "Das Standard-Farbschema für die Nuxtwind-Site und ihre Dokumentation. \nEs wird der TailwindCSS-Class Modus verwednet, um zwischen hellem und dunklem Farbschemazu wechseln.\nFür die Primärfarbe verwendet dieses Design die standardmäßige Cyan-Farbpalette von TailwindCSS. \nFür die Sekundärfarbe die Emerald-Farbpalette."
+          },
+          "custom": {
+            "title": "Benutzerdefiniertes Farbschema",
+            "description": "Die Nuxtwind-Komponenten verwenden eine primäre Farbpalette und eine sekundäre Farbpalette. \nJede Farbpalette hat 10 verschiedene Farbtöne. \nDiese Farbtöne sind auch die Eigenschaften jeder Farbpalette: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900. Dies ist die Standardmethode von TailwindCSS-Farbschemen.",
+            "firstStep": "Um das Farbschema auf die Komponenten anzuwenden, fügen Sie diese beiden Farbpaletten zu Ihrer TailwindCSS-Config hinzu und passen Sie die Werte nach Ihren Wünschen an:"
+          }
+        },
+        "info": {
+          "darkMode": {
+            "prefix": "Um einen Dunkelmodus auf Ihrer Website zu implementieren, schauen Sie sich ",
+            "link": {
+              "tailwind": "TailwindCSS Dark-Mode",
+              "nuxtColorMode": "Nuxt Color-Mode"
+            },
+            "mid": "und",
+            "suffix": "an. \nDies funktioniert gut mit Nuxtwind-Komponenten."
+          }
+        }
+      },
+      "meta": {
+        "title": "Farbschema",
+        "description": "Erfahre, wie man ein Farbschema auf Nuxtwind-Komponenten anwendet.",
+        "og": {
+          "locale": "de_DE"
+        }
       }
     }
   },

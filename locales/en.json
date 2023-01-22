@@ -1019,7 +1019,79 @@
           "title": "Options"
         },
         "description": "Using Nuxtwind is as easy as adding a module to your Nuxt.js project\n          and making minor changes to your TailwindCSS config.",
-        "title": "Getting Started"
+        "title": "Getting Started",
+        "attention": {
+          "theme": {
+            "prefix": "Most of your components will be black and white at this point. If you\n          want to style every component on its own this will work. If you want\n          to provide a default style for all components at once, have a look at\n          how to apply a",
+            "link": "Theme",
+            "suffix": "to your Nuxtwind components."
+          }
+        }
+      },
+      "meta": {
+        "title": "Getting Started",
+        "description": "Learn how to get started using Nuxtwind Components.",
+        "og": {
+          "locale": "en_US"
+        }
+      }
+    },
+    "options": {
+      "content": {
+        "title": "Module Options",
+        "description": "Learn more about available options to customize your installation of Nuxtwind.",
+        "customPrefix": {
+          "default": "Default",
+          "description": "Allows you to customize the names your components will have by changing the prefix.",
+          "example": {
+            "title": "Example",
+            "description": "In this example the prefix is set to\n          <code class=\"dark:bg-zinc-800 bg-gray-200 rounded-lg p-1\">My-</code>.\n          This means the Nuxtwind components are no longer accessable with the\n          <code class=\"dark:bg-zinc-800 bg-gray-200 rounded-lg p-1\">NXW-</code\n          >-prefix. For example to create a button you can't use\n          <code class=\"dark:bg-zinc-800 bg-gray-200 rounded-lg p-1\"\n            >NXW-Button</code\n          >\n          anymore. You now need to type\n          <code class=\"dark:bg-zinc-800 bg-gray-200 rounded-lg p-1\"\n            >My-Button</code\n          >."
+          }
+        }
+      },
+      "meta": {
+        "title": "Module Options",
+        "description": "Learn more about how to customize the Nuxtwind module.",
+        "og": {
+          "locale": "en_US"
+        }
+      }
+    },
+    "theme": {
+      "content": {
+        "title": "Theme",
+        "description": "Learn how to provide a default stlye for all your Nuxtwind components with ease.",
+        "tailwindconfig": {
+          "title": "Adjustments on your TailwindCSS-Config",
+          "firstStep": "To apply a theme on all Nuxtwind components you have to make a few changes to your TailwindCSS-Config.",
+          "default": {
+            "title": "Nuxtwind Theme",
+            "description": "The default theme used for the Nuxtwind-Site and its documentation. It uses the TailwindCSS-Class aproach to change between light- and dark-theme. For the primary color this theme uses the default TailwindCSS cyan-color-palette. For the secondary color the emerald-color-palette."
+          },
+          "custom": {
+            "title": "Custom Theme",
+            "description": "The Nuxtwind components take use of a primary color-palette and a secondary color-palette. Each color-palette has 10 different shades. Those shades are also the properties of each color-palette: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900. This is the standard way of TailwindCSS-Theming.",
+            "firstStep": "To apply the theme on the components add those two color palettes to your TailwindCSS-Config and adjust the values to your liking:"
+          }
+        },
+        "info": {
+          "darkMode": {
+            "prefix": "To implement a dark-mode on your site have a look at",
+            "link": {
+              "tailwind": "TailwindCSS Dark-Mode",
+              "nuxtColorMode": "Nuxt Color-Mode"
+            },
+            "mid": "and",
+            "suffix": ". This works well with Nuxtwind components."
+          }
+        }
+      },
+      "meta": {
+        "title": "Theme",
+        "description": "Learn how to apply a theme to your Nuxtwind components.",
+        "og": {
+          "locale": "en_US"
+        }
       }
     }
   },
