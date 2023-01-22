@@ -74,7 +74,7 @@ import Progress from "./Progress.vue";
 import { computed } from "vue";
 let defaults = {
   color: {
-    bg: "bg-cyan-900 dark:bg-cyan-900",
+    bg: "bg-primary-900 dark:bg-primary-900",
     text: "dark:text-white text-black",
     border: "dark:border-white border-black",
     hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
@@ -83,7 +83,7 @@ let defaults = {
     loadingCircleDark: "gray-700",
     loadingCircleProgress: "primary-400",
     loadingCircleProgressDark: "primary-400",
-    loadingCircleCutout: "before:bg-cyan-900 dark:before:bg-cyan-900",
+    loadingCircleCutout: "before:bg-primary-900 dark:before:bg-primary-900",
   },
   rounded: "rounded-md",
   grow: {
@@ -104,7 +104,7 @@ const props = defineProps({
     type: Object,
     default() {
       return {
-        bg: "bg-cyan-900 dark:bg-cyan-900",
+        bg: "bg-primary-900 dark:bg-primary-900",
         text: "dark:text-white text-black",
         border: "dark:border-white border-black",
         hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
@@ -113,7 +113,7 @@ const props = defineProps({
         loadingCircleDark: "gray-700",
         loadingCircleProgress: "primary-400",
         loadingCircleProgressDark: "primary-400",
-        loadingCircleCutout: "before:bg-cyan-900 dark:before:bg-cyan-900",
+        loadingCircleCutout: "before:bg-primary-900 dark:before:bg-primary-900",
       };
     },
   },
