@@ -2,9 +2,9 @@
   <div>
     <NuxtLayout name="docs">
       <NuxtLayout name="default">
-        <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold">
-          {{ $t("pages.options.content.title") }}
-        </h1>
+        <HeadingHash element="h1" hash="start">{{
+          $t("pages.options.content.title")
+        }}</HeadingHash>
         <p class="py-6">
           {{ $t("pages.options.content.description") }}
         </p>
@@ -24,11 +24,11 @@
           lang="ts"
           path="nuxt.config.ts"
         />
-        <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold py-10">
+        <HeadingHash element="h2" hash="customPrefix" class="py-10">
           <code class="dark:bg-zinc-800 bg-gray-200 rounded-lg p-1"
             >customPrefix</code
           >
-        </h2>
+        </HeadingHash>
         <span
           >{{ $t("pages.options.content.customPrefix.default") }}:
           <code class="dark:bg-zinc-800 bg-gray-200 rounded-lg p-1"
