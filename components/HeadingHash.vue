@@ -84,6 +84,4 @@ const styleClass = computed(() => {
       return fontSize.value + " font-semibold";
   }
 });
-
-console.log(props.element);
 </script>
