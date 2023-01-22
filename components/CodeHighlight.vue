@@ -15,7 +15,7 @@
         <MdiContentCopy />
       </Button>
     </div>
-    <div v-html="html"></div>
+    <div :class="props.path ? 'pt-2' : ''" class="pr-6" v-html="html"></div>
   </div>
 </template>
 
