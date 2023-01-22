@@ -77,9 +77,73 @@ let currentStep = ref(1);
 
 //DOCUMENTATION
 
-let props = [];
+let props = [
+  {
+    name: "autoPlay",
+    type: "Boolean",
+    default: true,
+    description: t(
+      "pages.component.carousel.content.documentation.properties.autoplay.description"
+    ),
+  },
+  {
+    name: "timeout",
+    type: "Number",
+    default: 5000,
+    description: t(
+      "pages.component.carousel.content.documentation.properties.timeout.description"
+    ),
+  },
+  {
+    name: "disableAutoPlayOnHover",
+    type: "Boolean",
+    default: true,
+    description: t(
+      "pages.component.carousel.content.documentation.properties.disableAutoPlayOnHover.description"
+    ),
+  },
+  {
+    name: "hideNavigation",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.carousel.content.documentation.properties.hideNavigation.description"
+    ),
+  },
+  {
+    name: "hidePagination",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.carousel.content.documentation.properties.hidePagination.description"
+    ),
+  },
+  {
+    name: "shadow",
+    type: "Boolean, String",
+    default: true,
+    description: t(
+      "pages.component.carousel.content.documentation.properties.shadow.description"
+    ),
+  },
+  {
+    name: "transition",
+    type: "Boolean, Object",
+    default: true,
+    description: t(
+      "pages.component.carousel.content.documentation.properties.transition.description"
+    ),
+  },
+];
 
-let slots = [];
+let slots = [
+  {
+    name: "default",
+    description: t(
+      "pages.component.carousel.content.documentation.slots.default.description"
+    ),
+  },
+];
 
 definePageMeta({
   layout: false,

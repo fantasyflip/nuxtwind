@@ -5,6 +5,11 @@ import { fileURLToPath } from "url";
 import VueI18nVitePlugin from "@intlify/unplugin-vue-i18n/vite";
 
 export default defineNuxtConfig({
+  // TODO Add auto import for module components
+  // components: {
+  //   global: true,
+  //   dirs: ["~/components", "~/module/src/runtime/components"],
+  // },
   css: ["vue-json-pretty/lib/styles.css"],
   plugins: ["@/plugins/vue-json-pretty"],
   modules: [

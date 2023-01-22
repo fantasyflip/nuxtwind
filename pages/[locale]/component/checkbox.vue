@@ -177,17 +177,6 @@ let slots = [
 let caveats = [
   {
     name: t(
-      "pages.component.checkbox.content.documentation.caveats.icon.title"
-    ),
-    description: t(
-      "pages.component.checkbox.content.documentation.caveats.icon.description",
-      {
-        url: "https://github.com/antfu/unplugin-icons",
-      }
-    ),
-  },
-  {
-    name: t(
       "pages.component.checkbox.content.documentation.caveats.group.title"
     ),
     description: t(

@@ -343,15 +343,6 @@ let slots = [
 
 let caveats = [
   {
-    name: t("pages.component.appbar.content.documentation.caveats.icon.title"),
-    description: t(
-      "pages.component.appbar.content.documentation.caveats.icon.description",
-      {
-        url: "https://github.com/antfu/unplugin-icons",
-      }
-    ),
-  },
-  {
     name: t(
       "pages.component.appbar.content.documentation.caveats.button.title"
     ),

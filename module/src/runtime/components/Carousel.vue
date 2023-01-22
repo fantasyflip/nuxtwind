@@ -88,6 +88,7 @@
       </div>
     </div>
   </div>
+  <!-- TODO add slider overview below carousel with prop -->
 </template>
 
 <script setup>
@@ -103,6 +104,7 @@ let defaults = {
 };
 
 let props = defineProps({
+  // TODO: add color prop
   modelValue: {
     type: Number,
     default: 1,

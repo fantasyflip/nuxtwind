@@ -46,6 +46,7 @@
           :component-name="componentName"
           :props="props"
           :slots="slots"
+          :caveats="caveats"
         />
       </template>
     </NuxtLayout>
@@ -164,6 +165,20 @@ let slots = [
     name: "description",
     description: t(
       "pages.component.slider.content.documentation.slots.description.description"
+    ),
+  },
+];
+
+let caveats = [
+  {
+    name: t(
+      "pages.component.slider.content.documentation.caveats.resolveConfig.title"
+    ),
+    description: t(
+      "pages.component.slider.content.documentation.caveats.resolveConfig.description",
+      {
+        url: "https://tailwindcss.com/docs/configuration#referencing-in-java-script",
+      }
     ),
   },
 ];
