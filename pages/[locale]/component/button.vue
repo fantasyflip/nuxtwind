@@ -3,16 +3,18 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Button
-          target="_blank"
-          :dense="checkedBoxes[0]"
-          :disabled="checkedBoxes[1]"
-          :loading="checkedBoxes[2]"
-          :grow="checkedBoxes[3]"
-          :rounded="checkedBoxes[4]"
-        >
-          {{ buttonLabel }}
-        </Button>
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <Button
+            target="_blank"
+            :dense="checkedBoxes[0]"
+            :disabled="checkedBoxes[1]"
+            :loading="checkedBoxes[2]"
+            :grow="checkedBoxes[3]"
+            :rounded="checkedBoxes[4]"
+          >
+            {{ buttonLabel }}
+          </Button>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center w-full h-full">
@@ -60,6 +62,11 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 let componentName = "Button";
+
+let codeExample = {
+  html: "<Button>Click me!</Button>",
+  js: "let buttonLabel = ref('Click me!');",
+};
 
 //PLAYGROUND
 
