@@ -139,17 +139,20 @@ setTimeout(() => {
 }, 3000);
 
 let codeExample = computed(() => {
-  let html = `<NXW-Checkboxgroup v-model="checkboxGroupValues"${
-    checkboxgroup.value.label ? ` label="${checkboxgroup.value.label}"` : ""
+  let html = `<NXW-Checkboxgroup
+  v-model="checkboxGroupValues"${
+    checkboxgroup.value.label ? `\n  label="${checkboxgroup.value.label}"` : ""
   }${
     checkboxgroup.value.description
-      ? ` description="${checkboxgroup.value.description}"`
+      ? `\n  description="${checkboxgroup.value.description}"`
       : ""
-  } :items="checkboxes"${checkedBoxes.value[0] ? ` multiple` : ""}${
-    checkedBoxes.value[1] ? ` not-zero` : ""
-  }${checkedBoxes.value[2] ? ` disabled` : ""}${
-    checkedBoxes.value[3] ? ` loading` : ""
-  }/>`;
+  }
+  :items="checkboxes"${checkedBoxes.value[0] ? `\n  multiple` : ""}${
+    checkedBoxes.value[1] ? `\n  not-zero` : ""
+  }${checkedBoxes.value[2] ? `\n  disabled` : ""}${
+    checkedBoxes.value[3] ? `\n  loading` : ""
+  }
+/>`;
   let js = `let checkboxGroupValues = ref([${checkboxgroup.value.values}]);
 
 let checkboxes = ref([
