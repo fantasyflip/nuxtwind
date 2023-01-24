@@ -3,23 +3,26 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Progress
-          v-model="progressValue"
-          :circular="
-            checkedBoxes[0]
-              ? {
-                  width: 'w-40',
-                  height: 'h-40',
-                  cutout: {
-                    text: 'text-2xl',
-                  },
-                }
-              : false
-          "
-          :loading="checkedBoxes[1]"
-          :rounded="checkedBoxes[2]"
-        >
-        </Progress>
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <div :class="!checkedBoxes[0] ? 'lg:w-[40vw] w-[70vw]' : ''">
+            <Progress
+              v-model="progressValue"
+              :circular="
+                checkedBoxes[0]
+                  ? {
+                      width: 'w-40',
+                      height: 'h-40',
+                      cutout: {
+                        text: 'text-2xl',
+                      },
+                    }
+                  : false
+              "
+              :loading="checkedBoxes[1]"
+              :rounded="checkedBoxes[2]"
+            />
+          </div>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -94,6 +97,16 @@ let toggleProps = ref([
     ),
   },
 ]);
+
+let codeExample = computed(() => {
+  let html = `<NXW-Progress
+  v-model="progressValue"${checkedBoxes.value[0] ? `\n  circular` : ""}${
+    checkedBoxes.value[1] ? `\n  loading` : ""
+  }${checkedBoxes.value[2] ? `\n  rounded` : ""}
+/>`;
+  let js = `let progressValue = ref(${progressValue.value});`;
+  return { html, js };
+});
 
 //DOCUMENTATION
 
