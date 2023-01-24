@@ -94,13 +94,13 @@ buttonLabel.value = t(
 );
 
 let codeExample = computed(() => {
-  let html = `<NXW-Button${checkedBoxes.value[0] ? " dense" : ""}${
-    checkedBoxes.value[1] ? " disabled" : ""
-  }${checkedBoxes.value[2] ? " loading" : ""}${
-    checkedBoxes.value[3] ? " grow" : ""
-  }${checkedBoxes.value[4] ? " rounded" : ""}>${
-    buttonLabel.value
-  }</NXW-Button>`;
+  let html = `<NXW-Button${checkedBoxes.value[0] ? "\n dense" : ""}${
+    checkedBoxes.value[1] ? "\n disabled" : ""
+  }${checkedBoxes.value[2] ? "\n loading" : ""}${
+    checkedBoxes.value[3] ? "\n grow" : ""
+  }${checkedBoxes.value[4] ? "\n rounded" : ""}>
+  ${buttonLabel.value}
+</NXW-Button>`;
   let js = "";
   return { html, js };
 });
