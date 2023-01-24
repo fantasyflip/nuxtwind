@@ -3,77 +3,83 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <div class="lg:w-2/3 lg:h-2/3 w-full h-80 bg-gray-200 dark:bg-zinc-800">
-          <div class="w-full h-full relative">
-            <Drawer
-              v-model="showDrawer"
-              absolute
-              height="h-full"
-              :color="{
-                bg: 'bg-gray-200 dark:bg-zinc-800',
-              }"
-              z-index="z-[99]"
-              :disable-overflow="checkedBoxes[0]"
-              :expand-on-hover="checkedBoxes[1]"
-              :overlay="checkedBoxes[2]"
-              :no-mobile="checkedBoxes[3]"
-              :right="checkedBoxes[4]"
-            >
-              <Appbar :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }">
-                <div class="w-full h-full grid place-items-center">
-                  {{ showDrawer ? "Drawer" : "" }}
-                </div>
-              </Appbar>
-              <div
-                v-for="item in drawerItems"
-                :key="item.name"
-                :class="
-                  (item.name === 'Logout' ? 'fixed bottom-1' : '') +
-                  ' w-full flex h-12 hover:bg-primary-800 cursor-pointer'
-                "
-                @click="
-                  useToast({
-                    title: 'Example Drawer Notification',
-                    message: 'You clicked on ' + item.name + '!',
-                    autoClose: true,
-                    type: 'info',
-                  })
-                "
-              >
-                <div
-                  :id="'icon-' + item.name"
-                  class="h-full grid place-items-center text-xl"
-                >
-                  <component :is="item.icon" class="w-12" />
-                </div>
-                <div class="h-full grid content-center">
-                  {{ item.name }}
-                </div>
-              </div>
-            </Drawer>
-            <Appbar
-              navigation-icon
-              :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }"
-              absolute
-              @navigation-icon-click="showDrawer = true"
-            >
-              <div class="w-full h-full grid place-items-center">
-                Application-Bar
-              </div>
-            </Appbar>
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <div class="grid place-items-center">
             <div
-              class="p-4 pt-16 text-justify text-ellipsis h-full"
-              :class="
-                checkedBoxes[1] ? (checkedBoxes[4] ? 'pr-14' : 'pl-14') : ''
-              "
+              class="w-3/4 lg:h-[70vh] h-[30vh] bg-gray-200 dark:bg-zinc-800"
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-              voluptas suscipit perspiciatis unde pariatur! Reiciendis quibusdam
-              aut tempora at eveniet fugiat nemo, doloribus eum, dolore
-              asperiores debitis modi, quisquam ab?
+              <div class="w-full h-full relative">
+                <Drawer
+                  v-model="showDrawer"
+                  absolute
+                  height="h-full"
+                  :color="{
+                    bg: 'bg-gray-200 dark:bg-zinc-800',
+                  }"
+                  z-index="z-[99]"
+                  :disable-overflow="checkedBoxes[0]"
+                  :expand-on-hover="checkedBoxes[1]"
+                  :overlay="checkedBoxes[2]"
+                  :no-mobile="checkedBoxes[3]"
+                  :right="checkedBoxes[4]"
+                >
+                  <Appbar :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }">
+                    <div class="w-full h-full grid place-items-center">
+                      {{ showDrawer ? "Drawer" : "" }}
+                    </div>
+                  </Appbar>
+                  <div
+                    v-for="item in drawerItems"
+                    :key="item.name"
+                    :class="
+                      (item.name === 'Logout' ? 'fixed bottom-1' : '') +
+                      ' w-full flex h-12 hover:bg-primary-800 cursor-pointer'
+                    "
+                    @click="
+                      useToast({
+                        title: 'Example Drawer Notification',
+                        message: 'You clicked on ' + item.name + '!',
+                        autoClose: true,
+                        type: 'info',
+                      })
+                    "
+                  >
+                    <div
+                      :id="'icon-' + item.name"
+                      class="h-full grid place-items-center text-xl"
+                    >
+                      <component :is="item.icon" class="w-12" />
+                    </div>
+                    <div class="h-full grid content-center">
+                      {{ item.name }}
+                    </div>
+                  </div>
+                </Drawer>
+                <Appbar
+                  navigation-icon
+                  :color="{ bg: 'dark:bg-zinc-600 bg-gray-400' }"
+                  absolute
+                  @navigation-icon-click="showDrawer = true"
+                >
+                  <div class="w-full h-full grid place-items-center">
+                    Application-Bar
+                  </div>
+                </Appbar>
+                <div
+                  class="p-4 pt-16 text-justify text-ellipsis h-full"
+                  :class="
+                    checkedBoxes[1] ? (checkedBoxes[4] ? 'pr-14' : 'pl-14') : ''
+                  "
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deserunt voluptas suscipit perspiciatis unde pariatur!
+                  Reiciendis quibusdam aut tempora at eveniet fugiat nemo,
+                  doloribus eum, dolore asperiores debitis modi, quisquam ab?
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -157,6 +163,20 @@ let toggleProps = computed(() => {
       label: "Right",
     },
   ];
+});
+
+let codeExample = computed(() => {
+  let html = `<NXW-Drawer
+  v-model="showDrawer"${checkedBoxes.value[0] ? "\n  permanent" : ""}${
+    checkedBoxes.value[1] ? "\n  expand-on-hover" : ""
+  }${checkedBoxes.value[2] ? "\n  overlay" : ""}${
+    checkedBoxes.value[3] ? "\n  no-mobile" : ""
+  }${checkedBoxes.value[4] ? "\n  right" : ""}
+>
+  ...
+</NXW-Drawer>`;
+  let js = `let showDrawer = ref(${showDrawer.value});`;
+  return { html, js };
 });
 
 //DOCUMENTATION
