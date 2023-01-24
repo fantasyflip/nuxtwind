@@ -3,19 +3,21 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Badge
-          :right="positionHorizontalCheckedBoxes[0]"
-          :left="positionHorizontalCheckedBoxes[1]"
-          :top="positionVerticalCheckedBoxes[0]"
-          :bottom="positionVerticalCheckedBoxes[1]"
-          :border="checkedBoxes[0]"
-        >
-          <Button></Button>
-          <template #badge-content>
-            <div v-if="iconContent"><MdiExclamationThick /></div>
-            <div v-else>{{ badgeContent }}</div>
-          </template>
-        </Badge>
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <Badge
+            :right="positionHorizontalCheckedBoxes[0]"
+            :left="positionHorizontalCheckedBoxes[1]"
+            :top="positionVerticalCheckedBoxes[0]"
+            :bottom="positionVerticalCheckedBoxes[1]"
+            :border="checkedBoxes[0]"
+          >
+            <Button>Button</Button>
+            <template #badge-content>
+              <div v-if="iconContent"><MdiExclamationThick /></div>
+              <div v-else>{{ badgeContent }}</div>
+            </template>
+          </Badge>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -120,6 +122,25 @@ let toggleProps = ref([
     label: "Border",
   },
 ]);
+
+let codeExample = computed(() => {
+  let html = `<NXW-Badge${
+    positionHorizontalCheckedBoxes.value[0] ? " right" : " left"
+  }${positionVerticalCheckedBoxes.value[0] ? " top" : " bottom"}${
+    checkedBoxes.value[0] ? " border" : ""
+  }>
+  <NXW-Button>Button</NXW-Button>
+  <template #badge-content>
+    ${
+      iconContent.value
+        ? "<div><MdiExclamationThick /></div>"
+        : "<div>{{ badgeContent }}</div>"
+    }
+  </template>
+</NXW-Badge>`;
+  let js = `let badgeContent = ref("${badgeContent.value}");`;
+  return { html, js };
+});
 
 //DOCUMENTATION
 let componentName = "Badge";
