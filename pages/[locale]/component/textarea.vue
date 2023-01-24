@@ -3,24 +3,26 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Textarea
-          v-model="textarea.value"
-          width="w-fit"
-          :hint="textarea.hint"
-          :placeholder="textarea.placeholder"
-          :rules="[notEmpty, minChars(5)]"
-          :label="textarea.label"
-          :color="{
-            bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
-          }"
-          :filled="styleCheckedBoxes[0]"
-          :outlined="styleCheckedBoxes[1]"
-          :loading="checkedBoxes[0]"
-          :disabled="checkedBoxes[1]"
-          :append-icon="checkedBoxes[2] ? textareaIcon : false"
-          :prepend-icon="checkedBoxes[3] ? textareaIcon : false"
-          :counter="checkedBoxes[4]"
-        />
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <Textarea
+            v-model="textarea.value"
+            width="w-fit"
+            :hint="textarea.hint"
+            :placeholder="textarea.placeholder"
+            :rules="[notEmpty, minChars(5)]"
+            :label="textarea.label"
+            :color="{
+              bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
+            }"
+            :filled="styleCheckedBoxes[0]"
+            :outlined="styleCheckedBoxes[1]"
+            :loading="checkedBoxes[0]"
+            :disabled="checkedBoxes[1]"
+            :append-icon="checkedBoxes[2] ? textareaIcon : false"
+            :prepend-icon="checkedBoxes[3] ? textareaIcon : false"
+            :counter="checkedBoxes[4]"
+          />
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -145,6 +147,35 @@ let minChars = (min) => (value) => {
   }
   return true;
 };
+
+let codeExample = computed(() => {
+  let html = `<NXW-Textarea
+  v-model="textareaValue"${
+    textarea.value.hint ? `\n  hint="${textarea.value.hint}"` : ""
+  }${
+    textarea.value.placeholder
+      ? `\n  placeholder="${textarea.value.placeholder}"`
+      : ""
+  }${textarea.value.label ? `\n  label="${textarea.value.label}"` : ""}${
+    styleCheckedBoxes.value[0] ? `\n  filled` : ""
+  }${styleCheckedBoxes.value[1] ? `\n  outlined` : ""}${
+    checkedBoxes.value[0] ? `\n  loading` : ""
+  }${checkedBoxes.value[1] ? `\n  disabled` : ""}${
+    checkedBoxes.value[2] ? `\n  append-icon="textareaIcon"` : ""
+  }${checkedBoxes.value[3] ? `\n  prepend-icon="textareaIcon"` : ""}${
+    checkedBoxes.value[4] ? `\n  counter` : ""
+  }
+/>`;
+  let js = `${
+    checkedBoxes.value[2] | checkedBoxes.value[3]
+      ? `import MdiMagnify from "~icons/mdi/magnify";
+let textareaIcon = markRaw(MdiMagnify);`
+      : ""
+  }
+
+let textareaValue = ref("${textarea.value.value}");`;
+  return { html, js };
+});
 
 //DOCUMENTATION
 
