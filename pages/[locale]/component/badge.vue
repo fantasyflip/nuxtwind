@@ -125,9 +125,9 @@ let toggleProps = ref([
 
 let codeExample = computed(() => {
   let html = `<NXW-Badge${
-    positionHorizontalCheckedBoxes.value[0] ? " right" : " left"
-  }${positionVerticalCheckedBoxes.value[0] ? " top" : " bottom"}${
-    checkedBoxes.value[0] ? " border" : ""
+    positionHorizontalCheckedBoxes.value[0] ? "\n right" : "\n left"
+  }${positionVerticalCheckedBoxes.value[0] ? "\n top" : "\n bottom"}${
+    checkedBoxes.value[0] ? "\n border" : ""
   }>
   <NXW-Button>Button</NXW-Button>
   <template #badge-content>
