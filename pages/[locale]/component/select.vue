@@ -3,27 +3,29 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Select
-          v-model="select.value"
-          :items="['Foo', 'Bar', 'Boo', 'Far', 'Foo', 'Bar', 'Boo', 'Far']"
-          :label="select.label"
-          :placeholder="select.placeholder"
-          :filled="styleCheckedBoxes[0]"
-          :outlined="styleCheckedBoxes[1]"
-          :loading="checkedBoxes[0]"
-          :disabled="checkedBoxes[1]"
-          :append-icon="checkedBoxes[2] ? selectIcon : null"
-          :prepend-icon="checkedBoxes[3] ? selectIcon : null"
-          :search="checkedBoxes[4]"
-          :color="{
-            textfield: {
-              bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
-            },
-          }"
-          :width="{
-            textfield: 'w-fit',
-          }"
-        />
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <Select
+            v-model="select.value"
+            :items="selectItems"
+            :label="select.label"
+            :placeholder="select.placeholder"
+            :filled="styleCheckedBoxes[0]"
+            :outlined="styleCheckedBoxes[1]"
+            :loading="checkedBoxes[0]"
+            :disabled="checkedBoxes[1]"
+            :append-icon="checkedBoxes[2] ? selectIcon : null"
+            :prepend-icon="checkedBoxes[3] ? selectIcon : null"
+            :search="checkedBoxes[4]"
+            :color="{
+              textfield: {
+                bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
+              },
+            }"
+            :width="{
+              textfield: 'w-fit',
+            }"
+          />
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -90,6 +92,8 @@ let select = ref({
   value: "",
 });
 
+let selectItems = ref(["Foo", "Bar", "Boo", "Far"]);
+
 let styleCheckedBoxes = ref([false, false, true]);
 
 let styleProps = ref([
@@ -123,6 +127,36 @@ let toggleProps = ref([
     label: "Search",
   },
 ]);
+
+let codeExample = computed(() => {
+  let html = `<NXW-Select
+  v-model="selectValue"
+  :items="selectItems"${
+    select.value.label ? `\n  label="${select.value.label}"` : ""
+  }${
+    select.value.placeholder
+      ? `\n  placeholder="${select.value.placeholder}"`
+      : ""
+  }${styleCheckedBoxes.value[0] ? `\n  filled` : ""}${
+    styleCheckedBoxes.value[1] ? `\n  outlined` : ""
+  }${checkedBoxes.value[0] ? `\n  loading` : ""}${
+    checkedBoxes.value[1] ? `\n  disabled` : ""
+  }${checkedBoxes.value[2] ? `\n  :append-icon="selectIcon"` : ""}${
+    checkedBoxes.value[3] ? `\n  :prepend-icon="selectIcon"` : ""
+  }${checkedBoxes.value[4] ? `\n  search` : ""}
+/>`;
+  let js = `${
+    checkedBoxes.value[2] | checkedBoxes.value[3]
+      ? `import MdiMenuDown from "~icons/mdi/menu-down";
+let selectIcon = markRaw(MdiMenuDown);`
+      : ""
+  }
+
+let selectValue = ref("${select.value.value}");
+
+let selectItems = ref(["Foo", "Bar", "Boo", "Far"]);`;
+  return { html, js };
+});
 
 //DOCUMENTATION
 let componentName = "Select";
