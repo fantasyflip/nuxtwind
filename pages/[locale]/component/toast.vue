@@ -180,13 +180,18 @@ function minVal(min) {
 }
 
 let codeExample = computed(() => {
-  let html = `<NXW-Toast id="playground" width="sm:w-1/2 max-w-4/5" title="${
+  let html = `<NXW-Toast
+  id="playground"${
     testNotification.value.title
-  }" message="${testNotification.value.message}"${
-    testNotification.value.autoClose ? " auto-close" : ""
+      ? `\n  title="${testNotification.value.title}"`
+      : ""
   }${
+    testNotification.value.message
+      ? `\n  message="${testNotification.value.message}"`
+      : ""
+  }${testNotification.value.autoClose ? "\n  auto-close" : ""}${
     testNotification.value.autoClose
-      ? ` duration="${testNotification.value.duration}"`
+      ? `\n  duration="${testNotification.value.duration}"`
       : ""
   } type="${testNotification.value.type}"
 />`;
