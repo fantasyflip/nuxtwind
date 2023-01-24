@@ -3,32 +3,34 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Tooltip
-          :top="checkedPositionBoxes[0]"
-          :bottom="checkedPositionBoxes[1]"
-          :right="checkedPositionBoxes[2]"
-          :left="checkedPositionBoxes[3]"
-          :rounded="checkedBoxes[0]"
-          :interactive="checkedBoxes[1]"
-        >
-          <Button
-            @click="
-              useToast({
-                title: '(╯°□°)╯︵ ┻━┻',
-                message: $t(
-                  'pages.component.tooltip.content.playground.toast.message'
-                ),
-                autoClose: true,
-                type: 'error',
-              })
-            "
-            >Hover over me!</Button
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <Tooltip
+            :top="checkedPositionBoxes[0]"
+            :bottom="checkedPositionBoxes[1]"
+            :right="checkedPositionBoxes[2]"
+            :left="checkedPositionBoxes[3]"
+            :rounded="checkedBoxes[0]"
+            :interactive="checkedBoxes[1]"
           >
+            <Button
+              @click="
+                useToast({
+                  title: '(╯°□°)╯︵ ┻━┻',
+                  message: $t(
+                    'pages.component.tooltip.content.playground.toast.message'
+                  ),
+                  autoClose: true,
+                  type: 'error',
+                })
+              "
+              >Hover over me!</Button
+            >
 
-          <template #tooltip>
-            {{ tooltip }}
-          </template>
-        </Tooltip>
+            <template #tooltip>
+              {{ tooltip }}
+            </template>
+          </Tooltip>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -112,6 +114,24 @@ let toggleProps = ref([
     ),
   },
 ]);
+
+let codeExample = computed(() => {
+  let html = `<NXW-Tooltip${checkedPositionBoxes.value[0] ? "\n top" : ""}${
+    checkedPositionBoxes.value[1] ? "\n bottom" : ""
+  }${checkedPositionBoxes.value[2] ? "\n right" : ""}${
+    checkedPositionBoxes.value[3] ? "\n left" : ""
+  }${checkedBoxes.value[0] ? "\n rounded" : ""}${
+    checkedBoxes.value[1] ? "\n interactive" : ""
+  }
+>
+  <Button>Hover over me!</Button>
+  <template #tooltip>
+    ${tooltip.value}
+  </template>
+</NXW-Tooltip>`;
+  let js = ``;
+  return { html, js };
+});
 
 //DOCUMENTATION
 let componentName = "Tooltip";
