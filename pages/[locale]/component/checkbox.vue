@@ -91,13 +91,13 @@ let toggleProps = [
 ];
 
 let codeExample = computed(() => {
-  let html = `<NXW-Checkbox v-model="checkboxValue"${
-    ' label="' + checkbox.value.label + '"'
-  }${' description="' + checkbox.value.description + '"'}${
-    checkedBoxes.value[0] ? " disabled" : ""
-  }${checkedBoxes.value[1] ? " loading" : ""}${
-    checkedBoxes.value[2] ? " radio" : ""
-  }/>`;
+  let html = `<NXW-Checkbox
+  v-model="checkboxValue"${'\n  label="' + checkbox.value.label + '"'}${
+    '\n  description="' + checkbox.value.description + '"'
+  }${checkedBoxes.value[0] ? "\n  disabled" : ""}${
+    checkedBoxes.value[1] ? "\n  loading" : ""
+  }${checkedBoxes.value[2] ? "\n  radio" : ""}
+/>`;
   let js = `let checkboxValue = ref(${checkbox.value.value});`;
   return { html, js };
 });
