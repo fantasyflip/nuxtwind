@@ -3,23 +3,25 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Textfield
-          v-model="textfield.value"
-          width="w-fit"
-          :hint="textfield.hint"
-          :placeholder="textfield.placeholder"
-          :rules="[notEmpty, minChars(5)]"
-          :label="textfield.label"
-          :color="{
-            bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
-          }"
-          :filled="styleCheckedBoxes[0]"
-          :outlined="styleCheckedBoxes[1]"
-          :loading="checkedBoxes[0]"
-          :disabled="checkedBoxes[1]"
-          :append-icon="checkedBoxes[2] ? textfieldIcon : false"
-          :prepend-icon="checkedBoxes[3] ? textfieldIcon : false"
-        />
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <Textfield
+            v-model="textfield.value"
+            width="w-fit"
+            :hint="textfield.hint"
+            :placeholder="textfield.placeholder"
+            :rules="[notEmpty, minChars(5)]"
+            :label="textfield.label"
+            :color="{
+              bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
+            }"
+            :filled="styleCheckedBoxes[0]"
+            :outlined="styleCheckedBoxes[1]"
+            :loading="checkedBoxes[0]"
+            :disabled="checkedBoxes[1]"
+            :append-icon="checkedBoxes[2] ? textfieldIcon : false"
+            :prepend-icon="checkedBoxes[3] ? textfieldIcon : false"
+          />
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -140,6 +142,35 @@ let minChars = (min) => (value) => {
   }
   return true;
 };
+
+let codeExample = computed(() => {
+  let html = `<NXW-Textfield
+  v-model="textfieldValue"${
+    textfield.value.hint ? `\n  hint="${textfield.value.hint}"` : ""
+  }${
+    textfield.value.placeholder
+      ? `\n  placeholder="${textfield.value.placeholder}"`
+      : ""
+  }${textfield.value.label ? `\n  label="${textfield.value.label}"` : ""}${
+    styleCheckedBoxes.value[0] ? `\n  filled` : ""
+  }${styleCheckedBoxes.value[1] ? `\n  outlined` : ""}${
+    checkedBoxes.value[0] ? `\n  loading` : ""
+  }${checkedBoxes.value[1] ? `\n  disabled` : ""}${
+    checkedBoxes.value[2] ? `\n  append-icon="textfieldIcon"` : ""
+  }${checkedBoxes.value[3] ? `\n  prepend-icon="textfieldIcon"` : ""}${
+    checkedBoxes.value[4] ? `\n  counter` : ""
+  }
+/>`;
+  let js = `${
+    checkedBoxes.value[2] | checkedBoxes.value[3]
+      ? `import MdiMagnify from "~icons/mdi/magnify";
+let textfieldIcon = markRaw(MdiMagnify);`
+      : ""
+  }
+
+let textfieldValue = ref("${textfield.value.value}");`;
+  return { html, js };
+});
 
 //DOCUMENTATION
 
