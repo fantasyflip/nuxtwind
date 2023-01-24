@@ -4,15 +4,24 @@ export default defineNuxtPlugin((nuxtApp) => {
   const linkIcon = markRaw(MdiLinkVariant);
   nuxtApp.provide("hashAndCopy", (id) => {
     const route = useRoute();
+    const router = useRouter();
     const currentLocale = route.params.locale;
 
     let path = route.path;
     let hash = "#" + id;
-    let fullPath = path + hash;
-    navigateTo(fullPath);
+    let query = route.query;
+    router.replace({ hash: hash, query: query });
 
-    let copyPath = window.location.origin + path + "?hash=" + id;
-    navigator.clipboard.writeText(copyPath);
+    let origin = window.location.origin;
+
+    let url = new URL(origin + path);
+
+    url.searchParams.append("hash", id);
+    //for every query param
+    for (const [key, value] of Object.entries(query)) {
+      url.searchParams.append(key, value);
+    }
+    navigator.clipboard.writeText(url.href);
 
     useToast({
       title:
