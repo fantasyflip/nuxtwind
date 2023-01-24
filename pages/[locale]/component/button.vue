@@ -63,11 +63,6 @@ const { t } = useI18n();
 
 let componentName = "Button";
 
-let codeExample = {
-  html: "<Button>Click me!</Button>",
-  js: "let buttonLabel = ref('Click me!');",
-};
-
 //PLAYGROUND
 
 let checkedBoxes = ref([false, false, false, true, true]);
@@ -97,6 +92,18 @@ let buttonLabel = ref("Click me!");
 buttonLabel.value = t(
   "pages.component.button.content.playground.textfield.initialValue"
 );
+
+let codeExample = computed(() => {
+  let html = `<NXW-Button${checkedBoxes.value[0] ? " dense" : ""}${
+    checkedBoxes.value[1] ? " disabled" : ""
+  }${checkedBoxes.value[2] ? " loading" : ""}${
+    checkedBoxes.value[3] ? " grow" : ""
+  }${checkedBoxes.value[4] ? " rounded" : ""}>${
+    buttonLabel.value
+  }</NXW-Button>`;
+  let js = "";
+  return { html, js };
+});
 
 //DOCUMENTATION
 
