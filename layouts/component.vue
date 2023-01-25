@@ -11,13 +11,13 @@
           <slot name="componentName"></slot>
         </span>
       </div>
-      <div class="lg:flex lg:h-[88vh] w-full mt-5">
+      <div class="lg:flex lg:h-[88vh] w-full lg:my-4 mt-2">
         <div
-          class="lg:w-1/2 lg:h-full h-1/2 flex items-center justify-center mx-4 lg:mb-0 mb-4 lg:p-0 py-12"
+          class="lg:w-1/2 lg:h-full h-[44vh] flex items-center justify-center mx-4 lg:mb-0 mb-4 lg:p-0 py-4"
         >
           <slot name="component"></slot>
         </div>
-        <div class="lg:w-1/2 lg:h-full h-1/2 mx-4 lg:my-0 my-6">
+        <div class="lg:w-1/2 lg:h-full mx-4 lg:my-0 my-6">
           <slot name="playground"></slot>
         </div>
       </div>
@@ -150,4 +150,3 @@ useHead({
   ],
 });
 </script>
-<style scoped></style>

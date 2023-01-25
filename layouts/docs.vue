@@ -237,12 +237,4 @@ function handleSwitchLocale() {
   const { post } = useBroadcastChannel("broadcast");
   post({ type: "locale", method: "switch" });
 }
-
-onBeforeMount(() => {
-  if (route.query && route.query.hash) {
-    let hash = route.query.hash;
-    let hashPath = route.path + "#" + hash;
-    navigateTo(hashPath);
-  }
-});
 </script>

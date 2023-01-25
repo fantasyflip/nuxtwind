@@ -3,14 +3,16 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Checkbox
-          v-model="checkbox.value"
-          :label="checkbox.label"
-          :description="checkbox.description"
-          :disabled="checkedBoxes[0]"
-          :loading="checkedBoxes[1]"
-          :radio="checkedBoxes[2]"
-        />
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <Checkbox
+            v-model="checkbox.value"
+            :label="checkbox.label"
+            :description="checkbox.description"
+            :disabled="checkedBoxes[0]"
+            :loading="checkedBoxes[1]"
+            :radio="checkedBoxes[2]"
+          />
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -87,6 +89,18 @@ let toggleProps = [
     label: "Radio",
   },
 ];
+
+let codeExample = computed(() => {
+  let html = `<NXW-Checkbox
+  v-model="checkboxValue"${'\n  label="' + checkbox.value.label + '"'}${
+    '\n  description="' + checkbox.value.description + '"'
+  }${checkedBoxes.value[0] ? "\n  disabled" : ""}${
+    checkedBoxes.value[1] ? "\n  loading" : ""
+  }${checkedBoxes.value[2] ? "\n  radio" : ""}
+/>`;
+  let js = `let checkboxValue = ref(${checkbox.value.value});`;
+  return { html, js };
+});
 
 //DOCUMENTATION
 let componentName = "Checkbox";

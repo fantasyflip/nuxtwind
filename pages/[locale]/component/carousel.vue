@@ -3,42 +3,21 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <div class="w-full h-full">
-          <Carousel v-model="currentStep">
-            <CarouselItem :step="1">
-              <div class="w-full h-full">
-                <img
-                  src="https://images.unsplash.com/photo-1666030809086-f21069785386?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-            </CarouselItem>
-            <CarouselItem :step="2">
-              <div class="w-full h-full">
-                <img
-                  src="https://images.unsplash.com/photo-1666030947602-007c26ea5767?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-            </CarouselItem>
-            <CarouselItem :step="3">
-              <div class="w-full h-full">
-                <img
-                  src="https://images.unsplash.com/photo-1666030947611-f3347f7cf325?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-            </CarouselItem>
-            <CarouselItem :step="4">
-              <div class="w-full h-full">
-                <img
-                  src="https://images.unsplash.com/photo-1666030853685-48f68d402dfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-            </CarouselItem>
-          </Carousel>
-        </div>
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <div class="lg:w-[40vw] lg:h-[70vh] w-[80vw] h-[30vh]">
+            <Carousel v-model="currentStep">
+              <CarouselItem
+                v-for="item in carouselItems"
+                :key="item.step"
+                :step="item.step"
+              >
+                <div class="w-full h-full">
+                  <img :src="item.image" class="w-full h-full object-cover" />
+                </div>
+              </CarouselItem>
+            </Carousel>
+          </div>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center w-full h-full">
@@ -74,6 +53,58 @@ let componentName = "Carousel";
 //PLAYGROUND
 
 let currentStep = ref(1);
+
+let carouselItems = [
+  {
+    step: 1,
+    image: "https://link.fantasyflip.de/s/f9PhRX",
+  },
+  {
+    step: 2,
+    image: "https://link.fantasyflip.de/s/t43DMr",
+  },
+  {
+    step: 3,
+    image: "https://link.fantasyflip.de/s/GMqIyE",
+  },
+  {
+    step: 4,
+    image: "https://link.fantasyflip.de/s/Q3Ze8X",
+  },
+];
+
+let codeExample = computed(() => {
+  let html = `<NXW-Carousel>
+  <NXW-CarouselItem
+    v-for="item in carouselItems"
+    :key="item.step"
+    :step="item.step"
+  >
+    <div class="w-full h-full">
+      <img :src="item.image" class="w-full h-full object-cover" />
+    </div>
+  </NXW-CarouselItem>
+</NXW-Carousel>`;
+  let js = `let carouselItems = [
+  {
+    step: 1,
+    image: "https://link.fantasyflip.de/s/f9PhRX",
+  },
+  {
+    step: 2,
+    image: "https://link.fantasyflip.de/s/t43DMr",
+  },
+  {
+    step: 3,
+    image: "https://link.fantasyflip.de/s/GMqIyE",
+  },
+  {
+    step: 4,
+    image: "https://link.fantasyflip.de/s/Q3Ze8X",
+  },
+];`;
+  return { html, js };
+});
 
 //DOCUMENTATION
 

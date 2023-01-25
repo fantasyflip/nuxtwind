@@ -15,7 +15,7 @@
         <MdiContentCopy />
       </Button>
     </div>
-    <div v-html="html"></div>
+    <div :class="props.path ? 'pt-2' : ''" class="pr-6" v-html="html"></div>
   </div>
 </template>
 
@@ -51,6 +51,15 @@ watch(
     html.value = await useCodeToHtml(props.content, props.lang);
   }
 );
+
+let contentComputed = computed(() => {
+  return props.content;
+});
+
+//watch contentComputed to update content when it changes
+watch(contentComputed, async () => {
+  html.value = await useCodeToHtml(props.content, props.lang);
+});
 
 const bashIcon = markRaw(MdiBash);
 const route = useRoute();

@@ -3,16 +3,18 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Button
-          target="_blank"
-          :dense="checkedBoxes[0]"
-          :disabled="checkedBoxes[1]"
-          :loading="checkedBoxes[2]"
-          :grow="checkedBoxes[3]"
-          :rounded="checkedBoxes[4]"
-        >
-          {{ buttonLabel }}
-        </Button>
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <Button
+            target="_blank"
+            :dense="checkedBoxes[0]"
+            :disabled="checkedBoxes[1]"
+            :loading="checkedBoxes[2]"
+            :grow="checkedBoxes[3]"
+            :rounded="checkedBoxes[4]"
+          >
+            {{ buttonLabel }}
+          </Button>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center w-full h-full">
@@ -90,6 +92,18 @@ let buttonLabel = ref("Click me!");
 buttonLabel.value = t(
   "pages.component.button.content.playground.textfield.initialValue"
 );
+
+let codeExample = computed(() => {
+  let html = `<NXW-Button${checkedBoxes.value[0] ? "\n dense" : ""}${
+    checkedBoxes.value[1] ? "\n disabled" : ""
+  }${checkedBoxes.value[2] ? "\n loading" : ""}${
+    checkedBoxes.value[3] ? "\n grow" : ""
+  }${checkedBoxes.value[4] ? "\n rounded" : ""}>
+  ${buttonLabel.value}
+</NXW-Button>`;
+  let js = "";
+  return { html, js };
+});
 
 //DOCUMENTATION
 

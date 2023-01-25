@@ -3,18 +3,19 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <div class="w-60">
-          <div>{{ slider.value }}</div>
-          <div>
-            <Slider
-              v-model="slider.value"
-              :min="slider.min"
-              :max="slider.max"
-              :label="slider.label"
-              :description="slider.description"
-            />
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <div class="w-60">
+            <div>
+              <Slider
+                v-model="slider.value"
+                :min="slider.min"
+                :max="slider.max"
+                :label="slider.label"
+                :description="slider.description"
+              />
+            </div>
           </div>
-        </div>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -65,8 +66,23 @@ let slider = ref({
   min: 0,
   max: 100,
   label: "Slider",
-  description:
-    "This is a slider with a very long description to show that this component can handle long descriptions.",
+  description: "This is a slider :)",
+});
+
+let codeExample = computed(() => {
+  let html = `<NXW-Slider
+  v-model="sliderValue"
+  :min="${slider.value.min}"
+  :max="${slider.value.max}"${
+    slider.value.label ? `\n  :label="${slider.value.label}"` : ""
+  }${
+    slider.value.description
+      ? `\n  :description="${slider.value.description}"`
+      : ""
+  }
+/>`;
+  let js = `let sliderValue = ref("${slider.value.value}");`;
+  return { html, js };
 });
 
 //DOCUMENTATION

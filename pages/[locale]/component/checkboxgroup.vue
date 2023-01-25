@@ -3,20 +3,24 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <div
-          class="max-h-full overflow-auto grid place-items-center m-3 md:w-2/3"
-        >
-          <Checkboxgroup
-            v-model="checkboxgroup.values"
-            :label="checkboxgroup.label"
-            :description="checkboxgroup.description"
-            :items="checkboxes"
-            :multiple="checkedBoxes[0]"
-            :not-zero="checkedBoxes[1]"
-            :disabled="checkedBoxes[2]"
-            :loading="checkedBoxes[3]"
-          />
-        </div>
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <div class="grid place-items-center">
+            <div
+              class="max-h-full overflow-auto grid place-items-center m-3 md:w-2/3"
+            >
+              <Checkboxgroup
+                v-model="checkboxgroup.values"
+                :label="checkboxgroup.label"
+                :description="checkboxgroup.description"
+                :items="checkboxes"
+                :multiple="checkedBoxes[0]"
+                :not-zero="checkedBoxes[1]"
+                :disabled="checkedBoxes[2]"
+                :loading="checkedBoxes[3]"
+              />
+            </div>
+          </div>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -75,7 +79,7 @@ const { t } = useI18n();
 //PLAYGROUND
 let checkboxgroup = ref({
   values: [false, true, false],
-  label: "Checkbox Label",
+  label: "Checkboxgroup Label",
   description:
     "This is a group of checkboxes. The returned value is an array of booleans.",
 });
@@ -133,6 +137,54 @@ setTimeout(() => {
       "This is a checkbox that appears 3s after page load, showing that the component is reactive.",
   });
 }, 3000);
+
+let codeExample = computed(() => {
+  let html = `<NXW-Checkboxgroup
+  v-model="checkboxGroupValues"${
+    checkboxgroup.value.label ? `\n  label="${checkboxgroup.value.label}"` : ""
+  }${
+    checkboxgroup.value.description
+      ? `\n  description="${checkboxgroup.value.description}"`
+      : ""
+  }
+  :items="checkboxes"${checkedBoxes.value[0] ? `\n  multiple` : ""}${
+    checkedBoxes.value[1] ? `\n  not-zero` : ""
+  }${checkedBoxes.value[2] ? `\n  disabled` : ""}${
+    checkedBoxes.value[3] ? `\n  loading` : ""
+  }
+/>`;
+  let js = `let checkboxGroupValues = ref([${checkboxgroup.value.values}]);
+
+let checkboxes = ref([
+  {
+    label: "Checkbox 1",
+    description: "This is a checkbox with customized color.",
+    color: {
+      label: "text-secondary-800 dark:text-secondary-800",
+      description: "text-gray-500 dark:text-gray-400",
+    },
+  },
+  {
+    label: "Checkbox 2",
+    description:
+      "This is a checkbox with long text.  Lorem ipsum dolor, sit amet consectetur adipisicing elit. In atque quaerat temporibus aspernatur tempora culpa magni quis necessitatibus ducimus, error dolore, dolorem molestias esse nam amet vitae, maxime possimus sunt.",
+  },
+  {
+    label: "Checkbox 3",
+    description: "This is a looading checkbox.",
+    loading: true,
+  },
+  {
+    label: "Checkbox 4",
+    description: "This is a disabled checkbox.",
+    disabled: true,
+  },
+  {
+    label: "Checkbox 5",
+  },
+]);`;
+  return { html, js };
+});
 
 //DOCUMENTATION
 let componentName = "Checkboxgroup";

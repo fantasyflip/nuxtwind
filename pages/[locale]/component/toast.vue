@@ -3,14 +3,19 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <Toast
-          id="playground"
-          width="sm:w-1/2 max-w-4/5"
-          :title="testNotification.title"
-          :message="testNotification.message"
-          :auto-close="testNotification.autoClose"
-          :type="testNotification.type"
-        ></Toast>
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <div class="lg:w-[40vw] w-[80vw] grid place-items-center">
+            <Toast
+              id="playground"
+              width="sm:w-1/2 max-w-4/5"
+              :title="testNotification.title"
+              :message="testNotification.message"
+              :auto-close="testNotification.autoClose"
+              :type="testNotification.type"
+              :duration="testNotification.duration"
+            />
+          </div>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -173,6 +178,26 @@ function minVal(min) {
     return true;
   };
 }
+
+let codeExample = computed(() => {
+  let html = `<NXW-Toast
+  id="playground"${
+    testNotification.value.title
+      ? `\n  title="${testNotification.value.title}"`
+      : ""
+  }${
+    testNotification.value.message
+      ? `\n  message="${testNotification.value.message}"`
+      : ""
+  }${testNotification.value.autoClose ? "\n  auto-close" : ""}${
+    testNotification.value.autoClose
+      ? `\n  duration="${testNotification.value.duration}"`
+      : ""
+  } type="${testNotification.value.type}"
+/>`;
+  let js = ``;
+  return { html, js };
+});
 
 //DOCUMENTATION
 let componentName = "Toast";

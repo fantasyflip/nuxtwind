@@ -3,97 +3,108 @@
     <NuxtLayout name="component">
       <template #componentName> {{ componentName }} </template>
       <template #component>
-        <div
-          ref="scroll"
-          class="lg:w-2/3 lg:h-2/3 w-9/10 h-[50vh] overflow-y-auto overflow-x-hidden bg-gray-200 dark:bg-zinc-800"
-        >
-          <div class="w-full h-screen relative">
-            <Appbar
-              :absolute="checkedPositionBoxes[0]"
-              :sticky="checkedPositionBoxes[1]"
-              :fixed="checkedPositionBoxes[2]"
-              :extension="checkedBoxes[0]"
-              :shrink-on-scroll="checkedBoxes[1]"
-              :elevate-on-scroll="checkedBoxes[2]"
-              :navigation-icon="checkedBoxes[3]"
-              :bottom="checkedBoxes[4]"
-              :scroll-offset="
-                checkedPositionBoxes[2] && checkedBoxes[0] && checkedBoxes[1]
-                  ? null
-                  : y
-              "
-              :color="{
-                bg: 'bg-gray-300 dark:bg-zinc-700',
-              }"
-              :z-index="checkedPositionBoxes[2] ? 'z-[101]' : 'z-[9]'"
+        <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
+          <div class="grid place-items-center">
+            <div
+              ref="scroll"
+              class="w-3/4 lg:h-[70vh] h-[30vh] overflow-y-auto overflow-x-hidden bg-gray-200 dark:bg-zinc-800"
             >
-              <template #default>
-                <div class="w-full h-full relative">
-                  <div
-                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-primary-800"
-                  >
-                    Navigation-Bar
-                  </div>
+              <div class="w-full h-screen relative">
+                <Appbar
+                  :absolute="checkedPositionBoxes[0]"
+                  :sticky="checkedPositionBoxes[1]"
+                  :fixed="checkedPositionBoxes[2]"
+                  :extension="checkedBoxes[0]"
+                  :shrink-on-scroll="checkedBoxes[1]"
+                  :elevate-on-scroll="checkedBoxes[2]"
+                  :navigation-icon="checkedBoxes[3]"
+                  :bottom="checkedBoxes[4]"
+                  :scroll-offset="
+                    checkedPositionBoxes[2] &&
+                    checkedBoxes[0] &&
+                    checkedBoxes[1]
+                      ? null
+                      : y
+                  "
+                  :color="{
+                    bg: 'bg-gray-300 dark:bg-zinc-700',
+                  }"
+                  :z-index="checkedPositionBoxes[2] ? 'z-[101]' : 'z-[9]'"
+                >
+                  <template #default>
+                    <div class="w-full h-full relative">
+                      <div
+                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-primary-800"
+                      >
+                        Navigation-Bar
+                      </div>
+                    </div>
+                  </template>
+                  <template #extension>
+                    <div class="p-4">
+                      <div class="font-bold">Extension</div>
+                      <div v-if="checkedBoxes[1]" class="py-2">
+                        This Extension shrinks on scroll.
+                      </div>
+                      <div class="text-justify" style="hyphens: auto">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Similique recusandae, ducimus ut sequi quasi ullam
+                        quia cum minima ab sapiente non nisi unde soluta
+                        pariatur aspernatur, accusamus nulla facilis sed!
+                      </div>
+                    </div>
+                  </template>
+                </Appbar>
+                <div class="p-4 text-justify" style="hyphens: auto">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Soluta minima veniam ipsam aspernatur tenetur ad dolore nisi,
+                  adipisci deserunt voluptas assumenda a iste non rerum modi
+                  inventore sit fuga nihil. Est minima tenetur officia debitis
+                  quisquam id soluta similique et saepe beatae culpa aliquid
+                  itaque corporis nisi dolore, at ut! Reprehenderit qui laborum
+                  repellendus modi fugit. Odit rem consectetur deleniti!
+                  Blanditiis quia doloremque quae. Tempora ipsum, perferendis
+                  debitis quod porro hic expedita vitae iusto laborum excepturi
+                  dolore blanditiis quisquam consequatur eveniet inventore dolor
+                  beatae animi rerum quae. Facere, nemo odio. Placeat modi non
+                  excepturi recusandae nam praesentium ut eaque debitis.
+                  Laudantium a illo quae illum ea quam molestiae nobis explicabo
+                  nemo, aut voluptatibus minus. Eaque, officia. Dolor tenetur
+                  explicabo omnis! Lorem, ipsum dolor sit amet consectetur
+                  adipisicing elit. Dicta, saepe rem dolores est sapiente iure
+                  mollitia explicabo, eveniet vero laborum vitae ullam ex
+                  suscipit, quibusdam molestias repellat. Ipsum, voluptas non!
+                  Animi accusamus corporis, quam eaque numquam eveniet eligendi
+                  praesentium nemo, debitis et itaque, ex minima iste placeat
+                  dicta facere nisi at quos. Quaerat ab maiores doloremque
+                  excepturi velit ipsam. Asperiores. Ullam corrupti magni
+                  eveniet expedita, cumque officiis ut? Architecto omnis iure
+                  nobis corporis, nemo perspiciatis accusamus culpa nostrum
+                  placeat doloribus, consectetur odio molestiae soluta minima
+                  vitae iste saepe sapiente ad. Nulla optio illum, harum eius
+                  aut accusantium obcaecati aspernatur ratione dolorem
+                  reiciendis quos rerum! Impedit, in! Delectus dignissimos quae
+                  sit odio ex a, aperiam quibusdam error adipisci totam, minima
+                  eum. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Aliquid reprehenderit aut quibusdam modi odit deleniti harum
+                  quasi odio assumenda veritatis aperiam sequi eum consequatur
+                  quis, vitae totam nam culpa suscipit? Ex rerum nihil
+                  perspiciatis quasi, ab non fugit eveniet consequuntur
+                  asperiores id laborum sint error, facilis eligendi saepe.
+                  Neque repellat possimus natus ipsum consequuntur aspernatur
+                  exercitationem rerum quo eaque ratione. Optio ipsam voluptatem
+                  atque velit dolore ex hic mollitia iusto iure, neque sit nam
+                  non natus perferendis, fugit ea nihil a. Nesciunt natus ipsam
+                  optio a doloribus ratione consequatur asperiores. Quidem
+                  cumque quibusdam sint a deleniti quasi dolorum libero,
+                  temporibus fuga recusandae vero voluptatem veritatis quis
+                  animi possimus ut expedita necessitatibus hic iste maiores?
+                  Voluptates quo harum alias provident ab.
                 </div>
-              </template>
-              <template #extension>
-                <div class="p-4">
-                  <div class="font-bold">Extension</div>
-                  <div class="py-2">This Extension shrinks on scroll.</div>
-                  <div class="text-justify" style="hyphens: auto">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Similique recusandae, ducimus ut sequi quasi ullam quia cum
-                    minima ab sapiente non nisi unde soluta pariatur aspernatur,
-                    accusamus nulla facilis sed!
-                  </div>
-                </div>
-              </template>
-            </Appbar>
-            <div class="p-4 text-justify" style="hyphens: auto">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-              minima veniam ipsam aspernatur tenetur ad dolore nisi, adipisci
-              deserunt voluptas assumenda a iste non rerum modi inventore sit
-              fuga nihil. Est minima tenetur officia debitis quisquam id soluta
-              similique et saepe beatae culpa aliquid itaque corporis nisi
-              dolore, at ut! Reprehenderit qui laborum repellendus modi fugit.
-              Odit rem consectetur deleniti! Blanditiis quia doloremque quae.
-              Tempora ipsum, perferendis debitis quod porro hic expedita vitae
-              iusto laborum excepturi dolore blanditiis quisquam consequatur
-              eveniet inventore dolor beatae animi rerum quae. Facere, nemo
-              odio. Placeat modi non excepturi recusandae nam praesentium ut
-              eaque debitis. Laudantium a illo quae illum ea quam molestiae
-              nobis explicabo nemo, aut voluptatibus minus. Eaque, officia.
-              Dolor tenetur explicabo omnis! Lorem, ipsum dolor sit amet
-              consectetur adipisicing elit. Dicta, saepe rem dolores est
-              sapiente iure mollitia explicabo, eveniet vero laborum vitae ullam
-              ex suscipit, quibusdam molestias repellat. Ipsum, voluptas non!
-              Animi accusamus corporis, quam eaque numquam eveniet eligendi
-              praesentium nemo, debitis et itaque, ex minima iste placeat dicta
-              facere nisi at quos. Quaerat ab maiores doloremque excepturi velit
-              ipsam. Asperiores. Ullam corrupti magni eveniet expedita, cumque
-              officiis ut? Architecto omnis iure nobis corporis, nemo
-              perspiciatis accusamus culpa nostrum placeat doloribus,
-              consectetur odio molestiae soluta minima vitae iste saepe sapiente
-              ad. Nulla optio illum, harum eius aut accusantium obcaecati
-              aspernatur ratione dolorem reiciendis quos rerum! Impedit, in!
-              Delectus dignissimos quae sit odio ex a, aperiam quibusdam error
-              adipisci totam, minima eum. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Aliquid reprehenderit aut quibusdam modi odit
-              deleniti harum quasi odio assumenda veritatis aperiam sequi eum
-              consequatur quis, vitae totam nam culpa suscipit? Ex rerum nihil
-              perspiciatis quasi, ab non fugit eveniet consequuntur asperiores
-              id laborum sint error, facilis eligendi saepe. Neque repellat
-              possimus natus ipsum consequuntur aspernatur exercitationem rerum
-              quo eaque ratione. Optio ipsam voluptatem atque velit dolore ex
-              hic mollitia iusto iure, neque sit nam non natus perferendis,
-              fugit ea nihil a. Nesciunt natus ipsam optio a doloribus ratione
-              consequatur asperiores. Quidem cumque quibusdam sint a deleniti
-              quasi dolorum libero, temporibus fuga recusandae vero voluptatem
-              veritatis quis animi possimus ut expedita necessitatibus hic iste
-              maiores? Voluptates quo harum alias provident ab.
+              </div>
             </div>
           </div>
-        </div>
+        </ExampleCodeDisplay>
       </template>
       <template #playground>
         <div class="grid place-items-center h-full w-full">
@@ -216,6 +227,49 @@ watch(isFixed, (value) => {
       checkedPositionBoxes.value = [false, true, false];
     }, timeout * 1000);
   }
+});
+
+let codeExample = computed(() => {
+  let html = `<NXW-Appbar${checkedPositionBoxes.value[0] ? "\n absolute" : ""}${
+    checkedPositionBoxes.value[1] ? "\n sticky" : ""
+  }${checkedPositionBoxes.value[2] ? "\n fixed" : ""}${
+    checkedBoxes.value[0] ? "\n extension" : ""
+  }${checkedBoxes.value[1] ? "\n shrink-on-scroll" : ""}${
+    checkedBoxes.value[2] ? "\n elevate-on-scroll" : ""
+  }${checkedBoxes.value[3] ? "\n navigation-icon" : ""}${
+    checkedBoxes.value[4] ? "\n bottom" : ""
+  }
+>
+  <template #default>
+    <div class="w-full h-full relative">
+      <div
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-primary-800"
+      >
+        Navigation-Bar
+      </div>
+    </div>
+  </template>
+  <template #extension>
+    <div class="p-4">${
+      checkedBoxes.value[0]
+        ? "\n      <div class='font-bold'>Extension</div>"
+        : ""
+    }${
+    checkedBoxes.value[1]
+      ? "\n      <div class='py-2'>This Extension shrinks on scroll.</div>"
+      : ""
+  }
+      <div class="text-justify" style="hyphens: auto">
+        Lorem ipsum, dolor sit amet consectetur adipisicing
+        elit. Similique recusandae, ducimus ut sequi quasi ullam
+        quia cum minima ab sapiente non nisi unde soluta
+        pariatur aspernatur, accusamus nulla facilis sed!
+      </div>
+    </div>
+  </template>
+</NXW-Appbar>`;
+  let js = ``;
+  return { html, js };
 });
 
 //DOCUMENTATION
