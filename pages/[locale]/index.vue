@@ -11,16 +11,16 @@
         class="lg:w-[60%] md:w-[70%] w-full grid place-items-center md:mt-10 md:ml-10"
       >
         <div class="2xl:w-[95%] lg:w-[88%] md:w-full">
-          <div
+          <h1
             class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl md:text-start text-center font-bold px-2 md:px-0"
           >
             {{ $t("pages.index.content.nuxtwind") }}
-          </div>
-          <div
+          </h1>
+          <h2
             class="2xl:text-2xl xl:text-xl lg:text-base sm:text-sm text-xs md:text-start text-center text-zinc-500 pt-1 px-2 md:px-0"
           >
             {{ $t("pages.index.content.description") }}
-          </div>
+          </h2>
           <div class="flex pt-8 md:justify-start justify-center">
             <Button class="mr-4" :link="useLocaleUrl('getting-started')" grow>{{
               $t("pages.index.buttons.getStarted")
