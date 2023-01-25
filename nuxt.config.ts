@@ -41,4 +41,11 @@ export default defineNuxtConfig({
       }),
     ],
   },
+  runtimeConfig: {
+    // Private keys are only available on the server
+    // Public keys that are exposed to the client
+    public: {
+      origin: process.env.ORIGIN,
+    },
+  },
 });
