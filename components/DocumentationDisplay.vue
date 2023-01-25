@@ -1,5 +1,5 @@
 <template>
-  <div
+  <h2
     id="documentation"
     class="lg:text-3xl text-2xl font-bold cursor-pointer mx-4"
     @click="$hashAndCopy('documentation')"
@@ -10,10 +10,10 @@
     <span class="text-primary-800">
       {{ props.componentName }}
     </span>
-  </div>
+  </h2>
   <div class="mx-2">
     <div v-if="sortedProps.length > 0" class="mx-4 mt-4">
-      <div
+      <h3
         id="properties"
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('properties')"
@@ -25,7 +25,7 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </div>
+      </h3>
       <div
         v-for="(prop, index) in sortedProps"
         :key="index"
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div v-if="props.events.length > 0" class="mx-4 mt-4">
-      <div
+      <h3
         id="events"
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('events')"
@@ -47,7 +47,7 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </div>
+      </h3>
       <div
         v-for="(event, index) in props.events"
         :key="index"
@@ -57,7 +57,7 @@
       </div>
     </div>
     <div v-if="sortedSlots.length > 0" class="mx-4 mt-4">
-      <div
+      <h3
         id="slots"
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('slots')"
@@ -69,7 +69,7 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </div>
+      </h3>
       <div
         v-for="(slot, index) in sortedSlots"
         :key="index"
@@ -79,7 +79,7 @@
       </div>
     </div>
     <div v-if="sortedConfigs.length > 0" class="mx-4 mt-4">
-      <div
+      <h3
         id="configs"
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('configs')"
@@ -91,7 +91,7 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </div>
+      </h3>
       <div
         v-for="(config, index) in sortedConfigs"
         :key="index"
@@ -101,7 +101,7 @@
       </div>
     </div>
     <div v-if="sortedCaveats.length > 0" class="mx-4 mt-4">
-      <div
+      <h3
         id="caveats"
         class="lg:text-2xl text-xl font-bold cursor-pointer"
         @click="$hashAndCopy('caveats')"
@@ -113,7 +113,7 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </div>
+      </h3>
       <div
         v-for="(caveat, index) in sortedCaveats"
         :key="index"
