@@ -39,6 +39,11 @@
 <script setup>
 import Toast from "./module/src/runtime/components/Toast.vue";
 import { useI18n } from "vue-i18n";
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "./tailwind.config.js";
+
+const tw = resolveConfig(tailwindConfig);
+
 const route = useRoute();
 const { locale } = useI18n();
 watch(
@@ -50,6 +55,25 @@ watch(
   },
   { immediate: true }
 );
+
+watch(
+  () => useRoute().path,
+  (newPath, oldPath) => {
+    if (newPath !== oldPath) {
+      let canonical = useRuntimeConfig().public.origin + newPath;
+      useHead({
+        link: [
+          {
+            rel: "canonical",
+            href: canonical,
+          },
+        ],
+      });
+    }
+  },
+  { immediate: true }
+);
+
 useHead({
   bodyAttrs: {
     class: "dark:bg-zinc-900 dark:text-white",
@@ -59,7 +83,25 @@ useHead({
     style: "scroll-behavior: smooth;",
   },
   titleTemplate: "%s | NuxtWind",
-  link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+  link: [
+    { rel: "icon", type: "image/png", href: "/favicon.png" },
+    {
+      rel: "apple-touch-icon",
+      type: "image/png",
+      href: "/apple-touch-icon.png",
+    },
+  ],
+  meta: [
+    {
+      name: "theme-color",
+      content: tw.theme.colors.primary[800],
+    },
+    {
+      hid: "og:site_name",
+      property: "og:site_name",
+      content: "NuxtWind",
+    },
+  ],
 });
 
 const { toasts, removeToast, stopBodyOverflow, allowBodyOverflow } = useToast();
