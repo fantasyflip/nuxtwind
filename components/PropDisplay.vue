@@ -11,7 +11,7 @@
       @click="$hashAndCopy('prop-' + props.item.name)"
     >
       <Tooltip right width="w-40">
-        <span class="hover:text-secondary-800">{{ props.item.name }}</span>
+        <h4 class="hover:text-secondary-800">{{ props.item.name }}</h4>
         <template #tooltip>{{
           $t("components.propDisplay.content.copyTooltip")
         }}</template>
