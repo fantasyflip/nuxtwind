@@ -4,7 +4,7 @@
     "component": {
       "meta": {
         "title": "{componentName}",
-        "description": "Overview over the {componentName} component.",
+        "description": "Play around and learn more about the {componentName} component.",
         "categoryDescription": "Overview over the {componentName} component. Learn more about its {category}.",
         "itemDescription": "Overview over the {componentName} component. Learn more about the '{item}'-{category}.",
         "itemContentDescription": "Overview over the {componentName} component. Learn more about the '{item}'-{category}:\n{content}",
@@ -1019,7 +1019,7 @@
           "title": "Options"
         },
         "description": "Using Nuxtwind is as easy as adding a module to your Nuxt.js project\n          and making minor changes to your TailwindCSS config.",
-        "title": "Getting Started",
+        "title": "Getting Started with Nuxtwind",
         "attention": {
           "theme": {
             "prefix": "Most of your components will be black and white at this point. If you\n          want to style every component on its own this will work. If you want\n          to provide a default style for all components at once, have a look at\n          how to apply a",
@@ -1059,7 +1059,7 @@
     },
     "theme": {
       "content": {
-        "title": "Theme",
+        "title": "Apply a Theme on Nuxtwind",
         "description": "Learn how to provide a default stlye for all your Nuxtwind components with ease.",
         "tailwindconfig": {
           "title": "Adjustments on your TailwindCSS-Config",

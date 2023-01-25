@@ -4,7 +4,7 @@
     "component": {
       "meta": {
         "title": "{componentName}",
-        "description": "Übersicht über die {componentName} Komponente.",
+        "description": "Testen Sie und erfahren Sie mehr über die {componentName}-Komponente.",
         "categoryDescription": "Übersicht über die {componentName} Komponente. Erfahre mehr über {category}.",
         "itemDescription": "Übersicht über die {componentName} Komponente. Erfahre mehr über '{item}'-{category}.",
         "itemContentDescription": "Übersicht über die {componentName} Komponente. Erfaher mehr über '{item}'-{category}:\n{content}",
@@ -1019,7 +1019,7 @@
           "title": "Optionen"
         },
         "description": "Die Verwendung von Nuxtwind ist so einfach wie das Hinzufügen eines Moduls zu Ihrem Nuxt.js-Projekt\n          \nund kleinere Änderungen an Ihrer TailwindCSS-Konfiguration vorzunehmen.",
-        "title": "Loslegen",
+        "title": "Mit Nuxtwind loslegen",
         "attention": {
           "theme": {
             "prefix": "Die meisten Ihrer Komponenten werden an dieser Stelle schwarz und weiß sein. \nWenn Sie jede Komponente einzeln gestalten möchten, wird dies funktionieren. \nUm einen Standardstil für alle Komponenten auf einmal bereitzustellen, informieren Sie sich über die Anwendung eines ",
@@ -1059,7 +1059,7 @@
     },
     "theme": {
       "content": {
-        "title": "Farbschema",
+        "title": "Farbschema auf Nuxtwind anwenden",
         "description": "Erfahren Sie, wie Sie ganz einfach einen Standardstil für alle Ihre Nuxtwind-Komponenten bereitstellen.",
         "tailwindconfig": {
           "title": "Anpassungen an Ihrer TailwindCSS-Config",
