@@ -12,7 +12,14 @@
                 :step="item.step"
               >
                 <div class="w-full h-full">
-                  <img :src="item.image" class="w-full h-full object-cover" />
+                  <img
+                    :src="item.image"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    width="100%"
+                    height="100%"
+                    :alt="item.alt"
+                  />
                 </div>
               </CarouselItem>
             </Carousel>
@@ -58,18 +65,22 @@ let carouselItems = [
   {
     step: 1,
     image: "https://link.fantasyflip.de/s/f9PhRX",
+    alt: "Image of a street in Vienna",
   },
   {
     step: 2,
     image: "https://link.fantasyflip.de/s/t43DMr",
+    alt: "Image of food in a plane at the plane window",
   },
   {
     step: 3,
     image: "https://link.fantasyflip.de/s/GMqIyE",
+    alt: "Image of the nature of Madeira",
   },
   {
     step: 4,
     image: "https://link.fantasyflip.de/s/Q3Ze8X",
+    alt: "Image of a subway station in Vienna",
   },
 ];
 
@@ -81,26 +92,37 @@ let codeExample = computed(() => {
     :step="item.step"
   >
     <div class="w-full h-full">
-      <img :src="item.image" class="w-full h-full object-cover" />
+      <img
+        :src="item.image"
+        class="w-full h-full object-cover"
+        loading="lazy"
+        width="100%"
+        height="100%"
+        :alt="item.alt"
+      />
     </div>
   </NXW-CarouselItem>
 </NXW-Carousel>`;
   let js = `let carouselItems = [
   {
     step: 1,
-    image: "https://link.fantasyflip.de/s/f9PhRX",
+    image: "${carouselItems[0].image}",
+    alt: "${carouselItems[0].alt}",
   },
   {
     step: 2,
-    image: "https://link.fantasyflip.de/s/t43DMr",
+    image: "${carouselItems[1].image}",
+    alt: "${carouselItems[1].alt}",
   },
   {
     step: 3,
-    image: "https://link.fantasyflip.de/s/GMqIyE",
+    image: "${carouselItems[2].image}",
+    alt: "${carouselItems[2].alt}",
   },
   {
     step: 4,
-    image: "https://link.fantasyflip.de/s/Q3Ze8X",
+    image: "${carouselItems[3].image}",
+    alt: "${carouselItems[3].alt}",
   },
 ];`;
   return { html, js };
