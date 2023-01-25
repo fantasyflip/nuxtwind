@@ -62,10 +62,10 @@
         class="mx-4 ml-14 lg:text-3xl text-2xl font-extrabold flex"
         :class="componentName ? 'justify-between' : 'justify-end'"
       >
-        <div v-if="componentName" class="group flex pb-1">
+        <h1 v-if="componentName" class="group flex pb-1">
           {{ componentName }}
           <div class="text-primary-800 group-hover:text-secondary-800">.</div>
-        </div>
+        </h1>
         <NuxtWindName
           :height="40"
           class="invisible md:visible absolute left-1/2 transform -translate-x-1/2 top-1 cursor-pointer"
