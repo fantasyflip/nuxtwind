@@ -12,14 +12,21 @@
           class="hover:-translate-y-px transition-all duration-300"
           @click="showTab('component')"
         >
-          <NuxtWindIcon
-            width="30px"
-            :class="
-              !showComponent
-                ? 'grayscale hover:grayscale-0 transition-all duration-300'
-                : ''
-            "
-          />
+          <div class="flex">
+            <NuxtWindIcon
+              width="30px"
+              :class="
+                !showComponent
+                  ? 'grayscale hover:grayscale-0 transition-all duration-300'
+                  : ''
+              "
+            />
+            <div
+              class="text-sm px-2 dark:text-white text-black items-center hidden sm:flex"
+            >
+              Component
+            </div>
+          </div>
         </Button>
       </div>
       <div
@@ -36,7 +43,14 @@
           }"
           @click="showTab('html')"
         >
-          <MdiLanguageHtml5 />
+          <div class="flex">
+            <MdiLanguageHtml5 />
+            <div
+              class="text-sm px-2 items-center dark:text-white text-black hidden sm:flex"
+            >
+              Template
+            </div>
+          </div>
         </Button>
       </div>
       <div
@@ -55,7 +69,14 @@
           }"
           @click="showTab('js')"
         >
-          <MdiLanguageJavascript />
+          <div class="flex">
+            <MdiLanguageJavascript />
+            <div
+              class="text-sm px-2 items-center dark:text-white text-black hidden sm:flex"
+            >
+              Script
+            </div>
+          </div>
         </Button>
       </div>
     </div>
