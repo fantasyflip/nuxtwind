@@ -80,6 +80,7 @@
                 text: 'text-primary-800',
               }"
               grow
+              :ari-label="$t('layouts.component.content.cycleTheme.tooltip')"
               @click="handleCycleTheme()"
             >
               <MdiThemeLightDark />
@@ -96,6 +97,7 @@
                 text: 'text-primary-800',
               }"
               grow
+              ari-label='$t("layouts.component.content.switchLocale.tooltip")'
               @click="handleSwitchLocale()"
             >
               <MdiTranslate />
@@ -113,6 +115,7 @@
                 text: 'text-primary-800',
               }"
               grow
+              :ari-label="$t('layouts.component.content.github.tooltip')"
             >
               <MdiGithub />
             </Button>

@@ -4,6 +4,7 @@
     :to="props.link"
     :class="styleClass"
     :target="props.target"
+    :aria-label="props.ariLabel"
   >
     <div class="relative">
       <div
@@ -165,6 +166,10 @@ const props = defineProps({
   dense: {
     type: Boolean,
     default: false,
+  },
+  ariLabel: {
+    type: String,
+    default: undefined,
   },
   width: {
     type: String,
