@@ -494,14 +494,14 @@
             "properties": {
               "referComponent": {
                 "textfield": {
-                  "description": "Diese Eigenschaft wird nur auf die integrierte Textfeldkomponente angewandet. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Mehr</a> über das Verhalten der Eigenschaft."
+                  "description": "Diese Eigenschaft wird nur auf die integrierte Textfeldkomponente angewandet. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Mehr über das Verhalten der Eigenschaft</a>."
                 }
               },
               "items": {
                 "description": "Eigenschaft um die Elemente der Select-Komponente zu füllen."
               },
               "color": {
-                "description": "Eigenschaft um die Farbe für den Hintergrund, den Text, den Rahmen und die Hover-Farbe des Dropdown-Menüs festzulegen, das beim Klicken auf das Auswahlfeld angezeigt wird. \nMit einem verschachtelten 'textfield'-Objekt können die Farben des Textfeldes selbst eingestellt werden. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere</a> Informationen zur Textfeld-Color-Prop."
+                "description": "Eigenschaft um die Farbe für den Hintergrund, den Text, den Rahmen und die Hover-Farbe des Dropdown-Menüs festzulegen, das beim Klicken auf das Auswahlfeld angezeigt wird. \nMit einem verschachtelten 'textfield'-Objekt können die Farben des Textfeldes selbst eingestellt werden. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere Informationen zur Textfeld-Color-Prop</a>."
               },
               "search": {
                 "description": "Eigenschaft um das Dropdown-Menü des Auswahlfelds zu senken und ein Suchfeld anzuzeigen, um die Elemente des Select-Feldes zu filtern."
@@ -522,7 +522,7 @@
             "slots": {
               "referComponent": {
                 "textfield": {
-                  "description": "Dieser Platzhalter leitet nur auf den gleichnamigen Platzhalter der 'textfield'-Komponente um. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere</a> Informationen darüber."
+                  "description": "Dieser Platzhalter leitet nur auf den gleichnamigen Platzhalter der 'textfield'-Komponente um. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere Informationen darüber</a>."
                 }
               }
             },
@@ -614,7 +614,7 @@
                 "description": "Eigenschaft um die Beschreibung der Checkboxgruppe festzulegen."
               },
               "items": {
-                "description": "Eigenschaft um die Elemente der Gruppe festzulegen. \nDie Elemente müssen Objekte sein, die gültige Eigenschaften für die Checkbox-Komponente enthalten. \nLesen Sie <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">mehr</a> darüber."
+                "description": "Eigenschaft um die Elemente der Gruppe festzulegen. \nDie Elemente müssen Objekte sein, die gültige Eigenschaften für die Checkbox-Komponente enthalten. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Lesen Sie mehr über die Checkbox-Komponente</a> darüber."
               },
               "multiple": {
                 "description": "Eigenschaft, die es ermöglicht mehrere Kontrollkästchen gleichzeitig auszuwählen. \nWenn nicht gesetzt, lässt die Gruppe jeweils nur ein aktiviertes Kästchen zu. \nAußerdem werden die Symbole in abgerundete geändert. \nDies kann durch Setzen der 'no-radio'-Eigenschaft geändert werden."
@@ -629,7 +629,7 @@
                 "description": "Eigenschaft um die Breite der Checkbox-Gruppe zu ändern."
               },
               "generalCheckboxProps": {
-                "description": "Eigenschadt um einfach dieselben Eigenschaften für mehrere Kontrollkästchen festzulegen. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Mehr</a> über mögliche Eigenschaften."
+                "description": "Eigenschadt um einfach dieselben Eigenschaften für mehrere Kontrollkästchen festzulegen. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Lesen Sie mehr über mögliche Eigenschaften</a>."
               },
               "notZero": {
                 "description": "Eigenschaft um sicherzustellen, dass mindestens ein Kontrollkästchen aktiviert ist."

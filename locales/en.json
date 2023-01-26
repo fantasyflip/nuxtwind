@@ -368,14 +368,14 @@
             "properties": {
               "referComponent": {
                 "textfield": {
-                  "description": "This prop only applies on the integrated textfield component. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about its behavior."
+                  "description": "This prop only applies on the integrated textfield component. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Read more about its behavior</a>."
                 }
               },
               "items": {
                 "description": "Prop to fill the select component's items."
               },
               "color": {
-                "description": "Prop to set the color for the background, text, border and hover color of the drop down that appears when clicking the select field. With a nested 'textfield'-Object the colors of the textfield itself can be set. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More</a> information on the textfield color prop."
+                "description": "Prop to set the color for the background, text, border and hover color of the drop down that appears when clicking the select field. With a nested 'textfield'-Object the colors of the textfield itself can be set. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More information on the textfield color prop</a>."
               },
               "search": {
                 "description": "Prop to lower the drop down of the select field and show a search field to filter the select's items."
@@ -396,7 +396,7 @@
             "slots": {
               "referComponent": {
                 "textfield": {
-                  "description": "This slot just redirects to the identically named slot of the 'textfield'-component. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More</a> information about it."
+                  "description": "This slot just redirects to the identically named slot of the 'textfield'-component. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More information about it</a>."
                 }
               }
             },
@@ -488,7 +488,7 @@
                 "description": "Prop to set the checkboxgroup's description."
               },
               "items": {
-                "description": "Prop to set the items of the group. The items must be objects that include valid props for the checkbox-component. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about it."
+                "description": "Prop to set the items of the group. The items must be objects that include valid props for the checkbox-component. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Read more about the checkbox-component</a> about it."
               },
               "multiple": {
                 "description": "Prop to allow multiple checkboxes to be selected at once. If not set the group will only allow one checked box at a time. Also the icons will be changed to rounded ones. This can be changed by setting the 'no-radio'-prop."
@@ -503,7 +503,7 @@
                 "description": "Prop to change the checkboxgroup's width."
               },
               "generalCheckboxProps": {
-                "description": "Prop to easily set same props for multiple checkboxes. Read <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">more</a> about possible props."
+                "description": "Prop to easily set same props for multiple checkboxes. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Read more about possible props</a>."
               },
               "notZero": {
                 "description": "Prop to make sure that at least one checkbox is checked."
