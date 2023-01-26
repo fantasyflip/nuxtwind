@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="props.label">
+    <label :for="sliderId" v-if="props.label">
       <slot name="label">{{ props.label }}</slot>
-    </div>
+    </label>
     <div v-if="props.description">
       <slot name="description">
         <div
@@ -15,7 +15,7 @@
     </div>
     <div class="w-full">
       <input
-        id="slider"
+        :id="sliderId"
         :value="modelValue"
         :min="props.min"
         :max="props.max"
@@ -29,6 +29,18 @@
 
 <script setup>
 import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
+
+function generateId() {
+  let result = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let charactersLength = characters.length;
+  for (let i = 0; i < 8; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+let sliderId = generateId();
 
 let colorMode = ref("dark");
 let htmlElement = ref(null);
@@ -189,7 +201,7 @@ const thumbBorderColor = computed(() => {
 
 let sliderStyleClass = computed(() => {
   let classes = [];
-  classes.push("appearance-none", "cursor-pointer");
+  classes.push("slider", "appearance-none", "cursor-pointer");
 
   if (props.rounded) {
     if (typeof props.rounded === "string") {
@@ -208,7 +220,7 @@ let sliderStyleClass = computed(() => {
 </script>
 
 <style scoped>
-#slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: v-bind(thumbSize);
   height: v-bind(thumbSize);
@@ -217,7 +229,7 @@ let sliderStyleClass = computed(() => {
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
-#slider::-webkit-slider-thumb:hover {
+.slider::-webkit-slider-thumb:hover {
   width: v-bind(thumbSizeHover);
   height: v-bind(thumbSizeHover);
 }
