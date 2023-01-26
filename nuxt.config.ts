@@ -31,6 +31,7 @@ export default defineNuxtConfig({
       },
     ],
     "@vueuse/nuxt",
+    "nuxt-simple-robots",
   ],
   vite: {
     plugins: [
@@ -45,7 +46,7 @@ export default defineNuxtConfig({
     // Private keys are only available on the server
     // Public keys that are exposed to the client
     public: {
-      origin: process.env.ORIGIN,
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
     },
   },
 });
