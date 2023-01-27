@@ -10,6 +10,7 @@
         <Button
           icon
           class="hover:-translate-y-px transition-all duration-300"
+          ari-label="Component"
           @click="showTab('component')"
         >
           <div class="flex">
@@ -41,6 +42,7 @@
             text: showHtml ? 'text-orange-700' : 'text-zinc-500',
             iconHover: 'hover:text-orange-700',
           }"
+          ari-label="Template"
           @click="showTab('html')"
         >
           <div class="flex">
@@ -67,6 +69,7 @@
             text: showJavascript ? 'text-yellow-500' : 'text-zinc-500',
             iconHover: 'hover:text-yellow-500',
           }"
+          ari-label="Script"
           @click="showTab('js')"
         >
           <div class="flex">
