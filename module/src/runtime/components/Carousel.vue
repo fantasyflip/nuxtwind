@@ -61,8 +61,8 @@
       </div>
     </div>
 
-    <div v-if="!props.hidePagination" :class="paginationWrapperStyleClass">
-      <div v-for="(item, index) in itemCount" :key="index">
+    <ol v-if="!props.hidePagination" :class="paginationWrapperStyleClass">
+      <li v-for="(item, index) in itemCount" :key="index">
         <Button icon @click="$emit('update:modelValue', index + 1)">
           <svg
             v-if="props.modelValue === index + 1"
@@ -85,8 +85,8 @@
           <!-- <MdiCheckboxBlankCircle v-if="props.modelValue === index + 1" />
           <MdiCheckboxBlankCircleOutline v-else /> -->
         </Button>
-      </div>
-    </div>
+      </li>
+    </ol>
   </div>
   <!-- TODO add slider overview below carousel with prop -->
 </template>
