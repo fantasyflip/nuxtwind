@@ -81,6 +81,7 @@
           text: 'text-gray-700 dark:text-gray-300',
           iconHover: 'hover:text-gray-400 dark:hover:text-gray-500',
         }"
+        ari-label="Close"
         @click="close()"
       >
         <!-- <MdiClose /> -->
