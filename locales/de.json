@@ -1137,5 +1137,17 @@
         "caveats": "Vorbehalte"
       }
     }
+  },
+  " components": {
+    "codeHighlight": {
+      "button": {
+        "copy": "Kopieren"
+      }
+    },
+    "bashHighlight": {
+      "button": {
+        "copy": "Kopieren"
+      }
+    }
   }
 }

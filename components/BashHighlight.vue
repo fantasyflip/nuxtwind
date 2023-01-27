@@ -9,7 +9,11 @@
     <div
       class="absolute right-3 top-5 group-hover:opacity-100 opacity-0 transition-opacity"
     >
-      <Button icon @click="handleCopy">
+      <Button
+        icon
+        :ari-label="$t(' components.bashHighlight.button.copy')"
+        @click="handleCopy"
+      >
         <MdiContentCopy />
       </Button>
     </div>
