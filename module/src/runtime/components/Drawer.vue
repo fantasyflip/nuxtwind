@@ -1,13 +1,13 @@
 <template>
   <div v-if="props.modelValue && props.overlay" :class="overlayClass"></div>
-  <div
+  <aside
     ref="drawer"
     :class="drawerWrapperClass"
     @mouseenter="hanldeHoverEnter"
     @mouseleave="handleHoverLeave"
   >
     <slot></slot>
-  </div>
+  </aside>
 </template>
 
 <script setup>
