@@ -8,6 +8,7 @@
             typeof props.navigationIcon === 'object' ? props.navigationIcon : {}
           "
           @click="emit('navigation-icon-click')"
+          ari-label="Toggle Drawer"
         >
           <component
             :is="props.navigationIcon"
