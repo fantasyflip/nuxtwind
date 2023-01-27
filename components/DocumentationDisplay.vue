@@ -1,23 +1,15 @@
 <template>
-  <h2
-    id="documentation"
-    class="lg:text-3xl text-2xl font-bold cursor-pointer mx-4"
-    @click="$hashAndCopy('documentation')"
-  >
+  <HeadingHash element="h2" hash="documentation" class="mx-4">
     <span
       >{{ $t("components.documentationDisplay.content.documentation") }} -
     </span>
     <span class="text-primary-800">
       {{ props.componentName }}
     </span>
-  </h2>
+  </HeadingHash>
   <div class="mx-2">
-    <div v-if="sortedProps.length > 0" class="mx-4 mt-4">
-      <h3
-        id="properties"
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
-        @click="$hashAndCopy('properties')"
-      >
+    <section v-if="sortedProps.length > 0" class="mx-4 mt-4">
+      <HeadingHash element="h3" hash="properties">
         <span
           >{{ $t("components.documentationDisplay.content.props") }}
           <span class="font-normal"> ({{ sortedProps.length }})</span> -
@@ -25,21 +17,19 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </h3>
-      <div
-        v-for="(prop, index) in sortedProps"
-        :key="index"
-        :class="index < sortedProps.length - 1 ? 'border-b' : ''"
-      >
-        <PropDisplay :item="prop" />
-      </div>
-    </div>
-    <div v-if="props.events.length > 0" class="mx-4 mt-4">
-      <h3
-        id="events"
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
-        @click="$hashAndCopy('events')"
-      >
+      </HeadingHash>
+      <ul>
+        <li
+          v-for="(prop, index) in sortedProps"
+          :key="index"
+          :class="index < sortedProps.length - 1 ? 'border-b' : ''"
+        >
+          <PropDisplay :item="prop" />
+        </li>
+      </ul>
+    </section>
+    <section v-if="props.events.length > 0" class="mx-4 mt-4">
+      <HeadingHash element="h3" hash="events">
         <span
           >{{ $t("components.documentationDisplay.content.events") }}
           <span class="font-normal"> ({{ props.events.length }})</span> -
@@ -47,21 +37,19 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </h3>
-      <div
-        v-for="(event, index) in props.events"
-        :key="index"
-        :class="index < props.events.length - 1 ? 'border-b' : ''"
-      >
-        <EventDisplay :item="event" />
-      </div>
-    </div>
-    <div v-if="sortedSlots.length > 0" class="mx-4 mt-4">
-      <h3
-        id="slots"
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
-        @click="$hashAndCopy('slots')"
-      >
+      </HeadingHash>
+      <ul>
+        <li
+          v-for="(event, index) in props.events"
+          :key="index"
+          :class="index < props.events.length - 1 ? 'border-b' : ''"
+        >
+          <EventDisplay :item="event" />
+        </li>
+      </ul>
+    </section>
+    <section v-if="sortedSlots.length > 0" class="mx-4 mt-4">
+      <HeadingHash element="h3" hash="slots">
         <span
           >{{ $t("components.documentationDisplay.content.slots") }}
           <span class="font-normal"> ({{ sortedSlots.length }})</span> -
@@ -69,21 +57,19 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </h3>
-      <div
-        v-for="(slot, index) in sortedSlots"
-        :key="index"
-        :class="index < sortedSlots.length - 1 ? 'border-b' : ''"
-      >
-        <SlotDisplay :item="slot" />
-      </div>
-    </div>
-    <div v-if="sortedConfigs.length > 0" class="mx-4 mt-4">
-      <h3
-        id="configs"
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
-        @click="$hashAndCopy('configs')"
-      >
+      </HeadingHash>
+      <ul>
+        <li
+          v-for="(slot, index) in sortedSlots"
+          :key="index"
+          :class="index < sortedSlots.length - 1 ? 'border-b' : ''"
+        >
+          <SlotDisplay :item="slot" />
+        </li>
+      </ul>
+    </section>
+    <section v-if="sortedConfigs.length > 0" class="mx-4 mt-4">
+      <HeadingHash element="h3" hash="configs">
         <span
           >{{ $t("components.documentationDisplay.content.configs") }}
           <span class="font-normal"> ({{ sortedConfigs.length }})</span> -
@@ -91,21 +77,19 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </h3>
-      <div
-        v-for="(config, index) in sortedConfigs"
-        :key="index"
-        :class="index < sortedConfigs.length - 1 ? 'border-b' : ''"
-      >
-        <ConfigDisplay :item="config" />
-      </div>
-    </div>
-    <div v-if="sortedCaveats.length > 0" class="mx-4 mt-4">
-      <h3
-        id="caveats"
-        class="lg:text-2xl text-xl font-bold cursor-pointer"
-        @click="$hashAndCopy('caveats')"
-      >
+      </HeadingHash>
+      <ul>
+        <li
+          v-for="(config, index) in sortedConfigs"
+          :key="index"
+          :class="index < sortedConfigs.length - 1 ? 'border-b' : ''"
+        >
+          <ConfigDisplay :item="config" />
+        </li>
+      </ul>
+    </section>
+    <section v-if="sortedCaveats.length > 0" class="mx-4 mt-4">
+      <HeadingHash element="h3" hash="caveats">
         <span
           >{{ $t("components.documentationDisplay.content.caveats") }}
           <span class="font-normal"> ({{ sortedCaveats.length }})</span> -
@@ -113,15 +97,17 @@
         <span class="text-primary-800">
           {{ props.componentName }}
         </span>
-      </h3>
-      <div
-        v-for="(caveat, index) in sortedCaveats"
-        :key="index"
-        :class="index < sortedCaveats.length - 1 ? 'border-b' : ''"
-      >
-        <CaveatDisplay :item="caveat" />
-      </div>
-    </div>
+      </HeadingHash>
+      <ul>
+        <li
+          v-for="(caveat, index) in sortedCaveats"
+          :key="index"
+          :class="index < sortedCaveats.length - 1 ? 'border-b' : ''"
+        >
+          <CaveatDisplay :item="caveat" />
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
