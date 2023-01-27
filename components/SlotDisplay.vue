@@ -1,31 +1,27 @@
 <template>
   <div class="py-3 px-2">
-    <div
-      :id="'slot-' + props.item.name"
-      class="text-xl font-bold cursor-pointer"
-      :class="
-        $route.hash === '#' + ('slot-' + props.item.name)
-          ? 'text-secondary-800'
-          : 'text-primary-800'
-      "
-      @click="$hashAndCopy('slot-' + props.item.name)"
+    <HeadingHash
+      element="h4"
+      :hash="'slot-' + props.item.name.replace(/\s+/g, '-')"
     >
-      <Tooltip right width="w-40">
-        <h4 class="hover:text-secondary-800">{{ props.item.name }}</h4>
-        <template #tooltip>{{
-          $t("components.slotDisplay.content.copyTooltip")
-        }}</template>
-      </Tooltip>
-    </div>
+      <span
+        :class="
+          $route.hash === '#' + ('slot-' + props.item.name.replace(/\s+/g, '-'))
+            ? 'text-secondary-800'
+            : 'text-primary-800'
+        "
+      >
+        {{ props.item.name }}
+      </span>
+    </HeadingHash>
     <div class="pl-2">
-      <div class="text-lg font-semibold">Description</div>
-      <div v-html="props.item.description"></div>
+      <h5 class="text-lg font-semibold">Description</h5>
+      <p v-html="props.item.description"></p>
     </div>
   </div>
 </template>
 
 <script setup>
-import Tooltip from "../module/src/runtime/components/Tooltip.vue";
 const props = defineProps({
   item: {
     type: Object,
