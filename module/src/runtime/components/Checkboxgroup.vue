@@ -12,8 +12,8 @@
         </div>
       </slot>
     </div>
-    <div>
-      <div v-for="(item, index) in props.items" :key="item.id" class="pt-2">
+    <ul>
+      <li v-for="(item, index) in props.items" :key="item.id" class="pt-2">
         <Checkbox
           v-model="checkboxValues[index]"
           :label="props.generalCheckboxProps?.label || item.label"
@@ -26,8 +26,8 @@
           :loading="props.loading || item.loading"
           :radio="!props.multiple && !props.noRadio"
         />
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 

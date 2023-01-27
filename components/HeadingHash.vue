@@ -1,7 +1,7 @@
 <template>
   <div
     :id="props.hash"
-    class="flex group hover:cursor-pointer translate-all hover:-translate-y-px duration-500 w-auto"
+    class="flex group hover:cursor-pointer transition-transform hover:-translate-y-px duration-500 w-auto"
     @click="$hashAndCopy(props.hash)"
   >
     <h1 v-if="props.element === 'h1'" :class="styleClass">

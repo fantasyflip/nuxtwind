@@ -68,6 +68,9 @@ useHead({
     },
   ],
 });
+onBeforeMount(() => {
+  window.location.href = "/en/";
+});
 </script>
 
 <style scoped>

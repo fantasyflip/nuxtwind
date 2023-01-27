@@ -24,25 +24,26 @@
           lang="ts"
           path="nuxt.config.ts"
         />
-        <HeadingHash element="h2" hash="customPrefix" class="py-10">
-          <code class="dark:bg-zinc-800 bg-gray-200 rounded-lg p-1"
-            >customPrefix</code
+        <section>
+          <HeadingHash element="h2" hash="customPrefix" class="py-10">
+            <code class="dark:bg-zinc-800 bg-gray-200 rounded-lg p-1"
+              >customPrefix</code
+            >
+          </HeadingHash>
+          <span
+            >{{ $t("pages.options.content.customPrefix.default") }}:
+            <code class="dark:bg-zinc-800 bg-gray-200 rounded-lg p-1"
+              >'NXW-'</code
+            ></span
           >
-        </HeadingHash>
-        <span
-          >{{ $t("pages.options.content.customPrefix.default") }}:
-          <code class="dark:bg-zinc-800 bg-gray-200 rounded-lg p-1"
-            >'NXW-'</code
-          ></span
-        >
-        <p class="py-3">
-          {{ $t("pages.options.content.customPrefix.description") }}
-        </p>
-        <h3 class="text-xl md:text-2xl xl:text-3xl font-semibold py-6">
-          {{ $t("pages.options.content.customPrefix.example.title") }}
-        </h3>
-        <CodeHighlight
-          content='export default defineNuxtConfig({
+          <p class="py-3">
+            {{ $t("pages.options.content.customPrefix.description") }}
+          </p>
+          <h3 class="text-xl md:text-2xl xl:text-3xl font-semibold py-6">
+            {{ $t("pages.options.content.customPrefix.example.title") }}
+          </h3>
+          <CodeHighlight
+            content='export default defineNuxtConfig({
   modules: [
     [
       "@nuxtwind/components",
@@ -53,13 +54,16 @@
     ],
   ],
 });'
-          lang="ts"
-          path="nuxt.config.ts"
-        />
-        <div
-          class="py-3"
-          v-html="$t('pages.options.content.customPrefix.example.description')"
-        ></div>
+            lang="ts"
+            path="nuxt.config.ts"
+          />
+          <div
+            class="py-3"
+            v-html="
+              $t('pages.options.content.customPrefix.example.description')
+            "
+          ></div>
+        </section>
       </NuxtLayout>
     </NuxtLayout>
   </div>

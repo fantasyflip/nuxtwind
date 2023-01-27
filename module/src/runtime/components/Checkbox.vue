@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div id="checkbox" :class="iconStyleClass">
+    <div :id="checkboxId" :class="iconStyleClass">
       <!-- <MdiCheckboxMarked
         v-if="modelValue && !props.radio"
         @click="updateModelValue(false)"
@@ -65,7 +65,7 @@
     </div>
     <div v-if="props.label" :class="labelStyleClass">
       <label
-        for="checkbox"
+        :for="checkboxId"
         :class="props.disabled || props.loading ? '' : 'cursor-pointer'"
         @click="updateModelValue(!props.modelValue)"
       >
@@ -84,6 +84,18 @@
 
 <script setup>
 import { computed } from "vue";
+function generateId() {
+  let result = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let charactersLength = characters.length;
+  for (let i = 0; i < 8; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+let checkboxId = generateId();
+
 let defaults = {
   color: {
     label: "text-black dark:text-gray-300",

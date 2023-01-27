@@ -9,27 +9,30 @@
           {{ $t("pages.theme.content.description") }}
         </p>
         <div class="border-[0.5px] border-zinc-500 my-4"></div>
-        <HeadingHash
-          element="h2"
-          hash="customize-theme-tailwind"
-          class="py-4"
-          >{{ $t("pages.theme.content.tailwindconfig.title") }}</HeadingHash
-        >
-        <p class="py-3">
-          {{ $t("pages.theme.content.tailwindconfig.firstStep") }}
-        </p>
-        <HeadingHash element="h3" hash="custom-theme" class="py-6">{{
-          $t("pages.theme.content.tailwindconfig.custom.title")
-        }}</HeadingHash>
-        <p class="py-3">
-          {{ $t("pages.theme.content.tailwindconfig.custom.description") }}
-        </p>
-        <p class="py-3">
-          {{ $t("pages.theme.content.tailwindconfig.custom.firstStep") }}
-        </p>
-        <CodeHighlight
-          class="mb-2"
-          content='export default {
+        <section>
+          <HeadingHash
+            element="h2"
+            hash="customize-theme-tailwind"
+            class="py-4"
+            >{{ $t("pages.theme.content.tailwindconfig.title") }}</HeadingHash
+          >
+          <p class="py-3">
+            {{ $t("pages.theme.content.tailwindconfig.firstStep") }}
+          </p>
+        </section>
+        <section>
+          <HeadingHash element="h3" hash="custom-theme" class="py-6">{{
+            $t("pages.theme.content.tailwindconfig.custom.title")
+          }}</HeadingHash>
+          <p class="py-3">
+            {{ $t("pages.theme.content.tailwindconfig.custom.description") }}
+          </p>
+          <p class="py-3">
+            {{ $t("pages.theme.content.tailwindconfig.custom.firstStep") }}
+          </p>
+          <CodeHighlight
+            class="mb-2"
+            content='export default {
   theme: {
     extend: {
       colors: {
@@ -61,42 +64,46 @@
     },
   },
 };'
-          lang="js"
-          path="tailwind.config.js"
-        />
-        <div
-          class="w-full bg-blue-500 border-2 border-blue-600 rounded-lg p-2 text-black text-sm"
-        >
-          {{ $t("pages.theme.content.info.darkMode.prefix") }}
-          <NuxtLink
-            to="https://tailwindcss.com/docs/dark-mode"
-            external
-            class="text-blue-800 hover:text-purple-700 font-semibold"
-            >{{
-              $t("pages.theme.content.info.darkMode.link.tailwind")
-            }}</NuxtLink
+            lang="js"
+            path="tailwind.config.js"
+          />
+          <div
+            class="w-full bg-blue-500 border-2 border-blue-600 rounded-lg p-2 text-black text-sm"
           >
-          {{ $t("pages.theme.content.info.darkMode.mid") }}
-          <NuxtLink
-            to="https://color-mode.nuxtjs.org/"
-            external
-            class="text-blue-800 hover:text-purple-700 font-semibold"
-            >{{
-              $t("pages.theme.content.info.darkMode.link.nuxtColorMode")
-            }}</NuxtLink
-          >
-          {{ $t("pages.theme.content.info.darkMode.suffix") }}
-        </div>
-        <HeadingHash element="h3" hash="nuxtwind-theme" class="py-6">{{
-          $t("pages.theme.content.tailwindconfig.default.title")
-        }}</HeadingHash>
-        <div
-          class="py-3"
-          v-html="$t('pages.theme.content.tailwindconfig.default.description')"
-        ></div>
-        <CodeHighlight
-          class="mb-2"
-          content='export default {
+            {{ $t("pages.theme.content.info.darkMode.prefix") }}
+            <NuxtLink
+              to="https://tailwindcss.com/docs/dark-mode"
+              external
+              class="text-blue-800 hover:text-purple-700 font-semibold"
+              >{{
+                $t("pages.theme.content.info.darkMode.link.tailwind")
+              }}</NuxtLink
+            >
+            {{ $t("pages.theme.content.info.darkMode.mid") }}
+            <NuxtLink
+              to="https://color-mode.nuxtjs.org/"
+              external
+              class="text-blue-800 hover:text-purple-700 font-semibold"
+              >{{
+                $t("pages.theme.content.info.darkMode.link.nuxtColorMode")
+              }}</NuxtLink
+            >
+            {{ $t("pages.theme.content.info.darkMode.suffix") }}
+          </div>
+        </section>
+        <section>
+          <HeadingHash element="h3" hash="nuxtwind-theme" class="py-6">{{
+            $t("pages.theme.content.tailwindconfig.default.title")
+          }}</HeadingHash>
+          <div
+            class="py-3"
+            v-html="
+              $t('pages.theme.content.tailwindconfig.default.description')
+            "
+          ></div>
+          <CodeHighlight
+            class="mb-2"
+            content='export default {
   darkMode: "class",
   theme: {
     extend: {
@@ -129,9 +136,10 @@
     },
   },
 };'
-          lang="js"
-          path="tailwind.config.js"
-        />
+            lang="js"
+            path="tailwind.config.js"
+          />
+        </section>
       </NuxtLayout>
     </NuxtLayout>
   </div>

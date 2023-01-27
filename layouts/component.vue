@@ -1,16 +1,12 @@
 <template>
   <div>
     <NuxtLayout name="docs">
-      <div
-        id="playground"
-        class="lg:text-2xl text-xl font-bold cursor-pointer mx-4"
-        @click="$hashAndCopy('playground')"
-      >
+      <HeadingHash element="h2" hash="playground" class="pl-4">
         <span>{{ $t("layouts.component.content.playground") }} - </span>
         <span class="text-primary-800">
           <slot name="componentName"></slot>
         </span>
-      </div>
+      </HeadingHash>
       <div class="lg:flex lg:h-[88vh] w-full lg:my-4 mt-2">
         <div
           class="lg:w-1/2 lg:h-full h-[44vh] flex items-center justify-center mx-4 lg:mb-0 mb-4 lg:p-0 py-4"
@@ -111,7 +107,7 @@ useHead({
     {
       hid: "og:title",
       property: "og:title",
-      content: t("layouts.component.meta.og.title"),
+      content: t("layouts.component.meta.og.title", { componentName }),
     },
     {
       hid: "og:description",

@@ -1,30 +1,28 @@
 <template>
   <div class="py-3 px-2">
-    <div
-      :id="'event-' + props.item.name"
-      class="text-xl font-bold cursor-pointer"
-      :class="
-        $route.hash === '#' + ('event-' + props.item.name)
-          ? 'text-secondary-800'
-          : 'text-primary-800'
-      "
-      @click="$hashAndCopy('event-' + props.item.name)"
+    <HeadingHash
+      element="h4"
+      :hash="'config-' + props.item.name.replace(/\s+/g, '-')"
     >
-      <Tooltip right width="w-40">
-        <span class="hover:text-secondary-800">{{ props.item.name }}</span>
-        <template #tooltip>{{
-          $t("components.configDisplay.content.copyTooltip")
-        }}</template>
-      </Tooltip>
-    </div>
+      <span
+        :class="
+          $route.hash ===
+          '#' + ('config-' + props.item.name.replace(/\s+/g, '-'))
+            ? 'text-secondary-800'
+            : 'text-primary-800'
+        "
+      >
+        {{ props.item.name }}
+      </span>
+    </HeadingHash>
     <div class="pl-2">
       <div class="sm:flex">
         <div class="sm:w-3/5 sm:pr-5">
-          <div class="text-lg font-semibold">Description</div>
-          <div v-html="props.item.description"></div>
+          <h5 class="text-lg font-semibold">Description</h5>
+          <p v-html="props.item.description"></p>
         </div>
         <div class="sm:w-2/5 sm:pt-0 pt-2">
-          <div class="text-lg font-semibold">Structure</div>
+          <h5 class="text-lg font-semibold">Structure</h5>
           <!-- v-if="typeof props.item.default === 'object'" -->
           <client-only
             v-if="typeof props.item.structure === 'object'"
@@ -53,7 +51,6 @@
 </template>
 
 <script setup>
-import Tooltip from "../module/src/runtime/components/Tooltip.vue";
 const props = defineProps({
   item: {
     type: Object,

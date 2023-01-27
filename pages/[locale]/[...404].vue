@@ -4,21 +4,21 @@
       <span>404</span>
       <span class="text-primary-800 group-hover:text-secondary-800">.</span>
     </div>
-    <div class="md:text-3xl sm:text-2xl text-xl">
+    <h1 class="md:text-3xl sm:text-2xl text-xl">
       {{ $t("pages.404.content.errorMessage") }}
-    </div>
-    <div
+    </h1>
+    <h2
       v-if="$route.query.component"
       class="md:text-2xl sm:text-xl text-lg"
       v-html="
         $t('pages.404.content.urlDisplay', { path: $route.query.component })
       "
-    ></div>
-    <div
+    ></h2>
+    <h2
       v-else
       class="md:text-2xl sm:text-xl text-lg"
       v-html="$t('pages.404.content.urlDisplay', { path: $route.path })"
-    ></div>
+    ></h2>
     <NuxtLink
       :to="useLocaleUrl('')"
       :rel="$t('pages.404.buttons.home')"

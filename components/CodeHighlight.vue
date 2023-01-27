@@ -11,7 +11,11 @@
     <div
       class="absolute bottom-2 right-3 group-hover:opacity-100 opacity-0 transition-opacity"
     >
-      <Button icon @click="handleCopy">
+      <Button
+        icon
+        :ari-label="$t(' components.codeHighlight.button.copy')"
+        @click="handleCopy"
+      >
         <MdiContentCopy />
       </Button>
     </div>

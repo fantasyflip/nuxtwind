@@ -16,21 +16,23 @@
         <NuxtWindName v-else :height="30" />
       </div>
     </Appbar>
-    <div class="lg:h-[82vh] h-[72vh] overflow-y-auto">
-      <div
-        v-for="routeItem in routes"
-        :key="routeItem.name"
-        class="p-2 text-md w-full relative z-20 transition-all ease-[cubic-bezier(0,0,0,1)] duration-300 before:bg-gradient-to-r before:from-secondary-700 after:bg-gradient-to-r after:from-secondary-700 before:content-[''] after:content-[''] before:absolute after:absolute before:z-[-1] after:z-[-1] before:transition-all after:transition-all before:duration-300 after:duration-300 before:ease-[cubic-bezier(0,0,0,1)] after:ease-[cubic-bezier(0,0,0,1)] after:h-full after:w-0 after:top-0 hover:after:w-full after:left-0 before:shadow-lg after:shadow-lg"
-        :class="
-          $route.matched[0].path === routeItem.path
-            ? 'bg-gradient-to-r from-secondary-700 to-primary-800 shadow-xl'
-            : ''
-        "
-        @click="navigateTo(routeItem.path.replace(':locale/', ''))"
-      >
-        {{ capitalizeFirstLetter(routeItem.name) }}
-      </div>
-    </div>
+    <nav class="lg:h-[82vh] h-[72vh] overflow-y-auto">
+      <ul>
+        <li v-for="routeItem in routes" :key="routeItem.name">
+          <NuxtLink
+            :to="routeItem.path.replace(':locale/', '')"
+            class="p-2 inline-block w-full text-md relative z-20 transition-all ease-[cubic-bezier(0,0,0,1)] duration-300 before:bg-gradient-to-r before:from-secondary-700 after:bg-gradient-to-r after:from-secondary-700 before:content-[''] after:content-[''] before:absolute after:absolute before:z-[-1] after:z-[-1] before:transition-all after:transition-all before:duration-300 after:duration-300 before:ease-[cubic-bezier(0,0,0,1)] after:ease-[cubic-bezier(0,0,0,1)] after:h-full after:w-0 after:top-0 hover:after:w-full after:left-0 before:shadow-lg after:shadow-lg"
+            :class="
+              $route.matched[0].path === routeItem.path
+                ? 'bg-gradient-to-r from-secondary-700 to-primary-800 shadow-xl'
+                : ''
+            "
+          >
+            {{ capitalizeFirstLetter(routeItem.name) }}
+          </NuxtLink>
+        </li>
+      </ul>
+    </nav>
     <div
       class="w-full flex h-12 hover:bg-primary-800 cursor-pointer fixed bottom-0"
       @click="handlePinDrawer"
@@ -62,10 +64,10 @@
         class="mx-4 ml-14 lg:text-3xl text-2xl font-extrabold flex"
         :class="componentName ? 'justify-between' : 'justify-end'"
       >
-        <div v-if="componentName" class="group flex pb-1">
+        <h1 v-if="componentName" class="group flex pb-1">
           {{ componentName }}
           <div class="text-primary-800 group-hover:text-secondary-800">.</div>
-        </div>
+        </h1>
         <NuxtWindName
           :height="40"
           class="invisible md:visible absolute left-1/2 transform -translate-x-1/2 top-1 cursor-pointer"
@@ -80,6 +82,7 @@
                 text: 'text-primary-800',
               }"
               grow
+              :ari-label="$t('layouts.component.content.cycleTheme.tooltip')"
               @click="handleCycleTheme()"
             >
               <MdiThemeLightDark />
@@ -96,6 +99,7 @@
                 text: 'text-primary-800',
               }"
               grow
+              ari-label='$t("layouts.component.content.switchLocale.tooltip")'
               @click="handleSwitchLocale()"
             >
               <MdiTranslate />
@@ -113,6 +117,7 @@
                 text: 'text-primary-800',
               }"
               grow
+              :ari-label="$t('layouts.component.content.github.tooltip')"
             >
               <MdiGithub />
             </Button>

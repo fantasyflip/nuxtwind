@@ -4,7 +4,7 @@
     "component": {
       "meta": {
         "title": "{componentName}",
-        "description": "Übersicht über die {componentName} Komponente.",
+        "description": "Testen Sie und erfahren Sie mehr über die {componentName}-Komponente.",
         "categoryDescription": "Übersicht über die {componentName} Komponente. Erfahre mehr über {category}.",
         "itemDescription": "Übersicht über die {componentName} Komponente. Erfahre mehr über '{item}'-{category}.",
         "itemContentDescription": "Übersicht über die {componentName} Komponente. Erfaher mehr über '{item}'-{category}:\n{content}",
@@ -319,6 +319,12 @@
               },
               "height": {
                 "description": "Eigenschaft um die Höhe der Schaltfläche festzulegen. \nEs kann eine Tailwind \"h\"-Klasse übergeben werden."
+              },
+              "ariLabel": {
+                "description": "Eigenschaft um das Aria-Label für den Button festzulegen."
+              },
+              "type": {
+                "description": "Eigenschaft um den Typ des Buttons festzulegen."
               }
             },
             "caveats": {
@@ -494,14 +500,14 @@
             "properties": {
               "referComponent": {
                 "textfield": {
-                  "description": "Diese Eigenschaft wird nur auf die integrierte Textfeldkomponente angewandet. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Mehr</a> über das Verhalten der Eigenschaft."
+                  "description": "Diese Eigenschaft wird nur auf die integrierte Textfeldkomponente angewandet. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Mehr über das Verhalten der Eigenschaft</a>."
                 }
               },
               "items": {
                 "description": "Eigenschaft um die Elemente der Select-Komponente zu füllen."
               },
               "color": {
-                "description": "Eigenschaft um die Farbe für den Hintergrund, den Text, den Rahmen und die Hover-Farbe des Dropdown-Menüs festzulegen, das beim Klicken auf das Auswahlfeld angezeigt wird. \nMit einem verschachtelten 'textfield'-Objekt können die Farben des Textfeldes selbst eingestellt werden. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere</a> Informationen zur Textfeld-Color-Prop."
+                "description": "Eigenschaft um die Farbe für den Hintergrund, den Text, den Rahmen und die Hover-Farbe des Dropdown-Menüs festzulegen, das beim Klicken auf das Auswahlfeld angezeigt wird. \nMit einem verschachtelten 'textfield'-Objekt können die Farben des Textfeldes selbst eingestellt werden. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere Informationen zur Textfeld-Color-Prop</a>."
               },
               "search": {
                 "description": "Eigenschaft um das Dropdown-Menü des Auswahlfelds zu senken und ein Suchfeld anzuzeigen, um die Elemente des Select-Feldes zu filtern."
@@ -522,7 +528,7 @@
             "slots": {
               "referComponent": {
                 "textfield": {
-                  "description": "Dieser Platzhalter leitet nur auf den gleichnamigen Platzhalter der 'textfield'-Komponente um. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere</a> Informationen darüber."
+                  "description": "Dieser Platzhalter leitet nur auf den gleichnamigen Platzhalter der 'textfield'-Komponente um. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere Informationen darüber</a>."
                 }
               }
             },
@@ -614,7 +620,7 @@
                 "description": "Eigenschaft um die Beschreibung der Checkboxgruppe festzulegen."
               },
               "items": {
-                "description": "Eigenschaft um die Elemente der Gruppe festzulegen. \nDie Elemente müssen Objekte sein, die gültige Eigenschaften für die Checkbox-Komponente enthalten. \nLesen Sie <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">mehr</a> darüber."
+                "description": "Eigenschaft um die Elemente der Gruppe festzulegen. \nDie Elemente müssen Objekte sein, die gültige Eigenschaften für die Checkbox-Komponente enthalten. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Lesen Sie mehr über die Checkbox-Komponente</a> darüber."
               },
               "multiple": {
                 "description": "Eigenschaft, die es ermöglicht mehrere Kontrollkästchen gleichzeitig auszuwählen. \nWenn nicht gesetzt, lässt die Gruppe jeweils nur ein aktiviertes Kästchen zu. \nAußerdem werden die Symbole in abgerundete geändert. \nDies kann durch Setzen der 'no-radio'-Eigenschaft geändert werden."
@@ -629,7 +635,7 @@
                 "description": "Eigenschaft um die Breite der Checkbox-Gruppe zu ändern."
               },
               "generalCheckboxProps": {
-                "description": "Eigenschadt um einfach dieselben Eigenschaften für mehrere Kontrollkästchen festzulegen. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Mehr</a> über mögliche Eigenschaften."
+                "description": "Eigenschadt um einfach dieselben Eigenschaften für mehrere Kontrollkästchen festzulegen. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Lesen Sie mehr über mögliche Eigenschaften</a>."
               },
               "notZero": {
                 "description": "Eigenschaft um sicherzustellen, dass mindestens ein Kontrollkästchen aktiviert ist."
@@ -1019,7 +1025,7 @@
           "title": "Optionen"
         },
         "description": "Die Verwendung von Nuxtwind ist so einfach wie das Hinzufügen eines Moduls zu Ihrem Nuxt.js-Projekt\n          \nund kleinere Änderungen an Ihrer TailwindCSS-Konfiguration vorzunehmen.",
-        "title": "Loslegen",
+        "title": "Mit Nuxtwind loslegen",
         "attention": {
           "theme": {
             "prefix": "Die meisten Ihrer Komponenten werden an dieser Stelle schwarz und weiß sein. \nWenn Sie jede Komponente einzeln gestalten möchten, wird dies funktionieren. \nUm einen Standardstil für alle Komponenten auf einmal bereitzustellen, informieren Sie sich über die Anwendung eines ",
@@ -1059,7 +1065,7 @@
     },
     "theme": {
       "content": {
-        "title": "Farbschema",
+        "title": "Farbschema auf Nuxtwind anwenden",
         "description": "Erfahren Sie, wie Sie ganz einfach einen Standardstil für alle Ihre Nuxtwind-Komponenten bereitstellen.",
         "tailwindconfig": {
           "title": "Anpassungen an Ihrer TailwindCSS-Config",
@@ -1129,6 +1135,18 @@
         "slots": "Platzhalter",
         "configs": "Konfigurationen",
         "caveats": "Vorbehalte"
+      }
+    }
+  },
+  " components": {
+    "codeHighlight": {
+      "button": {
+        "copy": "Kopieren"
+      }
+    },
+    "bashHighlight": {
+      "button": {
+        "copy": "Kopieren"
       }
     }
   }

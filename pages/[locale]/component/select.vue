@@ -87,7 +87,7 @@ const { t } = useI18n();
 const selectIcon = markRaw(MdiMenuDown);
 
 let select = ref({
-  label: "Textfield-Label",
+  label: "Select-Label",
   placeholder: "Placeholder",
   value: "",
 });
