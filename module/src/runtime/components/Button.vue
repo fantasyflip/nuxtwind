@@ -171,6 +171,13 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
+  type: {
+    type: String,
+    default: "button",
+    validator: (value) => {
+      return ["button", "submit", "reset"].includes(value);
+    },
+  },
   width: {
     type: String,
     default: undefined,
