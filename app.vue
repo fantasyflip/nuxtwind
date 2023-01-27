@@ -44,6 +44,8 @@ import tailwindConfig from "./tailwind.config.js";
 
 const tw = resolveConfig(tailwindConfig);
 
+const config = useRuntimeConfig();
+
 defineRobotMeta();
 
 const route = useRoute();
@@ -62,7 +64,7 @@ watch(
   () => useRoute().path,
   (newPath, oldPath) => {
     if (newPath !== oldPath) {
-      let canonical = useRuntimeConfig().public.siteUrl + newPath;
+      let canonical = config.public.siteUrl + newPath;
       useHead({
         link: [
           {

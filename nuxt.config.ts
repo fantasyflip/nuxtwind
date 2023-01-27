@@ -46,7 +46,7 @@ export default defineNuxtConfig({
     // Private keys are only available on the server
     // Public keys that are exposed to the client
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://nuxtwind.com",
     },
   },
 });
