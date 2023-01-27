@@ -188,6 +188,12 @@
               },
               "height": {
                 "description": "Prop to set the height of the button. You can set it to a tailwind 'h'-class."
+              },
+              "ariLabel": {
+                "description": "Prop to set the aria-label for the button."
+              },
+              "type": {
+                "description": "Prop to set the button's type."
               }
             },
             "slots": {

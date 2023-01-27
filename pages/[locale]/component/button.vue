@@ -109,6 +109,22 @@ let codeExample = computed(() => {
 
 let props = [
   {
+    name: "ariLabel",
+    type: "String",
+    default: undefined,
+    description: t(
+      "pages.component.button.content.documentation.properties.ariLabel.description"
+    ),
+  },
+  {
+    name: "type",
+    type: "String",
+    default: "button",
+    description: t(
+      "pages.component.button.content.documentation.properties.type.description"
+    ),
+  },
+  {
     name: "color",
     type: "Object",
     default: {

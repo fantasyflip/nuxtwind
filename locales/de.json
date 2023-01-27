@@ -319,6 +319,12 @@
               },
               "height": {
                 "description": "Eigenschaft um die Höhe der Schaltfläche festzulegen. \nEs kann eine Tailwind \"h\"-Klasse übergeben werden."
+              },
+              "ariLabel": {
+                "description": "Eigenschaft um das Aria-Label für den Button festzulegen."
+              },
+              "type": {
+                "description": "Eigenschaft um den Typ des Buttons festzulegen."
               }
             },
             "caveats": {
