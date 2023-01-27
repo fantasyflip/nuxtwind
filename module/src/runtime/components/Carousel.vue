@@ -14,6 +14,7 @@
           :color="{
             iconHover: 'hover:text-white',
           }"
+          ari-label="Next"
           @click="nextItem"
         >
           <div class="relative w-8 h-8 grid place-items-center">
@@ -40,6 +41,7 @@
           :color="{
             iconHover: 'hover:text-white',
           }"
+          ari-label="Previous"
           @click="prevItem"
         >
           <div class="relative w-8 h-8 grid place-items-center">
@@ -63,7 +65,11 @@
 
     <ol v-if="!props.hidePagination" :class="paginationWrapperStyleClass">
       <li v-for="(item, index) in itemCount" :key="index">
-        <Button icon @click="$emit('update:modelValue', index + 1)">
+        <Button
+          icon
+          @click="$emit('update:modelValue', index + 1)"
+          :ari-label="'Carousel-Item ' + (index + 1)"
+        >
           <svg
             v-if="props.modelValue === index + 1"
             viewBox="0 0 24 24"
