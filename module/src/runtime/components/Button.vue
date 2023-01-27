@@ -39,7 +39,13 @@
       </div>
     </div>
   </NuxtLink>
-  <div v-else :class="styleClass">
+  <button
+    v-else
+    :class="styleClass"
+    :disabled="props.disabled"
+    :type="props.type"
+    :aria-label="props.ariLabel"
+  >
     <div class="relative">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
@@ -72,7 +78,7 @@
         <slot>Button</slot>
       </div>
     </div>
-  </div>
+  </button>
 </template>
 
 <script setup>
