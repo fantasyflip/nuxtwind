@@ -30,21 +30,19 @@
       <template #label> <slot name="label"></slot> </template>
     </Textfield>
     <div v-if="showSelect" :class="dropDownStyleCass">
-      <ul>
-        <li
-          v-for="(item, index) in selectItems"
-          :key="index"
-          class="p-2"
-          :class="
-            index < selectItems.length - 1
-              ? itemStyleClass
-              : props.color?.hover || defaults.color.hover
-          "
-          @click.stop="setItem(item)"
-        >
-          {{ item }}
-        </li>
-      </ul>
+      <option
+        v-for="(item, index) in selectItems"
+        :key="index"
+        class="p-2"
+        :class="
+          index < selectItems.length - 1
+            ? itemStyleClass
+            : props.color?.hover || defaults.color.hover
+        "
+        @click.stop="setItem(item)"
+      >
+        {{ item }}
+      </option>
     </div>
   </div>
 </template>
