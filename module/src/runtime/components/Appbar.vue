@@ -41,7 +41,23 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  color?: {
+    bg?: string;
+  };
+  fixed?: boolean;
+  absolute?: boolean;
+  sticky?: boolean;
+  bottom?: boolean;
+  extension?: boolean;
+  shrinkOnScroll?: boolean;
+  elevateOnScroll?: boolean;
+  scrollOffset?: number;
+  navigationIcon?: boolean | object;
+  zIndex?: string;
+  height?: string;
+}
 import Button from "./Button.vue";
 import { computed } from "vue";
 import { useWindowScroll } from "@vueuse/core";
@@ -52,60 +68,25 @@ let defaults = {
   elevateOnScroll: "drop-shadow-md",
 };
 
-let props = defineProps({
-  color: {
-    type: Object,
-    default() {
-      return {
-        bg: "bg-white dark:bg-zinc-900",
-      };
-    },
+const props = withDefaults(defineProps<Props>(), {
+  color: () => {
+    return {
+      bg: "bg-white dark:bg-zinc-900",
+    };
   },
-  fixed: {
-    type: Boolean,
-    default: false,
-  },
-  absolute: {
-    type: Boolean,
-    default: false,
-  },
-  sticky: {
-    type: Boolean,
-    default: false,
-  },
-  bottom: {
-    type: Boolean,
-    default: false,
-  },
-  extension: {
-    type: Boolean,
-    default: false,
-  },
-  shrinkOnScroll: {
-    type: Boolean,
-    default: false,
-  },
-  elevateOnScroll: {
-    type: Boolean,
-    default: false,
-  },
-  scrollOffset: {
-    type: Number,
-    default: null,
-  },
-  navigationIcon: {
-    type: [Boolean, Object],
-    default: false,
-  },
-  zIndex: {
-    type: String,
-    default: "z-10",
-  },
-  height: {
-    type: String,
-    default: "h-14",
-  },
+  fixed: false,
+  absolute: false,
+  sticky: false,
+  bottom: false,
+  extension: false,
+  shrinkOnScroll: false,
+  elevateOnScroll: false,
+  scrollOffset: undefined,
+  navigationIcon: false,
+  zIndex: "z-10",
+  height: "h-14",
 });
+
 let emit = defineEmits(["navigation-icon-click"]);
 
 let { y } = useWindowScroll();
@@ -133,7 +114,7 @@ let extensionIsActive = computed(() => {
 });
 
 let appbarWrapperClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
 
   //   if (!props.extension) {
   classes.push(props.height);
@@ -201,7 +182,7 @@ let appbarWrapperClass = computed(() => {
 });
 
 let navigationIconClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
 
   classes.push(
     "absolute",
