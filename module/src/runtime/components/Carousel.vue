@@ -97,7 +97,23 @@
   <!-- TODO add slider overview below carousel with prop -->
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  modelValue?: number;
+  autoPlay?: boolean;
+  timeout?: number;
+  disableAutoPlayOnHover?: boolean;
+  hideNavigation?: boolean;
+  hidePagination?: boolean;
+  shadow?: boolean | string;
+  transition?:
+    | boolean
+    | {
+        duration?: string;
+        delay?: string;
+        ease?: string;
+      };
+}
 import Button from "./Button.vue";
 import { computed, ref, onMounted } from "vue";
 let defaults = {
@@ -109,43 +125,20 @@ let defaults = {
   },
 };
 
-let props = defineProps({
-  // TODO: add color prop
-  modelValue: {
-    type: Number,
-    default: 1,
-    required: true,
-  },
-  autoPlay: {
-    type: Boolean,
-    default: true,
-  },
-  timeout: {
-    type: Number,
-    default: 5000,
-  },
-  disableAutoPlayOnHover: {
-    type: Boolean,
-    default: true,
-  },
-  hideNavigation: {
-    type: Boolean,
-    default: false,
-  },
-  hidePagination: {
-    type: Boolean,
-    default: false,
-  },
-  shadow: {
-    type: [Boolean, String],
-    default: true,
-  },
-  transition: {
-    type: [Boolean, Object],
-    default: true,
-  },
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: 1,
+  autoPlay: true,
+  timeout: 5000,
+  disableAutoPlayOnHover: true,
+  hideNavigation: false,
+  hidePagination: false,
+  shadow: true,
+  transition: true,
 });
-let emit = defineEmits(["update:modelValue"]);
+
+const emit = defineEmits<{
+  (e: "update:modelValue", id: number): void;
+}>();
 
 let itemCount = ref(0);
 
@@ -171,7 +164,7 @@ const prevItem = () => {
   }
 };
 
-let interval = null;
+let interval: any = undefined;
 function enableAutoPlay() {
   if (props.disableAutoPlayOnHover && props.autoPlay) {
     interval = setInterval(() => {
@@ -195,7 +188,7 @@ if (props.autoPlay) {
 }
 
 const wrapperStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "carousel",
     "relative",
@@ -217,7 +210,7 @@ const wrapperStyleClass = computed(() => {
 });
 
 const rightNavigationWrapperStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "absolute",
     "right-1",
@@ -228,7 +221,12 @@ const rightNavigationWrapperStyleClass = computed(() => {
     "group-hover/carousel:translate-x-0"
   );
 
-  if (props.transition) {
+  if (typeof props.transition === "boolean" && props.transition) {
+    classes.push("transition-all");
+    classes.push(defaults.transition.duration);
+    classes.push(defaults.transition.delay);
+    classes.push(defaults.transition.ease);
+  } else if (typeof props.transition === "object" && props.transition) {
     classes.push("transition-all");
     classes.push(props.transition?.duration || defaults.transition.duration);
     classes.push(props.transition?.delay || defaults.transition.delay);
@@ -239,7 +237,7 @@ const rightNavigationWrapperStyleClass = computed(() => {
 });
 
 const leftNavigationWrapperStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "absolute",
     "left-1",
@@ -250,7 +248,12 @@ const leftNavigationWrapperStyleClass = computed(() => {
     "group-hover/carousel:translate-x-0"
   );
 
-  if (props.transition) {
+  if (typeof props.transition === "boolean" && props.transition) {
+    classes.push("transition-all");
+    classes.push(defaults.transition.duration);
+    classes.push(defaults.transition.delay);
+    classes.push(defaults.transition.ease);
+  } else if (typeof props.transition === "object" && props.transition) {
     classes.push("transition-all");
     classes.push(props.transition?.duration || defaults.transition.duration);
     classes.push(props.transition?.delay || defaults.transition.delay);
@@ -261,7 +264,7 @@ const leftNavigationWrapperStyleClass = computed(() => {
 });
 
 const backgroundNavigationStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "w-8",
     "h-8",
@@ -275,7 +278,10 @@ const backgroundNavigationStyleClass = computed(() => {
     "transition-opacity"
   );
 
-  if (props.transition) {
+  if (typeof props.transition === "boolean" && props.transition) {
+    classes.push("transition-opacity");
+    classes.push(defaults.transition.duration);
+  } else if (typeof props.transition === "object" && props.transition) {
     classes.push("transition-opacity");
     classes.push(props.transition?.duration || defaults.transition.duration);
   }
@@ -284,7 +290,7 @@ const backgroundNavigationStyleClass = computed(() => {
 });
 
 const paginationWrapperStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "absolute",
     "bottom-3",
@@ -297,7 +303,12 @@ const paginationWrapperStyleClass = computed(() => {
     "group-hover/carousel:translate-y-0"
   );
 
-  if (props.transition) {
+  if (typeof props.transition === "boolean" && props.transition) {
+    classes.push("transition-all");
+    classes.push(defaults.transition.duration);
+    classes.push(defaults.transition.delay);
+    classes.push(defaults.transition.ease);
+  } else if (typeof props.transition === "object" && props.transition) {
     classes.push("transition-all");
     classes.push(props.transition?.duration || defaults.transition.duration);
     classes.push(props.transition?.delay || defaults.transition.delay);
