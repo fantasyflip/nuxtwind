@@ -3,7 +3,7 @@
     <transition name="fade">
       <div
         v-if="currentItem === step"
-        :id="props.step"
+        :id="`${props.step}`"
         class="absolute top-0 left-0 w-full h-full"
       >
         <slot />
@@ -12,23 +12,23 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  step: number;
+}
 import { ref, onMounted, onBeforeUnmount } from "vue";
-let props = defineProps({
-  step: {
-    type: Number,
-    required: true,
-  },
+const props = withDefaults(defineProps<Props>(), {
+  step: 1,
 });
 
 let currentItem = ref(0);
-let parentElement = ref(null);
-let observer = null;
+let parentElement = ref<any>(null);
+let observer: any = null;
 
 onMounted(() => {
   parentElement.value = document.querySelector(
     ".carousel-item-" + props.step
-  ).parentElement;
+  )!.parentElement;
   currentItem.value = Number(
     parentElement.value.id.replace("currentItem-", "")
   );
