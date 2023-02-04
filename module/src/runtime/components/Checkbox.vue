@@ -82,7 +82,26 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  modelValue?: boolean;
+  color?: {
+    label?: string;
+    description?: string;
+    iconInactive?: string;
+    iconActive?: string;
+    hover?: string;
+  };
+  text?: {
+    label?: string;
+    description?: string;
+  };
+  label?: string;
+  description?: string;
+  radio?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+}
 import { computed } from "vue";
 function generateId() {
   let result = "";
@@ -110,55 +129,33 @@ let defaults = {
   },
 };
 
-let props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: false,
+  color: () => {
+    return {
+      label: "text-black dark:text-gray-300",
+      description: "text-gray-500 dark:text-gray-400",
+      iconInactive: "text-gray-500 dark:text-gray-400",
+      iconActive: "text-primary-800 dark:text-primary-800",
+      hover: "hover:text-secondary-700 dark:hover:text-secondary-700",
+    };
   },
-  color: {
-    type: Object,
-    default() {
-      return {
-        label: "text-black dark:text-gray-300",
-        description: "text-gray-500 dark:text-gray-400",
-        iconInactive: "text-gray-500 dark:text-gray-400",
-        iconActive: "text-primary-800 dark:text-primary-800",
-        hover: "hover:text-secondary-700 dark:hover:text-secondary-700",
-      };
-    },
+  text: () => {
+    return {
+      label: "text-sm font-medium",
+      description: "text-xs font-normal",
+    };
   },
-  label: {
-    type: String,
-    default: "",
-  },
-  description: {
-    type: String,
-    default: "",
-  },
-  text: {
-    type: Object,
-    default() {
-      return {
-        label: "text-sm font-medium",
-        description: "text-xs font-normal",
-      };
-    },
-  },
-  radio: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
+  label: "",
+  description: "",
+  radio: false,
+  disabled: false,
+  loading: false,
 });
 
-let emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits<{
+  (e: "update:modelValue", id: boolean): void;
+}>();
 
 function updateModelValue(value) {
   if (props.disabled || props.loading) return;
@@ -166,7 +163,7 @@ function updateModelValue(value) {
 }
 
 let iconStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push("flex", "items-center", "h-5");
 
   //COLOR
@@ -193,7 +190,7 @@ let iconStyleClass = computed(() => {
 });
 
 let labelStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push("ml-2");
 
   classes.push(props.text?.label || defaults.text.label);
@@ -204,7 +201,7 @@ let labelStyleClass = computed(() => {
 });
 
 let descriptionStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
 
   classes.push(props.text?.description || defaults.text.description);
 
