@@ -28,7 +28,9 @@
         :icon="item.icon"
         @close="
           () => {
-            removeToast(item.id);
+            removeToast({
+              id: item.id,
+            });
           }
         "
       />
@@ -36,13 +38,15 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Toast from "./module/src/runtime/components/Toast.vue";
+import { Toast as ToastType } from "./composables/Toast";
 import { useI18n } from "vue-i18n";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "./tailwind.config.js";
 
-const tw = resolveConfig(tailwindConfig);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const tw = resolveConfig(tailwindConfig as any) as any;
 
 const config = useRuntimeConfig();
 
@@ -54,7 +58,7 @@ watch(
   () => route.params.locale,
   (newLocale, oldLocale) => {
     if (newLocale !== oldLocale) {
-      locale.value = newLocale;
+      locale.value = newLocale as string;
     }
   },
   { immediate: true }
@@ -110,27 +114,37 @@ useHead({
 
 const { toasts, removeToast, stopBodyOverflow, allowBodyOverflow } = useToast();
 
-const { data } = useBroadcastChannel("broadcast");
-
+const { data } = useBroadcastChannel({
+  name: "broadcast",
+});
 watch(data, (newData) => {
-  if (newData && newData.type === "toast" && newData.payload) {
-    if (newData.method === "create" && !document.hidden) {
-      useToast(newData.payload, false);
+  const broadcastData = newData as {
+    type: string;
+    method: string;
+    payload: ToastType;
+  };
+  if (
+    broadcastData &&
+    broadcastData.type === "toast" &&
+    broadcastData.payload
+  ) {
+    if (broadcastData.method === "create" && !document.hidden) {
+      useToast(broadcastData.payload, false);
     }
 
-    if (newData.method === "remove") {
-      removeToast(newData.payload);
+    if (broadcastData.method === "remove") {
+      removeToast(broadcastData.payload);
     }
   }
 
-  if (newData && newData.type === "theme") {
-    if (newData.method === "cycle") {
+  if (broadcastData && broadcastData.type === "theme") {
+    if (broadcastData.method === "cycle") {
       useNuxtApp().$cycleTheme(document.hidden);
     }
   }
 
-  if (newData && newData.type === "locale") {
-    if (newData.method === "switch") {
+  if (broadcastData && broadcastData.type === "locale") {
+    if (broadcastData.method === "switch") {
       useNuxtApp().$switchLocale(document.hidden);
     }
   }
