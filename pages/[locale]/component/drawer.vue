@@ -108,7 +108,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Drawer from "../../../module/src/runtime/components/Drawer.vue";
 import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
 import Appbar from "../../../module/src/runtime/components/Appbar.vue";
