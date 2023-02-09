@@ -27,7 +27,26 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  modelValue: number;
+  color?: {
+    description?: string;
+    sliderLine?: string;
+    sliderThumb?: string;
+    sliderThumbDark?: string;
+    sliderThumbBorder?: string;
+    sliderThumbBorderDark?: string;
+  };
+  label?: string;
+  description?: string;
+  min?: number;
+  max?: number;
+  thumbSize?: number;
+  rounded?: string | boolean;
+  width?: string;
+  height?: string;
+}
 import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
 
 function generateId() {
@@ -43,12 +62,12 @@ function generateId() {
 let sliderId = generateId();
 
 let colorMode = ref("dark");
-let htmlElement = ref(null);
-let observer = null;
+let htmlElement = ref<HTMLElement>();
+let observer: MutationObserver;
 
 function getColorMode() {
   // get class of html element
-  let htmlClass = document.querySelector("html").classList;
+  let htmlClass = document.querySelector("html")!.classList;
   // check if dark mode is enabled
   if (htmlClass.contains("dark")) {
     return "dark";
@@ -60,7 +79,7 @@ function getColorMode() {
 onMounted(() => {
   colorMode.value = getColorMode();
 
-  htmlElement.value = document.querySelector("html");
+  htmlElement.value = document.querySelector("html") as HTMLElement;
 
   observer = new MutationObserver(() => {
     colorMode.value = getColorMode();
@@ -88,59 +107,31 @@ let defaults = {
   rounded: "rounded-lg",
 };
 
-const props = defineProps({
-  modelValue: {
-    type: Number,
-    default: 0,
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: 0,
+  color: () => {
+    return {
+      description: "text-zinc-400",
+      sliderLine: "bg-zinc-600 dark:bg-zinc-600",
+      sliderThumb: "#06b6d4",
+      sliderThumbDark: "#06b6d4",
+      sliderThumbBorder: "#155e75",
+      sliderThumbBorderDark: "#155e75",
+    };
   },
-  color: {
-    type: Object,
-    default() {
-      return {
-        description: "text-zinc-400",
-        sliderLine: "bg-zinc-600 dark:bg-zinc-600",
-        sliderThumb: "#06b6d4",
-        sliderThumbDark: "#06b6d4",
-        sliderThumbBorder: "#155e75",
-        sliderThumbBorderDark: "#155e75",
-      };
-    },
-  },
-  label: {
-    type: String,
-    default: "",
-  },
-  description: {
-    type: String,
-    default: "",
-  },
-  min: {
-    type: Number,
-    default: 0,
-  },
-  max: {
-    type: Number,
-    default: 100,
-  },
-  thumbSize: {
-    type: Number,
-    default: 15,
-  },
-  rounded: {
-    type: [Boolean, String],
-    default: true,
-  },
-  width: {
-    type: String,
-    default: "w-full",
-  },
-  height: {
-    type: String,
-    default: "h-0.5",
-  },
+  label: "",
+  description: "",
+  min: 0,
+  max: 100,
+  thumbSize: 15,
+  rounded: true,
+  width: "w-full",
+  height: "h-0.5",
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits<{
+  (e: "update:modelValue", id: number): void;
+}>();
 
 if (props.modelValue > props.max) {
   emit("update:modelValue", props.max);
@@ -200,7 +191,7 @@ const thumbBorderColor = computed(() => {
 });
 
 let sliderStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push("slider", "appearance-none", "cursor-pointer");
 
   if (props.rounded) {
