@@ -2,14 +2,16 @@ import MdiTranslate from "~icons/mdi/translate";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const localeNotificationIcon = markRaw(MdiTranslate);
-  nuxtApp.provide("switchLocale", (noToast) => {
+  nuxtApp.provide("switchLocale", (noToast: boolean) => {
     const route = useRoute();
     const router = useRouter();
     const currentLocale = route.params.locale;
-    router.push({
-      name: route.name,
-      params: { locale: currentLocale === "en" ? "de" : "en" },
-    });
+    if (route.name) {
+      router.push({
+        name: route.name,
+        params: { locale: currentLocale === "en" ? "de" : "en" },
+      });
+    }
 
     if (!noToast) {
       useToast({
