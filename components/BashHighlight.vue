@@ -20,17 +20,16 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  content: string;
+}
 import Button from "../module/src/runtime/components/Button.vue";
 import MdiChevronRight from "~icons/mdi/chevron-right";
 import MdiContentCopy from "~icons/mdi/content-copy";
 import MdiBash from "~icons/mdi/bash";
-const props = defineProps({
-  content: {
-    type: String,
-    required: true,
-  },
-});
+
+const props = defineProps<Props>();
 
 const bashIcon = markRaw(MdiBash);
 const route = useRoute();
