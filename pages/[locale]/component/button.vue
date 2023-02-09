@@ -54,7 +54,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Button from "../../../module/src/runtime/components/Button.vue";
 import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
 import Textfield from "../../../module/src/runtime/components/Textfield.vue";
