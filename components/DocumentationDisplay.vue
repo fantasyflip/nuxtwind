@@ -111,42 +111,42 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  componentName: {
-    type: String,
-    default: "componentName",
-  },
-  props: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
-  events: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
-  slots: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
-  configs: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
-  caveats: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
+<script lang="ts" setup>
+export interface Props {
+  componentName: string;
+  props?: Array<{
+    name: string;
+    type: string;
+    default: any;
+    description: string;
+  }>;
+  events?: Array<{
+    name: string;
+    structure: object | string | undefined;
+    description: string;
+  }>;
+  slots?: Array<{
+    name: string;
+    description: string;
+  }>;
+  configs?: Array<{
+    name: string;
+    structure: object;
+    description: string;
+  }>;
+  caveats?: Array<{
+    name: string;
+    description: string;
+  }>;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  componentName: "componentName",
+  props: () => [],
+  events: () => [],
+  slots: () => [],
+  configs: () => [],
+  caveats: () => [],
 });
 
 let sortedProps = computed(() => {
