@@ -74,7 +74,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Tooltip from "../../../module/src/runtime/components/Tooltip.vue";
 import Button from "../../../module/src/runtime/components/Button.vue";
 import Textfield from "../../../module/src/runtime/components/Textfield.vue";
