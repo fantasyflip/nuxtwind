@@ -50,24 +50,29 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+export interface Props {
   item: {
-    type: Object,
-    default() {
-      return {
-        name: "EventName",
-        structure: {
-          name: "object-item",
-          count: 2,
-        },
-        description: "This is a description of an event",
-      };
-    },
+    name: string;
+    structure: object | string | undefined;
+    description: string;
+  };
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  item: () => {
+    return {
+      name: "EventName",
+      structure: {
+        name: "object-item",
+        count: 2,
+      },
+      description: "This is a description of an event",
+    };
   },
 });
 
-function getClassByType(item) {
+function getClassByType(item: object | string | undefined) {
   if (typeof item === "boolean") {
     return "text-red-400";
   } else if (typeof item === "number") {
