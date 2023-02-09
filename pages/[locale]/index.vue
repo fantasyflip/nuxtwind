@@ -54,7 +54,7 @@
                 lg: '50%',
                 xl: '50%',
                 '2xl': '50%',
-              }).value.current.value
+              }).value.current!.value as string
             "
           />
         </ClientOnly>
@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Button from "../../module/src/runtime/components/Button.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
