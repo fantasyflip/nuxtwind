@@ -2,11 +2,11 @@ import MdiThemeLightDark from "~icons/mdi/theme-light-dark";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const themeNotificationIcon = markRaw(MdiThemeLightDark);
-  nuxtApp.provide("cycleTheme", (noToast) => {
+  nuxtApp.provide("cycleTheme", (noToast: boolean) => {
     const route = useRoute();
     const currentLocale = route.params.locale;
 
-    let colorMode = useColorMode();
+    const colorMode = useColorMode();
 
     let nextTheme = "system";
     if (colorMode.preference === "system") {
