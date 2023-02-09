@@ -13,8 +13,8 @@
             :outlined="styleCheckedBoxes[1]"
             :loading="checkedBoxes[0]"
             :disabled="checkedBoxes[1]"
-            :append-icon="checkedBoxes[2] ? selectIcon : null"
-            :prepend-icon="checkedBoxes[3] ? selectIcon : null"
+            :append-icon="checkedBoxes[2] ? selectIcon : undefined"
+            :prepend-icon="checkedBoxes[3] ? selectIcon : undefined"
             :search="checkedBoxes[4]"
             :color="{
               textfield: {
@@ -75,7 +75,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Select from "../../../module/src/runtime/components/Select.vue";
 import Textfield from "../../../module/src/runtime/components/Textfield.vue";
 import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
@@ -146,7 +146,7 @@ let codeExample = computed(() => {
   }${checkedBoxes.value[4] ? `\n  search` : ""}
 />`;
   let js = `${
-    checkedBoxes.value[2] | checkedBoxes.value[3]
+    checkedBoxes.value[2] || checkedBoxes.value[3]
       ? `import MdiMenuDown from "~icons/mdi/menu-down";
 let selectIcon = markRaw(MdiMenuDown);`
       : ""
