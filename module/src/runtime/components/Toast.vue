@@ -111,7 +111,41 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  id?: string;
+  color?: {
+    text?: string;
+    bg?: string;
+    icon?: {
+      info?: {
+        text?: string;
+        bg?: string;
+      };
+      warning?: {
+        text?: string;
+        bg?: string;
+      };
+      error?: {
+        text?: string;
+        bg?: string;
+      };
+      success?: {
+        text?: string;
+        bg?: string;
+      };
+    };
+  };
+  autoClose?: boolean;
+  duration?: number;
+  rounded?: boolean | string;
+  type?: string;
+  title?: string;
+  message?: string;
+  shadow?: boolean | string;
+  icon?: object;
+  width?: string;
+}
 import Progress from "./Progress.vue";
 import Button from "./Button.vue";
 import { computed, ref } from "vue";
@@ -142,74 +176,45 @@ let defaults = {
   shadow: "shadow-lg",
 };
 
-const emit = defineEmits(["close", "autoClose"]);
-
-let props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
-  color: {
-    type: Object,
-    default() {
-      return {
-        text: "text-gray-700 dark:text-gray-300",
-        bg: "bg-gray-100 dark:bg-zinc-800",
-        icon: {
-          info: {
-            text: "text-blue-500 dark:text-blue-200",
-            bg: "bg-blue-200 dark:bg-blue-800",
-          },
-          warning: {
-            text: "text-yellow-500 dark:text-yellow-200",
-            bg: "bg-yellow-200 dark:bg-yellow-800",
-          },
-          error: {
-            text: "text-red-500 dark:text-red-200",
-            bg: "bg-red-200 dark:bg-red-800",
-          },
-          success: {
-            text: "text-green-500 dark:text-green-200",
-            bg: "bg-green-200 dark:bg-green-800",
-          },
+const props = withDefaults(defineProps<Props>(), {
+  color: () => {
+    return {
+      text: "text-gray-700 dark:text-gray-300",
+      bg: "bg-gray-100 dark:bg-zinc-800",
+      icon: {
+        info: {
+          text: "text-blue-500 dark:text-blue-200",
+          bg: "bg-blue-200 dark:bg-blue-800",
         },
-      };
-    },
+        warning: {
+          text: "text-yellow-500 dark:text-yellow-200",
+          bg: "bg-yellow-200 dark:bg-yellow-800",
+        },
+        error: {
+          text: "text-red-500 dark:text-red-200",
+          bg: "bg-red-200 dark:bg-red-800",
+        },
+        success: {
+          text: "text-green-500 dark:text-green-200",
+          bg: "bg-green-200 dark:bg-green-800",
+        },
+      },
+    };
   },
-  autoClose: { type: Boolean, default: true },
-  duration: { type: Number, default: 5 },
-  rounded: {
-    type: [Boolean, String],
-    default: true,
-  },
-  type: {
-    type: String,
-    default: "info",
-    validator(value) {
-      return ["info", "warning", "error", "success"].includes(value);
-    },
-  },
-  title: {
-    type: String,
-    default: "Toast-Title",
-  },
-  message: {
-    type: String,
-    default: "Toast-Message-Line",
-  },
-  shadow: {
-    type: [Boolean, String],
-    default: true,
-  },
-  icon: {
-    type: Object,
-    default: null,
-  },
-  width: {
-    type: String,
-    default: "w-full",
-  },
+  autoClose: true,
+  duration: 5,
+  rounded: true,
+  type: "info",
+  title: "Toast-Title",
+  message: "Toast-Message",
+  shadow: true,
+  width: "w-full",
 });
+
+const emit = defineEmits<{
+  (e: "close"): void;
+  (e: "autoClose"): void;
+}>();
 
 let progressValue = ref(100);
 
@@ -229,7 +234,7 @@ const close = () => {
 };
 
 const toastWrapperStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   // class="flex items-center p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
   classes.push("overflow-hidden");
 
@@ -258,7 +263,7 @@ const toastWrapperStyleClass = computed(() => {
 });
 
 const iconStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   // class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-blue-500 bg-blue-100 rounded-lg dark:bg-blue-800 dark:text-green-700"
   classes.push(
     "inline-flex",
