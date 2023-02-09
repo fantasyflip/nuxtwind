@@ -49,7 +49,18 @@
   </svg>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  width?: number | string;
+  height?: number | string;
+  ratio?: number;
+  color?: {
+    nuxtHillRight?: string;
+    nuxtHillLeft?: string;
+    tailwindCloudTop?: string;
+    tailwindCloudBottom?: string;
+  };
+}
 let defaults = {
   color: {
     nuxtHillRight: "fill-[#047857]",
@@ -59,29 +70,17 @@ let defaults = {
   },
 };
 
-let props = defineProps({
-  width: {
-    type: [Number, String],
-    default: null,
-  },
-  height: {
-    type: [Number, String],
-    default: null,
-  },
-  ratio: {
-    type: Number,
-    default: 5.12,
-  },
-  color: {
-    type: Object,
-    default() {
-      return {
-        nuxtHillRight: "fill-[#047857]",
-        nuxtHillLeft: "fill-[#10b881]",
-        tailwindCloudTop: "fill-[#165e75]",
-        tailwindCloudBottom: "fill-[#0891b1]",
-      };
-    },
+const props = withDefaults(defineProps<Props>(), {
+  width: undefined,
+  height: undefined,
+  ratio: 5.12,
+  color: () => {
+    return {
+      nuxtHillRight: "fill-[#047857]",
+      nuxtHillLeft: "fill-[#10b881]",
+      tailwindCloudTop: "fill-[#165e75]",
+      tailwindCloudBottom: "fill-[#0891b1]",
+    };
   },
 });
 
@@ -92,10 +91,10 @@ let svgHeight = computed(() => {
   if (props.height && props.height > 0) {
     return props.height;
   }
-  if (props.width && props.width > 0) {
+  if (props.width && typeof props.width === "number" && props.width > 0) {
     return props.width * props.ratio;
   }
-  return null;
+  return undefined;
 });
 
 let svgWidth = computed(() => {
@@ -105,9 +104,9 @@ let svgWidth = computed(() => {
   if (props.width && props.width > 0) {
     return props.width;
   }
-  if (props.height && props.height > 0) {
+  if (props.height && typeof props.height === "number" && props.height > 0) {
     return props.height * props.ratio;
   }
-  return null;
+  return undefined;
 });
 </script>
