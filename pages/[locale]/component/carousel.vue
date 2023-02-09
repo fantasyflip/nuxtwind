@@ -48,7 +48,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Carousel from "../../../module/src/runtime/components/Carousel.vue";
 import CarouselItem from "../../../module/src/runtime/components/CarouselItem.vue";
 import Slider from "../../../module/src/runtime/components/Slider.vue";
