@@ -1,13 +1,17 @@
-export const useOgpImageUrl = (component, description, dir) => {
-  let ogp = {
+export const useOgpImageUrl = (
+  component?: string,
+  description?: string,
+  dir?: string
+) => {
+  const ogp = {
     component,
     description,
-    dir: null,
+    dir: "",
   };
   if (dir) {
     ogp.dir = dir.replace(/ /g, "-");
   }
-  let imageUrl = new URL("https://og.nuxtwind.com/api/nuxtwind/component");
+  const imageUrl = new URL("https://og.nuxtwind.com/api/nuxtwind/component");
   if (ogp.component) {
     imageUrl.searchParams.append("component", ogp.component);
   }
