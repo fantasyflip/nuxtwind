@@ -68,7 +68,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Progress from "../../../module/src/runtime/components/Progress.vue";
 import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
 import Textfield from "../../../module/src/runtime/components/Textfield.vue";
@@ -177,6 +177,9 @@ let props = [
     name: "transition",
     type: "Boolean, Object",
     default: true,
+    description: t(
+      "pages.component.progress.content.documentation.properties.transition.description"
+    ),
   },
   {
     name: "rounded",
