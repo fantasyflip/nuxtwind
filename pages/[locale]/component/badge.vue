@@ -79,7 +79,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Badge from "../../../module/src/runtime/components/Badge.vue";
 import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
 import Checkbox from "../../../module/src/runtime/components/Checkbox.vue";
