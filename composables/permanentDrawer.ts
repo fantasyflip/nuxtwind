@@ -1,7 +1,7 @@
 const permanentDrawer = ref(false);
 
 export const usePermanentDrawer = (
-  newValue: boolean,
+  newValue?: boolean,
   updateLocalStorage = true
 ) => {
   if (typeof newValue === "boolean") {
