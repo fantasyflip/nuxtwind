@@ -15,7 +15,29 @@
     </div>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  color?: {
+    text?: string;
+    bg?: string;
+    bgPointer?: string;
+  };
+  top?: boolean;
+  bottom?: boolean;
+  left?: boolean;
+  right?: boolean;
+  transition?:
+    | boolean
+    | {
+        duration?: string;
+        ease?: string;
+      };
+  text?: string;
+  rounded?: boolean | string;
+  zIndex?: string;
+  interactive?: boolean;
+  width?: string;
+}
 import { computed } from "vue";
 let defaults = {
   color: {
@@ -30,57 +52,24 @@ let defaults = {
   rounded: "rounded-lg",
 };
 
-let props = defineProps({
-  color: {
-    type: Object,
-    default() {
-      return {
-        text: "dark:text-white text-black",
-        bg: "bg-primary-800",
-        bgPointer: "text-primary-800",
-      };
-    },
+const props = withDefaults(defineProps<Props>(), {
+  color: () => {
+    return {
+      text: "dark:text-white text-black",
+      bg: "bg-primary-800",
+      bgPointer: "text-primary-800",
+    };
   },
-  top: {
-    type: Boolean,
-    default: true,
-  },
-  bottom: {
-    type: Boolean,
-    default: false,
-  },
-  left: {
-    type: Boolean,
-    default: false,
-  },
-  right: {
-    type: Boolean,
-    default: false,
-  },
-  transition: {
-    type: [Boolean, Object],
-    default: true,
-  },
-  text: {
-    type: String,
-    default: "text-xs text-center",
-  },
-  rounded: {
-    type: [Boolean, String],
-    default: true,
-  },
-  zIndex: {
-    type: String,
-    default: "z-10",
-  },
-  interactive: {
-    type: Boolean,
-    default: false,
-  },
-  width: {
-    type: String,
-    default: "w-full",
-  },
+  top: true,
+  bottom: false,
+  left: false,
+  right: false,
+  transition: true,
+  text: "text-xs text-center",
+  rounded: true,
+  zIndex: "z-10",
+  interactive: false,
+  width: "w-full",
 });
 
 let contentWrapperClass = computed(() => {
@@ -90,7 +79,7 @@ let contentWrapperClass = computed(() => {
 });
 
 let tooltipWrapperClass = computed(() => {
-  let classes = [
+  let classes: string[] = [
     "transition-opacity",
     "opacity-0",
     "py-2",
@@ -167,7 +156,7 @@ let tooltipWrapperClass = computed(() => {
 });
 
 let pointerClass = computed(() => {
-  let classes = ["absolute", "text-black", "h-2", "w-full"];
+  let classes: string[] = ["absolute", "text-black", "h-2", "w-full"];
 
   if (props.left) {
     classes.push(

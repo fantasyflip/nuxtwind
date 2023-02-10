@@ -126,7 +126,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Toast from "../../../module/src/runtime/components/Toast.vue";
 import Textfield from "../../../module/src/runtime/components/Textfield.vue";
 import Select from "../../../module/src/runtime/components/Select.vue";
@@ -147,22 +147,22 @@ let testNotification = ref({
   type: "info",
 });
 
-function notEmpty(value) {
+function notEmpty(value: string) {
   if (value === "") {
     return t("pages.component.toast.content.playground.rule.notEmpty");
   }
   return true;
 }
 
-function isNumber(value) {
+function isNumber(value: number) {
   if (isNaN(value)) {
     return t("pages.component.toast.content.playground.rule.isNumber");
   }
   return true;
 }
 
-function maxVal(max) {
-  return (value) => {
+function maxVal(max: number) {
+  return (value: number) => {
     if (value > max) {
       return t("pages.component.toast.content.playground.rule.maxVal", { max });
     }
@@ -170,8 +170,8 @@ function maxVal(max) {
   };
 }
 
-function minVal(min) {
-  return (value) => {
+function minVal(min: number) {
+  return (value: number) => {
     if (value < min) {
       return t("pages.component.toast.content.playground.rule.maxVal", { min });
     }
@@ -335,12 +335,14 @@ let events = [
     description: t(
       "pages.component.toast.content.documentation.events.close.description"
     ),
+    structure: undefined,
   },
   {
     name: "autoClose",
     description: t(
       "pages.component.toast.content.documentation.events.autoClose.description"
     ),
+    structure: undefined,
   },
 ];
 

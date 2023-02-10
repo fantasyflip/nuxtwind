@@ -50,24 +50,29 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+export interface Props {
   item: {
-    type: Object,
-    default() {
-      return {
-        name: "ConfigExtend",
-        structure: {
-          name: "object-item",
-          count: 2,
-        },
-        description: "This is a description of the config extend",
-      };
-    },
+    name: string;
+    structure: object;
+    description: string;
+  };
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  item: () => {
+    return {
+      name: "ConfigName",
+      structure: {
+        name: "object-item",
+        count: 2,
+      },
+      description: "Config Description",
+    };
   },
 });
 
-function getClassByType(item) {
+function getClassByType(item: object) {
   if (typeof item === "boolean") {
     return "text-red-400";
   } else if (typeof item === "number") {

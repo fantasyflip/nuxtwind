@@ -53,25 +53,30 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+export interface Props {
   item: {
-    type: Object,
-    default() {
-      return {
-        name: "PropName",
-        type: "Object",
-        default: {
-          name: "object-item",
-          count: 2,
-        },
-        description: "This is a description of the prop",
-      };
-    },
+    name: string;
+    type: string;
+    default: object | string | number | boolean | undefined;
+    description: string;
+  };
+}
+const props = withDefaults(defineProps<Props>(), {
+  item: () => {
+    return {
+      name: "PropName",
+      type: "Object",
+      default: {
+        name: "object-item",
+        count: 2,
+      },
+      description: "This is a description of the prop",
+    };
   },
 });
 
-function getClassByType(item) {
+function getClassByType(item: object | string | number | boolean | undefined) {
   if (typeof item === "boolean") {
     return "text-red-400";
   } else if (typeof item === "number") {

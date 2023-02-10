@@ -5,7 +5,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "buildvercel": "cd ./module && npm run dev:prepare && cd .. && npm run build"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.36",

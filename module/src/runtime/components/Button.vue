@@ -81,9 +81,50 @@
   </button>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  color?: {
+    bg?: string;
+    text?: string;
+    border?: string;
+    hover?: string;
+    iconHover?: string;
+    loadingCircle?: string;
+    loadingCircleDark?: string;
+    loadingCircleProgress?: string;
+    loadingCircleProgressDark?: string;
+    loadingCircleCutout?: string;
+  };
+  rounded?: boolean | string;
+  grow?:
+    | boolean
+    | {
+        delay?: string;
+        scale?: string;
+      };
+  link?: object | string;
+  target?: string;
+  disabled?: boolean;
+  icon?: boolean;
+  loading?: boolean;
+  outlined?: boolean | string;
+  shadow?: boolean | string;
+  transition?:
+    | boolean
+    | {
+        duration?: string;
+        ease?: string;
+      };
+  dense?: boolean;
+  ariLabel?: string;
+  type?: "button" | "submit" | "reset";
+  width?: string;
+  height?: string;
+}
+
 import Progress from "./Progress.vue";
 import { computed } from "vue";
+
 let defaults = {
   color: {
     bg: "bg-primary-900 dark:bg-primary-900",
@@ -111,91 +152,52 @@ let defaults = {
   width: "w-fit",
 };
 
-const props = defineProps({
-  color: {
-    type: Object,
-    default() {
-      return {
-        bg: "bg-primary-900 dark:bg-primary-900",
-        text: "dark:text-white text-black",
-        border: "dark:border-white border-black",
-        hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
-        iconHover: "hover:text-secondary-800 dark:hover:text-secondary-800",
-        loadingCircle: "gray-400",
-        loadingCircleDark: "gray-700",
-        loadingCircleProgress: "primary-400",
-        loadingCircleProgressDark: "primary-400",
-        loadingCircleCutout: "before:bg-primary-900 dark:before:bg-primary-900",
-      };
-    },
+const props = withDefaults(defineProps<Props>(), {
+  color: () => {
+    return {
+      bg: "bg-primary-900 dark:bg-primary-900",
+      text: "dark:text-white text-black",
+      border: "dark:border-white border-black",
+      hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
+      iconHover: "hover:text-secondary-800 dark:hover:text-secondary-800",
+      loadingCircle: "gray-400",
+      loadingCircleDark: "gray-700",
+      loadingCircleProgress: "primary-400",
+      loadingCircleProgressDark: "primary-400",
+      loadingCircleCutout: "before:bg-primary-900 dark:before:bg-primary-900",
+    };
   },
-  rounded: {
-    type: [Boolean, String],
-    default: true,
+  rounded: true,
+  grow: () => {
+    return {
+      delay: "delay-10",
+      scale: "hover:scale-105",
+    };
   },
-  grow: {
-    type: [Boolean, Object],
-    default: false,
+  link: () => {
+    return "";
   },
-  link: {
-    type: [Object, String],
-    default: null,
+  target: "_self",
+  disabled: false,
+  icon: false,
+  loading: false,
+  outlined: false,
+  shadow: true,
+  transition: () => {
+    return {
+      duration: "duration-300",
+      ease: "ease-in-out",
+    };
   },
-  target: {
-    type: String,
-    default: "_self",
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  icon: {
-    type: Boolean,
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  outlined: {
-    type: [Boolean, String],
-    default: false,
-  },
-  shadow: {
-    type: [Boolean, String],
-    default: true,
-  },
-  transition: {
-    type: [Boolean, Object],
-    default: true,
-  },
-  dense: {
-    type: Boolean,
-    default: false,
-  },
-  ariLabel: {
-    type: String,
-    default: undefined,
-  },
-  type: {
-    type: String,
-    default: "button",
-    validator: (value) => {
-      return ["button", "submit", "reset"].includes(value);
-    },
-  },
-  width: {
-    type: String,
-    default: undefined,
-  },
-  height: {
-    type: String,
-    default: undefined,
-  },
+  dense: false,
+  ariLabel: "",
+  type: "button",
+  width: undefined,
+  height: "",
 });
 
 const styleClass = computed(() => {
-  let styleClasses = [];
+  let styleClasses: string[] = [];
 
   //COLOR
   //OUTLINED
@@ -233,7 +235,10 @@ const styleClass = computed(() => {
   } else if (!props.loading) {
     styleClasses.push("cursor-pointer");
     //GROW
-    if (props.grow) {
+    if (typeof props.grow === "boolean" && props.grow) {
+      styleClasses.push(defaults.grow.delay);
+      styleClasses.push(defaults.grow.scale);
+    } else if (typeof props.grow === "object" && props.grow) {
       styleClasses.push(props.grow.delay || defaults.grow.delay);
       styleClasses.push(props.grow.scale || defaults.grow.scale);
     }
@@ -245,8 +250,10 @@ const styleClass = computed(() => {
   }
 
   //TRANSITION
-  if (props.transition) {
-    styleClasses.push("transition");
+  if (typeof props.transition === "boolean" && props.transition) {
+    styleClasses.push(defaults.transition.duration);
+    styleClasses.push(defaults.transition.ease);
+  } else if (typeof props.grow === "object" && props.transition) {
     styleClasses.push(
       props.transition.duration || defaults.transition.duration
     );

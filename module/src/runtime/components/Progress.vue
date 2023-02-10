@@ -9,7 +9,11 @@
       <slot name="inner-circle">
         <div
           class="h-full w-full grid place-items-center"
-          :class="props.circular.cutout?.text || defaults.circular.cutout.text"
+          :class="
+            typeof props.circular === 'object'
+              ? props.circular.cutout!.text
+              : defaults.circular.cutout.text
+          "
         >
           {{ textProgress }}%
         </div>
@@ -21,16 +25,56 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  modelValue: number;
+  size?: {
+    width?: string;
+    height?: string;
+  };
+  color?: {
+    circle?: string;
+    circleDark?: string;
+    circleProgress?: string;
+    circleProgressDark?: string;
+    circleCutout?: string;
+    background?: string;
+    firstStrike?: string;
+    secondStrike?: string;
+    linearProgress?: string;
+    linearProgressHover?: string;
+  };
+  circular?:
+    | boolean
+    | {
+        width?: string;
+        height?: string;
+        cutout?: {
+          width?: string;
+          height?: string;
+          text?: string;
+        };
+      };
+  loading?: boolean;
+  initialLoadTime?: number | boolean;
+  initialLoadTimeType?: "calc" | "static";
+  transition?:
+    | boolean
+    | {
+        duration?: string;
+        ease?: string;
+      };
+  rounded?: boolean | string;
+}
 import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
 
 let colorMode = ref("dark");
-let htmlElement = ref(null);
-let observer = null;
+let htmlElement = ref<HTMLElement>();
+let observer: MutationObserver;
 
 function getColorMode() {
   // get class of html element
-  let htmlClass = document.querySelector("html").classList;
+  let htmlClass = document.querySelector("html")!.classList;
   // check if dark mode is enabled
   if (htmlClass.contains("dark")) {
     return "dark";
@@ -42,7 +86,7 @@ function getColorMode() {
 onMounted(() => {
   colorMode.value = getColorMode();
 
-  htmlElement.value = document.querySelector("html");
+  htmlElement.value = document.querySelector("html") as HTMLElement;
 
   observer = new MutationObserver(() => {
     colorMode.value = getColorMode();
@@ -90,75 +134,50 @@ let defaults = {
     ease: "ease-in-out",
   },
   rounded: "rounded-lg",
+  initialLoadTime: 100,
 };
 
-const props = defineProps({
-  modelValue: {
-    type: Number,
-    String,
-    default: null,
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: undefined,
+  size: () => {
+    return {
+      width: "w-full",
+      height: "h-1",
+    };
   },
-  size: {
-    type: Object,
-    default() {
-      return {
-        width: "w-full",
-        height: "h-1",
-      };
-    },
+  color: () => {
+    return {
+      circle: "#e5e7eb",
+      circleDark: "#27272a",
+      circleProgress: "#155e75",
+      circleProgressDark: "#155e75",
+      circleCutout: "before:bg-white dark:before:bg-zinc-900",
+      background: "bg-gray-200 dark:bg-zinc-800",
+      firstStrike: "before:bg-primary-800",
+      secondStrike: "after:bg-primary-600",
+      linearProgress: "bg-primary-800",
+      linearProgressHover: "hover:bg-secondary-800",
+    };
   },
-  color: {
-    type: Object,
-    default() {
-      return {
-        circle: "#e5e7eb",
-        circleDark: "#27272a",
-        circleProgress: "#155e75",
-        circleProgressDark: "#155e75",
-        circleCutout: "before:bg-white dark:before:bg-zinc-900",
-        background: "bg-gray-200 dark:bg-zinc-800",
-        firstStrike: "before:bg-primary-800",
-        secondStrike: "after:bg-primary-600",
-        linearProgress: "bg-primary-800",
-        linearProgressHover: "hover:bg-secondary-800",
-      };
-    },
-  },
-  circular: {
-    type: [Boolean, Object],
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  initialLoadTime: {
-    type: [Number, Boolean],
-    default: 100,
-  },
-  initialLoadTimeType: {
-    type: String,
-    default: "calc",
-    validator(value) {
-      return ["calc", "static"].includes(value);
-    },
-  },
-  transition: {
-    type: [Boolean, Object],
-    default: true,
-  },
-  rounded: {
-    type: [Boolean, String],
-    default: true,
-  },
+  circular: false,
+  loading: false,
+  initialLoadTime: 100,
+  initialLoadTimeType: "calc",
+  transition: true,
+  rounded: true,
 });
 
 let initialLoadTime = ref(false);
 
 if (props.initialLoadTime) {
-  setTimeout(() => {
-    initialLoadTime.value = true;
-  }, props.initialLoadTime);
+  setTimeout(
+    () => {
+      initialLoadTime.value = true;
+    },
+    typeof props.initialLoadTime === "number"
+      ? props.initialLoadTime
+      : defaults.initialLoadTime
+  );
 }
 
 let modelValueComputed = computed(() => {
@@ -167,14 +186,14 @@ let modelValueComputed = computed(() => {
 
 let lastInputValue = 0;
 
-let gradientProgress = ref(lastInputValue);
+let gradientProgress = ref<number | string>(lastInputValue);
 
 let textProgress = ref(lastInputValue);
 
 watch(
   modelValueComputed,
   (newValue) => {
-    gradientProgress.value = getCircularProgress(newValue);
+    getCircularProgress(newValue);
   },
   { immediate: true }
 );
@@ -197,9 +216,15 @@ function getCircularProgress(inputValue) {
   let speed = 0;
   if (props.initialLoadTime) {
     if (props.initialLoadTimeType === "static") {
-      speed = props.initialLoadTime;
+      speed =
+        typeof props.initialLoadTime === "number"
+          ? props.initialLoadTime
+          : defaults.initialLoadTime;
     } else {
-      speed = props.initialLoadTime / endValue;
+      speed =
+        (typeof props.initialLoadTime === "number"
+          ? props.initialLoadTime
+          : defaults.initialLoadTime) / endValue;
     }
   }
 
@@ -259,7 +284,7 @@ const circularColorProgressCss = computed(() => {
 });
 
 const circularStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   // class="relative w-[250px] h-[250px] rounded-[50%] grid place-items-center before:content-[''] before:absolute before:h-[84%] before:w-[84%] before:bg-zinc-900 before:rounded-[50%]"
   classes.push(
     "relative",
@@ -272,12 +297,21 @@ const circularStyleClass = computed(() => {
   );
 
   //SIZE
-  classes.push(props.circular.width || defaults.circular.width);
-  classes.push(props.circular.height || defaults.circular.height);
-  classes.push(props.circular.cutout?.width || defaults.circular.cutout.width);
-  classes.push(
-    props.circular.cutout?.height || defaults.circular.cutout.height
-  );
+  if (props.circular && typeof props.circular === "boolean") {
+    classes.push(defaults.circular.width);
+    classes.push(defaults.circular.height);
+    classes.push(defaults.circular.cutout.width);
+    classes.push(defaults.circular.cutout.height);
+  } else if (props.circular && typeof props.circular === "object") {
+    classes.push(props.circular.width || defaults.circular.width);
+    classes.push(props.circular.height || defaults.circular.height);
+    classes.push(
+      props.circular.cutout?.width || defaults.circular.cutout.width
+    );
+    classes.push(
+      props.circular.cutout?.height || defaults.circular.cutout.height
+    );
+  }
 
   //COLOR
   classes.push(props.color.circleCutout || defaults.color.circleCutout);
@@ -291,7 +325,7 @@ const circularStyleClass = computed(() => {
 });
 
 const linearWrapperStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
 
   //COLOR
   classes.push("overflow-hidden");
@@ -314,7 +348,7 @@ const linearWrapperStyleClass = computed(() => {
 });
 
 const linearStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
 
   classes.push("relative", "w-full", "h-full");
 
@@ -335,8 +369,13 @@ const linearStyleClass = computed(() => {
     );
     if (props.transition) {
       classes.push("transition-all");
-      classes.push(props.transition.duration || defaults.transition.duration);
-      classes.push(props.transition.ease || defaults.transition.ease);
+      if (typeof props.transition === "object") {
+        classes.push(props.transition.duration || defaults.transition.duration);
+        classes.push(props.transition.ease || defaults.transition.ease);
+      } else {
+        classes.push(defaults.transition.duration);
+        classes.push(defaults.transition.ease);
+      }
     }
   }
 
@@ -356,7 +395,7 @@ const linearProgressStyle = computed(() => {
   if (initialLoadTime.value || !props.initialLoadTime) {
     let percent = 0;
 
-    let input = null;
+    let input: number = 0;
     if (typeof props.modelValue === "number") {
       input = props.modelValue;
     } else if (typeof props.modelValue === "string") {

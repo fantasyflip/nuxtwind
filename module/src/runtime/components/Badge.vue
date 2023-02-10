@@ -9,63 +9,52 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  color?: {
+    bg?: string;
+    border?: string;
+    text?: string;
+  };
+  top?: boolean;
+  bottom?: boolean;
+  right?: boolean;
+  left?: boolean;
+  text?: string;
+  border?: boolean | string;
+  width?: string;
+  height?: string;
+}
 import { computed } from "vue";
 let defaults = {
   color: {
     bg: "bg-red-500 dark:bg-red-500",
     border: "border-white dark:border-zinc-900",
+    text: "text-white",
   },
   border: "border-2",
 };
 
-let props = defineProps({
-  color: {
-    type: Object,
-    default() {
-      return {
-        bg: "bg-red-500 dark:bg-red-500",
-        border: "border-white dark:border-zinc-900",
-        text: "text-white",
-      };
-    },
+const props = withDefaults(defineProps<Props>(), {
+  color: () => {
+    return {
+      bg: "bg-red-500 dark:bg-red-500",
+      border: "border-white dark:border-zinc-900",
+      text: "text-white",
+    };
   },
-  top: {
-    type: Boolean,
-    default: true,
-  },
-  bottom: {
-    type: Boolean,
-    default: false,
-  },
-  right: {
-    type: Boolean,
-    default: true,
-  },
-  left: {
-    type: Boolean,
-    default: false,
-  },
-  text: {
-    type: String,
-    default: "text-xs font-bold",
-  },
-  border: {
-    type: [Boolean, String],
-    default: true,
-  },
-  width: {
-    type: String,
-    default: "min-w-[24px]",
-  },
-  height: {
-    type: String,
-    default: "min-h-[24px]",
-  },
+  top: true,
+  bottom: false,
+  right: true,
+  left: false,
+  text: "text-xs font-bold",
+  border: true,
+  width: "min-w-[24px]",
+  height: "min-h-[24px]",
 });
 
 const styleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "absolute",
     "inline-flex",

@@ -47,12 +47,61 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  modelValue: string;
+  items: string[];
+  color?: {
+    textfield?: {
+      bg?: string;
+      text?: string;
+      hint?: string;
+      error?: string;
+      label?: string;
+      labelFocus?: string;
+      placeholderText?: string;
+      icon?: string;
+      iconFocus?: string;
+      border?: string;
+      borderFocus?: string;
+      borderError?: string;
+      borderFocusError?: string;
+    };
+    bg?: string;
+    text?: string;
+    border?: string;
+    hover?: string;
+  };
+  search?: boolean;
+  label?: string;
+  outlined?: boolean | string;
+  filled?: boolean | string;
+  disabled?: boolean;
+  loading?: boolean;
+  placeholder?: string;
+  transition?:
+    | boolean
+    | {
+        duration?: string;
+        ease?: string;
+        placeholder?: {
+          duration?: string;
+          ease?: string;
+        };
+      };
+  shadow?: boolean | string;
+  appendIcon?: object;
+  prependIcon?: object;
+  width?: {
+    textfield?: string;
+    select?: string;
+  };
+  height?: string;
+}
 import Textfield from "./Textfield.vue";
 import { computed, ref, onMounted } from "vue";
 let showSelect = ref(false);
 let savedInput = ref("");
-let selectSearch = ref(props.modelValue || "");
 
 let defaults = {
   color: {
@@ -69,91 +118,49 @@ let defaults = {
   shadow: "shadow-lg",
 };
 
-let props = defineProps({
-  modelValue: {
-    type: String,
-    default: "",
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: "",
+  items: () => {
+    return [];
   },
-  items: {
-    type: Array,
-    required: true,
+  color: () => {
+    return {
+      textfield: {},
+      bg: "bg-gray-200 dark:bg-zinc-800",
+      text: "text-black dark:text-white",
+      border: "border-gray-300 dark:border-zinc-700",
+      hover: "hover:bg-primary-700",
+    };
   },
-  color: {
-    type: Object,
-    default() {
-      return {
-        textfield: {},
-        bg: "bg-gray-200 dark:bg-zinc-800",
-        text: "text-black dark:text-white",
-        border: "border-gray-300 dark:border-zinc-700",
-        hover: "hover:bg-primary-700",
-      };
-    },
+  search: false,
+  label: "",
+  outlined: false,
+  filled: false,
+  disabled: false,
+  loading: false,
+  placeholder: "",
+  transition: true,
+  shadow: true,
+  appendIcon: undefined,
+  prependIcon: undefined,
+  width: () => {
+    return {
+      textfield: "w-full",
+      select: "w-full",
+    };
   },
-  search: {
-    type: Boolean,
-    default: false,
-  },
-  label: {
-    type: String,
-    default: "",
-  },
-  outlined: {
-    type: [Boolean, String],
-    default: false,
-  },
-  filled: {
-    type: [Boolean, String],
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  placeholder: {
-    type: String,
-    default: " ",
-  },
-  transition: {
-    type: [Object, Boolean],
-    default: true,
-  },
-  shadow: {
-    type: [Boolean, String],
-    default: true,
-  },
-  appendIcon: {
-    type: Object,
-    default: null,
-  },
-  prependIcon: {
-    type: Object,
-    default: null,
-  },
-  width: {
-    type: Object,
-    default() {
-      return {
-        textfield: "w-full",
-        select: "w-full",
-      };
-    },
-  },
-  height: {
-    type: String,
-    default: "max-h-48",
-  },
+  height: "max-h-48",
 });
 
-let emit = defineEmits(["update:modelValue"]);
+let selectSearch = ref(props.modelValue || "");
+
+const emit = defineEmits<{
+  (e: "update:modelValue", id: string): void;
+}>();
 
 onMounted(() => {
   window.addEventListener("click", function (e) {
-    if (!document.getElementById("select").contains(e.target)) {
+    if (!document.getElementById("select")!.contains(e.target as Node)) {
       if (!props.items.includes(selectSearch.value)) {
         selectSearch.value = savedInput.value;
       }
@@ -184,7 +191,7 @@ function setItem(value) {
 }
 
 let dropDownStyleCass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   // class="overflow-auto w-full max-h-48 z-50 absolute shadow-xl"
   classes.push("overflow-auto", "z-50", "absolute");
 
@@ -219,7 +226,7 @@ let dropDownStyleCass = computed(() => {
 });
 
 let itemStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   // class='border-b'
   classes.push("border-b");
 

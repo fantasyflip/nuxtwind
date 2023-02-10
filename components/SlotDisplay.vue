@@ -21,16 +21,19 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+export interface Props {
   item: {
-    type: Object,
-    default() {
-      return {
-        name: "SlotName",
-        description: "Slot Description",
-      };
-    },
+    name: string;
+    description: string;
+  };
+}
+const props = withDefaults(defineProps<Props>(), {
+  item: () => {
+    return {
+      name: "SlotName",
+      description: "Slot Description",
+    };
   },
 });
 </script>

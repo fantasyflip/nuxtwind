@@ -10,7 +10,38 @@
   </aside>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  modelValue: boolean;
+  color?: {
+    bg?: string;
+    overlayBg?: string;
+  };
+  absolute?: boolean;
+  fixed?: boolean;
+  zIndex?: string;
+  overlay?: boolean;
+  disableOverflow?: boolean;
+  expandOnHover?:
+    | boolean
+    | {
+        width?: string;
+        hoverWidth?: string;
+      };
+  transition?:
+    | boolean
+    | {
+        duration?: string;
+        ease?: string;
+      };
+  noMobile?: boolean;
+  mobileWidth?: number;
+  border?: boolean | string;
+  right?: boolean;
+  permanent?: boolean;
+  height?: string;
+  width?: string;
+}
 import { computed, ref, watch, onMounted } from "vue";
 import { onClickOutside } from "@vueuse/core";
 let defaults = {
@@ -29,79 +60,33 @@ let defaults = {
   border: "border-r dark:border-zinc-700 border-gray-500",
 };
 
-let props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: false,
+  color: () => {
+    return {
+      bg: "bg-white dark:bg-zinc-900",
+      overlayBg: "bg-black/50",
+    };
   },
-  color: {
-    type: Object,
-    default() {
-      return {
-        bg: "bg-white dark:bg-zinc-900",
-        overlayBg: "bg-black/50",
-      };
-    },
-  },
-  absolute: {
-    type: Boolean,
-    default: false,
-  },
-  fixed: {
-    type: Boolean,
-    default: true,
-  },
-  zIndex: {
-    type: String,
-    default: "z-[100]",
-  },
-  overlay: {
-    type: Boolean,
-    default: true,
-  },
-  disableOverflow: {
-    type: Boolean,
-    default: true,
-  },
-  expandOnHover: {
-    type: [Boolean, Object],
-    default: false,
-  },
-  transition: {
-    type: [Boolean, Object],
-    default: true,
-  },
-  noMobile: {
-    type: Boolean,
-    default: false,
-  },
-  mobileWidth: {
-    type: Number,
-    default: 768,
-  },
-  border: {
-    type: [Boolean, String],
-    default: true,
-  },
-  right: {
-    type: Boolean,
-    default: false,
-  },
-  permanent: {
-    type: Boolean,
-    default: false,
-  },
-  height: {
-    type: String,
-    default: "h-screen",
-  },
-  width: {
-    type: String,
-    default: "md:w-80 w-60",
-  },
+  absolute: false,
+  fixed: true,
+  zIndex: "z-[100]",
+  overlay: true,
+  disableOverflow: true,
+  expandOnHover: false,
+  transition: true,
+  noMobile: false,
+  mobileWidth: 768,
+  border: true,
+  right: false,
+  permanent: false,
+  height: "h-screen",
+  width: "w-80",
 });
 
-let emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits<{
+  (e: "update:modelValue", id: boolean): void;
+}>();
 
 function setDocumentOverflow(type) {
   if (type === "auto") {
@@ -155,7 +140,8 @@ onMounted(() => {
     isMobile.value = true;
   }
   addEventListener("resize", (event) => {
-    if (event.target.innerWidth < props.mobileWidth) {
+    const w = event.target as Window;
+    if (w.innerWidth < props.mobileWidth) {
       isMobile.value = true;
     } else {
       isMobile.value = false;
@@ -179,7 +165,7 @@ function handleHoverLeave() {
 }
 
 let overlayClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "h-full",
     "w-full",
@@ -205,7 +191,7 @@ let overlayClass = computed(() => {
 });
 
 let drawerWrapperClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
 
   classes.push("overflow-y-auto", "transition-all", "transform");
 

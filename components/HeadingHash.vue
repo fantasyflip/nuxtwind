@@ -25,25 +25,15 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  element: "h1" | "h2" | "h3" | "h4";
+  hash: string;
+}
 import MdiLinkVariant from "~icons/mdi/link-variant";
-const props = defineProps({
-  element: {
-    type: String,
-    default: "h1",
-    validator(value) {
-      // The value must match one of these strings
-      return ["h1", "h2", "h3", "h4"].includes(value);
-    },
-  },
-  hash: {
-    type: String,
-    required: true,
-  },
-  classOverride: {
-    type: String,
-    default: "",
-  },
+
+const props = withDefaults(defineProps<Props>(), {
+  element: "h1",
 });
 
 const linkSize = computed(() => {

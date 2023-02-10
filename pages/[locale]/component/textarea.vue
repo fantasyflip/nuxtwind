@@ -78,7 +78,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Textarea from "../../../module/src/runtime/components/Textarea.vue";
 import Textfield from "../../../module/src/runtime/components/Textfield.vue";
 import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
@@ -134,14 +134,14 @@ let toggleProps = ref([
   },
 ]);
 
-let notEmpty = (value) => {
+let notEmpty = (value: string) => {
   if (!value) {
     return "This field is required";
   }
   return true;
 };
 
-let minChars = (min) => (value) => {
+let minChars = (min: number) => (value: string) => {
   if (value.length < min) {
     return `This field must be at least ${min} characters`;
   }
@@ -167,7 +167,7 @@ let codeExample = computed(() => {
   }
 />`;
   let js = `${
-    checkedBoxes.value[2] | checkedBoxes.value[3]
+    checkedBoxes.value[2] || checkedBoxes.value[3]
       ? `import MdiMagnify from "~icons/mdi/magnify";
 let textareaIcon = markRaw(MdiMagnify);`
       : ""

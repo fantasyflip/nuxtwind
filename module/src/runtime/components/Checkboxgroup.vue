@@ -13,7 +13,7 @@
       </slot>
     </div>
     <ul>
-      <li v-for="(item, index) in props.items" :key="item.id" class="pt-2">
+      <li v-for="(item, index) in props.items" :key="index" class="pt-2">
         <Checkbox
           v-model="checkboxValues[index]"
           :label="props.generalCheckboxProps?.label || item.label"
@@ -31,7 +31,60 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  modelValue: boolean[];
+  items?: {
+    label?: string;
+    description?: string;
+    color?: {
+      label?: string;
+      description?: string;
+      iconInactive?: string;
+      iconActive?: string;
+      hover?: string;
+    };
+    text?: {
+      label?: string;
+      description?: string;
+    };
+    disabled?: boolean;
+    loading?: boolean;
+  }[];
+  color?: {
+    label?: string;
+    description?: string;
+  };
+  text?: {
+    label?: string;
+    description?: string;
+  };
+  label?: string;
+  description?: string;
+  multiple?: boolean;
+  noRadio?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+  width?: string;
+  generalCheckboxProps?: {
+    label?: string;
+    description?: string;
+    color?: {
+      label?: string;
+      description?: string;
+      iconInactive?: string;
+      iconActive?: string;
+      hover?: string;
+    };
+    text?: {
+      label?: string;
+      description?: string;
+    };
+    disabled?: boolean;
+    loading?: boolean;
+  };
+  notZero?: boolean;
+}
 import Checkbox from "./Checkbox.vue";
 import { computed, ref, watch } from "vue";
 let defaults = {
@@ -44,80 +97,44 @@ let defaults = {
     description: "text-sm",
   },
 };
-let props = defineProps({
-  modelValue: {
-    default() {
-      return [];
-    },
-    type: Array,
+
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: () => {
+    return [];
   },
-  items: {
-    type: Array,
-    default() {
-      return [];
-    },
+  items: () => {
+    return [];
   },
-  color: {
-    type: Object,
-    default() {
-      return {
-        label: "text-primary-800 dark:text-primary-800",
-        description: "text-gray-500 dark:text-gray-400",
-      };
-    },
+  color: () => {
+    return {
+      label: "text-primary-800 dark:text-primary-800",
+      description: "text-gray-500 dark:text-gray-400",
+    };
   },
-  text: {
-    type: Object,
-    default() {
-      return {
-        label: "text-lg font-medium",
-        description: "text-sm",
-      };
-    },
+  text: () => {
+    return {
+      label: "text-lg font-medium",
+      description: "text-sm",
+    };
   },
-  label: {
-    type: String,
-    default: "",
+  label: "",
+  description: "",
+  multiple: false,
+  noRadio: false,
+  loading: false,
+  disabled: false,
+  width: "w-full",
+  generalCheckboxProps: () => {
+    return {};
   },
-  description: {
-    type: String,
-    default: "",
-  },
-  multiple: {
-    type: Boolean,
-    default: false,
-  },
-  noRadio: {
-    type: Boolean,
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  width: {
-    type: String,
-    default: "w-full",
-  },
-  generalCheckboxProps: {
-    type: Object,
-    default() {
-      return {};
-    },
-  },
-  notZero: {
-    type: Boolean,
-    default: false,
-  },
+  notZero: false,
 });
 
-let emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits<{
+  (e: "update:modelValue", id: boolean[]): void;
+}>();
 
-let checkboxValues = ref([]);
+let checkboxValues = ref<boolean[]>([]);
 let savedIndex = ref(-1);
 let lastCheckedIndex = ref(-1);
 
@@ -212,7 +229,7 @@ function initializeCheckboxes() {
 }
 
 let labelStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
 
   classes.push(props.text?.label || defaults.text.label);
 
@@ -223,7 +240,7 @@ let labelStyleClass = computed(() => {
 });
 
 let descriptionStyleClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
 
   classes.push(props.text?.description || defaults.text.description);
 

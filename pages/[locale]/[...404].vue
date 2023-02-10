@@ -29,14 +29,10 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
-let ogpImageUrl = useOgpImageUrl(
-  "404",
-  t("pages.404.content.errorMessage"),
-  null
-);
+let ogpImageUrl = useOgpImageUrl("404", t("pages.404.content.errorMessage"));
 useHead({
   title: t("pages.404.meta.title"),
   meta: [

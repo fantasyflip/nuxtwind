@@ -53,7 +53,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Slider from "../../../module/src/runtime/components/Slider.vue";
 import Textfield from "../../../module/src/runtime/components/Textfield.vue";
 import Textarea from "../../../module/src/runtime/components/Textarea.vue";

@@ -23,24 +23,18 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  content: string;
+  lang: string;
+  path?: string;
+}
 import Button from "../module/src/runtime/components/Button.vue";
 import MdiBash from "~icons/mdi/bash";
 import MdiContentCopy from "~icons/mdi/content-copy";
 
-const props = defineProps({
-  content: {
-    type: String,
-    required: true,
-  },
-  lang: {
-    type: String,
-    required: true,
-  },
-  path: {
-    type: String,
-    default: "",
-  },
+const props = withDefaults(defineProps<Props>(), {
+  path: "",
 });
 
 let html = ref("");

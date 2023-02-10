@@ -66,14 +66,14 @@
           class="hover:-translate-y-px transition-all duration-300"
           icon
           :color="{
-            text: showJavascript ? 'text-yellow-500' : 'text-zinc-500',
-            iconHover: 'hover:text-yellow-500',
+            text: showJavascript ? 'text-blue-600' : 'text-zinc-500',
+            iconHover: 'hover:text-blue-600',
           }"
           ari-label="Script"
           @click="showTab('js')"
         >
           <div class="flex">
-            <MdiLanguageJavascript />
+            <MdiLanguageTypescript />
             <div
               class="text-sm px-2 items-center dark:text-white text-black hidden sm:flex"
             >
@@ -102,7 +102,7 @@
           <div
             class="w-full h-full overflow-auto no-scrollbar grid place-items-center p-1"
           >
-            <CodeHighlight lang="js" path="script" :content="props.js" />
+            <CodeHighlight lang="ts" path="script" :content="props.js" />
           </div>
         </div>
         <div v-else-if="showComponent">
@@ -113,31 +113,28 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  html: string;
+  js?: string;
+}
 import Button from "../module/src/runtime/components/Button.vue";
 import MdiLanguageHtml5 from "~icons/mdi/language-html5";
-import MdiLanguageJavascript from "~icons/mdi/language-javascript";
+import MdiLanguageTypescript from "~icons/mdi/language-typescript";
 
 const router = useRouter();
 const route = useRoute();
 
-const props = defineProps({
-  html: {
-    type: String,
-    required: true,
-    default: "",
-  },
-  js: {
-    type: String,
-    default: "",
-  },
+const props = withDefaults(defineProps<Props>(), {
+  html: "",
+  js: "",
 });
 
 let showComponent = ref(true);
 let showHtml = ref(false);
 let showJavascript = ref(false);
 
-const changeQuery = (tab, keepHash = false) => {
+const changeQuery = (tab: string, keepHash = false) => {
   if (route.hash && keepHash) {
     router.replace({ query: { tab }, hash: route.hash });
   } else {
@@ -145,7 +142,7 @@ const changeQuery = (tab, keepHash = false) => {
   }
 };
 
-const showTab = (tab, keepHash = false) => {
+const showTab = (tab: string, keepHash = false) => {
   if (tab === "component") {
     showComponent.value = true;
     showHtml.value = false;

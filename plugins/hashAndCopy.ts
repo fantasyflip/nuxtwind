@@ -2,24 +2,24 @@ import MdiLinkVariant from "~icons/mdi/link-variant";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const linkIcon = markRaw(MdiLinkVariant);
-  nuxtApp.provide("hashAndCopy", (id) => {
+  nuxtApp.provide("hashAndCopy", (id: string) => {
     const route = useRoute();
     const router = useRouter();
     const currentLocale = route.params.locale;
 
-    let path = route.path;
-    let hash = "#" + id;
-    let query = route.query;
+    const path = route.path;
+    const hash = "#" + id;
+    const query = route.query;
     router.replace({ hash: hash, query: query });
 
-    let origin = window.location.origin;
+    const origin = window.location.origin;
 
-    let url = new URL(origin + path);
+    const url = new URL(origin + path);
 
     url.searchParams.append("hash", id);
     //for every query param
     for (const [key, value] of Object.entries(query)) {
-      url.searchParams.append(key, value);
+      url.searchParams.append(key, value as string);
     }
     navigator.clipboard.writeText(url.href);
 

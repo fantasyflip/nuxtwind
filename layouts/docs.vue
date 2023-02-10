@@ -143,7 +143,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Button from "../module/src/runtime/components/Button.vue";
 import Appbar from "../module/src/runtime/components/Appbar.vue";
 import Drawer from "../module/src/runtime/components/Drawer.vue";
@@ -169,7 +169,8 @@ onMounted(() => {
     );
   }
   addEventListener("resize", (event) => {
-    if (event.target.innerWidth < 768) {
+    const w = event.target as Window;
+    if (w.innerWidth < 768) {
       isMobile.value = true;
       usePermanentDrawer(false, false);
     } else {
@@ -228,18 +229,22 @@ let routes = [
 routes.push(...componentRoutes.value);
 
 let route = useRoute();
-let componentName = null;
+let componentName = "";
 if (route.path.includes("component")) {
   componentName = capitalizeFirstLetter(route.path.split("/")[3]);
 }
 
 function handleCycleTheme() {
-  const { post } = useBroadcastChannel("broadcast");
+  const { post } = useBroadcastChannel({
+    name: "broadcast",
+  });
   post({ type: "theme", method: "cycle" });
 }
 
 function handleSwitchLocale() {
-  const { post } = useBroadcastChannel("broadcast");
+  const { post } = useBroadcastChannel({
+    name: "broadcast",
+  });
   post({ type: "locale", method: "switch" });
 }
 </script>

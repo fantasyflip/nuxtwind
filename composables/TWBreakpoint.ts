@@ -1,6 +1,6 @@
 import { useBreakpoints } from "@vueuse/core";
 
-let defaultBreakpoints = {
+const defaultBreakpoints = {
   sm: "640px",
   md: "750px",
   lg: "1024px",
@@ -10,8 +10,56 @@ let defaultBreakpoints = {
 
 const nuxtBreakpoints = useBreakpoints(defaultBreakpoints);
 
-export const useTWBreakpoint = (breakpointValues) => {
-  let breakpoints = ref({
+interface Breakpoints {
+  base: {
+    width: number | string;
+    state: boolean;
+    value: number | string | boolean | object | null | undefined;
+  };
+  sm: {
+    width: number | string;
+    state: boolean;
+    value: number | string | boolean | object | null | undefined;
+  };
+  md: {
+    width: number | string;
+    state: boolean;
+    value: number | string | boolean | object | null | undefined;
+  };
+  lg: {
+    width: number | string;
+    state: boolean;
+    value: number | string | boolean | object | null | undefined;
+  };
+  xl: {
+    width: number | string;
+    state: boolean;
+    value: number | string | boolean | object | null | undefined;
+  };
+  "2xl": {
+    width: number | string;
+    state: boolean;
+    value: number | string | boolean | object | null | undefined;
+  };
+  current: null | {
+    width: number | string;
+    value: number | string | boolean | object | null | undefined;
+    name: string;
+    isMobile?: boolean;
+  };
+}
+
+interface BreakpointValues {
+  base?: number | string | boolean | object | null | undefined;
+  sm?: number | string | boolean | object | null | undefined;
+  md?: number | string | boolean | object | null | undefined;
+  lg?: number | string | boolean | object | null | undefined;
+  xl?: number | string | boolean | object | null | undefined;
+  "2xl"?: number | string | boolean | object | null | undefined;
+}
+
+export const useTWBreakpoint = (breakpointValues: BreakpointValues) => {
+  const breakpoints = ref<Breakpoints>({
     base: {
       width: 0,
       state:
@@ -49,7 +97,7 @@ export const useTWBreakpoint = (breakpointValues) => {
       state: nuxtBreakpoints["2xl"].value,
       value: breakpointValues?.["2xl"] || null,
     },
-    current: {},
+    current: null,
   });
 
   if (breakpoints.value["2xl"].state) {

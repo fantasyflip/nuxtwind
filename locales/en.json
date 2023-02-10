@@ -248,6 +248,9 @@
               },
               "initialLoadTimeType": {
                 "description": "Prop to set the way how the speed of the growth of the circular progress will be interpreted.<br>Valid options are:<br><span class='font-bold'>calc</span>: The speed will be calculated for every growth individually, making each growth the same speed.<br><span class='font-bold'>static</span>: The speed will be set to the given value. Every single step will take the same time."
+              },
+              "transition": {
+                "description": "Prop to set the transition's duration and ease on the linear variant."
               }
             },
             "slots": {

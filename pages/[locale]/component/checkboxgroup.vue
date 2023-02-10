@@ -70,7 +70,7 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import Checkboxgroup from "../../../module/src/runtime/components/Checkboxgroup.vue";
 import Textfield from "../../../module/src/runtime/components/Textfield.vue";
 import { useI18n } from "vue-i18n";

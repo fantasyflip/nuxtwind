@@ -23,14 +23,14 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 let route = useRoute();
 let componentName = capitalizeFirstLetter(route.path.split("/")[3]);
 
-function getI18nCategoryKey(category) {
+function getI18nCategoryKey(category: string) {
   switch (category) {
     case "prop":
       return "properties";
@@ -45,7 +45,7 @@ function getI18nCategoryKey(category) {
 
 function getOgpDescription() {
   if (route.query && route.query.hash) {
-    let hash = route.query.hash;
+    let hash = route.query.hash as string;
 
     if (hash.includes("-")) {
       let item = hash.split("-")[1];

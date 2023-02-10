@@ -58,7 +58,51 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+export interface Props {
+  modelValue: string;
+  color?: {
+    bg?: string;
+    text?: string;
+    hint?: string;
+    error?: string;
+    label?: string;
+    labelFocus?: string;
+    placeholderText?: string;
+    icon?: string;
+    iconFocus?: string;
+    border?: string;
+    borderFocus?: string;
+    borderError?: string;
+    borderFocusError?: string;
+  };
+  label?: string;
+  autocomplete?: string;
+  prependIcon?: boolean | object;
+  appendIcon?: boolean | object;
+  disabled?: boolean;
+  loading?: boolean;
+  rounded?: boolean | string;
+  outlined?: boolean | string;
+  filled?: boolean | string;
+  placeholder?: string;
+  hint?: string;
+  shadow?: boolean | string;
+  transition?:
+    | boolean
+    | {
+        duration?: string;
+        ease?: string;
+        placeholder?: {
+          duration?: string;
+          ease?: string;
+        };
+      };
+  counter?: boolean;
+  height?: string;
+  width?: string;
+  rules?: { (data: any): boolean | string }[];
+}
 import { computed, ref } from "vue";
 function generateId() {
   let result = "";
@@ -72,7 +116,7 @@ function generateId() {
 }
 let textareaId = generateId();
 
-let isValid = ref(true);
+let isValid = ref<boolean | string>(true);
 let defaults = {
   color: {
     bg: "bg-gray-200 dark:bg-zinc-800",
@@ -105,108 +149,52 @@ let defaults = {
   height: "min-h-[40px]",
 };
 
-const props = defineProps({
-  modelValue: {},
-  color: {
-    type: Object,
-    default() {
-      return {
-        bg: "bg-gray-200 dark:bg-zinc-800",
-        text: "text-black dark:text-white",
-        hint: "text-gray-600 dark:text-gray-400",
-        error: "text-red-500 dark:text-red-500",
-        label: "text-black dark:text-white",
-        labelFocus: "peer-focus:text-cyan-600",
-        placeholderText:
-          "placeholder:text-gray-400 dark:placeholder:text-gray-600",
-        icon: "text-black dark:text-white",
-        iconFocus: "group-focus-within:text-cyan-600",
-        border: "border-black dark:border-white",
-        borderFocus:
-          "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800",
-        borderError: "border-red-500",
-        borderFocusError: "focus:border-red-500",
-      };
-    },
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: "",
+  color: () => {
+    return {
+      bg: "bg-gray-200 dark:bg-zinc-800",
+      text: "text-black dark:text-white",
+      hint: "text-gray-600 dark:text-gray-400",
+      error: "text-red-500 dark:text-red-500",
+      label: "text-black dark:text-white",
+      labelFocus: "peer-focus:text-cyan-600",
+      placeholderText:
+        "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+      icon: "text-black dark:text-white",
+      iconFocus: "group-focus-within:text-cyan-600",
+      border: "border-black dark:border-white",
+      borderFocus:
+        "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800",
+      borderError: "border-red-500",
+      borderFocusError: "focus:border-red-500",
+    };
   },
-  label: {
-    type: String,
-    default: "Label",
-  },
-  autocomplete: {
-    type: String,
-    default: "on",
-  },
-  prependIcon: {
-    type: [Boolean, Object],
-    default: false,
-  },
-  appendIcon: {
-    type: [Boolean, Object],
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  rounded: {
-    type: [Boolean, String],
-    default: true,
-  },
-  outlined: {
-    type: [Boolean, String],
-    default: false,
-  },
-  filled: {
-    type: [Boolean, String],
-    default: false,
-  },
-  placeholder: {
-    type: String,
-    default: " ",
-  },
-  hint: {
-    type: String,
-    default: undefined,
-  },
-  shadow: {
-    type: [Boolean, String],
-    default: true,
-  },
-  transition: {
-    type: [Boolean, Object],
-    default: true,
-  },
-  counter: {
-    type: Boolean,
-    default: false,
-  },
-  height: {
-    type: String,
-    default: "min-h-[40px]",
-  },
-  width: {
-    type: String,
-    default: "w-full",
-  },
-  rules: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
+  label: "Label",
+  autocomplete: "on",
+  prependIcon: false,
+  appendIcon: false,
+  disabled: false,
+  loading: false,
+  rounded: true,
+  outlined: false,
+  filled: false,
+  placeholder: " ",
+  hint: undefined,
+  shadow: true,
+  transition: true,
+  counter: false,
+  height: "min-h-[40px]",
+  width: "w-full",
+  rules: () => [],
 });
 
-const emit = defineEmits([
-  "update:modelValue",
-  "update:validation",
-  "focusIn",
-  "focusOut",
-]);
+const emit = defineEmits<{
+  (e: "update:modelValue", id: string): void;
+  (e: "update:validation", id: object): void;
+  (e: "focusIn"): void;
+  (e: "focusOut"): void;
+}>();
 
 function handleInput(e) {
   //UPDATE MODEL VALUE
@@ -227,7 +215,7 @@ function handleInput(e) {
   });
 }
 
-function validate(value) {
+function validate(value): boolean | string {
   if (props.rules.length > 0) {
     let rules = props.rules;
     //go through all rules; return true if all rules are valid; return first error if any rule is invalid
@@ -252,7 +240,7 @@ const hint = computed(() => {
 });
 
 const wrapperClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push("relative", "group");
 
   //DEFAULT
@@ -271,13 +259,13 @@ const wrapperClass = computed(() => {
   }
 
   //WIDTH
-  classes.push(props.width || defaults.width);
+  classes.push(props.width);
 
   return classes.join(" ");
 });
 
 const textareaWrapperClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "block",
     "w-full",
@@ -341,7 +329,7 @@ const textareaWrapperClass = computed(() => {
 });
 
 const inputClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   // class='block w-full text-sm text-gray-900 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
   classes.push(
     "block",
@@ -359,11 +347,11 @@ const inputClass = computed(() => {
   //TRANSITION
   if (props.transition && typeof props.transition === "object") {
     classes.push(
-      props.transition.placeholder.duration ||
+      props.transition.placeholder?.duration ||
         defaults.transition.placeholder.duration
     );
     classes.push(
-      props.transition.placeholder.ease || defaults.transition.placeholder.ease
+      props.transition.placeholder?.ease || defaults.transition.placeholder.ease
     );
   } else if (props.transition) {
     classes.push(defaults.transition.placeholder.duration);
@@ -456,7 +444,7 @@ const inputClass = computed(() => {
 });
 
 const labelClass = computed(() => {
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "absolute",
     "text-sm",
@@ -565,7 +553,7 @@ const labelClass = computed(() => {
 const prependIconClass = computed(() => {
   // class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-600 group-focus-within:text-primary-800 transition-all ease-in-out duration-500"
 
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "absolute",
     "left-0",
@@ -614,7 +602,7 @@ const prependIconClass = computed(() => {
 const appendIconClass = computed(() => {
   // class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-600 group-focus-within:text-primary-800 transition-all ease-in-out duration-500"
 
-  let classes = [];
+  let classes: string[] = [];
   classes.push(
     "absolute",
     "right-0",
@@ -663,7 +651,7 @@ const appendIconClass = computed(() => {
 const hintClass = computed(() => {
   // class="absolute transition-all ease-in-out duration-500 text-xs font-light pl-2 group-focus-within:opacity-100 -translate-y-2 group-focus-within:-translate-y-0 opacity-0"
 
-  let classes = [
+  let classes: string[] = [
     "absolute",
     "text-xs",
     "font-light",
@@ -675,8 +663,14 @@ const hintClass = computed(() => {
     "group-focus-within:-translate-y-0",
   ];
 
-  classes.push(props.transition.duration || defaults.transition.duration);
-  classes.push(props.transition.ease || defaults.transition.ease);
+  if (props.transition && typeof props.transition === "object") {
+    classes.push(props.transition.duration || defaults.transition.duration);
+    classes.push(props.transition.ease || defaults.transition.ease);
+  } else if (props.transition) {
+    classes.push(defaults.transition.duration);
+    classes.push(defaults.transition.ease);
+  }
+
   if (isValid.value === true) {
     classes.push(props.color.hint || defaults.color.hint);
   } else {
