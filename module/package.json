@@ -1,6 +1,6 @@
 {
   "name": "@nuxtwind/components",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "license": "MIT",
   "description": "Component Library for Nuxt 3 using TailwindCSS",
   "repository": {
