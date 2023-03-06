@@ -45,8 +45,8 @@
       </div>
       <div
         v-if="
-          props.hint &&
-          props.hint.length > 0 &&
+          ((props.hint && props.hint.length > 0) ||
+            typeof isValid === 'string') &&
           !props.disabled &&
           !props.loading
         "
