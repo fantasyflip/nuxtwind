@@ -33,7 +33,10 @@
     </label>
     <div
       v-if="
-        props.hint && props.hint.length > 0 && !props.disabled && !props.loading
+        ((props.hint && props.hint.length > 0) ||
+          typeof isValid === 'string') &&
+        !props.disabled &&
+        !props.loading
       "
       :class="hintClass"
     >
