@@ -45,6 +45,7 @@
     :disabled="props.disabled"
     :type="props.type"
     :aria-label="props.ariLabel"
+    ref="button"
   >
     <div class="relative">
       <div
@@ -123,7 +124,7 @@ export interface Props {
 }
 
 import Progress from "./Progress.vue";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 let defaults = {
   color: {
@@ -194,6 +195,12 @@ const props = withDefaults(defineProps<Props>(), {
   type: "button",
   width: undefined,
   height: "",
+});
+
+const button = ref(null);
+
+defineExpose({
+  button,
 });
 
 const styleClass = computed(() => {
