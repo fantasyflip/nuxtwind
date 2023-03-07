@@ -1,3 +1,18 @@
+# [0.3.0](https://github.com/fantasyflip/nuxtwind/compare/v0.2.9...v0.3.0) (2023-03-07)
+
+
+### Bug Fixes
+
+* **button:** Expose ref on button ([1f7f20e](https://github.com/fantasyflip/nuxtwind/commit/1f7f20e99c8314d44e25de78479172b8e4d5feba))
+* **select:** Expose ref on select textfield ([7d9b994](https://github.com/fantasyflip/nuxtwind/commit/7d9b994ce8721f3626831c1e7af255deb7dbe916))
+* **select:** Focus on mount ([a6c2a02](https://github.com/fantasyflip/nuxtwind/commit/a6c2a022f4d2ecf466c5f50930304f4162fb7901))
+* **textarea:** Expose ref on textarea ([d937430](https://github.com/fantasyflip/nuxtwind/commit/d93743069cddb2b773ac428546e7caeb8cc59005))
+* **textarea:** Focus on mount ([d7ca132](https://github.com/fantasyflip/nuxtwind/commit/d7ca1325f42649c766ea7c47a9c437dbd433b12d))
+* **textfield:** Expose ref on textfield ([a3ebf4a](https://github.com/fantasyflip/nuxtwind/commit/a3ebf4a613fe5789e61d3899f2e5b14289721f28))
+* **textfield:** Focus on mount ([18b5efe](https://github.com/fantasyflip/nuxtwind/commit/18b5efee9c015465dfb99a30eedf4963ddaaf27d))
+
+
+
 ## [0.2.9](https://github.com/fantasyflip/nuxtwind/compare/v0.2.8...v0.2.9) (2023-03-06)
 
 
@@ -194,15 +209,6 @@
 ### Bug Fixes
 
 * **workflow:** Run npm run dev:prepare before publish ([9212e10](https://github.com/fantasyflip/nuxtwind/commit/9212e10235a1f3f64d6cfb3c02081cd2f82daf5e))
-
-
-
-## [0.2.5](https://github.com/fantasyflip/nuxtwind/compare/v0.2.4...v0.2.5) (2023-01-18)
-
-
-### Bug Fixes
-
-* **workflow:** Run npm install before publish ([51d6633](https://github.com/fantasyflip/nuxtwind/commit/51d6633004f6bc6ac7f59abd0dafa79eba1e23a4))
 
 
 
