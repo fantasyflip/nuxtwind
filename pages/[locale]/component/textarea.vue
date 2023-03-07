@@ -5,6 +5,7 @@
       <template #component>
         <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
           <Textarea
+            ref="textareaRef"
             v-model="textarea.value"
             width="w-fit"
             :hint="textarea.hint"
@@ -90,6 +91,13 @@ const { t } = useI18n();
 let componentName = "Textarea";
 
 //PLAYGROUND
+
+const textareaRef = ref<InstanceType<typeof Textarea> | null>(null);
+
+onMounted(() => {
+  //@ts-expect-error - ref is not null after mounted
+  textareaRef.value.textarea.focus();
+});
 
 const textareaIcon = markRaw(MdiMagnify);
 
