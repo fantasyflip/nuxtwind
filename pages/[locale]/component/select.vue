@@ -5,6 +5,7 @@
       <template #component>
         <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
           <Select
+            ref="selectRef"
             v-model="select.value"
             :items="selectItems"
             :label="select.label"
@@ -84,6 +85,14 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 //PLAYGROUND
+
+const selectRef = ref<InstanceType<typeof Select> | null>(null);
+
+onMounted(() => {
+  //@ts-expect-error - ref is not null after mounted
+  selectRef.value?.select.textfield.focus();
+});
+
 const selectIcon = markRaw(MdiMenuDown);
 
 let select = ref({

@@ -5,6 +5,7 @@
       <template #component>
         <ExampleCodeDisplay :html="codeExample.html" :js="codeExample.js">
           <Textfield
+            ref="textfieldRef"
             v-model="textfield.value"
             width="w-fit"
             :hint="textfield.hint"
@@ -88,6 +89,13 @@ const { t } = useI18n();
 let componentName = "Textfield";
 
 //PLAYGROUND
+
+const textfieldRef = ref<InstanceType<typeof Textfield> | null>(null);
+
+onMounted(() => {
+  //@ts-expect-error - ref is not null after mounted
+  textfieldRef.value.textfield.focus();
+});
 
 const textfieldIcon = markRaw(MdiMagnify);
 

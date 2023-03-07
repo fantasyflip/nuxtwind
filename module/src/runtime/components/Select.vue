@@ -2,6 +2,7 @@
   <div id="select" class="relative" :class="props.width?.textfield">
     <Textfield
       v-model="selectSearch"
+      ref="select"
       autocomplete="off"
       :outlined="props.outlined"
       :filled="props.filled"
@@ -157,6 +158,13 @@ let selectSearch = ref(props.modelValue || "");
 const emit = defineEmits<{
   (e: "update:modelValue", id: string): void;
 }>();
+
+const select = ref(null);
+
+defineExpose({
+  // // @ts-expect-error - TS doesn't know about ref
+  select,
+});
 
 onMounted(() => {
   window.addEventListener("click", function (e) {

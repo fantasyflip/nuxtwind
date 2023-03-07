@@ -18,6 +18,7 @@
     </div>
     <div :class="textareaWrapperClass">
       <textarea
+        ref="textarea"
         :id="textareaId"
         :class="inputClass"
         :placeholder="placeholder"
@@ -103,7 +104,7 @@ export interface Props {
   width?: string;
   rules?: { (data: any): boolean | string }[];
 }
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 function generateId() {
   let result = "";
   let characters =
@@ -195,6 +196,12 @@ const emit = defineEmits<{
   (e: "focusIn"): void;
   (e: "focusOut"): void;
 }>();
+
+const textarea = ref(null);
+
+defineExpose({
+  textarea,
+});
 
 function handleInput(e) {
   //UPDATE MODEL VALUE
