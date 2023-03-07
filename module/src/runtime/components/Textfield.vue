@@ -17,6 +17,7 @@
       </slot>
     </div>
     <input
+      ref="textfield"
       :id="textfieldId"
       :class="inputClass"
       :type="props.type"
@@ -177,6 +178,12 @@ const emit = defineEmits<{
   (e: "focusIn"): void;
   (e: "focusOut"): void;
 }>();
+
+const textfield = ref(null);
+
+defineExpose({
+  textfield,
+});
 
 function handleInput(e) {
   //UPDATE MODEL VALUE
