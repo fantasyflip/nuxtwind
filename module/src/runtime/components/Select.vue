@@ -17,6 +17,7 @@
       :prepend-icon="props.prependIcon"
       @click="disabled || loading ? '' : (showSelect = true)"
       @focus-in="(showSelect = true) && saveInput"
+      @keyup.enter="setItem(selectSearch)"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -236,6 +237,8 @@ function setItem(value) {
   );
 
   showSelect.value = false;
+  //@ts-expect-error - TS doesn't know about ref
+  select.value.textfield.blur();
 }
 
 let dropDownStyleCass = computed(() => {
