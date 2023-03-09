@@ -16,7 +16,7 @@
       :append-icon="props.appendIcon"
       :prepend-icon="props.prependIcon"
       @click="disabled || loading ? '' : (showSelect = true)"
-      @focus-in="saveInput"
+      @focus-in="(showSelect = true) && saveInput"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
