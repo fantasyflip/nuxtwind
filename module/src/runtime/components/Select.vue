@@ -16,7 +16,8 @@
       :append-icon="props.appendIcon"
       :prepend-icon="props.prependIcon"
       @click="disabled || loading ? '' : (showSelect = true)"
-      @focus-in="saveInput"
+      @focus-in="(showSelect = true) && saveInput"
+      @keyup.enter="setItem(selectSearch)"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -42,7 +43,11 @@
         "
         @click.stop="setItem(item)"
       >
-        {{ item }}
+        {{
+          typeof props.items[0] == "object" && props.displayProperty
+            ? item[props.displayProperty]
+            : item
+        }}
       </option>
     </div>
   </div>
@@ -50,8 +55,8 @@
 
 <script lang="ts" setup>
 export interface Props {
-  modelValue: string;
-  items: string[];
+  modelValue: any;
+  items: any[];
   color?: {
     textfield?: {
       bg?: string;
@@ -98,6 +103,8 @@ export interface Props {
     select?: string;
   };
   height?: string;
+  displayProperty?: string;
+  returnProperty?: string;
 }
 import Textfield from "./Textfield.vue";
 import { computed, ref, onMounted } from "vue";
@@ -179,10 +186,33 @@ onMounted(() => {
 
 let selectItems = computed(() => {
   if (props.search) {
+    if (typeof props.items[0] === "object" && props.displayProperty) {
+      let searchItems = props.items.map((item) => {
+        //return all items that match the search at the display property
+        return item[props.displayProperty!]
+          .toLowerCase()
+          .includes(selectSearch.value.toLowerCase())
+          ? item
+          : null;
+      });
+      searchItems = searchItems.filter((item) => {
+        return item !== null;
+      });
+      return searchItems;
+    } else if (typeof props.items[0] === "object" && !props.displayProperty) {
+      return "Please provide a displayProperty when using search prop with objects".split(
+        " "
+      );
+    }
     return props.items.filter((item) => {
       return item.toLowerCase().includes(selectSearch.value.toLowerCase());
     });
   } else {
+    if (props.displayProperty) {
+      return props.items.map((item) => {
+        return item[props.displayProperty!];
+      });
+    }
     return props.items;
   }
 });
@@ -193,9 +223,22 @@ function saveInput() {
 
 function setItem(value) {
   selectSearch.value = "";
-  selectSearch.value = value;
-  emit("update:modelValue", value);
+  if (typeof props.items[0] == "object" && props.displayProperty) {
+    selectSearch.value = value[props.displayProperty!];
+  } else {
+    selectSearch.value = value;
+  }
+
+  emit(
+    "update:modelValue",
+    typeof props.items[0] == "object" && props.returnProperty
+      ? value[props.returnProperty]
+      : value
+  );
+
   showSelect.value = false;
+  //@ts-expect-error - TS doesn't know about ref
+  select.value.textfield.blur();
 }
 
 let dropDownStyleCass = computed(() => {
