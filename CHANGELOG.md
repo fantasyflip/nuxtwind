@@ -1,3 +1,18 @@
+# [0.4.0](https://github.com/fantasyflip/nuxtwind/compare/v0.3.0...v0.4.0) (2023-03-09)
+
+
+### Bug Fixes
+
+* **Select:** Save on enter ([56092b8](https://github.com/fantasyflip/nuxtwind/commit/56092b8c341e923890966660ffdc8ed56f824c69))
+* **Select:** Show options on focus ([4c620b3](https://github.com/fantasyflip/nuxtwind/commit/4c620b35c89af179cf7d535933a8239f2b38e7bc))
+
+
+### Features
+
+* **Select:** Add support for object items ([#27](https://github.com/fantasyflip/nuxtwind/issues/27)) ([d34925e](https://github.com/fantasyflip/nuxtwind/commit/d34925e6a2ecf24479c8f542a2fce989405e59b2))
+
+
+
 # [0.3.0](https://github.com/fantasyflip/nuxtwind/compare/v0.2.9...v0.3.0) (2023-03-07)
 
 
@@ -200,15 +215,6 @@
 ### Bug Fixes
 
 * **module:** Remove unnecessary modules from playground ([9d5d36e](https://github.com/fantasyflip/nuxtwind/commit/9d5d36eae96d5be3da3a8e81e1498451dad909e4))
-
-
-
-## [0.2.6](https://github.com/fantasyflip/nuxtwind/compare/v0.2.5...v0.2.6) (2023-01-18)
-
-
-### Bug Fixes
-
-* **workflow:** Run npm run dev:prepare before publish ([9212e10](https://github.com/fantasyflip/nuxtwind/commit/9212e10235a1f3f64d6cfb3c02081cd2f82daf5e))
 
 
 
