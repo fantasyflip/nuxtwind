@@ -110,6 +110,7 @@ import Textfield from "./Textfield.vue";
 import { computed, ref, onMounted } from "vue";
 let showSelect = ref(false);
 let savedInput = ref("");
+let savedObjectInput = ref({});
 
 let defaults = {
   color: {
@@ -176,7 +177,11 @@ defineExpose({
 onMounted(() => {
   window.addEventListener("click", function (e) {
     if (!document.getElementById("select")!.contains(e.target as Node)) {
-      if (!props.items.includes(selectSearch.value)) {
+      if (typeof props.items[0] === "object" && props.displayProperty) {
+        if (!props.items.includes(savedObjectInput.value)) {
+          selectSearch.value = savedObjectInput.value;
+        }
+      } else if (!props.items.includes(selectSearch.value)) {
         selectSearch.value = savedInput.value;
       }
       showSelect.value = false;
@@ -225,6 +230,7 @@ function setItem(value) {
   selectSearch.value = "";
   if (typeof props.items[0] == "object" && props.displayProperty) {
     selectSearch.value = value[props.displayProperty!];
+    savedObjectInput.value = value;
   } else {
     selectSearch.value = value;
   }
