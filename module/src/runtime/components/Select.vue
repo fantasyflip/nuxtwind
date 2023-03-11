@@ -213,10 +213,10 @@ let selectItems = computed(() => {
       return item.toLowerCase().includes(selectSearch.value.toLowerCase());
     });
   } else {
-    if (props.displayProperty) {
-      return props.items.map((item) => {
-        return item[props.displayProperty!];
-      });
+    if (typeof props.items[0] === "object" && !props.displayProperty) {
+      return "Please provide a displayProperty when using search prop with objects".split(
+        " "
+      );
     }
     return props.items;
   }
