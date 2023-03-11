@@ -1,3 +1,15 @@
+## [0.4.1](https://github.com/fantasyflip/nuxtwind/compare/v0.4.0...v0.4.1) (2023-03-11)
+
+
+### Bug Fixes
+
+* **Select:** Keep value on outside click when using object items ([6c98895](https://github.com/fantasyflip/nuxtwind/commit/6c988952daf49944aaf51f69a3d5f3a5c843d1b6))
+* **Select:** Rework modelValue behaviour ([456c1f9](https://github.com/fantasyflip/nuxtwind/commit/456c1f9e5ab09d121ad4d9843701006e333d6efc))
+* **Select:** Using object items without search prop ([2ef6ffb](https://github.com/fantasyflip/nuxtwind/commit/2ef6ffb786bde2c6e30fd6827f7113b8e956b7f8))
+* **Select:** Validate non-object items on outside click ([932506e](https://github.com/fantasyflip/nuxtwind/commit/932506eda6922a2087cc9d74ba719643e8aa8048))
+
+
+
 # [0.4.0](https://github.com/fantasyflip/nuxtwind/compare/v0.3.0...v0.4.0) (2023-03-09)
 
 
@@ -206,15 +218,6 @@
 * **tooltip:** Wrap playground in ExampleCodeDisplay ([c153491](https://github.com/fantasyflip/nuxtwind/commit/c1534918e3d3c606b861c9f93872040d88d7fd87))
 * **twbreakpoint:** Convert to TS ([da8634f](https://github.com/fantasyflip/nuxtwind/commit/da8634f1a629cc8f220a51b31b03c957f5a25eaa))
 * **vue-json-pretty:** Convert to TS ([f74828e](https://github.com/fantasyflip/nuxtwind/commit/f74828e9035f3cb6d55063ab01cc2e794a7637eb))
-
-
-
-## [0.2.7](https://github.com/fantasyflip/nuxtwind/compare/v0.2.6...v0.2.7) (2023-01-18)
-
-
-### Bug Fixes
-
-* **module:** Remove unnecessary modules from playground ([9d5d36e](https://github.com/fantasyflip/nuxtwind/commit/9d5d36eae96d5be3da3a8e81e1498451dad909e4))
 
 
 
