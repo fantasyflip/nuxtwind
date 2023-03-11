@@ -105,7 +105,7 @@ export interface Props {
   displayProperty?: string;
 }
 import Textfield from "./Textfield.vue";
-import { computed, ref, onMounted, watch } from "vue";
+import { computed, ref, onMounted } from "vue";
 
 let defaults = {
   color: {
@@ -195,6 +195,7 @@ onMounted(() => {
       if (props.search) {
         //check if search is valid
 
+        //if input is an object, search through the displayProperty
         if (
           typeof props.modelValue == "object" &&
           props.displayProperty &&
@@ -203,6 +204,13 @@ onMounted(() => {
           //invalid search
           emit("update:modelValue", lastValidItem.value);
           selectSearch.value = lastValidItem.value[props.displayProperty];
+        } else if (
+          typeof props.modelValue != "object" &&
+          props.modelValue != selectSearch.value
+        ) {
+          //invalid search
+          emit("update:modelValue", lastValidItem.value);
+          selectSearch.value = lastValidItem.value;
         }
       }
     }
