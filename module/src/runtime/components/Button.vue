@@ -11,6 +11,7 @@
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
         <Progress
+          v-model="loadingProgress"
           v-if="props.loading"
           :circular="{
             width: props.dense ? 'w-4' : 'w-6',
@@ -52,6 +53,7 @@
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
         <Progress
+          v-model="loadingProgress"
           v-if="props.loading"
           :circular="{
             width: props.dense ? 'w-4' : 'w-6',
@@ -202,6 +204,8 @@ const button = ref(null);
 defineExpose({
   button,
 });
+
+let loadingProgress = ref(30);
 
 const styleClass = computed(() => {
   let styleClasses: string[] = [];
