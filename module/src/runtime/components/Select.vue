@@ -1,5 +1,5 @@
 <template>
-  <div id="select" class="relative" :class="props.width?.textfield">
+  <div ref="selectWrapper" class="relative" :class="props.width?.textfield">
     <Textfield
       v-model="selectSearch"
       ref="select"
@@ -15,9 +15,8 @@
       :transition="props.transition"
       :append-icon="props.appendIcon"
       :prepend-icon="props.prependIcon"
-      @click="disabled || loading ? '' : (showSelect = true)"
-      @focus-in="(showSelect = true) && saveInput"
-      @keyup.enter="setItem(selectSearch)"
+      @click="disabled || loading ? '' : (showSelectOptions = true)"
+      @focus-in="showSelectOptions = true"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -31,7 +30,7 @@
       </template>
       <template #label> <slot name="label"></slot> </template>
     </Textfield>
-    <div v-if="showSelect" :class="dropDownStyleCass">
+    <div v-if="showSelectOptions" :class="dropDownStyleCass">
       <option
         v-for="(item, index) in selectItems"
         :key="index"
@@ -104,13 +103,9 @@ export interface Props {
   };
   height?: string;
   displayProperty?: string;
-  returnProperty?: string;
 }
 import Textfield from "./Textfield.vue";
-import { computed, ref, onMounted } from "vue";
-let showSelect = ref(false);
-let savedInput = ref("");
-let savedObjectInput = ref({});
+import { computed, ref, onMounted, watch } from "vue";
 
 let defaults = {
   color: {
@@ -161,90 +156,100 @@ const props = withDefaults(defineProps<Props>(), {
   height: "max-h-48",
 });
 
-let selectSearch = ref(props.modelValue || "");
-
 const emit = defineEmits<{
-  (e: "update:modelValue", id: string): void;
+  (e: "update:modelValue", id: any): void;
 }>();
 
 const select = ref(null);
+const selectWrapper = ref(null);
 
 defineExpose({
   // // @ts-expect-error - TS doesn't know about ref
   select,
 });
 
+let showSelectOptions = ref(false);
+let selectSearch = ref("");
+let lastValidItem = ref();
+
 onMounted(() => {
+  //handle initial value
+  if (props.modelValue) {
+    lastValidItem.value = props.modelValue;
+    if (typeof props.modelValue == "object" && props.displayProperty) {
+      selectSearch.value = props.modelValue[props.displayProperty];
+    } else {
+      selectSearch.value = props.modelValue;
+    }
+  }
+
+  //handle click outside of select
   window.addEventListener("click", function (e) {
-    if (!document.getElementById("select")!.contains(e.target as Node)) {
-      if (typeof props.items[0] === "object" && props.displayProperty) {
-        if (!props.items.includes(savedObjectInput.value)) {
-          selectSearch.value = savedObjectInput.value;
+    if (
+      selectWrapper.value &&
+      // @ts-expect-error - TS doesn't know about ref
+      !selectWrapper.value.contains(e.target as Node)
+    ) {
+      showSelectOptions.value = false;
+
+      if (props.search) {
+        //check if search is valid
+
+        if (
+          typeof props.modelValue == "object" &&
+          props.displayProperty &&
+          props.modelValue[props.displayProperty] != selectSearch.value
+        ) {
+          //invalid search
+          emit("update:modelValue", lastValidItem.value);
+          selectSearch.value = lastValidItem.value[props.displayProperty];
         }
-      } else if (!props.items.includes(selectSearch.value)) {
-        selectSearch.value = savedInput.value;
       }
-      showSelect.value = false;
     }
   });
 });
 
-let selectItems = computed(() => {
-  if (props.search) {
-    if (typeof props.items[0] === "object" && props.displayProperty) {
-      let searchItems = props.items.map((item) => {
-        //return all items that match the search at the display property
-        return item[props.displayProperty!]
-          .toLowerCase()
-          .includes(selectSearch.value.toLowerCase())
-          ? item
-          : null;
-      });
-      searchItems = searchItems.filter((item) => {
-        return item !== null;
-      });
-      return searchItems;
-    } else if (typeof props.items[0] === "object" && !props.displayProperty) {
-      return "Please provide a displayProperty when using search prop with objects".split(
-        " "
-      );
-    }
-    return props.items.filter((item) => {
-      return item.toLowerCase().includes(selectSearch.value.toLowerCase());
-    });
-  } else {
-    if (typeof props.items[0] === "object" && !props.displayProperty) {
-      return "Please provide a displayProperty when using search prop with objects".split(
+const selectItems = computed(() => {
+  if (!props.search) {
+    //no search through items -> just hand over items
+    if (typeof props.items[0] == "object" && !props.displayProperty) {
+      return "Please provide a displayProperty when using objects as items".split(
         " "
       );
     }
     return props.items;
+  } else {
+    //search through items -> return items that match search
+    //if input is an object, search through the displayProperty
+    if (typeof props.items[0] == "object") {
+      if (props.displayProperty) {
+        return props.items.filter((item) =>
+          item[props.displayProperty!]
+            .toLowerCase()
+            .includes(selectSearch.value.toLowerCase())
+        );
+      } else {
+        return "Please provide a displayProperty when using objects as items".split(
+          " "
+        );
+      }
+    } else {
+      return props.items.filter((item) =>
+        item.toLowerCase().includes(selectSearch.value.toLowerCase())
+      );
+    }
   }
 });
 
-function saveInput() {
-  savedInput.value = selectSearch.value;
-}
-
-function setItem(value) {
-  selectSearch.value = "";
+function setItem(item: any) {
   if (typeof props.items[0] == "object" && props.displayProperty) {
-    selectSearch.value = value[props.displayProperty!];
-    savedObjectInput.value = value;
+    selectSearch.value = item[props.displayProperty];
   } else {
-    selectSearch.value = value;
+    selectSearch.value = item;
   }
-
-  emit(
-    "update:modelValue",
-    typeof props.items[0] == "object" && props.returnProperty
-      ? value[props.returnProperty]
-      : value
-  );
-
-  showSelect.value = false;
-  //@ts-expect-error - TS doesn't know about ref
-  select.value.textfield.blur();
+  lastValidItem.value = item;
+  emit("update:modelValue", item);
+  showSelectOptions.value = false;
 }
 
 let dropDownStyleCass = computed(() => {
