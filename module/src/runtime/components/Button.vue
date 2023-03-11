@@ -11,6 +11,7 @@
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
         <Progress
+          v-model="loadingProgress"
           v-if="props.loading"
           :circular="{
             width: props.dense ? 'w-4' : 'w-6',
@@ -52,6 +53,7 @@
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
         <Progress
+          v-model="loadingProgress"
           v-if="props.loading"
           :circular="{
             width: props.dense ? 'w-4' : 'w-6',
@@ -133,10 +135,10 @@ let defaults = {
     border: "dark:border-white border-black",
     hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
     iconHover: "hover:text-secondary-800 dark:hover:text-secondary-800",
-    loadingCircle: "gray-400",
-    loadingCircleDark: "gray-700",
-    loadingCircleProgress: "primary-400",
-    loadingCircleProgressDark: "primary-400",
+    loadingCircle: "#27272a",
+    loadingCircleDark: "#27272a",
+    loadingCircleProgress: "#10b981",
+    loadingCircleProgressDark: "#10b981",
     loadingCircleCutout: "before:bg-primary-900 dark:before:bg-primary-900",
   },
   rounded: "rounded-md",
@@ -161,10 +163,10 @@ const props = withDefaults(defineProps<Props>(), {
       border: "dark:border-white border-black",
       hover: "hover:bg-secondary-800 dark:hover:bg-secondary-800",
       iconHover: "hover:text-secondary-800 dark:hover:text-secondary-800",
-      loadingCircle: "gray-400",
-      loadingCircleDark: "gray-700",
-      loadingCircleProgress: "primary-400",
-      loadingCircleProgressDark: "primary-400",
+      loadingCircle: "#27272a",
+      loadingCircleDark: "#27272a",
+      loadingCircleProgress: "#10b981",
+      loadingCircleProgressDark: "#10b981",
       loadingCircleCutout: "before:bg-primary-900 dark:before:bg-primary-900",
     };
   },
@@ -202,6 +204,8 @@ const button = ref(null);
 defineExpose({
   button,
 });
+
+let loadingProgress = ref(30);
 
 const styleClass = computed(() => {
   let styleClasses: string[] = [];
