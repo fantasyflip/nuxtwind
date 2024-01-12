@@ -105,7 +105,7 @@ export interface Props {
   displayProperty?: string;
 }
 import Textfield from "./Textfield.vue";
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, onMounted, watch } from "vue";
 
 let defaults = {
   color: {
@@ -171,6 +171,14 @@ defineExpose({
 let showSelectOptions = ref(false);
 let selectSearch = ref("");
 let lastValidItem = ref();
+
+//watch modelValue to update on programmatic change
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    setItem(newValue);
+  }
+);
 
 onMounted(() => {
   //handle initial value
