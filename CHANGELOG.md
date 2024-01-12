@@ -1,3 +1,12 @@
+## [0.4.3](https://github.com/fantasyflip/nuxtwind/compare/v0.4.2...v0.4.3) (2024-01-12)
+
+
+### Bug Fixes
+
+* **select:** watch for programmatic changes in modelValue ([2178483](https://github.com/fantasyflip/nuxtwind/commit/2178483920717dde7d5d3e82841d09d96f963cda))
+
+
+
 ## [0.4.2](https://github.com/fantasyflip/nuxtwind/compare/v0.4.1...v0.4.2) (2023-03-11)
 
 
@@ -47,19 +56,6 @@
 * **textarea:** Focus on mount ([d7ca132](https://github.com/fantasyflip/nuxtwind/commit/d7ca1325f42649c766ea7c47a9c437dbd433b12d))
 * **textfield:** Expose ref on textfield ([a3ebf4a](https://github.com/fantasyflip/nuxtwind/commit/a3ebf4a613fe5789e61d3899f2e5b14289721f28))
 * **textfield:** Focus on mount ([18b5efe](https://github.com/fantasyflip/nuxtwind/commit/18b5efee9c015465dfb99a30eedf4963ddaaf27d))
-
-
-
-## [0.2.9](https://github.com/fantasyflip/nuxtwind/compare/v0.2.8...v0.2.9) (2023-03-06)
-
-
-### Bug Fixes
-
-* bump module version ([af6228e](https://github.com/fantasyflip/nuxtwind/commit/af6228e6da3b289a9484b70fb672d9a4f331f739))
-* **Textarea:** Change label and icon color from static to theme ([b224089](https://github.com/fantasyflip/nuxtwind/commit/b224089a661abc82db2ff1963f76eab5b8ad6c8a))
-* **textarea:** Show hint on invalid input ([50b0542](https://github.com/fantasyflip/nuxtwind/commit/50b0542c0279c728aaa986948e078083a5ba646c))
-* **Textfield:** Change label and icon color from static to theme ([3ccbb48](https://github.com/fantasyflip/nuxtwind/commit/3ccbb48d282c25344f28cd873bea7df6d281ce34))
-* **textfield:** Show hint on invalid input ([6e5486c](https://github.com/fantasyflip/nuxtwind/commit/6e5486c8295d94e3f62527d02e8388dd46cf1d31))
 
 
 
