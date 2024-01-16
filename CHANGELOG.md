@@ -1,3 +1,13 @@
+# [0.5.0](https://github.com/fantasyflip/nuxtwind/compare/v0.4.3...v0.5.0) (2024-01-16)
+
+
+### Features
+
+* **Select:** Add clearable prop to reset input ([#35](https://github.com/fantasyflip/nuxtwind/issues/35)) ([2dc76bb](https://github.com/fantasyflip/nuxtwind/commit/2dc76bb1190066cb5338efc1d4e541c7d5f9ff16))
+* **Textfield:** Add clearable prop to reset input ([#35](https://github.com/fantasyflip/nuxtwind/issues/35)) ([d153c2b](https://github.com/fantasyflip/nuxtwind/commit/d153c2ba06a2c03faab31a7b4ef6e04c55445828))
+
+
+
 ## [0.4.3](https://github.com/fantasyflip/nuxtwind/compare/v0.4.2...v0.4.3) (2024-01-12)
 
 
@@ -41,21 +51,6 @@
 ### Features
 
 * **Select:** Add support for object items ([#27](https://github.com/fantasyflip/nuxtwind/issues/27)) ([d34925e](https://github.com/fantasyflip/nuxtwind/commit/d34925e6a2ecf24479c8f542a2fce989405e59b2))
-
-
-
-# [0.3.0](https://github.com/fantasyflip/nuxtwind/compare/v0.2.9...v0.3.0) (2023-03-07)
-
-
-### Bug Fixes
-
-* **button:** Expose ref on button ([1f7f20e](https://github.com/fantasyflip/nuxtwind/commit/1f7f20e99c8314d44e25de78479172b8e4d5feba))
-* **select:** Expose ref on select textfield ([7d9b994](https://github.com/fantasyflip/nuxtwind/commit/7d9b994ce8721f3626831c1e7af255deb7dbe916))
-* **select:** Focus on mount ([a6c2a02](https://github.com/fantasyflip/nuxtwind/commit/a6c2a022f4d2ecf466c5f50930304f4162fb7901))
-* **textarea:** Expose ref on textarea ([d937430](https://github.com/fantasyflip/nuxtwind/commit/d93743069cddb2b773ac428546e7caeb8cc59005))
-* **textarea:** Focus on mount ([d7ca132](https://github.com/fantasyflip/nuxtwind/commit/d7ca1325f42649c766ea7c47a9c437dbd433b12d))
-* **textfield:** Expose ref on textfield ([a3ebf4a](https://github.com/fantasyflip/nuxtwind/commit/a3ebf4a613fe5789e61d3899f2e5b14289721f28))
-* **textfield:** Focus on mount ([18b5efe](https://github.com/fantasyflip/nuxtwind/commit/18b5efee9c015465dfb99a30eedf4963ddaaf27d))
 
 
 
