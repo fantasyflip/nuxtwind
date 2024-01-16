@@ -171,7 +171,7 @@ let codeExample = computed(() => {
   }${checkedBoxes.value[1] ? `\n  disabled` : ""}${
     checkedBoxes.value[2] ? `\n  append-icon="textfieldIcon"` : ""
   }${checkedBoxes.value[3] ? `\n  prepend-icon="textfieldIcon"` : ""}${
-    checkedBoxes.value[4] ? `\n  counter` : ""
+    checkedBoxes.value[4] ? `\n  clearable` : ""
   }
 />`;
   let js = `${
