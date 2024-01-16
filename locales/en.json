@@ -403,6 +403,9 @@
               },
               "height": {
                 "description": "Prop to set the height of the select drop down."
+              },
+              "clearable": {
+                "description": "Prop to show an Icon-Button for resetting the select to its initial value."
               }
             },
             "slots": {
