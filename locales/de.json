@@ -142,6 +142,9 @@
               },
               "autocomplete": {
                 "description": "Eigenschaft um den Autocomplete-Wert der Eingabe festzulegen."
+              },
+              "clearable": {
+                "description": "Eigenschaft zum Anzeigen eines Icon-Buttons zum Zurücksetzen des Textfelds auf seinen Anfangswert."
               }
             },
             "events": {
@@ -526,6 +529,9 @@
               },
               "height": {
                 "description": "Eigenschaft um die Höhe des Auswahl-Dropdowns festzulegen."
+              },
+              "clearable": {
+                "description": "Eigenschaft zum Anzeigen eines Icon-Buttons zum Zurücksetzen der Auswahl auf den Anfangswert."
               }
             },
             "slots": {

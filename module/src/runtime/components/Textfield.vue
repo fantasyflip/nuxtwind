@@ -8,6 +8,18 @@
         />
       </slot>
     </div>
+
+    <div
+      :class="clearableIconClass"
+      v-if="props.clearable && !props.disabled && !props.loading"
+    >
+      <input
+        class="cursor-pointer"
+        type="button"
+        @click="handleReset"
+        value="X"
+      />
+    </div>
     <div v-if="props.appendIcon" :class="appendIconClass">
       <slot name="append-icon">
         <component
@@ -68,6 +80,7 @@ export interface Props {
   autocomplete?: string;
   prependIcon?: boolean | object;
   appendIcon?: boolean | object;
+  clearable?: boolean;
   disabled?: boolean;
   loading?: boolean;
   rounded?: boolean | string;
@@ -90,7 +103,7 @@ export interface Props {
   width?: string;
   rules?: { (data: any): boolean | string }[];
 }
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 function generateId() {
   let result = "";
   let characters =
@@ -158,6 +171,7 @@ const props = withDefaults(defineProps<Props>(), {
   autocomplete: "on",
   prependIcon: false,
   appendIcon: false,
+  clearable: false,
   disabled: false,
   loading: false,
   rounded: true,
@@ -177,6 +191,7 @@ const emit = defineEmits<{
   (e: "update:validation", id: object): void;
   (e: "focusIn"): void;
   (e: "focusOut"): void;
+  (e: "reset"): void;
 }>();
 
 const textfield = ref(null);
@@ -202,6 +217,20 @@ function handleInput(e) {
       type: "textfield",
     },
   });
+}
+
+let initialModelValue = ref();
+onMounted(() => {
+  initialModelValue.value = props.modelValue;
+});
+
+function handleReset() {
+  isValid.value = true;
+  // @ts-expect-error - TS doesn't know about ref
+  textfield.value.focus();
+
+  emit("update:modelValue", initialModelValue.value);
+  emit("reset");
 }
 
 function validate(value) {
@@ -299,14 +328,17 @@ const inputClass = computed(() => {
     classes.push(props.color.bg || defaults.color.bg);
 
     //ICON
-    if (props.appendIcon && props.prependIcon) {
-      classes.push("px-8");
-    } else if (props.appendIcon) {
-      classes.push("pr-8 pl-2.5");
-    } else if (props.prependIcon) {
-      classes.push("pl-8 pr-2.5");
+    if (props.appendIcon && props.clearable) {
+      classes.push("pr-12");
+    } else if (props.appendIcon || props.clearable) {
+      classes.push("pr-8");
     } else {
-      classes.push("px-2.5");
+      classes.push("pr-2.5");
+    }
+    if (props.prependIcon) {
+      classes.push("pl-8");
+    } else {
+      classes.push("pl-2.5");
     }
   } else if (props.outlined) {
     //OUTLINED
@@ -327,28 +359,34 @@ const inputClass = computed(() => {
     }
 
     //ICON
-    if (props.appendIcon && props.prependIcon) {
-      classes.push("px-8");
-    } else if (props.appendIcon) {
-      classes.push("pr-8 pl-2.5");
-    } else if (props.prependIcon) {
-      classes.push("pl-8 pr-2.5");
+    if (props.appendIcon && props.clearable) {
+      classes.push("pr-12");
+    } else if (props.appendIcon || props.clearable) {
+      classes.push("pr-8");
     } else {
-      classes.push("px-2.5");
+      classes.push("pr-2.5");
+    }
+    if (props.prependIcon) {
+      classes.push("pl-8");
+    } else {
+      classes.push("pl-2.5");
     }
   } else {
     //DEFAULT
     classes.push("py-2.5", "bg-transparent", "border-0", "border-b-2");
 
     //ICON
-    if (props.appendIcon && props.prependIcon) {
-      classes.push("px-8");
-    } else if (props.appendIcon) {
-      classes.push("pr-8 pl-0");
-    } else if (props.prependIcon) {
-      classes.push("pl-8 pr-0");
+    if (props.appendIcon && props.clearable) {
+      classes.push("pr-12");
+    } else if (props.appendIcon || props.clearable) {
+      classes.push("pr-8");
     } else {
-      classes.push("px-0");
+      classes.push("pr-0");
+    }
+    if (props.prependIcon) {
+      classes.push("pl-8");
+    } else {
+      classes.push("pl-0");
     }
   }
 
@@ -551,6 +589,61 @@ const appendIconClass = computed(() => {
     "pr-2",
     "transition-all"
   );
+
+  //TRANSITION
+  if (props.transition && typeof props.transition === "object") {
+    classes.push(props.transition.duration || defaults.transition.duration);
+    classes.push(props.transition.ease || defaults.transition.ease);
+  } else if (props.transition) {
+    classes.push(defaults.transition.duration);
+    classes.push(defaults.transition.ease);
+  }
+
+  if (props.filled) {
+    classes.push("top-2");
+  }
+
+  if (isValid.value === true) {
+    classes.push(props.color.icon || defaults.color.icon);
+    classes.push(props.color.iconFocus || defaults.color.iconFocus);
+  } else {
+    classes.push(props.color.error || defaults.color.error);
+  }
+
+  //LOADING
+  if (props.loading) {
+    classes.push("animate-pulse");
+  }
+
+  return classes.join(" ");
+});
+
+const clearableIconClass = computed(() => {
+  // class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-600 group-focus-within:text-primary-800 transition-all ease-in-out duration-500"
+
+  let classes: string[] = [];
+  classes.push(
+    "absolute",
+    "inset-y-0",
+
+    "flex",
+    "items-center",
+    "transition-all"
+  );
+
+  //APPEND-ICON
+  if (props.appendIcon) {
+    classes.push("right-8");
+  } else {
+    classes.push("right-3");
+  }
+
+  //OPACITY
+  if (props.modelValue.length > 0 || isValid.value !== true) {
+    classes.push("opacity-100");
+  } else {
+    classes.push("opacity-0");
+  }
 
   //TRANSITION
   if (props.transition && typeof props.transition === "object") {

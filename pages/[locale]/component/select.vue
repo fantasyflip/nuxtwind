@@ -17,6 +17,7 @@
             :append-icon="checkedBoxes[2] ? selectIcon : undefined"
             :prepend-icon="checkedBoxes[3] ? selectIcon : undefined"
             :search="checkedBoxes[4]"
+            :clearable="checkedBoxes[5]"
             :color="{
               textfield: {
                 bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
@@ -25,6 +26,7 @@
             :width="{
               textfield: 'w-fit',
             }"
+            display-property="name"
           />
         </ExampleCodeDisplay>
       </template>
@@ -98,10 +100,31 @@ const selectIcon = markRaw(MdiMenuDown);
 let select = ref({
   label: "Select-Label",
   placeholder: "Placeholder",
-  value: "",
+  value: {
+    name: "",
+    value: "",
+  },
 });
 
-let selectItems = ref(["Foo", "Bar", "Boo", "Far"]);
+// let selectItems = ref(["Foo", "Bar", "Boo", "Far"]);
+let selectItems = ref([
+  {
+    name: "Foo",
+    value: "foo",
+  },
+  {
+    name: "Bar",
+    value: "bar",
+  },
+  {
+    name: "Boo",
+    value: "boo",
+  },
+  {
+    name: "Far",
+    value: "far",
+  },
+]);
 
 let styleCheckedBoxes = ref([false, false, true]);
 
@@ -117,7 +140,7 @@ let styleProps = ref([
   },
 ]);
 
-let checkedBoxes = ref([false, false, true, false, true]);
+let checkedBoxes = ref([false, false, true, false, true, true]);
 
 let toggleProps = ref([
   {
@@ -134,6 +157,9 @@ let toggleProps = ref([
   },
   {
     label: "Search",
+  },
+  {
+    label: "Clearable",
   },
 ]);
 
@@ -152,7 +178,9 @@ let codeExample = computed(() => {
     checkedBoxes.value[1] ? `\n  disabled` : ""
   }${checkedBoxes.value[2] ? `\n  :append-icon="selectIcon"` : ""}${
     checkedBoxes.value[3] ? `\n  :prepend-icon="selectIcon"` : ""
-  }${checkedBoxes.value[4] ? `\n  search` : ""}
+  }${checkedBoxes.value[4] ? `\n  search` : ""}${
+    checkedBoxes.value[5] ? `\n  clearable` : ""
+  }
 />`;
   let js = `${
     checkedBoxes.value[2] || checkedBoxes.value[3]
@@ -227,6 +255,14 @@ let props = [
     description: t(
       "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "filled") }
+    ),
+  },
+  {
+    name: "clearable",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.select.content.documentation.properties.clearable.description"
     ),
   },
   {

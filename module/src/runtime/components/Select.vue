@@ -15,8 +15,12 @@
       :transition="props.transition"
       :append-icon="props.appendIcon"
       :prepend-icon="props.prependIcon"
+      :clearable="
+        props.search && props.clearable && !props.disabled && !props.loading
+      "
       @click="disabled || loading ? '' : (showSelectOptions = true)"
       @focus-in="showSelectOptions = true"
+      @clear="handleReset"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -97,6 +101,7 @@ export interface Props {
   shadow?: boolean | string;
   appendIcon?: object;
   prependIcon?: object;
+  clearable?: boolean;
   width?: {
     textfield?: string;
     select?: string;
@@ -147,6 +152,7 @@ const props = withDefaults(defineProps<Props>(), {
   shadow: true,
   appendIcon: undefined,
   prependIcon: undefined,
+  clearable: false,
   width: () => {
     return {
       textfield: "w-full",
@@ -257,6 +263,19 @@ const selectItems = computed(() => {
   }
 });
 
+let initialModelValue = ref();
+let nextUpdateIsReset = ref(false);
+onMounted(() => {
+  initialModelValue.value = props.modelValue;
+});
+
+function handleReset() {
+  nextUpdateIsReset.value = true;
+  selectSearch.value = "";
+  emit("update:modelValue", initialModelValue.value);
+  select.value.textfield.focus();
+}
+
 function setItem(item: any) {
   if (typeof props.items[0] == "object" && props.displayProperty) {
     selectSearch.value = item[props.displayProperty];
@@ -265,7 +284,12 @@ function setItem(item: any) {
   }
   lastValidItem.value = item;
   emit("update:modelValue", item);
-  showSelectOptions.value = false;
+  if (nextUpdateIsReset.value) {
+    nextUpdateIsReset.value = false;
+    showSelectOptions.value = true;
+  } else {
+    showSelectOptions.value = false;
+  }
 }
 
 let dropDownStyleCass = computed(() => {
