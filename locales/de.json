@@ -142,6 +142,9 @@
               },
               "autocomplete": {
                 "description": "Eigenschaft um den Autocomplete-Wert der Eingabe festzulegen."
+              },
+              "clearable": {
+                "description": "Eigenschaft zum Anzeigen eines Icon-Buttons zum Zurücksetzen des Textfelds auf seinen Anfangswert."
               }
             },
             "events": {

@@ -15,6 +15,7 @@
             :color="{
               bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',
             }"
+            :clearable="checkedBoxes[4]"
             :filled="styleCheckedBoxes[0]"
             :outlined="styleCheckedBoxes[1]"
             :loading="checkedBoxes[0]"
@@ -120,7 +121,7 @@ let styleProps = ref([
   },
 ]);
 
-let checkedBoxes = ref([false, false, false, true]);
+let checkedBoxes = ref([false, false, false, true, true]);
 
 let toggleProps = ref([
   {
@@ -129,11 +130,15 @@ let toggleProps = ref([
   {
     label: "Disabled",
   },
+
   {
     label: "Append-Icon",
   },
   {
     label: "Prepend-Icon",
+  },
+  {
+    label: "Clearable",
   },
 ]);
 
@@ -244,6 +249,14 @@ let props = [
     default: false,
     description: t(
       "pages.component.textfield.content.documentation.properties.appendIcon.description"
+    ),
+  },
+  {
+    name: "clearable",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.textfield.content.documentation.properties.clearable.description"
     ),
   },
   {
