@@ -21,7 +21,6 @@
       @click="disabled || loading ? '' : (showSelectOptions = true)"
       @focus-in="handleFocusIn"
       @reset="handleReset"
-      @keydown="handleKeyDown"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -83,7 +82,7 @@ export interface Props {
     hover?: string;
   };
   search?: boolean;
-  resetOnKeyDown?: boolean;
+  markOnFocus?: boolean;
   label?: string;
   outlined?: boolean | string;
   filled?: boolean | string;
@@ -144,7 +143,7 @@ const props = withDefaults(defineProps<Props>(), {
     };
   },
   search: false,
-  resetOnKeyDown: false,
+  markOnFocus: false,
   label: "",
   outlined: false,
   filled: false,
@@ -280,14 +279,13 @@ function handleReset() {
   select.value.textfield.focus();
 }
 
-function handleFocusIn() {
-  showSelectOptions.value = true;
-}
-
-function handleKeyDown(e: KeyboardEvent) {
-  if (props.resetOnKeyDown && props.modelValue != initialModelValue.value) {
-    handleReset();
+function handleFocusIn(event: FocusEvent) {
+  if (!event.target) return;
+  if (props.markOnFocus) {
+    // @ts-expect-error - select exists!
+    event.target.select();
   }
+  showSelectOptions.value = true;
 }
 
 function setItem(item: any) {
