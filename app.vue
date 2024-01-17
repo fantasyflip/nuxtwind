@@ -40,7 +40,7 @@
 
 <script lang="ts" setup>
 import Toast from "./module/src/runtime/components/Toast.vue";
-import { Toast as ToastType } from "./composables/Toast";
+import type { Toast as ToastType } from "./composables/Toast";
 import { useI18n } from "vue-i18n";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "./tailwind.config.js";

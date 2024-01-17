@@ -113,7 +113,12 @@ function generateId() {
   }
   return result;
 }
-let checkboxId = generateId();
+
+let checkboxId = "";
+
+onMounted(() => {
+  checkboxId = generateId();
+});
 
 let defaults = {
   color: {

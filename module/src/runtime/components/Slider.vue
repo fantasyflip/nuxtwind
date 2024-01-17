@@ -59,7 +59,11 @@ function generateId() {
   }
   return result;
 }
-let sliderId = generateId();
+let sliderId = "";
+
+onMounted(() => {
+  sliderId = generateId();
+});
 
 let colorMode = ref("dark");
 let htmlElement = ref<HTMLElement>();
@@ -169,7 +173,7 @@ watch(
     }
     thumbTooltipPercentage.value = (value / props.max) * 100 + "%";
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const thumbColor = computed(() => {
