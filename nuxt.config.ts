@@ -2,7 +2,6 @@
 
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "url";
-import VueI18nVitePlugin from "@intlify/unplugin-vue-i18n/vite";
 
 export default defineNuxtConfig({
   // TODO Add auto import for module components
@@ -33,15 +32,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "nuxt-simple-robots",
   ],
-  vite: {
-    plugins: [
-      VueI18nVitePlugin({
-        include: [
-          resolve(dirname(fileURLToPath(import.meta.url)), "./locales/*.json"),
-        ],
-      }),
-    ],
-  },
   runtimeConfig: {
     // Private keys are only available on the server
     // Public keys that are exposed to the client
