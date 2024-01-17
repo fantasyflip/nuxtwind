@@ -1,3 +1,15 @@
+## [0.5.1](https://github.com/fantasyflip/nuxtwind/compare/v0.5.0...v0.5.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* **Checkbox:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([4d4b754](https://github.com/fantasyflip/nuxtwind/commit/4d4b754a481eea23d3235a80f00edbba76f0af3c))
+* **Slider:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([c41b4ec](https://github.com/fantasyflip/nuxtwind/commit/c41b4ecdf1f8e60d1f60708d279716e2d7259b88))
+* **Textarea:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([4c00df7](https://github.com/fantasyflip/nuxtwind/commit/4c00df771a73ee63627ca56882f747f21e23cd9f))
+* **Textfield:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([2332fc8](https://github.com/fantasyflip/nuxtwind/commit/2332fc88bb8432cdfeede899d659733cdc99b491))
+
+
+
 # [0.5.0](https://github.com/fantasyflip/nuxtwind/compare/v0.4.3...v0.5.0) (2024-01-16)
 
 
@@ -36,21 +48,6 @@
 * **Select:** Rework modelValue behaviour ([456c1f9](https://github.com/fantasyflip/nuxtwind/commit/456c1f9e5ab09d121ad4d9843701006e333d6efc))
 * **Select:** Using object items without search prop ([2ef6ffb](https://github.com/fantasyflip/nuxtwind/commit/2ef6ffb786bde2c6e30fd6827f7113b8e956b7f8))
 * **Select:** Validate non-object items on outside click ([932506e](https://github.com/fantasyflip/nuxtwind/commit/932506eda6922a2087cc9d74ba719643e8aa8048))
-
-
-
-# [0.4.0](https://github.com/fantasyflip/nuxtwind/compare/v0.3.0...v0.4.0) (2023-03-09)
-
-
-### Bug Fixes
-
-* **Select:** Save on enter ([56092b8](https://github.com/fantasyflip/nuxtwind/commit/56092b8c341e923890966660ffdc8ed56f824c69))
-* **Select:** Show options on focus ([4c620b3](https://github.com/fantasyflip/nuxtwind/commit/4c620b35c89af179cf7d535933a8239f2b38e7bc))
-
-
-### Features
-
-* **Select:** Add support for object items ([#27](https://github.com/fantasyflip/nuxtwind/issues/27)) ([d34925e](https://github.com/fantasyflip/nuxtwind/commit/d34925e6a2ecf24479c8f542a2fce989405e59b2))
 
 
 
