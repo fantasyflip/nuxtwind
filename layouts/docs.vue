@@ -203,9 +203,13 @@ let componentRoutes = computed(() => {
   let componentRoutes = [];
   for (let i = 0; i < routeList.length; i++) {
     let route = routeList[i];
+    let routePath = route.path;
+    if (routePath.includes("()")) {
+      routePath = routePath.replace("()", "");
+    }
     componentRoutes.push({
-      path: route.path,
-      name: route.path.split("component/")[1],
+      path: routePath,
+      name: routePath.split("component/")[1],
     });
   }
   return componentRoutes;
