@@ -114,7 +114,11 @@ function generateId() {
   }
   return result;
 }
-let textfieldId = generateId();
+let textfieldId = "";
+
+onMounted(() => {
+  textfieldId = generateId();
+});
 
 let isValid = ref<boolean | string>(true);
 let defaults = {
@@ -295,17 +299,18 @@ const inputClass = computed(() => {
     "peer",
     "placeholder:opacity-0",
     "focus:placeholder:opacity-100",
-    "placeholder:transition-opacity"
+    "placeholder:transition-opacity",
   );
 
   //TRANSITION
   if (props.transition && typeof props.transition === "object") {
     classes.push(
       props.transition.placeholder?.duration ||
-        defaults.transition.placeholder.duration
+        defaults.transition.placeholder.duration,
     );
     classes.push(
-      props.transition.placeholder?.ease || defaults.transition.placeholder.ease
+      props.transition.placeholder?.ease ||
+        defaults.transition.placeholder.ease,
     );
   } else if (props.transition) {
     classes.push(defaults.transition.placeholder.duration);
@@ -397,7 +402,7 @@ const inputClass = computed(() => {
   } else {
     classes.push(props.color.borderError || defaults.color.borderError);
     classes.push(
-      props.color.borderFocusError || defaults.color.borderFocusError
+      props.color.borderFocusError || defaults.color.borderFocusError,
     );
   }
 
@@ -435,7 +440,7 @@ const labelClass = computed(() => {
     "scale-75",
     "origin-[0]",
     "peer-placeholder-shown:scale-100",
-    "peer-focus:scale-75"
+    "peer-focus:scale-75",
   );
 
   //TRANSITION
@@ -457,7 +462,7 @@ const labelClass = computed(() => {
       "z-10",
       "left-2.5",
       "peer-placeholder-shown:translate-y-0",
-      "peer-focus:-translate-y-4"
+      "peer-focus:-translate-y-4",
     );
 
     //ICON
@@ -465,7 +470,7 @@ const labelClass = computed(() => {
       classes.push(
         "peer-focus:translate-x-0",
         "peer-placeholder-shown:translate-x-6",
-        "peer-placeholder-shown:top-5"
+        "peer-placeholder-shown:top-5",
       );
     }
   } else if (props.outlined) {
@@ -480,7 +485,7 @@ const labelClass = computed(() => {
       "peer-placeholder-shown:top-1/2",
       "peer-focus:top-2",
       "peer-focus:-translate-y-4",
-      "left-1"
+      "left-1",
     );
 
     //COLOR
@@ -490,7 +495,7 @@ const labelClass = computed(() => {
     if (props.prependIcon) {
       classes.push(
         "peer-focus:translate-x-0",
-        "peer-placeholder-shown:translate-x-6"
+        "peer-placeholder-shown:translate-x-6",
       );
     }
   } else {
@@ -501,14 +506,14 @@ const labelClass = computed(() => {
       "-z-10",
       "peer-focus:left-0",
       "peer-placeholder-shown:translate-y-0",
-      "peer-focus:-translate-y-6"
+      "peer-focus:-translate-y-6",
     );
 
     //ICON
     if (props.prependIcon) {
       classes.push(
         "peer-focus:translate-x-0",
-        "peer-placeholder-shown:translate-x-8"
+        "peer-placeholder-shown:translate-x-8",
       );
     }
   }
@@ -545,7 +550,7 @@ const prependIconClass = computed(() => {
     "flex",
     "items-center",
     "pl-2",
-    "transition-all"
+    "transition-all",
   );
 
   //TRANSITION
@@ -587,7 +592,7 @@ const appendIconClass = computed(() => {
     "flex",
     "items-center",
     "pr-2",
-    "transition-all"
+    "transition-all",
   );
 
   //TRANSITION
@@ -628,7 +633,7 @@ const clearableIconClass = computed(() => {
 
     "flex",
     "items-center",
-    "transition-all"
+    "transition-all",
   );
 
   //APPEND-ICON
