@@ -27,7 +27,7 @@
     "nuxt-simple-robots": "^1.0.0",
     "sass": "^1.56.1",
     "unplugin-icons": "^0.14.14",
-    "vue-i18n": "^9.2.2"
+    "vue-i18n": "^9.9.0"
   },
   "dependencies": {
     "shiki-es": "^0.1.2",
