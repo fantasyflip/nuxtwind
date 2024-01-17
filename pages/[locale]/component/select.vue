@@ -18,6 +18,7 @@
             :prepend-icon="checkedBoxes[3] ? selectIcon : undefined"
             :search="checkedBoxes[4]"
             :clearable="checkedBoxes[5]"
+            reset-on-key-down
             :color="{
               textfield: {
                 bg: styleCheckedBoxes[1] ? 'bg-white dark:bg-zinc-900' : '',

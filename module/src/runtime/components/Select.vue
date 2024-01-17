@@ -19,8 +19,9 @@
         props.search && props.clearable && !props.disabled && !props.loading
       "
       @click="disabled || loading ? '' : (showSelectOptions = true)"
-      @focus-in="showSelectOptions = true"
-      @clear="handleReset"
+      @focus-in="handleFocusIn"
+      @reset="handleReset"
+      @keydown="handleKeyDown"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -82,6 +83,7 @@ export interface Props {
     hover?: string;
   };
   search?: boolean;
+  resetOnKeyDown?: boolean;
   label?: string;
   outlined?: boolean | string;
   filled?: boolean | string;
@@ -142,6 +144,7 @@ const props = withDefaults(defineProps<Props>(), {
     };
   },
   search: false,
+  resetOnKeyDown: false,
   label: "",
   outlined: false,
   filled: false,
@@ -183,7 +186,7 @@ watch(
   () => props.modelValue,
   (newValue) => {
     setItem(newValue);
-  }
+  },
 );
 
 onMounted(() => {
@@ -236,7 +239,7 @@ const selectItems = computed(() => {
     //no search through items -> just hand over items
     if (typeof props.items[0] == "object" && !props.displayProperty) {
       return "Please provide a displayProperty when using objects as items".split(
-        " "
+        " ",
       );
     }
     return props.items;
@@ -248,16 +251,16 @@ const selectItems = computed(() => {
         return props.items.filter((item) =>
           item[props.displayProperty!]
             .toLowerCase()
-            .includes(selectSearch.value.toLowerCase())
+            .includes(selectSearch.value.toLowerCase()),
         );
       } else {
         return "Please provide a displayProperty when using objects as items".split(
-          " "
+          " ",
         );
       }
     } else {
       return props.items.filter((item) =>
-        item.toLowerCase().includes(selectSearch.value.toLowerCase())
+        item.toLowerCase().includes(selectSearch.value.toLowerCase()),
       );
     }
   }
@@ -273,7 +276,18 @@ function handleReset() {
   nextUpdateIsReset.value = true;
   selectSearch.value = "";
   emit("update:modelValue", initialModelValue.value);
+  // @ts-expect-error - TS doesn't know about ref
   select.value.textfield.focus();
+}
+
+function handleFocusIn() {
+  showSelectOptions.value = true;
+}
+
+function handleKeyDown(e: KeyboardEvent) {
+  if (props.resetOnKeyDown && props.modelValue != initialModelValue.value) {
+    handleReset();
+  }
 }
 
 function setItem(item: any) {
@@ -282,6 +296,7 @@ function setItem(item: any) {
   } else {
     selectSearch.value = item;
   }
+
   lastValidItem.value = item;
   emit("update:modelValue", item);
   if (nextUpdateIsReset.value) {
