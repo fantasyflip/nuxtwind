@@ -21,6 +21,7 @@
       @click="disabled || loading ? '' : (showSelectOptions = true)"
       @focus-in="handleFocusIn"
       @reset="handleReset"
+      @keydown="handleKeyDown"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -83,6 +84,7 @@ export interface Props {
   };
   search?: boolean;
   markOnFocus?: boolean;
+  showAllOnFocus?: boolean;
   label?: string;
   outlined?: boolean | string;
   filled?: boolean | string;
@@ -144,6 +146,7 @@ const props = withDefaults(defineProps<Props>(), {
   },
   search: false,
   markOnFocus: false,
+  showAllOnFocus: false,
   label: "",
   outlined: false,
   filled: false,
@@ -185,7 +188,7 @@ watch(
   () => props.modelValue,
   (newValue) => {
     setItem(newValue);
-  },
+  }
 );
 
 onMounted(() => {
@@ -233,12 +236,14 @@ onMounted(() => {
   });
 });
 
+let showAllItemsNextRun = ref(false);
+
 const selectItems = computed(() => {
-  if (!props.search) {
+  if (!props.search || showAllItemsNextRun.value) {
     //no search through items -> just hand over items
     if (typeof props.items[0] == "object" && !props.displayProperty) {
       return "Please provide a displayProperty when using objects as items".split(
-        " ",
+        " "
       );
     }
     return props.items;
@@ -250,16 +255,16 @@ const selectItems = computed(() => {
         return props.items.filter((item) =>
           item[props.displayProperty!]
             .toLowerCase()
-            .includes(selectSearch.value.toLowerCase()),
+            .includes(selectSearch.value.toLowerCase())
         );
       } else {
         return "Please provide a displayProperty when using objects as items".split(
-          " ",
+          " "
         );
       }
     } else {
       return props.items.filter((item) =>
-        item.toLowerCase().includes(selectSearch.value.toLowerCase()),
+        item.toLowerCase().includes(selectSearch.value.toLowerCase())
       );
     }
   }
@@ -280,12 +285,22 @@ function handleReset() {
 }
 
 function handleFocusIn(event: FocusEvent) {
+  if (props.showAllOnFocus) {
+    showAllItemsNextRun.value = true;
+  }
   if (!event.target) return;
   if (props.markOnFocus) {
     // @ts-expect-error - select exists!
     event.target.select();
   }
   showSelectOptions.value = true;
+}
+
+function handleKeyDown(event) {
+  //if the key is a letter or number, filter items again
+  if (props.showAllOnFocus && event.key.length == 1) {
+    showAllItemsNextRun.value = false;
+  }
 }
 
 function setItem(item: any) {
