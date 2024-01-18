@@ -532,6 +532,9 @@
               },
               "clearable": {
                 "description": "Eigenschaft zum Anzeigen eines Icon-Buttons zum Zurücksetzen der Auswahl auf den Anfangswert."
+              },
+              "markOnFocus": {
+                "description": "Eigenschaft, bei der der aktuelle Suchwert markiert wird, sobald das Feld den Fokus erhält."
               }
             },
             "slots": {

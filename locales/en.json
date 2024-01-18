@@ -406,6 +406,9 @@
               },
               "clearable": {
                 "description": "Prop to show an Icon-Button for resetting the select to its initial value."
+              },
+              "markOnFocus": {
+                "description": "Prop, when enabled marks the current search value on focus."
               }
             },
             "slots": {

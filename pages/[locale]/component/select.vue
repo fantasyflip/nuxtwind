@@ -18,6 +18,7 @@
             :prepend-icon="checkedBoxes[3] ? selectIcon : undefined"
             :search="checkedBoxes[4]"
             :clearable="checkedBoxes[5]"
+            :mark-on-focus="checkedBoxes[6]"
             reset-on-key-down
             :color="{
               textfield: {
@@ -141,7 +142,7 @@ let styleProps = ref([
   },
 ]);
 
-let checkedBoxes = ref([false, false, true, false, true, true]);
+let checkedBoxes = ref([false, false, true, false, true, true, true]);
 
 let toggleProps = ref([
   {
@@ -162,6 +163,9 @@ let toggleProps = ref([
   {
     label: "Clearable",
   },
+  {
+    label: "Mark-On-Focus",
+  },
 ]);
 
 let codeExample = computed(() => {
@@ -181,7 +185,7 @@ let codeExample = computed(() => {
     checkedBoxes.value[3] ? `\n  :prepend-icon="selectIcon"` : ""
   }${checkedBoxes.value[4] ? `\n  search` : ""}${
     checkedBoxes.value[5] ? `\n  clearable` : ""
-  }
+  }${checkedBoxes.value[6] ? `\n  markOnFocus` : ""}
 />`;
   let js = `${
     checkedBoxes.value[2] || checkedBoxes.value[3]
@@ -300,6 +304,14 @@ let props = [
     description: t(
       "pages.component.select.content.documentation.properties.referComponent.textfield.description",
       { url: useComponentReferUrl("textfield", "prop", "transition") }
+    ),
+  },
+  {
+    name: "markOnFocus",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.select.content.documentation.properties.markOnFocus.description"
     ),
   },
   {
