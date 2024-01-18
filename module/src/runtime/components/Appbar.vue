@@ -27,17 +27,18 @@
     <div :class="props.height">
       <slot> Navigation-Bar </slot>
     </div>
-    <TransitionGroup name="list">
-      <!-- TODO fix z index issue  -->
-      <div
-        v-if="extensionIsActive"
-        key="extension"
-        :class="props.color?.bg || defaults.color.bg"
-        class="w-full"
-      >
-        <slot name="extension"> Extension Slot </slot>
-      </div>
-    </TransitionGroup>
+    <ClientOnly>
+      <TransitionGroup name="list">
+        <div
+          v-if="extensionIsActive"
+          key="extension"
+          :class="props.color?.bg || defaults.color.bg"
+          class="w-full"
+        >
+          <slot name="extension"> Extension Slot </slot>
+        </div>
+      </TransitionGroup>
+    </ClientOnly>
   </div>
 </template>
 
@@ -93,7 +94,6 @@ let { y } = useWindowScroll();
 
 let extensionIsActive = computed(() => {
   let extensionState = false;
-
   if (props.extension) {
     if (props.shrinkOnScroll) {
       if (typeof props.scrollOffset === "number") {
@@ -190,7 +190,7 @@ let navigationIconClass = computed(() => {
     "top-1/2",
     "transform",
     "-translate-y-1/2",
-    "left-3"
+    "left-3",
   );
 
   classes.push(props.zIndex);
