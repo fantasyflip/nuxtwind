@@ -532,6 +532,12 @@
               },
               "clearable": {
                 "description": "Eigenschaft zum Anzeigen eines Icon-Buttons zum Zurücksetzen der Auswahl auf den Anfangswert."
+              },
+              "markOnFocus": {
+                "description": "Eigenschaft, bei der der aktuelle Suchwert markiert wird, sobald das Feld den Fokus erhält."
+              },
+              "showAllOnFocus": {
+                "description": "Eigenschaft um ungefilterte auswählbare Elemente beim Erhalt des Fokus anzuseigen"
               }
             },
             "slots": {
@@ -539,6 +545,9 @@
                 "textfield": {
                   "description": "Dieser Platzhalter leitet nur auf den gleichnamigen Platzhalter der 'textfield'-Komponente um. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere Informationen darüber</a>."
                 }
+              },
+              "item": {
+                "description": "Platzhalter zum Anpassen des Erscheinungsbilds auswählbarer Elemente"
               }
             },
             "caveats": {

@@ -38,8 +38,8 @@
       :value="props.modelValue"
       :autocomplete="autocomplete"
       @input="handleInput"
-      @focusin="$emit('focusIn')"
-      @focusout="$emit('focusOut')"
+      @focusin="$emit('focusIn', $event)"
+      @focusout="$emit('focusOut', $event)"
     />
     <label :for="textfieldId" :class="labelClass">
       <slot name="label">{{ props.label }}</slot>
@@ -193,8 +193,8 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   (e: "update:modelValue", id: string): void;
   (e: "update:validation", id: object): void;
-  (e: "focusIn"): void;
-  (e: "focusOut"): void;
+  (e: "focusIn", event: FocusEvent): void;
+  (e: "focusOut", event: FocusEvent): void;
   (e: "reset"): void;
 }>();
 

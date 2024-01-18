@@ -19,8 +19,9 @@
         props.search && props.clearable && !props.disabled && !props.loading
       "
       @click="disabled || loading ? '' : (showSelectOptions = true)"
-      @focus-in="showSelectOptions = true"
-      @clear="handleReset"
+      @focus-in="handleFocusIn"
+      @reset="handleReset"
+      @keydown="handleKeyDown"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -35,23 +36,22 @@
       <template #label> <slot name="label"></slot> </template>
     </Textfield>
     <div v-if="showSelectOptions" :class="dropDownStyleCass">
-      <option
+      <div
         v-for="(item, index) in selectItems"
         :key="index"
-        class="p-2"
-        :class="
-          index < selectItems.length - 1
-            ? itemStyleClass
-            : props.color?.hover || defaults.color.hover
-        "
         @click.stop="setItem(item)"
+        :class="itemStyleClass"
       >
-        {{
-          typeof props.items[0] == "object" && props.displayProperty
-            ? item[props.displayProperty]
-            : item
-        }}
-      </option>
+        <slot v-bind="item" name="item">
+          <div class="p-2">
+            {{
+              typeof props.items[0] == "object" && props.displayProperty
+                ? item[props.displayProperty]
+                : item
+            }}
+          </div>
+        </slot>
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +82,8 @@ export interface Props {
     hover?: string;
   };
   search?: boolean;
+  markOnFocus?: boolean;
+  showAllOnFocus?: boolean;
   label?: string;
   outlined?: boolean | string;
   filled?: boolean | string;
@@ -142,6 +144,8 @@ const props = withDefaults(defineProps<Props>(), {
     };
   },
   search: false,
+  markOnFocus: false,
+  showAllOnFocus: false,
   label: "",
   outlined: false,
   filled: false,
@@ -183,7 +187,7 @@ watch(
   () => props.modelValue,
   (newValue) => {
     setItem(newValue);
-  }
+  },
 );
 
 onMounted(() => {
@@ -231,12 +235,14 @@ onMounted(() => {
   });
 });
 
+let showAllItemsNextRun = ref(false);
+
 const selectItems = computed(() => {
-  if (!props.search) {
+  if (!props.search || showAllItemsNextRun.value) {
     //no search through items -> just hand over items
     if (typeof props.items[0] == "object" && !props.displayProperty) {
       return "Please provide a displayProperty when using objects as items".split(
-        " "
+        " ",
       );
     }
     return props.items;
@@ -248,16 +254,16 @@ const selectItems = computed(() => {
         return props.items.filter((item) =>
           item[props.displayProperty!]
             .toLowerCase()
-            .includes(selectSearch.value.toLowerCase())
+            .includes(selectSearch.value.toLowerCase()),
         );
       } else {
         return "Please provide a displayProperty when using objects as items".split(
-          " "
+          " ",
         );
       }
     } else {
       return props.items.filter((item) =>
-        item.toLowerCase().includes(selectSearch.value.toLowerCase())
+        item.toLowerCase().includes(selectSearch.value.toLowerCase()),
       );
     }
   }
@@ -273,7 +279,27 @@ function handleReset() {
   nextUpdateIsReset.value = true;
   selectSearch.value = "";
   emit("update:modelValue", initialModelValue.value);
+  // @ts-expect-error - TS doesn't know about ref
   select.value.textfield.focus();
+}
+
+function handleFocusIn(event: FocusEvent) {
+  if (props.showAllOnFocus) {
+    showAllItemsNextRun.value = true;
+  }
+  if (!event.target) return;
+  if (props.markOnFocus) {
+    // @ts-expect-error - select exists!
+    event.target.select();
+  }
+  showSelectOptions.value = true;
+}
+
+function handleKeyDown(event) {
+  //if the key is a letter or number, filter items again
+  if (props.showAllOnFocus && event.key.length == 1) {
+    showAllItemsNextRun.value = false;
+  }
 }
 
 function setItem(item: any) {
@@ -282,6 +308,7 @@ function setItem(item: any) {
   } else {
     selectSearch.value = item;
   }
+
   lastValidItem.value = item;
   emit("update:modelValue", item);
   if (nextUpdateIsReset.value) {
@@ -331,6 +358,9 @@ let itemStyleClass = computed(() => {
   let classes: string[] = [];
   // class='border-b'
   classes.push("border-b");
+
+  //WIDTH
+  classes.push(props.width.select || defaults.width.select);
 
   //COLOR
   classes.push(props.color.border || defaults.color.border);

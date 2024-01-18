@@ -406,6 +406,12 @@
               },
               "clearable": {
                 "description": "Prop to show an Icon-Button for resetting the select to its initial value."
+              },
+              "markOnFocus": {
+                "description": "Prop, when enabled marks the current search value on focus."
+              },
+              "showAllOnFocus": {
+                "description": "Prop to show unfiltered selectable items on focus"
               }
             },
             "slots": {
@@ -413,6 +419,9 @@
                 "textfield": {
                   "description": "This slot just redirects to the identically named slot of the 'textfield'-component. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More information about it</a>."
                 }
+              },
+              "item": {
+                "description": "Slot to customize the appearence of selectable items"
               }
             },
             "caveats": {
