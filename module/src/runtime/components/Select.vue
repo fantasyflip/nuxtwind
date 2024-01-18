@@ -36,23 +36,22 @@
       <template #label> <slot name="label"></slot> </template>
     </Textfield>
     <div v-if="showSelectOptions" :class="dropDownStyleCass">
-      <option
+      <div
         v-for="(item, index) in selectItems"
         :key="index"
-        class="p-2"
-        :class="
-          index < selectItems.length - 1
-            ? itemStyleClass
-            : props.color?.hover || defaults.color.hover
-        "
         @click.stop="setItem(item)"
+        :class="itemStyleClass"
       >
-        {{
-          typeof props.items[0] == "object" && props.displayProperty
-            ? item[props.displayProperty]
-            : item
-        }}
-      </option>
+        <slot v-bind="item" name="item">
+          <div class="p-2">
+            {{
+              typeof props.items[0] == "object" && props.displayProperty
+                ? item[props.displayProperty]
+                : item
+            }}
+          </div>
+        </slot>
+      </div>
     </div>
   </div>
 </template>
@@ -188,7 +187,7 @@ watch(
   () => props.modelValue,
   (newValue) => {
     setItem(newValue);
-  }
+  },
 );
 
 onMounted(() => {
@@ -243,7 +242,7 @@ const selectItems = computed(() => {
     //no search through items -> just hand over items
     if (typeof props.items[0] == "object" && !props.displayProperty) {
       return "Please provide a displayProperty when using objects as items".split(
-        " "
+        " ",
       );
     }
     return props.items;
@@ -255,16 +254,16 @@ const selectItems = computed(() => {
         return props.items.filter((item) =>
           item[props.displayProperty!]
             .toLowerCase()
-            .includes(selectSearch.value.toLowerCase())
+            .includes(selectSearch.value.toLowerCase()),
         );
       } else {
         return "Please provide a displayProperty when using objects as items".split(
-          " "
+          " ",
         );
       }
     } else {
       return props.items.filter((item) =>
-        item.toLowerCase().includes(selectSearch.value.toLowerCase())
+        item.toLowerCase().includes(selectSearch.value.toLowerCase()),
       );
     }
   }
@@ -359,6 +358,9 @@ let itemStyleClass = computed(() => {
   let classes: string[] = [];
   // class='border-b'
   classes.push("border-b");
+
+  //WIDTH
+  classes.push(props.width.select || defaults.width.select);
 
   //COLOR
   classes.push(props.color.border || defaults.color.border);

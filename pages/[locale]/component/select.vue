@@ -397,6 +397,12 @@ let slots = [
       }
     ),
   },
+  {
+    name: "item",
+    description: t(
+      "pages.component.select.content.documentation.slots.item.description"
+    ),
+  },
 ];
 
 let caveats = [
