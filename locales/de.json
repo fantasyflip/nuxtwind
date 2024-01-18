@@ -535,6 +535,9 @@
               },
               "markOnFocus": {
                 "description": "Eigenschaft, bei der der aktuelle Suchwert markiert wird, sobald das Feld den Fokus erhält."
+              },
+              "showAllOnFocus": {
+                "description": "Eigenschaft um ungefilterte auswählbare Elemente beim Erhalt des Fokus anzuseigen"
               }
             },
             "slots": {

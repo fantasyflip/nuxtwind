@@ -409,6 +409,9 @@
               },
               "markOnFocus": {
                 "description": "Prop, when enabled marks the current search value on focus."
+              },
+              "showAllOnFocus": {
+                "description": "Prop to show unfiltered selectable items on focus"
               }
             },
             "slots": {

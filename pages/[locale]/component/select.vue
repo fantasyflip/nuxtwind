@@ -142,7 +142,7 @@ let styleProps = ref([
   },
 ]);
 
-let checkedBoxes = ref([false, false, true, false, true, true, true]);
+let checkedBoxes = ref([false, false, true, false, true, true, true, true]);
 
 let toggleProps = ref([
   {
@@ -165,6 +165,9 @@ let toggleProps = ref([
   },
   {
     label: "Mark-On-Focus",
+  },
+  {
+    label: "Show-All-On-Focus",
   },
 ]);
 
@@ -268,6 +271,14 @@ let props = [
     default: false,
     description: t(
       "pages.component.select.content.documentation.properties.clearable.description"
+    ),
+  },
+  {
+    name: "showAllOnFocus",
+    type: "Boolean",
+    default: false,
+    description: t(
+      "pages.component.select.content.documentation.properties.showAllOnFocus.description"
     ),
   },
   {
