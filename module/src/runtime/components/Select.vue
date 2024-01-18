@@ -19,8 +19,9 @@
         props.search && props.clearable && !props.disabled && !props.loading
       "
       @click="disabled || loading ? '' : (showSelectOptions = true)"
-      @focus-in="showSelectOptions = true"
-      @clear="handleReset"
+      @focus-in="handleFocusIn"
+      @reset="handleReset"
+      @keydown="handleKeyDown"
     >
       <template v-if="props.prependIcon" #prepend-icon>
         <slot name="prepend-icon">
@@ -82,6 +83,8 @@ export interface Props {
     hover?: string;
   };
   search?: boolean;
+  markOnFocus?: boolean;
+  showAllOnFocus?: boolean;
   label?: string;
   outlined?: boolean | string;
   filled?: boolean | string;
@@ -142,6 +145,8 @@ const props = withDefaults(defineProps<Props>(), {
     };
   },
   search: false,
+  markOnFocus: false,
+  showAllOnFocus: false,
   label: "",
   outlined: false,
   filled: false,
@@ -231,8 +236,10 @@ onMounted(() => {
   });
 });
 
+let showAllItemsNextRun = ref(false);
+
 const selectItems = computed(() => {
-  if (!props.search) {
+  if (!props.search || showAllItemsNextRun.value) {
     //no search through items -> just hand over items
     if (typeof props.items[0] == "object" && !props.displayProperty) {
       return "Please provide a displayProperty when using objects as items".split(
@@ -273,7 +280,27 @@ function handleReset() {
   nextUpdateIsReset.value = true;
   selectSearch.value = "";
   emit("update:modelValue", initialModelValue.value);
+  // @ts-expect-error - TS doesn't know about ref
   select.value.textfield.focus();
+}
+
+function handleFocusIn(event: FocusEvent) {
+  if (props.showAllOnFocus) {
+    showAllItemsNextRun.value = true;
+  }
+  if (!event.target) return;
+  if (props.markOnFocus) {
+    // @ts-expect-error - select exists!
+    event.target.select();
+  }
+  showSelectOptions.value = true;
+}
+
+function handleKeyDown(event) {
+  //if the key is a letter or number, filter items again
+  if (props.showAllOnFocus && event.key.length == 1) {
+    showAllItemsNextRun.value = false;
+  }
 }
 
 function setItem(item: any) {
@@ -282,6 +309,7 @@ function setItem(item: any) {
   } else {
     selectSearch.value = item;
   }
+
   lastValidItem.value = item;
   emit("update:modelValue", item);
   if (nextUpdateIsReset.value) {
