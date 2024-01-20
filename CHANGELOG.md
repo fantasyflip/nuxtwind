@@ -1,3 +1,19 @@
+# [0.6.0](https://github.com/fantasyflip/nuxtwind/compare/v0.5.1...v0.6.0) (2024-01-18)
+
+
+### Bug Fixes
+
+* **Appbar:** extension slot hydration mismatch ([2e2c6f0](https://github.com/fantasyflip/nuxtwind/commit/2e2c6f0bc7bdfc060f56fb9f8a67031479755f4b))
+
+
+### Features
+
+* **Select:** Add prop resetOnKeyDown ([1e9bb9e](https://github.com/fantasyflip/nuxtwind/commit/1e9bb9ebdd9f16ec17c68cb3bdfb5204116cceed))
+* **Select:** Add prop showAllOnFocus ([c7193ee](https://github.com/fantasyflip/nuxtwind/commit/c7193eee3a416256dfe1ed998693874634ceb896))
+* **Select:** Add slot for selectable items ([26eb65c](https://github.com/fantasyflip/nuxtwind/commit/26eb65c92e27361eac79583dc08abb7a63b4ddcf))
+
+
+
 ## [0.5.1](https://github.com/fantasyflip/nuxtwind/compare/v0.5.0...v0.5.1) (2024-01-17)
 
 
@@ -36,18 +52,6 @@
 
 * **Button:** Add modelValue on loading progress ([deb77cb](https://github.com/fantasyflip/nuxtwind/commit/deb77cb4d4eba19ee80bdd187c9bd6671f6f0448))
 * **Button:** Colors on button loading progress ([cde600f](https://github.com/fantasyflip/nuxtwind/commit/cde600fb6624ca48fbd1e82779a270f11438b3b5))
-
-
-
-## [0.4.1](https://github.com/fantasyflip/nuxtwind/compare/v0.4.0...v0.4.1) (2023-03-11)
-
-
-### Bug Fixes
-
-* **Select:** Keep value on outside click when using object items ([6c98895](https://github.com/fantasyflip/nuxtwind/commit/6c988952daf49944aaf51f69a3d5f3a5c843d1b6))
-* **Select:** Rework modelValue behaviour ([456c1f9](https://github.com/fantasyflip/nuxtwind/commit/456c1f9e5ab09d121ad4d9843701006e333d6efc))
-* **Select:** Using object items without search prop ([2ef6ffb](https://github.com/fantasyflip/nuxtwind/commit/2ef6ffb786bde2c6e30fd6827f7113b8e956b7f8))
-* **Select:** Validate non-object items on outside click ([932506e](https://github.com/fantasyflip/nuxtwind/commit/932506eda6922a2087cc9d74ba719643e8aa8048))
 
 
 
