@@ -25,7 +25,6 @@
               "
               >Hover over me!</Button
             >
-
             <template #tooltip>
               {{ tooltip }}
             </template>
@@ -224,7 +223,7 @@ let props = [
   {
     name: "width",
     type: "String",
-    default: "w-full",
+    default: "w-fit",
     description: t(
       "pages.component.tooltip.content.documentation.properties.width.description"
     ),
