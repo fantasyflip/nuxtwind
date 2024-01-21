@@ -69,7 +69,7 @@ const props = withDefaults(defineProps<Props>(), {
   rounded: true,
   zIndex: "z-10",
   interactive: false,
-  width: "w-full",
+  width: "w-fit",
 });
 
 let contentWrapperClass = computed(() => {
@@ -124,7 +124,7 @@ let tooltipWrapperClass = computed(() => {
       "mr-2",
       "top-1/2",
       "transform",
-      "-translate-y-1/2"
+      "-translate-y-1/2",
     );
   } else if (props.right) {
     classes.push(
@@ -132,7 +132,7 @@ let tooltipWrapperClass = computed(() => {
       "ml-2",
       "top-1/2",
       "transform",
-      "-translate-y-1/2"
+      "-translate-y-1/2",
     );
   } else if (props.bottom) {
     classes.push(
@@ -140,7 +140,7 @@ let tooltipWrapperClass = computed(() => {
       "mt-2",
       "left-1/2",
       "transform",
-      "-translate-x-1/2"
+      "-translate-x-1/2",
     );
   } else if (props.top) {
     classes.push(
@@ -148,7 +148,7 @@ let tooltipWrapperClass = computed(() => {
       "mb-2",
       "left-1/2",
       "transform",
-      "-translate-x-1/2"
+      "-translate-x-1/2",
     );
   }
 
@@ -165,7 +165,7 @@ let pointerClass = computed(() => {
       "-rotate-90",
       "top-1/2",
       "transform",
-      "-translate-y-1/2"
+      "-translate-y-1/2",
     );
   } else if (props.right) {
     classes.push(
@@ -174,7 +174,7 @@ let pointerClass = computed(() => {
       "rotate-90",
       "top-1/2",
       "transform",
-      "-translate-y-1/2"
+      "-translate-y-1/2",
     );
   } else if (props.bottom) {
     classes.push("bottom-full", "rotate-180", "left-0");
