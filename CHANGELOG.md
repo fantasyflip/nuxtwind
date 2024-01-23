@@ -1,3 +1,12 @@
+## [0.6.2](https://github.com/fantasyflip/nuxtwind/compare/v0.6.1...v0.6.2) (2024-01-23)
+
+
+### Bug Fixes
+
+* **Toast:** hand progress colors through toast component ([ef3ee75](https://github.com/fantasyflip/nuxtwind/commit/ef3ee75b6c54b360d350691c58d1ea1849b309d3))
+
+
+
 ## [0.6.1](https://github.com/fantasyflip/nuxtwind/compare/v0.6.0...v0.6.1) (2024-01-21)
 
 
@@ -43,15 +52,6 @@
 
 * **Select:** Add clearable prop to reset input ([#35](https://github.com/fantasyflip/nuxtwind/issues/35)) ([2dc76bb](https://github.com/fantasyflip/nuxtwind/commit/2dc76bb1190066cb5338efc1d4e541c7d5f9ff16))
 * **Textfield:** Add clearable prop to reset input ([#35](https://github.com/fantasyflip/nuxtwind/issues/35)) ([d153c2b](https://github.com/fantasyflip/nuxtwind/commit/d153c2ba06a2c03faab31a7b4ef6e04c55445828))
-
-
-
-## [0.4.3](https://github.com/fantasyflip/nuxtwind/compare/v0.4.2...v0.4.3) (2024-01-12)
-
-
-### Bug Fixes
-
-* **select:** watch for programmatic changes in modelValue ([2178483](https://github.com/fantasyflip/nuxtwind/commit/2178483920717dde7d5d3e82841d09d96f963cda))
 
 
 
