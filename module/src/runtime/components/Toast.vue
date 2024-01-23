@@ -103,9 +103,7 @@
       v-model="progressValue"
       :initial-load-time="false"
       :transition="false"
-      :color="{
-        background: 'bg-gray-100 dark:bg-zinc-700',
-      }"
+      :color="props.color?.progress || defaults.color.progress"
       rounded="false"
     />
   </div>
@@ -115,6 +113,18 @@
 export interface Props {
   id?: string;
   color?: {
+    progress?: {
+      circle?: string;
+      circleDark?: string;
+      circleProgress?: string;
+      circleProgressDark?: string;
+      circleCutout?: string;
+      background?: string;
+      firstStrike?: string;
+      secondStrike?: string;
+      linearProgress?: string;
+      linearProgressHover?: string;
+    };
     text?: string;
     bg?: string;
     icon?: {
@@ -151,6 +161,7 @@ import Button from "./Button.vue";
 import { computed, ref } from "vue";
 let defaults = {
   color: {
+    progress: {},
     text: "text-gray-700 dark:text-gray-300",
     bg: "bg-gray-100 dark:bg-zinc-800",
     icon: {

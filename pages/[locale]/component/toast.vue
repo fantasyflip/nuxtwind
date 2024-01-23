@@ -215,6 +215,7 @@ let props = [
     name: "color",
     type: "Object",
     default: {
+      progress: {},
       text: "text-gray-700 dark:text-gray-300",
       bg: "bg-gray-100 dark:bg-zinc-800",
       icon: {
@@ -237,7 +238,8 @@ let props = [
       },
     },
     description: t(
-      "pages.component.toast.content.documentation.properties.color.description"
+      "pages.component.toast.content.documentation.properties.color.description",
+      { url: useComponentReferUrl("progress", "prop", "color") }
     ),
   },
   {

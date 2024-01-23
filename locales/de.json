@@ -451,7 +451,7 @@
                 "description": "Eigenschaft zum Aktivieren oder Deaktivieren des automatischen Schließens der Benachrichtigung nach einer bestimmten Dauer."
               },
               "color": {
-                "description": "Eigenschaft um die Farben der Benachrichtigung festzulegen. \nDie Farbe des Texts und den Hintergrunds für die Benachrichtigung selbst und für jeden Typ kann individuell festgelegt werden."
+                "description": "Eigenschaft zum Festlegen der Farbe für den Hintergrund, den Text und das Symbol des Toasts. \nMit einem verschachtelten „Progress“-Objekt können die Farben des Fortschritts selbst festgelegt werden. \n<a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">Weitere Informationen zur Progress-Color-Eigenschaft</a>."
               },
               "duration": {
                 "description": "Dauer, die der Toast angezeigt wird. \nGilt wenn „autoClose“ auf „true“ gesetzt ist."
