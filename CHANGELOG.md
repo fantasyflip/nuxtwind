@@ -1,3 +1,13 @@
+## [0.6.1](https://github.com/fantasyflip/nuxtwind/compare/v0.6.0...v0.6.1) (2024-01-21)
+
+
+### Bug Fixes
+
+* **Checkbox:** Add missing import ([#49](https://github.com/fantasyflip/nuxtwind/issues/49)) ([d3132ee](https://github.com/fantasyflip/nuxtwind/commit/d3132ee6ac93bdb5f89e47224685ba3342f02c1d))
+* **Tooltip:** Change default width to w-fit ([#19](https://github.com/fantasyflip/nuxtwind/issues/19)) ([9eff8c6](https://github.com/fantasyflip/nuxtwind/commit/9eff8c6e80db395128dba920675762b2fcba33b4))
+
+
+
 # [0.6.0](https://github.com/fantasyflip/nuxtwind/compare/v0.5.1...v0.6.0) (2024-01-18)
 
 
@@ -42,16 +52,6 @@
 ### Bug Fixes
 
 * **select:** watch for programmatic changes in modelValue ([2178483](https://github.com/fantasyflip/nuxtwind/commit/2178483920717dde7d5d3e82841d09d96f963cda))
-
-
-
-## [0.4.2](https://github.com/fantasyflip/nuxtwind/compare/v0.4.1...v0.4.2) (2023-03-11)
-
-
-### Bug Fixes
-
-* **Button:** Add modelValue on loading progress ([deb77cb](https://github.com/fantasyflip/nuxtwind/commit/deb77cb4d4eba19ee80bdd187c9bd6671f6f0448))
-* **Button:** Colors on button loading progress ([cde600f](https://github.com/fantasyflip/nuxtwind/commit/cde600fb6624ca48fbd1e82779a270f11438b3b5))
 
 
 
