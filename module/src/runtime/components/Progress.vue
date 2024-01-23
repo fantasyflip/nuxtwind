@@ -123,10 +123,10 @@ let defaults = {
     circleProgressDark: "#155e75",
     circleCutout: "before:bg-white dark:before:bg-zinc-900",
     background: "bg-gray-200 dark:bg-zinc-800",
-    firstStrike: "before:bg-primary-800",
+    firstStrike: "before:bg-primary-500",
     secondStrike: "after:bg-primary-600",
-    linearProgress: "bg-primary-800",
-    linearProgressHover: "hover:bg-secondary-800",
+    linearProgress: "bg-primary-500",
+    linearProgressHover: "hover:bg-secondary-500",
   },
   loading: false,
   transition: {

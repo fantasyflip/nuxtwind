@@ -325,7 +325,7 @@
                 "description": "Prop to activate or deactivate automatic closing of the notification after given duration."
               },
               "color": {
-                "description": "Prop to set the colors of the toast. You can separatly set the text, background color for the base toast and for each toast type individually."
+                "description": "Prop to set the color for the background, text and icon of the toast. With a nested 'progress'-Object the colors of the progress itself can be set. <a class=\"font-bold underline text-primary-800 hover:text-secondary-700\" target='_blank' href=\"{url}\">More information on the progress color prop</a>."
               },
               "duration": {
                 "description": "Duration the toast will be displayed. Applies when 'autoClose' is set to 'true'."
