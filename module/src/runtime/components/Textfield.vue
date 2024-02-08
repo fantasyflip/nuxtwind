@@ -41,7 +41,11 @@
       @focusin="$emit('focusIn', $event)"
       @focusout="$emit('focusOut', $event)"
     />
-    <label :for="textfieldId" :class="labelClass">
+    <label
+      :for="textfieldId"
+      :class="labelClass"
+      @click="textfield.value.focus()"
+    >
       <slot name="label">{{ props.label }}</slot>
     </label>
     <div
@@ -119,6 +123,13 @@ let textfieldId = "";
 onMounted(() => {
   textfieldId = generateId();
 });
+
+function handleLabelClick() {
+  console.log("label clicked");
+
+  // @ts-expect-error - TS doesn't know about ref
+  textfield.value.focus();
+}
 
 let isValid = ref<boolean | string>(true);
 let defaults = {
