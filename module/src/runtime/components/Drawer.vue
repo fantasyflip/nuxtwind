@@ -1,6 +1,7 @@
 <template>
   <div v-if="props.modelValue && props.overlay" :class="overlayClass"></div>
   <aside
+    v-if="props.modelValue"
     ref="drawer"
     :class="drawerWrapperClass"
     @mouseenter="hanldeHoverEnter"

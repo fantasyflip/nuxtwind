@@ -1,12 +1,15 @@
 <template>
-  <div :class="appbarWrapperClass">
+  <nav :class="appbarWrapperClass">
     <div v-if="props.navigationIcon" :class="navigationIconClass">
       <slot name="navigation-icon">
         <Button
           icon
-          :color="
-            typeof props.navigationIcon === 'object' ? props.navigationIcon : {}
-          "
+          :color="{
+            text: props.color?.navigationIcon || defaults.color.navigationIcon,
+            iconHover:
+              props.color?.navigationIconHover ||
+              defaults.color.navigationIconHover,
+          }"
           @click="emit('navigation-icon-click')"
           ari-label="Toggle Drawer"
         >
@@ -39,13 +42,15 @@
         </div>
       </TransitionGroup>
     </ClientOnly>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts" setup>
 export interface Props {
   color?: {
     bg?: string;
+    navigationIcon?: string;
+    navigationIconHover?: string;
   };
   fixed?: boolean;
   absolute?: boolean;
@@ -65,6 +70,8 @@ import { useWindowScroll } from "@vueuse/core";
 let defaults = {
   color: {
     bg: "bg-white dark:bg-zinc-900",
+    navigationIcon: "text-black dark:text-white",
+    navigationIconHover: "hover:text-primary-700 dark:hover:text-primary-300",
   },
   elevateOnScroll: "drop-shadow-md",
 };
@@ -73,6 +80,8 @@ const props = withDefaults(defineProps<Props>(), {
   color: () => {
     return {
       bg: "bg-white dark:bg-zinc-900",
+      navigationIcon: "text-black dark:text-white",
+      navigationIconHover: "hover:text-primary-700 dark:hover:text-primary-300",
     };
   },
   fixed: false,

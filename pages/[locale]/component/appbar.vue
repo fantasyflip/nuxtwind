@@ -255,10 +255,10 @@ let codeExample = computed(() => {
         ? "\n      <div class='font-bold'>Extension</div>"
         : ""
     }${
-    checkedBoxes.value[1]
-      ? "\n      <div class='py-2'>This Extension shrinks on scroll.</div>"
-      : ""
-  }
+      checkedBoxes.value[1]
+        ? "\n      <div class='py-2'>This Extension shrinks on scroll.</div>"
+        : ""
+    }
       <div class="text-justify" style="hyphens: auto">
         Lorem ipsum, dolor sit amet consectetur adipisicing
         elit. Similique recusandae, ducimus ut sequi quasi ullam
@@ -289,6 +289,7 @@ let props = [
     type: "Object",
     default: {
       bg: "bg-white dark:bg-zinc-900",
+      navigationIcon: "text-black dark:text-white",
     },
     description: t(
       "pages.component.appbar.content.documentation.properties.color.description"
