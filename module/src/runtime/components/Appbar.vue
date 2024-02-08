@@ -1,5 +1,5 @@
 <template>
-  <div :class="appbarWrapperClass">
+  <nav :class="appbarWrapperClass">
     <div v-if="props.navigationIcon" :class="navigationIconClass">
       <slot name="navigation-icon">
         <Button
@@ -39,7 +39,7 @@
         </div>
       </TransitionGroup>
     </ClientOnly>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts" setup>
@@ -190,7 +190,7 @@ let navigationIconClass = computed(() => {
     "top-1/2",
     "transform",
     "-translate-y-1/2",
-    "left-3",
+    "left-3"
   );
 
   classes.push(props.zIndex);
