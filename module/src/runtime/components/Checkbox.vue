@@ -102,17 +102,7 @@ export interface Props {
   disabled?: boolean;
   loading?: boolean;
 }
-import { computed, onMounted } from "vue";
-function generateId() {
-  let result = "";
-  let characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let charactersLength = characters.length;
-  for (let i = 0; i < 8; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
+import { computed } from "vue";
 
 let checkboxId = useId();
 

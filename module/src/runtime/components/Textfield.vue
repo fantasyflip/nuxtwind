@@ -108,16 +108,7 @@ export interface Props {
   rules?: { (data: any): boolean | string }[];
 }
 import { computed, ref, onMounted } from "vue";
-function generateId() {
-  let result = "";
-  let characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let charactersLength = characters.length;
-  for (let i = 0; i < 8; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
+
 let textfieldId = useId();
 
 function handleLabelClick() {
