@@ -114,11 +114,7 @@ function generateId() {
   return result;
 }
 
-let checkboxId = "";
-
-onMounted(() => {
-  checkboxId = generateId();
-});
+let checkboxId = useId();
 
 let defaults = {
   color: {
@@ -162,7 +158,7 @@ const emit = defineEmits<{
   (e: "update:modelValue", id: boolean): void;
 }>();
 
-function updateModelValue(value) {
+function updateModelValue(value: boolean) {
   if (props.disabled || props.loading) return;
   emit("update:modelValue", value);
 }
