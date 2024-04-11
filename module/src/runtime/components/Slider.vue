@@ -59,11 +59,7 @@ function generateId() {
   }
   return result;
 }
-let sliderId = "";
-
-onMounted(() => {
-  sliderId = generateId();
-});
+let sliderId = useId();
 
 let colorMode = ref("dark");
 let htmlElement = ref<HTMLElement>();

@@ -115,11 +115,7 @@ function generateId() {
   }
   return result;
 }
-let textareaId = "";
-
-onMounted(() => {
-  textareaId = generateId();
-});
+let textareaId = useId();
 
 let isValid = ref<boolean | string>(true);
 let defaults = {

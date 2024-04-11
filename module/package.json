@@ -42,8 +42,8 @@
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.9.1",
-    "nuxt": "^3.9.1",
+    "@nuxt/kit": "^3.11.2",
+    "nuxt": "^3.11.2",
     "@vueuse/core": "^9.7.0",
     "@vueuse/nuxt": "^9.7.0",
     "sass": "^1.56.1",
