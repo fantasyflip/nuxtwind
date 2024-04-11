@@ -1,3 +1,15 @@
+## [0.6.3](https://github.com/fantasyflip/nuxtwind/compare/v0.6.2...v0.6.3) (2024-02-08)
+
+
+### Bug Fixes
+
+* **Appbar:** change wrapper to nav element ([a294b56](https://github.com/fantasyflip/nuxtwind/commit/a294b564b6c406b28ed05c112841426332bed619))
+* **Appbar:** navigation icon color prop ([8c14d64](https://github.com/fantasyflip/nuxtwind/commit/8c14d6461c009a414c975eb2a052eca02e40bf21))
+* **Drawer:** hide aside with modelValue ([5539109](https://github.com/fantasyflip/nuxtwind/commit/5539109647d16fe31b41f1cf8f81128a32104cff))
+* **Textfield:** handle label click ([2e9be82](https://github.com/fantasyflip/nuxtwind/commit/2e9be82c37cd9852833c8350261d93a954cea166))
+
+
+
 ## [0.6.2](https://github.com/fantasyflip/nuxtwind/compare/v0.6.1...v0.6.2) (2024-01-23)
 
 
@@ -42,16 +54,6 @@
 * **Slider:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([c41b4ec](https://github.com/fantasyflip/nuxtwind/commit/c41b4ecdf1f8e60d1f60708d279716e2d7259b88))
 * **Textarea:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([4c00df7](https://github.com/fantasyflip/nuxtwind/commit/4c00df771a73ee63627ca56882f747f21e23cd9f))
 * **Textfield:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([2332fc8](https://github.com/fantasyflip/nuxtwind/commit/2332fc88bb8432cdfeede899d659733cdc99b491))
-
-
-
-# [0.5.0](https://github.com/fantasyflip/nuxtwind/compare/v0.4.3...v0.5.0) (2024-01-16)
-
-
-### Features
-
-* **Select:** Add clearable prop to reset input ([#35](https://github.com/fantasyflip/nuxtwind/issues/35)) ([2dc76bb](https://github.com/fantasyflip/nuxtwind/commit/2dc76bb1190066cb5338efc1d4e541c7d5f9ff16))
-* **Textfield:** Add clearable prop to reset input ([#35](https://github.com/fantasyflip/nuxtwind/issues/35)) ([d153c2b](https://github.com/fantasyflip/nuxtwind/commit/d153c2ba06a2c03faab31a7b4ef6e04c55445828))
 
 
 
