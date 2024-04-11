@@ -118,11 +118,7 @@ function generateId() {
   }
   return result;
 }
-let textfieldId = "";
-
-onMounted(() => {
-  textfieldId = generateId();
-});
+let textfieldId = useId();
 
 function handleLabelClick() {
   console.log("label clicked");
