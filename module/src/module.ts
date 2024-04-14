@@ -61,9 +61,13 @@ export default defineNuxtModule({
       filePath: resolve(componentsDir, "Select.vue"),
     });
     addComponent({
-      name: prefix + "Slider",
-      filePath: resolve(componentsDir, "Slider.vue"),
-    });
+      name: prefix + "Skeleton",
+      filePath: resolve(componentsDir, "Skeleton.vue"),
+    }),
+      addComponent({
+        name: prefix + "Slider",
+        filePath: resolve(componentsDir, "Slider.vue"),
+      });
     addComponent({
       name: prefix + "Textarea",
       filePath: resolve(componentsDir, "Textarea.vue"),

@@ -988,6 +988,29 @@
             }
           }
         }
+      },
+      "skeleton": {
+        "content": {
+          "documentation": {
+            "properties": {
+              "tag": {
+                "description": "Prop to apply the proper Skeleton-Style. Setting this while 'autoDetectRootTag' is set to 'true' makes it SSR-Safe."
+              },
+              "loading": {
+                "description": "Prop to activate the loading state"
+              },
+              "autoDetectRootTag": {
+                "description": "Prop to automatically detect the root element of the Skeleton and automatically apply the according Skeleton-Style (Client-Side only). Currently supports article, p, and img. This Prop needs to be set to 'false' to apply the 'card'-Tag-Style. "
+              },
+              "animationClass": {
+                "description": "Prop to set the class which defines the loading style."
+              },
+              "tagOptions": {
+                "description": "Prop to customize the appearance of the different Skeleton-Styles."
+              }
+            }
+          }
+        }
       }
     },
     "index": {
