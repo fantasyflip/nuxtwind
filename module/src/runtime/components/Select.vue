@@ -42,7 +42,10 @@
         @click.stop="setItem(item)"
         :class="itemStyleClass"
       >
-        <slot v-bind="item" name="item">
+        <slot
+          v-bind="typeof item == 'object' ? item : { content: item }"
+          name="item"
+        >
           <div class="p-2">
             {{
               typeof props.items[0] == "object" && props.displayProperty

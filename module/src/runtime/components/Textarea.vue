@@ -104,22 +104,9 @@ export interface Props {
   width?: string;
   rules?: { (data: any): boolean | string }[];
 }
-import { computed, onMounted, ref } from "vue";
-function generateId() {
-  let result = "";
-  let characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let charactersLength = characters.length;
-  for (let i = 0; i < 8; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-let textareaId = "";
+import { computed, ref } from "vue";
 
-onMounted(() => {
-  textareaId = generateId();
-});
+let textareaId = useId();
 
 let isValid = ref<boolean | string>(true);
 let defaults = {

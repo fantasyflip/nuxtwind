@@ -1024,6 +1024,29 @@
             }
           }
         }
+      },
+      "skeleton": {
+        "content": {
+          "documentation": {
+            "properties": {
+              "tag": {
+                "description": "Prop um den richtigen Skeleton-Stil anzuwenden. \nWenn „autoDetectRootTag“ auf „true“ gesetzt ist, ist die Komponente SSR-Safe."
+              },
+              "loading": {
+                "description": "Eigenschaft zum Aktivieren des Ladezustands"
+              },
+              "autoDetectRootTag": {
+                "description": "Eigenschaft zur automatischen Erkennung des Root-Elements des Skeleton und zur automatischen Anwendung des entsprechenden Skeleton-Styles (nur clientseitig). \nUnterstützt derzeit article, p und img. \nDiese Eigenschaft muss auf „false“ gesetzt werden, um den „card“-Tag-Style anzuwenden."
+              },
+              "animationClass": {
+                "description": "Eigenschaft zum Festlegen der Klasse, die den Ladestil definiert."
+              },
+              "tagOptions": {
+                "description": "Eigenschaft um das Erscheinungsbild der verschiedenen Skeleton-Stile anzupassen."
+              }
+            }
+          }
+        }
       }
     },
     "gettingStarted": {

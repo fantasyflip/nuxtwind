@@ -102,23 +102,9 @@ export interface Props {
   disabled?: boolean;
   loading?: boolean;
 }
-import { computed, onMounted } from "vue";
-function generateId() {
-  let result = "";
-  let characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let charactersLength = characters.length;
-  for (let i = 0; i < 8; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
+import { computed } from "vue";
 
-let checkboxId = "";
-
-onMounted(() => {
-  checkboxId = generateId();
-});
+let checkboxId = useId();
 
 let defaults = {
   color: {
@@ -162,7 +148,7 @@ const emit = defineEmits<{
   (e: "update:modelValue", id: boolean): void;
 }>();
 
-function updateModelValue(value) {
+function updateModelValue(value: boolean) {
   if (props.disabled || props.loading) return;
   emit("update:modelValue", value);
 }
