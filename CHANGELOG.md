@@ -1,3 +1,17 @@
+# [0.7.0](https://github.com/fantasyflip/nuxtwind/compare/v0.6.3...v0.7.0) (2024-04-14)
+
+
+### Bug Fixes
+
+* **Select:** item slot usage for non-object items ([ec005d6](https://github.com/fantasyflip/nuxtwind/commit/ec005d69b260436307a8914dc1e00c064c059063))
+
+
+### Features
+
+* **Skeleton:** create component ([5074cc7](https://github.com/fantasyflip/nuxtwind/commit/5074cc73e0eb84ccf54ecb2f435ccc885a8cb096))
+
+
+
 ## [0.6.3](https://github.com/fantasyflip/nuxtwind/compare/v0.6.2...v0.6.3) (2024-02-08)
 
 
@@ -42,18 +56,6 @@
 * **Select:** Add prop resetOnKeyDown ([1e9bb9e](https://github.com/fantasyflip/nuxtwind/commit/1e9bb9ebdd9f16ec17c68cb3bdfb5204116cceed))
 * **Select:** Add prop showAllOnFocus ([c7193ee](https://github.com/fantasyflip/nuxtwind/commit/c7193eee3a416256dfe1ed998693874634ceb896))
 * **Select:** Add slot for selectable items ([26eb65c](https://github.com/fantasyflip/nuxtwind/commit/26eb65c92e27361eac79583dc08abb7a63b4ddcf))
-
-
-
-## [0.5.1](https://github.com/fantasyflip/nuxtwind/compare/v0.5.0...v0.5.1) (2024-01-17)
-
-
-### Bug Fixes
-
-* **Checkbox:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([4d4b754](https://github.com/fantasyflip/nuxtwind/commit/4d4b754a481eea23d3235a80f00edbba76f0af3c))
-* **Slider:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([c41b4ec](https://github.com/fantasyflip/nuxtwind/commit/c41b4ecdf1f8e60d1f60708d279716e2d7259b88))
-* **Textarea:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([4c00df7](https://github.com/fantasyflip/nuxtwind/commit/4c00df771a73ee63627ca56882f747f21e23cd9f))
-* **Textfield:** Hydration mismatch on generating ID ([#37](https://github.com/fantasyflip/nuxtwind/issues/37)) ([2332fc8](https://github.com/fantasyflip/nuxtwind/commit/2332fc88bb8432cdfeede899d659733cdc99b491))
 
 
 
