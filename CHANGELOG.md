@@ -1,3 +1,12 @@
+## [0.7.2](https://github.com/fantasyflip/nuxtwind/compare/v0.7.1...v0.7.2) (2024-04-16)
+
+
+### Bug Fixes
+
+* **Skeleton:** remove non-setup script tag ([#54](https://github.com/fantasyflip/nuxtwind/issues/54)) ([035840f](https://github.com/fantasyflip/nuxtwind/commit/035840f5c5cef84529b043c4a445ecc5e9875e84))
+
+
+
 ## [0.7.1](https://github.com/fantasyflip/nuxtwind/compare/v0.7.0...v0.7.1) (2024-04-16)
 
 
@@ -39,16 +48,6 @@
 ### Bug Fixes
 
 * **Toast:** hand progress colors through toast component ([ef3ee75](https://github.com/fantasyflip/nuxtwind/commit/ef3ee75b6c54b360d350691c58d1ea1849b309d3))
-
-
-
-## [0.6.1](https://github.com/fantasyflip/nuxtwind/compare/v0.6.0...v0.6.1) (2024-01-21)
-
-
-### Bug Fixes
-
-* **Checkbox:** Add missing import ([#49](https://github.com/fantasyflip/nuxtwind/issues/49)) ([d3132ee](https://github.com/fantasyflip/nuxtwind/commit/d3132ee6ac93bdb5f89e47224685ba3342f02c1d))
-* **Tooltip:** Change default width to w-fit ([#19](https://github.com/fantasyflip/nuxtwind/issues/19)) ([9eff8c6](https://github.com/fantasyflip/nuxtwind/commit/9eff8c6e80db395128dba920675762b2fcba33b4))
 
 
 
