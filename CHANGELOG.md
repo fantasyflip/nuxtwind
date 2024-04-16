@@ -1,3 +1,12 @@
+## [0.7.1](https://github.com/fantasyflip/nuxtwind/compare/v0.7.0...v0.7.1) (2024-04-16)
+
+
+### Bug Fixes
+
+* nuxt 'useId' import ([#43](https://github.com/fantasyflip/nuxtwind/issues/43)) ([b34c338](https://github.com/fantasyflip/nuxtwind/commit/b34c3387669fd120396a91ae1d4e833dda9c6381))
+
+
+
 # [0.7.0](https://github.com/fantasyflip/nuxtwind/compare/v0.6.3...v0.7.0) (2024-04-14)
 
 
@@ -40,22 +49,6 @@
 
 * **Checkbox:** Add missing import ([#49](https://github.com/fantasyflip/nuxtwind/issues/49)) ([d3132ee](https://github.com/fantasyflip/nuxtwind/commit/d3132ee6ac93bdb5f89e47224685ba3342f02c1d))
 * **Tooltip:** Change default width to w-fit ([#19](https://github.com/fantasyflip/nuxtwind/issues/19)) ([9eff8c6](https://github.com/fantasyflip/nuxtwind/commit/9eff8c6e80db395128dba920675762b2fcba33b4))
-
-
-
-# [0.6.0](https://github.com/fantasyflip/nuxtwind/compare/v0.5.1...v0.6.0) (2024-01-18)
-
-
-### Bug Fixes
-
-* **Appbar:** extension slot hydration mismatch ([2e2c6f0](https://github.com/fantasyflip/nuxtwind/commit/2e2c6f0bc7bdfc060f56fb9f8a67031479755f4b))
-
-
-### Features
-
-* **Select:** Add prop resetOnKeyDown ([1e9bb9e](https://github.com/fantasyflip/nuxtwind/commit/1e9bb9ebdd9f16ec17c68cb3bdfb5204116cceed))
-* **Select:** Add prop showAllOnFocus ([c7193ee](https://github.com/fantasyflip/nuxtwind/commit/c7193eee3a416256dfe1ed998693874634ceb896))
-* **Select:** Add slot for selectable items ([26eb65c](https://github.com/fantasyflip/nuxtwind/commit/26eb65c92e27361eac79583dc08abb7a63b4ddcf))
 
 
 
