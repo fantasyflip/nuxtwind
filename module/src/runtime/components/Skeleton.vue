@@ -53,53 +53,6 @@
   </div>
 </template>
 
-<script lang="ts">
-let defaults = {
-  loading: true,
-  tag: "p",
-  autoDetectRootTag: true,
-  animationClass: "animate-pulse",
-  tagOptions: {
-    p: {
-      lines: 3,
-      lineHeight: "h-4",
-      color: "dark:bg-zinc-700 bg-zinc-200",
-      rounded: "rounded-3xl",
-      gap: "gap-2",
-    },
-    article: {
-      lines: 5,
-      lineHeight: "h-4",
-      headingHeight: "h-6",
-      color: "dark:bg-zinc-700 bg-zinc-200",
-      gap: "gap-2",
-      headingGap: "gap-5",
-      rounded: "rounded-3xl",
-      headingRounded: "rounded-lg",
-    },
-    img: {
-      width: "w-full",
-      height: "h-full",
-      rounded: "rounded",
-      color: "bg-zinc-800",
-      iconColor: "text-zinc-600",
-      iconSize: "size-10",
-    },
-    card: {
-      imgHeight: "h-full",
-      headingHeight: "h-6",
-      imgRounded: "rounded",
-      headingRounded: "rounded-lg",
-      imgIconColor: "text-zinc-600",
-      imgIconSize: "size-10",
-      imageAspect: "aspect-video",
-      color: "bg-zinc-800",
-      gap: "gap-4",
-    },
-  },
-};
-</script>
-
 <script setup lang="ts">
 export interface Props {
   loading: boolean;
@@ -147,7 +100,95 @@ export interface Props {
 }
 import { ref, computed } from "vue";
 
-const props = withDefaults(defineProps<Props>(), defaults);
+let defaults = {
+  loading: true,
+  tag: "p",
+  autoDetectRootTag: true,
+  animationClass: "animate-pulse",
+  tagOptions: {
+    p: {
+      lines: 3,
+      lineHeight: "h-4",
+      color: "dark:bg-zinc-700 bg-zinc-200",
+      rounded: "rounded-3xl",
+      gap: "gap-2",
+    },
+    article: {
+      lines: 5,
+      lineHeight: "h-4",
+      headingHeight: "h-6",
+      color: "dark:bg-zinc-700 bg-zinc-200",
+      gap: "gap-2",
+      headingGap: "gap-5",
+      rounded: "rounded-3xl",
+      headingRounded: "rounded-lg",
+    },
+    img: {
+      width: "w-full",
+      height: "h-full",
+      rounded: "rounded",
+      color: "bg-zinc-800",
+      iconColor: "text-zinc-600",
+      iconSize: "size-10",
+    },
+    card: {
+      imgHeight: "h-full",
+      headingHeight: "h-6",
+      imgRounded: "rounded",
+      headingRounded: "rounded-lg",
+      imgIconColor: "text-zinc-600",
+      imgIconSize: "size-10",
+      imageAspect: "aspect-video",
+      color: "bg-zinc-800",
+      gap: "gap-4",
+    },
+  },
+};
+
+const props = withDefaults(defineProps<Props>(), {
+  loading: true,
+  tag: "p",
+  autoDetectRootTag: true,
+  animationClass: "animate-pulse",
+  tagOptions: {
+    p: {
+      lines: 3,
+      lineHeight: "h-4",
+      color: "dark:bg-zinc-700 bg-zinc-200",
+      rounded: "rounded-3xl",
+      gap: "gap-2",
+    },
+    article: {
+      lines: 5,
+      lineHeight: "h-4",
+      headingHeight: "h-6",
+      color: "dark:bg-zinc-700 bg-zinc-200",
+      gap: "gap-2",
+      headingGap: "gap-5",
+      rounded: "rounded-3xl",
+      headingRounded: "rounded-lg",
+    },
+    img: {
+      width: "w-full",
+      height: "h-full",
+      rounded: "rounded",
+      color: "bg-zinc-800",
+      iconColor: "text-zinc-600",
+      iconSize: "size-10",
+    },
+    card: {
+      imgHeight: "h-full",
+      headingHeight: "h-6",
+      imgRounded: "rounded",
+      headingRounded: "rounded-lg",
+      imgIconColor: "text-zinc-600",
+      imgIconSize: "size-10",
+      imageAspect: "aspect-video",
+      color: "bg-zinc-800",
+      gap: "gap-4",
+    },
+  },
+});
 
 const SlotWrapper = ref<HTMLElement | null>(null);
 
