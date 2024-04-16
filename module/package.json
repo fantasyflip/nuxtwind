@@ -1,9 +1,28 @@
 {
-  "name": "my-module",
-  "version": "1.0.0",
-  "description": "My new Nuxt module",
-  "repository": "your-org/my-module",
+  "name": "@nuxtwind/components",
+  "version": "0.7.3",
   "license": "MIT",
+  "description": "Component Library for Nuxt 3 using TailwindCSS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fantasyflip/nuxtwind.git"
+  },
+  "keywords": [
+    "Nuxt3",
+    "TailwindCSS",
+    "Component",
+    "Library",
+    "Nuxtwind",
+    "Reusable",
+    "Nuxt",
+    "Vue",
+    "SSR"
+  ],
+  "author": "fantasyflip <flip@fantasyflip.de> (https://fantasyflip.de)",
+  "bugs": {
+    "url": "https://github.com/fantasyflip/nuxtwind/issues"
+  },
+  "homepage": "https://nuxtwind.com",
   "type": "module",
   "exports": {
     ".": {
@@ -28,7 +47,8 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.11.2"
+    "@nuxt/kit": "^3.11.2",
+    "@nuxtjs/tailwindcss": "^6.11.4"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.1.5",
