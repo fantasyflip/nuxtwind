@@ -108,6 +108,7 @@ export interface Props {
   rules?: { (data: any): boolean | string }[];
 }
 import { computed, ref, onMounted } from "vue";
+import { useId } from "#imports";
 
 let textfieldId = useId();
 

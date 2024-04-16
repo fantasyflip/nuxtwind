@@ -103,6 +103,7 @@ export interface Props {
   loading?: boolean;
 }
 import { computed } from "vue";
+import { useId } from "#imports";
 
 let checkboxId = useId();
 

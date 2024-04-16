@@ -105,6 +105,7 @@ export interface Props {
   rules?: { (data: any): boolean | string }[];
 }
 import { computed, ref } from "vue";
+import { useId } from "#imports";
 
 let textareaId = useId();
 

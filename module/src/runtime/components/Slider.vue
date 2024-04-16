@@ -48,6 +48,7 @@ export interface Props {
   height?: string;
 }
 import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
+import { useId } from "#imports";
 
 let sliderId = useId();
 
