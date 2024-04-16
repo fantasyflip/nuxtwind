@@ -1,3 +1,12 @@
+## [0.7.3](https://github.com/fantasyflip/nuxtwind/compare/v0.7.2...v0.7.3) (2024-04-16)
+
+
+### Bug Fixes
+
+* **Skeleton:** include missing imports ([#54](https://github.com/fantasyflip/nuxtwind/issues/54)) ([762f3eb](https://github.com/fantasyflip/nuxtwind/commit/762f3eb6133e7dcc8d9044f262a9fd69418a6ecf))
+
+
+
 ## [0.7.2](https://github.com/fantasyflip/nuxtwind/compare/v0.7.1...v0.7.2) (2024-04-16)
 
 
@@ -39,15 +48,6 @@
 * **Appbar:** navigation icon color prop ([8c14d64](https://github.com/fantasyflip/nuxtwind/commit/8c14d6461c009a414c975eb2a052eca02e40bf21))
 * **Drawer:** hide aside with modelValue ([5539109](https://github.com/fantasyflip/nuxtwind/commit/5539109647d16fe31b41f1cf8f81128a32104cff))
 * **Textfield:** handle label click ([2e9be82](https://github.com/fantasyflip/nuxtwind/commit/2e9be82c37cd9852833c8350261d93a954cea166))
-
-
-
-## [0.6.2](https://github.com/fantasyflip/nuxtwind/compare/v0.6.1...v0.6.2) (2024-01-23)
-
-
-### Bug Fixes
-
-* **Toast:** hand progress colors through toast component ([ef3ee75](https://github.com/fantasyflip/nuxtwind/commit/ef3ee75b6c54b360d350691c58d1ea1849b309d3))
 
 
 
