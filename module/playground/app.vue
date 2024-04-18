@@ -1,6 +1,6 @@
 <template>
   <div>
-    Nuxt module playground!
+    <NXW-Button>Button</NXW-Button>
   </div>
 </template>
 
