@@ -7,31 +7,52 @@ import {
 
 //@ts-ignore
 import { name, version } from "../package.json";
+//@ts-ignore
 import { primary, secondary } from "./runtime/colors.json";
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
   /**
+   * Used to set the prefix for NuxtWind components
    * @default 'NXW-'
    */
   prefix?: string;
 
   /**
+   * Used to decide whether components should be registered globally or not
    * @default false
    */
   global?: boolean;
 
   /**
-   * Used to adress the primary color in the theme (text-primary-500)
-   * @default 'primary'
+   * Used to set the default theme values for NuxtWind
    */
-  primaryColorClassName?: string;
-
-  /**
-   * Used to adress the secondary color in the theme (text-secondary-500)
-   * @default 'secondary'
-   */
-  secondaryColorClassName?: string;
+  theme: {
+    primary:{
+      50: string,
+      100: string,
+      200: string,
+      300: string,
+      400: string,
+      500: string,
+      600: string,
+      700: string,
+      800: string,
+      900: string,
+    },
+    secondary:{
+      50: string,
+      100: string,
+      200: string,
+      300: string,
+      400: string,
+      500: string,
+      600: string,
+      700: string,
+      800: string,
+      900: string,
+    }
+  }
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -47,8 +68,10 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     prefix: "NXW-",
     global: false,
-    primaryColorClassName: "primary",
-    secondaryColorClassName: "secondary",
+    theme: {
+      primary,
+      secondary
+    }
   },
   async setup(_options, _nuxt) {
     //@ts-ignore
@@ -58,11 +81,6 @@ export default defineNuxtModule<ModuleOptions>({
     _nuxt.options.build.transpile.push(runtimeDir);
 
     _nuxt.options.alias["#nuxtwind"] = runtimeDir;
-
-    let namedColors = {
-      [_options.primaryColorClassName!]: primary,
-      [_options.secondaryColorClassName!]: secondary,
-    };
 
     await installModule("@nuxtjs/color-mode", { classSuffix: "" });
     await installModule("@nuxtjs/tailwindcss", {
@@ -74,9 +92,9 @@ export default defineNuxtModule<ModuleOptions>({
             resolver.resolve("./runtime/*.{mjs,js,ts}"),
           ],
         },
-        theme: {
+        theme:  {
           extend: {
-            colors: namedColors,
+            colors: _options.theme,
           },
         },
       },

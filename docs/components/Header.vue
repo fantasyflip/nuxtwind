@@ -3,7 +3,7 @@ import type { NavItem } from '@nuxt/content/dist/runtime/types'
 
 const navigation = inject<NavItem[]>('navigation', [])
 
-const { header } = useAppConfig()
+const { header,version } = useAppConfig()
 </script>
 
 <template>
@@ -14,8 +14,8 @@ const { header } = useAppConfig()
       </template>
       <template v-else>
         <Logo :width="30" />
-        NuxtWind
-        <UBadge label="Docs" variant="subtle" class="mb-0.5" />
+        NuxtWind 
+        <UBadge :label="version" variant="subtle" class="mb-0.5" />
       </template>
     </template>
 
