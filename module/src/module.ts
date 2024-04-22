@@ -1,9 +1,28 @@
-import { defineNuxtModule, addComponent, createResolver } from "@nuxt/kit";
-import { resolve } from "path";
+import {
+  defineNuxtModule,
+  addComponentsDir,
+  createResolver,
+} from "@nuxt/kit";
 
+//@ts-ignore
 import { name, version } from "../package.json";
 
-export default defineNuxtModule({
+// Module options TypeScript interface definition
+export interface ModuleOptions {
+  /**
+   * Used to set the prefix for NuxtWind components
+   * @default 'NXW-'
+   */
+  prefix?: string;
+
+  /**
+   * Used to decide whether components should be registered globally or not
+   * @default false
+   */
+  global?: boolean;
+}
+
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
@@ -12,96 +31,25 @@ export default defineNuxtModule({
       nuxt: "^3.0.0",
     },
   },
-  setup(options, nuxt) {
-    const reslover = createResolver(import.meta.url);
-    const runtimeDir = reslover.resolve("./runtime");
+  // Default configuration options of the Nuxt module
+  defaults: {
+    prefix: "NXW-",
+    global: false,
+  },
+  async setup(_options, _nuxt) {
+    //@ts-ignore
+    const resolver = createResolver(import.meta.url);
+    const runtimeDir = resolver.resolve("./runtime");
 
-    nuxt.options.build.transpile.push(runtimeDir);
+    _nuxt.options.build.transpile.push(runtimeDir);
 
-    const componentsDir = reslover.resolve(runtimeDir, "components");
-    const prefix = options.customPrefix || "NXW-";
+    _nuxt.options.alias["#nuxtwind"] = runtimeDir;
 
-    const global = options.global || false;
-
-    addComponent({
-      name: prefix + "Appbar", // name of the component to be used in vue templates
-      filePath: resolve(componentsDir, "Appbar.vue"), // resolve(runtimeDir, 'components', 'MyComponent.vue')
-      global: global, // whether the component should be registered globally
-    });
-    addComponent({
-      name: prefix + "Badge",
-      filePath: resolve(componentsDir, "Badge.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Button",
-      filePath: resolve(componentsDir, "Button.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Carousel",
-      filePath: resolve(componentsDir, "Carousel.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "CarouselItem",
-      filePath: resolve(componentsDir, "CarouselItem.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Checkbox",
-      filePath: resolve(componentsDir, "Checkbox.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Checkboxgroup",
-      filePath: resolve(componentsDir, "Checkboxgroup.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Drawer",
-      filePath: resolve(componentsDir, "Drawer.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Progress",
-      filePath: resolve(componentsDir, "Progress.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Select",
-      filePath: resolve(componentsDir, "Select.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Skeleton",
-      filePath: resolve(componentsDir, "Skeleton.vue"),
-      global: global,
-    }),
-      addComponent({
-        name: prefix + "Slider",
-        filePath: resolve(componentsDir, "Slider.vue"),
-        global: global,
-      });
-    addComponent({
-      name: prefix + "Textarea",
-      filePath: resolve(componentsDir, "Textarea.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Textfield",
-      filePath: resolve(componentsDir, "Textfield.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Toast",
-      filePath: resolve(componentsDir, "Toast.vue"),
-      global: global,
-    });
-    addComponent({
-      name: prefix + "Tooltip",
-      filePath: resolve(componentsDir, "Tooltip.vue"),
-      global: global,
+    //components
+    addComponentsDir({
+      prefix: _options.prefix,
+      path: resolver.resolve(runtimeDir, "components"),
+      global: _options.global,
     });
   },
 });
