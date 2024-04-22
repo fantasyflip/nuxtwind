@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/fantasyflip/nuxtwind/compare/v0.8.0...v0.8.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* **module:** global register ([b4ebfc0](https://github.com/fantasyflip/nuxtwind/commit/b4ebfc061fb93f5de94882ea52c164d8eb396f74))
+
+
+
 # [0.8.0](https://github.com/fantasyflip/nuxtwind/compare/v0.7.3...v0.8.0) (2024-04-22)
 
 
@@ -31,20 +40,6 @@
 ### Bug Fixes
 
 * nuxt 'useId' import ([#43](https://github.com/fantasyflip/nuxtwind/issues/43)) ([b34c338](https://github.com/fantasyflip/nuxtwind/commit/b34c3387669fd120396a91ae1d4e833dda9c6381))
-
-
-
-# [0.7.0](https://github.com/fantasyflip/nuxtwind/compare/v0.6.3...v0.7.0) (2024-04-14)
-
-
-### Bug Fixes
-
-* **Select:** item slot usage for non-object items ([ec005d6](https://github.com/fantasyflip/nuxtwind/commit/ec005d69b260436307a8914dc1e00c064c059063))
-
-
-### Features
-
-* **Skeleton:** create component ([5074cc7](https://github.com/fantasyflip/nuxtwind/commit/5074cc73e0eb84ccf54ecb2f435ccc885a8cb096))
 
 
 
