@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/fantasyflip/nuxtwind/compare/v0.7.3...v0.8.0) (2024-04-22)
+
+
+### Features
+
+* **module:** option to register components globally ([4da4f7e](https://github.com/fantasyflip/nuxtwind/commit/4da4f7e538c6b0762d827e569dbd3fc4b9424db2))
+
+
+
 ## [0.7.3](https://github.com/fantasyflip/nuxtwind/compare/v0.7.2...v0.7.3) (2024-04-16)
 
 
@@ -36,18 +45,6 @@
 ### Features
 
 * **Skeleton:** create component ([5074cc7](https://github.com/fantasyflip/nuxtwind/commit/5074cc73e0eb84ccf54ecb2f435ccc885a8cb096))
-
-
-
-## [0.6.3](https://github.com/fantasyflip/nuxtwind/compare/v0.6.2...v0.6.3) (2024-02-08)
-
-
-### Bug Fixes
-
-* **Appbar:** change wrapper to nav element ([a294b56](https://github.com/fantasyflip/nuxtwind/commit/a294b564b6c406b28ed05c112841426332bed619))
-* **Appbar:** navigation icon color prop ([8c14d64](https://github.com/fantasyflip/nuxtwind/commit/8c14d6461c009a414c975eb2a052eca02e40bf21))
-* **Drawer:** hide aside with modelValue ([5539109](https://github.com/fantasyflip/nuxtwind/commit/5539109647d16fe31b41f1cf8f81128a32104cff))
-* **Textfield:** handle label click ([2e9be82](https://github.com/fantasyflip/nuxtwind/commit/2e9be82c37cd9852833c8350261d93a954cea166))
 
 
 
