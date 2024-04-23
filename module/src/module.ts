@@ -82,14 +82,13 @@ export default defineNuxtModule<ModuleOptions>({
 
     _nuxt.options.alias["#nuxtwind"] = runtimeDir;
 
-    await installModule("@nuxtjs/color-mode", { classSuffix: "" });
+    await installModule('@nuxtjs/color-mode', { classSuffix: '' })
     await installModule("@nuxtjs/tailwindcss", {
       // module configuration
       config: {
         content: {
           files: [
-            resolver.resolve("./runtime/components/**/*.{vue,mjs,ts}"),
-            resolver.resolve("./runtime/*.{mjs,js,ts}"),
+            resolver.resolve(runtimeDir, 'components/**/*.{vue,mjs,ts}'),
           ],
         },
         theme:  {
