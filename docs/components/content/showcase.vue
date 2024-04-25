@@ -1,5 +1,9 @@
 <template>
   <div class="w-full">
+    {{ name }}
+
+    <component :is="name"/>
+
     <component :is="name">
       <ContentSlot :use="$slots.default" unwrap="p" />
     </component>

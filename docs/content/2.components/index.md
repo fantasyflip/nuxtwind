@@ -7,7 +7,7 @@ Test
 
 ::showcase
 ---
-name: NXW-Button
+name: nButton
 ---
 
 Bla

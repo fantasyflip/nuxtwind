@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default <Partial<Config>>{
+  content:['../module/src/runtime/**/*.{vue,js,ts,html}'],
   theme: {
     extend: {
       fontFamily: {

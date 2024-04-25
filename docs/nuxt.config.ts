@@ -16,7 +16,7 @@ export default defineNuxtConfig({
       )
 
       globals.forEach((c) => (c.global = true))
-    },
+    }
   },
   ui: {
     icons: ['heroicons', 'simple-icons'],
