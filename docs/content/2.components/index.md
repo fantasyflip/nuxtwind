@@ -7,8 +7,15 @@ Test
 
 ::showcase
 ---
-name: nButton
+name: NxwButton
 ---
 
 Bla
+::
+
+::NXW-Button
+---
+rounded: rounded-full
+---
+Test
 ::
