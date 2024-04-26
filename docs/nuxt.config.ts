@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     }
   },
   ui: {
-    icons: ['heroicons', 'simple-icons'],
+    icons: ['heroicons', 'simple-icons', 'mdi'],
   },
   routeRules: {
     '/api/search.json': { prerender: true },
