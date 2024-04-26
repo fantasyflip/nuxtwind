@@ -9,11 +9,11 @@ export default defineNuxtConfig({
     'nuxt-og-image',
   ],
   components: [
-    {
-      path: '../module/src/runtime/components',
-      global: true,
-      prefix: 'Nxw',
-    },
+    // {
+    //   path: '../module/src/runtime/components',
+    //   global: true,
+    //   prefix: 'Nxw',
+    // },
     {
       path: '~/components',
     }
