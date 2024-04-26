@@ -12,7 +12,7 @@
     <div class="w-full h-10 flex px-3 items-center bg-gradient-to-tr dark:from-white/25 dark:to-white/10 border-b dark:border-white/20 from-black/20 to-black/10 border-black/20">
       Nuxt
     </div>
-    <div class="w-full h-10 flex px-3 items-center bg-gradient-to-tr dark:from-white/25 dark:to-white/10 border-b  from-black/20 to-black/10">
+    <div class="w-full h-10 flex px-3 items-center bg-gradient-to-tr dark:from-white/25 dark:to-white/10  from-black/20 to-black/10">
       NuxtWind
     </div>
     <div class="absolute text-xs top-[3px] left-2 text-primary-500/60">
