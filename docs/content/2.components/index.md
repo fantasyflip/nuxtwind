@@ -70,3 +70,67 @@ card2:
     ::
 
 ::
+
+::Component-Row
+---
+card1:
+    title: Select
+card2:
+    title: Skeleton
+---
+#card1
+    ::MockSelect
+    ::
+
+#card2
+    ::MockSkeleton
+    ::
+
+::
+
+::Component-Row
+---
+card1:
+    title: Slider
+card2:
+    title: Textarea
+---
+#card1
+    ::MockSlider
+    ::
+
+#card2
+    ::MockTextarea
+    ::
+
+::
+
+::Component-Row
+---
+card1:
+    title: Textfield
+card2:
+    title: Toast
+---
+#card1
+    ::MockTextfield
+    ::
+
+#card2
+    ::MockToast
+    ::
+
+::
+
+::Component-Row
+---
+card1:
+    title: Tooltip
+card2:
+    title: 
+---
+#card1
+    ::MockTooltip
+    ::
+
+::
