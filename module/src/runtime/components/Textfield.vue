@@ -113,13 +113,6 @@ import { useId } from "#imports";
 
 let textfieldId = useId();
 
-function handleLabelClick() {
-  console.log("label clicked");
-
-  // @ts-expect-error - TS doesn't know about ref
-  textfield.value.focus();
-}
-
 let isValid = ref<boolean | string>(true);
 let defaults = {
   color: {
@@ -193,8 +186,9 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   (e: "update:modelValue", id: string): void;
   (e: "update:validation", id: object): void;
-  (e: "focusIn", event: FocusEvent): void;
-  (e: "focusOut", event: FocusEvent): void;
+  // TODO: add 'FocusEvent'-Type instead of any
+  (e: "focusIn", event: any): void;
+  (e: "focusOut", event: any): void;
   (e: "reset"): void;
 }>();
 
