@@ -1,3 +1,5 @@
+import module from '../module/src/module'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
@@ -7,16 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxthq/studio',
     'nuxt-og-image',
-  ],
-  components: [
-    {
-      path: '../module/src/runtime/components',
-      global: true,
-      prefix: 'Nxw',
-    },
-    {
-      path: '~/components',
-    }
+    module
   ],
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
@@ -30,6 +23,17 @@ export default defineNuxtConfig({
   },
   ui: {
     icons: ['heroicons', 'simple-icons', 'mdi'],
+  },
+  content: {
+    highlight: {
+      langs: [
+        'postcss',
+        'mdc'
+      ]
+    }
+  },
+  nuxtwind:{
+    global: true
   },
   routeRules: {
     '/api/search.json': { prerender: true },

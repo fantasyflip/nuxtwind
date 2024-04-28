@@ -28,7 +28,11 @@
       </slot>
     </div>
     <div :class="props.height">
-      <slot> Navigation-Bar </slot>
+      <slot>
+        <div class="flex w-full h-full justify-center items-center">
+          Appbar
+        </div>
+      </slot>
     </div>
     <ClientOnly>
       <TransitionGroup name="list">
@@ -137,6 +141,8 @@ let appbarWrapperClass = computed(() => {
 
   if (props.absolute) {
     classes.push("absolute");
+  } else {
+    classes.push("relative");
   }
 
   if (props.sticky) {
