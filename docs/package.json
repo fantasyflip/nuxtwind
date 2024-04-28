@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "build:vercel": "cd ../module && pnpm i && pnpm run dev:prepare && cd ../docs && pnpm run build"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.1.20",
