@@ -51,33 +51,40 @@
       <div
         v-for="(slot,index) in componentSlots"
         :key="slot.slot"
-        class="flex flex-col gap-0.5 justify-between py-1.5 font-medium bg-gray-50 dark:bg-gray-800 border-r border-r-gray-200 dark:border-r-gray-700"
+        class="flex flex-col gap-0.5 justify-between py-1.5 font-medium bg-gray-50 dark:bg-gray-800 "
       >
-        <label
-          :for="`prop-${slot.slot}`"
-          class="block text-xs px-2.5 font-medium text-gray-400 dark:text-gray-500 -my-px"
-        >{{ slot.slot }}-slot</label>
-        <UInput
-          v-model="reactSlots[index].content"
-          type="text"
-          :name="`slot-${slot.slot}`"
-          variant="none"
-          autocomplete="off"
-          input-class="py-0"
-          tabindex="-1"
-        />
+        <div v-if="slot.isOption" class="border-r border-r-gray-200 dark:border-r-gray-700">
+          <label
+            :for="`prop-${slot.slot}`"
+            class="block text-xs px-2.5 font-medium text-gray-400 dark:text-gray-500 -my-px"
+          >{{ slot.slot }}-slot</label>
+          <UInput
+            v-model="reactSlots[index].content"
+            type="text"
+            :name="`slot-${slot.slot}`"
+            variant="none"
+            autocomplete="off"
+            input-class="py-0"
+            tabindex="-1"
+          />
+        </div>
       </div>
     </div>
     <!-- COMPONENT -->
     <div class=" p-4 border border-b-0 border-gray-200 dark:border-gray-700 relative " :class="customStyle">
       <component :is="name" v-bind="reactProps">
-        <ContentSlot v-if="$slots.default" :use="$slots.default" />
+        <ContentSlot v-if="slotComponent" :use="$slots.default">
+          <component :is="slotComponent.tag" :class="slotComponent.class" />
+        </ContentSlot>
+        <ContentSlot v-else-if="$slots.default" :use="$slots.default" />
+        
 
         <template v-for="slot in componentSlots" :key="slot.slot" #[slot.slot]>
           {{ slot.content }}
         </template>
       </component>
     </div>
+    
     <!-- CODE -->
     <ContentRenderer :value="formattedCode" class="[&>div>pre]:!rounded-t-none [&>div>pre]:!mt-0" />
   </div>
@@ -86,12 +93,17 @@
 <script setup lang="ts">
 import { transformContent } from '@nuxt/content/transformers'
 export interface Props {
-  customStyle: string;
+  customStyle?: string;
   name: string;
+  slotComponent?: {
+    tag: string;
+    class: string;
+  };
   componentProps?: any;
   componentSlots:{
     slot: string;
     content: string;
+    isOption: boolean;
   }[];
   options: [
     {
@@ -135,7 +147,7 @@ function optionToKebab(str: string) {
   return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-const code = computed(()=>{
+const codeToRender = computed(()=>{
   const propsStrings: string[] = []
 
   for(const option of props.options){
@@ -164,20 +176,22 @@ const code = computed(()=>{
   const slotsString: string[] = []
 
   for(const slot of slotItems){
+    if(slot.slot === 'default'){
+      slotsString.push(slot.content)
+    } else
     if(slot.content){
       slotsString.push(`<template #${slot.slot}>${slot.content}</template>`)
     }
   }
   
-   const codeString = `\`\`\`vue
-  <template>
+   const codeString = `
     <${props.name} ${propsStrings.join(' ')} ${props.componentSlots.length ? '>': '/>'}
 
+    ${props.slotComponent ? `<${props.slotComponent.tag} ${props.slotComponent.class ? `class="${props.slotComponent.class}"`:''} />`: ''}
     ${slotsString.join(' ')}
 
     ${props.componentSlots.length ? '</'+props.name+'>': ''}
-  </template>
-\`\`\``
+  `
 
 
 return codeString
@@ -185,14 +199,22 @@ return codeString
 })
 
 
+const codeDisplay = computed(()=>{
+  return `\`\`\`vue
+  <template>
+    ${codeToRender.value}
+  </template>
+  \`\`\``
+})
+
 const { data: formattedCode } = await useAsyncData(
   'code-formatted-'+ props.name,
   async () => {
     let formatted = ''
     try {
-      formatted = await $prettier.format(code.value) || code.value
+      formatted = await $prettier.format(codeDisplay.value) || codeDisplay.value
     } catch (error) {
-      formatted = code.value
+      formatted = codeDisplay.value
     }
 
     return transformContent('content:_markdown.md', formatted, {
@@ -207,5 +229,5 @@ const { data: formattedCode } = await useAsyncData(
         }
       }
     })
-  }, { watch: [code] })
+  }, { watch: [codeDisplay] })
 </script>
