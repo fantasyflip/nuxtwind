@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative w-fit">
     <slot></slot>
     <div :class="styleClass">
       <div class="max-w-full truncate">
@@ -30,7 +30,7 @@ let defaults = {
   color: {
     bg: "bg-red-500 dark:bg-red-500",
     border: "border-white dark:border-zinc-900",
-    text: "text-white",
+    text: "text-white dark:text-white",
   },
   border: "border-2",
 };
