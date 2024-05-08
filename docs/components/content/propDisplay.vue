@@ -43,6 +43,25 @@
           {{ props.default }}
         </div>
       </div>
+      <div
+        v-if="props.example" 
+      >
+        <div class="font-semibold">
+          Example
+        </div>
+        <ContentRenderer v-if="typeof props.example == 'object'" :value="formattedExampleObject" />
+        <div
+          v-else
+          class="font-light" :class="{
+            'text-green-500 dark:text-green-500': typeof props.example == 'string',
+            'text-red-500 dark:text-red-500': typeof props.example == 'boolean' && !props.example,
+            'text-orange-500 dark:text-orange-500': typeof props.example == 'boolean' && props.example,
+            'text-blue-500 dark:text-blue-500': typeof props.example == 'number',
+          }"
+        >
+          {{ props.example }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -54,6 +73,7 @@ export interface Props {
     required: boolean;
     types: string[];
     default?: string | object | boolean | number;
+    example?: string | object | boolean | number;
     defaultTop?: boolean;
 }
 
@@ -70,30 +90,64 @@ const componentName = route.params.slug[1].charAt(0).toUpperCase() + route.param
 const { $prettier } = useNuxtApp()
 const highlighter = useShikiHighlighter()
 
-const object = computed(()=>{
-
-  if(props.types.includes('object') && props.default && typeof props.default == 'object'){
-
-  
-
+function getKvPairStrings(obj: any): string[] {
   const kvPairStrings: string[] = []
 
-  for(const key in props.default){
-    kvPairStrings.push(`${key}:'${props.default[key]}'`)
+  for(const key in obj){
+    if(obj[key] && typeof obj[key] == 'object'){
+      const subKvPairStrings: string[] = []
+      for(const subKey in obj[key]){
+        subKvPairStrings.push(`${subKey}:'${obj[key][subKey]}'`)
+      }
+      kvPairStrings.push(`${key}:{${subKvPairStrings.join(', ')}}`)
+    } else {
+      kvPairStrings.push(`${key}:'${obj[key]}'`)
+    }
   }
-  
-  
-  const objectString = `\`\`\`vue
-  <template>
-  <NXW-${componentName} :${props.name}="{${kvPairStrings.join(', ')}}" />
-  </template>
-  \`\`\``
 
+  return kvPairStrings
+}
 
-  return objectString
+const object = computed(()=>{
 
+if((props.types.includes('object') || props.types.includes('array')) && props.default && typeof props.default == 'object'){
+
+  //check if its an array
+  if(Array.isArray(props.default)){
+    const arrayItems: string[] = []
+    const arrayItemType = typeof props.default[0]
+
+    for(const item of props.default){
+      if(arrayItemType == 'object'){
+        arrayItems.push(`{${getKvPairStrings(item).join(', ')}}`)
+      } else if(arrayItemType == 'string') {
+        arrayItems.push(`'${item}'`)
+      } else if (arrayItemType == 'number') {
+        arrayItems.push(`${item}`)
+      } else if (arrayItemType == 'boolean') {
+        arrayItems.push(`${item}`)
+      }
+    }
+
+    const arrayString = `\`\`\`vue
+    <template>
+    <NXW-${componentName} :${props.name}="[${arrayItems.join(', ')}]" />
+    </template>
+    `
+    
+    return arrayString
+  } else {
+    const kvPairStrings: string[] = getKvPairStrings(props.default)
+
+    const objectString = `\`\`\`vue
+    <template>
+    <NXW-${componentName} :${props.name}="{${kvPairStrings.join(', ')}}" />
+    </template>
+    `
+    return objectString
   }
-  
+}
+
 })
 
 const { data: formattedObject } = await useAsyncData(
@@ -122,4 +176,73 @@ const { data: formattedObject } = await useAsyncData(
       }
     })
   }, { watch: [object] })
+
+const exampleObject = computed(()=>{
+
+  if((props.types.includes('object') || props.types.includes('array')) && props.example && typeof props.example == 'object'){
+
+    //check if its an array
+    if(Array.isArray(props.example)){
+      const arrayItems: string[] = []
+      const arrayItemType = typeof props.example[0]
+
+      for(const item of props.example){
+        if(arrayItemType == 'object'){
+          arrayItems.push(`{${getKvPairStrings(item).join(', ')}}`)
+        } else if(arrayItemType == 'string') {
+          arrayItems.push(`'${item}'`)
+        } else if (arrayItemType == 'number') {
+          arrayItems.push(`${item}`)
+        } else if (arrayItemType == 'boolean') {
+          arrayItems.push(`${item}`)
+        }
+      }
+
+      const arrayString = `\`\`\`vue
+      <template>
+      <NXW-${componentName} :${props.name}="[${arrayItems.join(', ')}]" />
+      </template>
+      `
+      
+      return arrayString
+    } else {
+      const kvPairStrings: string[] = getKvPairStrings(props.example)
+
+      const objectString = `\`\`\`vue
+      <template>
+      <NXW-${componentName} :${props.name}="{${kvPairStrings.join(', ')}}" />
+      </template>
+      `
+      return objectString
+    }
+  }
+
+})
+
+const { data: formattedExampleObject } = await useAsyncData(
+  'prop-example-object-formatted-'+componentName+'-'+props.name,
+  async () => {
+    if(!exampleObject.value) return ''
+    
+    
+    let formatted = ''
+    try {
+      formatted = await $prettier.format(exampleObject.value) || exampleObject.value
+    } catch (error) {
+      formatted = exampleObject.value
+    }
+
+    return transformContent('content:_markdown.md', formatted, {
+      markdown: {
+        highlight: {
+          highlighter,
+          theme: {
+            light: 'material-theme-lighter',
+            default: 'material-theme',
+            dark: 'material-theme-palenight'
+          }
+        }
+      }
+    })
+  }, { watch: [exampleObject] })
 </script>
