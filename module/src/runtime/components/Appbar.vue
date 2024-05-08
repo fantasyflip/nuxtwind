@@ -73,7 +73,7 @@ import { computed } from "vue";
 import { useWindowScroll } from "@vueuse/core";
 let defaults = {
   color: {
-    bg: "bg-white dark:bg-zinc-900",
+    bg: "bg-gray-200 dark:bg-zinc-900",
     navigationIcon: "text-black dark:text-white",
     navigationIconHover: "hover:text-primary-700 dark:hover:text-primary-300",
   },
@@ -83,7 +83,7 @@ let defaults = {
 const props = withDefaults(defineProps<Props>(), {
   color: () => {
     return {
-      bg: "bg-white dark:bg-zinc-900",
+      bg: "bg-gray-200 dark:bg-zinc-900",
       navigationIcon: "text-black dark:text-white",
       navigationIconHover: "hover:text-primary-700 dark:hover:text-primary-300",
     };
