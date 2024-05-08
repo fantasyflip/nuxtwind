@@ -125,14 +125,14 @@ let defaults = {
     },
     img: {
       width: "w-full",
-      height: "h-full",
+      height: "h-full min-h-40",
       rounded: "rounded",
       color: "bg-zinc-800",
       iconColor: "text-zinc-600",
       iconSize: "size-10",
     },
     card: {
-      imgHeight: "h-full",
+      imgHeight: "h-full min-h-40",
       headingHeight: "h-6",
       imgRounded: "rounded",
       headingRounded: "rounded-lg",
@@ -171,14 +171,14 @@ const props = withDefaults(defineProps<Props>(), {
       },
       img: {
         width: "w-full",
-        height: "h-full",
+        height: "h-full min-h-40",
         rounded: "rounded",
         color: "bg-zinc-800",
         iconColor: "text-zinc-600",
         iconSize: "size-10",
       },
       card: {
-        imgHeight: "h-full",
+        imgHeight: "h-full min-h-40",
         headingHeight: "h-6",
         imgRounded: "rounded",
         headingRounded: "rounded-lg",
