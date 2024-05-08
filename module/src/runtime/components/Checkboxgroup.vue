@@ -89,7 +89,7 @@ import Checkbox from "./Checkbox.vue";
 import { computed, ref, watch } from "vue";
 let defaults = {
   color: {
-    label: "text-primary-800 dark:text-primary-800",
+    label: "text-primary-500 dark:text-primary-500",
     description: "text-gray-500 dark:text-gray-400",
   },
   text: {
@@ -107,7 +107,7 @@ const props = withDefaults(defineProps<Props>(), {
   },
   color: () => {
     return {
-      label: "text-primary-800 dark:text-primary-800",
+      label: "text-primary-500 dark:text-primary-500",
       description: "text-gray-500 dark:text-gray-400",
     };
   },
@@ -194,6 +194,40 @@ watch(
     }
   },
   { deep: true }
+);
+
+//if multiple gets changed to false, check if more than one checkbox is true
+watch(
+  () => props.multiple,
+  () => {
+    if (!props.multiple) {
+      //count how often true is in the array
+      let trueCount = checkboxValues.value.filter((value) => value).length;
+      if(trueCount > 1){
+        let values = checkboxValues.value;
+        for(let i = 0; i < values.length; i++){
+          if(i != savedIndex.value){
+            values[i] = false;
+          }
+        }
+        checkboxValues.value = values;
+      }
+    }
+  }
+)
+
+//if notZero gets changed to true, check if no checkbox is true
+watch(
+  () => props.notZero,
+  () => {
+    if ( props.notZero) {
+      let trueCount = checkboxValues.value.filter((value) => value).length;
+      if (trueCount === 0) {
+        checkboxValues.value[0] = true;
+        savedIndex.value = 0;
+      }
+    }
+  }
 );
 
 function initializeCheckboxes() {
