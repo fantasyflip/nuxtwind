@@ -109,7 +109,7 @@ export interface Props {
       };
 }
 import Button from "./Button.vue";
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, onMounted, watch } from "vue";
 let defaults = {
   shadow: "shadow-xl",
   transition: {
@@ -117,12 +117,13 @@ let defaults = {
     delay: "delay-300",
     ease: "ease-in-out",
   },
+  timeout: 5,
 };
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 1,
   autoPlay: true,
-  timeout: 5000,
+  timeout: 5,
   disableAutoPlayOnHover: true,
   hideNavigation: false,
   hidePagination: false,
@@ -158,12 +159,17 @@ const prevItem = () => {
   }
 };
 
+const timeoutMs = computed(()=>{
+  if(props.timeout <= 0) return defaults.timeout * 1000
+  return props.timeout * 1000
+})
+
 let interval: any = undefined;
 function enableAutoPlay() {
   if (props.disableAutoPlayOnHover && props.autoPlay) {
     interval = setInterval(() => {
       nextItem();
-    }, props.timeout);
+    }, timeoutMs.value);
   }
 }
 function disableAutoPlay() {
@@ -171,15 +177,47 @@ function disableAutoPlay() {
     clearInterval(interval);
   }
 }
-if (props.autoPlay) {
-  if (props.disableAutoPlayOnHover) {
-    enableAutoPlay();
-  } else {
-    interval = setInterval(() => {
-      nextItem();
-    }, props.timeout);
+
+onMounted(()=>{
+  if (props.autoPlay) {
+    if (props.disableAutoPlayOnHover) {
+      enableAutoPlay();
+    } else {
+      interval = setInterval(() => {
+        nextItem();
+      }, timeoutMs.value);
+    }
   }
-}
+})
+
+watch(() => props.autoPlay, ()=>{  
+  if (props.autoPlay) {
+    if (props.disableAutoPlayOnHover) {
+      enableAutoPlay();
+    } else {
+      interval = setInterval(() => {
+        nextItem();
+      }, timeoutMs.value);
+    }
+  } else {
+    clearInterval(interval);
+  }
+})
+
+watch(() => props.timeout, ()=>{
+  clearInterval(interval);
+  if (props.autoPlay) {
+    if (props.disableAutoPlayOnHover) {
+      enableAutoPlay();
+    } else {
+      interval = setInterval(() => {
+        nextItem();
+      }, timeoutMs.value);
+    }
+  } else {
+    clearInterval(interval);
+  }
+})
 
 const wrapperStyleClass = computed(() => {
   let classes: string[] = [];
@@ -287,7 +325,8 @@ const paginationWrapperStyleClass = computed(() => {
   let classes: string[] = [];
   classes.push(
     "absolute",
-    "bottom-3",
+    "-bottom-3",
+    "group-hover/carousel:bottom-2",
     "flex",
     "text-xs",
     "w-full",
