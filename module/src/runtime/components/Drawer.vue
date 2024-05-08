@@ -1,7 +1,7 @@
 <template>
   <div v-if="props.modelValue && props.overlay" :class="overlayClass"></div>
   <aside
-    v-if="props.modelValue"
+    v-if="props.modelValue || props.expandOnHover"
     ref="drawer"
     :class="drawerWrapperClass"
     @mouseenter="hanldeHoverEnter"
@@ -47,7 +47,7 @@ import { computed, ref, watch, onMounted } from "vue";
 import { onClickOutside } from "@vueuse/core";
 let defaults = {
   color: {
-    bg: "bg-white dark:bg-gray-800",
+    bg: "bg-gray-200 dark:bg-zinc-900",
     overlayBg: "bg-black/50",
   },
   expandOnHover: {
@@ -65,7 +65,7 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
   color: () => {
     return {
-      bg: "bg-white dark:bg-zinc-900",
+      bg: "bg-gray-200 dark:bg-zinc-900",
       overlayBg: "bg-black/50",
     };
   },
@@ -230,11 +230,11 @@ let drawerWrapperClass = computed(() => {
   classes.push(props.color?.bg || defaults.color.bg);
 
   if (props.absolute) {
-    classes.push("absolute");
+    classes.push("absolute", "top-0");
   } else if (props.fixed) {
     classes.push("fixed");
   }
-
+  
   if (props.border && (props.modelValue || props.expandOnHover)) {
     if (typeof props.border === "string") {
       classes.push(props.border);
