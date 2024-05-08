@@ -11,7 +11,7 @@
           class="h-full w-full grid place-items-center"
           :class="
             typeof props.circular === 'object'
-              ? props.circular.cutout!.text
+              ? props.circular.cutout?.text
               : defaults.circular.cutout.text
           "
         >
@@ -47,11 +47,9 @@ export interface Props {
   circular?:
     | boolean
     | {
-        width?: string;
-        height?: string;
+        size?: string
         cutout?: {
-          width?: string;
-          height?: string;
+          size?: string;
           text?: string;
         };
       };
@@ -108,19 +106,17 @@ let defaults = {
     height: "h-1",
   },
   circular: {
-    width: "w-10",
-    height: "h-10",
+    size: "size-20",
     cutout: {
-      width: "before:w-[84%]",
-      height: "before:h-[84%]",
+      size: "before:size-[84%]",
       text: "text-[70%]",
     },
   },
   color: {
     circle: "#e5e7eb",
     circleDark: "#27272a",
-    circleProgress: "#155e75",
-    circleProgressDark: "#155e75",
+    circleProgress: "#00C16A",
+    circleProgressDark: "#00C16A",
     circleCutout: "before:bg-white dark:before:bg-zinc-900",
     background: "bg-gray-200 dark:bg-zinc-800",
     firstStrike: "before:bg-primary-500",
@@ -149,14 +145,14 @@ const props = withDefaults(defineProps<Props>(), {
     return {
       circle: "#e5e7eb",
       circleDark: "#27272a",
-      circleProgress: "#155e75",
-      circleProgressDark: "#155e75",
+      circleProgress: "#00C16A",
+      circleProgressDark: "#00C16A",
       circleCutout: "before:bg-white dark:before:bg-zinc-900",
       background: "bg-gray-200 dark:bg-zinc-800",
-      firstStrike: "before:bg-primary-800",
+      firstStrike: "before:bg-primary-500",
       secondStrike: "after:bg-primary-600",
-      linearProgress: "bg-primary-800",
-      linearProgressHover: "hover:bg-secondary-800",
+      linearProgress: "bg-primary-500",
+      linearProgressHover: "hover:bg-secondary-500",
     };
   },
   circular: false,
@@ -194,9 +190,12 @@ watch(
   modelValueComputed,
   (newValue) => {
     getCircularProgress(newValue);
-  },
-  { immediate: true },
+  }
 );
+
+onMounted(() => {
+  getCircularProgress(props.modelValue);
+});
 
 function getCircularProgress(inputValue: number) {
   let endValue = 0;
@@ -298,18 +297,12 @@ const circularStyleClass = computed(() => {
 
   //SIZE
   if (props.circular && typeof props.circular === "boolean") {
-    classes.push(defaults.circular.width);
-    classes.push(defaults.circular.height);
-    classes.push(defaults.circular.cutout.width);
-    classes.push(defaults.circular.cutout.height);
+    classes.push(defaults.circular.size);
+    classes.push(defaults.circular.cutout.size);
   } else if (props.circular && typeof props.circular === "object") {
-    classes.push(props.circular.width || defaults.circular.width);
-    classes.push(props.circular.height || defaults.circular.height);
+    classes.push(props.circular.size || defaults.circular.size);
     classes.push(
-      props.circular.cutout?.width || defaults.circular.cutout.width,
-    );
-    classes.push(
-      props.circular.cutout?.height || defaults.circular.cutout.height,
+      props.circular.cutout?.size || defaults.circular.cutout.size,
     );
   }
 
@@ -392,6 +385,7 @@ const linearStyleClass = computed(() => {
 });
 
 const linearProgressStyle = computed(() => {
+  
   if (initialLoadTime.value || !props.initialLoadTime) {
     let percent = 0;
 
@@ -410,6 +404,10 @@ const linearProgressStyle = computed(() => {
       percent = input;
     }
 
+    if(props.loading && props.modelValue <=0) {
+      percent = 30;
+    }
+    
     return `width: ${percent}%`;
   } else {
     return `width: 0%`;
