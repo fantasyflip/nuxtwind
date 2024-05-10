@@ -3,7 +3,10 @@ import type { NavItem } from '@nuxt/content/dist/runtime/types'
 
 const navigation = inject<NavItem[]>('navigation', [])
 
-const { header,version } = useAppConfig()
+const { header } = useAppConfig()
+const config = useRuntimeConfig()
+const version = config.public.version
+
 </script>
 
 <template>

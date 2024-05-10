@@ -1,4 +1,5 @@
 import module from '../module/src/module'
+import pkg from '../module/package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -11,6 +12,11 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     module
   ],
+  runtimeConfig: {
+    public: {
+      version: pkg.version
+    }
+  },
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
     'components:extend': (components) => {

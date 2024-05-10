@@ -1,5 +1,4 @@
 export default defineAppConfig({
-  version: '0.7.3',
   ui: {
     primary: 'green',
     gray: 'slate',
