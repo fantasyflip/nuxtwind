@@ -1,5 +1,9 @@
 <template>
-  <svg viewBox="0 0 245.76 245.76" :width="svgWidth" :height="svgHeight">
+  <svg
+    viewBox="0 0 245.76 245.76"
+    :width="svgWidth"
+    :height="svgHeight"
+  >
     <path
       :class="props.color?.nuxtHillRight || defaults.color.nuxtHillRight"
       d="m167.16,217.42c-20.23,0-40.47.02-60.7-.02-2.79,0-5.26-1.16-7.5-2.77-2.84-2.04-4.47-4.83-5.32-8.22-.92-3.67-.14-7.03,1.56-10.18,2.07-3.83,4.41-7.51,6.64-11.25,2.01-3.37,4.04-6.72,6.03-10.09,2.51-4.26,4.96-8.56,7.46-12.82,2.86-4.87,5.76-9.71,8.62-14.57,2.29-3.89,4.53-7.8,6.82-11.69,2.18-3.72,4.41-7.41,6.59-11.13,2.24-3.82,4.45-7.66,6.7-11.48,2.25-3.82,4.56-7.59,6.79-11.42,1.62-2.78,3.07-5.67,4.98-8.25,2.21-2.97,5.28-4.59,8.94-5.21,3.25-.55,6.27.02,9.15,1.44,2.54,1.25,4.43,3.2,5.86,5.66,1.97,3.4,4.03,6.74,6.02,10.13,1.96,3.34,3.86,6.73,5.82,10.07,2.51,4.26,5.07,8.48,7.58,12.74,1.94,3.27,3.82,6.58,5.75,9.85,1.67,2.84,3.4,5.65,5.07,8.49,1.96,3.35,3.86,6.74,5.81,10.09,1.89,3.26,3.81,6.5,5.72,9.74,1.95,3.31,3.9,6.62,5.86,9.92,3.16,5.33,6.41,10.61,9.47,16,1.19,2.1,2.53,4.13,3.4,6.44,1.73,4.61.71,8.73-1.9,12.61-2.08,3.09-5.08,4.82-8.69,5.65-1.07.25-2.11.26-3.16.26-19.79,0-39.59,0-59.38,0Z"
@@ -27,15 +31,15 @@
 
 <script lang="ts" setup>
 export interface Props {
-  width?: number | string;
-  height?: number | string;
-  ratio?: number;
+  width?: number | string
+  height?: number | string
+  ratio?: number
   color?: {
-    nuxtHillRight?: string;
-    nuxtHillLeft?: string;
-    tailwindCloudTop?: string;
-    tailwindCloudBottom?: string;
-  };
+    nuxtHillRight?: string
+    nuxtHillLeft?: string
+    tailwindCloudTop?: string
+    tailwindCloudBottom?: string
+  }
 }
 const defaults = {
   color: {

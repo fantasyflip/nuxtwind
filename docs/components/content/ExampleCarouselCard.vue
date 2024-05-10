@@ -1,9 +1,24 @@
 <template>
   <div>
-    <ComponentCard name="NXW-Carousel" :component-props="compProps" :options="compOptions" :component-slots="compSlots" @option-update="handleOptionUpdate">
+    <ComponentCard
+      name="NXW-Carousel"
+      :component-props="compProps"
+      :options="compOptions"
+      :component-slots="compSlots"
+      @option-update="handleOptionUpdate"
+    >
       <template #custom-component>
         <div class="size-[500px] mx-auto">
-          <NXW-Carousel v-model="compProps.step" :auto-play="compProps['auto-play']" :disable-auto-play-on-hover="compProps['disable-auto-play-on-hover']" :hide-navigation="compProps['hide-navigation']" :hide-pagination="compProps['hide-pagination']" :timeout="compProps['timeout']" :transition="compProps['transition']" @update:model-value="handleStepUpdate">
+          <NXW-Carousel
+            v-model="compProps.step"
+            :auto-play="compProps['auto-play']"
+            :disable-auto-play-on-hover="compProps['disable-auto-play-on-hover']"
+            :hide-navigation="compProps['hide-navigation']"
+            :hide-pagination="compProps['hide-pagination']"
+            :timeout="compProps['timeout']"
+            :transition="compProps['transition']"
+            @update:model-value="handleStepUpdate"
+          >
             <NXW-CarouselItem
               v-for="item in carouselItems"
               :key="item.step"
@@ -31,57 +46,57 @@
 import ComponentCard from './ComponentCard.vue'
 
 const compProps = ref({
-    'auto-play': true,
-    'disable-auto-play-on-hover': true,
-    'hide-navigation': false,
-    'hide-pagination': false,
-    transition: true,
-    timeout: 5
+  'auto-play': true,
+  'disable-auto-play-on-hover': true,
+  'hide-navigation': false,
+  'hide-pagination': false,
+  'transition': true,
+  'timeout': 5,
 })
 
 const compOptions = [
-    {
-        type: 'boolean',
-        propType: 'boolean',
-        name: 'auto-play',
-        default: true,
-    },
-    {
-        type: 'boolean',
-        propType: 'boolean',
-        name: 'disable-auto-play-on-hover',
-        default: true,
-    },
-    {
-        type: 'boolean',
-        propType: 'boolean',
-        name: 'hide-navigation',
-        default: false,
-    },
-    {
-        type: 'boolean',
-        propType: 'boolean',
-        name: 'hide-pagination',
-        default: false,
-    },
-    {
-        type: 'boolean',
-        propType: 'boolean',
-        name: 'transition',
-        default: true,
-    },
-    {
-        type: 'number',
-        propType: 'number',
-        name: 'timeout',
-        default: 5,
-    }
+  {
+    type: 'boolean',
+    propType: 'boolean',
+    name: 'auto-play',
+    default: true,
+  },
+  {
+    type: 'boolean',
+    propType: 'boolean',
+    name: 'disable-auto-play-on-hover',
+    default: true,
+  },
+  {
+    type: 'boolean',
+    propType: 'boolean',
+    name: 'hide-navigation',
+    default: false,
+  },
+  {
+    type: 'boolean',
+    propType: 'boolean',
+    name: 'hide-pagination',
+    default: false,
+  },
+  {
+    type: 'boolean',
+    propType: 'boolean',
+    name: 'transition',
+    default: true,
+  },
+  {
+    type: 'number',
+    propType: 'number',
+    name: 'timeout',
+    default: 5,
+  },
 ]
 
 const compSlots = [
-    {
-        slot: 'default',
-        content: `
+  {
+    slot: 'default',
+    content: `
         <NXW-CarouselItem
               v-for="item in carouselItems"
               :key="item.step"
@@ -99,8 +114,8 @@ const compSlots = [
               </div>
             </NXW-CarouselItem>
         `,
-        isOption: false,
-    },
+    isOption: false,
+  },
 ]
 
 const carouselItems = [
@@ -127,8 +142,8 @@ const carouselItems = [
 ]
 
 function handleOptionUpdate({ name, event, options }) {
-  if(options.find(option => option.name === name)) {
-      compProps.value[name] = event
+  if (options.find(option => option.name === name)) {
+    compProps.value[name] = event
   }
 }
 

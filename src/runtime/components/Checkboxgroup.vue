@@ -13,7 +13,11 @@
       </slot>
     </div>
     <ul>
-      <li v-for="(item, index) in props.items" :key="index" class="pt-2">
+      <li
+        v-for="(item, index) in props.items"
+        :key="index"
+        class="pt-2"
+      >
         <Checkbox
           v-model="checkboxValues[index]"
           :label="props.generalCheckboxProps?.label || item.label"
@@ -32,255 +36,261 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, ref, watch } from 'vue'
+import Checkbox from './Checkbox.vue'
+
 export interface Props {
-  modelValue: boolean[];
+  modelValue: boolean[]
   items?: {
-    label?: string;
-    description?: string;
+    label?: string
+    description?: string
     color?: {
-      label?: string;
-      description?: string;
-      iconInactive?: string;
-      iconActive?: string;
-      hover?: string;
-    };
+      label?: string
+      description?: string
+      iconInactive?: string
+      iconActive?: string
+      hover?: string
+    }
     text?: {
-      label?: string;
-      description?: string;
-    };
-    disabled?: boolean;
-    loading?: boolean;
-  }[];
+      label?: string
+      description?: string
+    }
+    disabled?: boolean
+    loading?: boolean
+  }[]
   color?: {
-    label?: string;
-    description?: string;
-  };
+    label?: string
+    description?: string
+  }
   text?: {
-    label?: string;
-    description?: string;
-  };
-  label?: string;
-  description?: string;
-  multiple?: boolean;
-  noRadio?: boolean;
-  loading?: boolean;
-  disabled?: boolean;
-  width?: string;
+    label?: string
+    description?: string
+  }
+  label?: string
+  description?: string
+  multiple?: boolean
+  noRadio?: boolean
+  loading?: boolean
+  disabled?: boolean
+  width?: string
   generalCheckboxProps?: {
-    label?: string;
-    description?: string;
+    label?: string
+    description?: string
     color?: {
-      label?: string;
-      description?: string;
-      iconInactive?: string;
-      iconActive?: string;
-      hover?: string;
-    };
+      label?: string
+      description?: string
+      iconInactive?: string
+      iconActive?: string
+      hover?: string
+    }
     text?: {
-      label?: string;
-      description?: string;
-    };
-    disabled?: boolean;
-    loading?: boolean;
-  };
-  notZero?: boolean;
+      label?: string
+      description?: string
+    }
+    disabled?: boolean
+    loading?: boolean
+  }
+  notZero?: boolean
 }
-import Checkbox from "./Checkbox.vue";
-import { computed, ref, watch } from "vue";
-let defaults = {
+
+const defaults = {
   color: {
-    label: "text-primary-500 dark:text-primary-500",
-    description: "text-gray-500 dark:text-gray-400",
+    label: 'text-primary-500 dark:text-primary-500',
+    description: 'text-gray-500 dark:text-gray-400',
   },
   text: {
-    label: "text-lg font-medium",
-    description: "text-sm",
+    label: 'text-lg font-medium',
+    description: 'text-sm',
   },
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: () => {
-    return [];
+    return []
   },
   items: () => {
-    return [];
+    return []
   },
   color: () => {
     return {
-      label: "text-primary-500 dark:text-primary-500",
-      description: "text-gray-500 dark:text-gray-400",
-    };
+      label: 'text-primary-500 dark:text-primary-500',
+      description: 'text-gray-500 dark:text-gray-400',
+    }
   },
   text: () => {
     return {
-      label: "text-lg font-medium",
-      description: "text-sm",
-    };
+      label: 'text-lg font-medium',
+      description: 'text-sm',
+    }
   },
-  label: "",
-  description: "",
+  label: '',
+  description: '',
   multiple: false,
   noRadio: false,
   loading: false,
   disabled: false,
-  width: "w-full",
+  width: 'w-full',
   generalCheckboxProps: () => {
-    return {};
+    return {}
   },
   notZero: false,
-});
+})
 
 const emit = defineEmits<{
-  (e: "update:modelValue", id: boolean[]): void;
-}>();
+  (e: 'update:modelValue', id: boolean[]): void
+}>()
 
-let checkboxValues = ref<boolean[]>([]);
-let savedIndex = ref(-1);
-let lastCheckedIndex = ref(-1);
+const checkboxValues = ref<boolean[]>([])
+const savedIndex = ref(-1)
+const lastCheckedIndex = ref(-1)
 
-initializeCheckboxes();
+initializeCheckboxes()
 
-//watch for changes of the length of props.items
+// watch for changes of the length of props.items
 watch(
   () => props.items.length,
   () => {
-    initializeCheckboxes();
-  }
-);
+    initializeCheckboxes()
+  },
+)
 
 watch(
   () => props.modelValue,
   (newValues) => {
-    checkboxValues.value = newValues;
+    checkboxValues.value = newValues
   },
-  { deep: true }
-);
+  { deep: true },
+)
 
 watch(
   checkboxValues,
   (newValues) => {
     if (props.multiple) {
       if (props.notZero) {
-        let trueCount = newValues.filter((value) => value).length;
+        const trueCount = newValues.filter(value => value).length
         if (trueCount === 1) {
           lastCheckedIndex.value = newValues.findIndex(
-            (value) => value === true
-          );
-        } else if (trueCount === 0) {
-          newValues[lastCheckedIndex.value] = true;
+            value => value === true,
+          )
+        }
+        else if (trueCount === 0) {
+          newValues[lastCheckedIndex.value] = true
         }
       }
-      emit("update:modelValue", newValues);
-    } else {
+      emit('update:modelValue', newValues)
+    }
+    else {
       if (savedIndex.value != -1) {
-        //count how often true is in the array
-        let trueCount = newValues.filter((value) => value).length;
+        // count how often true is in the array
+        const trueCount = newValues.filter(value => value).length
         if (trueCount > 1) {
-          //if more than one checkbox is true, set all to false except the one that is not savedIndex
-          newValues[savedIndex.value] = false;
+          // if more than one checkbox is true, set all to false except the one that is not savedIndex
+          newValues[savedIndex.value] = false
           savedIndex.value = checkboxValues.value.findIndex(
-            (value) => value === true
-          );
-        } else if (trueCount === 0 && props.notZero) {
+            value => value === true,
+          )
+        }
+        else if (trueCount === 0 && props.notZero) {
           for (let i = 0; i < newValues.length; i++) {
             if (i != savedIndex.value) {
-              newValues[i] = false;
+              newValues[i] = false
             }
           }
-          newValues[savedIndex.value] = true;
+          newValues[savedIndex.value] = true
         }
-        emit("update:modelValue", newValues);
+        emit('update:modelValue', newValues)
       }
     }
   },
-  { deep: true }
-);
+  { deep: true },
+)
 
-//if multiple gets changed to false, check if more than one checkbox is true
+// if multiple gets changed to false, check if more than one checkbox is true
 watch(
   () => props.multiple,
   () => {
     if (!props.multiple) {
-      //count how often true is in the array
-      let trueCount = checkboxValues.value.filter((value) => value).length;
-      if(trueCount > 1){
-        let values = checkboxValues.value;
-        for(let i = 0; i < values.length; i++){
-          if(i != savedIndex.value){
-            values[i] = false;
+      // count how often true is in the array
+      const trueCount = checkboxValues.value.filter(value => value).length
+      if (trueCount > 1) {
+        const values = checkboxValues.value
+        for (let i = 0; i < values.length; i++) {
+          if (i != savedIndex.value) {
+            values[i] = false
           }
         }
-        checkboxValues.value = values;
+        checkboxValues.value = values
       }
     }
-  }
+  },
 )
 
-//if notZero gets changed to true, check if no checkbox is true
+// if notZero gets changed to true, check if no checkbox is true
 watch(
   () => props.notZero,
   () => {
-    if ( props.notZero) {
-      let trueCount = checkboxValues.value.filter((value) => value).length;
+    if (props.notZero) {
+      const trueCount = checkboxValues.value.filter(value => value).length
       if (trueCount === 0) {
-        checkboxValues.value[0] = true;
-        savedIndex.value = 0;
+        checkboxValues.value[0] = true
+        savedIndex.value = 0
       }
     }
-  }
-);
+  },
+)
 
 function initializeCheckboxes() {
   if (props.modelValue) {
-    checkboxValues.value = props.modelValue;
+    checkboxValues.value = props.modelValue
     if (checkboxValues.value.length < props.items.length) {
       checkboxValues.value = checkboxValues.value.concat(
-        Array(props.items.length - checkboxValues.value.length).fill(false)
-      );
-      emit("update:modelValue", checkboxValues.value);
+        Array(props.items.length - checkboxValues.value.length).fill(false),
+      )
+      emit('update:modelValue', checkboxValues.value)
     }
 
     if (!props.multiple) {
       savedIndex.value = checkboxValues.value.findIndex(
-        (value) => value === true
-      );
-      //count hof often true is in the array
-      let trueCount = checkboxValues.value.filter((value) => value).length;
+        value => value === true,
+      )
+      // count hof often true is in the array
+      const trueCount = checkboxValues.value.filter(value => value).length
       if (trueCount > 1) {
-        let values = checkboxValues.value;
+        const values = checkboxValues.value
         for (let i = 0; i < values.length; i++) {
           if (i != savedIndex.value) {
-            values[i] = false;
+            values[i] = false
           }
         }
-        checkboxValues.value = values;
-      } else if (trueCount == 0 && props.notZero) {
-        checkboxValues.value[0] = true;
-        savedIndex.value = 0;
+        checkboxValues.value = values
+      }
+      else if (trueCount == 0 && props.notZero) {
+        checkboxValues.value[0] = true
+        savedIndex.value = 0
       }
     }
   }
 }
 
-let labelStyleClass = computed(() => {
-  let classes: string[] = [];
+const labelStyleClass = computed(() => {
+  const classes: string[] = []
 
-  classes.push(props.text?.label || defaults.text.label);
+  classes.push(props.text?.label || defaults.text.label)
 
-  //COLOR
-  classes.push(props.color?.label || defaults.color.label);
+  // COLOR
+  classes.push(props.color?.label || defaults.color.label)
 
-  return classes.join(" ");
-});
+  return classes.join(' ')
+})
 
-let descriptionStyleClass = computed(() => {
-  let classes: string[] = [];
+const descriptionStyleClass = computed(() => {
+  const classes: string[] = []
 
-  classes.push(props.text?.description || defaults.text.description);
+  classes.push(props.text?.description || defaults.text.description)
 
-  //COLOR
-  classes.push(props.color?.description || defaults.color.description);
+  // COLOR
+  classes.push(props.color?.description || defaults.color.description)
 
-  return classes.join(" ");
-});
+  return classes.join(' ')
+})
 </script>

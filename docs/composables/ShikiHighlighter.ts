@@ -15,15 +15,15 @@ export const useShikiHighlighter = () => {
       bundledThemes: {
         'material-theme': MaterialTheme,
         'material-theme-lighter': MaterialThemeLighter,
-        'material-theme-palenight': MaterialThemePalenight
+        'material-theme-palenight': MaterialThemePalenight,
       },
       bundledLangs: {
         html: HtmlLang,
         mdc: MdcLang,
         vue: VueLang,
         yml: YamlLang,
-        postcss: PostcssLang
-      }
+        postcss: PostcssLang,
+      },
     })
   }
 

@@ -5,19 +5,28 @@
         My App
       </div>
       <div class="flex pl-2 items-center gap-2 py-1 border-b dark:border-white/15 border-black/10">
-        <UIcon name="i-mdi-home" class="size-6 text-primary-500" />
+        <UIcon
+          name="i-mdi-home"
+          class="size-6 text-primary-500"
+        />
         <div>
           Home
         </div>
       </div>
       <div class="flex pl-2 items-center gap-2 py-1 border-b dark:border-white/15 border-black/10">
-        <UIcon name="i-mdi-account" class="size-6 text-primary-500" />
+        <UIcon
+          name="i-mdi-account"
+          class="size-6 text-primary-500"
+        />
         <div>
           Account
         </div>
       </div>
       <div class="flex pl-2 items-center gap-2 py-1 border-b dark:border-white/15 border-black/10">
-        <UIcon name="i-mdi-cog" class="size-6 text-primary-500" />
+        <UIcon
+          name="i-mdi-cog"
+          class="size-6 text-primary-500"
+        />
         <div>
           Settings
         </div>

@@ -5,7 +5,10 @@
     class="conic-gradient"
     :class="circularStyleClass"
   >
-    <div v-if="!props.loading" class="relative w-full h-full">
+    <div
+      v-if="!props.loading"
+      class="relative w-full h-full"
+    >
       <slot name="inner-circle">
         <div
           class="h-full w-full grid place-items-center"
@@ -20,399 +23,427 @@
       </slot>
     </div>
   </div>
-  <div v-else :class="linearWrapperStyleClass">
-    <div :class="linearStyleClass" :style="linearProgressStyle" />
+  <div
+    v-else
+    :class="linearWrapperStyleClass"
+  >
+    <div
+      :class="linearStyleClass"
+      :style="linearProgressStyle"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
+import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
+
 export interface Props {
-  modelValue: number;
+  modelValue: number
   size?: {
-    width?: string;
-    height?: string;
-  };
+    width?: string
+    height?: string
+  }
   color?: {
-    circle?: string;
-    circleDark?: string;
-    circleProgress?: string;
-    circleProgressDark?: string;
-    circleCutout?: string;
-    background?: string;
-    firstStrike?: string;
-    secondStrike?: string;
-    linearProgress?: string;
-    linearProgressHover?: string;
-  };
+    circle?: string
+    circleDark?: string
+    circleProgress?: string
+    circleProgressDark?: string
+    circleCutout?: string
+    background?: string
+    firstStrike?: string
+    secondStrike?: string
+    linearProgress?: string
+    linearProgressHover?: string
+  }
   circular?:
     | boolean
     | {
+      size?: string
+      cutout?: {
         size?: string
-        cutout?: {
-          size?: string;
-          text?: string;
-        };
-      };
-  loading?: boolean;
-  initialLoadTime?: number | boolean;
-  initialLoadTimeType?: "calc" | "static";
+        text?: string
+      }
+    }
+  loading?: boolean
+  initialLoadTime?: number | boolean
+  initialLoadTimeType?: 'calc' | 'static'
   transition?:
     | boolean
     | {
-        duration?: string;
-        ease?: string;
-      };
-  rounded?: boolean | string;
+      duration?: string
+      ease?: string
+    }
+  rounded?: boolean | string
 }
-import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
 
-let colorMode = ref("dark");
-let htmlElement = ref<HTMLElement>();
-let observer: MutationObserver;
+const colorMode = ref('dark')
+const htmlElement = ref<HTMLElement>()
+let observer: MutationObserver
 
 function getColorMode() {
   // get class of html element
-  let htmlClass = document.querySelector("html")!.classList;
+  const htmlClass = document.querySelector('html')!.classList
   // check if dark mode is enabled
-  if (htmlClass.contains("dark")) {
-    return "dark";
-  } else {
-    return "light";
+  if (htmlClass.contains('dark')) {
+    return 'dark'
+  }
+  else {
+    return 'light'
   }
 }
 
 onMounted(() => {
-  colorMode.value = getColorMode();
+  colorMode.value = getColorMode()
 
-  htmlElement.value = document.querySelector("html") as HTMLElement;
+  htmlElement.value = document.querySelector('html') as HTMLElement
 
   observer = new MutationObserver(() => {
-    colorMode.value = getColorMode();
-  });
+    colorMode.value = getColorMode()
+  })
 
   observer.observe(htmlElement.value, {
     attributes: true,
-    attributeFilter: ["class"],
-  });
-});
+    attributeFilter: ['class'],
+  })
+})
 
 onBeforeUnmount(() => {
-  observer.disconnect();
-});
+  observer.disconnect()
+})
 
-let defaults = {
+const defaults = {
   size: {
-    width: "w-full",
-    height: "h-1",
+    width: 'w-full',
+    height: 'h-1',
   },
   circular: {
-    size: "size-20",
+    size: 'size-20',
     cutout: {
-      size: "before:size-[84%]",
-      text: "text-[70%]",
+      size: 'before:size-[84%]',
+      text: 'text-[70%]',
     },
   },
   color: {
-    circle: "#e5e7eb",
-    circleDark: "#27272a",
-    circleProgress: "#00C16A",
-    circleProgressDark: "#00C16A",
-    circleCutout: "before:bg-white dark:before:bg-zinc-900",
-    background: "bg-gray-200 dark:bg-zinc-800",
-    firstStrike: "before:bg-primary-500",
-    secondStrike: "after:bg-primary-600",
-    linearProgress: "bg-primary-500",
-    linearProgressHover: "hover:bg-secondary-500",
+    circle: '#e5e7eb',
+    circleDark: '#27272a',
+    circleProgress: '#00C16A',
+    circleProgressDark: '#00C16A',
+    circleCutout: 'before:bg-white dark:before:bg-zinc-900',
+    background: 'bg-gray-200 dark:bg-zinc-800',
+    firstStrike: 'before:bg-primary-500',
+    secondStrike: 'after:bg-primary-600',
+    linearProgress: 'bg-primary-500',
+    linearProgressHover: 'hover:bg-secondary-500',
   },
   loading: false,
   transition: {
-    duration: "duration-500",
-    ease: "ease-in-out",
+    duration: 'duration-500',
+    ease: 'ease-in-out',
   },
-  rounded: "rounded-lg",
+  rounded: 'rounded-lg',
   initialLoadTime: 100,
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: undefined,
   size: () => {
     return {
-      width: "w-full",
-      height: "h-1",
-    };
+      width: 'w-full',
+      height: 'h-1',
+    }
   },
   color: () => {
     return {
-      circle: "#e5e7eb",
-      circleDark: "#27272a",
-      circleProgress: "#00C16A",
-      circleProgressDark: "#00C16A",
-      circleCutout: "before:bg-white dark:before:bg-zinc-900",
-      background: "bg-gray-200 dark:bg-zinc-800",
-      firstStrike: "before:bg-primary-500",
-      secondStrike: "after:bg-primary-600",
-      linearProgress: "bg-primary-500",
-      linearProgressHover: "hover:bg-secondary-500",
-    };
+      circle: '#e5e7eb',
+      circleDark: '#27272a',
+      circleProgress: '#00C16A',
+      circleProgressDark: '#00C16A',
+      circleCutout: 'before:bg-white dark:before:bg-zinc-900',
+      background: 'bg-gray-200 dark:bg-zinc-800',
+      firstStrike: 'before:bg-primary-500',
+      secondStrike: 'after:bg-primary-600',
+      linearProgress: 'bg-primary-500',
+      linearProgressHover: 'hover:bg-secondary-500',
+    }
   },
   circular: false,
   loading: false,
   initialLoadTime: 100,
-  initialLoadTimeType: "calc",
+  initialLoadTimeType: 'calc',
   transition: true,
   rounded: true,
-});
+})
 
-let initialLoadTime = ref(false);
+const initialLoadTimeRef = ref(false)
 
 if (props.initialLoadTime) {
   setTimeout(
     () => {
-      initialLoadTime.value = true;
+      initialLoadTimeRef.value = true
     },
-    typeof props.initialLoadTime === "number"
+    typeof props.initialLoadTime === 'number'
       ? props.initialLoadTime
       : defaults.initialLoadTime,
-  );
+  )
 }
 
-let modelValueComputed = computed(() => {
-  return props.modelValue;
-});
+const modelValueComputed = computed(() => {
+  return props.modelValue
+})
 
-let lastInputValue = 0;
+let lastInputValue = 0
 
-let gradientProgress = ref<number | string>(lastInputValue);
+const gradientProgress = ref<number | string>(lastInputValue)
 
-let textProgress = ref(lastInputValue);
+const textProgress = ref(lastInputValue)
 
 watch(
   modelValueComputed,
   (newValue) => {
-    getCircularProgress(newValue);
-  }
-);
+    getCircularProgress(newValue)
+  },
+)
 
 onMounted(() => {
-  getCircularProgress(props.modelValue);
-});
+  getCircularProgress(props.modelValue)
+})
 
 function getCircularProgress(inputValue: number) {
-  let endValue = 0;
+  let endValue = 0
   if (inputValue === null && props.loading) {
-    endValue = 30;
-  } else if (inputValue > 100) {
-    endValue = 100;
-  } else if (inputValue < 0) {
-    endValue = 0;
-  } else if (inputValue === undefined) {
-    endValue = 0;
-  } else {
-    endValue = inputValue;
+    endValue = 30
+  }
+  else if (inputValue > 100) {
+    endValue = 100
+  }
+  else if (inputValue < 0) {
+    endValue = 0
+  }
+  else if (inputValue === undefined) {
+    endValue = 0
+  }
+  else {
+    endValue = inputValue
   }
 
-  let progressValue = ref(lastInputValue);
-  let speed = 0;
+  const progressValue = ref(lastInputValue)
+  let speed = 0
   if (props.initialLoadTime) {
-    if (props.initialLoadTimeType === "static") {
-      speed =
-        typeof props.initialLoadTime === "number"
+    if (props.initialLoadTimeType === 'static') {
+      speed
+        = typeof props.initialLoadTime === 'number'
           ? props.initialLoadTime
-          : defaults.initialLoadTime;
-    } else {
-      speed =
-        (typeof props.initialLoadTime === "number"
+          : defaults.initialLoadTime
+    }
+    else {
+      speed
+        = (typeof props.initialLoadTime === 'number'
           ? props.initialLoadTime
-          : defaults.initialLoadTime) / endValue;
+          : defaults.initialLoadTime) / endValue
     }
   }
 
   if (lastInputValue < endValue) {
-    //increase
+    // increase
     if (speed > 0) {
-      let progressInterval = setInterval(() => {
+      const progressInterval = setInterval(() => {
         if (progressValue.value < endValue && inputValue === props.modelValue) {
-          progressValue.value++;
-          gradientProgress.value = progressValue.value * 3.6 + "deg";
-          textProgress.value = progressValue.value;
-          lastInputValue = progressValue.value;
-        } else {
-          clearInterval(progressInterval);
+          progressValue.value++
+          gradientProgress.value = progressValue.value * 3.6 + 'deg'
+          textProgress.value = progressValue.value
+          lastInputValue = progressValue.value
         }
-      }, speed);
-    } else {
-      progressValue.value = endValue;
-      gradientProgress.value = progressValue.value * 3.6 + "deg";
-      textProgress.value = progressValue.value;
+        else {
+          clearInterval(progressInterval)
+        }
+      }, speed)
     }
-  } else {
-    //decresing
+    else {
+      progressValue.value = endValue
+      gradientProgress.value = progressValue.value * 3.6 + 'deg'
+      textProgress.value = progressValue.value
+    }
+  }
+  else {
+    // decresing
     if (speed > 0) {
-      let progressInterval = setInterval(() => {
+      const progressInterval = setInterval(() => {
         if (progressValue.value > endValue && inputValue === props.modelValue) {
-          progressValue.value--;
-          gradientProgress.value = progressValue.value * 3.6 + "deg";
-          textProgress.value = progressValue.value;
-          lastInputValue = progressValue.value;
-        } else {
-          clearInterval(progressInterval);
+          progressValue.value--
+          gradientProgress.value = progressValue.value * 3.6 + 'deg'
+          textProgress.value = progressValue.value
+          lastInputValue = progressValue.value
         }
-      }, speed);
-    } else {
-      progressValue.value = endValue;
-      gradientProgress.value = progressValue.value * 3.6 + "deg";
-      textProgress.value = progressValue.value;
+        else {
+          clearInterval(progressInterval)
+        }
+      }, speed)
+    }
+    else {
+      progressValue.value = endValue
+      gradientProgress.value = progressValue.value * 3.6 + 'deg'
+      textProgress.value = progressValue.value
     }
   }
 }
 
 const circularColorCss = computed(() => {
-  if (colorMode.value === "light") {
-    return props.color.circle || defaults.color.circle;
-  } else {
-    return props.color.circleDark || defaults.color.circleDark;
+  if (colorMode.value === 'light') {
+    return props.color.circle || defaults.color.circle
   }
-});
+  else {
+    return props.color.circleDark || defaults.color.circleDark
+  }
+})
 
 const circularColorProgressCss = computed(() => {
-  if (colorMode.value === "light") {
-    return props.color.circleProgress || defaults.color.circleProgress;
-  } else {
-    return props.color.circleProgressDark || defaults.color.circleProgressDark;
+  if (colorMode.value === 'light') {
+    return props.color.circleProgress || defaults.color.circleProgress
   }
-});
+  else {
+    return props.color.circleProgressDark || defaults.color.circleProgressDark
+  }
+})
 
 const circularStyleClass = computed(() => {
-  let classes: string[] = [];
+  const classes: string[] = []
   // class="relative w-[250px] h-[250px] rounded-[50%] grid place-items-center before:content-[''] before:absolute before:h-[84%] before:w-[84%] before:bg-zinc-900 before:rounded-[50%]"
   classes.push(
-    "relative",
-    "rounded-[50%]",
-    "grid",
-    "place-items-center",
-    "before:content-['']",
-    "before:absolute",
-    "before:rounded-[50%]",
-  );
+    'relative',
+    'rounded-[50%]',
+    'grid',
+    'place-items-center',
+    'before:content-[\'\']',
+    'before:absolute',
+    'before:rounded-[50%]',
+  )
 
-  //SIZE
-  if (props.circular && typeof props.circular === "boolean") {
-    classes.push(defaults.circular.size);
-    classes.push(defaults.circular.cutout.size);
-  } else if (props.circular && typeof props.circular === "object") {
-    classes.push(props.circular.size || defaults.circular.size);
+  // SIZE
+  if (props.circular && typeof props.circular === 'boolean') {
+    classes.push(defaults.circular.size)
+    classes.push(defaults.circular.cutout.size)
+  }
+  else if (props.circular && typeof props.circular === 'object') {
+    classes.push(props.circular.size || defaults.circular.size)
     classes.push(
       props.circular.cutout?.size || defaults.circular.cutout.size,
-    );
+    )
   }
 
-  //COLOR
-  classes.push(props.color.circleCutout || defaults.color.circleCutout);
+  // COLOR
+  classes.push(props.color.circleCutout || defaults.color.circleCutout)
 
-  //LOADING
+  // LOADING
   if (props.loading) {
-    classes.push("animate-spin");
+    classes.push('animate-spin')
   }
 
-  return classes.join(" ");
-});
+  return classes.join(' ')
+})
 
 const linearWrapperStyleClass = computed(() => {
-  let classes: string[] = [];
+  const classes: string[] = []
 
-  //COLOR
-  classes.push("overflow-hidden");
-  classes.push(props.color.background || defaults.color.background);
+  // COLOR
+  classes.push('overflow-hidden')
+  classes.push(props.color.background || defaults.color.background)
 
-  //SIZE
-  classes.push(props.size.width || defaults.size.width);
-  classes.push(props.size.height || defaults.size.height);
+  // SIZE
+  classes.push(props.size.width || defaults.size.width)
+  classes.push(props.size.height || defaults.size.height)
 
-  //ROUNDED
+  // ROUNDED
   if (props.rounded) {
-    if (typeof props.rounded === "string") {
-      classes.push(props.rounded);
-    } else {
-      classes.push(defaults.rounded);
+    if (typeof props.rounded === 'string') {
+      classes.push(props.rounded)
+    }
+    else {
+      classes.push(defaults.rounded)
     }
   }
 
-  return classes.join(" ");
-});
+  return classes.join(' ')
+})
 
 const linearStyleClass = computed(() => {
-  let classes: string[] = [];
+  const classes: string[] = []
 
-  classes.push("relative", "w-full", "h-full");
+  classes.push('relative', 'w-full', 'h-full')
 
   if (props.loading) {
     // class="relative w-full h-full before:content-[''] before:absolute before:h-full before:bg-red-600 before:animate-indeterminatebefore after:content-[''] after:absolute after:h-full after:bg-red-600 after:animate-indeterminateafter"
     classes.push(
-      "before:content-[''] before:absolute before:h-full before:animate-indeterminatebefore after:content-[''] after:absolute after:h-full after:animate-indeterminateafter",
-    );
+      'before:content-[\'\'] before:absolute before:h-full before:animate-indeterminatebefore after:content-[\'\'] after:absolute after:h-full after:animate-indeterminateafter',
+    )
 
-    //COLOR
-    classes.push(props.color.secondStrike || defaults.color.secondStrike);
-    classes.push(props.color.firstStrike || defaults.color.firstStrike);
-  } else {
-    //COLOR
-    classes.push(props.color.linearProgress || defaults.color.linearProgress);
+    // COLOR
+    classes.push(props.color.secondStrike || defaults.color.secondStrike)
+    classes.push(props.color.firstStrike || defaults.color.firstStrike)
+  }
+  else {
+    // COLOR
+    classes.push(props.color.linearProgress || defaults.color.linearProgress)
     classes.push(
       props.color.linearProgressHover || defaults.color.linearProgressHover,
-    );
+    )
     if (props.transition) {
-      classes.push("transition-all");
-      if (typeof props.transition === "object") {
-        classes.push(props.transition.duration || defaults.transition.duration);
-        classes.push(props.transition.ease || defaults.transition.ease);
-      } else {
-        classes.push(defaults.transition.duration);
-        classes.push(defaults.transition.ease);
+      classes.push('transition-all')
+      if (typeof props.transition === 'object') {
+        classes.push(props.transition.duration || defaults.transition.duration)
+        classes.push(props.transition.ease || defaults.transition.ease)
+      }
+      else {
+        classes.push(defaults.transition.duration)
+        classes.push(defaults.transition.ease)
       }
     }
   }
 
-  //ROUNDED
+  // ROUNDED
   if (props.rounded) {
-    if (typeof props.rounded === "string") {
-      classes.push(props.rounded);
-    } else {
-      classes.push(defaults.rounded);
+    if (typeof props.rounded === 'string') {
+      classes.push(props.rounded)
+    }
+    else {
+      classes.push(defaults.rounded)
     }
   }
 
-  return classes.join(" ");
-});
+  return classes.join(' ')
+})
 
 const linearProgressStyle = computed(() => {
-  
-  if (initialLoadTime.value || !props.initialLoadTime) {
-    let percent = 0;
+  if (initialLoadTimeRef.value || !props.initialLoadTime) {
+    let percent = 0
 
-    let input: number = 0;
-    if (typeof props.modelValue === "number") {
-      input = props.modelValue;
-    } else if (typeof props.modelValue === "string") {
-      input = parseInt(props.modelValue);
+    let input: number = 0
+    if (typeof props.modelValue === 'number') {
+      input = props.modelValue
+    }
+    else if (typeof props.modelValue === 'string') {
+      input = Number.parseInt(props.modelValue)
     }
 
     if (input > 100) {
-      percent = 100;
-    } else if (input < 0) {
-      percent = 0;
-    } else {
-      percent = input;
+      percent = 100
+    }
+    else if (input < 0) {
+      percent = 0
+    }
+    else {
+      percent = input
     }
 
-    if(props.loading && props.modelValue <=0) {
-      percent = 30;
+    if (props.loading && props.modelValue <= 0) {
+      percent = 30
     }
-    
-    return `width: ${percent}%`;
-  } else {
-    return `width: 0%`;
+
+    return `width: ${percent}%`
   }
-});
+  else {
+    return `width: 0%`
+  }
+})
 </script>
 
 <style scoped>

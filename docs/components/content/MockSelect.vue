@@ -2,7 +2,10 @@
   <div class="w-2/3 relative">
     <div class="rounded-t-lg h-14 w-full  border-b border-primary-500 bg-gradient-to-tr dark:from-white/20 dark:to-white/5 from-black/15 to-black/5 flex items-center">
       <div class="flex items-center mt-3 ml-2">
-        <UIcon name="i-mdi-magnify" class="size-5 text-primary-500/60" />
+        <UIcon
+          name="i-mdi-magnify"
+          class="size-5 text-primary-500/60"
+        />
       </div>
       <div class=" pt-3 ml-2">
         Nuxt

@@ -2,11 +2,11 @@ import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default <Partial<Config>>{
-  content:['../module/src/runtime/**/*.{vue,js,ts,html}'],
+  content: ['../module/src/runtime/**/*.{vue,js,ts,html}'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['DM Sans', ...defaultTheme.fontFamily.sans]
+        sans: ['DM Sans', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         green: {
@@ -20,7 +20,7 @@ export default <Partial<Config>>{
           700: '#007F45',
           800: '#016538',
           900: '#0A5331',
-          950: '#052e16'
+          950: '#052e16',
         },
         primary: {
           50: '#faf5ff',
@@ -46,7 +46,7 @@ export default <Partial<Config>>{
           800: '#1e40af',
           900: '#1e3a8a',
         },
-      }
-    }
-  }
+      },
+    },
+  },
 }

@@ -10,22 +10,22 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxthq/studio',
     'nuxt-og-image',
-    module
+    module,
   ],
   runtimeConfig: {
     public: {
-      version: pkg.version
-    }
+      version: pkg.version,
+    },
   },
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
     'components:extend': (components) => {
-      const globals = components.filter((c) =>
-        ['UButton', 'UIcon'].includes(c.pascalName)
+      const globals = components.filter(c =>
+        ['UButton', 'UIcon'].includes(c.pascalName),
       )
 
-      globals.forEach((c) => (c.global = true))
-    }
+      globals.forEach(c => (c.global = true))
+    },
   },
   ui: {
     icons: ['heroicons', 'simple-icons', 'mdi'],
@@ -34,12 +34,12 @@ export default defineNuxtConfig({
     highlight: {
       langs: [
         'postcss',
-        'mdc'
-      ]
-    }
+        'mdc',
+      ],
+    },
   },
-  nuxtwind:{
-    global: true
+  nuxtwind: {
+    global: true,
   },
   routeRules: {
     '/api/search.json': { prerender: true },
@@ -49,5 +49,5 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: false,
-  }
+  },
 })

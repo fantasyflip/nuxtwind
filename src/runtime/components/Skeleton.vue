@@ -1,26 +1,39 @@
 <template>
   <div>
-    <div v-show="!props.loading" ref="SlotWrapper">
-      <slot></slot>
+    <div
+      v-show="!props.loading"
+      ref="SlotWrapper"
+    >
+      <slot />
     </div>
     <slot name="skeleton">
-      <div v-if="isTag('p')" :class="pStyle">
+      <div
+        v-if="isTag('p')"
+        :class="pStyle"
+      >
         <div
           v-for="index in props.tagOptions.p?.lines"
           :key="index"
           :class="pItemStyle(index)"
-        ></div>
+        />
       </div>
-      <div v-else-if="isTag('article')" :class="articleWrapperStyle">
-        <div :class="articleHeadingStyle"></div>
+      <div
+        v-else-if="isTag('article')"
+        :class="articleWrapperStyle"
+      >
+        <div :class="articleHeadingStyle" />
         <div :class="articlePWrapperStyle">
+          <!-- eslint-disable-next-line vue/require-v-for-key -->
           <div
             v-for="index in props.tagOptions.article?.lines"
             :class="articlePItemStyle(index)"
-          ></div>
+          />
         </div>
       </div>
-      <div v-else-if="isTag('img')" :class="imgWrapperStyle">
+      <div
+        v-else-if="isTag('img')"
+        :class="imgWrapperStyle"
+      >
         <svg
           :class="imgIconStyle"
           aria-hidden="true"
@@ -33,7 +46,10 @@
           />
         </svg>
       </div>
-      <div v-else-if="isTag('card')" :class="cardWrapperStyle">
+      <div
+        v-else-if="isTag('card')"
+        :class="cardWrapperStyle"
+      >
         <div :class="cardImageWrapperStyle">
           <svg
             :class="cardImgIconStyle"
@@ -47,438 +63,442 @@
             />
           </svg>
         </div>
-        <div :class="cardHeadingStyle"></div>
+        <div :class="cardHeadingStyle" />
       </div>
     </slot>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, computed, watch, onMounted } from 'vue'
+
 export interface Props {
-  loading: boolean;
-  tag?: string;
-  autoDetectRootTag?: boolean;
-  animationClass?: string;
+  loading: boolean
+  tag?: string
+  autoDetectRootTag?: boolean
+  animationClass?: string
   tagOptions?: {
     p?: {
-      lines?: number;
-      lineHeight?: string;
-      color?: string;
-      rounded?: string;
-      gap?: string;
-    };
+      lines?: number
+      lineHeight?: string
+      color?: string
+      rounded?: string
+      gap?: string
+    }
     article?: {
-      lines?: number;
-      lineHeight?: string;
-      headingHeight?: string;
-      color?: string;
-      gap?: string;
-      headingGap?: string;
-      rounded?: string;
-      headingRounded?: string;
-    };
+      lines?: number
+      lineHeight?: string
+      headingHeight?: string
+      color?: string
+      gap?: string
+      headingGap?: string
+      rounded?: string
+      headingRounded?: string
+    }
     img?: {
-      width?: string;
-      height?: string;
-      rounded?: string;
-      color?: string;
-      iconColor?: string;
-      iconSize?: string;
-    };
+      width?: string
+      height?: string
+      rounded?: string
+      color?: string
+      iconColor?: string
+      iconSize?: string
+    }
     card?: {
-      imgHeight?: string;
-      headingHeight?: string;
-      imgRounded?: string;
-      headingRounded?: string;
-      imgIconColor?: string;
-      imgIconSize?: string;
-      imageAspect?: string;
-      color?: string;
-      gap?: string;
-    };
-  };
+      imgHeight?: string
+      headingHeight?: string
+      imgRounded?: string
+      headingRounded?: string
+      imgIconColor?: string
+      imgIconSize?: string
+      imageAspect?: string
+      color?: string
+      gap?: string
+    }
+  }
 }
-import { ref, computed, watch, onMounted } from "vue";
 
-let defaults = {
+const defaults = {
   loading: true,
-  tag: "p",
+  tag: 'p',
   autoDetectRootTag: true,
-  animationClass: "animate-pulse",
+  animationClass: 'animate-pulse',
   tagOptions: {
     p: {
       lines: 3,
-      lineHeight: "h-4",
-      color: "dark:bg-zinc-700 bg-zinc-200",
-      rounded: "rounded-3xl",
-      gap: "gap-2",
+      lineHeight: 'h-4',
+      color: 'dark:bg-zinc-700 bg-zinc-200',
+      rounded: 'rounded-3xl',
+      gap: 'gap-2',
     },
     article: {
       lines: 5,
-      lineHeight: "h-4",
-      headingHeight: "h-6",
-      color: "dark:bg-zinc-700 bg-zinc-200",
-      gap: "gap-2",
-      headingGap: "gap-5",
-      rounded: "rounded-3xl",
-      headingRounded: "rounded-lg",
+      lineHeight: 'h-4',
+      headingHeight: 'h-6',
+      color: 'dark:bg-zinc-700 bg-zinc-200',
+      gap: 'gap-2',
+      headingGap: 'gap-5',
+      rounded: 'rounded-3xl',
+      headingRounded: 'rounded-lg',
     },
     img: {
-      width: "w-full",
-      height: "h-full min-h-40",
-      rounded: "rounded",
-      color: "bg-zinc-800",
-      iconColor: "text-zinc-600",
-      iconSize: "size-10",
+      width: 'w-full',
+      height: 'h-full min-h-40',
+      rounded: 'rounded',
+      color: 'bg-zinc-800',
+      iconColor: 'text-zinc-600',
+      iconSize: 'size-10',
     },
     card: {
-      imgHeight: "h-full min-h-40",
-      headingHeight: "h-6",
-      imgRounded: "rounded",
-      headingRounded: "rounded-lg",
-      imgIconColor: "text-zinc-600",
-      imgIconSize: "size-10",
-      imageAspect: "aspect-video",
-      color: "bg-zinc-800",
-      gap: "gap-4",
+      imgHeight: 'h-full min-h-40',
+      headingHeight: 'h-6',
+      imgRounded: 'rounded',
+      headingRounded: 'rounded-lg',
+      imgIconColor: 'text-zinc-600',
+      imgIconSize: 'size-10',
+      imageAspect: 'aspect-video',
+      color: 'bg-zinc-800',
+      gap: 'gap-4',
     },
   },
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
   loading: true,
-  tag: "p",
+  tag: 'p',
   autoDetectRootTag: true,
-  animationClass: "animate-pulse",
+  animationClass: 'animate-pulse',
   tagOptions: () => {
     return {
       p: {
         lines: 3,
-        lineHeight: "h-4",
-        color: "dark:bg-zinc-700 bg-zinc-200",
-        rounded: "rounded-3xl",
-        gap: "gap-2",
+        lineHeight: 'h-4',
+        color: 'dark:bg-zinc-700 bg-zinc-200',
+        rounded: 'rounded-3xl',
+        gap: 'gap-2',
       },
       article: {
         lines: 5,
-        lineHeight: "h-4",
-        headingHeight: "h-6",
-        color: "dark:bg-zinc-700 bg-zinc-200",
-        gap: "gap-2",
-        headingGap: "gap-5",
-        rounded: "rounded-3xl",
-        headingRounded: "rounded-lg",
+        lineHeight: 'h-4',
+        headingHeight: 'h-6',
+        color: 'dark:bg-zinc-700 bg-zinc-200',
+        gap: 'gap-2',
+        headingGap: 'gap-5',
+        rounded: 'rounded-3xl',
+        headingRounded: 'rounded-lg',
       },
       img: {
-        width: "w-full",
-        height: "h-full min-h-40",
-        rounded: "rounded",
-        color: "bg-zinc-800",
-        iconColor: "text-zinc-600",
-        iconSize: "size-10",
+        width: 'w-full',
+        height: 'h-full min-h-40',
+        rounded: 'rounded',
+        color: 'bg-zinc-800',
+        iconColor: 'text-zinc-600',
+        iconSize: 'size-10',
       },
       card: {
-        imgHeight: "h-full min-h-40",
-        headingHeight: "h-6",
-        imgRounded: "rounded",
-        headingRounded: "rounded-lg",
-        imgIconColor: "text-zinc-600",
-        imgIconSize: "size-10",
-        imageAspect: "aspect-video",
-        color: "bg-zinc-800",
-        gap: "gap-4",
+        imgHeight: 'h-full min-h-40',
+        headingHeight: 'h-6',
+        imgRounded: 'rounded',
+        headingRounded: 'rounded-lg',
+        imgIconColor: 'text-zinc-600',
+        imgIconSize: 'size-10',
+        imageAspect: 'aspect-video',
+        color: 'bg-zinc-800',
+        gap: 'gap-4',
       },
-    };
+    }
   },
-});
+})
 
-const SlotWrapper = ref<HTMLElement | null>(null);
+const SlotWrapper = ref<HTMLElement | null>(null)
 
-const slotRootTag = ref<string | undefined>();
+const slotRootTag = ref<string | undefined>()
 
 watch(
   SlotWrapper,
   (value) => {
-    if (!value) return;
-    slotRootTag.value = SlotWrapper.value?.firstElementChild?.tagName;
+    if (!value) return
+    slotRootTag.value = SlotWrapper.value?.firstElementChild?.tagName
   },
   { immediate: true },
-);
+)
 
-//watch template ref for inner changes
+// watch template ref for inner changes
 onMounted(() => {
-  //observer for slot changes
+  // observer for slot changes
   const observer = new MutationObserver(() => {
-    slotRootTag.value = SlotWrapper.value?.firstElementChild?.tagName;
-  });
+    slotRootTag.value = SlotWrapper.value?.firstElementChild?.tagName
+  })
 
   observer.observe(SlotWrapper.value as Node, {
     childList: true,
     subtree: true,
-  });
-});
+  })
+})
 
 function isTag(tag: string) {
   if (!props.loading) {
-    return false;
+    return false
   }
 
   if (props.autoDetectRootTag && slotRootTag.value) {
-    return slotRootTag.value?.toLocaleLowerCase() === tag.toLocaleLowerCase();
-  } else {
-    return props.tag.toLocaleLowerCase() === tag.toLocaleLowerCase();
+    return slotRootTag.value?.toLocaleLowerCase() === tag.toLocaleLowerCase()
+  }
+  else {
+    return props.tag.toLocaleLowerCase() === tag.toLocaleLowerCase()
   }
 }
 
-//p Tag styles
+// p Tag styles
 const pStyle = computed(() => {
-  const styleClasses = ["w-full", "flex", "flex-col"];
+  const styleClasses = ['w-full', 'flex', 'flex-col']
 
-  //line gap
-  styleClasses.push(props.tagOptions.p?.gap ?? defaults.tagOptions.p.gap);
+  // line gap
+  styleClasses.push(props.tagOptions.p?.gap ?? defaults.tagOptions.p.gap)
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
 function pItemStyle(index: number) {
-  const styleClasses: string[] = [];
+  const styleClasses: string[] = []
 
-  //animation
-  styleClasses.push(props.animationClass);
+  // animation
+  styleClasses.push(props.animationClass)
 
-  //line width
+  // line width
   if (index == props.tagOptions.p?.lines && props.tagOptions.p?.lines > 1) {
-    styleClasses.push("w-2/3");
-  } else {
-    styleClasses.push("w-full");
+    styleClasses.push('w-2/3')
+  }
+  else {
+    styleClasses.push('w-full')
   }
 
-  //line height
+  // line height
   styleClasses.push(
     props.tagOptions.p?.lineHeight ?? defaults.tagOptions.p.lineHeight,
-  );
+  )
 
-  //color
-  styleClasses.push(props.tagOptions.p?.color ?? defaults.tagOptions.p.color);
+  // color
+  styleClasses.push(props.tagOptions.p?.color ?? defaults.tagOptions.p.color)
 
-  //rounded
+  // rounded
   styleClasses.push(
     props.tagOptions.p?.rounded ?? defaults.tagOptions.p.rounded,
-  );
+  )
 
-  return styleClasses.join(" ");
+  return styleClasses.join(' ')
 }
 
-//article Tag Styles
+// article Tag Styles
 const articleWrapperStyle = computed(() => {
-  const styleClasses: string[] = ["w-full", "flex", "flex-col"];
+  const styleClasses: string[] = ['w-full', 'flex', 'flex-col']
 
-  //line gap
+  // line gap
   styleClasses.push(
-    props.tagOptions.article?.headingGap ??
-      defaults.tagOptions.article.headingGap,
-  );
+    props.tagOptions.article?.headingGap
+    ?? defaults.tagOptions.article.headingGap,
+  )
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
 const articleHeadingStyle = computed(() => {
-  const styleClasses: string[] = [];
+  const styleClasses: string[] = []
 
-  //animation
-  styleClasses.push(props.animationClass);
+  // animation
+  styleClasses.push(props.animationClass)
 
-  //line height
+  // line height
   styleClasses.push(
-    props.tagOptions.article?.headingHeight ??
-      defaults.tagOptions.article.headingHeight,
-  );
+    props.tagOptions.article?.headingHeight
+    ?? defaults.tagOptions.article.headingHeight,
+  )
 
-  //color
+  // color
   styleClasses.push(
     props.tagOptions.article?.color ?? defaults.tagOptions.article.color,
-  );
+  )
 
-  //rounded
+  // rounded
   styleClasses.push(
-    props.tagOptions.article?.headingRounded ??
-      defaults.tagOptions.article.headingRounded,
-  );
+    props.tagOptions.article?.headingRounded
+    ?? defaults.tagOptions.article.headingRounded,
+  )
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
 const articlePWrapperStyle = computed(() => {
-  const styleClasses: string[] = ["w-full", "flex", "flex-col"];
+  const styleClasses: string[] = ['w-full', 'flex', 'flex-col']
 
-  //line gap
+  // line gap
   styleClasses.push(
     props.tagOptions.article?.gap ?? defaults.tagOptions.article.gap,
-  );
+  )
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
 function articlePItemStyle(index: number) {
-  const styleClasses: string[] = [];
+  const styleClasses: string[] = []
 
-  //animation
-  styleClasses.push(props.animationClass);
+  // animation
+  styleClasses.push(props.animationClass)
 
-  //line width
+  // line width
   if (
-    index == props.tagOptions.article?.lines &&
-    props.tagOptions.article?.lines > 1
+    index == props.tagOptions.article?.lines
+    && props.tagOptions.article?.lines > 1
   ) {
-    styleClasses.push("w-2/3");
-  } else {
-    styleClasses.push("w-full");
+    styleClasses.push('w-2/3')
+  }
+  else {
+    styleClasses.push('w-full')
   }
 
-  //line height
+  // line height
   styleClasses.push(
-    props.tagOptions.article?.lineHeight ??
-      defaults.tagOptions.article.lineHeight,
-  );
+    props.tagOptions.article?.lineHeight
+    ?? defaults.tagOptions.article.lineHeight,
+  )
 
-  //color
+  // color
   styleClasses.push(
     props.tagOptions.article?.color ?? defaults.tagOptions.article.color,
-  );
+  )
 
-  //rounded
+  // rounded
   styleClasses.push(
     props.tagOptions.article?.rounded ?? defaults.tagOptions.article.rounded,
-  );
+  )
 
-  return styleClasses.join(" ");
+  return styleClasses.join(' ')
 }
 
-//img Tag Styles
+// img Tag Styles
 const imgWrapperStyle = computed(() => {
-  const styleClasses = ["flex", "items-center", "justify-center"];
+  const styleClasses = ['flex', 'items-center', 'justify-center']
 
-  //animation
-  styleClasses.push(props.animationClass);
+  // animation
+  styleClasses.push(props.animationClass)
 
-  //width
+  // width
   styleClasses.push(
     props.tagOptions.img?.width ?? defaults.tagOptions.img.width,
-  );
+  )
 
-  //height
+  // height
   styleClasses.push(
     props.tagOptions.img?.height ?? defaults.tagOptions.img.height,
-  );
+  )
 
-  //color
+  // color
   styleClasses.push(
     props.tagOptions.img?.color ?? defaults.tagOptions.img.color,
-  );
+  )
 
-  //rounded
+  // rounded
   styleClasses.push(
     props.tagOptions.img?.rounded ?? defaults.tagOptions.img.rounded,
-  );
+  )
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
 const imgIconStyle = computed(() => {
-  const styleClasses: string[] = [];
+  const styleClasses: string[] = []
 
-  //color
+  // color
   styleClasses.push(
     props.tagOptions.img?.iconColor ?? defaults.tagOptions.img.iconColor,
-  );
+  )
 
-  //size
+  // size
   styleClasses.push(
     props.tagOptions.img?.iconSize ?? defaults.tagOptions.img.iconSize,
-  );
+  )
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
-//card Tag Styles
+// card Tag Styles
 const cardWrapperStyle = computed(() => {
-  const styleClasses: string[] = ["w-full", "flex", "flex-col"];
+  const styleClasses: string[] = ['w-full', 'flex', 'flex-col']
 
-  //line gap
-  styleClasses.push(props.tagOptions.card?.gap ?? defaults.tagOptions.card.gap);
+  // line gap
+  styleClasses.push(props.tagOptions.card?.gap ?? defaults.tagOptions.card.gap)
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
 const cardImageWrapperStyle = computed(() => {
-  const styleClasses: string[] = ["flex", "items-center", "justify-center"];
+  const styleClasses: string[] = ['flex', 'items-center', 'justify-center']
 
-  //animation
-  styleClasses.push(props.animationClass);
+  // animation
+  styleClasses.push(props.animationClass)
 
-  //height
+  // height
   styleClasses.push(
     props.tagOptions.card?.imgHeight ?? defaults.tagOptions.card.imgHeight,
-  );
+  )
 
-  //color
+  // color
   styleClasses.push(
     props.tagOptions.card?.color ?? defaults.tagOptions.card.color,
-  );
+  )
 
-  //rounded
+  // rounded
   styleClasses.push(
     props.tagOptions.card?.imgRounded ?? defaults.tagOptions.card.imgRounded,
-  );
+  )
 
-  //aspect ratio
+  // aspect ratio
   styleClasses.push(
     props.tagOptions.card?.imageAspect ?? defaults.tagOptions.card.imageAspect,
-  );
+  )
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
 const cardImgIconStyle = computed(() => {
-  const styleClasses: string[] = [];
+  const styleClasses: string[] = []
 
-  //color
+  // color
   styleClasses.push(
-    props.tagOptions.card?.imgIconColor ??
-      defaults.tagOptions.card.imgIconColor,
-  );
+    props.tagOptions.card?.imgIconColor
+    ?? defaults.tagOptions.card.imgIconColor,
+  )
 
-  //size
+  // size
   styleClasses.push(
     props.tagOptions.card?.imgIconSize ?? defaults.tagOptions.card.imgIconSize,
-  );
+  )
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 
 const cardHeadingStyle = computed(() => {
-  const styleClasses: string[] = ["mx-3"];
+  const styleClasses: string[] = ['mx-3']
 
-  //animation
-  styleClasses.push(props.animationClass);
+  // animation
+  styleClasses.push(props.animationClass)
 
-  //line height
+  // line height
   styleClasses.push(
-    props.tagOptions.card?.headingHeight ??
-      defaults.tagOptions.card.headingHeight,
-  );
+    props.tagOptions.card?.headingHeight
+    ?? defaults.tagOptions.card.headingHeight,
+  )
 
-  //color
+  // color
   styleClasses.push(
     props.tagOptions.card?.color ?? defaults.tagOptions.card.color,
-  );
+  )
 
-  //rounded
+  // rounded
   styleClasses.push(
-    props.tagOptions.card?.headingRounded ??
-      defaults.tagOptions.card.headingRounded,
-  );
+    props.tagOptions.card?.headingRounded
+    ?? defaults.tagOptions.card.headingRounded,
+  )
 
-  return styleClasses.join(" ");
-});
+  return styleClasses.join(' ')
+})
 </script>

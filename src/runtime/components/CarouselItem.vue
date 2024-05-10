@@ -1,5 +1,8 @@
 <template>
-  <div :class="'carousel-item-' + step" class="ci">
+  <div
+    :class="'carousel-item-' + step"
+    class="ci"
+  >
     <transition name="fade">
       <div
         v-if="currentItem === step"
@@ -13,41 +16,44 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
 export interface Props {
-  step: number;
+  step: number
 }
-import { ref, onMounted, onBeforeUnmount } from "vue";
 const props = withDefaults(defineProps<Props>(), {
   step: 1,
-});
+})
 
-let currentItem = ref(0);
-let parentElement = ref<any>(null);
-let observer: any = null;
+const currentItem = ref(0)
+const parentElement = ref<HTMLElement | null>(null)
+let observer: MutationObserver | null = null
 
 onMounted(() => {
   parentElement.value = document.querySelector(
-    ".carousel-item-" + props.step
-  )!.parentElement;
+    '.carousel-item-' + props.step,
+  )!.parentElement
+  if (!parentElement.value) return
   currentItem.value = Number(
-    parentElement.value.id.replace("currentItem-", "")
-  );
+    parentElement.value.id.replace('currentItem-', ''),
+  )
 
   observer = new MutationObserver(() => {
+    if (!parentElement.value) return
     currentItem.value = Number(
-      parentElement.value.id.replace("currentItem-", "")
-    );
-  });
+      parentElement.value.id.replace('currentItem-', ''),
+    )
+  })
 
   observer.observe(parentElement.value, {
     attributes: true,
-    attributeFilter: ["id"],
-  });
-});
+    attributeFilter: ['id'],
+  })
+})
 
 onBeforeUnmount(() => {
-  observer.disconnect();
-});
+  if (observer) observer.disconnect()
+})
 </script>
 
 <style scoped>

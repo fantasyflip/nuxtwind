@@ -32,7 +32,7 @@
             input-class="py-0"
             tabindex="-1"
             @update:model-value="
-              (val)=>{
+              (val) => {
                 handleInputUpdate(val, option)
               }
             "
@@ -53,11 +53,14 @@
         </div>
       </div>
       <div
-        v-for="(slot,index) in componentSlots"
+        v-for="(slot, index) in componentSlots"
         :key="slot.slot"
         class="flex flex-col gap-0.5 justify-between py-1.5 font-medium bg-gray-50 dark:bg-gray-800 "
       >
-        <div v-if="slot.isOption" class="border-r border-r-gray-200 dark:border-r-gray-700">
+        <div
+          v-if="slot.isOption"
+          class="border-r border-r-gray-200 dark:border-r-gray-700"
+        >
           <label
             :for="`prop-${slot.slot}`"
             class="block text-xs px-2.5 font-medium text-gray-400 dark:text-gray-500 -my-px"
@@ -75,60 +78,87 @@
       </div>
     </div>
     <!-- COMPONENT -->
-    <div class=" p-4 border border-b-0 border-gray-200 dark:border-gray-700 relative not-prose" :class="customStyle">
+    <div
+      class=" p-4 border border-b-0 border-gray-200 dark:border-gray-700 relative not-prose"
+      :class="customStyle"
+    >
       <slot name="custom-component">
-        <component :is="name" v-bind="reactProps">
-          <ContentSlot v-if="slotComponent" :use="$slots.default">
-            <component :is="slotComponent.tag" :class="slotComponent.class" />
+        <component
+          :is="name"
+          v-bind="reactProps"
+        >
+          <ContentSlot
+            v-if="slotComponent"
+            :use="$slots.default"
+          >
+            <component
+              :is="slotComponent.tag"
+              :class="slotComponent.class"
+            />
           </ContentSlot>
-          <ContentSlot v-else-if="$slots.default" :use="$slots.default" />
-        
+          <ContentSlot
+            v-else-if="$slots.default"
+            :use="$slots.default"
+          />
 
-          <template v-for="slot in componentSlots" :key="slot.slot" #[slot.slot]>
+          <template
+            v-for="slot in componentSlots"
+            :key="slot.slot"
+            #[slot.slot]
+          >
             {{ slot.content }}
           </template>
         </component>
       </slot>
     </div>
-    
+
     <!-- CODE -->
-    <ContentRenderer :value="formattedCode" class="[&>div>pre]:!rounded-t-none [&>div>pre]:!mt-0" />
+    <ContentRenderer
+      :value="formattedCode"
+      class="[&>div>pre]:!rounded-t-none [&>div>pre]:!mt-0"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { transformContent } from '@nuxt/content/transformers'
+
 export interface Props {
-  customStyle?: string;
-  name: string;
+  customStyle?: string
+  name: string
   slotComponent?: {
-    tag: string;
-    class: string;
-  };
-  componentProps?: any;
-  componentSlots?:{
-    slot: string;
-    content: string;
-    isOption: boolean;
-  }[];
+    tag: string
+    class: string
+  }
+  componentProps?: {
+    name: string
+    type: 'boolean' | 'string' | 'number' | 'array' | unknown
+    propType: 'boolean' | 'string' | 'number' | 'array'
+    default: boolean | string | number | unknown
+  }[]
+  componentSlots?: {
+    slot: string
+    content: string
+    isOption: boolean
+  }[]
   options: [
     {
-      type: 'boolean' | 'string' | 'number' | 'array';
-      propType: 'boolean' | 'string' | 'number' | 'array';
-      name: string;
-      default: boolean | string | number;
+      type: 'boolean' | 'string' | 'number' | 'array'
+      propType: 'boolean' | 'string' | 'number' | 'array'
+      name: string
+      default: boolean | string | number
       options?: {
-        val: string | number;
-      }[];
-      htmlOnly?: boolean;
-    }
-  ];
+        val: string | number
+      }[]
+      htmlOnly?: boolean
+    },
+  ]
 }
 
 const props = withDefaults(defineProps<Props>(), {
   name: 'ComponentCard',
-  componentProps: {},
-  componentSlots: [],
+  componentProps: () => [],
+  componentSlots: () => [],
 })
 
 const emits = defineEmits(['option-update'])
@@ -138,8 +168,8 @@ const highlighter = useShikiHighlighter()
 
 const extractOptions = (
   options: {
-    val: string | number;
-  }[]
+    val: string | number
+  }[],
 ) => {
   const optionsArray = []
   for (let i = 0; i < options.length; i++) {
@@ -152,37 +182,39 @@ const extractOptions = (
 const reactProps = reactive({ ...props.componentProps })
 const reactSlots = reactive({ ...props.componentSlots })
 
-function emitOptionsUpdate(name: string, event: any) {
+function emitOptionsUpdate(name: string, event: unknown) {
   emits('option-update', { name, event, options: props.options })
 }
 
-function handleInputUpdate(value: any, option:any) {
+function handleInputUpdate(value: unknown, option: { name: string, type: string }) {
   reactProps[option.name] = option.type === 'number' ? Number(value) : value
   emitOptionsUpdate(option.name, value)
 }
-  
 
 function optionToKebab(str: string) {
   return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-const codeToRender = computed(()=>{
+const codeToRender = computed(() => {
   const propsStrings: string[] = []
 
-  for(const option of props.options){
-    if(option.name==='modelValue'){
+  for (const option of props.options) {
+    if (option.name === 'modelValue') {
       propsStrings.push(`v-model="${option.default}"`)
-    } else if(reactProps[option.name] != option.default){
-      if(option.propType === 'boolean'){
-        if(reactProps[option.name] === true){
+    }
+    else if (reactProps[option.name] != option.default) {
+      if (option.propType === 'boolean') {
+        if (reactProps[option.name] === true) {
           propsStrings.push(`${optionToKebab(option.name)}`)
-        } else {
+        }
+        else {
           propsStrings.push(`:${optionToKebab(option.name)}="${reactProps[option.name]}"`)
         }
-        
-      } else if(option.propType === 'number'){
+      }
+      else if (option.propType === 'number') {
         propsStrings.push(`:${optionToKebab(option.name)}="${reactProps[option.name]}"`)
-      } else if(option.propType === 'string'){
+      }
+      else if (option.propType === 'string') {
         propsStrings.push(`${optionToKebab(option.name)}="${reactProps[option.name]}"`)
       }
     }
@@ -190,37 +222,35 @@ const codeToRender = computed(()=>{
 
   const slotItems = []
 
-  for(const key in reactSlots){
-    slotItems.push({slot: reactSlots[key].slot, content: reactSlots[key].content})
+  for (const key in reactSlots) {
+    slotItems.push({ slot: reactSlots[key].slot, content: reactSlots[key].content })
   }
 
   const slotsString: string[] = []
 
-  for(const slot of slotItems){
-    if(slot.slot === 'default'){
+  for (const slot of slotItems) {
+    if (slot.slot === 'default') {
       slotsString.push(slot.content)
-    } else
-    if(slot.content){
-      slotsString.push(`<template #${slot.slot}>${slot.content}</template>`)
     }
+    else
+      if (slot.content) {
+        slotsString.push(`<template #${slot.slot}>${slot.content}</template>`)
+      }
   }
-  
-   const codeString = `
-    <${props.name} ${propsStrings.join(' ')} ${props.componentSlots.length ? '>': '/>'}
 
-    ${props.slotComponent ? `<${props.slotComponent.tag} ${props.slotComponent.class ? `class="${props.slotComponent.class}"`:''} />`: ''}
+  const codeString = `
+    <${props.name} ${propsStrings.join(' ')} ${props.componentSlots.length ? '>' : '/>'}
+
+    ${props.slotComponent ? `<${props.slotComponent.tag} ${props.slotComponent.class ? `class="${props.slotComponent.class}"` : ''} />` : ''}
     ${slotsString.join(' ')}
 
-    ${props.componentSlots.length ? '</'+props.name+'>': ''}
+    ${props.componentSlots.length ? '</' + props.name + '>' : ''}
   `
 
-
-return codeString
-  
+  return codeString
 })
 
-
-const codeDisplay = computed(()=>{
+const codeDisplay = computed(() => {
   return `\`\`\`vue
   <template>
     ${codeToRender.value}
@@ -229,12 +259,14 @@ const codeDisplay = computed(()=>{
 })
 
 const { data: formattedCode } = await useAsyncData(
-  'code-formatted-'+ props.name,
+  'code-formatted-' + props.name,
   async () => {
     let formatted = ''
     try {
+      // @ts-expect-error - prettier is not typed
       formatted = await $prettier.format(codeDisplay.value) || codeDisplay.value
-    } catch (error) {
+    }
+    catch (error) {
       formatted = codeDisplay.value
     }
 
@@ -245,10 +277,10 @@ const { data: formattedCode } = await useAsyncData(
           theme: {
             light: 'material-theme-lighter',
             default: 'material-theme',
-            dark: 'material-theme-palenight'
-          }
-        }
-      }
+            dark: 'material-theme-palenight',
+          },
+        },
+      },
     })
   }, { watch: [codeDisplay] })
 </script>

@@ -9,11 +9,17 @@
       </div>
     </div>
     <div class="flex gap-1 items-center pl-1">
-      <UIcon name="i-mdi-checkbox-marked" class="size-6 text-primary-500" />
+      <UIcon
+        name="i-mdi-checkbox-marked"
+        class="size-6 text-primary-500"
+      />
       <span>Install Nuxtwind</span>
     </div>
     <div class="flex gap-1 items-center pl-1 -mt-1">
-      <UIcon name="i-mdi-checkbox-blank-outline" class="size-6 dark:text-white/50 text-dark/20" />
+      <UIcon
+        name="i-mdi-checkbox-blank-outline"
+        class="size-6 dark:text-white/50 text-dark/20"
+      />
       <span>Star on Github</span>
     </div>
   </div>
