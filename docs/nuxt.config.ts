@@ -1,5 +1,5 @@
-import module from '../module/src/module'
-import pkg from '../module/package.json'
+import module from '../_module/src/module'
+import pkg from '../_module/package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
