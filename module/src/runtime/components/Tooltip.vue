@@ -69,7 +69,7 @@ const props = withDefaults(defineProps<Props>(), {
   rounded: true,
   zIndex: "z-10",
   interactive: false,
-  width: "w-fit",
+  width: "w-max",
 });
 
 let contentWrapperClass = computed(() => {
