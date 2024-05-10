@@ -41,7 +41,7 @@
           class="pr-3 pt-1 text-xs"
           :class="props.color?.hint || defaults.color.hint"
         >
-          {{ props.modelValue.length }}
+          {{ props.modelValue }}
         </div>
       </div>
       <div
@@ -104,7 +104,7 @@ export interface Props {
   width?: string;
   rules?: { (data: any): boolean | string }[];
 }
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 //@ts-ignore - #imports exists at runtime
 import { useId } from "#imports";
 
@@ -164,7 +164,7 @@ const props = withDefaults(defineProps<Props>(), {
       borderFocusError: "focus:border-red-500",
     };
   },
-  label: "Label",
+  label: "",
   autocomplete: "on",
   prependIcon: false,
   appendIcon: false,
@@ -182,6 +182,11 @@ const props = withDefaults(defineProps<Props>(), {
   width: "w-full",
   rules: () => [],
 });
+
+watch(() => props.modelValue, (value) => {
+  console.log(value);
+  
+})
 
 const emit = defineEmits<{
   (e: "update:modelValue", id: string): void;
