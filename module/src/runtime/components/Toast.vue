@@ -153,7 +153,7 @@ export interface Props {
 }
 import Progress from "./Progress.vue";
 import Button from "./Button.vue";
-import { computed, ref } from "vue";
+import { computed, ref, onMounted, watch } from "vue";
 let defaults = {
   color: {
     progress: {},
@@ -224,16 +224,31 @@ const emit = defineEmits<{
 
 let progressValue = ref(100);
 
-if (props.autoClose) {
-  let progress = setInterval(() => {
-    progressValue.value -= 1;
-    if (progressValue.value <= 0) {
-      clearInterval(progress);
-      close();
-      emit("autoClose");
-    }
-  }, props.duration * 10);
-}
+onMounted(() => {
+  if (props.autoClose) {
+    let progress = setInterval(() => {
+      progressValue.value -= 1;
+      if (progressValue.value <= 0) {
+        clearInterval(progress);
+        close();
+        emit("autoClose");
+      }
+    }, props.duration * 10);
+  }
+});
+
+watch(()=>props.autoClose,()=>{
+  if (props.autoClose) {
+    let progress = setInterval(() => {
+      progressValue.value -= 1;
+      if (progressValue.value <= 0) {
+        clearInterval(progress);
+        close();
+        emit("autoClose");
+      }
+    }, props.duration * 10);
+  }
+})
 
 const close = () => {
   emit("close");
