@@ -1,61 +1,57 @@
-# NuxtWind
+# NuxtWind Component Library
 
-A library of Nuxt 3 components styled with TailwindCSS. The design and useability is inspired by Vuetify and Flowbite.
+NuxtWind is a component library for Nuxt.js 3, providing a collection of ready-to-use components built with Vue.js and TailwindCSS. These components are designed to be SSR-safe and are inspired by the sleek design principles of Vuetify.
 
-## :book: Documentation
+## 📦 Installation
 
-For full documentation visit [NuxtWind](https://nuxtwind.com/).
+You can install NuxtWind via npm:
 
-## :rocket: Getting started
+```bash
+npm i @nuxtwind/components
+```
 
-Since the components don't require any installation the process to get them working is pretty straight forward.
+Add the `@nuxtwind/components` module to your `nuxt.config.ts`:
 
-1. Search through the components on [NuxtWind](https://nuxtwind.com/) until you find the component you were searching for. If you can't find a suitable component feel free to [request](#star--requesting-components) it
-2. Click on the github icon on the top-right corner. This will open up the components source-code.
-3. Copy the complete source-code, create a component in your project and paste the copied source-code.
-4. Check dependencies of the selected component on [NuxtWind](https://nuxtwind.com/) in the caveat-section. If there is no caveat-section. You're good to go to use your new component. Documentation on how to customize the component can also be found on [NuxtWind](https://nuxtwind.com/). If there is one refer to [Handling Caveats](#chains-handling-caveats).
+```typescript
+export default defineNuxtConfig({
+    modules: ['@nuxtwind/components']
+})
+```
 
-## :chains: Handling Caveats
+## 📚 Documentation
 
-Some components depend on other components, require NPM-Packages or need specific changes to your TailwindCSS configuration file.
+For full documentation and usage instructions, please visit [NuxtWind Documentation](https://nuxtwind.com).
 
-### :link: Depending on other Components
+## ✨ Features
 
-When a component depends on another one this is mentioned in the caveat section on [NuxtWind](https://nuxtwind.com/) of the parent component. You need to repeat the steps mentioned in [Getting started](#getting-started) for the child component(s).
+- **Ready-to-use Components**: A variety of components designed for rapid development.
+- **SSR-Safe**: Ensures compatibility with server-side rendering in Nuxt.js applications.
+- **Inspired by Vuetify**: Draws design inspiration from Vuetify's intuitive UI components.
+- **Built with Vue.js and TailwindCSS**: Utilizes the power of Vue.js for interactivity and TailwindCSS for styling flexibility.
 
-### :package: Require NPM-Packages
+## 🚀 Getting Started
 
-When a component requires one or more NPM-Packages this is mentioned in the caveat section on [NuxtWind](https://nuxtwind.com/) of the component. Install them to get the components to work in the inteded way.
+To start using NuxtWind components in your Nuxt.js project, simply install the package via your preferred package manager as shown above. Then you can start incorporating them into your templates.
 
-#### Avoiding Unplugin-Icons-Package
+```vue
+// In your Nuxt.js component
+<template>
+  <div>
+    <NXW-Button @click="handleClick">Click me!</NXW-Button>
+  </div>
+</template>
 
-If you chose a component that requires the [unplugin-icons-package](https://github.com/antfu/unplugin-icons) and you want to use your own icons you can simply remove the icons out of the source-code you copied earlier and replace them with your own icons.
+<script setup lang="ts">
+function handleClick() {
+  console.log('Button clicked!');
+}
+</script>
+```
 
-### :gear: Changes to TailwindCSS configuration
+## 🤝 Contribution
 
-When a component needs specific changes to your TailwindCSS configuration this is mentioned in the caveat section on [NuxtWind](https://nuxtwind.com/) of the component. Adjust your configuration as mentioned there. You'll need to restart your Nuxt 3 Dev-Server for the changes to take effect.
+Contributions to NuxtWind are welcome! If you'd like to contribute new features, bug fixes, or improvements, please fork the repository, make your changes, and submit a pull request. Be sure to follow the contribution guidelines outlined in the documentation.
 
-## :star: Requesting components
+## 📄 License
 
-If you can't find the component you're searching for feel free to open an issue in this repository including the following information:
-
-- Name of the Component
-- Use
-- Example
-
-#### Example:
-
-    Issue-Title: [Component-Request]: Navbar
-
-    Issue-Body:
-
-        Name: Navbar
-        Use: A bar to stick at the top of
-        the application to provide navigation for the user.
-        Example: https://vuetifyjs.com/en/components/app-bars/
-
-## :speech_balloon: Further questions / Contact
-
-If you have further questions or just want to chat about component ideas feel free to hit me up:
-
-[Discord-Profile](https://discordapp.com/users/171313670096289792)
+NuxtWind is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
