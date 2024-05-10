@@ -1,84 +1,57 @@
-<!--
-Get your module up and running quickly.
+# NuxtWind Component Library
 
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: my-module
-- Description: My new Nuxt module
--->
+NuxtWind is a component library for Nuxt.js 3, providing a collection of ready-to-use components built with Vue.js and TailwindCSS. These components are designed to be SSR-safe and are inspired by the sleek design principles of Vuetify.
 
-# My Module
+## 📦 Installation
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
-
-My new Nuxt module for doing amazing things.
-
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
-
-## Features
-
-<!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
-
-## Quick Setup
-
-Install the module to your Nuxt application with one command:
+You can install NuxtWind via npm:
 
 ```bash
-npx nuxi module add my-module
+npm i @nuxtwind/components
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+Add the `@nuxtwind/components` module to your `nuxt.config.ts`:
 
+```typescript
+export default defineNuxtConfig({
+    modules: ['@nuxtwind/components']
+})
+```
 
-## Contribution
+## 📚 Documentation
 
-<details>
-  <summary>Local development</summary>
-  
-  ```bash
-  # Install dependencies
-  npm install
-  
-  # Generate type stubs
-  npm run dev:prepare
-  
-  # Develop with the playground
-  npm run dev
-  
-  # Build the playground
-  npm run dev:build
-  
-  # Run ESLint
-  npm run lint
-  
-  # Run Vitest
-  npm run test
-  npm run test:watch
-  
-  # Release new version
-  npm run release
-  ```
+For full documentation and usage instructions, please visit [NuxtWind Documentation](https://nuxtwind.com).
 
-</details>
+## ✨ Features
 
+- **Ready-to-use Components**: A variety of components designed for rapid development.
+- **SSR-Safe**: Ensures compatibility with server-side rendering in Nuxt.js applications.
+- **Inspired by Vuetify**: Draws design inspiration from Vuetify's intuitive UI components.
+- **Built with Vue.js and TailwindCSS**: Utilizes the power of Vue.js for interactivity and TailwindCSS for styling flexibility.
 
-<!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/my-module/latest.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-version-href]: https://npmjs.com/package/my-module
+## 🚀 Getting Started
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/my-module.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-downloads-href]: https://npmjs.com/package/my-module
+To start using NuxtWind components in your Nuxt.js project, simply install the package via your preferred package manager as shown above. Then you can start incorporating them into your templates.
 
-[license-src]: https://img.shields.io/npm/l/my-module.svg?style=flat&colorA=020420&colorB=00DC82
-[license-href]: https://npmjs.com/package/my-module
+```vue
+// In your Nuxt.js component
+<template>
+  <div>
+    <NXW-Button @click="handleClick">Click me!</NXW-Button>
+  </div>
+</template>
 
-[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
-[nuxt-href]: https://nuxt.com
+<script setup lang="ts">
+function handleClick() {
+  console.log('Button clicked!');
+}
+</script>
+```
+
+## 🤝 Contribution
+
+Contributions to NuxtWind are welcome! If you'd like to contribute new features, bug fixes, or improvements, please fork the repository, make your changes, and submit a pull request. Be sure to follow the contribution guidelines outlined in the documentation.
+
+## 📄 License
+
+NuxtWind is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
