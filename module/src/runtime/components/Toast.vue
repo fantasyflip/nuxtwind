@@ -144,7 +144,7 @@ export interface Props {
   autoClose?: boolean;
   duration?: number;
   rounded?: boolean | string;
-  type?: string;
+  type?: "info" | "warning" | "error" | "success";
   title?: string;
   message?: string;
   shadow?: boolean | string;
