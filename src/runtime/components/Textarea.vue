@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useId } from '#imports'
 
 export interface Props {
