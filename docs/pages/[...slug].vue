@@ -28,6 +28,13 @@ useSeoMeta({
 
 const headline = computed(() => findPageHeadline(page.value))
 
+defineOgImage({
+  component: 'Docs',
+  props: {
+    headline: headline.value,
+  },
+})
+
 const links = computed(() => [toc?.bottom?.edit && {
   icon: 'i-heroicons-pencil-square',
   label: 'Edit this page',

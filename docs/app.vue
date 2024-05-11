@@ -29,6 +29,9 @@ useSeoMeta({
 
 defineOgImage({
   component: 'Docs',
+  props: {
+    headline: '@nuxtwind/components',
+  },
 })
 
 provide('navigation', navigation)
