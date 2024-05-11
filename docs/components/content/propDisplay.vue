@@ -16,7 +16,7 @@
               {{ propType }}
             </div>
             <div
-              v-if="index != props.types.length-1"
+              v-if="index != props.types.length - 1"
               class="pl-1 -mr-1"
             >
               |
@@ -34,7 +34,7 @@
     </div>
     <div
       class="flex"
-      :class="props.defaultTop ? 'flex-col-reverse': 'flex-col'"
+      :class="props.defaultTop ? 'flex-col-reverse' : 'flex-col'"
     >
       <ClientOnly>
         <ContentSlot
@@ -44,7 +44,7 @@
       </ClientOnly>
       <div
         v-if="props.default || props.types.includes('boolean')"
-        :class="!props.defaultTop ? 'pt-2': ''"
+        :class="!props.defaultTop ? 'pt-2' : ''"
       >
         <div class="font-semibold">
           Default
@@ -57,18 +57,20 @@
           v-else
           class="font-light"
           :class="{
-            'text-green-500 dark:text-green-500': typeof props.default == 'string',
-            'text-red-500 dark:text-red-500': typeof props.default == 'boolean' && !props.default,
-            'text-orange-500 dark:text-orange-500': typeof props.default == 'boolean' && props.default,
-            'text-blue-500 dark:text-blue-500': typeof props.default == 'number',
+            'text-green-500 dark:text-green-500':
+              typeof props.default == 'string',
+            'text-red-500 dark:text-red-500':
+              typeof props.default == 'boolean' && !props.default,
+            'text-orange-500 dark:text-orange-500':
+              typeof props.default == 'boolean' && props.default,
+            'text-blue-500 dark:text-blue-500':
+              typeof props.default == 'number',
           }"
         >
           {{ props.default }}
         </div>
       </div>
-      <div
-        v-if="props.example"
-      >
+      <div v-if="props.example">
         <div class="font-semibold">
           Example
         </div>
@@ -80,10 +82,14 @@
           v-else
           class="font-light"
           :class="{
-            'text-green-500 dark:text-green-500': typeof props.example == 'string',
-            'text-red-500 dark:text-red-500': typeof props.example == 'boolean' && !props.example,
-            'text-orange-500 dark:text-orange-500': typeof props.example == 'boolean' && props.example,
-            'text-blue-500 dark:text-blue-500': typeof props.example == 'number',
+            'text-green-500 dark:text-green-500':
+              typeof props.example == 'string',
+            'text-red-500 dark:text-red-500':
+              typeof props.example == 'boolean' && !props.example,
+            'text-orange-500 dark:text-orange-500':
+              typeof props.example == 'boolean' && props.example,
+            'text-blue-500 dark:text-blue-500':
+              typeof props.example == 'number',
           }"
         >
           {{ props.example }}
@@ -107,13 +113,16 @@ export interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   required: false,
-  types: () => { return ['string'] },
+  types: () => {
+    return ['string']
+  },
   defaultTop: false,
 })
 
 const route = useRoute()
 
-const componentName = route.params.slug[1].charAt(0).toUpperCase() + route.params.slug[1].slice(1)
+const componentName
+  = route.params.slug[1].charAt(0).toUpperCase() + route.params.slug[1].slice(1)
 
 const { $prettier } = useNuxtApp()
 const highlighter = useShikiHighlighter()
@@ -131,8 +140,6 @@ function getKvPairStrings(obj: KeyValue): string[] {
     if (obj[key] && typeof obj[key] == 'object') {
       const subKvPairStrings: string[] = []
       for (const subKey in obj[key] as KeyValue) {
-        console.log(obj[key])
-
         subKvPairStrings.push(`${subKey}:'${obj[key][subKey]}'`)
       }
       kvPairStrings.push(`${key}:{${subKvPairStrings.join(', ')}}`)
@@ -146,8 +153,12 @@ function getKvPairStrings(obj: KeyValue): string[] {
 }
 
 const object = computed(() => {
-  if ((props.types.includes('object') || props.types.includes('array')) && props.default && typeof props.default == 'object') {
-  // check if its an array
+  if (
+    (props.types.includes('object') || props.types.includes('array'))
+    && props.default
+    && typeof props.default == 'object'
+  ) {
+    // check if its an array
     if (Array.isArray(props.default)) {
       const arrayItems: string[] = []
       const arrayItemType = typeof props.default[0]
@@ -176,7 +187,9 @@ const object = computed(() => {
       return arrayString
     }
     else {
-      const kvPairStrings: string[] = getKvPairStrings(props.default as KeyValue)
+      const kvPairStrings: string[] = getKvPairStrings(
+        props.default as KeyValue,
+      )
 
       const objectString = `\`\`\`vue
     <template>
@@ -197,7 +210,7 @@ const { data: formattedObject } = await useAsyncData(
     let formatted = ''
     try {
       // @ts-expect-error - prettier is not typed
-      formatted = await $prettier.format(object.value) || object.value
+      formatted = (await $prettier.format(object.value)) || object.value
     }
     catch (error) {
       formatted = object.value
@@ -215,10 +228,16 @@ const { data: formattedObject } = await useAsyncData(
         },
       },
     })
-  }, { watch: [object] })
+  },
+  { watch: [object] },
+)
 
 const exampleObject = computed(() => {
-  if ((props.types.includes('object') || props.types.includes('array')) && props.example && typeof props.example == 'object') {
+  if (
+    (props.types.includes('object') || props.types.includes('array'))
+    && props.example
+    && typeof props.example == 'object'
+  ) {
     // check if its an array
     if (Array.isArray(props.example)) {
       const arrayItems: string[] = []
@@ -248,7 +267,9 @@ const exampleObject = computed(() => {
       return arrayString
     }
     else {
-      const kvPairStrings: string[] = getKvPairStrings(props.example as KeyValue)
+      const kvPairStrings: string[] = getKvPairStrings(
+        props.example as KeyValue,
+      )
 
       const objectString = `\`\`\`vue
       <template>
@@ -269,7 +290,8 @@ const { data: formattedExampleObject } = await useAsyncData(
     let formatted = ''
     try {
       // @ts-expect-error - prettier is not typed
-      formatted = await $prettier.format(exampleObject.value) || exampleObject.value
+      formatted
+        = (await $prettier.format(exampleObject.value)) || exampleObject.value
     }
     catch (error) {
       formatted = exampleObject.value
@@ -287,5 +309,7 @@ const { data: formattedExampleObject } = await useAsyncData(
         },
       },
     })
-  }, { watch: [exampleObject] })
+  },
+  { watch: [exampleObject] },
+)
 </script>

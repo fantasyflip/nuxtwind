@@ -38,10 +38,12 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "dev": "nuxi dev playground",
+    "dev:play": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "release": "pnpm run lint && pnpm run test && pnpm run prepack && changelogen --release --no-commit && pnpm publish",
+    "dev": "nuxi dev docs",
+    "build": "nuxi generate docs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",

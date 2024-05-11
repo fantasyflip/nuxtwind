@@ -192,10 +192,6 @@ const props = withDefaults(defineProps<Props>(), {
   rules: () => [],
 })
 
-watch(() => props.modelValue, (value) => {
-  console.log(value)
-})
-
 const emit = defineEmits<{
   (e: 'update:modelValue', id: string): void
   (e: 'update:validation', id: object): void
