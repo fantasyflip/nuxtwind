@@ -152,8 +152,7 @@ const appbarWrapperClass = computed(() => {
   if (props.fixed) {
     classes.push('fixed')
   }
-
-  if (props.absolute) {
+  else if (props.absolute) {
     classes.push('absolute')
   }
   else {
