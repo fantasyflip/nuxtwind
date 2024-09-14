@@ -1,5 +1,26 @@
 # Changelog
 
+## v1.0.1
+
+[compare changes](https://github.com/fantasyflip/nuxtwind/compare/v1.0.0...v1.0.1)
+
+### 🩹 Fixes
+
+- **docs:** Package scripts ([a344103](https://github.com/fantasyflip/nuxtwind/commit/a344103))
+- **docs:** Og image headline ([1298e8c](https://github.com/fantasyflip/nuxtwind/commit/1298e8c))
+- **docs:** Md typos ([d83cc22](https://github.com/fantasyflip/nuxtwind/commit/d83cc22))
+- **Textarea:** Remove unused watch ([1e104e4](https://github.com/fantasyflip/nuxtwind/commit/1e104e4))
+- **appbar:** Fixed prop not working ([335de1f](https://github.com/fantasyflip/nuxtwind/commit/335de1f))
+
+### 🏡 Chore
+
+- **docs:** Change stackblitz link ([f0f9568](https://github.com/fantasyflip/nuxtwind/commit/f0f9568))
+
+### ❤️ Contributors
+
+- BLUEBEAST\katze <katzenberger.ph+github@gmail.com>
+- FantasyFlip
+
 ## v1.0.0
 
 [compare changes](https://github.com/fantasyflip/nuxtwind/compare/v0.8.1...v1.0.0)
