@@ -22,6 +22,7 @@
       :clearable="
         props.search && props.clearable && !props.disabled && !props.loading
       "
+      :font="props.font || defaults.font"
       @click="disabled || loading ? '' : (showSelectOptions = true)"
       @focus-in="handleFocusIn"
       @reset="handleReset"
@@ -102,6 +103,12 @@ export interface Props {
     border?: string
     hover?: string
   }
+  font?: {
+    label?: string
+    input?: string
+    placeholder?: string
+    hint?: string
+  }
   search?: boolean
   markOnFocus?: boolean
   showAllOnFocus?: boolean
@@ -141,6 +148,11 @@ const defaults = {
     border: 'border-gray-300 dark:border-zinc-700',
     hover: 'hover:bg-primary-700',
   },
+  font: {
+    label: 'text-sm',
+    input: 'text-sm',
+    hint: 'text-sm',
+  },
   width: {
     textfield: '',
     select: 'w-full',
@@ -160,6 +172,13 @@ const props = withDefaults(defineProps<Props>(), {
       text: 'text-black dark:text-white',
       border: 'border-gray-300 dark:border-zinc-700',
       hover: 'hover:bg-primary-700',
+    }
+  },
+  font: () => {
+    return {
+      label: 'text-sm',
+      input: 'text-sm',
+      hint: 'text-sm',
     }
   },
   search: false,

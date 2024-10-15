@@ -89,6 +89,12 @@ export interface Props {
     borderError?: string
     borderFocusError?: string
   }
+  font?: {
+    label?: string
+    input?: string
+    placeholder?: string
+    hint?: string
+  }
   label?: string
   autocomplete?: string
   prependIcon?: boolean | object
@@ -137,6 +143,11 @@ const defaults = {
     borderError: 'border-red-500',
     borderFocusError: 'focus:border-red-500',
   },
+  font: {
+    label: 'text-sm',
+    input: 'text-sm',
+    hint: 'text-sm',
+  },
   rounded: 'rounded-lg',
   outlined: 'border',
   filled: 'border-b-2',
@@ -171,6 +182,13 @@ const props = withDefaults(defineProps<Props>(), {
         'focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800',
       borderError: 'border-red-500',
       borderFocusError: 'focus:border-red-500',
+    }
+  },
+  font: () => {
+    return {
+      label: 'text-sm',
+      input: 'text-sm',
+      hint: 'text-sm',
     }
   },
   label: '',
@@ -348,7 +366,6 @@ const inputClass = computed(() => {
   classes.push(
     'block',
     'w-full',
-    'text-sm',
     'appearance-none',
     'focus:outline-none',
     'focus:ring-0',
@@ -357,6 +374,9 @@ const inputClass = computed(() => {
     'focus:placeholder:opacity-100',
     'placeholder:transition-opacity',
   )
+
+  // FONT
+  classes.push(props.font.input || defaults.font.input)
 
   // TRANSITION
   if (props.transition && typeof props.transition === 'object') {
@@ -476,13 +496,15 @@ const labelClass = computed(() => {
   const classes: string[] = []
   classes.push(
     'absolute',
-    'text-sm',
     'transform',
     'scale-75',
     'origin-[0]',
     'peer-placeholder-shown:scale-100',
     'peer-focus:scale-75',
   )
+
+  // FONT
+  classes.push(props.font.label || defaults.font.label)
 
   // TRANSITION
   if (props.transition && typeof props.transition === 'object') {
@@ -696,7 +718,6 @@ const hintClass = computed(() => {
 
   const classes: string[] = [
     'absolute',
-    'text-xs',
     'font-light',
     'pl-2',
     'group-focus-within:opacity-100',
@@ -705,6 +726,9 @@ const hintClass = computed(() => {
     '-translate-y-2',
     'group-focus-within:-translate-y-0',
   ]
+
+  // FONT
+  classes.push(props.font.hint || defaults.font.hint)
 
   if (props.transition && typeof props.transition === 'object') {
     classes.push(props.transition.duration || defaults.transition.duration)
