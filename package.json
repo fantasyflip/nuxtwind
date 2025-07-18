@@ -50,20 +50,20 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.11.2",
-    "@nuxtjs/color-mode": "^3.4.0",
-    "@nuxtjs/tailwindcss": "^6.11.4"
+    "@nuxt/kit": "^4.0.0",
+    "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/tailwindcss": "^6.14.0"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^1.1.5",
-    "@nuxt/eslint-config": "^0.3.6",
-    "@nuxt/module-builder": "^0.5.5",
-    "@nuxt/schema": "^3.11.2",
-    "@nuxt/test-utils": "^3.12.0",
-    "@types/node": "^20.12.7",
-    "changelogen": "^0.5.5",
-    "eslint": "^9.0.0",
-    "nuxt": "^3.11.2",
-    "vitest": "^1.4.0"
+    "@nuxt/devtools": "^2.6.2",
+    "@nuxt/eslint-config": "^1.6.0",
+    "@nuxt/module-builder": "^1.0.1",
+    "@nuxt/schema": "^4.0.0",
+    "@nuxt/test-utils": "^3.19.2",
+    "@types/node": "^24.0.14",
+    "changelogen": "^0.6.2",
+    "eslint": "^9.31.0",
+    "nuxt": "^4.0.0",
+    "vitest": "^3.2.4"
   }
 }
