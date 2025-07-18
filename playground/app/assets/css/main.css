@@ -1,1 +1,34 @@
-@import "tailwindcss" source("../../../../");
+
+@import "tailwindcss";
+
+@keyframes indeterminate-first {
+  0% {
+    left: -100%;
+    width: 100%;
+  }
+  100% {
+    left: 100%;
+    width: 10%;
+  }
+}
+@keyframes indeterminate-second {
+  0% {
+    left: -150%;
+    width: 100%;
+  }
+  100% {
+    left: 100%;
+    width: 10%;
+  }
+}
+
+@layer utilities {
+  .animate-indeterminatebefore {
+    animation: indeterminate-first 1.5s ease-out infinite;
+  }
+}
+@layer utilities {
+  .animate-indeterminateafter {
+    animation: indeterminate-second 1.5s ease-in infinite;
+  }
+}

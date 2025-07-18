@@ -3,15 +3,15 @@ import {
   installModule,
   addComponentsDir,
   createResolver,
-  useLogger,
   addVitePlugin,
   hasNuxtModule,
 } from '@nuxt/kit'
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
 
+import { nxwLog } from './utils/nxwLog'
 import { name, version } from '../package.json'
 import { primary, secondary } from './runtime/colors.json'
+import type { Nuxt } from 'nuxt/schema'
+import { CssManager } from './utils/css-manager'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -75,64 +75,41 @@ export interface ModuleOptions {
   }
 
   /**
-   * Used to automatically create main.css file if it doesn't exist
-   * @default true
+   * CSS configuration options
    */
-  autoCreateCss?: boolean
-}
+  css?: {
+    /**
+     * Used to automatically create main.css file if it doesn't exist
+     * @default true
+     */
+    autoCreate?: boolean
 
-function nxwLog(logActive: boolean | undefined, message: string, type: 'info' | 'success' | 'warn' | 'error' = 'info') {
-  if (logActive || type === 'error' || type === 'warn') {
-    const logger = useLogger('nuxtwind')
-    if (type === 'info') logger.info(message)
-    if (type === 'success') logger.success(message)
-    if (type === 'warn') logger.warn(message)
-    if (type === 'error') logger.error(message)
+    /**
+     * Validate existing CSS file and update if needed
+     * @default true
+     */
+    autoUpdate?: boolean
   }
 }
 
-function ensureMainCssFile(nuxt: any, options: ModuleOptions) {
-  const srcDir = nuxt.options.srcDir || nuxt.options.rootDir
-  const assetsDir = join(srcDir, 'assets', 'css')
-  const mainCssPath = join(assetsDir, 'main.css')
+function manageCssFile(nuxt: Nuxt, options: ModuleOptions) {
+  const cssManager = new CssManager(nuxt, {
+    debugLog: options.debugLog,
+  })
 
-  nxwLog(options.debugLog, `Checking for main.css file at: ${mainCssPath}`)
-
-  if (!existsSync(mainCssPath)) {
-    nxwLog(options.debugLog, 'main.css file not found, creating...', 'warn')
-
-    // Create assets/css directory if it doesn't exist
-    if (!existsSync(assetsDir)) {
-      nxwLog(options.debugLog, `Creating directory: ${assetsDir}`)
-      mkdirSync(assetsDir, { recursive: true })
-    }
-
-    // Create main.css with Tailwind v4 import
-    const cssContent = '@import "tailwindcss";'
-
-    try {
-      writeFileSync(mainCssPath, cssContent, 'utf8')
-      nxwLog(options.debugLog, `Created main.css file at: ${mainCssPath}`, 'success')
-
-      // Add the CSS file to Nuxt's CSS array if not already present
-      const cssPath = '~/assets/css/main.css'
-      if (!nuxt.options.css.includes(cssPath)) {
-        nuxt.options.css.push(cssPath)
-        nxwLog(options.debugLog, `Added ${cssPath} to Nuxt CSS configuration`, 'success')
-      }
-    }
-    catch (error) {
-      nxwLog(true, `Failed to create main.css file: ${error}`, 'error')
+  // Validate existing file first if autoUpdate is enabled
+  if (options.css?.autoUpdate !== false) {
+    const success = cssManager.validateAndUpdateMainCssFile()
+    if (!success) {
+      nxwLog(options.debugLog, 'Failed to validate or update main.css file', 'error')
     }
   }
-  else {
-    nxwLog(options.debugLog, 'main.css file already exists')
 
-    // Still ensure it's in the CSS array
-    const cssPath = '~/assets/css/main.css'
-    if (!nuxt.options.css.includes(cssPath)) {
-      nuxt.options.css.push(cssPath)
-      nxwLog(options.debugLog, `Added ${cssPath} to Nuxt CSS configuration`, 'success')
+  // Create or update the CSS file
+  if (options.css?.autoCreate !== false) {
+    const success = cssManager.ensureMainCssFile()
+    if (!success) {
+      nxwLog(true, 'Failed to manage main.css file', 'error')
     }
   }
 }
@@ -151,7 +128,10 @@ export default defineNuxtModule<ModuleOptions>({
     prefix: 'NXW-',
     global: false,
     debugLog: false,
-    autoCreateCss: true,
+    css: {
+      autoCreate: true,
+      autoUpdate: true,
+    },
     theme: {
       primary,
       secondary,
@@ -163,33 +143,45 @@ export default defineNuxtModule<ModuleOptions>({
     const runtimeDir = resolver.resolve('./runtime')
 
     _nuxt.options.build.transpile.push(runtimeDir)
-
     _nuxt.options.alias['#nuxtwind'] = runtimeDir
 
-    // Check and create main.css file if autoCreateCss is enabled
-    if (_options.autoCreateCss) {
-      ensureMainCssFile(_nuxt, _options)
-    }
+    // Manage CSS file
+    manageCssFile(_nuxt, _options)
 
     // Installing Tailwind CSS v4 standalone
     nxwLog(_options.debugLog, 'Installing tailwindcss v4 standalone')
-    const tailwindPlugin = await import('@tailwindcss/vite').then(r => r.default)
+    const tailwindPlugin = await import('@tailwindcss/vite').then(
+      r => r.default,
+    )
     addVitePlugin(tailwindPlugin)
 
     // Adding Nuxt Color-Mode module
-    nxwLog(_options.debugLog, 'Checking for already installed @nuxtjs/color-mode module')
+    nxwLog(
+      _options.debugLog,
+      'Checking for already installed @nuxtjs/color-mode module',
+    )
     if (hasNuxtModule('@nuxtjs/color-mode')) {
-      nxwLog(_options.debugLog, '@nuxtjs/color-mode module is already installed, skipping installation')
+      nxwLog(
+        _options.debugLog,
+        '@nuxtjs/color-mode module is already installed, skipping installation',
+      )
     }
     else {
-      nxwLog(_options.debugLog, '@nuxtjs/color-mode module not found, proceeding with installation', 'warn')
+      nxwLog(
+        _options.debugLog,
+        '@nuxtjs/color-mode module not found, proceeding with installation',
+        'warn',
+      )
       if (!_options.colorMode) {
         _options.colorMode = { classSuffix: '' }
       }
       if (!_options.colorMode.classSuffix) {
         _options.colorMode.classSuffix = ''
       }
-      nxwLog(_options.debugLog, `Using color mode class suffix: ${_options.colorMode.classSuffix}`)
+      nxwLog(
+        _options.debugLog,
+        `Using color mode class suffix: ${_options.colorMode.classSuffix}`,
+      )
       await installModule('@nuxtjs/color-mode', _options.colorMode)
     }
 
