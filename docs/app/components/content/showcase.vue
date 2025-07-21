@@ -1,0 +1,31 @@
+<template>
+  <div class="w-full">
+    {{ name }}
+
+    <component :is="name" />
+
+    <component :is="name">
+      <slot
+        :use="$slots.default"
+        unwrap="p"
+      />
+    </component>
+    <div>
+      <slot
+        :use="$slots.default"
+        unwrap="p"
+      />
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+export interface Props {
+  name: string
+  new: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  new: false
+})
+</script>

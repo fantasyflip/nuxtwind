@@ -9,7 +9,6 @@ import {
 
 import { nxwLog } from './utils/nxwLog'
 import { name, version } from '../package.json'
-import { primary, secondary } from './runtime/colors.json'
 import type { Nuxt } from 'nuxt/schema'
 import { CssManager } from './utils/css-manager'
 
@@ -32,36 +31,6 @@ export interface ModuleOptions {
    * @default false
    */
   debugLog?: boolean
-
-  /**
-   * Used to set the default theme values for NuxtWind
-   */
-  theme: {
-    primary: {
-      50: string
-      100: string
-      200: string
-      300: string
-      400: string
-      500: string
-      600: string
-      700: string
-      800: string
-      900: string
-    }
-    secondary: {
-      50: string
-      100: string
-      200: string
-      300: string
-      400: string
-      500: string
-      600: string
-      700: string
-      800: string
-      900: string
-    }
-  }
 
   /**
    * Used to configure the color mode module
@@ -131,10 +100,6 @@ export default defineNuxtModule<ModuleOptions>({
     css: {
       autoCreate: true,
       autoUpdate: true,
-    },
-    theme: {
-      primary,
-      secondary,
     },
   },
   async setup(_options, _nuxt) {

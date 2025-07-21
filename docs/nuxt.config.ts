@@ -1,53 +1,92 @@
-import module from '../src/module'
-import pkg from '../package.json'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import pkg from '../package.json'
+import module from '../src/module'
+
 export default defineNuxtConfig({
-  extends: ['@nuxt/ui-pro'],
   modules: [
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxt/ui-pro',
     '@nuxt/content',
-    '@nuxt/ui',
-    '@nuxt/fonts',
-    '@nuxthq/studio',
     'nuxt-og-image',
-    module,
+    'nuxt-llms',
+    module
   ],
+
+  devtools: {
+    enabled: true
+  },
+
+  css: ['~/assets/css/main.css'],
+
+  content: {
+    build: {
+      markdown: {
+        toc: {
+          searchDepth: 1
+        }
+      }
+    }
+  },
+
   runtimeConfig: {
     public: {
-      version: pkg.version,
-    },
+      version: pkg.version
+    }
   },
-  hooks: {
-    // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
-    'components:extend': (components) => {
-      const globals = components.filter(c =>
-        ['UButton', 'UIcon'].includes(c.pascalName),
-      )
 
-      globals.forEach(c => (c.global = true))
-    },
-  },
-  ui: {
-    icons: ['heroicons', 'simple-icons', 'mdi'],
-  },
-  content: {
-    highlight: {
-      langs: [
-        'postcss',
-        'mdc',
+  compatibilityDate: '2024-07-11',
+
+  nitro: {
+    prerender: {
+      routes: [
+        '/'
       ],
+      crawlLinks: true,
+      autoSubfolderIndex: false
+    }
+  },
+
+  eslint: {
+    config: {
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
+  },
+
+  icon: {
+    provider: 'iconify'
+  },
+
+  llms: {
+    domain: 'https://docs-template.nuxt.dev/',
+    title: 'Nuxt Docs Template',
+    description: 'A template for building documentation with Nuxt UI Pro and Nuxt Content.',
+    full: {
+      title: 'Nuxt Docs Template - Full Documentation',
+      description: 'This is the full documentation for the Nuxt Docs Template.'
     },
+    sections: [
+      {
+        title: 'Getting Started',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/getting-started%' }
+        ]
+      },
+      {
+        title: 'Essentials',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/essentials%' }
+        ]
+      }
+    ]
   },
+
   nuxtwind: {
-    global: true,
-  },
-  routeRules: {
-    '/api/search.json': { prerender: true },
-  },
-  devtools: {
-    enabled: true,
-  },
-  typescript: {
-    strict: false,
-  },
+    global: true
+  }
 })
