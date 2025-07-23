@@ -66,5 +66,8 @@
     "eslint": "^9.31.0",
     "nuxt": "^4.0.0",
     "vitest": "^3.2.4"
+  },
+  "resolutions": {
+    "debug": "4.3.7"
   }
 }

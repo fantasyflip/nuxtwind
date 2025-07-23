@@ -1,16 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import pkg from '../package.json'
-import module from '../src/module'
 
 export default defineNuxtConfig({
   modules: [
+    '../src/module',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui-pro',
     '@nuxt/content',
     'nuxt-og-image',
-    'nuxt-llms',
-    module
+    'nuxt-llms'
   ],
 
   devtools: {
@@ -24,8 +23,17 @@ export default defineNuxtConfig({
       markdown: {
         toc: {
           searchDepth: 3
+        },
+        highlight: {
+          langs: ['postcss', 'mdc', 'vue', 'typescript', 'javascript']
         }
       }
+    }
+  },
+
+  mdc: {
+    highlight: {
+      noApiRoute: false
     }
   },
 

@@ -42,14 +42,14 @@
         />
       </ClientOnly>
       <div
-        v-if="props.default || props.types.includes('boolean')"
+        v-if="props.default || props.types.includes('boolean') || props.types.includes('object')"
         :class="!props.defaultTop ? 'pt-2' : ''"
       >
         <div class="font-semibold">
           Default
         </div>
         <div
-          v-if="typeof props.default == 'object'"
+          v-if="props.types.includes('object')"
         >
           <slot
             name="defaultValue"
