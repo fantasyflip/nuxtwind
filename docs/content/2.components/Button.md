@@ -126,6 +126,14 @@ required: false
 ### `grow`
 #description
   Adds a grow-on-hover effect to the button.
+  ::Component-Interactive
+  ---
+  props:
+    grow: true
+  slots:
+    default: Button
+  ---
+  ::
 
 #defaultValue
 ```ts
@@ -229,6 +237,14 @@ required: false
 ### `shadow`
 #description
   Adds a shadow to the button.
+  ::Component-Interactive
+  ---
+  props:
+    shadow: true
+  slots:
+    default: Button
+  ---
+  ::
 ::
 
 ::prop-display

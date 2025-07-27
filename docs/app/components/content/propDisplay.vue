@@ -49,7 +49,7 @@
           Default
         </div>
         <div
-          v-if="props.types.includes('object')"
+          v-if="typeof props.default === 'object'"
         >
           <slot
             name="defaultValue"
