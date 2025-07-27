@@ -5,10 +5,8 @@ description: Display a series of images or content in a compact design.
 
 ## Usage
 
-::ExampleCarousel
+<!-- ::ExampleCarousel
 ---
-props:
-  auto-play: true
 external:
   - items
 ignore:
@@ -16,7 +14,7 @@ ignore:
 hide:
   - items
 ---
-::
+:: -->
 
 ## Props
 
@@ -31,6 +29,18 @@ required: false
 ### `auto-play`
 #description
   Activates auto-play for the carousel.
+  ::ExampleCarousel
+  ---
+  props:
+    auto-play: false
+  external:
+    - items
+  ignore:
+    - items
+  hide:
+    - items
+  ---
+  ::
 ::
 
 ::prop-display
@@ -44,6 +54,18 @@ required: false
 ### `disable-auto-play-on-hover`
 #description
   Disables auto-play, if activated, on hover. After hover, auto-play restarts.
+  ::ExampleCarousel
+  ---
+  props:
+    disable-auto-play-on-hover: true
+  external:
+    - items
+  ignore:
+    - items
+  hide:
+    - items
+  ---
+  ::
 ::
 
 ::prop-display
@@ -57,6 +79,18 @@ required: false
 ### `hide-navigation`
 #description
   Hides the navigation arrows on the sides of the carousel.
+  ::ExampleCarousel
+  ---
+  props:
+    hide-navigation: true
+  external:
+    - items
+  ignore:
+    - items
+  hide:
+    - items
+  ---
+  ::
 ::
 
 ::prop-display
@@ -70,6 +104,18 @@ required: false
 ### `hide-pagination`
 #description
   Hides the pagination dots at the bottom of the carousel.
+  ::ExampleCarousel
+  ---
+  props:
+    hide-pagination: true
+  external:
+    - items
+  ignore:
+    - items
+  hide:
+    - items
+  ---
+  ::
 ::
 
 ::prop-display
@@ -97,6 +143,18 @@ required: false
 ### `timeout`
 #description
   The time in seconds between each slide.
+  ::ExampleCarousel
+  ---
+  props:
+    timeout: 3
+  external:
+    - items
+  ignore:
+    - items
+  hide:
+    - items
+  ---
+  ::
 ::
 
 ::prop-display

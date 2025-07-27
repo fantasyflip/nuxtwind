@@ -1,6 +1,7 @@
 <template>
   <div
     :id="'currentItem-' + props.modelValue"
+    ref="carouselRef"
     :class="wrapperStyleClass"
     @mouseenter="disableAutoPlay"
     @mouseleave="enableAutoPlay"
@@ -149,9 +150,12 @@ const emit = defineEmits<{
 }>()
 
 const itemCount = ref(0)
+const carouselRef = ref<HTMLElement>()
 
 onMounted(() => {
-  itemCount.value = document.querySelectorAll('.ci').length
+  if (carouselRef.value) {
+    itemCount.value = carouselRef.value.querySelectorAll('.ci').length
+  }
 })
 
 // next item
