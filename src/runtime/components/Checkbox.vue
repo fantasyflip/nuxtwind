@@ -54,7 +54,7 @@
       </svg>
     </div>
     <div
-      v-if="props.label"
+      v-if="props.label || $slots.label"
       :class="labelStyleClass"
     >
       <label
@@ -65,7 +65,7 @@
         <slot name="label">{{ label }}</slot>
       </label>
       <p
-        v-if="description"
+        v-if="description || $slots.description"
         id="checkbox-description"
         :class="descriptionStyleClass"
       >
