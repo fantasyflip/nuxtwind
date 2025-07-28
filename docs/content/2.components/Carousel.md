@@ -5,7 +5,7 @@ description: Display a series of images or content in a compact design.
 
 ## Usage
 
-<!-- ::ExampleCarousel
+::ExampleCarousel
 ---
 external:
   - items
@@ -14,7 +14,7 @@ ignore:
 hide:
   - items
 ---
-:: -->
+::
 
 ## Props
 
@@ -172,6 +172,15 @@ required: false
 ### `transition`
 #description
   The transition effect for displaying navigation arrows and pagination dots.
+
+#defaultValue
+```ts
+{
+  duration: 'duration-300',
+  delay: 'delay-300',
+  ease: 'ease-in-out'
+}
+```
 ::
 
 ---

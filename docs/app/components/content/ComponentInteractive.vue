@@ -261,7 +261,12 @@ const codeDisplay = computed(() => {
 
     // Handle modelValue as v-model
     if (key === 'modelValue') {
-      code += ` v-model="${value}"`
+      // If modelValue is external, use the ref name instead of the value
+      if (props.external?.includes(key)) {
+        code += ` v-model="${key}"`
+      } else {
+        code += ` v-model="${value}"`
+      }
       continue
     }
 
@@ -271,12 +276,16 @@ const codeDisplay = computed(() => {
       continue
     }
 
+    // Check if this prop should be treated as a number based on original prop type
+    const originalPropOption = formOptions.value.find(option => option.name === key)
+    const isNumberProp = originalPropOption?.type === 'number'
+
     if (typeof value === 'boolean') {
       code += value ? ` ${name}` : ` :${name}="false"`
     } else if (typeof value === 'object') {
       code += ` :${name}="${JSON.stringify(value)}"`
     } else {
-      code += ` ${typeof value === 'number' ? ':' : ''}${name}="${value}"`
+      code += ` ${isNumberProp ? ':' : ''}${name}="${value}"`
     }
   }
 
@@ -341,7 +350,7 @@ function getAsyncDataKey() {
 }
 
 const { data: formattedCode } = await useAsyncData(
-  getAsyncDataKey(),
+  () => getAsyncDataKey(),
   async () => {
     let formatted = ''
 

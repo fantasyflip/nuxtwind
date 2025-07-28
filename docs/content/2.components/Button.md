@@ -41,6 +41,17 @@ required: false
 name: color
 types:
   - object
+default:
+    bg: 'bg-primary-900 dark:bg-primary-900'
+    text: 'dark:text-white text-black'
+    border: 'dark:border-white border-black'
+    hover: 'hover:bg-secondary-800 dark:hover:bg-secondary-800'
+    iconHover: 'hover:text-secondary-800 dark:hover:text-secondary-800'
+    loadingCircle: '#27272a'
+    loadingCircleDark: '#27272a'
+    loadingCircleProgress: '#10b981'
+    loadingCircleProgressDark: '#10b981'
+    loadingCircleCutout: 'before:bg-primary-900 dark:before:bg-primary-900'
 required: false
 ---
 ### `color`
@@ -280,6 +291,13 @@ required: false
   ::callout{icon="i-heroicons-light-bulb" }
   Takes effect on the `grow`-prop and the color-change on hover.
   ::
+#defaultValue
+```ts
+{
+  duration: 'duration-300',
+  ease: 'ease-in-out'
+}
+```
 ::
 
 ::prop-display
