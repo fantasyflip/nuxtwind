@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="carouselItemRef"
     :class="'carousel-item-' + step"
     class="ci"
   >
@@ -26,14 +27,23 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const currentItem = ref(0)
+const carouselItemRef = ref<HTMLElement | null>(null)
 const parentElement = ref<HTMLElement | null>(null)
 let observer: MutationObserver | null = null
 
 onMounted(() => {
-  parentElement.value = document.querySelector(
-    '.carousel-item-' + props.step,
-  )!.parentElement
+  // Get the direct parent carousel by traversing up the DOM tree
+  let element = carouselItemRef.value?.parentElement
+  while (element) {
+    if (element.classList.contains('carousel')) {
+      parentElement.value = element
+      break
+    }
+    element = element.parentElement
+  }
+
   if (!parentElement.value) return
+
   currentItem.value = Number(
     parentElement.value.id.replace('currentItem-', ''),
   )
