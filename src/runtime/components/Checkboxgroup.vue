@@ -1,16 +1,16 @@
 <template>
   <div :class="props.width">
     <div>
-      <slot name="group-label">
-        <div :class="labelStyleClass">
+      <div :class="labelStyleClass">
+        <slot name="group-label">
           {{ props.label }}
-        </div>
-      </slot>
-      <slot name="group-description">
-        <div :class="descriptionStyleClass">
+        </slot>
+      </div>
+      <div :class="descriptionStyleClass">
+        <slot name="group-description">
           {{ props.description }}
-        </div>
-      </slot>
+        </slot>
+      </div>
     </div>
     <ul>
       <li
