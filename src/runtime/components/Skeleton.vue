@@ -73,6 +73,7 @@
 import { ref, computed, watch, onMounted } from 'vue'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   loading: boolean
   tag?: string
   autoDetectRootTag?: boolean

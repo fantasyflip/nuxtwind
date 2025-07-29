@@ -30,18 +30,20 @@
 import type { Props as Card } from './MockComponentCard.vue'
 
 export interface Props {
-  card1: Card
-  card2: Card
+  card1?: Card
+  card2?: Card
 }
 
 withDefaults(defineProps<Props>(), {
-  card1: {
+  card1: () => ({
     title: 'Component 1',
     new: false,
-  },
-  card2: {
+    link: '/components/component 1',
+  }),
+  card2: () => ({
     title: '',
     new: false,
-  },
+    link: '',
+  }),
 })
 </script>

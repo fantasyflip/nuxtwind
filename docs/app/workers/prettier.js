@@ -2,7 +2,7 @@
 self.onmessage = async function (event) {
   self.postMessage({
     uid: event.data.uid,
-    message: await handleMessage(event.data.message)
+    message: await handleMessage(event.data.message),
   })
 }
 
@@ -21,7 +21,7 @@ async function handleFormatMessage(message) {
       import('https://cdn.jsdelivr.net/npm/prettier@3.6.2/plugins/estree.js'),
       import('https://cdn.jsdelivr.net/npm/prettier@3.6.2/plugins/html.js'),
       import('https://cdn.jsdelivr.net/npm/prettier@3.6.2/plugins/markdown.js'),
-      import('https://cdn.jsdelivr.net/npm/prettier@3.6.2/plugins/typescript.js')
+      import('https://cdn.jsdelivr.net/npm/prettier@3.6.2/plugins/typescript.js'),
     ])
   }
 
@@ -29,7 +29,7 @@ async function handleFormatMessage(message) {
   const formatted = await prettier.format(source, {
     parser: 'markdown',
     plugins: prettierPlugins,
-    ...options
+    ...options,
   })
 
   return formatted

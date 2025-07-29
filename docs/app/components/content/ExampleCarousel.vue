@@ -45,35 +45,35 @@ const carouselItems = [
   {
     step: 1,
     image: 'https://link.fantasyflip.de/s/f9PhRX',
-    alt: 'Image of a street in Vienna'
+    alt: 'Image of a street in Vienna',
   },
   {
     step: 2,
     image: 'https://link.fantasyflip.de/s/t43DMr',
-    alt: 'Image of food in a plane at the plane window'
+    alt: 'Image of food in a plane at the plane window',
   },
   {
     step: 3,
     image: 'https://link.fantasyflip.de/s/GMqIyE',
-    alt: 'Image of the nature of Madeira'
+    alt: 'Image of the nature of Madeira',
   },
   {
     step: 4,
     image: 'https://link.fantasyflip.de/s/Q3Ze8X',
-    alt: 'Image of a subway station in Vienna'
-  }
+    alt: 'Image of a subway station in Vienna',
+  },
 ]
 
 const customProps = {
   modelValue: 1,
-  items: carouselItems
+  items: carouselItems,
 }
 
 const props = defineProps<Props>()
 
 const combinedProps = {
   ...props.props,
-  ...customProps
+  ...customProps,
 }
 
 const defaultSlotCode = `<NXW-CarouselItem

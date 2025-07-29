@@ -34,13 +34,13 @@
 
 <script setup lang=ts>
 export interface Props {
-  title: string
-  new: boolean
+  title?: string
+  new?: boolean
   link: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   title: 'Component',
-  new: false
+  new: false,
 })
 </script>

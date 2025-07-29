@@ -40,6 +40,7 @@ import { computed, ref, watch } from 'vue'
 import Checkbox from './Checkbox.vue'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: boolean[]
   items?: {
     label?: string

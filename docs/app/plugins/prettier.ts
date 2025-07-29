@@ -8,6 +8,7 @@ export interface SimplePrettier {
 
 function createPrettierWorkerApi(worker: Worker): SimplePrettier {
   let counter = 0
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handlers: any = {}
 
   worker.addEventListener('message', (event) => {
@@ -23,11 +24,13 @@ function createPrettierWorkerApi(worker: Worker): SimplePrettier {
 
     if (error) {
       reject(error)
-    } else {
+    }
+    else {
       resolve(message)
     }
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function postMessage<T>(message: any) {
     const uid = ++counter
     return new Promise<T>((resolve, reject) => {
@@ -39,7 +42,7 @@ function createPrettierWorkerApi(worker: Worker): SimplePrettier {
   return {
     format(source: string, options?: Options) {
       return postMessage({ type: 'format', source, options })
-    }
+    },
   }
 }
 
@@ -50,18 +53,19 @@ export default defineNuxtPlugin(async () => {
     prettier = {
       format(source, options = {}) {
         return prettierModule.format(source, defu(options, {
-          parser: 'markdown'
+          parser: 'markdown',
         }))
-      }
+      },
     }
-  } else {
+  }
+  else {
     const worker = new PrettierWorker()
     prettier = createPrettierWorkerApi(worker)
   }
 
   return {
     provide: {
-      prettier
-    }
+      prettier,
+    },
   }
 })

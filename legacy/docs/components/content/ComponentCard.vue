@@ -125,7 +125,7 @@ import { transformContent } from '@nuxt/content/transformers'
 
 export interface Props {
   customStyle?: string
-  name: string
+  name?: string
   slotComponent?: {
     tag: string
     class: string
@@ -192,6 +192,7 @@ function handleInputUpdate(value: unknown, option: { name: string, type: string 
 }
 
 function optionToKebab(str: string) {
+  // eslint-disable-next-line regexp/no-useless-assertions
   return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
 }
 
@@ -268,6 +269,7 @@ const { data: formattedCode } = await useAsyncData(
     }
     catch (error) {
       formatted = codeDisplay.value
+      console.error('Error formatting code:', error)
     }
 
     return transformContent('content:_markdown.md', formatted, {

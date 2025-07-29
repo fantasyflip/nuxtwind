@@ -80,7 +80,9 @@ import { computed, ref, onMounted, watch } from 'vue'
 import Textfield from './Textfield.vue'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: string | object
+  // eslint-disable-next-line vue/no-required-prop-with-default
   items: string[] | object[]
   color?: {
     textfield?: {

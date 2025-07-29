@@ -44,30 +44,30 @@ export interface Props {
 const drawerItems = [
   {
     icon: 'i-mdi-home',
-    text: 'Home'
+    text: 'Home',
   },
   {
     icon: 'i-mdi-account',
-    text: 'Profile'
+    text: 'Profile',
   },
   {
     icon: 'i-mdi-settings',
-    text: 'Settings'
-  }
+    text: 'Settings',
+  },
 ]
 
 const customProps = reactive({
   'modelValue': true,
   'height': 'h-full',
   'absolute': true,
-  'disable-overflow': false
+  'disable-overflow': false,
 })
 
 const props = defineProps<Props>()
 
 const combinedProps = computed(() => ({
   ...props.props,
-  ...customProps
+  ...customProps,
 }))
 
 const defaultSlotCode = `<div

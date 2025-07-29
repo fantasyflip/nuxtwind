@@ -19,6 +19,7 @@ import { computed, ref, watch, onMounted } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: boolean
   color?: {
     bg?: string

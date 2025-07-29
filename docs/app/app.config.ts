@@ -2,19 +2,19 @@ export default defineAppConfig({
   ui: {
     colors: {
       primary: 'green',
-      neutral: 'slate'
-    }
+      neutral: 'slate',
+    },
   },
   uiPro: {
     footer: {
       slots: {
         root: 'border-t border-default',
-        left: 'text-sm text-muted'
-      }
-    }
+        left: 'text-sm text-muted',
+      },
+    },
   },
   seo: {
-    siteName: 'NuxtWind'
+    siteName: 'NuxtWind',
   },
   header: {
     title: '',
@@ -22,7 +22,7 @@ export default defineAppConfig({
     logo: {
       alt: '',
       light: '',
-      dark: ''
+      dark: '',
     },
     search: true,
     colorMode: true,
@@ -30,8 +30,8 @@ export default defineAppConfig({
       'icon': 'i-simple-icons-github',
       'to': 'https://github.com/fantasyflip/nuxtwind',
       'target': '_blank',
-      'aria-label': 'NuxtWind on GitHub'
-    }]
+      'aria-label': 'NuxtWind on GitHub',
+    }],
   },
   footer: {
     credits: `Copyright © ${new Date().getFullYear()}`,
@@ -40,13 +40,13 @@ export default defineAppConfig({
       'icon': 'i-simple-icons-npm',
       'to': 'https://www.npmjs.com/package/@nuxtwind/components',
       'target': '_blank',
-      'aria-label': 'Nuxt Website'
+      'aria-label': 'Nuxt Website',
     }, {
       'icon': 'i-simple-icons-github',
       'to': 'https://github.com/fantasyflip/nuxtwind',
       'target': '_blank',
-      'aria-label': 'Nuxt UI on GitHub'
-    }]
+      'aria-label': 'Nuxt UI on GitHub',
+    }],
   },
   toc: {
     title: 'Table of Contents',
@@ -57,8 +57,8 @@ export default defineAppConfig({
         icon: 'i-heroicons-star',
         label: 'Star on GitHub',
         to: 'https://github.com/fantasyflip/nuxtwind',
-        target: '_blank'
-      }]
-    }
-  }
+        target: '_blank',
+      }],
+    },
+  },
 })

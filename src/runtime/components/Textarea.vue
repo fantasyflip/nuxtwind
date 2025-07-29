@@ -73,6 +73,7 @@ import { computed, ref } from 'vue'
 import { useId } from '#imports'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: string
   color?: {
     bg?: string

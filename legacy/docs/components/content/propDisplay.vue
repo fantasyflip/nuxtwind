@@ -104,8 +104,8 @@ import { transformContent } from '@nuxt/content/transformers'
 
 export interface Props {
   name: string
-  required: boolean
-  types: string[]
+  required?: boolean
+  types?: string[]
   default?: string | object | boolean | number
   example?: string | object | boolean | number
   defaultTop?: boolean
@@ -214,6 +214,7 @@ const { data: formattedObject } = await useAsyncData(
     }
     catch (error) {
       formatted = object.value
+      console.log('Error formatting object:', error)
     }
 
     return transformContent('content:_markdown.md', formatted, {
@@ -295,6 +296,7 @@ const { data: formattedExampleObject } = await useAsyncData(
     }
     catch (error) {
       formatted = exampleObject.value
+      console.log('Error formatting example object:', error)
     }
 
     return transformContent('content:_markdown.md', formatted, {

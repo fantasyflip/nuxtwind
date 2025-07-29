@@ -66,7 +66,7 @@
             'text-orange-500 dark:text-orange-500':
               typeof props.default == 'boolean' && props.default,
             'text-blue-500 dark:text-blue-500':
-              typeof props.default == 'number'
+              typeof props.default == 'number',
           }"
         >
           {{ props.default }}
@@ -95,7 +95,7 @@
             'text-orange-500 dark:text-orange-500':
               typeof props.example == 'boolean' && props.example,
             'text-blue-500 dark:text-blue-500':
-              typeof props.example == 'number'
+              typeof props.example == 'number',
           }"
         >
           {{ props.example }}
@@ -108,8 +108,8 @@
 <script lang="ts" setup>
 export interface Props {
   name: string
-  required: boolean
-  types: string[]
+  required?: boolean
+  types?: string[]
   default?: string | object | boolean | number
   example?: string | object | boolean | number
   defaultTop?: boolean
@@ -120,6 +120,6 @@ const props = withDefaults(defineProps<Props>(), {
   types: () => {
     return ['string']
   },
-  defaultTop: false
+  defaultTop: false,
 })
 </script>

@@ -16,7 +16,7 @@
             :ui="{
               wrapper: 'bg-elevated/50 rounded-l-sm flex border-r border-accented',
               label: 'text-muted px-2 py-1.5',
-              container: 'mt-0'
+              container: 'mt-0',
             }"
           >
             <USelect
@@ -53,7 +53,7 @@
             :ui="{
               wrapper: 'bg-elevated/50 rounded-l-sm flex border-r border-accented',
               label: 'text-muted px-2 py-1.5',
-              container: 'mt-0'
+              container: 'mt-0',
             }"
           >
             <UInput
@@ -145,7 +145,7 @@ const props = withDefaults(defineProps<Props>(), {
   useDefaultSlot: false,
   defaultSlotCode: '',
   hide: undefined,
-  selectOptions: undefined
+  selectOptions: undefined,
 })
 
 const { $prettier } = useNuxtApp()
@@ -167,18 +167,18 @@ const slotComponent = props.slotComponentSlug
 const componentProps = reactive({
   ...Object.fromEntries(Object.entries(props.props || {}).map(([key, value]) => {
     return [key, value]
-  }))
+  })),
 })
 
 // Make editable slots reactive
 const editableSlots = reactive({
   ...Object.fromEntries(Object.entries(props.optionSlots || {}).map(([key, value]) => {
     return [key, value]
-  }))
+  })),
 })
 
 const allButDefaultSlots = Object.fromEntries(
-  Object.entries(props.slots || {}).filter(([key]) => key !== 'default')
+  Object.entries(props.slots || {}).filter(([key]) => key !== 'default'),
 )
 
 // Helper functions to get and set component props
@@ -219,10 +219,11 @@ const formOptions = computed(() => {
       // Check if there are predefined select options for this prop
       if (props.selectOptions?.[key]) {
         items = props.selectOptions[key]
-      } else if (optionType === 'boolean') {
+      }
+      else if (optionType === 'boolean') {
         items = [
           { value: true, label: 'true' },
-          { value: false, label: 'false' }
+          { value: false, label: 'false' },
         ]
       }
 
@@ -231,7 +232,7 @@ const formOptions = computed(() => {
         name: key,
         value: value,
         type: optionType,
-        items: items
+        items: items,
       }
     })
 })
@@ -241,7 +242,7 @@ const slotOptions = computed(() => {
     return {
       label: kebabCase(key),
       name: key,
-      value: value
+      value: value,
     }
   })
 })
@@ -274,7 +275,8 @@ const codeDisplay = computed(() => {
       // If modelValue is external, use the ref name instead of the value
       if (props.external?.includes(key)) {
         code += ` v-model="${key}"`
-      } else {
+      }
+      else {
         code += ` v-model="${value}"`
       }
       continue
@@ -292,9 +294,11 @@ const codeDisplay = computed(() => {
 
     if (typeof value === 'boolean') {
       code += value ? ` ${name}` : ` :${name}="false"`
-    } else if (typeof value === 'object') {
+    }
+    else if (typeof value === 'object') {
       code += ` :${name}="${JSON.stringify(value)}"`
-    } else {
+    }
+    else {
       code += ` ${isNumberProp ? ':' : ''}${name}="${value}"`
     }
   }
@@ -317,7 +321,8 @@ const codeDisplay = computed(() => {
     for (const [key, value] of Object.entries(allSlots)) {
       if (key === 'default') {
         code += value
-      } else {
+      }
+      else {
         code += `
     <template #${key}>
       ${value}
@@ -326,7 +331,8 @@ const codeDisplay = computed(() => {
     }
     code += `
   </${templateName}>`
-  } else {
+  }
+  else {
     code += ' />'
   }
 
@@ -364,15 +370,16 @@ const { data: formattedCode } = await useAsyncData(
         trailingComma: 'none',
         semi: false,
         singleQuote: true,
-        printWidth: 100
+        printWidth: 100,
       })
-    } catch (e) {
+    }
+    catch (e) {
       console.error('Error formatting code:', e)
       formatted = codeDisplay.value
     }
 
     return parseMarkdown(formatted)
   },
-  { watch: [codeDisplay] } // Watch codeDisplay for changes
+  { watch: [codeDisplay] }, // Watch codeDisplay for changes
 )
 </script>

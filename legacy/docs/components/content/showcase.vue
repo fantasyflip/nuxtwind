@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 export interface Props {
   name: string
-  new: boolean
+  new?: boolean
 }
 
 withDefaults(defineProps<Props>(), {

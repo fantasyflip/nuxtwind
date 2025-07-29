@@ -20,6 +20,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   step: number
 }
 const props = withDefaults(defineProps<Props>(), {
