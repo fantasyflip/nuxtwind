@@ -1,5 +1,54 @@
 # Changelog
 
+## v2.0.0
+
+[compare changes](https://github.com/fantasyflip/nuxtwind/compare/v1.1.0...v2.0.0)
+
+### 🚀 Enhancements
+
+- Replace @nuxtjs/tailwindcss with standalone version ([e729463](https://github.com/fantasyflip/nuxtwind/commit/e729463))
+- **module:** Create main.css on module setup if non existant ([8d5922f](https://github.com/fantasyflip/nuxtwind/commit/8d5922f))
+- **module:** Handle generating main.css ([e2d9fc0](https://github.com/fantasyflip/nuxtwind/commit/e2d9fc0))
+- **module:** Add default theme colors ([9a6040b](https://github.com/fantasyflip/nuxtwind/commit/9a6040b))
+- **docs:** Interactive component display ([b0038cf](https://github.com/fantasyflip/nuxtwind/commit/b0038cf))
+- ⚠️  Tailwind v4 ([#78](https://github.com/fantasyflip/nuxtwind/pull/78))
+
+### 🩹 Fixes
+
+- **docs:** Style adjustments ([38042a2](https://github.com/fantasyflip/nuxtwind/commit/38042a2))
+- **Carousel:** Calculating item count ([86c5c78](https://github.com/fantasyflip/nuxtwind/commit/86c5c78))
+- **Carousel:** ParentElement fetching ([355e905](https://github.com/fantasyflip/nuxtwind/commit/355e905))
+- **Checkbox:** Slot rendering ([e7086bb](https://github.com/fantasyflip/nuxtwind/commit/e7086bb))
+- **Checkboxgroup:** Slot styling ([b019b1f](https://github.com/fantasyflip/nuxtwind/commit/b019b1f))
+- **Slider:** Slot rendering ([448915c](https://github.com/fantasyflip/nuxtwind/commit/448915c))
+- **Textarea:** Counter prop handling ([d358129](https://github.com/fantasyflip/nuxtwind/commit/d358129))
+- Linting ([0d2ac67](https://github.com/fantasyflip/nuxtwind/commit/0d2ac67))
+- Node version ([5aa1876](https://github.com/fantasyflip/nuxtwind/commit/5aa1876))
+- Remove engine specification ([c9a8cd6](https://github.com/fantasyflip/nuxtwind/commit/c9a8cd6))
+
+### 💅 Refactors
+
+- **module:** Add vite plugin in module setup ([1d56c7c](https://github.com/fantasyflip/nuxtwind/commit/1d56c7c))
+- **docs:** Getting started section ([ee38ef0](https://github.com/fantasyflip/nuxtwind/commit/ee38ef0))
+- **docs:** Carousel component ([9998cc1](https://github.com/fantasyflip/nuxtwind/commit/9998cc1))
+- **docs:** Checkbox, checkboxgroup, drawer ([1a63c77](https://github.com/fantasyflip/nuxtwind/commit/1a63c77))
+- **docs:** Progress, select, skeleton, slider, textarea, textfield, toast, tooltip ([1ef22ef](https://github.com/fantasyflip/nuxtwind/commit/1ef22ef))
+
+### 🏡 Chore
+
+- **release:** V1.1.0 ([87a73cf](https://github.com/fantasyflip/nuxtwind/commit/87a73cf))
+- Update dependencies ([ffc4de1](https://github.com/fantasyflip/nuxtwind/commit/ffc4de1))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Tailwind v4 ([#78](https://github.com/fantasyflip/nuxtwind/pull/78))
+
+### ❤️ Contributors
+
+- Philipp Katzenberger ([@fantasyflip](https://github.com/fantasyflip))
+- BLUEBEAST\katze <katzenberger.ph+github@gmail.com>
+- FantasyFlip
+
 ## v1.1.0
 
 [compare changes](https://github.com/fantasyflip/nuxtwind/compare/v0.8.1...v1.1.0)
