@@ -72,7 +72,10 @@
           {{ props.default }}
         </div>
       </div>
-      <div v-if="props.example">
+      <div
+        v-if="props.example"
+        class="pt-4"
+      >
         <div class="font-semibold">
           Example
         </div>

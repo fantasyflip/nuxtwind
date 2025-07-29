@@ -11,6 +11,7 @@ external:
   - items
 ignore:
   - items
+  - modelValue
 hide:
   - items
 ---
@@ -37,6 +38,7 @@ required: false
     - items
   ignore:
     - items
+    - modelValue
   hide:
     - items
   ---
@@ -62,6 +64,7 @@ required: false
     - items
   ignore:
     - items
+    - modelValue
   hide:
     - items
   ---
@@ -87,6 +90,7 @@ required: false
     - items
   ignore:
     - items
+    - modelValue
   hide:
     - items
   ---
@@ -112,6 +116,7 @@ required: false
     - items
   ignore:
     - items
+    - modelValue
   hide:
     - items
   ---
@@ -151,6 +156,7 @@ required: false
     - items
   ignore:
     - items
+    - modelValue
   hide:
     - items
   ---

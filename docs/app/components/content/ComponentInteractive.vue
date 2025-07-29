@@ -109,6 +109,7 @@
 <script setup lang="ts">
 import { camelCase, upperFirst, kebabCase } from 'scule'
 import { get, set } from '#ui/utils'
+import { hash } from 'ohash'
 
 export interface Props {
   slug?: string
@@ -127,6 +128,9 @@ export interface Props {
   defaultSlotCode?: string
   /** List of props to hide in the codeDisplay on the component */
   hide?: string[]
+  /** Predefined select options for specific props */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  selectOptions?: { [key: string]: Array<{ value: any, label: string }> }
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -140,7 +144,8 @@ const props = withDefaults(defineProps<Props>(), {
   external: undefined,
   useDefaultSlot: false,
   defaultSlotCode: '',
-  hide: undefined
+  hide: undefined,
+  selectOptions: undefined
 })
 
 const { $prettier } = useNuxtApp()
@@ -211,7 +216,10 @@ const formOptions = computed(() => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let items: any[] | undefined = undefined
 
-      if (optionType === 'boolean') {
+      // Check if there are predefined select options for this prop
+      if (props.selectOptions?.[key]) {
+        items = props.selectOptions[key]
+      } else if (optionType === 'boolean') {
         items = [
           { value: true, label: 'true' },
           { value: false, label: 'false' }
@@ -248,12 +256,14 @@ const codeDisplay = computed(() => {
 
   // Add props to the template
   for (const [key, value] of Object.entries(componentProps)) {
-    if (value === undefined || value === null || value === '') {
+    // Skip props that are in the hide list
+    if (props.hide?.includes(key)) {
       continue
     }
 
-    // Skip props that are in the hide list
-    if (props.hide?.includes(key)) {
+    // For external props, always include them regardless of value
+    // For non-external props, skip if value is empty
+    if (!props.external?.includes(key) && (value === undefined || value === null || value === '')) {
       continue
     }
 
@@ -344,13 +354,8 @@ const codeDisplay = computed(() => {
   return code
 })
 
-function getAsyncDataKey() {
-  // Use a unique key based on the componentName, current props, slots, and editable slots
-  return `formattedCode-${componentName}-${JSON.stringify(componentProps)}-${JSON.stringify(props.slots)}-${JSON.stringify(editableSlots)}`
-}
-
 const { data: formattedCode } = await useAsyncData(
-  () => getAsyncDataKey(),
+  () => `formattedCode-${componentName}-${hash({ props: componentProps, slots: editableSlots })}`,
   async () => {
     let formatted = ''
 

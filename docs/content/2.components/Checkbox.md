@@ -14,6 +14,9 @@ props:
 ignore:
   - label
   - description
+  - modelValue
+external:
+  - modelValue
 ---
 ::
 
@@ -67,6 +70,9 @@ required: false
     description: 'pnpm i @nuxtwind/components'
   ignore:
     - label
+    - modelValue
+  external:
+  - modelValue
   ---
   ::
   ::warning{icon="i-heroicons-light-bulb" to="/components/checkbox#label" }
@@ -95,6 +101,9 @@ required: false
   ignore:
     - label
     - description
+    - modelValue
+  external:
+  - modelValue
   ---
   ::
 ::
@@ -118,6 +127,9 @@ required: false
     description: 'pnpm i @nuxtwind/components'
   ignore:
     - description
+    - modelValue
+  external:
+  - modelValue
   ---
   ::
 ::
@@ -143,6 +155,9 @@ required: false
   ignore:
     - label
     - description
+    - modelValue
+  external:
+  - modelValue
   ---
   ::
 ::
@@ -168,6 +183,9 @@ required: false
   ignore:
     - label
     - description
+    - modelValue
+  external:
+  - modelValue
   ---
   ::
 ::
@@ -208,6 +226,10 @@ required: false
     modelValue: true
   optionSlots:
     label: Install NuxtWind
+  ignore:
+    - modelValue
+  external:
+  - modelValue
   ---
   ::
   ::callout{icon="i-heroicons-light-bulb" to="/components/checkbox#label" }
@@ -227,6 +249,9 @@ required: false
     label: Install NuxtWind
   ignore:
     - label
+    - modelValue
+  external:
+  - modelValue
   optionSlots:
     description: pnpm i @nuxtwind/components
   ---

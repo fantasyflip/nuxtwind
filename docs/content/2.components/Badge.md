@@ -8,12 +8,11 @@ description: Draw attention to important information.
 ::Component-Interactive
 ---
 slotComponentSlug: Button
-optionSlots:
-  badge-content: '20'
 slots:
   default: |
     
     <NXW-Button>Button</NXW-Button>
+  badge-content: 20
 ---
 ::
 
@@ -196,6 +195,17 @@ required: false
 
 ::slot-display
 ### `badge-content`
+::Component-Interactive
+---
+slotComponentSlug: Button
+slots:
+  default: |
+    
+    <NXW-Button>Button</NXW-Button>
+optionSlots:
+  badge-content: 20
+---
+::
 
 #description
   Sets the content of the badge.
