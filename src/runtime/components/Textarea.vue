@@ -50,7 +50,7 @@
           class="pr-3 pt-1 text-xs"
           :class="props.color?.hint || defaults.color.hint"
         >
-          {{ props.modelValue }}
+          {{ props.modelValue.length }}
         </div>
       </div>
       <div
@@ -73,6 +73,7 @@ import { computed, ref } from 'vue'
 import { useId } from '#imports'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: string
   color?: {
     bg?: string

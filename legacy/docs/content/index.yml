@@ -1,0 +1,66 @@
+title: 'NuxtWind Docs'
+description: NuxtWind is a collection of Vue Components. Inspired by Vuetify. Created for Nuxt 3.
+navigation: false
+hero:
+  title: 'Easy to use Components for your Application'
+  description: 'Created for Nuxt 3. Made with TailwindCSS. Inspired by Vuetify.'
+  orientation: horizontal
+  headline:
+    label: Made with Nuxt UI Pro
+    to: https://ui.nuxt.com/pro
+    icon: i-heroicons-arrow-top-right-on-square-20-solid
+  links:
+    - label: Get started
+      icon: i-heroicons-arrow-right-20-solid
+      trailing: true
+      to: '/getting-started'
+      size: lg
+    - label: Components
+      icon: i-heroicons-rectangle-group-16-solid
+      size: lg
+      color: gray
+      to: /components
+  code: |
+    ```bash [Terminal]
+    npm install @nuxtwind/components
+    ```
+features:
+  title: 'Lightweight, yet so powerful'
+  links:
+    - label: 'Explore Nuxtwind Components'
+      icon: 'i-heroicons-rectangle-group-16-solid'
+      trailingIcon: 'i-heroicons-arrow-right-20-solid'
+      color: 'gray'
+      to: '/getting-started'
+      size: lg
+  items:
+    - title: 'TailwindCSS'
+      description: 'Built with TailwindCSS, the utility-first CSS framework.'
+      icon: 'i-simple-icons-tailwindcss'
+      to: 'https://tailwindcss.com/'
+      target: '_blank'
+    - title: 'Dark Mode'
+      description: 'Dark-Mode-ready out of the box using @nuxtjs/color-mode.'
+      icon: 'i-heroicons-moon-16-solid'
+      to: 'https://color-mode.nuxtjs.org/'
+      target: '_blank'
+    - title: 'Nuxt 3'
+      description: 'SSR-safe and optimized for Nuxt 3.'
+      icon: 'i-simple-icons-nuxtdotjs'
+      to: 'https://nuxt.com'
+      target: '_blank'
+    - title: 'Inspired by Vuetify'
+      description: 'Following the material design principles of Vuetify.'
+      icon: 'i-simple-icons-vuetify'
+      to: 'https://vuetifyjs.com/'
+      target: '_blank'
+    - title: 'TypeScript'
+      description: 'A fully typed development experience.'
+      icon: 'i-simple-icons-typescript'
+      to: 'https://www.typescriptlang.org'
+      target: '_blank'
+    - title: 'Few Dependencies'
+      description: 'Lightweight and fast. No unnecessary dependencies.'
+      icon: 'i-simple-icons-npm'
+      to: 'https://www.npmjs.com/package/@nuxtwind/components?activeTab=dependencies'
+      target: '_blank'

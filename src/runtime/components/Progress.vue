@@ -38,6 +38,7 @@
 import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: number
   size?: {
     width?: string

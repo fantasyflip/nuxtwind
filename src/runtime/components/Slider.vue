@@ -1,19 +1,18 @@
 <template>
   <div>
     <label
-      v-if="props.label"
+      v-if="props.label || $slots.label"
       :for="sliderId"
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
-    <div v-if="props.description">
+    <div
+      v-if="props.description || $slots.description"
+      class="text-sm -mt-1 w-full"
+      :class="props.color?.description || defaults.color.description"
+    >
       <slot name="description">
-        <div
-          class="text-sm -mt-1 w-full"
-          :class="props.color?.description || defaults.color.description"
-        >
-          {{ props.description }}
-        </div>
+        {{ props.description }}
       </slot>
     </div>
     <div class="w-full">
@@ -36,6 +35,7 @@ import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useId } from '#imports'
 
 export interface Props {
+  // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: number
   color?: {
     description?: string

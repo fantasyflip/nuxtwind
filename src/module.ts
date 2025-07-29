@@ -3,11 +3,14 @@ import {
   installModule,
   addComponentsDir,
   createResolver,
-  useLogger,
+  addVitePlugin,
+  hasNuxtModule,
 } from '@nuxt/kit'
 
+import { nxwLog } from './utils/nxwLog'
 import { name, version } from '../package.json'
-import { primary, secondary } from './runtime/colors.json'
+import type { Nuxt } from 'nuxt/schema'
+import { CssManager } from './utils/css-manager'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -30,43 +33,53 @@ export interface ModuleOptions {
   debugLog?: boolean
 
   /**
-   * Used to set the default theme values for NuxtWind
+   * Used to configure the color mode module
    */
-  theme: {
-    primary: {
-      50: string
-      100: string
-      200: string
-      300: string
-      400: string
-      500: string
-      600: string
-      700: string
-      800: string
-      900: string
-    }
-    secondary: {
-      50: string
-      100: string
-      200: string
-      300: string
-      400: string
-      500: string
-      600: string
-      700: string
-      800: string
-      900: string
-    }
+  colorMode?: {
+    /**
+     * Class suffix for the color mode
+     * @default ''
+     */
+    classSuffix?: string
+  }
+
+  /**
+   * CSS configuration options
+   */
+  css?: {
+    /**
+     * Used to automatically create main.css file if it doesn't exist
+     * @default true
+     */
+    autoCreate?: boolean
+
+    /**
+     * Validate existing CSS file and update if needed
+     * @default true
+     */
+    autoUpdate?: boolean
   }
 }
 
-function nxwLog(logActive: boolean | undefined, message: string, type: 'info' | 'success' | 'warn' | 'error' = 'info') {
-  if (logActive || type === 'error' || type === 'warn') {
-    const logger = useLogger('nuxtwind')
-    if (type === 'info') logger.info(message)
-    if (type === 'success') logger.success(message)
-    if (type === 'warn') logger.warn(message)
-    if (type === 'error') logger.error(message)
+function manageCssFile(nuxt: Nuxt, options: ModuleOptions) {
+  const cssManager = new CssManager(nuxt, {
+    debugLog: options.debugLog,
+  })
+
+  // Validate existing file first if autoUpdate is enabled
+  if (options.css?.autoUpdate !== false) {
+    const success = cssManager.validateAndUpdateMainCssFile()
+    if (!success) {
+      nxwLog(options.debugLog, 'Failed to validate or update main.css file', 'error')
+    }
+  }
+
+  // Create or update the CSS file
+  if (options.css?.autoCreate !== false) {
+    const success = cssManager.ensureMainCssFile()
+    if (!success) {
+      nxwLog(true, 'Failed to manage main.css file', 'error')
+    }
   }
 }
 
@@ -76,7 +89,7 @@ export default defineNuxtModule<ModuleOptions>({
     version,
     configKey: 'nuxtwind',
     compatibility: {
-      nuxt: '^3.0.0',
+      nuxt: '^4.0.0',
     },
   },
   // Default configuration options of the Nuxt module
@@ -84,9 +97,9 @@ export default defineNuxtModule<ModuleOptions>({
     prefix: 'NXW-',
     global: false,
     debugLog: false,
-    theme: {
-      primary,
-      secondary,
+    css: {
+      autoCreate: true,
+      autoUpdate: true,
     },
   },
   async setup(_options, _nuxt) {
@@ -95,87 +108,47 @@ export default defineNuxtModule<ModuleOptions>({
     const runtimeDir = resolver.resolve('./runtime')
 
     _nuxt.options.build.transpile.push(runtimeDir)
-
     _nuxt.options.alias['#nuxtwind'] = runtimeDir
 
-    nxwLog(_options.debugLog, 'Calling tailwindcss:config hook')
-    _nuxt.hook('tailwindcss:config', function (tailwindConfig) {
-      nxwLog(_options.debugLog, 'TailwindCSS config hooked')
+    // Manage CSS file
+    manageCssFile(_nuxt, _options)
 
-      // check if tailwindConfig has property 'theme'
-      if (tailwindConfig.theme === undefined) {
-        nxwLog(_options.debugLog, 'Property \'theme\' doesn\'t exist on \'tailwindConfig\'. Creating empty instance...', 'warn')
-        tailwindConfig.theme = {}
-      }
-      // check if tailwindConfig.theme has property 'extend'
-      if (tailwindConfig.theme.extend === undefined) {
-        nxwLog(_options.debugLog, 'Property \'extend\' doesn\'t exist on \'tailwindConfig.theme\'. Creating empty instance...', 'warn')
-        tailwindConfig.theme.extend = {}
-      }
+    // Installing Tailwind CSS v4 standalone
+    nxwLog(_options.debugLog, 'Installing tailwindcss v4 standalone')
+    const tailwindPlugin = await import('@tailwindcss/vite').then(
+      r => r.default,
+    )
+    addVitePlugin(tailwindPlugin)
 
-      // check if tailwindConfig.theme.extend has property 'keyframes'
-      if (tailwindConfig.theme.extend.keyframes === undefined) {
-        nxwLog(_options.debugLog, 'Property \'keyframes\' doesn\'t exist on \'tailwindConfig.theme.extend\'. Creating empty instance...', 'warn')
-        tailwindConfig.theme.extend.keyframes = {}
+    // Adding Nuxt Color-Mode module
+    nxwLog(
+      _options.debugLog,
+      'Checking for already installed @nuxtjs/color-mode module',
+    )
+    if (hasNuxtModule('@nuxtjs/color-mode')) {
+      nxwLog(
+        _options.debugLog,
+        '@nuxtjs/color-mode module is already installed, skipping installation',
+      )
+    }
+    else {
+      nxwLog(
+        _options.debugLog,
+        '@nuxtjs/color-mode module not found, proceeding with installation',
+        'warn',
+      )
+      if (!_options.colorMode) {
+        _options.colorMode = { classSuffix: '' }
       }
-
-      nxwLog(_options.debugLog, 'Appending NuxtWind-Specific keyframes to tailwindConfig')
-      // append keyframes to keyframes object and keep the existing keyframes
-      tailwindConfig.theme.extend.keyframes = {
-        ...tailwindConfig.theme.extend.keyframes,
-        'indeterminate-first': {
-          '0%': {
-            left: '-100%',
-            width: '100%',
-          },
-          '100%': {
-            left: '100%',
-            width: '10%',
-          },
-        },
-        'indeterminate-second': {
-          '0%': {
-            left: '-150%',
-            width: '100%',
-          },
-          '100%': {
-            left: '100%',
-            width: '10%',
-          },
-        },
+      if (!_options.colorMode.classSuffix) {
+        _options.colorMode.classSuffix = ''
       }
-
-      // check if tailwindConfig.theme.extend has property 'animation'
-      if (tailwindConfig.theme.extend.animation === undefined) {
-        nxwLog(_options.debugLog, 'Property \'animation\' doesn\'t exist on \'tailwindConfig.theme.extend\'. Creating empty instance...', 'warn')
-        tailwindConfig.theme.extend.animation = {}
-      }
-
-      nxwLog(_options.debugLog, 'Appending NuxtWind-Specific animations to tailwindConfig')
-      // append animation to animation object and keep the existing animation
-      tailwindConfig.theme.extend.animation = {
-        ...tailwindConfig.theme.extend.animation,
-        indeterminatebefore: 'indeterminate-first 1.5s infinite ease-out',
-        indeterminateafter: 'indeterminate-second 1.5s infinite ease-in',
-      }
-    })
-
-    nxwLog(_options.debugLog, 'Installing @nuxtjs/color-mode module')
-    await installModule('@nuxtjs/color-mode', { classSuffix: '' })
-    nxwLog(_options.debugLog, 'Installing @nuxtjs/tailwindcss module')
-    await installModule('@nuxtjs/tailwindcss', {
-      // module configuration
-      config: {
-        content: {
-          files: [resolver.resolve(runtimeDir, 'components/**/*.{vue,mjs,ts}')],
-        },
-        theme: {
-          extend: {
-            colors: _options.theme,
-          },
-        },
-      },
-    })
+      nxwLog(
+        _options.debugLog,
+        `Using color mode class suffix: ${_options.colorMode.classSuffix}`,
+      )
+      await installModule('@nuxtjs/color-mode', _options.colorMode)
+    }
 
     nxwLog(_options.debugLog, 'Adding components directory')
     // components

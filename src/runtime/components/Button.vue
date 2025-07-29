@@ -14,8 +14,7 @@
           v-if="props.loading"
           v-model="loadingProgress"
           :circular="{
-            width: props.dense ? 'w-4' : 'w-6',
-            height: props.dense ? 'h-4' : 'h-6',
+            size: props.dense ? 'size-4': 'size-6',
           }"
           loading
           :color="{
