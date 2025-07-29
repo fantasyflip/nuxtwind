@@ -50,7 +50,7 @@
           class="pr-3 pt-1 text-xs"
           :class="props.color?.hint || defaults.color.hint"
         >
-          {{ props.modelValue }}
+          {{ props.modelValue.length }}
         </div>
       </div>
       <div
