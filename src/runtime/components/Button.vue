@@ -18,19 +18,11 @@
           }"
           loading
           :color="{
-            circle: props.color?.loadingCircle || defaults.color.loadingCircle,
-            circleDark:
-              props.color?.loadingCircleDark
-              || defaults.color.loadingCircleDark,
-            circleProgress:
-              props.color?.loadingCircleProgress
-              || defaults.color.loadingCircleProgress,
-            circleProgressDark:
-              props.color?.loadingCircleProgressDark
-              || defaults.color.loadingCircleProgressDark,
-            circleCutout:
-              props.color?.loadingCircleCutout
-              || defaults.color.loadingCircleCutout,
+            circle: config.color.loadingCircle,
+            circleDark: config.color.loadingCircleDark,
+            circleProgress: config.color.loadingCircleProgress,
+            circleProgressDark: config.color.loadingCircleProgressDark,
+            circleCutout: config.color.loadingCircleCutout,
           }"
         />
       </div>
@@ -59,19 +51,11 @@
           }"
           loading
           :color="{
-            circle: props.color?.loadingCircle || defaults.color.loadingCircle,
-            circleDark:
-              props.color?.loadingCircleDark
-              || defaults.color.loadingCircleDark,
-            circleProgress:
-              props.color?.loadingCircleProgress
-              || defaults.color.loadingCircleProgress,
-            circleProgressDark:
-              props.color?.loadingCircleProgressDark
-              || defaults.color.loadingCircleProgressDark,
-            circleCutout:
-              props.color?.loadingCircleCutout
-              || defaults.color.loadingCircleCutout,
+            circle: config.color.loadingCircle,
+            circleDark: config.color.loadingCircleDark,
+            circleProgress: config.color.loadingCircleProgress,
+            circleProgressDark: config.color.loadingCircleProgressDark,
+            circleCutout: config.color.loadingCircleCutout,
           }"
         />
       </div>
@@ -85,117 +69,19 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import Progress from './Progress.vue'
+import type { ButtonProps } from '../types/props'
+import type { ButtonConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
-  color?: {
-    bg?: string
-    text?: string
-    border?: string
-    hover?: string
-    iconHover?: string
-    loadingCircle?: string
-    loadingCircleDark?: string
-    loadingCircleProgress?: string
-    loadingCircleProgressDark?: string
-    loadingCircleCutout?: string
-  }
-  rounded?: boolean | string
-  grow?:
-    | boolean
-    | {
-      delay?: string
-      scale?: string
-    }
-  link?: object | string
-  target?: string
-  disabled?: boolean
-  icon?: boolean
-  loading?: boolean
-  outlined?: boolean | string
-  shadow?: boolean | string
-  transition?:
-    | boolean
-    | {
-      duration?: string
-      ease?: string
-    }
-  dense?: boolean
-  ariLabel?: string
-  type?: 'button' | 'submit' | 'reset'
-  width?: string
-  height?: string
-}
-
-const defaults = {
-  color: {
-    bg: 'bg-primary-900 dark:bg-primary-900',
-    text: 'dark:text-white text-black',
-    border: 'dark:border-white border-black',
-    hover: 'hover:bg-secondary-800 dark:hover:bg-secondary-800',
-    iconHover: 'hover:text-secondary-800 dark:hover:text-secondary-800',
-    loadingCircle: '#27272a',
-    loadingCircleDark: '#27272a',
-    loadingCircleProgress: '#10b981',
-    loadingCircleProgressDark: '#10b981',
-    loadingCircleCutout: 'before:bg-primary-900 dark:before:bg-primary-900',
-  },
-  rounded: 'rounded-md',
-  grow: {
-    delay: 'delay-10',
-    scale: 'hover:scale-105',
-  },
-  outlined: 'border-2',
-  shadow: 'shadow-md',
-  transition: {
-    duration: 'duration-300',
-    ease: 'ease-in-out',
-  },
-  width: 'w-fit',
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  color: () => {
-    return {
-      bg: 'bg-primary-900 dark:bg-primary-900',
-      text: 'dark:text-white text-black',
-      border: 'dark:border-white border-black',
-      hover: 'hover:bg-secondary-800 dark:hover:bg-secondary-800',
-      iconHover: 'hover:text-secondary-800 dark:hover:text-secondary-800',
-      loadingCircle: '#27272a',
-      loadingCircleDark: '#27272a',
-      loadingCircleProgress: '#10b981',
-      loadingCircleProgressDark: '#10b981',
-      loadingCircleCutout: 'before:bg-primary-900 dark:before:bg-primary-900',
-    }
-  },
+const props = withDefaults(defineProps<ButtonProps>(), {
   rounded: true,
-  grow: () => {
-    return {
-      delay: 'delay-10',
-      scale: 'hover:scale-105',
-    }
-  },
-  link: () => {
-    return ''
-  },
-  target: '_self',
-  disabled: false,
-  icon: false,
-  loading: false,
-  outlined: false,
+  grow: true,
+  transition: true,
   shadow: true,
-  transition: () => {
-    return {
-      duration: 'duration-300',
-      ease: 'ease-in-out',
-    }
-  },
-  dense: false,
-  ariLabel: '',
-  type: 'button',
-  width: undefined,
-  height: '',
 })
+
+// Use computed to make config reactive to prop changes
+const config = computed<ButtonConfig>(() => useComponentConfig('Button', props))
 
 const button = ref(null)
 
@@ -210,98 +96,85 @@ const styleClass = computed(() => {
 
   // COLOR
   // OUTLINED
-  if (props.outlined) {
-    styleClasses.push(props.color.text || defaults.color.text)
-    styleClasses.push(props.color.border || defaults.color.border)
-    if (typeof props.outlined === 'string') {
-      styleClasses.push(props.outlined)
-    }
-    else {
-      styleClasses.push(defaults.outlined)
+  if (config.value.outlined) {
+    styleClasses.push(config.value.color.text)
+    styleClasses.push(config.value.color.border)
+    if (typeof config.value.outlined === 'string') {
+      styleClasses.push(config.value.outlined)
     }
   }
-  else if (props.icon) {
-    styleClasses.push(props.color.text || defaults.color.text)
-    if (!props.disabled && !props.loading) {
-      styleClasses.push(props.color.iconHover || defaults.color.iconHover)
+  else if (config.value.icon) {
+    styleClasses.push(config.value.color.text)
+    if (!config.value.disabled && !config.value.loading) {
+      styleClasses.push(config.value.color.iconHover)
     }
   }
   else {
-    styleClasses.push(props.color.bg || defaults.color.bg)
-    styleClasses.push(props.color.text || defaults.color.text)
-    if (!props.disabled && !props.loading) {
-      styleClasses.push(props.color.hover || defaults.color.hover)
+    styleClasses.push(config.value.color.bg)
+    styleClasses.push(config.value.color.text)
+    if (!config.value.disabled && !config.value.loading) {
+      styleClasses.push(config.value.color.hover)
     }
   }
 
   // BORDER RADIUS
-  if (props.rounded) {
+  if (config.value.rounded) {
     styleClasses.push(
-      typeof props.rounded === 'string' ? props.rounded : defaults.rounded,
+      config.value.rounded,
     )
   }
 
   // DISABLED
-  if (props.disabled) {
+  if (config.value.disabled) {
     styleClasses.push('opacity-50 cursor-not-allowed')
   }
-  else if (!props.loading) {
+  else if (!config.value.loading) {
     styleClasses.push('cursor-pointer')
     // GROW
-    if (typeof props.grow === 'boolean' && props.grow) {
-      styleClasses.push(defaults.grow.delay)
-      styleClasses.push(defaults.grow.scale)
-    }
-    else if (typeof props.grow === 'object' && props.grow) {
-      styleClasses.push(props.grow.delay || defaults.grow.delay)
-      styleClasses.push(props.grow.scale || defaults.grow.scale)
+    if (config.value.grow.delay && config.value.grow.scale) {
+      styleClasses.push(config.value.grow.delay)
+      styleClasses.push(config.value.grow.scale)
     }
   }
   else {
     styleClasses.push('cursor-wait opacity-50')
   }
-  if (props.disabled) {
+  if (config.value.disabled) {
     styleClasses.push('opacity-50 cursor-not-allowed')
   }
 
   // TRANSITION
-  if (typeof props.transition === 'boolean' && props.transition) {
-    styleClasses.push(defaults.transition.duration)
-    styleClasses.push(defaults.transition.ease)
-  }
-  else if (typeof props.grow === 'object' && props.transition) {
-    styleClasses.push(
-      props.transition.duration || defaults.transition.duration,
-    )
-    styleClasses.push(props.transition.ease || defaults.transition.ease)
+  if (config.value.transition.duration && config.value.transition.ease) {
+    styleClasses.push(config.value.transition.duration)
+    styleClasses.push(config.value.transition.ease)
   }
 
   // SHADOW
-  if (props.shadow) {
-    if (props.icon && typeof props.shadow === 'boolean') {
+  if (config.value.shadow) {
+    if (config.value.icon) {
       styleClasses.push('shadow-none')
     }
     else {
       styleClasses.push(
-        typeof props.shadow === 'string' ? props.shadow : defaults.shadow,
+        config.value.shadow,
       )
     }
   }
 
   // DENSE
-  if (props.dense) {
+  if (config.value.dense) {
     styleClasses.push('py-1 px-2 text-sm min-h-[28px] min-w-[24px]')
   }
-  else if (!props.icon) {
+  else if (!config.value.icon) {
     styleClasses.push('py-2 px-5 min-h-[40px]')
   }
 
   // WIDTH
-  styleClasses.push(props.width || defaults.width)
+  styleClasses.push(config.value.width)
 
   // HEIGHT
-  if (props.height) {
-    styleClasses.push(props.height)
+  if (config.value.height) {
+    styleClasses.push(config.value.height)
   }
 
   styleClasses.push('flex justify-center items-center')

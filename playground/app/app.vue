@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NXW-Button loading>
+    <NXW-Button>
       Button
     </NXW-Button>
     <NXW-Progress
@@ -56,4 +56,10 @@ const carouselItems = [
     alt: 'Image of a subway station in Vienna',
   },
 ]
+// set dark mode for the playground
+useHead({
+  htmlAttrs: {
+    class: 'dark bg-black',
+  },
+})
 </script>
