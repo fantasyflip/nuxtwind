@@ -65,7 +65,7 @@
           <div class="p-2">
             {{
               typeof config.items[0] == "object" && config.displayProperty
-                ? item[config.displayProperty]
+                ? (typeof item === 'object' && item !== null && config.displayProperty in item ? (item as Record<string, any>)[config.displayProperty] : item)
                 : item
             }}
           </div>
@@ -129,10 +129,11 @@ onMounted(() => {
   if (props.modelValue) {
     lastValidItem.value = props.modelValue
     if (typeof props.modelValue == 'object' && config.value.displayProperty) {
-      selectSearch.value = props.modelValue[config.value.displayProperty]
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      selectSearch.value = (props.modelValue as Record<string, any>)[config.value.displayProperty]
     }
     else {
-      selectSearch.value = props.modelValue
+      selectSearch.value = props.modelValue as string
     }
   }
 
@@ -152,11 +153,13 @@ onMounted(() => {
         if (
           typeof props.modelValue == 'object'
           && config.value.displayProperty
-          && props.modelValue[config.value.displayProperty] != selectSearch.value
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          && (props.modelValue as Record<string, any>)[config.value.displayProperty] != selectSearch.value
         ) {
           // invalid search
           emit('update:modelValue', lastValidItem.value)
-          selectSearch.value = lastValidItem.value[config.value.displayProperty]
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          selectSearch.value = (lastValidItem.value as Record<string, any>)[config.value.displayProperty]
         }
         else if (
           typeof props.modelValue != 'object'
@@ -164,7 +167,7 @@ onMounted(() => {
         ) {
           // invalid search
           emit('update:modelValue', lastValidItem.value)
-          selectSearch.value = lastValidItem.value
+          selectSearch.value = lastValidItem.value as string
         }
       }
     }
@@ -189,7 +192,8 @@ const selectItems = computed(() => {
     if (typeof config.value.items[0] == 'object') {
       if (config.value.displayProperty) {
         return config.value.items.filter(item =>
-          item[config.value.displayProperty!].toString()
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          ((item as Record<string, any>)[config.value.displayProperty!]).toString()
             .toLowerCase()
             .includes(selectSearch.value.toLowerCase()),
         )
@@ -202,7 +206,7 @@ const selectItems = computed(() => {
     }
     else {
       return config.value.items.filter(item =>
-        item.toLowerCase().includes(selectSearch.value.toLowerCase()),
+        (item as string).toLowerCase().includes(selectSearch.value.toLowerCase()),
       )
     }
   }
@@ -222,11 +226,11 @@ function handleReset() {
   select.value.textfield.focus()
 }
 
-function handleFocusIn(event: FocusEvent) {
+function handleFocusIn(event?: FocusEvent) {
   if (config.value.showAllOnFocus) {
     showAllItemsNextRun.value = true
   }
-  if (!event.target) return
+  if (!event?.target) return
   if (config.value.markOnFocus) {
     // @ts-expect-error - select exists!
     event.target.select()
@@ -243,10 +247,11 @@ function handleKeyDown(event: KeyboardEvent) {
 
 function setItem(item: string | object) {
   if (typeof config.value.items[0] == 'object' && config.value.displayProperty) {
-    selectSearch.value = item[config.value.displayProperty]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    selectSearch.value = (item as Record<string, any>)[config.value.displayProperty]
   }
   else {
-    selectSearch.value = item
+    selectSearch.value = item as string
   }
 
   lastValidItem.value = item

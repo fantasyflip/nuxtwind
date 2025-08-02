@@ -49,5 +49,8 @@ export default {
   },
   select: {
     search: true,
+    color: {
+      bg: 'bg-yellow-500 dark:bg-yellow-500',
+    },
   },
 } satisfies NuxtWindConfig

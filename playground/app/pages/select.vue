@@ -7,6 +7,7 @@
         label="Framework"
         placeholder="Select a framework"
         display-property="stars"
+        mark-on-focus
       />
     </div>
   </div>
