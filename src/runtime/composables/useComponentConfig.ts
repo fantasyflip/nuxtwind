@@ -1,6 +1,8 @@
 import type { ButtonProps } from '../types/props'
 import type { ButtonConfig } from '../types/merged'
+import type { NuxtWindConfig } from '../types/config'
 import buttonDefaults from '../defaults/button'
+import { useRuntimeConfig } from '#app'
 
 // Generic type mapping for component props to config types
 interface ComponentTypeMap {
@@ -94,6 +96,16 @@ export default function useComponentConfig<K extends keyof ComponentTypeMap>(
     throw new Error(`No defaults found for component: ${componentName}`)
   }
 
-  // Deep merge defaults with props
-  return deepMerge(defaults, props || {}, componentName)
+  const runtimeConfig = useRuntimeConfig()
+  const userConfig = (runtimeConfig.public.nuxtwind || {}) as NuxtWindConfig
+
+  // Get the specific component config from user config using the correct key
+  const componentUserConfig = userConfig[componentName] || {}
+
+  // Priority order: defaults (lowest) -> user config (medium) -> props (highest)
+  // Step 1: Merge defaults with user config
+  const mergedWithUserConfig = deepMerge(defaults, componentUserConfig, componentName)
+
+  // Step 2: Merge result with props (highest priority)
+  return deepMerge(mergedWithUserConfig, props || {}, componentName)
 }

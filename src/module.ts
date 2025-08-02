@@ -11,6 +11,8 @@ import { nxwLog } from './utils/nxwLog'
 import { name, version } from '../package.json'
 import type { Nuxt } from 'nuxt/schema'
 import { CssManager } from './utils/css-manager'
+import { ConfigLoader } from './utils/config-loader'
+import type { NuxtWindConfig } from './runtime/types/config'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -59,6 +61,12 @@ export interface ModuleOptions {
      */
     autoUpdate?: boolean
   }
+
+  /**
+   * The path to the user configuration file
+   * @default 'nuxtwind.config.ts'
+   */
+  configPath?: string
 }
 
 function manageCssFile(nuxt: Nuxt, options: ModuleOptions) {
@@ -83,6 +91,15 @@ function manageCssFile(nuxt: Nuxt, options: ModuleOptions) {
   }
 }
 
+async function loadAndProvideUserConfig(nuxt: Nuxt, options: ModuleOptions): Promise<Partial<NuxtWindConfig> | null> {
+  const configLoader = new ConfigLoader(nuxt, {
+    debugLog: options.debugLog,
+  })
+
+  // Load user config from file
+  return await configLoader.loadUserConfig(options.configPath)
+}
+
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
@@ -101,6 +118,7 @@ export default defineNuxtModule<ModuleOptions>({
       autoCreate: true,
       autoUpdate: true,
     },
+    configPath: undefined,
   },
   async setup(_options, _nuxt) {
     nxwLog(_options.debugLog, 'Setting up NuxtWind Module')
@@ -109,6 +127,20 @@ export default defineNuxtModule<ModuleOptions>({
 
     _nuxt.options.build.transpile.push(runtimeDir)
     _nuxt.options.alias['#nuxtwind'] = runtimeDir
+
+    // Load and provide user configuration
+    const userConfig = await loadAndProvideUserConfig(_nuxt, _options)
+
+    if (userConfig) {
+      // log userConfig
+      nxwLog(_options.debugLog, 'User configuration has been loaded:', 'info')
+      nxwLog(_options.debugLog, JSON.stringify(userConfig, null, 2))
+      _nuxt.options.runtimeConfig.public.nuxtwind = userConfig
+    }
+    else {
+      nxwLog(_options.debugLog, 'No user configuration found, using default options', 'warn')
+      _nuxt.options.runtimeConfig.public.nuxtwind = {}
+    }
 
     // Manage CSS file
     manageCssFile(_nuxt, _options)
