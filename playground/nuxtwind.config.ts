@@ -20,4 +20,8 @@ export default {
     },
     navigationIcon: true,
   },
+  carousel: {
+    hideNavigation: true,
+    timeout: 2,
+  },
 } satisfies NuxtWindConfig

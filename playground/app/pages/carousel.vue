@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col items-center justify-center h-screen">
     <div class="size-[500px]">
-      <NXW-Carousel v-model="carouselValue">
+      <NXW-Carousel
+        v-model="carouselValue"
+        hide-pagination
+      >
         <NXW-CarouselItem
           v-for="item in carouselItems"
           :key="item.step"

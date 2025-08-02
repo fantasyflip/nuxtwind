@@ -1,9 +1,10 @@
-import type { ButtonProps, BadgeProps, AppbarProps } from '../types/props'
-import type { ButtonConfig, BadgeConfig, AppbarConfig } from '../types/merged'
+import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps } from '../types/props'
+import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig } from '../types/merged'
 import type { NuxtWindConfig } from '../types/config'
 import buttonDefaults from '../defaults/button'
 import badgeDefaults from '../defaults/badge'
 import appbarDefaults from '../defaults/appbar'
+import carouselDefaults from '../defaults/carousel'
 import { useRuntimeConfig } from '#app'
 
 // Generic type mapping for component props to config types
@@ -20,11 +21,11 @@ interface ComponentTypeMap {
     Props: AppbarProps
     Config: AppbarConfig
   }
+  carousel: {
+    Props: CarouselProps
+    Config: CarouselConfig
+  }
   // Future components can be added here
-  // Progress: {
-  //   Props: ProgressProps
-  //   Config: ProgressConfig
-  // }
 }
 
 // Define which props are boolean-only vs boolean-or-other for each component
@@ -32,6 +33,7 @@ const booleanOnlyProps = {
   button: new Set(['disabled', 'icon', 'loading', 'dense']),
   badge: new Set(['top', 'bottom', 'right', 'left']),
   appbar: new Set(['fixed', 'absolute', 'sticky', 'bottom', 'extension', 'shrinkOnScroll', 'elevateOnScroll', 'navigationIcon']),
+  carousel: new Set(['autoPlay', 'disableAutoPlayOnHover', 'hideNavigation', 'hidePagination']),
   // Future components can be added here
 } as const
 
@@ -95,8 +97,8 @@ const defaultsRegistry = {
   button: buttonDefaults,
   badge: badgeDefaults,
   appbar: appbarDefaults,
+  carousel: carouselDefaults,
   // Future components can be added here
-  // Progress: progressDefaults,
 } as const
 
 export default function useComponentConfig<K extends keyof ComponentTypeMap>(

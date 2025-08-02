@@ -69,3 +69,44 @@ export interface AppbarConfig {
   height: string
   target: string
 }
+
+export interface CarouselConfig {
+  autoPlay: boolean
+  timeout: number
+  disableAutoPlayOnHover: boolean
+  hideNavigation: boolean
+  hidePagination: boolean
+  shadow: string
+  transition: {
+    duration: string
+    delay: string
+    ease: string
+  }
+  navigation: {
+    color: {
+      bg: string
+      text: string
+      hover: string
+    }
+    icon: {
+      left: string
+      right: string
+    }
+    size: string
+    rounded: string
+    opacity: {
+      default: string
+      hover: string
+    }
+  }
+  pagination: {
+    color: {
+      active: string
+      inactive: string
+      hover: string
+    }
+    size: string
+    spacing: string
+    rounded: string
+  }
+}

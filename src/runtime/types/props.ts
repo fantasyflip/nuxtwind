@@ -73,3 +73,47 @@ export interface AppbarProps {
   height?: string
   target?: string
 }
+
+export interface CarouselProps {
+  modelValue?: number
+  autoPlay?: boolean
+  timeout?: number
+  disableAutoPlayOnHover?: boolean
+  hideNavigation?: boolean
+  hidePagination?: boolean
+  shadow?: boolean | string
+  transition?:
+    | boolean
+    | {
+      duration?: string
+      delay?: string
+      ease?: string
+    }
+  navigation?: {
+    color?: {
+      bg?: string
+      text?: string
+      hover?: string
+    }
+    icon?: {
+      left?: string
+      right?: string
+    }
+    size?: string
+    rounded?: string
+    opacity?: {
+      default?: string
+      hover?: string
+    }
+  }
+  pagination?: {
+    color?: {
+      active?: string
+      inactive?: string
+      hover?: string
+    }
+    size?: string
+    spacing?: string
+    rounded?: string
+  }
+}
