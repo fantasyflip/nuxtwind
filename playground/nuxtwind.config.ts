@@ -53,4 +53,11 @@ export default {
       bg: 'bg-yellow-500 dark:bg-yellow-500',
     },
   },
+  skeleton: {
+    tagOptions: {
+      p: {
+        color: 'bg-yellow-500 dark:bg-yellow-500',
+      },
+    },
+  },
 } satisfies NuxtWindConfig

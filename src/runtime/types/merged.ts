@@ -301,3 +301,48 @@ export interface SelectConfig {
   height: string
   displayProperty?: string
 }
+
+export interface SkeletonConfig {
+  loading: boolean
+  tag: string
+  autoDetectRootTag: boolean
+  animationClass: string
+  tagOptions: {
+    p: {
+      gap: string
+      lines: number
+      lineHeight: string
+      color: string
+      rounded: string
+    }
+    article: {
+      headingGap: string
+      headingHeight: string
+      headingRounded: string
+      gap: string
+      lines: number
+      lineHeight: string
+      color: string
+      rounded: string
+    }
+    img: {
+      width: string
+      height: string
+      color: string
+      rounded: string
+      iconSize: string
+      iconColor: string
+    }
+    card: {
+      imgHeight: string
+      headingHeight: string
+      imgRounded: string
+      headingRounded: string
+      imgIconColor: string
+      imgIconSize: string
+      imageAspect: string
+      color: string
+      gap: string
+    }
+  }
+}

@@ -1,5 +1,5 @@
-import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps, SelectProps } from '../types/props'
-import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig, DrawerConfig, ProgressConfig, SelectConfig } from '../types/merged'
+import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps, SelectProps, SkeletonProps } from '../types/props'
+import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig, DrawerConfig, ProgressConfig, SelectConfig, SkeletonConfig } from '../types/merged'
 import type { NuxtWindConfig } from '../types/config'
 import buttonDefaults from '../defaults/button'
 import badgeDefaults from '../defaults/badge'
@@ -10,6 +10,7 @@ import checkboxgroupDefaults from '../defaults/checkboxgroup'
 import drawerDefaults from '../defaults/drawer'
 import progressDefaults from '../defaults/progress'
 import selectDefaults from '../defaults/select'
+import skeletonDefaults from '../defaults/skeleton'
 import { useRuntimeConfig } from '#app'
 
 // Generic type mapping for component props to config types
@@ -50,6 +51,10 @@ interface ComponentTypeMap {
     Props: SelectProps
     Config: SelectConfig
   }
+  skeleton: {
+    Props: SkeletonProps
+    Config: SkeletonConfig
+  }
   // Future components can be added here
 }
 
@@ -64,6 +69,7 @@ const booleanOnlyProps = {
   drawer: new Set(['absolute', 'fixed', 'overlay', 'disableOverflow', 'noMobile', 'right', 'permanent']),
   progress: new Set(['loading']),
   select: new Set(['search', 'markOnFocus', 'showAllOnFocus', 'disabled', 'loading', 'clearable']),
+  skeleton: new Set(['loading', 'autoDetectRootTag']),
   // Future components can be added here
 } as const
 
@@ -133,6 +139,7 @@ const defaultsRegistry = {
   drawer: drawerDefaults,
   progress: progressDefaults,
   select: selectDefaults,
+  skeleton: skeletonDefaults,
   // Future components can be added here
 } as const
 
