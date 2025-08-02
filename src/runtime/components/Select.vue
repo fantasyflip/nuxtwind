@@ -2,46 +2,46 @@
   <div
     ref="selectWrapper"
     class="relative"
-    :class="props.width?.textfield"
+    :class="config.width.textfield"
   >
     <Textfield
       ref="select"
       v-model="selectSearch"
       autocomplete="off"
-      :outlined="props.outlined"
-      :filled="props.filled"
-      :disabled="props.disabled"
-      :placeholder="props.placeholder"
-      :color="props.color?.textfield || defaults.color.textfield"
-      :loading="props.loading"
-      :width="props.width?.textfield || defaults.width.textfield"
-      :label="props.label"
-      :transition="props.transition"
-      :append-icon="props.appendIcon"
-      :prepend-icon="props.prependIcon"
+      :outlined="config.outlined"
+      :filled="config.filled"
+      :disabled="config.disabled"
+      :placeholder="config.placeholder"
+      :color="config.color.textfield"
+      :loading="config.loading"
+      :width="config.width.textfield"
+      :label="config.label"
+      :transition="config.transition"
+      :append-icon="config.appendIcon"
+      :prepend-icon="config.prependIcon"
       :clearable="
-        props.search && props.clearable && !props.disabled && !props.loading
+        config.search && config.clearable && !config.disabled && !config.loading
       "
-      :font="props.font || defaults.font"
-      @click="disabled || loading ? '' : (showSelectOptions = true)"
+      :font="config.font"
+      @click="config.disabled || config.loading ? '' : (showSelectOptions = true)"
       @focus-in="handleFocusIn"
       @reset="handleReset"
       @keydown="handleKeyDown"
     >
       <template
-        v-if="props.prependIcon"
+        v-if="config.prependIcon"
         #prepend-icon
       >
         <slot name="prepend-icon">
-          <component :is="props.prependIcon" />
+          <component :is="config.prependIcon" />
         </slot>
       </template>
       <template
-        v-if="props.appendIcon"
+        v-if="config.appendIcon"
         #append-icon
       >
         <slot name="append-icon">
-          <component :is="props.appendIcon" />
+          <component :is="config.appendIcon" />
         </slot>
       </template>
       <template #label>
@@ -64,8 +64,8 @@
         >
           <div class="p-2">
             {{
-              typeof props.items[0] == "object" && props.displayProperty
-                ? item[props.displayProperty]
+              typeof config.items[0] == "object" && config.displayProperty
+                ? item[config.displayProperty]
                 : item
             }}
           </div>
@@ -78,133 +78,27 @@
 <script lang="ts" setup>
 import { computed, ref, onMounted, watch } from 'vue'
 import Textfield from './Textfield.vue'
+import type { SelectProps } from '../types/props'
+import type { SelectConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
-  // eslint-disable-next-line vue/no-required-prop-with-default
-  modelValue: string | object
-  // eslint-disable-next-line vue/no-required-prop-with-default
-  items: string[] | object[]
-  color?: {
-    textfield?: {
-      bg?: string
-      text?: string
-      hint?: string
-      error?: string
-      label?: string
-      labelFocus?: string
-      placeholderText?: string
-      icon?: string
-      iconFocus?: string
-      border?: string
-      borderFocus?: string
-      borderError?: string
-      borderFocusError?: string
-    }
-    bg?: string
-    text?: string
-    border?: string
-    hover?: string
-  }
-  font?: {
-    label?: string
-    input?: string
-    placeholder?: string
-    hint?: string
-  }
-  search?: boolean
-  markOnFocus?: boolean
-  showAllOnFocus?: boolean
-  label?: string
-  outlined?: boolean | string
-  filled?: boolean | string
-  disabled?: boolean
-  loading?: boolean
-  placeholder?: string
-  transition?:
-    | boolean
-    | {
-      duration?: string
-      ease?: string
-      placeholder?: {
-        duration?: string
-        ease?: string
-      }
-    }
-  shadow?: boolean | string
-  appendIcon?: object
-  prependIcon?: object
-  clearable?: boolean
-  width?: {
-    textfield?: string
-    select?: string
-  }
-  height?: string
-  displayProperty?: string
-}
-
-const defaults = {
-  color: {
-    textfield: {},
-    bg: 'bg-gray-200 dark:bg-zinc-800',
-    text: 'text-black dark:text-white',
-    border: 'border-gray-300 dark:border-zinc-700',
-    hover: 'hover:bg-primary-700',
-  },
-  font: {
-    label: 'text-sm',
-    input: 'text-sm',
-    hint: 'text-sm',
-  },
-  width: {
-    textfield: '',
-    select: 'w-full',
-  },
-  shadow: 'shadow-lg',
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<SelectProps>(), {
   modelValue: '',
-  items: () => {
-    return []
-  },
-  color: () => {
-    return {
-      textfield: {},
-      bg: 'bg-gray-200 dark:bg-zinc-800',
-      text: 'text-black dark:text-white',
-      border: 'border-gray-300 dark:border-zinc-700',
-      hover: 'hover:bg-primary-700',
-    }
-  },
-  font: () => {
-    return {
-      label: 'text-sm',
-      input: 'text-sm',
-      hint: 'text-sm',
-    }
-  },
-  search: false,
-  markOnFocus: false,
-  showAllOnFocus: false,
-  label: '',
-  outlined: false,
-  filled: false,
-  disabled: false,
-  loading: false,
-  placeholder: '',
-  transition: true,
-  shadow: true,
-  appendIcon: undefined,
-  prependIcon: undefined,
-  clearable: false,
-  width: () => {
-    return {
-      textfield: 'w-full',
-      select: 'w-full',
-    }
-  },
-  height: 'max-h-48',
+  items: () => [],
+  search: undefined,
+  markOnFocus: undefined,
+  showAllOnFocus: undefined,
+  outlined: undefined,
+  filled: undefined,
+  disabled: undefined,
+  loading: undefined,
+  transition: undefined,
+  shadow: undefined,
+  clearable: undefined,
 })
+
+// Use computed to make config reactive to prop changes
+const config = computed<SelectConfig>(() => useComponentConfig('select', props))
 
 const emit = defineEmits<{
   (e: 'update:modelValue', id: string | object): void
@@ -234,8 +128,8 @@ onMounted(() => {
   // handle initial value
   if (props.modelValue) {
     lastValidItem.value = props.modelValue
-    if (typeof props.modelValue == 'object' && props.displayProperty) {
-      selectSearch.value = props.modelValue[props.displayProperty]
+    if (typeof props.modelValue == 'object' && config.value.displayProperty) {
+      selectSearch.value = props.modelValue[config.value.displayProperty]
     }
     else {
       selectSearch.value = props.modelValue
@@ -251,18 +145,18 @@ onMounted(() => {
     ) {
       showSelectOptions.value = false
 
-      if (props.search) {
+      if (config.value.search) {
         // check if search is valid
 
         // if input is an object, search through the displayProperty
         if (
           typeof props.modelValue == 'object'
-          && props.displayProperty
-          && props.modelValue[props.displayProperty] != selectSearch.value
+          && config.value.displayProperty
+          && props.modelValue[config.value.displayProperty] != selectSearch.value
         ) {
           // invalid search
           emit('update:modelValue', lastValidItem.value)
-          selectSearch.value = lastValidItem.value[props.displayProperty]
+          selectSearch.value = lastValidItem.value[config.value.displayProperty]
         }
         else if (
           typeof props.modelValue != 'object'
@@ -280,22 +174,22 @@ onMounted(() => {
 const showAllItemsNextRun = ref(false)
 
 const selectItems = computed(() => {
-  if (!props.search || showAllItemsNextRun.value) {
+  if (!config.value.search || showAllItemsNextRun.value) {
     // no search through items -> just hand over items
-    if (typeof props.items[0] == 'object' && !props.displayProperty) {
+    if (typeof config.value.items[0] == 'object' && !config.value.displayProperty) {
       return 'Please provide a displayProperty when using objects as items'.split(
         ' ',
       )
     }
-    return props.items
+    return config.value.items
   }
   else {
     // search through items -> return items that match search
     // if input is an object, search through the displayProperty
-    if (typeof props.items[0] == 'object') {
-      if (props.displayProperty) {
-        return props.items.filter(item =>
-          item[props.displayProperty!]
+    if (typeof config.value.items[0] == 'object') {
+      if (config.value.displayProperty) {
+        return config.value.items.filter(item =>
+          item[config.value.displayProperty!].toString()
             .toLowerCase()
             .includes(selectSearch.value.toLowerCase()),
         )
@@ -307,7 +201,7 @@ const selectItems = computed(() => {
       }
     }
     else {
-      return props.items.filter(item =>
+      return config.value.items.filter(item =>
         item.toLowerCase().includes(selectSearch.value.toLowerCase()),
       )
     }
@@ -329,11 +223,11 @@ function handleReset() {
 }
 
 function handleFocusIn(event: FocusEvent) {
-  if (props.showAllOnFocus) {
+  if (config.value.showAllOnFocus) {
     showAllItemsNextRun.value = true
   }
   if (!event.target) return
-  if (props.markOnFocus) {
+  if (config.value.markOnFocus) {
     // @ts-expect-error - select exists!
     event.target.select()
   }
@@ -342,14 +236,14 @@ function handleFocusIn(event: FocusEvent) {
 
 function handleKeyDown(event: KeyboardEvent) {
   // if the key is a letter or number, filter items again
-  if (props.showAllOnFocus && event.key.length == 1) {
+  if (config.value.showAllOnFocus && event.key.length == 1) {
     showAllItemsNextRun.value = false
   }
 }
 
-function setItem(item: string[] | object[]) {
-  if (typeof props.items[0] == 'object' && props.displayProperty) {
-    selectSearch.value = item[props.displayProperty]
+function setItem(item: string | object) {
+  if (typeof config.value.items[0] == 'object' && config.value.displayProperty) {
+    selectSearch.value = item[config.value.displayProperty]
   }
   else {
     selectSearch.value = item
@@ -372,28 +266,25 @@ const dropDownStyleCass = computed(() => {
   classes.push('overflow-auto', 'z-50', 'absolute')
 
   // WIDTH
-  classes.push(props.width.select || defaults.width.select)
+  classes.push(config.value.width.select)
 
   // HEIGHT
-  classes.push(props.height)
+  classes.push(config.value.height)
 
   // SHADOW
-  if (props.shadow && typeof props.shadow === 'string') {
-    classes.push(props.shadow)
-  }
-  else if (props.shadow) {
-    classes.push(defaults.shadow)
+  if (config.value.shadow) {
+    classes.push(config.value.shadow)
   }
 
   // COLOR
-  classes.push(props.color.bg || defaults.color.bg)
+  classes.push(config.value.color.bg)
 
   // search
-  if (!props.search) {
-    if (props.outlined) {
+  if (!config.value.search) {
+    if (config.value.outlined) {
       classes.push('top-3', 'max-w-[96%]', 'left-1')
     }
-    else if (props.filled) {
+    else if (config.value.filled) {
       classes.push('top-5')
     }
     else {
@@ -410,12 +301,12 @@ const itemStyleClass = computed(() => {
   classes.push('border-b')
 
   // WIDTH
-  classes.push(props.width.select || defaults.width.select)
+  classes.push(config.value.width.select)
 
   // COLOR
-  classes.push(props.color.border || defaults.color.border)
-  classes.push(props.color.text || defaults.color.text)
-  classes.push(props.color.hover || defaults.color.hover)
+  classes.push(config.value.color.border)
+  classes.push(config.value.color.text)
+  classes.push(config.value.color.hover)
 
   return classes.join(' ')
 })

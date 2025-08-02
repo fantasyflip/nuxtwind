@@ -47,4 +47,7 @@ export default {
       secondStrike: 'after:bg-yellow-600',
     },
   },
+  select: {
+    search: true,
+  },
 } satisfies NuxtWindConfig

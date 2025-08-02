@@ -1,5 +1,5 @@
-import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps } from '../types/props'
-import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig, DrawerConfig, ProgressConfig } from '../types/merged'
+import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps, SelectProps } from '../types/props'
+import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig, DrawerConfig, ProgressConfig, SelectConfig } from '../types/merged'
 import type { NuxtWindConfig } from '../types/config'
 import buttonDefaults from '../defaults/button'
 import badgeDefaults from '../defaults/badge'
@@ -9,6 +9,7 @@ import checkboxDefaults from '../defaults/checkbox'
 import checkboxgroupDefaults from '../defaults/checkboxgroup'
 import drawerDefaults from '../defaults/drawer'
 import progressDefaults from '../defaults/progress'
+import selectDefaults from '../defaults/select'
 import { useRuntimeConfig } from '#app'
 
 // Generic type mapping for component props to config types
@@ -45,6 +46,10 @@ interface ComponentTypeMap {
     Props: ProgressProps
     Config: ProgressConfig
   }
+  select: {
+    Props: SelectProps
+    Config: SelectConfig
+  }
   // Future components can be added here
 }
 
@@ -58,6 +63,7 @@ const booleanOnlyProps = {
   checkboxgroup: new Set(['multiple', 'noRadio', 'loading', 'disabled', 'notZero']),
   drawer: new Set(['absolute', 'fixed', 'overlay', 'disableOverflow', 'noMobile', 'right', 'permanent']),
   progress: new Set(['loading']),
+  select: new Set(['search', 'markOnFocus', 'showAllOnFocus', 'disabled', 'loading', 'clearable']),
   // Future components can be added here
 } as const
 
@@ -126,6 +132,7 @@ const defaultsRegistry = {
   checkboxgroup: checkboxgroupDefaults,
   drawer: drawerDefaults,
   progress: progressDefaults,
+  select: selectDefaults,
   // Future components can be added here
 } as const
 

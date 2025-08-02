@@ -243,3 +243,61 @@ export interface ProgressConfig {
   }
   rounded: string
 }
+
+export interface SelectConfig {
+  items: string[] | object[]
+  color: {
+    textfield: {
+      bg?: string
+      text?: string
+      hint?: string
+      error?: string
+      label?: string
+      labelFocus?: string
+      placeholderText?: string
+      icon?: string
+      iconFocus?: string
+      border?: string
+      borderFocus?: string
+      borderError?: string
+      borderFocusError?: string
+    }
+    bg: string
+    text: string
+    border: string
+    hover: string
+  }
+  font: {
+    label: string
+    input: string
+    placeholder: string
+    hint: string
+  }
+  search: boolean
+  markOnFocus: boolean
+  showAllOnFocus: boolean
+  label: string
+  outlined: boolean | string
+  filled: boolean | string
+  disabled: boolean
+  loading: boolean
+  placeholder: string
+  transition: {
+    duration: string
+    ease: string
+    placeholder: {
+      duration: string
+      ease: string
+    }
+  }
+  shadow: string
+  appendIcon?: object
+  prependIcon?: object
+  clearable: boolean
+  width: {
+    textfield: string
+    select: string
+  }
+  height: string
+  displayProperty?: string
+}
