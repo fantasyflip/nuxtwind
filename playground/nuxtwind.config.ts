@@ -2,11 +2,16 @@ import type { NuxtWindConfig } from '~/src/runtime/types/config'
 
 // nuxtwind.config.ts
 export default {
-  Button: {
+  button: {
     color: {
       bg: 'bg-purple-600',
       text: 'text-white',
     },
-    loading: true,
+  },
+  badge: {
+    color: {
+      bg: 'bg-yellow-500',
+    },
+    bottom: true,
   },
 } satisfies NuxtWindConfig

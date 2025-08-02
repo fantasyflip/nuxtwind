@@ -29,6 +29,6 @@ export default {
   dense: false,
   ariLabel: '',
   type: 'button',
-  width: '',
+  width: 'w-fit',
   height: '',
 }

@@ -92,7 +92,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 })
 
 // Use computed to make config reactive to prop changes
-const config = computed<ButtonConfig>(() => useComponentConfig('Button', props))
+const config = computed<ButtonConfig>(() => useComponentConfig('button', props))
 
 const button = ref(null)
 
