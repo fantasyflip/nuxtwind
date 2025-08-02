@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="absolute top-4 left-4">
+    <div class="absolute bottom-4 left-4">
       <NXW-Button
         link="/"
       >

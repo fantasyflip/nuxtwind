@@ -53,3 +53,23 @@ export interface BadgeProps {
   width?: string
   height?: string
 }
+
+export interface AppbarProps {
+  color?: {
+    bg?: string
+    navigationIcon?: string
+    navigationIconHover?: string
+  }
+  fixed?: boolean
+  absolute?: boolean
+  sticky?: boolean
+  bottom?: boolean
+  extension?: boolean
+  shrinkOnScroll?: boolean
+  elevateOnScroll?: boolean
+  scrollOffset?: number
+  navigationIcon?: boolean | object
+  zIndex?: string
+  height?: string
+  target?: string
+}

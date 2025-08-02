@@ -49,3 +49,23 @@ export interface BadgeConfig {
   width: string
   height: string
 }
+
+export interface AppbarConfig {
+  color: {
+    bg: string
+    navigationIcon: string
+    navigationIconHover: string
+  }
+  fixed: boolean
+  absolute: boolean
+  sticky: boolean
+  bottom: boolean
+  extension: boolean
+  shrinkOnScroll: boolean
+  elevateOnScroll: boolean
+  scrollOffset: number | undefined
+  navigationIcon: boolean | object
+  zIndex: string
+  height: string
+  target: string
+}

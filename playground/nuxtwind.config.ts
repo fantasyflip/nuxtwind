@@ -14,4 +14,10 @@ export default {
     },
     bottom: true,
   },
+  appbar: {
+    color: {
+      bg: 'bg-yellow-500',
+    },
+    navigationIcon: true,
+  },
 } satisfies NuxtWindConfig
