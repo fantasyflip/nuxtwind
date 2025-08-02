@@ -137,3 +137,57 @@ export interface CheckboxProps {
   disabled?: boolean
   loading?: boolean
 }
+
+export interface CheckboxgroupProps {
+  modelValue?: boolean[]
+  items?: {
+    label?: string
+    description?: string
+    color?: {
+      label?: string
+      description?: string
+      iconInactive?: string
+      iconActive?: string
+      hover?: string
+    }
+    text?: {
+      label?: string
+      description?: string
+    }
+    disabled?: boolean
+    loading?: boolean
+  }[]
+  color?: {
+    label?: string
+    description?: string
+  }
+  text?: {
+    label?: string
+    description?: string
+  }
+  label?: string
+  description?: string
+  multiple?: boolean
+  noRadio?: boolean
+  loading?: boolean
+  disabled?: boolean
+  width?: string
+  generalCheckboxProps?: {
+    label?: string
+    description?: string
+    color?: {
+      label?: string
+      description?: string
+      iconInactive?: string
+      iconActive?: string
+      hover?: string
+    }
+    text?: {
+      label?: string
+      description?: string
+    }
+    disabled?: boolean
+    loading?: boolean
+  }
+  notZero?: boolean
+}

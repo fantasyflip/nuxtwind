@@ -1,11 +1,12 @@
-import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps } from '../types/props'
-import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig } from '../types/merged'
+import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps } from '../types/props'
+import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig } from '../types/merged'
 import type { NuxtWindConfig } from '../types/config'
 import buttonDefaults from '../defaults/button'
 import badgeDefaults from '../defaults/badge'
 import appbarDefaults from '../defaults/appbar'
 import carouselDefaults from '../defaults/carousel'
 import checkboxDefaults from '../defaults/checkbox'
+import checkboxgroupDefaults from '../defaults/checkboxgroup'
 import { useRuntimeConfig } from '#app'
 
 // Generic type mapping for component props to config types
@@ -30,6 +31,10 @@ interface ComponentTypeMap {
     Props: CheckboxProps
     Config: CheckboxConfig
   }
+  checkboxgroup: {
+    Props: CheckboxgroupProps
+    Config: CheckboxgroupConfig
+  }
   // Future components can be added here
 }
 
@@ -40,6 +45,7 @@ const booleanOnlyProps = {
   appbar: new Set(['fixed', 'absolute', 'sticky', 'bottom', 'extension', 'shrinkOnScroll', 'elevateOnScroll', 'navigationIcon']),
   carousel: new Set(['autoPlay', 'disableAutoPlayOnHover', 'hideNavigation', 'hidePagination']),
   checkbox: new Set(['radio', 'disabled', 'loading']),
+  checkboxgroup: new Set(['multiple', 'noRadio', 'loading', 'disabled', 'notZero']),
   // Future components can be added here
 } as const
 
@@ -105,6 +111,7 @@ const defaultsRegistry = {
   appbar: appbarDefaults,
   carousel: carouselDefaults,
   checkbox: checkboxDefaults,
+  checkboxgroup: checkboxgroupDefaults,
   // Future components can be added here
 } as const
 

@@ -30,4 +30,10 @@ export default {
     },
     radio: true,
   },
+  checkboxgroup: {
+    notZero: true,
+    color: {
+      label: 'text-yellow-500 dark:text-yellow-400',
+    },
+  },
 } satisfies NuxtWindConfig
