@@ -1,20 +1,20 @@
 <template>
   <NuxtLink
-    v-if="props.link"
-    :to="props.link"
+    v-if="config.link"
+    :to="config.link"
     :class="styleClass"
-    :target="props.target"
-    :aria-label="props.ariLabel"
+    :target="config.target"
+    :aria-label="config.ariLabel"
   >
     <div class="relative">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
         <Progress
-          v-if="props.loading"
+          v-if="config.loading && !config.icon"
           v-model="loadingProgress"
           :circular="{
-            size: props.dense ? 'size-4': 'size-6',
+            size: config.dense ? 'size-4': 'size-6',
           }"
           loading
           :color="{
@@ -26,7 +26,12 @@
           }"
         />
       </div>
-      <div :class="props.loading ? 'opacity-0 cursor-wait' : ''">
+      <div
+        :class="{
+          'opacity-0 cursor-wait': config.loading,
+          'animate-pulse': config.loading && config.icon,
+        }"
+      >
         <slot>Button</slot>
       </div>
     </div>
@@ -35,19 +40,19 @@
     v-else
     ref="button"
     :class="styleClass"
-    :disabled="props.disabled"
-    :type="props.type"
-    :aria-label="props.ariLabel"
+    :disabled="config.disabled"
+    :type="config.type"
+    :aria-label="config.ariLabel"
   >
     <div class="relative">
       <div
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
         <Progress
-          v-if="props.loading"
+          v-if="config.loading && !config.icon"
           v-model="loadingProgress"
           :circular="{
-            size: props.dense ? 'size-4': 'size-6',
+            size: config.dense ? 'size-4': 'size-6',
           }"
           loading
           :color="{
@@ -59,7 +64,12 @@
           }"
         />
       </div>
-      <div :class="props.loading ? 'opacity-0 cursor-wait' : ''">
+      <div
+        :class="{
+          'opacity-0 cursor-wait': config.loading,
+          'animate-pulse': config.loading && config.icon,
+        }"
+      >
         <slot>Button</slot>
       </div>
     </div>
@@ -74,10 +84,11 @@ import type { ButtonConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
-  rounded: true,
-  grow: true,
-  transition: true,
-  shadow: true,
+  rounded: undefined,
+  grow: undefined,
+  transition: undefined,
+  shadow: undefined,
+  loading: undefined,
 })
 
 // Use computed to make config reactive to prop changes

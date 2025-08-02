@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NXW-Button>
+    <NXW-Button :color="{ bg: 'bg-yellow-600' }">
       Button
     </NXW-Button>
     <NXW-Progress
