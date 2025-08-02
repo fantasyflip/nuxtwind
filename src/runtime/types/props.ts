@@ -191,3 +191,35 @@ export interface CheckboxgroupProps {
   }
   notZero?: boolean
 }
+
+export interface DrawerProps {
+  modelValue?: boolean
+  color?: {
+    bg?: string
+    overlayBg?: string
+  }
+  absolute?: boolean
+  fixed?: boolean
+  zIndex?: string
+  overlay?: boolean
+  disableOverflow?: boolean
+  expandOnHover?:
+    | boolean
+    | {
+      width?: string
+      hoverWidth?: string
+    }
+  transition?:
+    | boolean
+    | {
+      duration?: string
+      ease?: string
+    }
+  noMobile?: boolean
+  mobileWidth?: number
+  border?: boolean | string
+  right?: boolean
+  permanent?: boolean
+  height?: string
+  width?: string
+}

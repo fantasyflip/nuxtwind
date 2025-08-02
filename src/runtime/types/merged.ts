@@ -182,3 +182,30 @@ export interface CheckboxgroupConfig {
   }
   notZero: boolean
 }
+
+export interface DrawerConfig {
+  color: {
+    bg: string
+    overlayBg: string
+  }
+  absolute: boolean
+  fixed: boolean
+  zIndex: string
+  overlay: boolean
+  disableOverflow: boolean
+  expandOnHover: {
+    width: string
+    hoverWidth: string
+  }
+  transition: {
+    duration: string
+    ease: string
+  }
+  noMobile: boolean
+  mobileWidth: number
+  border: string
+  right: boolean
+  permanent: boolean
+  height: string
+  width: string
+}

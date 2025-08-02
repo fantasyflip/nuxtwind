@@ -36,4 +36,10 @@ export default {
       label: 'text-yellow-500 dark:text-yellow-400',
     },
   },
+  drawer: {
+    border: false,
+    color: {
+      bg: 'bg-yellow-500 dark:bg-yellow-500',
+    },
+  },
 } satisfies NuxtWindConfig

@@ -1,4 +1,4 @@
-import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps } from './props'
+import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps } from './props'
 
 export interface NuxtWindConfig {
   button?: ButtonProps
@@ -7,5 +7,6 @@ export interface NuxtWindConfig {
   carousel?: CarouselProps
   checkbox?: CheckboxProps
   checkboxgroup?: CheckboxgroupProps
+  drawer?: DrawerProps
   // Add other component props here
 }
