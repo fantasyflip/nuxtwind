@@ -11,48 +11,18 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import type { BadgeProps } from '../types/props'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
-  color?: {
-    bg?: string
-    border?: string
-    text?: string
-  }
-  top?: boolean
-  bottom?: boolean
-  right?: boolean
-  left?: boolean
-  text?: string
-  border?: boolean | string
-  width?: string
-  height?: string
-}
-const defaults = {
-  color: {
-    bg: 'bg-red-500 dark:bg-red-500',
-    border: 'border-white dark:border-zinc-900',
-    text: 'text-white dark:text-white',
-  },
-  border: 'border-2',
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  color: () => {
-    return {
-      bg: 'bg-red-500 dark:bg-red-500',
-      border: 'border-white dark:border-zinc-900',
-      text: 'text-white',
-    }
-  },
-  top: true,
-  bottom: false,
-  right: true,
-  left: false,
-  text: 'text-xs font-bold',
-  border: true,
-  width: 'min-w-[24px]',
-  height: 'min-h-[24px]',
+const props = withDefaults(defineProps<BadgeProps>(), {
+  left: undefined,
+  right: undefined,
+  top: undefined,
+  bottom: undefined,
+  border: undefined,
 })
+
+const config = useComponentConfig('badge', props)
 
 const styleClass = computed(() => {
   const classes: string[] = []
@@ -67,15 +37,16 @@ const styleClass = computed(() => {
   )
 
   // COLORS
-  classes.push(props.color?.bg || defaults.color.bg)
-  classes.push(props.color?.border || defaults.color.border)
+  classes.push(config.color.bg)
+  classes.push(config.color.border)
+  classes.push(config.color.text)
 
   // POSITION
   // Horizontal
-  if (props.left) {
+  if (config.left) {
     classes.push('-left-2')
   }
-  else if (props.right) {
+  else if (config.right) {
     classes.push('-right-2')
   }
   else {
@@ -83,10 +54,10 @@ const styleClass = computed(() => {
   }
 
   // Vertical
-  if (props.bottom) {
+  if (config.bottom) {
     classes.push('-bottom-2')
   }
-  else if (props.top) {
+  else if (config.top) {
     classes.push('-top-2')
   }
   else {
@@ -94,23 +65,23 @@ const styleClass = computed(() => {
   }
 
   // TEXT
-  classes.push(props.text)
+  classes.push(config.text)
 
   // BORDER
-  if (props.border) {
-    if (typeof props.border === 'string') {
-      classes.push(props.border)
+  if (config.border) {
+    if (typeof config.border === 'string') {
+      classes.push(config.border)
     }
     else {
-      classes.push(defaults.border)
+      classes.push('border-2')
     }
   }
 
   // WIDTH
-  classes.push(props.width)
+  classes.push(config.width)
 
   // HEIGHT
-  classes.push(props.height)
+  classes.push(config.height)
 
   return classes.join(' ')
 })

@@ -1,14 +1,19 @@
-import type { ButtonProps } from '../types/props'
-import type { ButtonConfig } from '../types/merged'
+import type { ButtonProps, BadgeProps } from '../types/props'
+import type { ButtonConfig, BadgeConfig } from '../types/merged'
 import type { NuxtWindConfig } from '../types/config'
 import buttonDefaults from '../defaults/button'
+import badgeDefaults from '../defaults/badge'
 import { useRuntimeConfig } from '#app'
 
 // Generic type mapping for component props to config types
 interface ComponentTypeMap {
-  Button: {
+  button: {
     Props: ButtonProps
     Config: ButtonConfig
+  }
+  badge: {
+    Props: BadgeProps
+    Config: BadgeConfig
   }
   // Future components can be added here
   // Progress: {
@@ -19,7 +24,8 @@ interface ComponentTypeMap {
 
 // Define which props are boolean-only vs boolean-or-other for each component
 const booleanOnlyProps = {
-  Button: new Set(['disabled', 'icon', 'loading', 'dense']),
+  button: new Set(['disabled', 'icon', 'loading', 'dense']),
+  badge: new Set(['top', 'bottom', 'right', 'left']),
   // Future components can be added here
 } as const
 
@@ -80,7 +86,8 @@ function deepMerge<T extends Record<string, any>>(target: T, source: any, compon
 
 // Component defaults registry
 const defaultsRegistry = {
-  Button: buttonDefaults,
+  button: buttonDefaults,
+  badge: badgeDefaults,
   // Future components can be added here
   // Progress: progressDefaults,
 } as const

@@ -1,6 +1,7 @@
-import type { ButtonProps } from './props'
+import type { ButtonProps, BadgeProps } from './props'
 
 export interface NuxtWindConfig {
-  Button?: ButtonProps
+  button?: ButtonProps
+  badge?: BadgeProps
   // Add other component props here
 }

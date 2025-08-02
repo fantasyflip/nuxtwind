@@ -33,3 +33,19 @@ export interface ButtonConfig {
   width: string
   height: string
 }
+
+export interface BadgeConfig {
+  color: {
+    bg: string
+    border: string
+    text: string
+  }
+  top: boolean
+  bottom: boolean
+  right: boolean
+  left: boolean
+  text: string
+  border: boolean | string
+  width: string
+  height: string
+}
