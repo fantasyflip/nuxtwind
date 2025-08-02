@@ -24,4 +24,10 @@ export default {
     hideNavigation: true,
     timeout: 2,
   },
+  checkbox: {
+    color: {
+      iconActive: 'text-yellow-500 dark:text-yellow-400',
+    },
+    radio: true,
+  },
 } satisfies NuxtWindConfig

@@ -5,7 +5,7 @@
       :class="iconStyleClass"
     >
       <svg
-        v-if="modelValue && !props.radio"
+        v-if="props.modelValue && !config.radio"
         viewBox="0 0 24 24"
         width="1.2em"
         height="1.2em"
@@ -17,7 +17,7 @@
         />
       </svg>
       <svg
-        v-else-if="!modelValue && !props.radio"
+        v-else-if="!props.modelValue && !config.radio"
         viewBox="0 0 24 24"
         width="1.2em"
         height="1.2em"
@@ -29,7 +29,7 @@
         />
       </svg>
       <svg
-        v-if="modelValue && props.radio"
+        v-if="props.modelValue && config.radio"
         viewBox="0 0 24 24"
         width="1.2em"
         height="1.2em"
@@ -41,7 +41,7 @@
         />
       </svg>
       <svg
-        v-else-if="!modelValue && props.radio"
+        v-else-if="!props.modelValue && config.radio"
         viewBox="0 0 24 24"
         width="1.2em"
         height="1.2em"
@@ -54,23 +54,23 @@
       </svg>
     </div>
     <div
-      v-if="props.label || $slots.label"
+      v-if="config.label || $slots.label"
       :class="labelStyleClass"
     >
       <label
         :for="checkboxId"
-        :class="props.disabled || props.loading ? '' : 'cursor-pointer'"
+        :class="config.loading ? '' : 'cursor-pointer'"
         @click="updateModelValue(!props.modelValue)"
       >
-        <slot name="label">{{ label }}</slot>
+        <slot name="label">{{ config.label }}</slot>
       </label>
       <p
-        v-if="description || $slots.description"
+        v-if="config.description || $slots.description"
         id="checkbox-description"
         :class="descriptionStyleClass"
       >
         <slot name="description">
-          {{ description }}
+          {{ config.description }}
         </slot>
       </p>
     </div>
@@ -79,75 +79,28 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-// @ts-expect-error - #imports exists at runtime
 import { useId } from '#imports'
+import type { CheckboxProps } from '../types/props'
+import type { CheckboxConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
-  modelValue?: boolean
-  color?: {
-    label?: string
-    description?: string
-    iconInactive?: string
-    iconActive?: string
-    hover?: string
-  }
-  text?: {
-    label?: string
-    description?: string
-  }
-  label?: string
-  description?: string
-  radio?: boolean
-  disabled?: boolean
-  loading?: boolean
-}
+const props = withDefaults(defineProps<CheckboxProps>(), {
+  radio: undefined,
+  disabled: undefined,
+  loading: undefined,
+})
+
+// Use computed to make config reactive to prop changes
+const config = computed<CheckboxConfig>(() => useComponentConfig('checkbox', props))
 
 const checkboxId = useId()
-
-const defaults = {
-  color: {
-    label: 'text-black dark:text-gray-300',
-    description: 'text-gray-500 dark:text-gray-400',
-    iconInactive: 'text-gray-500 dark:text-gray-400',
-    iconActive: 'text-primary-800 dark:text-primary-800',
-    hover: 'hover:text-secondary-700 dark:hover:text-secondary-700',
-  },
-  text: {
-    label: 'text-sm font-medium',
-    description: 'text-xs font-normal',
-  },
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: false,
-  color: () => {
-    return {
-      label: 'text-black dark:text-gray-300',
-      description: 'text-gray-500 dark:text-gray-400',
-      iconInactive: 'text-gray-500 dark:text-gray-400',
-      iconActive: 'text-primary-800 dark:text-primary-800',
-      hover: 'hover:text-secondary-700 dark:hover:text-secondary-700',
-    }
-  },
-  text: () => {
-    return {
-      label: 'text-sm font-medium',
-      description: 'text-xs font-normal',
-    }
-  },
-  label: '',
-  description: '',
-  radio: false,
-  disabled: false,
-  loading: false,
-})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', id: boolean): void
 }>()
 
 function updateModelValue(value: boolean) {
-  if (props.disabled || props.loading) return
+  if (config.value.disabled || config.value.loading) return
   emit('update:modelValue', value)
 }
 
@@ -156,26 +109,25 @@ const iconStyleClass = computed(() => {
   classes.push('flex', 'items-center', 'h-5')
 
   // COLOR
-
   if (props.modelValue) {
-    classes.push(props.color?.iconActive || defaults.color.iconActive)
+    classes.push(config.value.color.iconActive)
   }
   else {
-    classes.push(props.color?.iconInactive || defaults.color.iconInactive)
+    classes.push(config.value.color.iconInactive)
   }
 
   // DISABLED && LOADING
-  if (props.disabled) {
+  if (config.value.disabled) {
     classes.push('cursor-not-allowed')
     classes.push('opacity-50')
   }
-  else if (props.loading) {
+  else if (config.value.loading) {
     classes.push('cursor-wait')
     classes.push('animate-pulse')
   }
   else {
     classes.push('cursor-pointer')
-    classes.push(props.color?.hover || defaults.color.hover)
+    classes.push(config.value.color.hover)
   }
 
   return classes.join(' ')
@@ -185,9 +137,21 @@ const labelStyleClass = computed(() => {
   const classes: string[] = []
   classes.push('ml-2')
 
-  classes.push(props.text?.label || defaults.text.label)
+  classes.push(config.value.text.label)
+  classes.push(config.value.color.label)
 
-  classes.push(props.color?.label || defaults.color.label)
+  if (config.value.disabled) {
+    classes.push('cursor-not-allowed')
+    classes.push('opacity-50')
+  }
+  else if (config.value.loading) {
+    classes.push('cursor-wait')
+    classes.push('animate-pulse')
+  }
+  else {
+    classes.push('cursor-pointer')
+    classes.push(config.value.color.hover)
+  }
 
   return classes.join(' ')
 })
@@ -195,9 +159,8 @@ const labelStyleClass = computed(() => {
 const descriptionStyleClass = computed(() => {
   const classes: string[] = []
 
-  classes.push(props.text?.description || defaults.text.description)
-
-  classes.push(props.color?.description || defaults.color.description)
+  classes.push(config.value.text.description)
+  classes.push(config.value.color.description)
 
   return classes.join(' ')
 })

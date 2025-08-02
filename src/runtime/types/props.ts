@@ -117,3 +117,23 @@ export interface CarouselProps {
     rounded?: string
   }
 }
+
+export interface CheckboxProps {
+  modelValue?: boolean
+  color?: {
+    label?: string
+    description?: string
+    iconInactive?: string
+    iconActive?: string
+    hover?: string
+  }
+  text?: {
+    label?: string
+    description?: string
+  }
+  label?: string
+  description?: string
+  radio?: boolean
+  disabled?: boolean
+  loading?: boolean
+}
