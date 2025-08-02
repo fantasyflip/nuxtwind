@@ -209,3 +209,37 @@ export interface DrawerConfig {
   height: string
   width: string
 }
+
+export interface ProgressConfig {
+  size: {
+    width: string
+    height: string
+  }
+  color: {
+    circle: string
+    circleDark: string
+    circleProgress: string
+    circleProgressDark: string
+    circleCutout: string
+    background: string
+    firstStrike: string
+    secondStrike: string
+    linearProgress: string
+    linearProgressHover: string
+  }
+  circular: {
+    size: string
+    cutout: {
+      size: string
+      text: string
+    }
+  }
+  loading: boolean
+  initialLoadTime: number
+  initialLoadTimeType: 'calc' | 'static'
+  transition: {
+    duration: string
+    ease: string
+  }
+  rounded: string
+}

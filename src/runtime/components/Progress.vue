@@ -1,21 +1,19 @@
 <template>
   <div
-    v-if="props.circular"
+    v-if="config.circular"
     id="circular-progress"
     class="conic-gradient"
     :class="circularStyleClass"
   >
     <div
-      v-if="!props.loading"
+      v-if="!config.loading"
       class="relative w-full h-full"
     >
       <slot name="inner-circle">
         <div
           class="h-full w-full grid place-items-center"
           :class="
-            typeof props.circular === 'object'
-              ? props.circular.cutout?.text
-              : defaults.circular.cutout.text
+            config.circular.cutout.text
           "
         >
           {{ textProgress }}%
@@ -36,46 +34,21 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
+import type { ProgressProps } from '../types/props'
+import type { ProgressConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
-  // eslint-disable-next-line vue/no-required-prop-with-default
-  modelValue: number
-  size?: {
-    width?: string
-    height?: string
-  }
-  color?: {
-    circle?: string
-    circleDark?: string
-    circleProgress?: string
-    circleProgressDark?: string
-    circleCutout?: string
-    background?: string
-    firstStrike?: string
-    secondStrike?: string
-    linearProgress?: string
-    linearProgressHover?: string
-  }
-  circular?:
-    | boolean
-    | {
-      size?: string
-      cutout?: {
-        size?: string
-        text?: string
-      }
-    }
-  loading?: boolean
-  initialLoadTime?: number | boolean
-  initialLoadTimeType?: 'calc' | 'static'
-  transition?:
-    | boolean
-    | {
-      duration?: string
-      ease?: string
-    }
-  rounded?: boolean | string
-}
+const props = withDefaults(defineProps<ProgressProps>(), {
+  modelValue: 0,
+  circular: false,
+  loading: undefined,
+  initialLoadTime: undefined,
+  transition: undefined,
+  rounded: undefined,
+})
+
+// Use computed to make config reactive to prop changes
+const config = computed<ProgressConfig>(() => useComponentConfig('progress', props))
 
 const colorMode = ref('dark')
 const htmlElement = ref<HTMLElement>()
@@ -112,79 +85,14 @@ onBeforeUnmount(() => {
   observer.disconnect()
 })
 
-const defaults = {
-  size: {
-    width: 'w-full',
-    height: 'h-1',
-  },
-  circular: {
-    size: 'size-20',
-    cutout: {
-      size: 'before:size-[84%]',
-      text: 'text-[70%]',
-    },
-  },
-  color: {
-    circle: '#e5e7eb',
-    circleDark: '#27272a',
-    circleProgress: '#00C16A',
-    circleProgressDark: '#00C16A',
-    circleCutout: 'before:bg-white dark:before:bg-zinc-900',
-    background: 'bg-gray-200 dark:bg-zinc-800',
-    firstStrike: 'before:bg-primary-500',
-    secondStrike: 'after:bg-primary-600',
-    linearProgress: 'bg-primary-500',
-    linearProgressHover: 'hover:bg-secondary-500',
-  },
-  loading: false,
-  transition: {
-    duration: 'duration-500',
-    ease: 'ease-in-out',
-  },
-  rounded: 'rounded-lg',
-  initialLoadTime: 100,
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: undefined,
-  size: () => {
-    return {
-      width: 'w-full',
-      height: 'h-1',
-    }
-  },
-  color: () => {
-    return {
-      circle: '#e5e7eb',
-      circleDark: '#27272a',
-      circleProgress: '#00C16A',
-      circleProgressDark: '#00C16A',
-      circleCutout: 'before:bg-white dark:before:bg-zinc-900',
-      background: 'bg-gray-200 dark:bg-zinc-800',
-      firstStrike: 'before:bg-primary-500',
-      secondStrike: 'after:bg-primary-600',
-      linearProgress: 'bg-primary-500',
-      linearProgressHover: 'hover:bg-secondary-500',
-    }
-  },
-  circular: false,
-  loading: false,
-  initialLoadTime: 100,
-  initialLoadTimeType: 'calc',
-  transition: true,
-  rounded: true,
-})
-
 const initialLoadTimeRef = ref(false)
 
-if (props.initialLoadTime) {
+if (config.value.initialLoadTime) {
   setTimeout(
     () => {
       initialLoadTimeRef.value = true
     },
-    typeof props.initialLoadTime === 'number'
-      ? props.initialLoadTime
-      : defaults.initialLoadTime,
+    config.value.initialLoadTime,
   )
 }
 
@@ -211,7 +119,7 @@ onMounted(() => {
 
 function getCircularProgress(inputValue: number) {
   let endValue = 0
-  if (inputValue === null && props.loading) {
+  if (inputValue === null && config.value.loading) {
     endValue = 30
   }
   else if (inputValue > 100) {
@@ -229,18 +137,14 @@ function getCircularProgress(inputValue: number) {
 
   const progressValue = ref(lastInputValue)
   let speed = 0
-  if (props.initialLoadTime) {
-    if (props.initialLoadTimeType === 'static') {
+  if (config.value.initialLoadTime) {
+    if (config.value.initialLoadTimeType === 'static') {
       speed
-        = typeof props.initialLoadTime === 'number'
-          ? props.initialLoadTime
-          : defaults.initialLoadTime
+        = config.value.initialLoadTime
     }
     else {
       speed
-        = (typeof props.initialLoadTime === 'number'
-          ? props.initialLoadTime
-          : defaults.initialLoadTime) / endValue
+        = config.value.initialLoadTime / endValue
     }
   }
 
@@ -290,19 +194,19 @@ function getCircularProgress(inputValue: number) {
 
 const circularColorCss = computed(() => {
   if (colorMode.value === 'light') {
-    return props.color.circle || defaults.color.circle
+    return config.value.color.circle
   }
   else {
-    return props.color.circleDark || defaults.color.circleDark
+    return config.value.color.circleDark
   }
 })
 
 const circularColorProgressCss = computed(() => {
   if (colorMode.value === 'light') {
-    return props.color.circleProgress || defaults.color.circleProgress
+    return config.value.color.circleProgress
   }
   else {
-    return props.color.circleProgressDark || defaults.color.circleProgressDark
+    return config.value.color.circleProgressDark
   }
 })
 
@@ -320,22 +224,16 @@ const circularStyleClass = computed(() => {
   )
 
   // SIZE
-  if (props.circular && typeof props.circular === 'boolean') {
-    classes.push(defaults.circular.size)
-    classes.push(defaults.circular.cutout.size)
-  }
-  else if (props.circular && typeof props.circular === 'object') {
-    classes.push(props.circular.size || defaults.circular.size)
-    classes.push(
-      props.circular.cutout?.size || defaults.circular.cutout.size,
-    )
+  if (config.value.circular) {
+    classes.push(config.value.circular.size)
+    classes.push(config.value.circular.cutout.size)
   }
 
   // COLOR
-  classes.push(props.color.circleCutout || defaults.color.circleCutout)
+  classes.push(config.value.color.circleCutout)
 
   // LOADING
-  if (props.loading) {
+  if (config.value.loading) {
     classes.push('animate-spin')
   }
 
@@ -347,20 +245,15 @@ const linearWrapperStyleClass = computed(() => {
 
   // COLOR
   classes.push('overflow-hidden')
-  classes.push(props.color.background || defaults.color.background)
+  classes.push(config.value.color.background)
 
   // SIZE
-  classes.push(props.size.width || defaults.size.width)
-  classes.push(props.size.height || defaults.size.height)
+  classes.push(config.value.size.width)
+  classes.push(config.value.size.height)
 
   // ROUNDED
-  if (props.rounded) {
-    if (typeof props.rounded === 'string') {
-      classes.push(props.rounded)
-    }
-    else {
-      classes.push(defaults.rounded)
-    }
+  if (config.value.rounded) {
+    classes.push(config.value.rounded)
   }
 
   return classes.join(' ')
@@ -371,50 +264,38 @@ const linearStyleClass = computed(() => {
 
   classes.push('relative', 'w-full', 'h-full')
 
-  if (props.loading) {
+  if (config.value.loading) {
     // class="relative w-full h-full before:content-[''] before:absolute before:h-full before:bg-red-600 before:animate-indeterminatebefore after:content-[''] after:absolute after:h-full after:bg-red-600 after:animate-indeterminateafter"
     classes.push(
       'before:content-[\'\'] before:absolute before:h-full before:animate-indeterminatebefore after:content-[\'\'] after:absolute after:h-full after:animate-indeterminateafter',
     )
 
     // COLOR
-    classes.push(props.color.secondStrike || defaults.color.secondStrike)
-    classes.push(props.color.firstStrike || defaults.color.firstStrike)
+    classes.push(config.value.color.secondStrike)
+    classes.push(config.value.color.firstStrike)
   }
   else {
     // COLOR
-    classes.push(props.color.linearProgress || defaults.color.linearProgress)
-    classes.push(
-      props.color.linearProgressHover || defaults.color.linearProgressHover,
-    )
-    if (props.transition) {
+    classes.push(config.value.color.linearProgress)
+    classes.push(config.value.color.linearProgressHover)
+    if (config.value.transition) {
       classes.push('transition-all')
-      if (typeof props.transition === 'object') {
-        classes.push(props.transition.duration || defaults.transition.duration)
-        classes.push(props.transition.ease || defaults.transition.ease)
-      }
-      else {
-        classes.push(defaults.transition.duration)
-        classes.push(defaults.transition.ease)
-      }
+
+      classes.push(config.value.transition.duration)
+      classes.push(config.value.transition.ease)
     }
   }
 
   // ROUNDED
-  if (props.rounded) {
-    if (typeof props.rounded === 'string') {
-      classes.push(props.rounded)
-    }
-    else {
-      classes.push(defaults.rounded)
-    }
+  if (config.value.rounded) {
+    classes.push(config.value.rounded)
   }
 
   return classes.join(' ')
 })
 
 const linearProgressStyle = computed(() => {
-  if (initialLoadTimeRef.value || !props.initialLoadTime) {
+  if (initialLoadTimeRef.value || !config.value.initialLoadTime) {
     let percent = 0
 
     let input: number = 0
@@ -435,7 +316,7 @@ const linearProgressStyle = computed(() => {
       percent = input
     }
 
-    if (props.loading && props.modelValue <= 0) {
+    if (config.value.loading && props.modelValue <= 0) {
       percent = 30
     }
 

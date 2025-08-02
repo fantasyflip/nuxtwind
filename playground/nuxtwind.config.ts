@@ -42,4 +42,9 @@ export default {
       bg: 'bg-yellow-500 dark:bg-yellow-500',
     },
   },
+  progress: {
+    color: {
+      secondStrike: 'after:bg-yellow-600',
+    },
+  },
 } satisfies NuxtWindConfig

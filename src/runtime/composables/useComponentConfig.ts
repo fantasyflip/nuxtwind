@@ -1,5 +1,5 @@
-import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps } from '../types/props'
-import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig, DrawerConfig } from '../types/merged'
+import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps } from '../types/props'
+import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig, DrawerConfig, ProgressConfig } from '../types/merged'
 import type { NuxtWindConfig } from '../types/config'
 import buttonDefaults from '../defaults/button'
 import badgeDefaults from '../defaults/badge'
@@ -8,6 +8,7 @@ import carouselDefaults from '../defaults/carousel'
 import checkboxDefaults from '../defaults/checkbox'
 import checkboxgroupDefaults from '../defaults/checkboxgroup'
 import drawerDefaults from '../defaults/drawer'
+import progressDefaults from '../defaults/progress'
 import { useRuntimeConfig } from '#app'
 
 // Generic type mapping for component props to config types
@@ -40,6 +41,10 @@ interface ComponentTypeMap {
     Props: DrawerProps
     Config: DrawerConfig
   }
+  progress: {
+    Props: ProgressProps
+    Config: ProgressConfig
+  }
   // Future components can be added here
 }
 
@@ -52,6 +57,7 @@ const booleanOnlyProps = {
   checkbox: new Set(['radio', 'disabled', 'loading']),
   checkboxgroup: new Set(['multiple', 'noRadio', 'loading', 'disabled', 'notZero']),
   drawer: new Set(['absolute', 'fixed', 'overlay', 'disableOverflow', 'noMobile', 'right', 'permanent']),
+  progress: new Set(['loading']),
   // Future components can be added here
 } as const
 
@@ -119,6 +125,7 @@ const defaultsRegistry = {
   checkbox: checkboxDefaults,
   checkboxgroup: checkboxgroupDefaults,
   drawer: drawerDefaults,
+  progress: progressDefaults,
   // Future components can be added here
 } as const
 
