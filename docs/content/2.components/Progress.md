@@ -143,6 +143,12 @@ required: false
     circular: true
     color:
       circleCutout: 'before:bg-white dark:before:bg-slate-900'
+  selectOptions:
+    initialLoadTimeType:
+      - value: static
+        label: 'Static'
+      - value: calc
+        label: 'Calc'
   ---
   ::
   ::callout{icon="i-heroicons-light-bulb" to="/components/progress#circular" }
