@@ -3,7 +3,7 @@ import type { ButtonConfig } from '../types/merged'
 export default {
   color: {
     bg: 'bg-primary-900 dark:bg-primary-900',
-    text: 'dark:text-white text-black',
+    text: 'dark:text-white text-white',
     border: 'dark:border-white border-black',
     hover: 'hover:bg-secondary-800 dark:hover:bg-secondary-800',
     iconHover: 'hover:text-secondary-800 dark:hover:text-secondary-800',
