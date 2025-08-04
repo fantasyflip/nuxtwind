@@ -7,7 +7,7 @@
     @mouseleave="enableAutoPlay"
   >
     <slot />
-    <div v-if="!props.hideNavigation">
+    <div v-if="!config.hideNavigation">
       <div :class="rightNavigationWrapperStyleClass">
         <Button
           icon
@@ -63,7 +63,7 @@
     </div>
 
     <ol
-      v-if="!props.hidePagination"
+      v-if="!config.hidePagination"
       :class="paginationWrapperStyleClass"
     >
       <li
@@ -106,44 +106,26 @@
 <script lang="ts" setup>
 import { computed, ref, onMounted, watch } from 'vue'
 import Button from './Button.vue'
+import type { CarouselConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
+import type { CarouselProps } from '../types/props'
 
-export interface Props {
-  modelValue?: number
-  autoPlay?: boolean
-  timeout?: number
-  disableAutoPlayOnHover?: boolean
-  hideNavigation?: boolean
-  hidePagination?: boolean
-  shadow?: boolean | string
-  transition?:
-    | boolean
-    | {
-      duration?: string
-      delay?: string
-      ease?: string
-    }
+export interface RequiredCarouselProps extends CarouselProps {
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  modelValue: number
 }
 
-const defaults = {
-  shadow: 'shadow-xl',
-  transition: {
-    duration: 'duration-300',
-    delay: 'delay-300',
-    ease: 'ease-in-out',
-  },
-  timeout: 5,
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<RequiredCarouselProps>(), {
   modelValue: 1,
-  autoPlay: true,
-  timeout: 5,
-  disableAutoPlayOnHover: true,
-  hideNavigation: false,
-  hidePagination: false,
-  shadow: true,
-  transition: true,
+  autoPlay: undefined,
+  disableAutoPlayOnHover: undefined,
+  hideNavigation: undefined,
+  hidePagination: undefined,
+  shadow: undefined,
+  transition: undefined,
 })
+
+const config = computed<CarouselConfig>(() => useComponentConfig('carousel', props))
 
 const emit = defineEmits<{
   (e: 'update:modelValue', id: number): void
@@ -178,27 +160,26 @@ const prevItem = () => {
 }
 
 const timeoutMs = computed(() => {
-  if (props.timeout <= 0) return defaults.timeout * 1000
-  return props.timeout * 1000
+  return config.value.timeout * 1000
 })
 
 let interval: NodeJS.Timeout | undefined = undefined
 function enableAutoPlay() {
-  if (props.disableAutoPlayOnHover && props.autoPlay) {
+  if (config.value.disableAutoPlayOnHover && config.value.autoPlay) {
     interval = setInterval(() => {
       nextItem()
     }, timeoutMs.value)
   }
 }
 function disableAutoPlay() {
-  if (props.disableAutoPlayOnHover && props.autoPlay) {
+  if (config.value.disableAutoPlayOnHover && config.value.autoPlay) {
     clearInterval(interval)
   }
 }
 
 onMounted(() => {
-  if (props.autoPlay) {
-    if (props.disableAutoPlayOnHover) {
+  if (config.value.autoPlay) {
+    if (config.value.disableAutoPlayOnHover) {
       enableAutoPlay()
     }
     else {
@@ -209,9 +190,9 @@ onMounted(() => {
   }
 })
 
-watch(() => props.autoPlay, () => {
-  if (props.autoPlay) {
-    if (props.disableAutoPlayOnHover) {
+watch(() => config.value.autoPlay, () => {
+  if (config.value.autoPlay) {
+    if (config.value.disableAutoPlayOnHover) {
       enableAutoPlay()
     }
     else {
@@ -225,10 +206,10 @@ watch(() => props.autoPlay, () => {
   }
 })
 
-watch(() => props.timeout, () => {
+watch(() => config.value.timeout, () => {
   clearInterval(interval)
-  if (props.autoPlay) {
-    if (props.disableAutoPlayOnHover) {
+  if (config.value.autoPlay) {
+    if (config.value.disableAutoPlayOnHover) {
       enableAutoPlay()
     }
     else {
@@ -253,13 +234,8 @@ const wrapperStyleClass = computed(() => {
     'overflow-hidden',
   )
 
-  if (props.shadow) {
-    if (typeof props.shadow === 'string') {
-      classes.push(props.shadow)
-    }
-    else {
-      classes.push(defaults.shadow)
-    }
+  if (config.value.shadow) {
+    classes.push(config.value.shadow)
   }
 
   return classes.join(' ')
@@ -277,17 +253,11 @@ const rightNavigationWrapperStyleClass = computed(() => {
     'group-hover/carousel:translate-x-0',
   )
 
-  if (typeof props.transition === 'boolean' && props.transition) {
+  if (config.value.transition) {
     classes.push('transition-all')
-    classes.push(defaults.transition.duration)
-    classes.push(defaults.transition.delay)
-    classes.push(defaults.transition.ease)
-  }
-  else if (typeof props.transition === 'object' && props.transition) {
-    classes.push('transition-all')
-    classes.push(props.transition?.duration || defaults.transition.duration)
-    classes.push(props.transition?.delay || defaults.transition.delay)
-    classes.push(props.transition?.ease || defaults.transition.ease)
+    classes.push(config.value.transition.duration)
+    classes.push(config.value.transition.delay)
+    classes.push(config.value.transition.ease)
   }
 
   return classes.join(' ')
@@ -305,17 +275,11 @@ const leftNavigationWrapperStyleClass = computed(() => {
     'group-hover/carousel:translate-x-0',
   )
 
-  if (typeof props.transition === 'boolean' && props.transition) {
+  if (config.value.transition) {
     classes.push('transition-all')
-    classes.push(defaults.transition.duration)
-    classes.push(defaults.transition.delay)
-    classes.push(defaults.transition.ease)
-  }
-  else if (typeof props.transition === 'object' && props.transition) {
-    classes.push('transition-all')
-    classes.push(props.transition?.duration || defaults.transition.duration)
-    classes.push(props.transition?.delay || defaults.transition.delay)
-    classes.push(props.transition?.ease || defaults.transition.ease)
+    classes.push(config.value.transition.duration)
+    classes.push(config.value.transition.delay)
+    classes.push(config.value.transition.ease)
   }
 
   return classes.join(' ')
@@ -336,13 +300,9 @@ const backgroundNavigationStyleClass = computed(() => {
     'transition-opacity',
   )
 
-  if (typeof props.transition === 'boolean' && props.transition) {
+  if (config.value.transition) {
     classes.push('transition-opacity')
-    classes.push(defaults.transition.duration)
-  }
-  else if (typeof props.transition === 'object' && props.transition) {
-    classes.push('transition-opacity')
-    classes.push(props.transition?.duration || defaults.transition.duration)
+    classes.push(config.value.transition.duration)
   }
 
   return classes.join(' ')
@@ -363,17 +323,11 @@ const paginationWrapperStyleClass = computed(() => {
     'group-hover/carousel:translate-y-0',
   )
 
-  if (typeof props.transition === 'boolean' && props.transition) {
+  if (config.value.transition) {
     classes.push('transition-all')
-    classes.push(defaults.transition.duration)
-    classes.push(defaults.transition.delay)
-    classes.push(defaults.transition.ease)
-  }
-  else if (typeof props.transition === 'object' && props.transition) {
-    classes.push('transition-all')
-    classes.push(props.transition?.duration || defaults.transition.duration)
-    classes.push(props.transition?.delay || defaults.transition.delay)
-    classes.push(props.transition?.ease || defaults.transition.ease)
+    classes.push(config.value.transition.duration)
+    classes.push(config.value.transition.delay)
+    classes.push(config.value.transition.ease)
   }
 
   return classes.join(' ')

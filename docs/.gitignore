@@ -25,3 +25,6 @@ logs
 
 # VSC
 .history
+
+# Generated files
+generated/prop-types.json

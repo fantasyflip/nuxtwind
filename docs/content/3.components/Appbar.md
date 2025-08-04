@@ -15,11 +15,7 @@ class: block
 
 ::prop-display
 ---
-name: absolute
-types:
-  - boolean
-default: false
-required: false
+prop: absolute
 ---
 ### `absolute`
 #description
@@ -28,11 +24,7 @@ required: false
 
 ::prop-display
 ---
-name: bottom
-types:
-  - boolean
-default: false
-required: false
+prop: bottom
 ---
 ### `bottom`
 #description
@@ -44,14 +36,7 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-  bg: "bg-gray-200 dark:bg-zinc-900"
-  navigationIcon: "text-black dark:text-white"
-  navigationIconHover: "hover:text-primary-700 dark:hover:text-primary-300"
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -68,24 +53,16 @@ required: false
 
 ::prop-display
 ---
-name: elevate-on-scroll
-types:
-  - boolean
-default: false
-required: false
+prop: elevateOnScroll
 ---
-### `elevate-on-scroll`
+### `elevateOnScroll`
 #description
   On scroll, the appbar will receive elevation by adding a drop shadow.
 ::
 
 ::prop-display
 ---
-name: extension
-types:
-  - boolean
-default: false
-required: false
+prop: extension
 ---
 ### `extension`
 #description
@@ -106,24 +83,16 @@ required: false
 
 ::prop-display
 ---
-name: fixed
-types:
-  - boolean
-default: false
-required: false
+prop: fixed
 ---
-### `absolute`
+### `fixed`
 #description
   Sets the appbar to fixed position.
 ::
 
 ::prop-display
 ---
-name: height
-types:
-  - string
-default: h-14
-required: false
+prop: height
 ---
 ### `height`
 #description
@@ -132,14 +101,9 @@ required: false
 
 ::prop-display
 ---
-name: navigation-icon
-types:
-  - boolean
-  - object
-default: false
-required: false
+prop: navigationIcon
 ---
-### `navigation-icon`
+### `navigationIcon`
 #description
   Activates the navigation icon slot.
   ::Component-Interactive
@@ -156,30 +120,21 @@ required: false
 
 ::prop-display
 ---
-name: scroll-offset
-types:
-  - number
-  - undefined
-default: undefined
-required: false
+prop: scrollOffset
 ---
-### `scroll-offset`
+### `scrollOffset`
 #description
   Sets the Y-Scroll-Offset for elevation and shrinking of the appbar, if it's used in a relative container element.
   ::callout{icon="i-heroicons-light-bulb" to="/components/appbar#elevate-on-scroll" }
-  Requires `elevate-on-scroll` and/or `shrink-on-scroll` to be set.
+  Requires `elevateOnScroll` and/or `shrinkOnScroll` to be set.
   ::
 ::
 
 ::prop-display
 ---
-name: shrink-on-scroll
-types:
-  - boolean
-default: false
-required: false
+prop: shrinkOnScroll
 ---
-### `shrink-on-scroll`
+### `shrinkOnScroll`
 #description
   Shrinks the extension slot on scroll.
   ::callout{icon="i-heroicons-light-bulb" to="/components/appbar#extension" }
@@ -189,11 +144,7 @@ required: false
 
 ::prop-display
 ---
-name: sticky
-types:
-  - boolean
-default: false
-required: false
+prop: sticky
 ---
 ### `sticky`
 #description
@@ -202,13 +153,18 @@ required: false
 
 ::prop-display
 ---
-name: z-index
-types:
-  - string
-default: z-10
-required: false
+prop: target
 ---
-### `z-index`
+### `target`
+#description
+  Sets the target for navigation links.
+::
+
+::prop-display
+---
+prop: zIndex
+---
+### `zIndex`
 #description
   Sets the appbar's z-index.
 ::
@@ -230,7 +186,7 @@ required: false
 #description
   Slot to provide a custom navigation icon.
   ::callout{icon="i-heroicons-light-bulb" to="/components/appbar#navigation-icon" }
-  Only relevant if `navigation-icon`-prop is set.
+  Only relevant if `navigationIcon`-prop is set.
   ::
 ::
 
@@ -238,7 +194,7 @@ required: false
 ### `extension` (slot)
 
 #description
-  Slot to provide a custom navigation icon.
+  Slot to provide content for the extension area.
   ::callout{icon="i-heroicons-light-bulb" to="/components/appbar#extension" }
   Only relevant if `extension`-prop is set.
   ::

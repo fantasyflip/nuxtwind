@@ -20,11 +20,7 @@ slots:
 
 ::prop-display
 ---
-name: border
-types:
-  - boolean
-default: true
-required: false
+prop: border
 ---
 ### `border`
 #description
@@ -45,11 +41,7 @@ required: false
 
 ::prop-display
 ---
-name: bottom
-types:
-  - boolean
-default: false
-required: false
+prop: bottom
 ---
 ### `bottom`
 #description
@@ -70,14 +62,7 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    bg: 'bg-red-500 dark:bg-red-500'
-    border: 'border-white dark:border-zinc-900'
-    text: 'text-white dark:text-white'
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -94,11 +79,7 @@ required: false
 
 ::prop-display
 ---
-name: height
-types:
-  - string
-default: 'min-h-[24px]'
-required: false
+prop: height
 ---
 ### `height`
 #description
@@ -107,11 +88,7 @@ required: false
 
 ::prop-display
 ---
-name: left
-types:
-  - boolean
-default: false
-required: false
+prop: left
 ---
 ### `left`
 #description
@@ -132,11 +109,7 @@ required: false
 
 ::prop-display
 ---
-name: right
-types:
-  - boolean
-default: true
-required: false
+prop: right
 ---
 ### `right`
 #description
@@ -145,11 +118,7 @@ required: false
 
 ::prop-display
 ---
-name: text
-types:
-  - string
-default: 'text-xs font-bold'
-required: false
+prop: text
 ---
 ### `text`
 #description
@@ -158,11 +127,7 @@ required: false
 
 ::prop-display
 ---
-name: top
-types:
-  - boolean
-default: true
-required: false
+prop: top
 ---
 ### `top`
 #description
@@ -171,11 +136,7 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - string
-default: 'min-w-[24px]'
-required: false
+prop: width
 ---
 ### `width`
 #description

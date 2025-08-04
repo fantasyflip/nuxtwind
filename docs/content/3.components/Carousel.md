@@ -21,13 +21,9 @@ hide:
 
 ::prop-display
 ---
-name: auto-play
-types:
-  - boolean
-default: true
-required: false
+prop: autoPlay
 ---
-### `auto-play`
+### `autoPlay`
 #description
   Activates auto-play for the carousel.
   ::ExampleCarousel
@@ -47,13 +43,9 @@ required: false
 
 ::prop-display
 ---
-name: disable-auto-play-on-hover
-types:
-  - boolean
-default: true
-required: false
+prop: disableAutoPlayOnHover
 ---
-### `disable-auto-play-on-hover`
+### `disableAutoPlayOnHover`
 #description
   Disables auto-play, if activated, on hover. After hover, auto-play restarts.
   ::ExampleCarousel
@@ -73,13 +65,9 @@ required: false
 
 ::prop-display
 ---
-name: hide-navigation
-types:
-  - boolean
-default: false
-required: false
+prop: hideNavigation
 ---
-### `hide-navigation`
+### `hideNavigation`
 #description
   Hides the navigation arrows on the sides of the carousel.
   ::ExampleCarousel
@@ -99,13 +87,9 @@ required: false
 
 ::prop-display
 ---
-name: hide-pagination
-types:
-  - boolean
-default: false
-required: false
+prop: hidePagination
 ---
-### `hide-pagination`
+### `hidePagination`
 #description
   Hides the pagination dots at the bottom of the carousel.
   ::ExampleCarousel
@@ -125,12 +109,7 @@ required: false
 
 ::prop-display
 ---
-name: shadow
-types:
-  - string
-  - boolean
-default: shadow-xl
-required: false
+prop: shadow
 ---
 ### `shadow`
 #description
@@ -139,11 +118,7 @@ required: false
 
 ::prop-display
 ---
-name: timeout
-types:
-  - number
-default: 5
-required: false
+prop: timeout
 ---
 ### `timeout`
 #description
@@ -165,20 +140,11 @@ required: false
 
 ::prop-display
 ---
-name: transition
-types:
-  - object
-  - boolean
-default:
-    duration: 'duration-300'
-    delay: 'delay-300'
-    ease: 'ease-in-out'
-required: false
+prop: transition
 ---
 ### `transition`
 #description
   The transition effect for displaying navigation arrows and pagination dots.
-
 #defaultValue
 ```ts
 {

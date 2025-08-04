@@ -12,7 +12,7 @@
         :class="pStyle"
       >
         <div
-          v-for="index in props.tagOptions.p?.lines"
+          v-for="index in config.tagOptions.p?.lines"
           :key="index"
           :class="pItemStyle(index)"
         />
@@ -25,7 +25,7 @@
         <div :class="articlePWrapperStyle">
           <!-- eslint-disable-next-line vue/require-v-for-key -->
           <div
-            v-for="index in props.tagOptions.article?.lines"
+            v-for="index in config.tagOptions.article?.lines"
             :class="articlePItemStyle(index)"
           />
         </div>
@@ -71,144 +71,21 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue'
+import type { SkeletonProps } from '../types/props'
+import type { SkeletonConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
+export interface RequiredSkeletonProps extends SkeletonProps {
   // eslint-disable-next-line vue/no-required-prop-with-default
   loading: boolean
-  tag?: string
-  autoDetectRootTag?: boolean
-  animationClass?: string
-  tagOptions?: {
-    p?: {
-      lines?: number
-      lineHeight?: string
-      color?: string
-      rounded?: string
-      gap?: string
-    }
-    article?: {
-      lines?: number
-      lineHeight?: string
-      headingHeight?: string
-      color?: string
-      gap?: string
-      headingGap?: string
-      rounded?: string
-      headingRounded?: string
-    }
-    img?: {
-      width?: string
-      height?: string
-      rounded?: string
-      color?: string
-      iconColor?: string
-      iconSize?: string
-    }
-    card?: {
-      imgHeight?: string
-      headingHeight?: string
-      imgRounded?: string
-      headingRounded?: string
-      imgIconColor?: string
-      imgIconSize?: string
-      imageAspect?: string
-      color?: string
-      gap?: string
-    }
-  }
 }
 
-const defaults = {
-  loading: true,
-  tag: 'p',
-  autoDetectRootTag: true,
-  animationClass: 'animate-pulse',
-  tagOptions: {
-    p: {
-      lines: 3,
-      lineHeight: 'h-4',
-      color: 'dark:bg-zinc-700 bg-zinc-200',
-      rounded: 'rounded-3xl',
-      gap: 'gap-2',
-    },
-    article: {
-      lines: 5,
-      lineHeight: 'h-4',
-      headingHeight: 'h-6',
-      color: 'dark:bg-zinc-700 bg-zinc-200',
-      gap: 'gap-2',
-      headingGap: 'gap-5',
-      rounded: 'rounded-3xl',
-      headingRounded: 'rounded-lg',
-    },
-    img: {
-      width: 'w-full',
-      height: 'h-full min-h-40',
-      rounded: 'rounded',
-      color: 'bg-zinc-800',
-      iconColor: 'text-zinc-600',
-      iconSize: 'size-10',
-    },
-    card: {
-      imgHeight: 'h-full min-h-40',
-      headingHeight: 'h-6',
-      imgRounded: 'rounded',
-      headingRounded: 'rounded-lg',
-      imgIconColor: 'text-zinc-600',
-      imgIconSize: 'size-10',
-      imageAspect: 'aspect-video',
-      color: 'bg-zinc-800',
-      gap: 'gap-4',
-    },
-  },
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  loading: true,
-  tag: 'p',
-  autoDetectRootTag: true,
-  animationClass: 'animate-pulse',
-  tagOptions: () => {
-    return {
-      p: {
-        lines: 3,
-        lineHeight: 'h-4',
-        color: 'dark:bg-zinc-700 bg-zinc-200',
-        rounded: 'rounded-3xl',
-        gap: 'gap-2',
-      },
-      article: {
-        lines: 5,
-        lineHeight: 'h-4',
-        headingHeight: 'h-6',
-        color: 'dark:bg-zinc-700 bg-zinc-200',
-        gap: 'gap-2',
-        headingGap: 'gap-5',
-        rounded: 'rounded-3xl',
-        headingRounded: 'rounded-lg',
-      },
-      img: {
-        width: 'w-full',
-        height: 'h-full min-h-40',
-        rounded: 'rounded',
-        color: 'bg-zinc-800',
-        iconColor: 'text-zinc-600',
-        iconSize: 'size-10',
-      },
-      card: {
-        imgHeight: 'h-full min-h-40',
-        headingHeight: 'h-6',
-        imgRounded: 'rounded',
-        headingRounded: 'rounded-lg',
-        imgIconColor: 'text-zinc-600',
-        imgIconSize: 'size-10',
-        imageAspect: 'aspect-video',
-        color: 'bg-zinc-800',
-        gap: 'gap-4',
-      },
-    }
-  },
+const props = withDefaults(defineProps<RequiredSkeletonProps>(), {
+  loading: undefined,
+  autoDetectRootTag: undefined,
 })
+
+const config = computed<SkeletonConfig>(() => useComponentConfig('skeleton', props))
 
 const SlotWrapper = ref<HTMLElement | null>(null)
 
@@ -237,15 +114,15 @@ onMounted(() => {
 })
 
 function isTag(tag: string) {
-  if (!props.loading) {
+  if (!config.value.loading) {
     return false
   }
 
-  if (props.autoDetectRootTag && slotRootTag.value) {
+  if (config.value.autoDetectRootTag && slotRootTag.value) {
     return slotRootTag.value?.toLocaleLowerCase() === tag.toLocaleLowerCase()
   }
   else {
-    return props.tag.toLocaleLowerCase() === tag.toLocaleLowerCase()
+    return config.value.tag.toLocaleLowerCase() === tag.toLocaleLowerCase()
   }
 }
 
@@ -254,7 +131,7 @@ const pStyle = computed(() => {
   const styleClasses = ['w-full', 'flex', 'flex-col']
 
   // line gap
-  styleClasses.push(props.tagOptions.p?.gap ?? defaults.tagOptions.p.gap)
+  styleClasses.push(config.value.tagOptions.p.gap)
 
   return styleClasses.join(' ')
 })
@@ -263,10 +140,10 @@ function pItemStyle(index: number) {
   const styleClasses: string[] = []
 
   // animation
-  styleClasses.push(props.animationClass)
+  styleClasses.push(config.value.animationClass)
 
   // line width
-  if (index == props.tagOptions.p?.lines && props.tagOptions.p?.lines > 1) {
+  if (index == config.value.tagOptions.p?.lines && config.value.tagOptions.p.lines > 1) {
     styleClasses.push('w-2/3')
   }
   else {
@@ -275,15 +152,15 @@ function pItemStyle(index: number) {
 
   // line height
   styleClasses.push(
-    props.tagOptions.p?.lineHeight ?? defaults.tagOptions.p.lineHeight,
+    config.value.tagOptions.p?.lineHeight,
   )
 
   // color
-  styleClasses.push(props.tagOptions.p?.color ?? defaults.tagOptions.p.color)
+  styleClasses.push(config.value.tagOptions.p?.color)
 
   // rounded
   styleClasses.push(
-    props.tagOptions.p?.rounded ?? defaults.tagOptions.p.rounded,
+    config.value.tagOptions.p?.rounded,
   )
 
   return styleClasses.join(' ')
@@ -295,8 +172,7 @@ const articleWrapperStyle = computed(() => {
 
   // line gap
   styleClasses.push(
-    props.tagOptions.article?.headingGap
-    ?? defaults.tagOptions.article.headingGap,
+    config.value.tagOptions.article?.headingGap,
   )
 
   return styleClasses.join(' ')
@@ -306,23 +182,21 @@ const articleHeadingStyle = computed(() => {
   const styleClasses: string[] = []
 
   // animation
-  styleClasses.push(props.animationClass)
+  styleClasses.push(config.value.animationClass)
 
   // line height
   styleClasses.push(
-    props.tagOptions.article?.headingHeight
-    ?? defaults.tagOptions.article.headingHeight,
+    config.value.tagOptions.article?.headingHeight,
   )
 
   // color
   styleClasses.push(
-    props.tagOptions.article?.color ?? defaults.tagOptions.article.color,
+    config.value.tagOptions.article?.color,
   )
 
   // rounded
   styleClasses.push(
-    props.tagOptions.article?.headingRounded
-    ?? defaults.tagOptions.article.headingRounded,
+    config.value.tagOptions.article?.headingRounded,
   )
 
   return styleClasses.join(' ')
@@ -333,7 +207,7 @@ const articlePWrapperStyle = computed(() => {
 
   // line gap
   styleClasses.push(
-    props.tagOptions.article?.gap ?? defaults.tagOptions.article.gap,
+    config.value.tagOptions.article?.gap,
   )
 
   return styleClasses.join(' ')
@@ -343,12 +217,12 @@ function articlePItemStyle(index: number) {
   const styleClasses: string[] = []
 
   // animation
-  styleClasses.push(props.animationClass)
+  styleClasses.push(config.value.animationClass)
 
   // line width
   if (
-    index == props.tagOptions.article?.lines
-    && props.tagOptions.article?.lines > 1
+    index == config.value.tagOptions.article?.lines
+    && config.value.tagOptions.article.lines > 1
   ) {
     styleClasses.push('w-2/3')
   }
@@ -358,18 +232,17 @@ function articlePItemStyle(index: number) {
 
   // line height
   styleClasses.push(
-    props.tagOptions.article?.lineHeight
-    ?? defaults.tagOptions.article.lineHeight,
+    config.value.tagOptions.article?.lineHeight,
   )
 
   // color
   styleClasses.push(
-    props.tagOptions.article?.color ?? defaults.tagOptions.article.color,
+    config.value.tagOptions.article.color,
   )
 
   // rounded
   styleClasses.push(
-    props.tagOptions.article?.rounded ?? defaults.tagOptions.article.rounded,
+    config.value.tagOptions.article?.rounded,
   )
 
   return styleClasses.join(' ')
@@ -380,26 +253,26 @@ const imgWrapperStyle = computed(() => {
   const styleClasses = ['flex', 'items-center', 'justify-center']
 
   // animation
-  styleClasses.push(props.animationClass)
+  styleClasses.push(config.value.animationClass)
 
   // width
   styleClasses.push(
-    props.tagOptions.img?.width ?? defaults.tagOptions.img.width,
+    config.value.tagOptions.img?.width,
   )
 
   // height
   styleClasses.push(
-    props.tagOptions.img?.height ?? defaults.tagOptions.img.height,
+    config.value.tagOptions.img?.height,
   )
 
   // color
   styleClasses.push(
-    props.tagOptions.img?.color ?? defaults.tagOptions.img.color,
+    config.value.tagOptions.img?.color,
   )
 
   // rounded
   styleClasses.push(
-    props.tagOptions.img?.rounded ?? defaults.tagOptions.img.rounded,
+    config.value.tagOptions.img?.rounded,
   )
 
   return styleClasses.join(' ')
@@ -410,12 +283,12 @@ const imgIconStyle = computed(() => {
 
   // color
   styleClasses.push(
-    props.tagOptions.img?.iconColor ?? defaults.tagOptions.img.iconColor,
+    config.value.tagOptions.img?.iconColor,
   )
 
   // size
   styleClasses.push(
-    props.tagOptions.img?.iconSize ?? defaults.tagOptions.img.iconSize,
+    config.value.tagOptions.img?.iconSize,
   )
 
   return styleClasses.join(' ')
@@ -426,7 +299,7 @@ const cardWrapperStyle = computed(() => {
   const styleClasses: string[] = ['w-full', 'flex', 'flex-col']
 
   // line gap
-  styleClasses.push(props.tagOptions.card?.gap ?? defaults.tagOptions.card.gap)
+  styleClasses.push(config.value.tagOptions.card?.gap)
 
   return styleClasses.join(' ')
 })
@@ -435,26 +308,26 @@ const cardImageWrapperStyle = computed(() => {
   const styleClasses: string[] = ['flex', 'items-center', 'justify-center']
 
   // animation
-  styleClasses.push(props.animationClass)
+  styleClasses.push(config.value.animationClass)
 
   // height
   styleClasses.push(
-    props.tagOptions.card?.imgHeight ?? defaults.tagOptions.card.imgHeight,
+    config.value.tagOptions.card.imgHeight,
   )
 
   // color
   styleClasses.push(
-    props.tagOptions.card?.color ?? defaults.tagOptions.card.color,
+    config.value.tagOptions.card?.color,
   )
 
   // rounded
   styleClasses.push(
-    props.tagOptions.card?.imgRounded ?? defaults.tagOptions.card.imgRounded,
+    config.value.tagOptions.card?.imgRounded,
   )
 
   // aspect ratio
   styleClasses.push(
-    props.tagOptions.card?.imageAspect ?? defaults.tagOptions.card.imageAspect,
+    config.value.tagOptions.card?.imageAspect,
   )
 
   return styleClasses.join(' ')
@@ -465,13 +338,12 @@ const cardImgIconStyle = computed(() => {
 
   // color
   styleClasses.push(
-    props.tagOptions.card?.imgIconColor
-    ?? defaults.tagOptions.card.imgIconColor,
+    config.value.tagOptions.card?.imgIconColor,
   )
 
   // size
   styleClasses.push(
-    props.tagOptions.card?.imgIconSize ?? defaults.tagOptions.card.imgIconSize,
+    config.value.tagOptions.card?.imgIconSize,
   )
 
   return styleClasses.join(' ')
@@ -481,23 +353,21 @@ const cardHeadingStyle = computed(() => {
   const styleClasses: string[] = ['mx-3']
 
   // animation
-  styleClasses.push(props.animationClass)
+  styleClasses.push(config.value.animationClass)
 
   // line height
   styleClasses.push(
-    props.tagOptions.card?.headingHeight
-    ?? defaults.tagOptions.card.headingHeight,
+    config.value.tagOptions.card?.headingHeight,
   )
 
   // color
   styleClasses.push(
-    props.tagOptions.card?.color ?? defaults.tagOptions.card.color,
+    config.value.tagOptions.card?.color,
   )
 
   // rounded
   styleClasses.push(
-    props.tagOptions.card?.headingRounded
-    ?? defaults.tagOptions.card.headingRounded,
+    config.value.tagOptions.card?.headingRounded,
   )
 
   return styleClasses.join(' ')

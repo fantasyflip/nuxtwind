@@ -1,10 +1,10 @@
 <template>
   <div
-    v-if="props.modelValue && props.overlay"
+    v-if="props.modelValue && config.overlay"
     :class="overlayClass"
   />
   <aside
-    v-if="props.modelValue || props.expandOnHover"
+    v-if="props.modelValue || config.expandOnHover"
     ref="drawer"
     :class="drawerWrapperClass"
     @mouseenter="hanldeHoverEnter"
@@ -17,78 +17,31 @@
 <script lang="ts" setup>
 import { computed, ref, watch, onMounted } from 'vue'
 import { onClickOutside } from '@vueuse/core'
+import type { DrawerProps } from '../types/props'
+import type { DrawerConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
+export interface RequiredDrawerProps extends DrawerProps {
   // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: boolean
-  color?: {
-    bg?: string
-    overlayBg?: string
-  }
-  absolute?: boolean
-  fixed?: boolean
-  zIndex?: string
-  overlay?: boolean
-  disableOverflow?: boolean
-  expandOnHover?:
-    | boolean
-    | {
-      width?: string
-      hoverWidth?: string
-    }
-  transition?:
-    | boolean
-    | {
-      duration?: string
-      ease?: string
-    }
-  noMobile?: boolean
-  mobileWidth?: number
-  border?: boolean | string
-  right?: boolean
-  permanent?: boolean
-  height?: string
-  width?: string
-}
-const defaults = {
-  color: {
-    bg: 'bg-gray-200 dark:bg-zinc-900',
-    overlayBg: 'bg-black/50',
-  },
-  expandOnHover: {
-    width: 'w-12',
-    hoverWidth: 'hover:w-80',
-  },
-  transition: {
-    duration: 'duration-300',
-    ease: 'ease-in-out',
-  },
-  border: 'border-r dark:border-zinc-700 border-gray-500',
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<RequiredDrawerProps>(), {
   modelValue: false,
-  color: () => {
-    return {
-      bg: 'bg-gray-200 dark:bg-zinc-900',
-      overlayBg: 'bg-black/50',
-    }
-  },
-  absolute: false,
-  fixed: true,
-  zIndex: 'z-[100]',
-  overlay: true,
-  disableOverflow: true,
-  expandOnHover: false,
-  transition: true,
-  noMobile: false,
-  mobileWidth: 768,
-  border: true,
-  right: false,
-  permanent: false,
-  height: 'h-screen',
-  width: 'w-80',
+  expandOnHover: undefined,
+  transition: undefined,
+  border: undefined,
+  absolute: undefined,
+  fixed: undefined,
+  overlay: undefined,
+  disableOverflow: undefined,
+  noMobile: undefined,
+  right: undefined,
+  permanent: undefined,
 })
+
+// Use computed to make config reactive to prop changes
+const config = computed<DrawerConfig>(() => useComponentConfig('drawer', props))
 
 const emit = defineEmits<{
   (e: 'update:modelValue', id: boolean): void
@@ -97,16 +50,16 @@ const emit = defineEmits<{
 function setDocumentOverflow(type: string) {
   if (type === 'auto') {
     document.body.classList.remove('overflow-hidden')
-    document.getElementsByTagName('html')[0].style.overflow = 'auto'
+    document.getElementsByTagName('html')[0]!.style.overflow = 'auto'
   }
   else if (type === 'hidden') {
     document.body.classList.add('overflow-hidden')
-    document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+    document.getElementsByTagName('html')[0]!.style.overflow = 'hidden'
   }
 }
 
 const permanentComputed = computed(() => {
-  return props.permanent
+  return config.value.permanent
 })
 
 watch(permanentComputed, (newVal) => {
@@ -125,7 +78,7 @@ const modelValueComputed = computed(() => {
 // watch modelValueComputed
 watch(modelValueComputed, (newVal) => {
   if (newVal) {
-    if (props.disableOverflow && !props.permanent) {
+    if (config.value.disableOverflow && !config.value.permanent) {
       setDocumentOverflow('hidden')
     }
   }
@@ -134,9 +87,9 @@ watch(modelValueComputed, (newVal) => {
 const drawer = ref(null)
 
 onClickOutside(drawer, () => {
-  if (!props.permanent) {
+  if (!config.value.permanent) {
     emit('update:modelValue', false)
-    if (props.disableOverflow) {
+    if (config.value.disableOverflow) {
       setDocumentOverflow('auto')
     }
   }
@@ -144,12 +97,12 @@ onClickOutside(drawer, () => {
 
 const isMobile = ref(false)
 onMounted(() => {
-  if (window.innerWidth < props.mobileWidth) {
+  if (window.innerWidth < config.value.mobileWidth) {
     isMobile.value = true
   }
   addEventListener('resize', (event) => {
     const w = event.target as Window
-    if (w.innerWidth < props.mobileWidth) {
+    if (w.innerWidth < config.value.mobileWidth) {
       isMobile.value = true
     }
     else {
@@ -159,15 +112,15 @@ onMounted(() => {
 })
 
 function hanldeHoverEnter() {
-  if (props.expandOnHover && (!isMobile.value || props.noMobile)) {
+  if (config.value.expandOnHover && (!isMobile.value || config.value.noMobile)) {
     emit('update:modelValue', true)
   }
 }
 
 function handleHoverLeave() {
-  if (props.expandOnHover && (!isMobile.value || props.noMobile)) {
+  if (config.value.expandOnHover && (!isMobile.value || config.value.noMobile)) {
     emit('update:modelValue', false)
-    if (props.disableOverflow && !props.permanent) {
+    if (config.value.disableOverflow && !config.value.permanent) {
       setDocumentOverflow('auto')
     }
   }
@@ -186,15 +139,15 @@ const overlayClass = computed(() => {
     'overflow-hidden',
   )
 
-  if (props.absolute) {
+  if (config.value.absolute) {
     classes.push('absolute')
   }
-  else if (props.fixed) {
+  else if (config.value.fixed) {
     classes.push('fixed')
   }
 
-  if (props.overlay) {
-    classes.push(props.color?.overlayBg || defaults.color.overlayBg)
+  if (config.value.overlay) {
+    classes.push(config.value.color.overlayBg)
   }
 
   return classes.join(' ')
@@ -205,64 +158,53 @@ const drawerWrapperClass = computed(() => {
 
   classes.push('overflow-y-auto', 'transition-all', 'transform')
 
-  if (props.expandOnHover && (!isMobile.value || props.noMobile)) {
+  if (config.value.expandOnHover && (!isMobile.value || config.value.noMobile)) {
     classes.push('overflow-x-hidden')
 
     if (typeof props.expandOnHover === 'object') {
-      classes.push(props.expandOnHover?.width || defaults.expandOnHover.width)
+      classes.push(props.expandOnHover?.width || config.value.expandOnHover.width)
       classes.push(
-        props.expandOnHover?.hoverWidth || defaults.expandOnHover.hoverWidth,
+        props.expandOnHover?.hoverWidth || config.value.expandOnHover.hoverWidth,
       )
     }
     else {
       classes.push(
-        defaults.expandOnHover.width,
-        defaults.expandOnHover.hoverWidth,
+        config.value.expandOnHover.width,
+        config.value.expandOnHover.hoverWidth,
       )
     }
   }
   else {
     if (props.modelValue) {
-      classes.push(props.width)
+      classes.push(config.value.width)
     }
     else {
       classes.push('w-0')
     }
   }
 
-  if (props.transition) {
-    if (typeof props.transition === 'object') {
-      classes.push(props.transition?.duration || defaults.transition.duration)
-      classes.push(props.transition?.ease || defaults.transition.ease)
-    }
-    else {
-      classes.push(defaults.transition.duration, defaults.transition.ease)
-    }
+  if (config.value.transition) {
+    classes.push(config.value.transition.duration, config.value.transition.ease)
   }
 
-  classes.push(props.color?.bg || defaults.color.bg)
+  classes.push(config.value.color.bg)
 
-  if (props.absolute) {
+  if (config.value.absolute) {
     classes.push('absolute', 'top-0')
   }
-  else if (props.fixed) {
+  else if (config.value.fixed) {
     classes.push('fixed')
   }
 
-  if (props.border && (props.modelValue || props.expandOnHover)) {
-    if (typeof props.border === 'string') {
-      classes.push(props.border)
-    }
-    else {
-      classes.push(defaults.border)
-    }
+  if (config.value.border && (props.modelValue || config.value.expandOnHover)) {
+    classes.push(config.value.border)
   }
 
-  classes.push(props.zIndex)
+  classes.push(config.value.zIndex)
 
-  classes.push(props.height)
+  classes.push(config.value.height)
 
-  if (props.right) {
+  if (config.value.right) {
     classes.push('right-0')
   }
 

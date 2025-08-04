@@ -53,6 +53,49 @@ export default defineNuxtConfig({
       crawlLinks: true,
       autoSubfolderIndex: false,
     },
+    publicAssets: [
+      {
+        dir: 'generated',
+        maxAge: 60 * 60 * 24 * 7, // Cache for a week
+      },
+    ],
+  },
+
+  hooks: {
+    'build:before': async () => {
+      console.log('🔍 Extracting prop types before build...')
+      try {
+        const { execSync } = await import('node:child_process')
+        execSync('tsx ./scripts/extract-prop-types.ts', {
+          cwd: process.cwd(),
+          stdio: 'inherit',
+        })
+        console.log('✅ Prop types extracted successfully')
+      }
+      catch (error) {
+        console.error('❌ Failed to extract prop types:', error)
+        // Don't fail the build, just warn
+        console.warn('⚠️  Continuing build without updated prop types')
+      }
+    },
+    'ready': async () => {
+      // Only run in development
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 Extracting prop types for development...')
+        try {
+          const { execSync } = await import('node:child_process')
+          execSync('tsx ./scripts/extract-prop-types.ts', {
+            cwd: process.cwd(),
+            stdio: 'inherit',
+          })
+          console.log('✅ Prop types extracted successfully')
+        }
+        catch (error) {
+          console.error('❌ Failed to extract prop types:', error)
+          console.log('ℹ️  Run "npm install" in the root directory and ensure tsx is available')
+        }
+      }
+    },
   },
 
   eslint: {

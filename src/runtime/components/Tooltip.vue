@@ -23,61 +23,22 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import type { TooltipProps } from '../types/props'
+import type { TooltipConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
-  color?: {
-    text?: string
-    bg?: string
-    bgPointer?: string
-  }
-  top?: boolean
-  bottom?: boolean
-  left?: boolean
-  right?: boolean
-  transition?:
-    | boolean
-    | {
-      duration?: string
-      ease?: string
-    }
-  text?: string
-  rounded?: boolean | string
-  zIndex?: string
-  interactive?: boolean
-  width?: string
-}
-const defaults = {
-  color: {
-    text: 'dark:text-white text-black',
-    bg: 'bg-primary-800',
-    bgPointer: 'bg-primary-800',
-  },
-  transition: {
-    duration: 'duration-300',
-    ease: 'ease-in-out',
-  },
-  rounded: 'rounded-lg',
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  color: () => {
-    return {
-      text: 'dark:text-white text-black',
-      bg: 'bg-primary-800',
-      bgPointer: 'text-primary-800',
-    }
-  },
-  top: true,
-  bottom: false,
-  left: false,
-  right: false,
+const props = withDefaults(defineProps<TooltipProps>(), {
+  top: undefined,
+  bottom: undefined,
+  left: undefined,
+  right: undefined,
   transition: true,
-  text: 'text-xs text-center',
   rounded: true,
-  zIndex: 'z-10',
-  interactive: false,
-  width: 'w-max',
+  interactive: undefined,
 })
+
+// Use computed to make config reactive to prop changes
+const config = computed<TooltipConfig>(() => useComponentConfig('tooltip', props))
 
 const contentWrapperClass = computed(() => {
   const classes = ['group', 'cursor-pointer', 'relative', 'inline-block']
@@ -95,39 +56,36 @@ const tooltipWrapperClass = computed(() => {
     'px-3',
   ]
 
-  if (!props.interactive) {
+  if (!config.value.interactive) {
     classes.push('pointer-events-none')
   }
 
-  classes.push(props.color?.bg || defaults.color.bg)
-  classes.push(props.color?.text || defaults.color.text)
+  // COLOR
+  classes.push(config.value.color.bg)
+  classes.push(config.value.color.text)
 
-  if (props.transition) {
-    if (typeof props.transition === 'object') {
-      classes.push(props.transition?.duration || defaults.transition.duration)
-      classes.push(props.transition?.ease || defaults.transition.ease)
-    }
-    else {
-      classes.push(defaults.transition.duration)
-      classes.push(defaults.transition.ease)
-    }
+  // TRANSITION
+  if (config.value.transition) {
+    classes.push(config.value.transition.duration)
+    classes.push(config.value.transition.ease)
   }
 
-  if (props.rounded) {
-    if (typeof props.rounded === 'string') {
-      classes.push(props.rounded)
-    }
-    else {
-      classes.push(defaults.rounded)
-    }
+  // ROUNDED
+  if (config.value.rounded) {
+    classes.push(config.value.rounded)
   }
 
-  classes.push(props.zIndex)
-  classes.push(props.width)
+  // Z-INDEX
+  classes.push(config.value.zIndex)
 
-  classes.push(props.text)
+  // WIDTH
+  classes.push(config.value.width)
 
-  if (props.left) {
+  // TEXT
+  classes.push(config.value.text)
+
+  // POSITION
+  if (config.value.left) {
     classes.push(
       'right-full',
       'mr-2',
@@ -136,7 +94,7 @@ const tooltipWrapperClass = computed(() => {
       '-translate-y-1/2',
     )
   }
-  else if (props.right) {
+  else if (config.value.right) {
     classes.push(
       'left-full',
       'ml-2',
@@ -145,7 +103,7 @@ const tooltipWrapperClass = computed(() => {
       '-translate-y-1/2',
     )
   }
-  else if (props.bottom) {
+  else if (config.value.bottom) {
     classes.push(
       'top-full',
       'mt-2',
@@ -154,7 +112,7 @@ const tooltipWrapperClass = computed(() => {
       '-translate-x-1/2',
     )
   }
-  else if (props.top) {
+  else if (config.value.top) {
     classes.push(
       'bottom-full',
       'mb-2',
@@ -170,7 +128,8 @@ const tooltipWrapperClass = computed(() => {
 const pointerClass = computed(() => {
   const classes: string[] = ['absolute', 'text-black', 'h-2', 'w-full']
 
-  if (props.left) {
+  // POSITION
+  if (config.value.left) {
     classes.push(
       'left-1/2',
       'ml-1',
@@ -180,7 +139,7 @@ const pointerClass = computed(() => {
       '-translate-y-1/2',
     )
   }
-  else if (props.right) {
+  else if (config.value.right) {
     classes.push(
       'right-1/2',
       'mr-1',
@@ -190,14 +149,15 @@ const pointerClass = computed(() => {
       '-translate-y-1/2',
     )
   }
-  else if (props.bottom) {
+  else if (config.value.bottom) {
     classes.push('bottom-full', 'rotate-180', 'left-0')
   }
-  else if (props.top) {
+  else if (config.value.top) {
     classes.push('top-full', 'left-0')
   }
 
-  classes.push(props.color?.bgPointer || defaults.color.bgPointer)
+  // COLOR
+  classes.push(config.value.color.bgPointer)
 
   return classes.join(' ')
 })

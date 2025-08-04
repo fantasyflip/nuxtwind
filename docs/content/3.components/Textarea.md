@@ -25,14 +25,9 @@ ignore:
 
 ::prop-display
 ---
-name: append-icon
-types:
-  - object
-  - boolean
-default: false
-required: false
+prop: appendIcon
 ---
-### `append-icon`
+### `appendIcon`
 #description
   Appends the provided icon to the right side of the input.
   ::callout{icon="i-heroicons-light-bulb" to="https://vuejs.org/api/reactivity-advanced.html#markraw" }
@@ -42,11 +37,7 @@ required: false
 
 ::prop-display
 ---
-name: autocomplete
-types:
-  - string
-default: 'on'
-required: false
+prop: autocomplete
 ---
 ### `autocomplete`
 #description
@@ -58,25 +49,7 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    bg: "bg-gray-200 dark:bg-zinc-800"
-    text: "text-black dark:text-white"
-    hint: "text-gray-600 dark:text-gray-400"
-    error: "text-red-500 dark:text-red-500"
-    label: "text-black dark:text-white"
-    labelFocus: "peer-focus:text-primary-600"
-    placeholderText: "placeholder:text-gray-400 dark:placeholder:text-gray-600"
-    icon: "text-black dark:text-white"
-    iconFocus: "group-focus-within:text-primary-600"
-    border: "border-black dark:border-white"
-    borderFocus:
-      "focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800"
-    borderError: "border-red-500"
-    borderFocusError: "focus:border-red-500"
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -104,11 +77,7 @@ required: false
 
 ::prop-display
 ---
-name: counter
-types:
-  - boolean
-default: false
-required: false
+prop: counter
 ---
 ### `counter`
 #description
@@ -133,11 +102,7 @@ required: false
 
 ::prop-display
 ---
-name: disabled
-types:
-  - boolean
-default: false
-required: false
+prop: disabled
 ---
 ### `disabled`
 #description
@@ -162,13 +127,7 @@ required: false
 
 ::prop-display
 ---
-name: filled
-types:
-  - boolean
-  - string
-default: true
-example: 'border-b-2'
-required: false
+prop: filled
 ---
 ### `filled`
 #description
@@ -193,13 +152,7 @@ required: false
 
 ::prop-display
 ---
-name: font
-types:
-  - object
-default:
-    label: "text-sm"
-    input: "text-sm"
-    hint: "text-xs"
+prop: font
 ---
 ### `font`
 #description
@@ -216,11 +169,7 @@ default:
 
 ::prop-display
 ---
-name: height
-types:
-  - string
-default: 'min-h-[40px]'
-required: false
+prop: height
 ---
 ### `height`
 #description
@@ -229,11 +178,7 @@ required: false
 
 ::prop-display
 ---
-name: hint
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: hint
 ---
 ### `hint`
 #description
@@ -258,11 +203,7 @@ required: false
 
 ::prop-display
 ---
-name: label
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: label
 ---
 ### `label`
 #description
@@ -285,11 +226,7 @@ required: false
 
 ::prop-display
 ---
-name: loading
-types:
-  - boolean
-default: false
-required: false
+prop: loading
 ---
 ### `loading`
 #description
@@ -314,12 +251,7 @@ required: false
 
 ::prop-display
 ---
-name: outlined
-types:
-  - boolean
-  - string
-default: false
-required: false
+prop: outlined
 ---
 ### `outlined`
 #description
@@ -349,11 +281,7 @@ required: false
 
 ::prop-display
 ---
-name: placeholder
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: placeholder
 ---
 ### `placeholder`
 #description
@@ -376,14 +304,9 @@ required: false
 
 ::prop-display
 ---
-name: prepend-icon
-types:
-  - object
-  - boolean
-default: false
-required: false
+prop: prependIcon
 ---
-### `prepend-icon`
+### `prependIcon`
 #description
   Prepends the provided icon to the left side of the input.
   ::callout{icon="i-heroicons-light-bulb" to="https://vuejs.org/api/reactivity-advanced.html#markraw" }
@@ -393,13 +316,7 @@ required: false
 
 ::prop-display
 ---
-name: rounded
-types:
-  - boolean
-  - string
-default: true
-example: 'rounded-lg'
-required: false
+prop: rounded
 ---
 ### `rounded`
 #description
@@ -408,13 +325,7 @@ required: false
 
 ::prop-display
 ---
-name: shadow
-types:
-  - boolean
-  - string
-default: true
-example: 'shadow-lg'
-required: false
+prop: shadow
 ---
 ### `shadow`
 #description
@@ -423,18 +334,7 @@ required: false
 
 ::prop-display
 ---
-name: transition
-types:
-  - boolean
-  - object
-default: true
-example:
-    duration: "duration-300"
-    ease: "ease-in-out"
-    placeholder:
-      duration: "placeholder:duration-500"
-      ease: "placeholder:ease-in-out"
-required: false
+prop: transition
 ---
 ### `transition`
 #description
@@ -454,16 +354,14 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - string
-default: 'w-full'
-required: false
+prop: width
 ---
 ### `width`
 #description
   Sets the width of the textarea.
 ::
+
+---
 
 ## Slots
 
