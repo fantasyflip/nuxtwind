@@ -43,8 +43,6 @@ const props = withDefaults(defineProps<RequiredDrawerProps>(), {
 // Use computed to make config reactive to prop changes
 const config = computed<DrawerConfig>(() => useComponentConfig('drawer', props))
 
-console.log('Drawer config:', config.value)
-
 const emit = defineEmits<{
   (e: 'update:modelValue', id: boolean): void
 }>()
