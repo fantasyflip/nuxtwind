@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex group">
     <div
       :id="checkboxId"
       :class="iconStyleClass"
@@ -59,7 +59,7 @@
     >
       <label
         :for="checkboxId"
-        :class="config.loading ? '' : 'cursor-pointer'"
+        :class="config.loading ? '' : config.disabled ? 'cursor-not-allowed':'cursor-pointer'"
         @click="updateModelValue(!props.modelValue)"
       >
         <slot name="label">{{ config.label }}</slot>
