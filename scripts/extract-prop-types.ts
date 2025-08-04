@@ -2,11 +2,9 @@ import ts from 'typescript'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createRequire } from 'node:module'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const require = createRequire(import.meta.url)
 
 interface PropInfo {
   name: string
@@ -21,6 +19,7 @@ interface ComponentInfo {
 }
 
 interface ComponentDefaults {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [componentName: string]: Record<string, any>
 }
 
@@ -79,6 +78,7 @@ async function loadDefaults(): Promise<ComponentDefaults> {
 }
 
 // Fallback function for when runtime import fails
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function extractDefaultsFromFile(componentName: string): Promise<Record<string, any>> {
   const filePath = path.resolve(__dirname, `../src/runtime/defaults/${componentName}.ts`)
 

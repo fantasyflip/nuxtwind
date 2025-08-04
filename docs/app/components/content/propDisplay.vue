@@ -147,7 +147,7 @@ const props = withDefaults(defineProps<Props>(), {
   required: false,
   types: () => ['string'],
   defaultTop: false,
-  default: undefined
+  default: undefined,
 })
 
 const route = useRoute()
@@ -246,14 +246,14 @@ const defaultValueClasses = computed(() => ({
   'text-green-500 dark:text-green-500': typeof computedDefault.value === 'string',
   'text-red-500 dark:text-red-500': typeof computedDefault.value === 'boolean' && !computedDefault.value,
   'text-orange-500 dark:text-orange-500': typeof computedDefault.value === 'boolean' && computedDefault.value,
-  'text-blue-500 dark:text-blue-500': typeof computedDefault.value === 'number'
+  'text-blue-500 dark:text-blue-500': typeof computedDefault.value === 'number',
 }))
 
 const exampleValueClasses = computed(() => ({
   'text-green-500 dark:text-green-500': typeof props.example === 'string',
   'text-red-500 dark:text-red-500': typeof props.example === 'boolean' && !props.example,
   'text-orange-500 dark:text-orange-500': typeof props.example === 'boolean' && props.example,
-  'text-blue-500 dark:text-blue-500': typeof props.example === 'number'
+  'text-blue-500 dark:text-blue-500': typeof props.example === 'number',
 }))
 
 // Format complex default objects as code
@@ -269,14 +269,15 @@ const { data: formattedDefaultCode } = await useAsyncData(
         parser: 'markdown',
         trailingComma: 'none',
         semi: false,
-        singleQuote: true
+        singleQuote: true,
       })
       return parseMarkdown(formatted)
-    } catch (e) {
+    }
+    catch (e) {
       console.warn('PropDisplay: Error formatting code:', e)
       return parseMarkdown(code)
     }
   },
-  { watch: [computedDefault] }
+  { watch: [computedDefault] },
 )
 </script>
