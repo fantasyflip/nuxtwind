@@ -38,7 +38,12 @@ import type { ProgressProps } from '../types/props'
 import type { ProgressConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
-const props = withDefaults(defineProps<ProgressProps>(), {
+export interface RequiredProgressProps extends ProgressProps {
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  modelValue: number
+}
+
+const props = withDefaults(defineProps<RequiredProgressProps>(), {
   modelValue: 0,
   circular: false,
   loading: undefined,

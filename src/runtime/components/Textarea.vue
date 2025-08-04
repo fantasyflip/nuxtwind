@@ -75,7 +75,12 @@ import type { TextareaProps } from '../types/props'
 import type { TextareaConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
-const props = withDefaults(defineProps<TextareaProps>(), {
+export interface RequiredTextareaProps extends TextareaProps {
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  modelValue: string
+}
+
+const props = withDefaults(defineProps<RequiredTextareaProps>(), {
   modelValue: '',
   prependIcon: undefined,
   appendIcon: undefined,

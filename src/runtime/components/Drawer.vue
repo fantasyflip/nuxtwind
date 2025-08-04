@@ -21,7 +21,12 @@ import type { DrawerProps } from '../types/props'
 import type { DrawerConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
-const props = withDefaults(defineProps<DrawerProps>(), {
+export interface RequiredDrawerProps extends DrawerProps {
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  modelValue: boolean
+}
+
+const props = withDefaults(defineProps<RequiredDrawerProps>(), {
   modelValue: false,
   expandOnHover: undefined,
   transition: undefined,

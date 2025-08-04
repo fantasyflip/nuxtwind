@@ -84,7 +84,11 @@ import type { CheckboxProps } from '../types/props'
 import type { CheckboxConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
-const props = withDefaults(defineProps<CheckboxProps>(), {
+export interface RequiredCheckboxProps extends CheckboxProps {
+  modelValue: boolean
+}
+
+const props = withDefaults(defineProps<RequiredCheckboxProps>(), {
   radio: undefined,
   disabled: undefined,
   loading: undefined,

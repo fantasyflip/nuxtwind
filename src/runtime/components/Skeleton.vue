@@ -75,7 +75,12 @@ import type { SkeletonProps } from '../types/props'
 import type { SkeletonConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
-const props = withDefaults(defineProps<SkeletonProps>(), {
+export interface RequiredSkeletonProps extends SkeletonProps {
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  loading: boolean
+}
+
+const props = withDefaults(defineProps<RequiredSkeletonProps>(), {
   loading: undefined,
   autoDetectRootTag: undefined,
 })

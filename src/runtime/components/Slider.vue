@@ -38,7 +38,12 @@ import type { SliderProps } from '../types/props'
 import type { SliderConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
-const props = withDefaults(defineProps<SliderProps>(), {
+export interface RequiredSliderProps extends SliderProps {
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  modelValue: number
+}
+
+const props = withDefaults(defineProps<RequiredSliderProps>(), {
   modelValue: 0,
   rounded: undefined,
   disabled: undefined,

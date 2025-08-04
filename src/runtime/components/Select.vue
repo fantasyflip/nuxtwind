@@ -82,7 +82,14 @@ import type { SelectProps } from '../types/props'
 import type { SelectConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
-const props = withDefaults(defineProps<SelectProps>(), {
+export interface RequiredSelectProps extends SelectProps {
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  modelValue: string | object
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  items: string[] | object[]
+}
+
+const props = withDefaults(defineProps<RequiredSelectProps>(), {
   modelValue: '',
   items: () => [],
   search: undefined,

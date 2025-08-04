@@ -42,12 +42,30 @@ import type { CheckboxgroupProps } from '../types/props'
 import type { CheckboxgroupConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 
-interface Props extends CheckboxgroupProps {
+interface RequiredCheckboxProps extends CheckboxgroupProps {
   // eslint-disable-next-line vue/no-required-prop-with-default
   modelValue: boolean[]
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  items: {
+    label?: string
+    description?: string
+    color?: {
+      label?: string
+      description?: string
+      iconInactive?: string
+      iconActive?: string
+      hover?: string
+    }
+    text?: {
+      label?: string
+      description?: string
+    }
+    disabled?: boolean
+    loading?: boolean
+  }[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<RequiredCheckboxProps>(), {
   modelValue: () => [],
   items: undefined,
   multiple: undefined,

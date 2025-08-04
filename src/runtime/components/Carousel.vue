@@ -110,7 +110,12 @@ import type { CarouselConfig } from '../types/merged'
 import useComponentConfig from '../composables/useComponentConfig'
 import type { CarouselProps } from '../types/props'
 
-const props = withDefaults(defineProps<CarouselProps>(), {
+export interface RequiredCarouselProps extends CarouselProps {
+  // eslint-disable-next-line vue/no-required-prop-with-default
+  modelValue: number
+}
+
+const props = withDefaults(defineProps<RequiredCarouselProps>(), {
   modelValue: 1,
   autoPlay: undefined,
   disableAutoPlayOnHover: undefined,

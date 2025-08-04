@@ -6,7 +6,7 @@
         :items="items"
         label="Framework"
         placeholder="Select a framework"
-        display-property="stars"
+        display-property="name"
         mark-on-focus
       />
     </div>
