@@ -66,7 +66,7 @@ export default defineNuxtConfig({
       console.log('🔍 Extracting prop types before build...')
       try {
         const { execSync } = await import('child_process')
-        execSync('tsx ../scripts/extract-prop-types.ts', {
+        execSync('tsx ./scripts/extract-prop-types.ts', {
           cwd: process.cwd(),
           stdio: 'inherit'
         })
@@ -83,7 +83,7 @@ export default defineNuxtConfig({
         console.log('🔍 Extracting prop types for development...')
         try {
           const { execSync } = await import('child_process')
-          execSync('tsx ../scripts/extract-prop-types.ts', {
+          execSync('tsx ./scripts/extract-prop-types.ts', {
             cwd: process.cwd(),
             stdio: 'inherit'
           })
