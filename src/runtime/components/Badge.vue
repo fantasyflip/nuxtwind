@@ -13,6 +13,7 @@
 import { computed } from 'vue'
 import type { BadgeProps } from '../types/props'
 import useComponentConfig from '../composables/useComponentConfig'
+import type { BadgeConfig } from '../types/merged'
 
 const props = withDefaults(defineProps<BadgeProps>(), {
   left: undefined,
@@ -22,7 +23,7 @@ const props = withDefaults(defineProps<BadgeProps>(), {
   border: undefined,
 })
 
-const config = useComponentConfig('badge', props)
+const config = computed<BadgeConfig>(() => useComponentConfig('badge', props))
 
 const styleClass = computed(() => {
   const classes: string[] = []
@@ -37,16 +38,16 @@ const styleClass = computed(() => {
   )
 
   // COLORS
-  classes.push(config.color.bg)
-  classes.push(config.color.border)
-  classes.push(config.color.text)
+  classes.push(config.value.color.bg)
+  classes.push(config.value.color.border)
+  classes.push(config.value.color.text)
 
   // POSITION
   // Horizontal
-  if (config.left) {
+  if (config.value.left) {
     classes.push('-left-2')
   }
-  else if (config.right) {
+  else if (config.value.right) {
     classes.push('-right-2')
   }
   else {
@@ -54,10 +55,10 @@ const styleClass = computed(() => {
   }
 
   // Vertical
-  if (config.bottom) {
+  if (config.value.bottom) {
     classes.push('-bottom-2')
   }
-  else if (config.top) {
+  else if (config.value.top) {
     classes.push('-top-2')
   }
   else {
@@ -65,12 +66,12 @@ const styleClass = computed(() => {
   }
 
   // TEXT
-  classes.push(config.text)
+  classes.push(config.value.text)
 
   // BORDER
-  if (config.border) {
-    if (typeof config.border === 'string') {
-      classes.push(config.border)
+  if (config.value.border) {
+    if (typeof config.value.border === 'string') {
+      classes.push(config.value.border)
     }
     else {
       classes.push('border-2')
@@ -78,10 +79,10 @@ const styleClass = computed(() => {
   }
 
   // WIDTH
-  classes.push(config.width)
+  classes.push(config.value.width)
 
   // HEIGHT
-  classes.push(config.height)
+  classes.push(config.value.height)
 
   return classes.join(' ')
 })
