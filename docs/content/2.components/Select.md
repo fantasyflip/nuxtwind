@@ -66,6 +66,7 @@ required: false
     - items
     - label
     - placeholder
+    - search
   props:
     modelValue: ''
     items:
@@ -75,6 +76,7 @@ required: false
     label: 'Framework'
     placeholder: 'Select a framework'
     clearable: true
+    search: true
   ---
   ::
   ::warning{icon="i-heroicons-light-bulb" to="/components/select#search" }
@@ -330,6 +332,7 @@ required: false
     - items
     - label
     - placeholder
+    - search
   props:
     modelValue: ''
     items:
@@ -372,6 +375,7 @@ required: false
     - items
     - label
     - placeholder
+    - color
   props:
     modelValue: ''
     items:
@@ -411,6 +415,7 @@ required: false
     - modelValue
     - items
     - label
+    - search
   props:
     modelValue: ''
     items:
@@ -419,7 +424,11 @@ required: false
       - Angular
     label: 'Framework'
     placeholder: 'Select a framework'
+    search: true
   ---
+  ::
+  ::callout{icon="i-heroicons-light-bulb" to="/components/select#search" }
+  Only applies if the `search`-property is set.
   ::
 ::
 
@@ -516,6 +525,7 @@ required: false
     - items
     - label
     - placeholder
+    - search
   props:
     modelValue: ''
     items:

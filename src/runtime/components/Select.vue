@@ -8,8 +8,8 @@
       ref="select"
       v-model="selectSearch"
       autocomplete="off"
-      :outlined="config.outlined"
-      :filled="config.filled"
+      :outlined="config.outlined == '' ? false : config.outlined"
+      :filled="config.filled == '' ? false : config.filled"
       :disabled="config.disabled"
       :placeholder="config.placeholder"
       :color="config.color.textfield"
@@ -95,8 +95,8 @@ const props = withDefaults(defineProps<RequiredSelectProps>(), {
   search: undefined,
   markOnFocus: undefined,
   showAllOnFocus: undefined,
-  outlined: undefined,
-  filled: undefined,
+  outlined: false,
+  filled: false,
   disabled: undefined,
   loading: undefined,
   transition: undefined,
