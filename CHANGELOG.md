@@ -1,5 +1,57 @@
 # Changelog
 
+## v2.1.0
+
+[compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.0.0...v2.1.0)
+
+### 🚀 Enhancements
+
+- User config handling ([3339f86](https://github.com/fantasyflip/nuxtwind/commit/3339f86))
+- **docs:** Advanced overwriting defaults ([f10bec6](https://github.com/fantasyflip/nuxtwind/commit/f10bec6))
+- Custom global default values ([#80](https://github.com/fantasyflip/nuxtwind/pull/80))
+
+### 🩹 Fixes
+
+- **Select:** Ts issues ([6e70fa8](https://github.com/fantasyflip/nuxtwind/commit/6e70fa8))
+- Required props ([5d6c6f0](https://github.com/fantasyflip/nuxtwind/commit/5d6c6f0))
+- **Select:** Outlined / filled state ([6ba7d8e](https://github.com/fantasyflip/nuxtwind/commit/6ba7d8e))
+- **docs:** Select options progress component ([225eb5e](https://github.com/fantasyflip/nuxtwind/commit/225eb5e))
+- **Badge:** Reactivity ([0c76c41](https://github.com/fantasyflip/nuxtwind/commit/0c76c41))
+- **Checkbox:** Hover effect ([096e953](https://github.com/fantasyflip/nuxtwind/commit/096e953))
+- Style adjustments ([e7f5e3d](https://github.com/fantasyflip/nuxtwind/commit/e7f5e3d))
+- **docs:** Script path ([b00c2a8](https://github.com/fantasyflip/nuxtwind/commit/b00c2a8))
+
+### 💅 Refactors
+
+- **Button:** Defaults and prop merging ([4109a0e](https://github.com/fantasyflip/nuxtwind/commit/4109a0e))
+- **Button:** User config usage ([ff523eb](https://github.com/fantasyflip/nuxtwind/commit/ff523eb))
+- **Badge:** User config usage ([41f0d68](https://github.com/fantasyflip/nuxtwind/commit/41f0d68))
+- **playground:** Simple overview ([b5c4509](https://github.com/fantasyflip/nuxtwind/commit/b5c4509))
+- **Appbar:** User config usage ([4230d8d](https://github.com/fantasyflip/nuxtwind/commit/4230d8d))
+- **Carousel:** User config usage ([399345c](https://github.com/fantasyflip/nuxtwind/commit/399345c))
+- **Checkbox:** User config usage ([5368699](https://github.com/fantasyflip/nuxtwind/commit/5368699))
+- **Checkboxgroup:** User config usage ([a3b821f](https://github.com/fantasyflip/nuxtwind/commit/a3b821f))
+- **Drawer:** User config usage ([2840cd3](https://github.com/fantasyflip/nuxtwind/commit/2840cd3))
+- **Progress:** User config usage ([3e94b71](https://github.com/fantasyflip/nuxtwind/commit/3e94b71))
+- **Select:** User config usage ([f84eb1e](https://github.com/fantasyflip/nuxtwind/commit/f84eb1e))
+- **Skeleton:** User config usage ([3409a5e](https://github.com/fantasyflip/nuxtwind/commit/3409a5e))
+- Slider, Textarea, Textfield, Toast, Tooltip user config usage ([1212616](https://github.com/fantasyflip/nuxtwind/commit/1212616))
+- **docs:** Prop display ([062db19](https://github.com/fantasyflip/nuxtwind/commit/062db19))
+- **docs:** New prop display ([87e09d4](https://github.com/fantasyflip/nuxtwind/commit/87e09d4))
+
+### 🏡 Chore
+
+- Release v2.0.0 ([e516a23](https://github.com/fantasyflip/nuxtwind/commit/e516a23))
+- **Drawer:** Remove log ([29292f7](https://github.com/fantasyflip/nuxtwind/commit/29292f7))
+- Linting ([ae202f9](https://github.com/fantasyflip/nuxtwind/commit/ae202f9))
+- Update lockfile ([d2ef938](https://github.com/fantasyflip/nuxtwind/commit/d2ef938))
+
+### ❤️ Contributors
+
+- Philipp Katzenberger ([@fantasyflip](https://github.com/fantasyflip))
+- BLUEBEAST\katze <katzenberger.ph+github@gmail.com>
+- FantasyFlip
+
 ## v2.0.0
 
 [compare changes](https://github.com/fantasyflip/nuxtwind/compare/v1.1.0...v2.0.0)
