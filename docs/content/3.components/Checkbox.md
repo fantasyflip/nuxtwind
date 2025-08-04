@@ -24,16 +24,7 @@ external:
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    label: 'text-black dark:text-gray-300'
-    description: 'text-gray-500 dark:text-gray-400'
-    iconInactive: 'text-gray-500 dark:text-gray-400'
-    iconActive: 'text-primary-800 dark:text-primary-800'
-    hover: 'hover:text-secondary-700 dark:hover:text-secondary-700'
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -53,11 +44,7 @@ required: false
 
 ::prop-display
 ---
-name: description
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: description
 ---
 ### `description`
 #description
@@ -82,11 +69,7 @@ required: false
 
 ::prop-display
 ---
-name: disabled
-types: 
-  - boolean
-default: false
-required: false
+prop: disabled
 ---
 ### `disabled`
 #description
@@ -110,11 +93,7 @@ required: false
 
 ::prop-display
 ---
-name: label
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: label
 ---
 ### `label`
 #description
@@ -136,11 +115,7 @@ required: false
 
 ::prop-display
 ---
-name: loading
-types:
-  - boolean
-default: false
-required: false
+prop: loading
 ---
 ### `loading`
 #description
@@ -164,11 +139,7 @@ required: false
 
 ::prop-display
 ---
-name: radio
-types:
-  - boolean
-default: false
-required: false
+prop: radio
 ---
 ### `radio`
 #description
@@ -192,13 +163,7 @@ required: false
 
 ::prop-display
 ---
-name: text
-types:
-  - object
-default:
-    label: 'text-sm font-medium'
-    description: 'text-xs font-normal'
-required: false
+prop: text
 ---
 ### `text`
 #description
@@ -212,6 +177,8 @@ required: false
 ```
 ::
 
+
+---
 
 ## Slots
 

@@ -41,13 +41,7 @@ props:
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    label: 'text-primary-500 dark:text-primary-500'
-    description: 'text-gray-500 dark:text-gray-400'
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -63,11 +57,7 @@ required: false
 
 ::prop-display
 ---
-name: description
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: description
 ---
 ### `description`
 #description
@@ -95,11 +85,7 @@ required: false
 
 ::prop-display
 ---
-name: disabled
-types:
-  - boolean
-default: false
-required: false
+prop: disabled
 ---
 ### `disabled`
 #description
@@ -129,23 +115,9 @@ required: false
 
 ::prop-display
 ---
-name: general-checkbox-props
-types:
-  - object
-default: {}
-example:
-  color:
-    label: 'text-primary-500 dark:text-primary-500'
-    description: 'text-gray-500 dark:text-gray-400'
-    iconInactive: 'text-gray-500 dark:text-gray-400'
-    iconActive: 'text-primary-800 dark:text-primary-800'
-    hover: 'hover:text-secondary-700 dark:hover:text-secondary-700'
-  text:
-    label: 'text-sm'
-    description: 'text-xs'
-required: false
+prop: generalCheckboxProps
 ---
-### `general-checkbox-props`
+### `generalCheckboxProps`
 #description
   Sets the general properties of the checkboxes. Takes all the properties of the Checkbox component.
   ::callout{icon="i-heroicons-light-bulb" to="/components/checkbox#props" }
@@ -175,24 +147,7 @@ required: false
 
 ::prop-display
 ---
-name: items
-types:
-  - array
-default: []
-example:
-  - label: 'Option 1'
-    description: 'This is a checkbox with customized color.'
-    color:
-      label: 'text-green-500 dark:text-green-500'
-      description: 'text-green-400 dark:text-green-400'
-  - label: 'Option 2'
-    description: 'This is a checkbox with loading state.'
-    loading: true
-  - label: 'Option 3'
-    description: 'This is a disabled checkbox.'
-    disabled: true
-  - label: 'Option 4'
-required: true
+prop: items
 ---
 ### `items`
 #description
@@ -231,11 +186,7 @@ required: true
 
 ::prop-display
 ---
-name: label
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: label
 ---
 ### `label`
 #description
@@ -263,11 +214,7 @@ required: false
 
 ::prop-display
 ---
-name: loading
-types:
-  - boolean
-default: false
-required: false
+prop: loading
 ---
 ### `loading`
 #description
@@ -297,11 +244,7 @@ required: false
 
 ::prop-display
 ---
-name: multiple
-types:
-  - boolean
-default: false
-required: false
+prop: multiple
 ---
 ### `multiple`
 #description
@@ -331,11 +274,7 @@ required: false
 
 ::prop-display
 ---
-name: no-radio
-types:
-  - boolean
-default: false
-required: false
+prop: noRadio
 ---
 ### `noRadio`
 #description
@@ -367,11 +306,7 @@ required: false
 
 ::prop-display
 ---
-name: not-zero
-types:
-  - boolean
-default: false
-required: false
+prop: notZero
 ---
 ### `notZero`
 #description
@@ -401,13 +336,7 @@ required: false
 
 ::prop-display
 ---
-name: text
-types:
-  - object
-default:
-    label: 'text-lg font-medium'
-    description: 'text-sm'
-required: false
+prop: text
 ---
 ### `text`
 #description
@@ -423,16 +352,14 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - string
-default: 'w-full'
-required: false
+prop: width
 ---
 ### `width`
 #description
   Sets the width of the checkboxgroup.
 ::
+
+---
 
 ## Slots
 

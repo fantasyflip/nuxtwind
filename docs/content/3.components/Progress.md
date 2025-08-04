@@ -18,17 +18,7 @@ props:
 
 ::prop-display
 ---
-name: circular
-types:
-  - boolean
-  - object
-default: false
-example:
-  size: 'size-20'
-  cutout:
-    size: 'before:size-[84%]'
-    text: 'before:text-[70%]'
-required: false
+prop: circular
 ---
 ### `circular`
 #description
@@ -62,21 +52,7 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-  circle: "#e5e7eb"
-  circleDark: "#27272a"
-  circleProgress: "#00C16A"
-  circleProgressDark: "#00C16A"
-  circleCutout: "before:bg-white dark:before:bg-zinc-900"
-  background: "bg-gray-200 dark:bg-zinc-800"
-  firstStrike: "before:bg-primary-500"
-  secondStrike: "after:bg-primary-600"
-  linearProgress: "bg-primary-500"
-  linearProgressHover: "hover:bg-secondary-500"
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -103,12 +79,7 @@ required: false
 
 ::prop-display
 ---
-name: initial-load-time
-types:
-  - number
-  - boolean
-default: 100
-required: false
+prop: initialLoadTime
 ---
 ### `initial-load-time`
 #description
@@ -118,11 +89,7 @@ required: false
 
 ::prop-display
 ---
-name: initial-load-time-type
-types:
-  - string
-default: 'calc'
-required: false
+prop: initialLoadTimeType
 ---
 ### `initial-load-time-type`
 #description
@@ -158,11 +125,7 @@ required: false
 
 ::prop-display
 ---
-name: loading
-types:
-  - boolean
-default: false
-required: false
+prop: loading
 ---
 ### `loading`
 #description
@@ -187,12 +150,7 @@ required: false
 
 ::prop-display
 ---
-name: rounded
-types:
-  - string
-  - boolean
-default: 'rounded-lg'
-required: false
+prop: rounded
 ---
 ### `rounded`
 #description
@@ -204,13 +162,7 @@ required: false
 
 ::prop-display
 ---
-name: size
-types:
-  - object
-default:
-  width: 'w-full'
-  height: 'h-1'
-required: false
+prop: size
 ---
 ### `size`
 #description
@@ -229,14 +181,7 @@ required: false
 
 ::prop-display
 ---
-name: transition
-types:
-  - object
-  - boolean
-default:
-  duration: "duration-500"
-  ease: "ease-in-out"
-required: false
+prop: transition
 ---
 ### `transition`
 #description

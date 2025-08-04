@@ -25,17 +25,7 @@ props:
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    description: "text-zinc-400"
-    sliderLine: "bg-zinc-600 dark:bg-zinc-600"
-    sliderThumb: "#06b6d4"
-    sliderThumbDark: "#06b6d4"
-    sliderThumbBorder: "#155e75"
-    sliderThumbBorderDark: "#155e75"
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -58,11 +48,7 @@ required: false
 
 ::prop-display
 ---
-name: description
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: description
 ---
 ### `description`
 #description
@@ -85,11 +71,7 @@ required: false
 
 ::prop-display
 ---
-name: height
-types:
-  - string
-default: 'h-0.5'
-required: false
+prop: height
 ---
 ### `height`
 #description
@@ -98,11 +80,7 @@ required: false
 
 ::prop-display
 ---
-name: label
-types:
-  - string
-default: '"" (empty string)'
-required: false
+prop: label
 ---
 ### `label`
 #description
@@ -125,11 +103,7 @@ required: false
 
 ::prop-display
 ---
-name: max
-types:
-  - number
-default: 100
-required: false
+prop: max
 ---
 ### `max`
 #description
@@ -154,11 +128,7 @@ required: false
 
 ::prop-display
 ---
-name: min
-types:
-  - number
-default: 0
-required: false
+prop: min
 ---
 ### `min`
 #description
@@ -183,12 +153,7 @@ required: false
 
 ::prop-display
 ---
-name: rounded
-types:
-  - string
-  - boolean
-default: 'rounded-lg'
-required: false
+prop: rounded
 ---
 ### `rounded`
 #description
@@ -203,11 +168,7 @@ required: false
 
 ::prop-display
 ---
-name: thumb-size
-types:
-  - number
-default: 15
-required: false
+prop: thumbSize
 ---
 ### `thumb-size`
 #description
@@ -233,11 +194,7 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - string
-default: 'w-full'
-required: false
+prop: width
 ---
 ### `width`
 #description

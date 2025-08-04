@@ -14,13 +14,11 @@ ignore:
 ---
 ::
 
+## Props
+
 ::prop-display
 ---
-name: absolute
-types:
-  - boolean
-default: false
-required: false
+prop: absolute
 ---
 ### `absolute`
 #description
@@ -29,12 +27,7 @@ required: false
 
 ::prop-display
 ---
-name: border
-types:
-  - string
-  - boolean
-default: 'border-r dark:border-zinc-700 border-gray-500'
-required: false
+prop: border
 ---
 ### `border`
 #description
@@ -56,13 +49,7 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-   bg: 'bg-gray-200 dark:bg-zinc-900'
-   overlayBg: 'bg-black/50'
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -78,29 +65,18 @@ required: false
 
 ::prop-display
 ---
-name: disable-overflow
-types:
-  - boolean
-default: true
-required: false
+prop: disableOverflow
 ---
-### `disable-overflow`
+### `disableOverflow`
 #description
   Disables html overflow when the drawer is open.
 ::
 
 ::prop-display
 ---
-name: expand-on-hover
-types:
-  - object
-  - boolean
-default:
-  width: 'w-12'
-  hoverWidth: 'hover:w-80'
-required: false
+prop: expandOnHover
 ---
-### `expand-on-hover`
+### `expandOnHover`
 #description
   Expands the drawer on hover. Optionally set the width and hoverWidth.
   ::ExampleDrawer
@@ -127,11 +103,7 @@ required: false
 
 ::prop-display
 ---
-name: fixed
-types:
-  - boolean
-default: true
-required: false
+prop: fixed
 ---
 ### `fixed`
 #description
@@ -140,11 +112,7 @@ required: false
 
 ::prop-display
 ---
-name: height
-types:
-  - string
-default: 'h-screen'
-required: false
+prop: height
 ---
 ### `height`
 #description
@@ -153,26 +121,18 @@ required: false
 
 ::prop-display
 ---
-name: mobile-width
-types:
-  - number
-default: 768
-required: false
+prop: mobileWidth
 ---
-### `mobile-width`
+### `mobileWidth`
 #description
   Sets the threshhold when the 'no-mobile'-Prop should take effect.
 ::
 
 ::prop-display
 ---
-name: no-mobile
-types:
-  - boolean
-default: false
-required: false
+prop: noMobile
 ---
-### `no-mobile`
+### `noMobile`
 #description
   Prevents the drawer from disabling 'expand-on-hover' on mobile devices.
   ::callout{icon="i-heroicons-light-bulb" to="/components/drawer#mobile-width" }
@@ -182,11 +142,7 @@ required: false
 
 ::prop-display
 ---
-name: overlay
-types:
-  - boolean
-default: true
-required: false
+prop: overlay
 ---
 ### `overlay`
 #description
@@ -205,11 +161,7 @@ required: false
 
 ::prop-display
 ---
-name: permanent
-types:
-  - boolean
-default: false
-required: false
+prop: permanent
 ---
 ### `permanent`
 #description
@@ -228,11 +180,7 @@ required: false
 
 ::prop-display
 ---
-name: right
-types:
-  - boolean
-default: false
-required: false
+prop: right
 ---
 ### `right`
 #description
@@ -251,14 +199,7 @@ required: false
 
 ::prop-display
 ---
-name: transition
-types:
-  - object
-  - boolean
-default:
-    duration: "duration-300"
-    ease: "ease-in-out"
-required: false
+prop: transition
 ---
 ### `transition`
 #description
@@ -274,11 +215,7 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - string
-default: 'w-80'
-required: false
+prop: width
 ---
 ### `width`
 #description
@@ -287,16 +224,14 @@ required: false
 
 ::prop-display
 ---
-name: z-index
-types:
-  - string
-default: 'z-[100]'
-required: false
+prop: zIndex
 ---
-### `z-index`
+### `zIndex`
 #description
   Sets the z-index of the drawer.
 ::
+
+---
 
 ## Slots
 

@@ -20,11 +20,7 @@ slots:
 
 ::prop-display
 ---
-name: bottom
-types:
-  - boolean
-default: false
-required: false
+prop: bottom
 ---
 ### `bottom`
 #description
@@ -45,14 +41,7 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    text: "dark:text-white text-black"
-    bg: "bg-primary-800"
-    bgPointer: "bg-primary-800"
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -69,11 +58,7 @@ required: false
 
 ::prop-display
 ---
-name: interactive
-types:
-  - boolean
-default: false
-required: false
+prop: interactive
 ---
 ### `interactive`
 #description
@@ -94,11 +79,7 @@ required: false
 
 ::prop-display
 ---
-name: left
-types:
-  - boolean
-default: false
-required: false
+prop: left
 ---
 ### `left`
 #description
@@ -119,11 +100,7 @@ required: false
 
 ::prop-display
 ---
-name: right
-types:
-  - boolean
-default: false
-required: false
+prop: right
 ---
 ### `right`
 #description
@@ -144,13 +121,7 @@ required: false
 
 ::prop-display
 ---
-name: rounded
-types:
-  - boolean
-  - string
-default: true
-example: 'rounded-lg'
-required: false
+prop: rounded
 ---
 ### `rounded`
 #description
@@ -159,11 +130,7 @@ required: false
 
 ::prop-display
 ---
-name: text
-types:
-  - string
-default: 'text-xs text-center'
-required: false
+prop: text
 ---
 ### `text`
 #description
@@ -172,11 +139,7 @@ required: false
 
 ::prop-display
 ---
-name: top
-types:
-  - boolean
-default: true
-required: false
+prop: top
 ---
 ### `top`
 #description
@@ -197,15 +160,7 @@ required: false
 
 ::prop-display
 ---
-name: transition
-types:
-  - boolean
-  - object
-default: true
-example:
-    duration: "duration-300"
-    ease: "ease-in-out"
-required: false
+prop: transition
 ---
 ### `transition`
 #description
@@ -221,11 +176,7 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - string
-default: 'w-max'
-required: false
+prop: width
 ---
 ### `width`
 #description
@@ -234,11 +185,7 @@ required: false
 
 ::prop-display
 ---
-name: z-index
-types:
-  - string
-default: 'z-10'
-required: false
+prop: zIndex
 ---
 ### `z-index`
 #description

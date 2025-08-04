@@ -16,14 +16,10 @@ slots:
 
 ::prop-display
 ---
-name: ari-label
-types:
-  - string
-  - undefined
-default: undefined
-required: false
+
+prop: ariLabel
 ---
-### `ari-label`
+### `ariLabel`
 #description
   Adds an aria-label to the button.
   ::Component-Interactive
@@ -38,53 +34,18 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    bg: 'bg-primary-900 dark:bg-primary-900'
-    text: 'dark:text-white text-black'
-    border: 'dark:border-white border-black'
-    hover: 'hover:bg-secondary-800 dark:hover:bg-secondary-800'
-    iconHover: 'hover:text-secondary-800 dark:hover:text-secondary-800'
-    loadingCircle: '#27272a'
-    loadingCircleDark: '#27272a'
-    loadingCircleProgress: '#10b981'
-    loadingCircleProgressDark: '#10b981'
-    loadingCircleCutout: 'before:bg-primary-900 dark:before:bg-primary-900'
-required: false
+
+prop: color
 ---
 ### `color`
 #description
   Sets the colors of the button.
-
-#defaultValue
-```ts
-{
-  bg: 'bg-primary-900 dark:bg-primary-900',
-  text: 'dark:text-white text-black',
-  border: 'dark:border-white border-black',
-  hover: 'hover:bg-secondary-800 dark:hover:bg-secondary-800',
-  iconHover: 'hover:text-secondary-800 dark:hover:text-secondary-800',
-  loadingCircle: '#27272a',
-  loadingCircleDark: '#27272a',
-  loadingCircleProgress: '#10b981',
-  loadingCircleProgressDark: '#10b981',
-  loadingCircleCutout: 'before:bg-primary-900 dark:before:bg-primary-900'
-}
-```
-
 ::
-
-
 
 ::prop-display
 ---
-name: dense
-types:
-  - boolean
-default: false
-required: false
+
+prop: dense
 ---
 ### `dense`
 #description
@@ -101,11 +62,8 @@ required: false
 
 ::prop-display
 ---
-name: disabled
-types:
-  - boolean
-default: false
-required: false
+
+prop: disabled
 ---
 ### `disabled`
 #description
@@ -125,14 +83,8 @@ required: false
 
 ::prop-display
 ---
-name: grow
-types:
-  - object
-  - boolean
-default:
-    delay: 'delay-10'
-    scale: 'hover:scale-105'
-required: false
+
+prop: grow
 ---
 ### `grow`
 #description
@@ -157,11 +109,8 @@ required: false
 
 ::prop-display
 ---
-name: height
-types:
-  - string
-default: '"" (empty string)'
-required: false
+
+prop: height
 ---
 ### `height`
 #description
@@ -170,11 +119,8 @@ required: false
 
 ::prop-display
 ---
-name: icon
-types:
-  - boolean
-default: false
-required: false
+
+prop: icon
 ---
 ### `icon`
 #description
@@ -183,12 +129,8 @@ required: false
 
 ::prop-display
 ---
-name: link
-types:
-  - string
-  - undefined
-default: undefined
-required: false
+
+prop: link
 ---
 ### `link`
 #description
@@ -200,11 +142,8 @@ required: false
 
 ::prop-display
 ---
-name: loading
-types:
-  - boolean
-default: false
-required: false
+
+prop: loading
 ---
 ### `loading`
 #description
@@ -224,12 +163,8 @@ required: false
 
 ::prop-display
 ---
-name: rounded
-types:
-  - boolean
-  - string
-default: 'rounded-md'
-required: false
+
+prop: rounded
 ---
 ### `rounded`
 #description
@@ -238,12 +173,8 @@ required: false
 
 ::prop-display
 ---
-name: shadow
-types:
-  - boolean
-  - string
-default: 'shadow-md'
-required: false
+
+prop: shadow
 ---
 ### `shadow`
 #description
@@ -260,11 +191,8 @@ required: false
 
 ::prop-display
 ---
-name: target
-types:
-  - string
-default: '_self'
-required: false
+
+prop: target
 ---
 ### `target`
 #description
@@ -276,14 +204,8 @@ required: false
 
 ::prop-display
 ---
-name: transition
-types:
-  - object
-  - boolean
-default:
-    duration: 'duration-300'
-    ease: 'ease-in-out'
-required: false
+
+prop: transition
 ---
 ### `transition`
 #description
@@ -291,24 +213,12 @@ required: false
   ::callout{icon="i-heroicons-light-bulb" }
   Takes effect on the `grow`-prop and the color-change on hover.
   ::
-#defaultValue
-```ts
-{
-  duration: 'duration-300',
-  ease: 'ease-in-out'
-}
-```
 ::
 
 ::prop-display
 ---
-name: type
-types:
-  - button
-  - submit
-  - reset
-default: button
-required: false
+
+prop: type
 ---
 ### `type`
 #description
@@ -317,11 +227,8 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - string
-default: w-fit
-required: false
+
+prop: width
 ---
 ### `width`
 #description

@@ -25,11 +25,7 @@ slots:
 
 ::prop-display
 ---
-name: animation-class
-types:
-  - string
-default: "animate-pulse"
-required: false
+prop: animationClass
 ---
 ### `animation-class`
 #description
@@ -38,11 +34,7 @@ required: false
 
 ::prop-display
 ---
-name: auto-detect-root-tag
-types:
-  - boolean
-default: true
-required: false
+prop: autoDetectRootTag
 ---
 ### `auto-detect-root-tag`
 #description
@@ -57,11 +49,7 @@ required: false
 
 ::prop-display
 ---
-name: loading
-types:
-  - boolean
-default: true
-required: false
+prop: loading
 ---
 ### `loading`
 #description
@@ -70,11 +58,7 @@ required: false
 
 ::prop-display
 ---
-name: tag
-types:
-  - string
-default: p
-required: false
+prop: tag
 ---
 ### `tag`
 #description
@@ -107,43 +91,7 @@ required: false
 
 ::prop-display
 ---
-name: tagOptions
-types:
-  - object
-default:
-    p: 
-      lines: 3
-      lineHeight: "h-4"
-      color: "dark:bg-zinc-700 bg-zinc-200"
-      rounded: "rounded-3xl"
-      gap: "gap-2"
-    article: 
-      lines: 5
-      lineHeight: "h-4"
-      headingHeight: "h-6"
-      color: "dark:bg-zinc-700 bg-zinc-200"
-      gap: "gap-2"
-      headingGap: "gap-5"
-      rounded: "rounded-3xl"
-      headingRounded: "rounded-lg"
-    img: 
-      width: "w-full"
-      height: "h-full min-h-40"
-      rounded: "rounded"
-      color: "bg-zinc-800"
-      iconColor: "text-zinc-600"
-      iconSize: "size-10"
-    card: 
-      imgHeight: "h-full min-h-40"
-      headingHeight: "h-6"
-      imgRounded: "rounded"
-      headingRounded: "rounded-lg"
-      imgIconColor: "text-zinc-600"
-      imgIconSize: "size-10"
-      imageAspect: "aspect-video"
-      color: "bg-zinc-800"
-      gap: "gap-4"
-required: false
+prop: tagOptions
 ---
 ### `tagOptions`
 #description

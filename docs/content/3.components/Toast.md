@@ -22,11 +22,7 @@ ignore:
 
 ::prop-display
 ---
-name: auto-close
-types:
-  - boolean
-default: false
-required: false
+prop: autoClose
 ---
 ### `auto-close`
 #description
@@ -49,27 +45,7 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    progress: {}
-    text: "text-gray-700 dark:text-gray-300"
-    bg: "bg-gray-100 dark:bg-zinc-800"
-    icon:
-      info:
-        text: "text-blue-500 dark:text-blue-200"
-        bg: "bg-blue-200 dark:bg-blue-800"
-      warning: 
-        text: "text-yellow-500 dark:text-yellow-200"
-        bg: "bg-yellow-200 dark:bg-yellow-800"
-      error:
-        text: "text-red-500 dark:text-red-200"
-        bg: "bg-red-200 dark:bg-red-800"
-      success:
-        text: "text-green-500 dark:text-green-200"
-        bg: "bg-green-200 dark:bg-green-800"
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -107,11 +83,7 @@ required: false
 
 ::prop-display
 ---
-name: duration
-types:
-  - number
-default: 5
-required: false
+prop: duration
 ---
 ### `duration`
 #description
@@ -135,11 +107,7 @@ required: false
 
 ::prop-display
 ---
-name: id
-types:
-  - string
-default: '"" (empty string)'
-required: true
+prop: id
 ---
 ### `id`
 #description
@@ -151,11 +119,7 @@ required: true
 
 ::prop-display
 ---
-name: message
-types:
-  - string
-default: 'Toast-Message'
-required: false
+prop: message
 ---
 ### `message`
 #description
@@ -175,13 +139,7 @@ required: false
 
 ::prop-display
 ---
-name: rounded
-types:
-  - boolean
-  - string
-default: true
-example: 'rounded-lg'
-required: false
+prop: rounded
 ---
 ### `rounded`
 #description
@@ -190,13 +148,7 @@ required: false
 
 ::prop-display
 ---
-name: shadow
-types:
-  - boolean
-  - string
-default: true
-example: 'shadow-lg'
-required: false
+prop: shadow
 ---
 ### `shadow`
 #description
@@ -205,11 +157,7 @@ required: false
 
 ::prop-display
 ---
-name: title
-types:
-  - string
-default: 'Toast-Title'
-required: false
+prop: title
 ---
 ### `title`
 #description
@@ -229,14 +177,7 @@ required: false
 
 ::prop-display
 ---
-name: type
-types:
-  - info
-  - success
-  - warning
-  - error
-default: info
-required: false
+prop: type
 ---
 ### `type`
 #description
@@ -268,11 +209,7 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - string
-default: 'w-full'
-required: false
+prop: width
 ---
 ### `width`
 #description

@@ -30,12 +30,7 @@ props:
 
 ::prop-display
 ---
-name: append-icon
-types:
-  - object
-  - boolean
-default: false
-required: false
+prop: appendIcon
 ---
 ### `append-icon`
 #description
@@ -47,11 +42,7 @@ required: false
 
 ::prop-display
 ---
-name: clearable
-types:
-  - boolean
-default: false
-required: false
+prop: clearable
 ---
 ### `clearable`
 #description
@@ -86,16 +77,7 @@ required: false
 
 ::prop-display
 ---
-name: color
-types:
-  - object
-default:
-    textfield: {}
-    bg: "bg-gray-200 dark:bg-zinc-800"
-    text: "text-black dark:text-white"
-    border: "border-gray-300 dark:border-zinc-700"
-    hover: "hover:bg-primary-700"
-required: false
+prop: color
 ---
 ### `color`
 #description
@@ -117,11 +99,7 @@ required: false
 
 ::prop-display
 ---
-name: disabled
-types:
-  - boolean
-default: false
-required: false
+prop: disabled
 ---
 ### `disabled`
 #description
@@ -151,13 +129,7 @@ required: false
 
 ::prop-display
 ---
-name: filled
-types:
-  - boolean
-  - string
-default: false
-example: 'border-b-2'
-required: false
+prop: filled
 ---
 ### `filled`
 #description
@@ -190,14 +162,7 @@ required: false
 
 ::prop-display
 ---
-name: font
-types:
-  - object
-default:
-    label: "text-sm"
-    input: "text-sm"
-    hint: "text-xs"
-required: false
+prop: font
 ---
 ### `font`
 #description
@@ -214,11 +179,7 @@ required: false
 
 ::prop-display
 ---
-name: height
-types:
-  - string
-default: 'max-h-48'
-required: false
+prop: height
 ---
 ### `height`
 #description
@@ -227,15 +188,7 @@ required: false
 
 ::prop-display
 ---
-name: items
-types:
-  - array
-default: []
-example:
-    - Vue
-    - React
-    - Angular
-required: true
+prop: items
 ---
 ### `items`
 #description
@@ -247,11 +200,7 @@ required: true
 
 ::prop-display
 ---
-name: label
-types:
-  - string
-default: ''
-required: false
+prop: label
 ---
 ### `label`
 #description
@@ -279,11 +228,7 @@ required: false
 
 ::prop-display
 ---
-name: loading
-types:
-  - boolean
-default: false
-required: false
+prop: loading
 ---
 ### `loading`
 #description
@@ -313,11 +258,7 @@ required: false
 
 ::prop-display
 ---
-name: mark-on-focus
-types:
-  - boolean
-default: false
-required: false
+prop: markOnFocus
 ---
 ### `mark-on-focus`
 #description
@@ -352,13 +293,7 @@ required: false
 
 ::prop-display
 ---
-name: outlined
-types:
-  - boolean
-  - string
-default: false
-example: 'border'
-required: false
+prop: outlined
 ---
 ### `outlined`
 #description
@@ -397,11 +332,7 @@ required: false
 
 ::prop-display
 ---
-name: placeholder
-types:
-  - string
-default: ''
-required: false
+prop: placeholder
 ---
 ### `placeholder`
 #description
@@ -434,12 +365,7 @@ required: false
 
 ::prop-display
 ---
-name: prepend-icon
-types:
-  - object
-  - boolean
-default: false
-required: false
+prop: prependIcon
 ---
 ### `prepend-icon`
 #description
@@ -451,11 +377,7 @@ required: false
 
 ::prop-display
 ---
-name: search
-types:
-  - boolean
-default: false
-required: false
+prop: search
 ---
 ### `search`
 #description
@@ -488,13 +410,7 @@ required: false
 
 ::prop-display
 ---
-name: shadow
-types:
-  - boolean
-  - string
-default: false
-example: 'shadow-lg'
-required: false
+prop: shadow
 ---
 ### `shadow`
 #description
@@ -506,11 +422,7 @@ required: false
 
 ::prop-display
 ---
-name: show-all-on-focus
-types:
-  - boolean
-default: false
-required: false
+prop: showAllOnFocus
 ---
 ### `show-all-on-focus`
 #description
@@ -545,18 +457,7 @@ required: false
 
 ::prop-display
 ---
-name: transition
-types:
-  - boolean
-  - object
-default: true
-example:
-    duration: "duration-300"
-    ease: "ease-in-out"
-    placeholder: 
-      duration: "placeholder:duration-500"
-      ease: "placeholder:ease-in-out"
-required: false
+prop: transition
 ---
 ### `transition`
 #description
@@ -579,13 +480,7 @@ required: false
 
 ::prop-display
 ---
-name: width
-types:
-  - object
-default:
-    textfield: "w-full"
-    select: "w-full"
-required: false
+prop: width
 ---
 ### `width`
 #description
@@ -601,11 +496,7 @@ required: false
 
 ::prop-display
 ---
-name: display-property
-types:
-  - string
-default: undefined
-required: false
+prop: displayProperty
 ---
 ### `display-property`
 #description
