@@ -1,3 +1,5 @@
+import type { CarouselConfig } from '../types/merged'
+
 export default {
   autoPlay: true,
   timeout: 5,
@@ -37,4 +39,4 @@ export default {
     spacing: 'mx-1',
     rounded: 'rounded-full',
   },
-}
+} satisfies CarouselConfig

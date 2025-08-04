@@ -60,4 +60,34 @@ export default {
       },
     },
   },
+  slider: {
+    label: 'Slider',
+    color: {
+      sliderLine: 'bg-yellow-500 dark:bg-yellow-500',
+    },
+  },
+  textarea: {
+    counter: true,
+    color: {
+      text: 'text-yellow-500 dark:text-yellow-400',
+    },
+  },
+  textfield: {
+    clearable: true,
+    color: {
+      text: 'text-yellow-500 dark:text-yellow-400',
+    },
+  },
+  toast: {
+    type: 'success',
+    color: {
+      text: 'text-yellow-500 dark:text-yellow-400',
+    },
+  },
+  tooltip: {
+    interactive: true,
+    color: {
+      bg: 'bg-yellow-500 dark:bg-yellow-500',
+    },
+  },
 } satisfies NuxtWindConfig

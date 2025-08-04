@@ -1,24 +1,24 @@
 <template>
   <div :class="wrapperClass">
     <div
-      v-if="props.prependIcon"
+      v-if="config.prependIcon"
       :class="prependIconClass"
     >
       <slot name="prepend-icon">
         <component
-          :is="props.prependIcon"
-          v-if="typeof props.prependIcon === 'object'"
+          :is="config.prependIcon"
+          v-if="typeof config.prependIcon === 'object'"
         />
       </slot>
     </div>
     <div
-      v-if="props.appendIcon"
+      v-if="config.appendIcon"
       :class="appendIconClass"
     >
       <slot name="append-icon">
         <component
-          :is="props.appendIcon"
-          v-if="typeof props.appendIcon === 'object'"
+          :is="config.appendIcon"
+          v-if="typeof config.appendIcon === 'object'"
         />
       </slot>
     </div>
@@ -27,8 +27,8 @@
         :id="textareaId"
         ref="textarea"
         :class="inputClass"
-        :placeholder="placeholder"
-        :disabled="props.disabled"
+        :placeholder="config.placeholder"
+        :disabled="config.disabled"
         :value="props.modelValue"
         :autocomplete="autocomplete"
         @input="handleInput"
@@ -39,26 +39,26 @@
         :for="textareaId"
         :class="labelClass"
       >
-        <slot name="label">{{ props.label }}</slot>
+        <slot name="label">{{ config.label }}</slot>
       </label>
       <div
-        v-if="props.counter"
+        v-if="config.counter"
         :for="textareaId"
         class="transition peer-focus:opacity-100 opacity-0 peer-focus:translate-y-0 -translate-y-3 absolute top-0 w-full flex justify-end"
       >
         <div
           class="pr-3 pt-1 text-xs"
-          :class="props.color?.hint || defaults.color.hint"
+          :class="config.color.hint"
         >
           {{ props.modelValue.length }}
         </div>
       </div>
       <div
         v-if="
-          ((props.hint && props.hint.length > 0)
+          ((config.hint && config.hint.length > 0)
             || typeof isValid === 'string')
-            && !props.disabled
-            && !props.loading
+            && !config.disabled
+            && !config.loading
         "
         :class="hintClass"
       >
@@ -71,145 +71,30 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { useId } from '#imports'
+import type { TextareaProps } from '../types/props'
+import type { TextareaConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
-  // eslint-disable-next-line vue/no-required-prop-with-default
-  modelValue: string
-  color?: {
-    bg?: string
-    text?: string
-    hint?: string
-    error?: string
-    label?: string
-    labelFocus?: string
-    placeholderText?: string
-    icon?: string
-    iconFocus?: string
-    border?: string
-    borderFocus?: string
-    borderError?: string
-    borderFocusError?: string
-  }
-  font?: {
-    label?: string
-    input?: string
-    placeholder?: string
-    hint?: string
-  }
-  label?: string
-  autocomplete?: string
-  prependIcon?: boolean | object
-  appendIcon?: boolean | object
-  disabled?: boolean
-  loading?: boolean
-  rounded?: boolean | string
-  outlined?: boolean | string
-  filled?: boolean | string
-  placeholder?: string
-  hint?: string
-  shadow?: boolean | string
-  transition?:
-    | boolean
-    | {
-      duration?: string
-      ease?: string
-      placeholder?: {
-        duration?: string
-        ease?: string
-      }
-    }
-  counter?: boolean
-  height?: string
-  width?: string
-  rules?: { (data: string): boolean | string }[]
-}
+const props = withDefaults(defineProps<TextareaProps>(), {
+  modelValue: '',
+  prependIcon: undefined,
+  appendIcon: undefined,
+  disabled: undefined,
+  loading: undefined,
+  rounded: true,
+  outlined: false,
+  filled: false,
+  shadow: true,
+  transition: true,
+  counter: undefined,
+})
+
+// Use computed to make config reactive to prop changes
+const config = computed<TextareaConfig>(() => useComponentConfig('textarea', props))
 
 const textareaId = useId()
 
 const isValid = ref<boolean | string>(true)
-const defaults = {
-  color: {
-    bg: 'bg-gray-200 dark:bg-zinc-800',
-    text: 'text-black dark:text-white',
-    hint: 'text-gray-600 dark:text-gray-400',
-    error: 'text-red-500 dark:text-red-500',
-    label: 'text-black dark:text-white',
-    labelFocus: 'peer-focus:text-primary-600',
-    placeholderText: 'placeholder:text-gray-400 dark:placeholder:text-gray-600',
-    icon: 'text-black dark:text-white',
-    iconFocus: 'group-focus-within:text-primary-600',
-    border: 'border-black dark:border-white',
-    borderFocus:
-      'focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800',
-    borderError: 'border-red-500',
-    borderFocusError: 'focus:border-red-500',
-  },
-  font: {
-    label: 'text-sm',
-    input: 'text-sm',
-    hint: 'text-sm',
-  },
-  rounded: 'rounded-lg',
-  outlined: 'border',
-  filled: 'border-b-2',
-  shadow: 'shadow-lg',
-  transition: {
-    duration: 'duration-300',
-    ease: 'ease-in-out',
-    placeholder: {
-      duration: 'placeholder:duration-500',
-      ease: 'placeholder:ease-in-out',
-    },
-  },
-  height: 'min-h-[40px]',
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: '',
-  color: () => {
-    return {
-      bg: 'bg-gray-200 dark:bg-zinc-800',
-      text: 'text-black dark:text-white',
-      hint: 'text-gray-600 dark:text-gray-400',
-      error: 'text-red-500 dark:text-red-500',
-      label: 'text-black dark:text-white',
-      labelFocus: 'peer-focus:text-primary-600',
-      placeholderText:
-        'placeholder:text-gray-400 dark:placeholder:text-gray-600',
-      icon: 'text-black dark:text-white',
-      iconFocus: 'group-focus-within:text-primary-600',
-      border: 'border-black dark:border-white',
-      borderFocus:
-        'focus:border-primary-800 dark:focus:border-primary-800 focus-within:border-primary-800 dark:focus-within:border-primary-800',
-      borderError: 'border-red-500',
-      borderFocusError: 'focus:border-red-500',
-    }
-  },
-  font: () => {
-    return {
-      label: 'text-sm',
-      input: 'text-sm',
-      hint: 'text-sm',
-    }
-  },
-  label: '',
-  autocomplete: 'on',
-  prependIcon: false,
-  appendIcon: false,
-  disabled: false,
-  loading: false,
-  rounded: true,
-  outlined: false,
-  filled: false,
-  placeholder: ' ',
-  hint: undefined,
-  shadow: true,
-  transition: true,
-  counter: false,
-  height: 'min-h-[40px]',
-  width: 'w-full',
-  rules: () => [],
-})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', id: string): void
@@ -225,31 +110,35 @@ defineExpose({
 
 function handleInput(e: Event) {
   // UPDATE MODEL VALUE
-  emit('update:modelValue', e.target?.value)
+  const value = (e.target as HTMLTextAreaElement)?.value
+  emit('update:modelValue', value)
 
   // VALIDATE INPUT AGAINST RULES
-  isValid.value = validate(e.target?.value)
+  isValid.value = validate(value)
 
   // EMIT VALIDATION RESULT
   emit('update:validation', {
     isValid: isValid.value === true ? true : false,
     result: isValid.value,
-    value: e.target.value,
+    value: value,
     source: {
-      name: props.label,
+      name: config.value.label,
       type: 'textarea',
     },
   })
 }
 
 function validate(value: string): boolean | string {
-  if (props.rules.length > 0) {
-    const rules = props.rules
+  if (config.value.rules.length > 0) {
+    const rules = config.value.rules
     // go through all rules; return true if all rules are valid; return first error if any rule is invalid
     for (let i = 0; i < rules.length; i++) {
       const rule = rules[i]
-      if (rule(value) !== true) {
-        return rule(value)
+      if (typeof rule === 'function') {
+        const result = rule(value)
+        if (result !== true) {
+          return result
+        }
       }
     }
     return true
@@ -261,7 +150,7 @@ function validate(value: string): boolean | string {
 
 const hint = computed(() => {
   if (isValid.value === true) {
-    return props.hint
+    return config.value.hint
   }
   else {
     return isValid.value
@@ -273,22 +162,22 @@ const wrapperClass = computed(() => {
   classes.push('relative', 'group')
 
   // DEFAULT
-  if (!props.outlined && !props.filled) {
+  if (!config.value.outlined && !config.value.filled) {
     classes.push('z-0')
   }
 
   // DISABLED
-  if (props.disabled) {
+  if (config.value.disabled) {
     classes.push('opacity-50', 'cursor-not-allowed')
   }
 
   // LOADING
-  if (props.loading) {
+  if (config.value.loading) {
     classes.push('cursor-progress', 'animate-pulse')
   }
 
   // WIDTH
-  classes.push(props.width)
+  classes.push(config.value.width)
 
   return classes.join(' ')
 })
@@ -308,54 +197,39 @@ const textareaWrapperClass = computed(() => {
   )
   classes.push('pt-4')
 
-  if (props.filled) {
+  if (config.value.filled) {
     classes.push('rounded-t-lg')
 
     // COLOR
-    classes.push(props.color.bg || defaults.color.bg)
+    classes.push(config.value.color.bg)
   }
-  else if (props.outlined) {
+  else if (config.value.outlined) {
     classes.push('bg-transparent')
 
     // OUTLINED
-    if (typeof props.outlined === 'string') {
-      classes.push(props.outlined)
-    }
-    else {
-      classes.push(defaults.outlined)
-    }
+    classes.push(config.value.outlined)
 
     // ROUNDED
-    if (props.rounded) {
-      if (typeof props.rounded === 'string') {
-        classes.push(props.rounded)
-      }
-      else {
-        classes.push(defaults.rounded)
-      }
+    if (config.value.rounded) {
+      classes.push(config.value.rounded)
     }
   }
 
   // COLOR
   if (isValid.value === true) {
-    classes.push(props.color.border || defaults.color.border)
-    classes.push(props.color.borderFocus || defaults.color.borderFocus)
+    classes.push(config.value.color.border)
+    classes.push(config.value.color.borderFocus)
   }
   else {
-    classes.push(props.color.borderError || defaults.color.borderError)
+    classes.push(config.value.color.borderError)
     classes.push(
-      props.color.borderFocusError || defaults.color.borderFocusError,
+      config.value.color.borderFocusError,
     )
   }
 
   // SHADOW
-  if (props.shadow) {
-    if (typeof props.shadow === 'string') {
-      classes.push(props.shadow)
-    }
-    else {
-      classes.push(defaults.shadow)
-    }
+  if (config.value.shadow) {
+    classes.push(config.value.shadow)
   }
 
   return classes.join(' ')
@@ -377,66 +251,55 @@ const inputClass = computed(() => {
   )
 
   // FONT
-  classes.push(props.font.input || defaults.font.input)
+  classes.push(config.value.font.input)
 
   // TRANSITION
-  if (props.transition && typeof props.transition === 'object') {
+  if (config.value.transition) {
     classes.push(
-      props.transition.placeholder?.duration
-      || defaults.transition.placeholder.duration,
+      config.value.transition.placeholder.duration,
     )
     classes.push(
-      props.transition.placeholder?.ease
-      || defaults.transition.placeholder.ease,
+      config.value.transition.placeholder.ease,
     )
-  }
-  else if (props.transition) {
-    classes.push(defaults.transition.placeholder.duration)
-    classes.push(defaults.transition.placeholder.ease)
   }
 
   // BASIC APPEARANCE
 
-  if (props.filled) {
+  if (config.value.filled) {
     // FILLED
     classes.push('pb-2.5', 'px-2.5', 'pt-2', 'border-0')
 
-    if (typeof props.filled === 'string') {
-      classes.push(props.filled)
-    }
-    else {
-      classes.push(defaults.filled)
-    }
+    classes.push(config.value.filled)
 
     // COLOR
-    classes.push(props.color.bg || defaults.color.bg)
+    classes.push(config.value.color.bg)
 
     // ICON
-    if (props.appendIcon && props.prependIcon) {
+    if (config.value.appendIcon && config.value.prependIcon) {
       classes.push('px-8')
     }
-    else if (props.appendIcon) {
+    else if (config.value.appendIcon) {
       classes.push('pr-8 pl-2.5')
     }
-    else if (props.prependIcon) {
+    else if (config.value.prependIcon) {
       classes.push('pl-8 pr-2.5')
     }
     else {
       classes.push('px-2.5')
     }
   }
-  else if (props.outlined) {
+  else if (config.value.outlined) {
     // OUTLINED
     classes.push('pb-4', 'pt-1', 'bg-transparent')
 
     // ICON
-    if (props.appendIcon && props.prependIcon) {
+    if (config.value.appendIcon && config.value.prependIcon) {
       classes.push('px-8')
     }
-    else if (props.appendIcon) {
+    else if (config.value.appendIcon) {
       classes.push('pr-8 pl-2.5')
     }
-    else if (props.prependIcon) {
+    else if (config.value.prependIcon) {
       classes.push('pl-8 pr-2.5')
     }
     else {
@@ -448,13 +311,13 @@ const inputClass = computed(() => {
     classes.push('pb-2.5', 'bg-transparent', 'border-0', 'border-b-2')
 
     // ICON
-    if (props.appendIcon && props.prependIcon) {
+    if (config.value.appendIcon && config.value.prependIcon) {
       classes.push('px-8')
     }
-    else if (props.appendIcon) {
+    else if (config.value.appendIcon) {
       classes.push('pr-8 pl-0')
     }
-    else if (props.prependIcon) {
+    else if (config.value.prependIcon) {
       classes.push('pl-8 pr-0')
     }
     else {
@@ -464,31 +327,31 @@ const inputClass = computed(() => {
 
   // COLOR
   if (isValid.value === true) {
-    classes.push(props.color.border || defaults.color.border)
-    classes.push(props.color.borderFocus || defaults.color.borderFocus)
+    classes.push(config.value.color.border)
+    classes.push(config.value.color.borderFocus)
   }
   else {
-    classes.push(props.color.borderError || defaults.color.borderError)
+    classes.push(config.value.color.borderError)
     classes.push(
-      props.color.borderFocusError || defaults.color.borderFocusError,
+      config.value.color.borderFocusError,
     )
   }
 
-  classes.push(props.color.text || defaults.color.text)
-  classes.push(props.color.placeholderText || defaults.color.placeholderText)
+  classes.push(config.value.color.text)
+  classes.push(config.value.color.placeholderText)
 
   // DISABLED
-  if (props.disabled) {
+  if (config.value.disabled) {
     classes.push('cursor-not-allowed')
   }
 
   // LOADING
-  if (props.loading) {
+  if (config.value.loading) {
     classes.push('cursor-progress')
   }
 
   // HEIGHT
-  classes.push(props.height || defaults.height)
+  classes.push(config.value.height)
 
   return classes.join(' ')
 })
@@ -505,20 +368,16 @@ const labelClass = computed(() => {
   )
 
   // FONT
-  classes.push(props.font.label || defaults.font.label)
+  classes.push(config.value.font.label)
 
   // TRANSITION
-  if (props.transition && typeof props.transition === 'object') {
-    classes.push(props.transition.duration || defaults.transition.duration)
-    classes.push(props.transition.ease || defaults.transition.ease)
-  }
-  else if (props.transition) {
-    classes.push(defaults.transition.duration)
-    classes.push(defaults.transition.ease)
+  if (config.value.transition) {
+    classes.push(config.value.transition.duration)
+    classes.push(config.value.transition.ease)
   }
 
   // BASIC APPEARANCE
-  if (props.filled) {
+  if (config.value.filled) {
     // FILLED
     classes.push(
       '-translate-y-4',
@@ -531,7 +390,7 @@ const labelClass = computed(() => {
     )
 
     // ICON
-    if (props.prependIcon) {
+    if (config.value.prependIcon) {
       classes.push(
         'peer-focus:translate-x-0',
         'peer-placeholder-shown:translate-x-6',
@@ -539,7 +398,7 @@ const labelClass = computed(() => {
       )
     }
   }
-  else if (props.outlined) {
+  else if (config.value.outlined) {
     // OUTLINED
     classes.push(
       '-translate-y-4',
@@ -554,10 +413,10 @@ const labelClass = computed(() => {
     )
 
     // COLOR
-    classes.push(props.color.bg || defaults.color.bg)
+    classes.push(config.value.color.bg)
 
     // ICON
-    if (props.prependIcon) {
+    if (config.value.prependIcon) {
       classes.push(
         'peer-focus:translate-x-0',
         'peer-placeholder-shown:translate-x-6',
@@ -576,7 +435,7 @@ const labelClass = computed(() => {
     )
 
     // ICON
-    if (props.prependIcon) {
+    if (config.value.prependIcon) {
       classes.push(
         'peer-focus:translate-x-0',
         'peer-placeholder-shown:translate-x-8',
@@ -587,18 +446,18 @@ const labelClass = computed(() => {
   // COLOR
 
   if (isValid.value === true) {
-    classes.push(props.color.label || defaults.color.label)
-    classes.push(props.color.labelFocus || defaults.color.labelFocus)
+    classes.push(config.value.color.label)
+    classes.push(config.value.color.labelFocus)
   }
   else {
-    classes.push(props.color.error || defaults.color.error)
+    classes.push(config.value.color.error)
   }
 
   // DISABLED
-  if (props.disabled) {
+  if (config.value.disabled) {
     classes.push('cursor-not-allowed')
   }
-  else if (props.loading) {
+  else if (config.value.loading) {
     classes.push('cursor-progress')
   }
   else {
@@ -621,10 +480,10 @@ const prependIconClass = computed(() => {
     'transition-all',
   )
 
-  if (props.filled) {
+  if (config.value.filled) {
     classes.push('top-6')
   }
-  else if (props.outlined) {
+  else if (config.value.outlined) {
     classes.push('top-5')
   }
   else {
@@ -632,29 +491,25 @@ const prependIconClass = computed(() => {
   }
 
   // TRANSITION
-  if (props.transition && typeof props.transition === 'object') {
-    classes.push(props.transition.duration || defaults.transition.duration)
-    classes.push(props.transition.ease || defaults.transition.ease)
-  }
-  else if (props.transition) {
-    classes.push(defaults.transition.duration)
-    classes.push(defaults.transition.ease)
+  if (config.value.transition) {
+    classes.push(config.value.transition.duration)
+    classes.push(config.value.transition.ease)
   }
 
-  if (props.filled) {
+  if (config.value.filled) {
     classes.push('top-2')
   }
 
   if (isValid.value === true) {
-    classes.push(props.color.icon || defaults.color.icon)
-    classes.push(props.color.iconFocus || defaults.color.iconFocus)
+    classes.push(config.value.color.icon)
+    classes.push(config.value.color.iconFocus)
   }
   else {
-    classes.push(props.color.error || defaults.color.error)
+    classes.push(config.value.color.error)
   }
 
   // LOADING
-  if (props.loading) {
+  if (config.value.loading) {
     classes.push('animate-pulse')
   }
 
@@ -674,10 +529,10 @@ const appendIconClass = computed(() => {
     'transition-all',
   )
 
-  if (props.filled) {
+  if (config.value.filled) {
     classes.push('top-6')
   }
-  else if (props.outlined) {
+  else if (config.value.outlined) {
     classes.push('top-5')
   }
   else {
@@ -685,29 +540,25 @@ const appendIconClass = computed(() => {
   }
 
   // TRANSITION
-  if (props.transition && typeof props.transition === 'object') {
-    classes.push(props.transition.duration || defaults.transition.duration)
-    classes.push(props.transition.ease || defaults.transition.ease)
-  }
-  else if (props.transition) {
-    classes.push(defaults.transition.duration)
-    classes.push(defaults.transition.ease)
+  if (config.value.transition) {
+    classes.push(config.value.transition.duration)
+    classes.push(config.value.transition.ease)
   }
 
-  if (props.filled) {
+  if (config.value.filled) {
     classes.push('top-2')
   }
 
   if (isValid.value === true) {
-    classes.push(props.color.icon || defaults.color.icon)
-    classes.push(props.color.iconFocus || defaults.color.iconFocus)
+    classes.push(config.value.color.icon)
+    classes.push(config.value.color.iconFocus)
   }
   else {
-    classes.push(props.color.error || defaults.color.error)
+    classes.push(config.value.color.error)
   }
 
   // LOADING
-  if (props.loading) {
+  if (config.value.loading) {
     classes.push('animate-pulse')
   }
 
@@ -729,22 +580,18 @@ const hintClass = computed(() => {
   ]
 
   // FONT
-  classes.push(props.font.hint || defaults.font.hint)
+  classes.push(config.value.font.hint)
 
-  if (props.transition && typeof props.transition === 'object') {
-    classes.push(props.transition.duration || defaults.transition.duration)
-    classes.push(props.transition.ease || defaults.transition.ease)
-  }
-  else if (props.transition) {
-    classes.push(defaults.transition.duration)
-    classes.push(defaults.transition.ease)
+  if (config.value.transition) {
+    classes.push(config.value.transition.duration)
+    classes.push(config.value.transition.ease)
   }
 
   if (isValid.value === true) {
-    classes.push(props.color.hint || defaults.color.hint)
+    classes.push(config.value.color.hint)
   }
   else {
-    classes.push(props.color.error || defaults.color.error)
+    classes.push(config.value.color.error)
   }
 
   return classes.join(' ')

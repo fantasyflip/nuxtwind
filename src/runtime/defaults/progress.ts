@@ -1,3 +1,5 @@
+import type { ProgressConfig } from '../types/merged'
+
 export default {
   size: {
     width: 'w-full',
@@ -30,4 +32,4 @@ export default {
     ease: 'ease-in-out',
   },
   rounded: 'rounded-lg',
-}
+} satisfies ProgressConfig

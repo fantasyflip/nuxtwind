@@ -1,7 +1,7 @@
 <template>
   <div
-    :id="props.id"
-    :ref="props.id"
+    :id="config.id"
+    :ref="config.id"
     role="alert"
     :class="toastWrapperStyleClass"
     class="toast-notification"
@@ -9,12 +9,12 @@
     <div class="flex items-center p-4">
       <div :class="iconStyleClass">
         <component
-          :is="props.icon"
-          v-if="props.icon"
+          :is="config.icon"
+          v-if="config.icon"
         />
         <div v-else>
           <svg
-            v-if="props.type === 'info'"
+            v-if="config.type === 'info'"
             viewBox="0 0 24 24"
             width="1.2em"
             height="1.2em"
@@ -26,7 +26,7 @@
             />
           </svg>
           <svg
-            v-else-if="props.type === 'warning'"
+            v-else-if="config.type === 'warning'"
             viewBox="0 0 24 24"
             width="1.2em"
             height="1.2em"
@@ -38,7 +38,7 @@
             />
           </svg>
           <svg
-            v-else-if="props.type === 'success'"
+            v-else-if="config.type === 'success'"
             viewBox="0 0 24 24"
             width="1.2em"
             height="1.2em"
@@ -50,7 +50,7 @@
             />
           </svg>
           <svg
-            v-else-if="props.type === 'error'"
+            v-else-if="config.type === 'error'"
             viewBox="0 0 24 24"
             width="1.2em"
             height="1.2em"
@@ -67,16 +67,16 @@
       </div>
       <div class="ml-3 mr-3">
         <div
-          v-if="props.title"
+          v-if="config.title"
           class="font-bold"
         >
-          {{ props.title }}
+          {{ config.title }}
         </div>
         <div
-          v-if="props.message"
+          v-if="config.message"
           class="text-sm font-normal"
         >
-          {{ props.message }}
+          {{ config.message }}
         </div>
       </div>
       <Button
@@ -103,11 +103,11 @@
       </Button>
     </div>
     <Progress
-      v-if="props.autoClose"
+      v-if="config.autoClose"
       v-model="progressValue"
       :initial-load-time="false"
       :transition="false"
-      :color="props.color?.progress || defaults.color.progress"
+      :color="config.color.progress"
       rounded="false"
     />
   </div>
@@ -115,118 +115,21 @@
 
 <script lang="ts" setup>
 import { computed, ref, onMounted, watch } from 'vue'
+import type { ToastProps } from '../types/props'
+import type { ToastConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 import Progress from './Progress.vue'
 import Button from './Button.vue'
 
-export interface Props {
-  id?: string
-  color?: {
-    progress?: {
-      circle?: string
-      circleDark?: string
-      circleProgress?: string
-      circleProgressDark?: string
-      circleCutout?: string
-      background?: string
-      firstStrike?: string
-      secondStrike?: string
-      linearProgress?: string
-      linearProgressHover?: string
-    }
-    text?: string
-    bg?: string
-    icon?: {
-      info?: {
-        text?: string
-        bg?: string
-      }
-      warning?: {
-        text?: string
-        bg?: string
-      }
-      error?: {
-        text?: string
-        bg?: string
-      }
-      success?: {
-        text?: string
-        bg?: string
-      }
-    }
-  }
-  autoClose?: boolean
-  duration?: number
-  rounded?: boolean | string
-  type?: 'info' | 'warning' | 'error' | 'success'
-  title?: string
-  message?: string
-  shadow?: boolean | string
-  icon?: object
-  width?: string
-}
-
-const defaults = {
-  color: {
-    progress: {},
-    text: 'text-gray-700 dark:text-gray-300',
-    bg: 'bg-gray-100 dark:bg-zinc-800',
-    icon: {
-      info: {
-        text: 'text-blue-500 dark:text-blue-200',
-        bg: 'bg-blue-200 dark:bg-blue-800',
-      },
-      warning: {
-        text: 'text-yellow-500 dark:text-yellow-200',
-        bg: 'bg-yellow-200 dark:bg-yellow-800',
-      },
-      error: {
-        text: 'text-red-500 dark:text-red-200',
-        bg: 'bg-red-200 dark:bg-red-800',
-      },
-      success: {
-        text: 'text-green-500 dark:text-green-200',
-        bg: 'bg-green-200 dark:bg-green-800',
-      },
-    },
-  },
-  rounded: 'rounded-lg',
-  shadow: 'shadow-lg',
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  color: () => {
-    return {
-      text: 'text-gray-700 dark:text-gray-300',
-      bg: 'bg-gray-100 dark:bg-zinc-800',
-      icon: {
-        info: {
-          text: 'text-blue-500 dark:text-blue-200',
-          bg: 'bg-blue-200 dark:bg-blue-800',
-        },
-        warning: {
-          text: 'text-yellow-500 dark:text-yellow-200',
-          bg: 'bg-yellow-200 dark:bg-yellow-800',
-        },
-        error: {
-          text: 'text-red-500 dark:text-red-200',
-          bg: 'bg-red-200 dark:bg-red-800',
-        },
-        success: {
-          text: 'text-green-500 dark:text-green-200',
-          bg: 'bg-green-200 dark:bg-green-800',
-        },
-      },
-    }
-  },
-  autoClose: true,
-  duration: 5,
+const props = withDefaults(defineProps<ToastProps>(), {
+  autoClose: undefined,
   rounded: true,
-  type: 'info',
-  title: 'Toast-Title',
-  message: 'Toast-Message',
   shadow: true,
-  width: 'w-full',
+  icon: undefined,
 })
+
+// Use computed to make config reactive to prop changes
+const config = computed<ToastConfig>(() => useComponentConfig('toast', props))
 
 const emit = defineEmits<{
   (e: 'close' | 'autoClose'): void
@@ -235,7 +138,7 @@ const emit = defineEmits<{
 const progressValue = ref(100)
 
 onMounted(() => {
-  if (props.autoClose) {
+  if (config.value.autoClose) {
     const progress = setInterval(() => {
       progressValue.value -= 1
       if (progressValue.value <= 0) {
@@ -243,12 +146,12 @@ onMounted(() => {
         close()
         emit('autoClose')
       }
-    }, props.duration * 10)
+    }, config.value.duration * 10)
   }
 })
 
-watch(() => props.autoClose, () => {
-  if (props.autoClose) {
+watch(() => config.value.autoClose, () => {
+  if (config.value.autoClose) {
     const progress = setInterval(() => {
       progressValue.value -= 1
       if (progressValue.value <= 0) {
@@ -256,7 +159,7 @@ watch(() => props.autoClose, () => {
         close()
         emit('autoClose')
       }
-    }, props.duration * 10)
+    }, config.value.duration * 10)
   }
 })
 
@@ -270,26 +173,20 @@ const toastWrapperStyleClass = computed(() => {
   classes.push('overflow-hidden')
 
   // COLOR
-  classes.push(props.color.text || defaults.color.text)
-  classes.push(props.color.bg || defaults.color.bg)
+  classes.push(config.value.color.text)
+  classes.push(config.value.color.bg)
 
   // ROUNDED
-  if (typeof props.rounded === 'string') {
-    classes.push(props.rounded)
-  }
-  else if (props.rounded) {
-    classes.push(defaults.rounded)
+  if (config.value.rounded) {
+    classes.push(config.value.rounded)
   }
 
   // WIDTH
-  classes.push(props.width)
+  classes.push(config.value.width)
 
   // SHADOW
-  if (typeof props.shadow === 'string') {
-    classes.push(props.shadow)
-  }
-  else if (props.shadow) {
-    classes.push(defaults.shadow)
+  if (config.value.shadow) {
+    classes.push(config.value.shadow)
   }
 
   return classes.join(' ')
@@ -311,23 +208,21 @@ const iconStyleClass = computed(() => {
   // COLOR
   let iconText = ''
   let iconBg = ''
-  if (props.type === 'warning') {
-    iconText
-      = props.color.icon?.warning?.text || defaults.color.icon.warning.text
-    iconBg = props.color.icon?.warning?.bg || defaults.color.icon.warning.bg
+  if (config.value.type === 'warning') {
+    iconText = config.value.color.icon.warning.text
+    iconBg = config.value.color.icon.warning.bg
   }
-  else if (props.type === 'error') {
-    iconText = props.color.icon?.error?.text || defaults.color.icon.error.text
-    iconBg = props.color.icon?.error?.bg || defaults.color.icon.error.bg
+  else if (config.value.type === 'error') {
+    iconText = config.value.color.icon.error.text
+    iconBg = config.value.color.icon.error.bg
   }
-  else if (props.type === 'success') {
-    iconText
-      = props.color.icon?.success?.text || defaults.color.icon.success.text
-    iconBg = props.color.icon?.success?.bg || defaults.color.icon.success.bg
+  else if (config.value.type === 'success') {
+    iconText = config.value.color.icon.success.text
+    iconBg = config.value.color.icon.success.bg
   }
   else {
-    iconText = props.color.icon?.info?.text || defaults.color.icon.info.text
-    iconBg = props.color.icon?.info?.bg || defaults.color.icon.info.bg
+    iconText = config.value.color.icon.info.text
+    iconBg = config.value.color.icon.info.bg
   }
 
   classes.push(iconText)

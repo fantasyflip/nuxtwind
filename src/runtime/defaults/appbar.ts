@@ -1,3 +1,5 @@
+import type { AppbarConfig } from '../types/merged'
+
 export default {
   color: {
     bg: 'bg-gray-200 dark:bg-zinc-900',
@@ -16,4 +18,4 @@ export default {
   zIndex: 'z-10',
   height: 'h-14',
   target: '_self',
-}
+} satisfies AppbarConfig

@@ -1,4 +1,4 @@
-import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps, SelectProps, SkeletonProps } from './props'
+import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps, SelectProps, SkeletonProps, SliderProps, TextareaProps, TextfieldProps, ToastProps, TooltipProps } from './props'
 
 export interface NuxtWindConfig {
   button?: ButtonProps
@@ -11,5 +11,10 @@ export interface NuxtWindConfig {
   progress?: ProgressProps
   select?: SelectProps
   skeleton?: SkeletonProps
+  slider?: SliderProps
+  textarea?: TextareaProps
+  textfield?: TextfieldProps
+  toast?: ToastProps
+  tooltip?: TooltipProps
   // Add other component props here
 }

@@ -368,3 +368,197 @@ export interface SkeletonProps {
     }
   }
 }
+
+export interface SliderProps {
+  modelValue?: number
+  color?: {
+    slider?: string
+    description?: string
+    sliderLine?: string
+    sliderThumb?: string
+    sliderThumbDark?: string
+    sliderThumbBorder?: string
+    sliderThumbBorderDark?: string
+  }
+  label?: string
+  description?: string
+  min?: number
+  max?: number
+  thumbSize?: number
+  rounded?: boolean | string
+  width?: string
+  height?: string
+  disabled?: boolean
+}
+
+export interface TextareaProps {
+  modelValue?: string
+  color?: {
+    bg?: string
+    text?: string
+    hint?: string
+    error?: string
+    label?: string
+    labelFocus?: string
+    placeholderText?: string
+    icon?: string
+    iconFocus?: string
+    border?: string
+    borderFocus?: string
+    borderError?: string
+    borderFocusError?: string
+  }
+  font?: {
+    label?: string
+    input?: string
+    placeholder?: string
+    hint?: string
+  }
+  label?: string
+  autocomplete?: string
+  prependIcon?: boolean | object
+  appendIcon?: boolean | object
+  disabled?: boolean
+  loading?: boolean
+  rounded?: boolean | string
+  outlined?: boolean | string
+  filled?: boolean | string
+  placeholder?: string
+  hint?: string
+  shadow?: boolean | string
+  transition?:
+    | boolean
+    | {
+      duration?: string
+      ease?: string
+      placeholder?: {
+        duration?: string
+        ease?: string
+      }
+    }
+  counter?: boolean
+  height?: string
+  width?: string
+  rules?: { (data: string): boolean | string }[]
+}
+
+export interface TextfieldProps {
+  modelValue?: string | number
+  color?: {
+    bg?: string
+    text?: string
+    hint?: string
+    error?: string
+    label?: string
+    labelFocus?: string
+    placeholderText?: string
+    icon?: string
+    iconFocus?: string
+    border?: string
+    borderFocus?: string
+    borderError?: string
+    borderFocusError?: string
+  }
+  font?: {
+    label?: string
+    input?: string
+    placeholder?: string
+    hint?: string
+  }
+  label?: string
+  autocomplete?: string
+  prependIcon?: boolean | object
+  appendIcon?: boolean | object
+  clearable?: boolean
+  disabled?: boolean
+  loading?: boolean
+  rounded?: boolean | string
+  outlined?: boolean | string
+  filled?: boolean | string
+  placeholder?: string
+  hint?: string
+  shadow?: boolean | string
+  type?: string
+  transition?:
+    | boolean
+    | {
+      duration?: string
+      ease?: string
+      placeholder?: {
+        duration?: string
+        ease?: string
+      }
+    }
+  width?: string
+  rules?: { (data: string | number): boolean | string }[]
+}
+
+export interface ToastProps {
+  id?: string
+  color?: {
+    progress?: {
+      circle?: string
+      circleDark?: string
+      circleProgress?: string
+      circleProgressDark?: string
+      circleCutout?: string
+      background?: string
+      firstStrike?: string
+      secondStrike?: string
+      linearProgress?: string
+      linearProgressHover?: string
+    }
+    text?: string
+    bg?: string
+    icon?: {
+      info?: {
+        text?: string
+        bg?: string
+      }
+      warning?: {
+        text?: string
+        bg?: string
+      }
+      error?: {
+        text?: string
+        bg?: string
+      }
+      success?: {
+        text?: string
+        bg?: string
+      }
+    }
+  }
+  autoClose?: boolean
+  duration?: number
+  rounded?: boolean | string
+  type?: 'info' | 'warning' | 'error' | 'success'
+  title?: string
+  message?: string
+  shadow?: boolean | string
+  icon?: object
+  width?: string
+}
+
+export interface TooltipProps {
+  color?: {
+    text?: string
+    bg?: string
+    bgPointer?: string
+  }
+  top?: boolean
+  bottom?: boolean
+  left?: boolean
+  right?: boolean
+  transition?:
+    | boolean
+    | {
+      duration?: string
+      ease?: string
+    }
+  text?: string
+  rounded?: boolean | string
+  zIndex?: string
+  interactive?: boolean
+  width?: string
+}

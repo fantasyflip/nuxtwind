@@ -1,3 +1,5 @@
+import type { CheckboxgroupConfig } from '../types/merged'
+
 export default {
   items: [],
   color: {
@@ -17,4 +19,4 @@ export default {
   width: 'w-full',
   generalCheckboxProps: {},
   notZero: false,
-}
+} satisfies CheckboxgroupConfig

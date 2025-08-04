@@ -1,26 +1,28 @@
 <template>
   <div>
     <label
-      v-if="props.label || $slots.label"
+      v-if="config.label || $slots.label"
       :for="sliderId"
+      :class="config.color?.label"
     >
-      <slot name="label">{{ props.label }}</slot>
+      <slot name="label">{{ config.label }}</slot>
     </label>
     <div
-      v-if="props.description || $slots.description"
+      v-if="config.description || $slots.description"
       class="text-sm -mt-1 w-full"
-      :class="props.color?.description || defaults.color.description"
+      :class="config.color?.description"
     >
       <slot name="description">
-        {{ props.description }}
+        {{ config.description }}
       </slot>
     </div>
     <div class="w-full">
       <input
         :id="sliderId"
         :value="modelValue"
-        :min="props.min"
-        :max="props.max"
+        :min="config.min"
+        :max="config.max"
+        :disabled="config.disabled"
         type="range"
         :class="sliderStyleClass"
         @input="handleInput"
@@ -31,29 +33,19 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
-// @ts-expect-error - #imports exists at runtime
 import { useId } from '#imports'
+import type { SliderProps } from '../types/props'
+import type { SliderConfig } from '../types/merged'
+import useComponentConfig from '../composables/useComponentConfig'
 
-export interface Props {
-  // eslint-disable-next-line vue/no-required-prop-with-default
-  modelValue: number
-  color?: {
-    description?: string
-    sliderLine?: string
-    sliderThumb?: string
-    sliderThumbDark?: string
-    sliderThumbBorder?: string
-    sliderThumbBorderDark?: string
-  }
-  label?: string
-  description?: string
-  min?: number
-  max?: number
-  thumbSize?: number
-  rounded?: string | boolean
-  width?: string
-  height?: string
-}
+const props = withDefaults(defineProps<SliderProps>(), {
+  modelValue: 0,
+  rounded: undefined,
+  disabled: undefined,
+})
+
+// Use computed to make config reactive to prop changes
+const config = computed<SliderConfig>(() => useComponentConfig('slider', props))
 
 const sliderId = useId()
 
@@ -92,60 +84,31 @@ onBeforeUnmount(() => {
   observer.disconnect()
 })
 
-const defaults = {
-  color: {
-    description: 'text-zinc-400',
-    sliderLine: 'bg-zinc-600 dark:bg-zinc-600',
-    sliderThumb: '#06b6d4',
-    sliderThumbDark: '#06b6d4',
-    sliderThumbBorder: '#155e75',
-    sliderThumbBorderDark: '#155e75',
-  },
-  rounded: 'rounded-lg',
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: 0,
-  color: () => {
-    return {
-      description: 'text-zinc-400',
-      sliderLine: 'bg-zinc-600 dark:bg-zinc-600',
-      sliderThumb: '#06b6d4',
-      sliderThumbDark: '#06b6d4',
-      sliderThumbBorder: '#155e75',
-      sliderThumbBorderDark: '#155e75',
-    }
-  },
-  label: '',
-  description: '',
-  min: 0,
-  max: 100,
-  thumbSize: 15,
-  rounded: true,
-  width: 'w-full',
-  height: 'h-0.5',
-})
-
 const emit = defineEmits<{
   (e: 'update:modelValue', id: number): void
 }>()
 
-if (props.modelValue > props.max) {
-  emit('update:modelValue', props.max)
+if (props.modelValue > config.value.max) {
+  emit('update:modelValue', config.value.max)
 }
 
-if (props.modelValue < props.min) {
-  emit('update:modelValue', props.min)
+if (props.modelValue < config.value.min) {
+  emit('update:modelValue', config.value.min)
 }
 
 function handleInput(e: Event) {
+  // Prevent input when disabled
+  if (config.value.disabled) {
+    return
+  }
+
   // UPDATE MODEL VALUE
-  emit('update:modelValue', e.target?.value)
+  emit('update:modelValue', (e.target as HTMLInputElement)?.valueAsNumber ?? Number((e.target as HTMLInputElement)?.value))
 }
 
 const thumbTooltipPercentage = ref('0%')
-const thumbSize = props.thumbSize + 'px'
-const thumbSizeHover = props.thumbSize * 1.25 + 'px'
+const thumbSize = config.value.thumbSize + 'px'
+const thumbSizeHover = config.value.thumbSize * 1.25 + 'px'
 
 const modelValueComputed = computed(() => {
   return props.modelValue
@@ -155,57 +118,60 @@ watch(
   modelValueComputed,
   (newValue) => {
     let value = newValue
-    if (value > props.max) {
-      value = props.max
-      emit('update:modelValue', props.max)
+    if (value > config.value.max) {
+      value = config.value.max
+      emit('update:modelValue', config.value.max)
     }
 
-    if (value < props.min) {
-      value = props.min
-      emit('update:modelValue', props.min)
+    if (value < config.value.min) {
+      value = config.value.min
+      emit('update:modelValue', config.value.min)
     }
-    thumbTooltipPercentage.value = (value / props.max) * 100 + '%'
+    thumbTooltipPercentage.value = (value / config.value.max) * 100 + '%'
   },
   { immediate: true },
 )
 
 const thumbColor = computed(() => {
   if (colorMode.value === 'light') {
-    return props.color.sliderThumb || defaults.color.sliderThumb
+    return config.value.color.sliderThumb
   }
   else {
-    return props.color.sliderThumbDark || defaults.color.sliderThumbDark
+    return config.value.color.sliderThumbDark
   }
 })
 
 const thumbBorderColor = computed(() => {
   if (colorMode.value === 'light') {
-    return props.color.sliderThumbBorder || defaults.color.sliderThumbBorder
+    return config.value.color.sliderThumbBorder
   }
   else {
     return (
-      props.color.sliderThumbBorderDark || defaults.color.sliderThumbBorderDark
+      config.value.color.sliderThumbBorderDark
     )
   }
 })
 
 const sliderStyleClass = computed(() => {
   const classes: string[] = []
-  classes.push('slider', 'appearance-none', 'cursor-pointer')
+  classes.push('slider', 'appearance-none')
 
-  if (props.rounded) {
-    if (typeof props.rounded === 'string') {
-      classes.push(props.rounded)
-    }
-    else {
-      classes.push(defaults.rounded)
-    }
+  // DISABLED
+  if (config.value.disabled) {
+    classes.push('opacity-50 cursor-not-allowed')
+  }
+  else {
+    classes.push('cursor-pointer')
   }
 
-  classes.push(props.color?.sliderLine || defaults.color.sliderLine)
+  if (config.value.rounded) {
+    classes.push(config.value.rounded)
+  }
 
-  classes.push(props.width)
-  classes.push(props.height)
+  classes.push(config.value.color?.sliderLine)
+
+  classes.push(config.value.width)
+  classes.push(config.value.height)
   return classes.join(' ')
 })
 </script>
@@ -223,5 +189,15 @@ const sliderStyleClass = computed(() => {
 .slider::-webkit-slider-thumb:hover {
   width: v-bind(thumbSizeHover);
   height: v-bind(thumbSizeHover);
+}
+
+/* Disabled state styling */
+.slider:disabled::-webkit-slider-thumb {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.slider:disabled::-webkit-slider-thumb:hover {
+  width: v-bind(thumbSize);
+  height: v-bind(thumbSize);
 }
 </style>

@@ -1,3 +1,5 @@
+import type { SelectConfig } from '../types/merged'
+
 export default {
   items: [],
   color: {
@@ -40,4 +42,4 @@ export default {
   },
   height: 'max-h-48',
   displayProperty: undefined,
-}
+} satisfies SelectConfig

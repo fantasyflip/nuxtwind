@@ -1,3 +1,5 @@
+import type { DrawerConfig } from '../types/merged'
+
 export default {
   color: {
     bg: 'bg-gray-200 dark:bg-zinc-900',
@@ -23,4 +25,4 @@ export default {
   permanent: false,
   height: 'h-screen',
   width: 'w-80',
-}
+} satisfies DrawerConfig

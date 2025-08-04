@@ -1,3 +1,5 @@
+import type { BadgeConfig } from '../types/merged'
+
 export default {
   color: {
     bg: 'bg-red-500 dark:bg-red-500',
@@ -12,4 +14,4 @@ export default {
   border: 'border-2',
   width: 'min-w-[24px]',
   height: 'min-h-[24px]',
-}
+} satisfies BadgeConfig

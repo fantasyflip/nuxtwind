@@ -1,3 +1,5 @@
+import type { ButtonConfig } from '../types/merged'
+
 export default {
   color: {
     bg: 'bg-primary-900 dark:bg-primary-900',
@@ -31,4 +33,5 @@ export default {
   type: 'button',
   width: 'w-fit',
   height: '',
-}
+  icon: false,
+} satisfies ButtonConfig

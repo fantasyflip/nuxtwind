@@ -1,5 +1,5 @@
-import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps, SelectProps, SkeletonProps } from '../types/props'
-import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig, DrawerConfig, ProgressConfig, SelectConfig, SkeletonConfig } from '../types/merged'
+import type { ButtonProps, BadgeProps, AppbarProps, CarouselProps, CheckboxProps, CheckboxgroupProps, DrawerProps, ProgressProps, SelectProps, SkeletonProps, SliderProps, TextareaProps, TextfieldProps, ToastProps, TooltipProps } from '../types/props'
+import type { ButtonConfig, BadgeConfig, AppbarConfig, CarouselConfig, CheckboxConfig, CheckboxgroupConfig, DrawerConfig, ProgressConfig, SelectConfig, SkeletonConfig, SliderConfig, TextareaConfig, TextfieldConfig, ToastConfig, TooltipConfig } from '../types/merged'
 import type { NuxtWindConfig } from '../types/config'
 import buttonDefaults from '../defaults/button'
 import badgeDefaults from '../defaults/badge'
@@ -11,6 +11,11 @@ import drawerDefaults from '../defaults/drawer'
 import progressDefaults from '../defaults/progress'
 import selectDefaults from '../defaults/select'
 import skeletonDefaults from '../defaults/skeleton'
+import sliderDefaults from '../defaults/slider'
+import textareaDefaults from '../defaults/textarea'
+import textfieldDefaults from '../defaults/textfield'
+import toastDefaults from '../defaults/toast'
+import tooltipDefaults from '../defaults/tooltip'
 import { useRuntimeConfig } from '#app'
 
 // Generic type mapping for component props to config types
@@ -55,6 +60,26 @@ interface ComponentTypeMap {
     Props: SkeletonProps
     Config: SkeletonConfig
   }
+  slider: {
+    Props: SliderProps
+    Config: SliderConfig
+  }
+  textarea: {
+    Props: TextareaProps
+    Config: TextareaConfig
+  }
+  textfield: {
+    Props: TextfieldProps
+    Config: TextfieldConfig
+  }
+  toast: {
+    Props: ToastProps
+    Config: ToastConfig
+  }
+  tooltip: {
+    Props: TooltipProps
+    Config: TooltipConfig
+  }
   // Future components can be added here
 }
 
@@ -70,6 +95,11 @@ const booleanOnlyProps = {
   progress: new Set(['loading']),
   select: new Set(['search', 'markOnFocus', 'showAllOnFocus', 'disabled', 'loading', 'clearable']),
   skeleton: new Set(['loading', 'autoDetectRootTag']),
+  slider: new Set(['disabled']), // No boolean-only props for slider
+  textarea: new Set(['disabled', 'loading', 'counter']),
+  textfield: new Set(['disabled', 'loading', 'clearable']),
+  toast: new Set(['autoClose']),
+  tooltip: new Set(['top', 'bottom', 'left', 'right', 'interactive']),
   // Future components can be added here
 } as const
 
@@ -140,6 +170,11 @@ const defaultsRegistry = {
   progress: progressDefaults,
   select: selectDefaults,
   skeleton: skeletonDefaults,
+  slider: sliderDefaults,
+  textarea: textareaDefaults,
+  textfield: textfieldDefaults,
+  toast: toastDefaults,
+  tooltip: tooltipDefaults,
   // Future components can be added here
 } as const
 

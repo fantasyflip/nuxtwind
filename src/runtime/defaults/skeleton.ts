@@ -1,3 +1,5 @@
+import type { SkeletonConfig } from '../types/merged'
+
 export default {
   loading: true,
   tag: 'p',
@@ -41,4 +43,4 @@ export default {
       gap: 'gap-4',
     },
   },
-}
+} satisfies SkeletonConfig

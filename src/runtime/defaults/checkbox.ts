@@ -1,3 +1,5 @@
+import type { CheckboxConfig } from '../types/merged'
+
 export default {
   color: {
     label: 'text-black dark:text-gray-300',
@@ -15,4 +17,4 @@ export default {
   radio: false,
   disabled: false,
   loading: false,
-}
+} satisfies CheckboxConfig

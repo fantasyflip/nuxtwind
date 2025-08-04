@@ -346,3 +346,188 @@ export interface SkeletonConfig {
     }
   }
 }
+
+export interface SliderConfig {
+  color: {
+    label: string
+    description: string
+    sliderLine: string
+    sliderThumb: string
+    sliderThumbDark: string
+    sliderThumbBorder: string
+    sliderThumbBorderDark: string
+  }
+  label: string
+  description: string
+  min: number
+  max: number
+  thumbSize: number
+  rounded: string
+  width: string
+  height: string
+  disabled: boolean
+}
+
+export interface TextareaConfig {
+  color: {
+    bg: string
+    text: string
+    hint: string
+    error: string
+    label: string
+    labelFocus: string
+    placeholderText: string
+    icon: string
+    iconFocus: string
+    border: string
+    borderFocus: string
+    borderError: string
+    borderFocusError: string
+  }
+  font: {
+    label: string
+    input: string
+    placeholder: string
+    hint: string
+  }
+  label: string
+  autocomplete: string
+  prependIcon: boolean | object
+  appendIcon: boolean | object
+  disabled: boolean
+  loading: boolean
+  rounded: string
+  outlined: string
+  filled: string
+  placeholder: string
+  hint: string
+  shadow: string
+  transition: {
+    duration: string
+    ease: string
+    placeholder: {
+      duration: string
+      ease: string
+    }
+  }
+  counter: boolean
+  height: string
+  width: string
+  rules: { (data: string): boolean | string }[]
+}
+
+export interface TextfieldConfig {
+  color: {
+    bg: string
+    text: string
+    hint: string
+    error: string
+    label: string
+    labelFocus: string
+    placeholderText: string
+    icon: string
+    iconFocus: string
+    border: string
+    borderFocus: string
+    borderError: string
+    borderFocusError: string
+  }
+  font: {
+    label: string
+    input: string
+    placeholder: string
+    hint: string
+  }
+  label: string
+  autocomplete: string
+  prependIcon: boolean | object
+  appendIcon: boolean | object
+  clearable: boolean
+  disabled: boolean
+  loading: boolean
+  rounded: string
+  outlined: string
+  filled: string
+  placeholder: string
+  hint: string
+  shadow: string
+  type: string
+  transition: {
+    duration: string
+    ease: string
+    placeholder: {
+      duration: string
+      ease: string
+    }
+  }
+  width: string
+  rules: { (data: string | number): boolean | string }[]
+}
+
+export interface ToastConfig {
+  id: string
+  color: {
+    progress: {
+      circle: string
+      circleDark: string
+      circleProgress: string
+      circleProgressDark: string
+      circleCutout: string
+      background: string
+      firstStrike: string
+      secondStrike: string
+      linearProgress: string
+      linearProgressHover: string
+    }
+    text: string
+    bg: string
+    icon: {
+      info: {
+        text: string
+        bg: string
+      }
+      warning: {
+        text: string
+        bg: string
+      }
+      error: {
+        text: string
+        bg: string
+      }
+      success: {
+        text: string
+        bg: string
+      }
+    }
+  }
+  autoClose: boolean
+  duration: number
+  rounded: string
+  type: 'info' | 'warning' | 'error' | 'success'
+  title: string
+  message: string
+  shadow: string
+  icon: object | boolean
+  width: string
+}
+
+export interface TooltipConfig {
+  color: {
+    text: string
+    bg: string
+    bgPointer: string
+  }
+  top: boolean
+  bottom: boolean
+  left: boolean
+  right: boolean
+  transition: {
+    duration: string
+    ease: string
+  }
+  text: string
+  rounded: string
+  zIndex: string
+  interactive: boolean
+  width: string
+}
