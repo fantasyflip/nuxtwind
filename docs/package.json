@@ -30,6 +30,11 @@
     "vue-tsc": "^3.0.1",
     "tsx":"^4.20.3"
   },
+  "optionalDependencies": {
+    "@oxc-parser/binding-darwin-arm64": "^0.96.0",
+    "@oxc-parser/binding-darwin-x64": "^0.96.0",
+    "@oxc-parser/binding-darwin-universal": "^0.96.0"
+  },
   "resolutions": {
     "unimport": "4.1.1"
   },
