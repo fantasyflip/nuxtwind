@@ -13,6 +13,7 @@ import type { Nuxt } from 'nuxt/schema'
 import { CssManager } from './utils/css-manager'
 import { ConfigLoader } from './utils/config-loader'
 import type { NuxtWindConfig } from './runtime/types/config'
+import { join } from 'node:path'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -69,9 +70,11 @@ export interface ModuleOptions {
   configPath?: string
 }
 
-function manageCssFile(nuxt: Nuxt, options: ModuleOptions) {
+function manageCssFile(nuxt: Nuxt, options: ModuleOptions, runtimeDir: string) {
+  const componentsDir = join(runtimeDir, 'components')
   const cssManager = new CssManager(nuxt, {
     debugLog: options.debugLog,
+    externalSources: [componentsDir],
   })
 
   // Validate existing file first if autoUpdate is enabled
@@ -127,6 +130,12 @@ export default defineNuxtModule<ModuleOptions>({
 
     _nuxt.options.build.transpile.push(runtimeDir)
     _nuxt.options.alias['#nuxtwind'] = runtimeDir
+    // Ensure Tailwind scans our packaged components via a dedicated CSS entry
+    const runtimeCss = '#nuxtwind/global.css'
+    if (!_nuxt.options.css.includes(runtimeCss)) {
+      _nuxt.options.css.push(runtimeCss)
+      nxwLog(_options.debugLog, `Added ${runtimeCss} to Nuxt CSS for Tailwind @source`, 'success')
+    }
 
     // Load and provide user configuration
     const userConfig = await loadAndProvideUserConfig(_nuxt, _options)
@@ -142,8 +151,8 @@ export default defineNuxtModule<ModuleOptions>({
       _nuxt.options.runtimeConfig.public.nuxtwind = {}
     }
 
-    // Manage CSS file
-    manageCssFile(_nuxt, _options)
+    // Manage user CSS (create/validate) and inject @source as fallback
+    manageCssFile(_nuxt, _options, runtimeDir)
 
     // Installing Tailwind CSS v4 standalone
     nxwLog(_options.debugLog, 'Installing tailwindcss v4 standalone')

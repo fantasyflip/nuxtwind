@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['../src/module'],
+  modules: ['@nuxtwind/components'],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   nuxtwind: {
