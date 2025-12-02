@@ -8,7 +8,6 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "@nuxtwind/components": "file:../nuxtwind-components-2.1.0.tgz",
     "@vueuse/core": "^14.1.0",
     "nuxt": "^4.0.0"
   }
