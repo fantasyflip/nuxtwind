@@ -66,6 +66,22 @@
     "vitest": "^3.2.4"
   },
   "resolutions": {
-    "debug": "4.3.7"
-  }
+    "debug": "4.3.7",
+    "unimport": "4.1.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@tailwindcss/oxide",
+      "better-sqlite3",
+      "esbuild",
+      "sharp",
+      "unrs-resolver",
+      "vue-demi"
+    ],
+    "ignoredBuiltDependencies": [
+      "vue-demi"
+    ]
+  },
+  "packageManager": "pnpm@10.13.1"
 }

@@ -35,16 +35,5 @@
     "@oxc-parser/binding-darwin-x64": "^0.96.0",
     "@oxc-parser/binding-darwin-universal": "^0.96.0"
   },
-  "resolutions": {
-    "unimport": "4.1.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "better-sqlite3"
-    ],
-    "ignoredBuiltDependencies": [
-      "vue-demi"
-    ]
-  },
   "packageManager": "pnpm@10.13.1"
 }
