@@ -1,5 +1,28 @@
 # Changelog
 
+## v2.1.1
+
+[compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.1.0...v2.1.1)
+
+### 🩹 Fixes
+
+- **css:** Tailwind module component scanning #82 ([#82](https://github.com/fantasyflip/nuxtwind/issues/82))
+- **docs:** Remove universal package ([583fafd](https://github.com/fantasyflip/nuxtwind/commit/583fafd))
+- **css:** Tailwind module component scanning #82 ([#82](https://github.com/fantasyflip/nuxtwind/issues/82))
+
+### 🏡 Chore
+
+- Release v2.1.0 ([b4aad98](https://github.com/fantasyflip/nuxtwind/commit/b4aad98))
+- **playground:** Remove tarball reference ([a864ee8](https://github.com/fantasyflip/nuxtwind/commit/a864ee8))
+- **docs:** Regenerate pnpm-lock ([791d4c6](https://github.com/fantasyflip/nuxtwind/commit/791d4c6))
+- Regenerate lockfile ([c8c1783](https://github.com/fantasyflip/nuxtwind/commit/c8c1783))
+
+### ❤️ Contributors
+
+- Philipp Katzenberger ([@fantasyflip](https://github.com/fantasyflip))
+- FantasyFlip
+- BLUEBEAST\katze <katzenberger.ph+github@gmail.com>
+
 ## v2.1.0
 
 [compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.0.0...v2.1.0)
