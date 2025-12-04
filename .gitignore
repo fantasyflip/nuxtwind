@@ -57,3 +57,6 @@ Temporary Items
 
 # Module specific
 /assets/
+
+# Tarballs
+*.tgz

@@ -1,11 +1,13 @@
 import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { dirname, join, relative } from 'node:path'
 import type { Nuxt } from 'nuxt/schema'
 import { CSS_TEMPLATES, CSS_VALIDATION } from '../runtime/css-templates'
 import { nxwLog } from './nxwLog'
 
 export interface CssManagerOptions {
   debugLog?: boolean
+  /** Absolute directories that Tailwind should scan with @source */
+  externalSources?: string[]
 }
 
 export class CssManager {
@@ -56,7 +58,11 @@ export class CssManager {
     }
 
     try {
-      const cssContent = CSS_TEMPLATES.complete()
+      let cssContent = CSS_TEMPLATES.complete()
+
+      // Ensure external @source directives are present on first creation
+      cssContent = this.injectSourceDirectives(cssContent)
+
       writeFileSync(this.mainCssPath, cssContent, 'utf8')
       nxwLog(this.options.debugLog, `Created main.css file at: ${this.mainCssPath}`, 'success')
 
@@ -92,6 +98,13 @@ export class CssManager {
       }
 
       // Write back if there were changes
+      // Ensure external @source directives
+      const withSources = this.injectSourceDirectives(content)
+      if (withSources !== content) {
+        content = withSources
+        hasChanges = true
+      }
+
       if (hasChanges) {
         writeFileSync(this.mainCssPath, content, 'utf8')
         nxwLog(this.options.debugLog, `Updated main.css file at: ${this.mainCssPath}`, 'success')
@@ -149,6 +162,45 @@ export class CssManager {
       this.nuxt.options.css.push(cssPath)
       nxwLog(this.options.debugLog, `Added ${cssPath} to Nuxt CSS configuration`, 'success')
     }
+  }
+
+  /**
+   * Injects @source directives for any configured external sources, if missing.
+   * Places them right after the Tailwind import for clarity.
+   */
+  private injectSourceDirectives(content: string): string {
+    const sources = this.options.externalSources || []
+    if (!sources.length) return content
+
+    const cssDir = dirname(this.mainCssPath)
+    const existing = new Set(
+      Array.from(content.matchAll(/@source\s+"([^"]+)"\s*;?/g)).map(m => m[1]),
+    )
+
+    const neededLines: string[] = []
+    for (const absPath of sources) {
+      try {
+        const rel = relative(cssDir, absPath) || '.'
+        // Use POSIX-style separators for CSS paths
+        const relPosix = rel.split('\\').join('/')
+        if (!existing.has(relPosix)) {
+          neededLines.push(`@source "${relPosix}";`)
+        }
+      }
+      catch (e) {
+        // Non-fatal; skip this path
+        nxwLog(this.options.debugLog, `Failed to compute @source path for ${absPath}: ${e}`, 'warn')
+      }
+    }
+
+    if (!neededLines.length) return content
+
+    // Insert after the last @import (ideally right after @import "tailwindcss";)
+    const lines = content.split('\n')
+    const lastImportIndex = this.findLastImportIndex(lines)
+    const insertIndex = lastImportIndex >= 0 ? lastImportIndex + 1 : 0
+    lines.splice(insertIndex, 0, '', ...neededLines, '')
+    return lines.join('\n')
   }
 
   /**

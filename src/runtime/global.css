@@ -1,0 +1,2 @@
+/* Ensure Tailwind scans NuxtWind components shipped with the module */
+@source "./components";

@@ -1,6 +1,9 @@
 @import "tailwindcss" source("../../../../");
 @import "@nuxt/ui-pro";
 
+@source "../../../../src/runtime/components";
+
+
 @theme static {
 
     /* Primary */
