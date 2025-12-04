@@ -32,8 +32,7 @@
   },
   "optionalDependencies": {
     "@oxc-parser/binding-darwin-arm64": "^0.96.0",
-    "@oxc-parser/binding-darwin-x64": "^0.96.0",
-    "@oxc-parser/binding-darwin-universal": "^0.96.0"
+    "@oxc-parser/binding-darwin-x64": "^0.96.0"
   },
   "packageManager": "pnpm@10.13.1"
 }
