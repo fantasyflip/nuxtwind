@@ -70,11 +70,16 @@ export interface ModuleOptions {
   configPath?: string
 }
 
-function manageCssFile(nuxt: Nuxt, options: ModuleOptions, runtimeDir: string) {
+function manageCssFile(nuxt: Nuxt, options: ModuleOptions, runtimeDir: string, userConfigPath: string | null) {
   const componentsDir = join(runtimeDir, 'components')
+  const defaultsDir = join(runtimeDir, 'defaults')
+  const externalSources = [componentsDir, defaultsDir]
+  if (userConfigPath) {
+    externalSources.push(userConfigPath)
+  }
   const cssManager = new CssManager(nuxt, {
     debugLog: options.debugLog,
-    externalSources: [componentsDir],
+    externalSources,
   })
 
   // Validate existing file first if autoUpdate is enabled
@@ -94,13 +99,14 @@ function manageCssFile(nuxt: Nuxt, options: ModuleOptions, runtimeDir: string) {
   }
 }
 
-async function loadAndProvideUserConfig(nuxt: Nuxt, options: ModuleOptions): Promise<Partial<NuxtWindConfig> | null> {
+async function loadAndProvideUserConfig(nuxt: Nuxt, options: ModuleOptions): Promise<{ config: Partial<NuxtWindConfig> | null, configPath: string | null }> {
   const configLoader = new ConfigLoader(nuxt, {
     debugLog: options.debugLog,
   })
 
-  // Load user config from file
-  return await configLoader.loadUserConfig(options.configPath)
+  const configPath = configLoader.resolveConfigPath(options.configPath)
+  const config = await configLoader.loadUserConfig(options.configPath)
+  return { config, configPath }
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -138,7 +144,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     // Load and provide user configuration
-    const userConfig = await loadAndProvideUserConfig(_nuxt, _options)
+    const { config: userConfig, configPath: userConfigPath } = await loadAndProvideUserConfig(_nuxt, _options)
 
     if (userConfig) {
       // log userConfig
@@ -151,8 +157,8 @@ export default defineNuxtModule<ModuleOptions>({
       _nuxt.options.runtimeConfig.public.nuxtwind = {}
     }
 
-    // Manage user CSS (create/validate) and inject @source as fallback
-    manageCssFile(_nuxt, _options, runtimeDir)
+    // Manage user CSS (create/validate) and inject @source for defaults + user config
+    manageCssFile(_nuxt, _options, runtimeDir, userConfigPath)
 
     // Installing Tailwind CSS v4 standalone
     nxwLog(_options.debugLog, 'Installing tailwindcss v4 standalone')

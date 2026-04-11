@@ -1,5 +1,10 @@
 @import "tailwindcss" source("../../../../");
 
+@source "../../../../dist/runtime/components";
+@source "../../../../dist/runtime/defaults";
+@source "../../../nuxtwind.config.ts";
+
+
 @source "../../../../node_modules/.pnpm/@nuxtwind+components@file+nuxtwind-components-2.1.0.tgz_magicast@0.3.5_vite@7.0.6_@type_338112a6c1c3ba62b90b499c84432a63/node_modules/@nuxtwind/components/dist/runtime/components";
 
 

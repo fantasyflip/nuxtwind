@@ -2,6 +2,7 @@ packages:
   - ./
   - docs
   - playground
+  - testapp
 
 onlyBuiltDependencies:
   - '@parcel/watcher'

@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { createJiti } from 'jiti'
 import type { Nuxt } from 'nuxt/schema'
 import type { NuxtWindConfig } from '../runtime/types/config'
 import { nxwLog } from './nxwLog'
@@ -17,50 +18,45 @@ export class ConfigLoader {
     this.options = options
   }
 
+  /**
+   * Resolves the absolute path to the user's nuxtwind config file, if it exists.
+   */
+  resolveConfigPath(customConfigPath?: string): string | null {
+    const rootDir = this.nuxt.options.rootDir
+
+    if (customConfigPath) {
+      const resolvedPath = resolve(rootDir, customConfigPath)
+      return existsSync(resolvedPath) ? resolvedPath : null
+    }
+
+    const configExtensions = ['ts', 'js', 'mjs']
+    for (const ext of configExtensions) {
+      const path = resolve(rootDir, `nuxtwind.config.${ext}`)
+      if (existsSync(path)) return path
+    }
+
+    return null
+  }
+
   async loadUserConfig(customConfigPath?: string): Promise<Partial<NuxtWindConfig> | null> {
     try {
-      const rootDir = this.nuxt.options.rootDir
-      let configPath: string | null = null
+      const configPath = this.resolveConfigPath(customConfigPath)
 
-      if (customConfigPath) {
-        // Handle custom config path
-        nxwLog(this.options.debugLog, `Looking for custom config file at: ${customConfigPath}`)
-
-        // Resolve relative paths from root directory
-        const resolvedPath = resolve(rootDir, customConfigPath)
-
-        if (existsSync(resolvedPath)) {
-          configPath = resolvedPath
-          nxwLog(this.options.debugLog, `Found custom config file: ${customConfigPath}`, 'success')
+      if (!configPath) {
+        if (customConfigPath) {
+          nxwLog(true, `Custom config file not found at: ${customConfigPath}`, 'error')
         }
         else {
-          nxwLog(true, `Custom config file not found at: ${customConfigPath}`, 'error')
-          return null
-        }
-      }
-      else {
-        // Auto-discover config file with different extensions
-        nxwLog(this.options.debugLog, 'Looking for nuxtwind.config file...')
-
-        const configExtensions = ['ts', 'js', 'mjs']
-
-        for (const ext of configExtensions) {
-          const path = resolve(rootDir, `nuxtwind.config.${ext}`)
-          if (existsSync(path)) {
-            configPath = path
-            nxwLog(this.options.debugLog, `Found nuxtwind.config.${ext} file`, 'success')
-            break
-          }
-        }
-
-        if (!configPath) {
           nxwLog(this.options.debugLog, 'No nuxtwind.config file found, using default configurations')
-          return null
         }
+        return null
       }
 
-      // Import the config file dynamically
-      const configModule = await import(configPath)
+      nxwLog(this.options.debugLog, `Found config file: ${configPath}`, 'success')
+
+      // Use jiti to import config files (supports .ts, .js, .mjs)
+      const jiti = createJiti(configPath, { interopDefault: true })
+      const configModule = await jiti.import(configPath) as Record<string, unknown>
       const config = configModule.default || configModule
 
       if (config && typeof config === 'object' && Object.keys(config).length > 0) {

@@ -1,6 +1,9 @@
 
 @import "tailwindcss";
 
+@source "../../../../../src/runtime/defaults";
+
+
 @source "../../../../../src/runtime/components";
 
 

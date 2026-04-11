@@ -1,2 +1,3 @@
-/* Ensure Tailwind scans NuxtWind components shipped with the module */
+/* Ensure Tailwind scans NuxtWind components and default configs shipped with the module */
 @source "./components";
+@source "./defaults";
