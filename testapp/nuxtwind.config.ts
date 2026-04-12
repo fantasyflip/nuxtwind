@@ -1,4 +1,4 @@
-import type { NuxtWindConfig } from "@nuxtwind/components/runtime/types/config";
+import type { NuxtWindConfig } from "@nuxtwind/components/dist/runtime/types/config";
 
 export default {
   button: {
