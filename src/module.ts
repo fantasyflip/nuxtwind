@@ -13,7 +13,7 @@ import type { Nuxt } from 'nuxt/schema'
 import { CssManager } from './utils/css-manager'
 import { ConfigLoader } from './utils/config-loader'
 import type { NuxtWindConfig } from './runtime/types/config'
-import { join } from 'node:path'
+import { join, resolve, normalize } from 'node:path'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -204,6 +204,22 @@ export default defineNuxtModule<ModuleOptions>({
       path: resolver.resolve(runtimeDir, 'components'),
       global: _options.global,
     })
+
+    // Watch config file in dev mode and restart server on changes
+    if (_nuxt.options.dev && userConfigPath) {
+      const normalizedConfigPath = normalize(userConfigPath)
+      _nuxt.options.watch.push(userConfigPath)
+
+      _nuxt.hook('builder:watch', async (event, relativePath) => {
+        const normalizedChangedPath = normalize(resolve(_nuxt.options.rootDir, relativePath))
+        if (normalizedChangedPath === normalizedConfigPath) {
+          nxwLog(true, `nuxtwind.config changed (${event}), restarting dev server...`, 'warn')
+          await _nuxt.callHook('restart', { hard: true })
+        }
+      })
+
+      nxwLog(_options.debugLog, `Watching nuxtwind.config for changes: ${userConfigPath}`, 'info')
+    }
 
     nxwLog(true, 'NuxtWind Module setup complete', 'success')
   },

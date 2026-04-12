@@ -8,6 +8,7 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
+    "@nuxtwind/components": "workspace:*",
     "@vueuse/core": "^14.1.0",
     "nuxt": "^4.0.0"
   }
