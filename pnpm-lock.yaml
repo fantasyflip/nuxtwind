@@ -130,8 +130,8 @@ importers:
   testapp:
     dependencies:
       '@nuxtwind/components':
-        specifier: file:..\nuxtwind-components-2.1.1.tgz
-        version: file:nuxtwind-components-2.1.1.tgz(magicast@0.5.2)(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
+        specifier: file:../nuxtwind-components-2.1.2.tgz
+        version: file:nuxtwind-components-2.1.2.tgz(magicast@0.5.2)(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
       '@tailwindcss/vite':
         specifier: ^4.1.17
         version: 4.2.2(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
@@ -1260,9 +1260,9 @@ packages:
   '@nuxtjs/mdc@0.20.2':
     resolution: {integrity: sha512-afAJKnXKdvDtoNOGARQMpZoGprL1T3OGnj+K9edJjX+WdhCwvVabBijhi8BAlpx+YzA/DpcZx8bDFZk/aoSJmA==}
 
-  '@nuxtwind/components@file:nuxtwind-components-2.1.1.tgz':
-    resolution: {integrity: sha512-jkAQTAMqulQohVzIygv4lCsVNuMdeiDLvNVgwOYa41A0cevRYCP/4PABCcJhdQ8ItJvulhGYniEiMHH79sqEAQ==, tarball: file:nuxtwind-components-2.1.1.tgz}
-    version: 2.1.1
+  '@nuxtwind/components@file:nuxtwind-components-2.1.2.tgz':
+    resolution: {integrity: sha512-QkVNfVKdYExiJjD1ZAr0kmqfmYO/j9KKRj93U/60LgM/62O3poGEG3AxXlY8WZvYXhQZoGSH7ioj3yTGtbz0lQ==, tarball: file:nuxtwind-components-2.1.2.tgz}
+    version: 2.1.2
 
   '@oxc-minify/binding-android-arm-eabi@0.117.0':
     resolution: {integrity: sha512-5Hf2KsGRjxp3HnPU/mse7cQJa5tWfMFUPZQcgSMVsv2JZnGFFOIDzA0Oja2KDD+VPJqMpEJKc2dCHAGZgJxsGg==}
@@ -8778,7 +8778,7 @@ snapshots:
       - magicast
       - supports-color
 
-  '@nuxtwind/components@file:nuxtwind-components-2.1.1.tgz(magicast@0.5.2)(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))':
+  '@nuxtwind/components@file:nuxtwind-components-2.1.2.tgz(magicast@0.5.2)(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))':
     dependencies:
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
       '@nuxtjs/color-mode': 3.5.2(magicast@0.5.2)

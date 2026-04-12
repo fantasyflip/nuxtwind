@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@source "../../../../node_modules/.pnpm/@nuxtwind+components@file+n_05d25ccfe9248e78b5655b93b2ba83f1/node_modules/@nuxtwind/components/dist/runtime/components";
+@source "../../../../node_modules/.pnpm/@nuxtwind+components@file+n_05d25ccfe9248e78b5655b93b2ba83f1/node_modules/@nuxtwind/components/dist/runtime/defaults";
+
+
 @source "../../../../node_modules/.pnpm/@nuxtwind+components@file+n_8e0a494557969039c125aa7c94376035/node_modules/@nuxtwind/components/dist/runtime/components";
 @source "../../../../node_modules/.pnpm/@nuxtwind+components@file+n_8e0a494557969039c125aa7c94376035/node_modules/@nuxtwind/components/dist/runtime/defaults";
 
