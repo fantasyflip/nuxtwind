@@ -1,5 +1,81 @@
 # Changelog
 
+## v2.1.2
+
+[compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.1.1...v2.1.2)
+
+### 🩹 Fixes
+
+- Relevant css imports ([#85](https://github.com/fantasyflip/nuxtwind/pull/85))
+
+### 🏡 Chore
+
+- Copilot context ([74c81a9](https://github.com/fantasyflip/nuxtwind/commit/74c81a9))
+- Testapp script ([6a88b05](https://github.com/fantasyflip/nuxtwind/commit/6a88b05))
+- **testapp:** Lint ([620b78a](https://github.com/fantasyflip/nuxtwind/commit/620b78a))
+
+### ❤️ Contributors
+
+- Fantasyflip <katzenberger.ph+github@gmail.com>
+
+## v2.1.2
+
+[compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.1.0...v2.1.2)
+
+### 🩹 Fixes
+
+- **css:** Tailwind module component scanning #82 ([#82](https://github.com/fantasyflip/nuxtwind/issues/82))
+- **docs:** Remove universal package ([583fafd](https://github.com/fantasyflip/nuxtwind/commit/583fafd))
+- **css:** Tailwind module component scanning #82 ([#82](https://github.com/fantasyflip/nuxtwind/issues/82))
+- Relevant css imports ([#85](https://github.com/fantasyflip/nuxtwind/pull/85))
+
+### 🏡 Chore
+
+- Release v2.1.0 ([b4aad98](https://github.com/fantasyflip/nuxtwind/commit/b4aad98))
+- **playground:** Remove tarball reference ([a864ee8](https://github.com/fantasyflip/nuxtwind/commit/a864ee8))
+- **docs:** Regenerate pnpm-lock ([791d4c6](https://github.com/fantasyflip/nuxtwind/commit/791d4c6))
+- Regenerate lockfile ([c8c1783](https://github.com/fantasyflip/nuxtwind/commit/c8c1783))
+- Release v2.1.1 ([e2b822c](https://github.com/fantasyflip/nuxtwind/commit/e2b822c))
+- Copilot context ([74c81a9](https://github.com/fantasyflip/nuxtwind/commit/74c81a9))
+- Testapp script ([6a88b05](https://github.com/fantasyflip/nuxtwind/commit/6a88b05))
+- **testapp:** Lint ([620b78a](https://github.com/fantasyflip/nuxtwind/commit/620b78a))
+
+### ❤️ Contributors
+
+- Fantasyflip <katzenberger.ph+github@gmail.com>
+- FantasyFlip ([@find](https://github.com/find))
+- Philipp Katzenberger ([@fantasyflip](https://github.com/fantasyflip))
+- BLUEBEAST\katze <katzenberger.ph+github@gmail.com>
+
+## v2.1.3
+
+[compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.1.0...v2.1.3)
+
+### 🩹 Fixes
+
+- **css:** Tailwind module component scanning #82 ([#82](https://github.com/fantasyflip/nuxtwind/issues/82))
+- **docs:** Remove universal package ([583fafd](https://github.com/fantasyflip/nuxtwind/commit/583fafd))
+- **css:** Tailwind module component scanning #82 ([#82](https://github.com/fantasyflip/nuxtwind/issues/82))
+- Relevant css imports ([#85](https://github.com/fantasyflip/nuxtwind/pull/85))
+
+### 🏡 Chore
+
+- Release v2.1.0 ([b4aad98](https://github.com/fantasyflip/nuxtwind/commit/b4aad98))
+- **playground:** Remove tarball reference ([a864ee8](https://github.com/fantasyflip/nuxtwind/commit/a864ee8))
+- **docs:** Regenerate pnpm-lock ([791d4c6](https://github.com/fantasyflip/nuxtwind/commit/791d4c6))
+- Regenerate lockfile ([c8c1783](https://github.com/fantasyflip/nuxtwind/commit/c8c1783))
+- Release v2.1.1 ([e2b822c](https://github.com/fantasyflip/nuxtwind/commit/e2b822c))
+- Copilot context ([74c81a9](https://github.com/fantasyflip/nuxtwind/commit/74c81a9))
+- Testapp script ([6a88b05](https://github.com/fantasyflip/nuxtwind/commit/6a88b05))
+- **testapp:** Lint ([620b78a](https://github.com/fantasyflip/nuxtwind/commit/620b78a))
+
+### ❤️ Contributors
+
+- Fantasyflip <katzenberger.ph+github@gmail.com>
+- FantasyFlip ([@find](https://github.com/find))
+- Philipp Katzenberger ([@fantasyflip](https://github.com/fantasyflip))
+- BLUEBEAST\katze <katzenberger.ph+github@gmail.com>
+
 ## v2.1.1
 
 [compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.1.0...v2.1.1)

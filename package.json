@@ -1,6 +1,6 @@
 {
   "name": "@nuxtwind/components",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "license": "MIT",
   "description": "Component Library for Nuxt 3 using TailwindCSS",
   "repository": {
@@ -40,7 +40,7 @@
     "dev:test": "cd testapp && pnpm dev",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release": "pnpm install --force && pnpm run lint && pnpm run test && pnpm run prepack && changelogen --release --no-commit && pnpm publish --no-git-checks",
+    "release": "pnpm run lint && pnpm run test && pnpm run prepack && changelogen --release --no-commit && pnpm publish --no-git-checks",
     "dev": "nuxi dev docs",
     "build": "nuxi generate docs",
     "lint": "eslint .",
