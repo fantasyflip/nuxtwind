@@ -1,5 +1,21 @@
 # Changelog
 
+## v2.2.0
+
+[compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.1.2...v2.2.0)
+
+### 🚀 Enhancements
+
+- Reload nuxt on nuxtwind.config change ([908f101](https://github.com/fantasyflip/nuxtwind/commit/908f101))
+
+### 🏡 Chore
+
+- Lint ([2197d74](https://github.com/fantasyflip/nuxtwind/commit/2197d74))
+
+### ❤️ Contributors
+
+- Fantasyflip <katzenberger.ph+github@gmail.com>
+
 ## v2.1.2
 
 [compare changes](https://github.com/fantasyflip/nuxtwind/compare/v2.1.1...v2.1.2)
