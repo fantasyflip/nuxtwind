@@ -6,36 +6,36 @@
 const head = useLocaleHead({
   dir: true,
   seo: true,
-});
+})
 
 const metaItems = computed(() => {
-  const staticItems = [{ name: "description", content: "My amazing site." }];
+  const staticItems = [{ name: 'description', content: 'My amazing site.' }]
   // merge with head.meta
-  return [...staticItems, ...(head.value.meta ?? [])];
-});
+  return [...staticItems, ...(head.value.meta ?? [])]
+})
 
 const linkItems = computed(() => {
   const staticItems = [
     {
-      rel: "icon",
-      type: "image/x-icon",
-      href: "/favicon.ico",
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico',
     },
-  ];
+  ]
   // merge with head.link
-  return [...staticItems, ...(head.value.link ?? [])];
-});
+  return [...staticItems, ...(head.value.link ?? [])]
+})
 useHead({
-  titleTemplate: "%s | App-Name",
+  titleTemplate: '%s | App-Name',
   meta: metaItems.value,
   link: linkItems.value,
   htmlAttrs: {
     lang: head.value.htmlAttrs?.lang,
-    dir: head.value.htmlAttrs?.dir as "ltr" | "rtl" | "auto" | undefined,
-    style: "scroll-behavior: smooth;",
+    dir: head.value.htmlAttrs?.dir as 'ltr' | 'rtl' | 'auto' | undefined,
+    style: 'scroll-behavior: smooth;',
   },
-});
-defineOgImageComponent("NuxtSeo", {
-  colorMode: "dark",
-});
+})
+defineOgImageComponent('NuxtSeo', {
+  colorMode: 'dark',
+})
 </script>

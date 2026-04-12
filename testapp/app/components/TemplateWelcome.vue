@@ -16,15 +16,18 @@
             fill="#00DC82"
             data-v-inspector="node_modules/.pnpm/@nuxt+ui-templates@1.3.1/node_modules/@nuxt/ui-templates/dist/templates/welcome.vue:40:423"
             data-v-5186e9ca=""
-          ></path>
+          />
         </svg>
         <span class="pb-3 text-7xl font-extralight text-gray-500">/</span>
-        <a href="https://github.com/fantasyflip" target="_blank">
+        <a
+          href="https://github.com/fantasyflip"
+          target="_blank"
+        >
           <img
             src="https://github.com/fantasyflip.png"
             alt="FantasyFlip-Image"
             class="size-16 rounded-full border-2 border-[#00DC82]"
-          />
+          >
         </a>
       </div>
       <h1 class="pb-16 pt-6 text-center text-5xl font-bold">
@@ -56,23 +59,23 @@
               />
             </svg>
           </div>
-          <h2 class="pt-6 text-2xl font-semibold">Get started</h2>
+          <h2 class="pt-6 text-2xl font-semibold">
+            Get started
+          </h2>
           <p class="mb-2 text-start text-black/70 dark:text-white/70">
             Remove this welcome page by replacing
             <span
               class="rounded bg-gray-100 p-1 font-mono font-bold text-[#00DC82] dark:bg-white/10"
-              >&lt;TemplateWelcome /&gt;</span
-            >
+            >&lt;TemplateWelcome /&gt;</span>
             in
             <a
               href="https://nuxt.com/docs/guide/directory-structure/app"
               target="_blank"
               rel="noopener"
               class="rounded bg-gray-100 p-1 font-mono font-bold text-[#00DC82] dark:bg-white/10"
-              >pages/index.vue</a
-            >
+            >pages/index.vue</a>
             with your own code.
-            <br />
+            <br>
             This Repository contains features like i18n, open graph protocol,
             theme-switching, TailwindCSS, VueUse and eslint support out of the
             box.
@@ -101,29 +104,28 @@
                   <path
                     fill="currentColor"
                     d="m12.87 15.07l-2.54-2.51l.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35C8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5l3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7l1.62-4.33L19.12 17z"
-                  ></path>
+                  />
                 </svg>
               </div>
               <div class="w-4/6">
-                <h3 class="text-xl font-semibold">Nuxt-i18n</h3>
+                <h3 class="text-xl font-semibold">
+                  Nuxt-i18n
+                </h3>
                 <p class="text-black/70 dark:text-white/70">
                   This Template has
                   <a
                     href="https://i18n.nuxtjs.org/"
                     target="_blank"
                     class="rounded bg-gray-100 p-1 font-mono font-bold text-[#00DC82] dark:bg-white/10"
-                    >@nuxtjs/i18n</a
-                  >
+                  >@nuxtjs/i18n</a>
                   integrated and already configured for the languages
                   <span
                     class="rounded bg-gray-100 p-1 font-mono font-bold text-[#00DC82] dark:bg-white/10"
-                    >de-DE</span
-                  >
+                  >de-DE</span>
                   and
                   <span
                     class="rounded bg-gray-100 p-1 font-mono font-bold text-[#00DC82] dark:bg-white/10"
-                    >en-US</span
-                  >.
+                  >en-US</span>.
                 </p>
               </div>
               <div class="grid h-full w-1/6 place-items-center">
@@ -134,17 +136,16 @@
                     switchLocalePath(typeof loc === 'string' ? loc : loc.code)
                   "
                   class="flex size-fit cursor-pointer items-center justify-center rounded-md bg-[#00DC82] p-2 text-sm text-black shadow-md transition-all duration-300 ease-in-out hover:text-black hover:shadow-[0_0px_15px_2px] hover:shadow-[#00DC82] dark:bg-[#00DC82]"
-                  ><div class="relative">
-                    <div
-                      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                    >
-                      <!---->
-                    </div>
-                    <div class="">
-                      {{ typeof loc === "string" ? loc : loc.name }}
-                    </div>
-                  </div></NuxtLink
-                >
+                ><div class="relative">
+                  <div
+                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <!---->
+                  </div>
+                  <div class="">
+                    {{ typeof loc === "string" ? loc : loc.name }}
+                  </div>
+                </div></NuxtLink>
               </div>
             </div>
           </div>
@@ -172,15 +173,16 @@
                 </svg>
               </div>
               <div class="w-4/6">
-                <h3 class="text-xl font-semibold">Color-Mode</h3>
+                <h3 class="text-xl font-semibold">
+                  Color-Mode
+                </h3>
                 <p class="text-black/70 dark:text-white/70">
                   The
                   <a
                     href="https://color-mode.nuxtjs.org/"
                     target="_blank"
                     class="rounded bg-gray-100 p-1 font-mono font-bold text-[#00DC82] dark:bg-white/10"
-                    >@nuxtjs/color-mode</a
-                  >
+                  >@nuxtjs/color-mode</a>
                   is preconfigured and integrated for the use with TailwindCSS.
                 </p>
               </div>
@@ -217,7 +219,9 @@
           <div
             class="flex size-full flex-col rounded-lg bg-gradient-to-br from-white to-green-200 p-6 dark:from-zinc-900 dark:to-zinc-950"
           >
-            <h3 class="text-xl font-semibold">DEV-Experience</h3>
+            <h3 class="text-xl font-semibold">
+              DEV-Experience
+            </h3>
             <p class="text-black/70 dark:text-white/70">
               For the ease of development, this template comes with eslint,
               TailwindCSS and
@@ -225,15 +229,13 @@
                 href="https://nuxtseo.com/og-image/getting-started/installation"
                 target="_blank"
                 class="rounded bg-gray-100 p-1 font-mono font-bold text-[#00DC82] dark:bg-white/10"
-                >OG-Image</a
-              >
+              >OG-Image</a>
               preconfigured and includes the
               <a
                 href="https://vueuse.org/"
                 target="_blank"
                 class="rounded bg-gray-100 p-1 font-mono font-bold text-[#00DC82] dark:bg-white/10"
-                >VueUse</a
-              >-Library.
+              >VueUse</a>-Library.
             </p>
             <div
               class="flex w-full grow items-center justify-center gap-8 pt-4"
@@ -288,60 +290,60 @@
 
 <script lang="ts" setup>
 useHead({
-  title: "Index",
-});
+  title: 'Index',
+})
 
-const { locale, locales } = useI18n();
-const switchLocalePath = useSwitchLocalePath();
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
 
 const availableLocales = computed(() => {
   return locales.value.filter((i) => {
-    if (typeof i === "string") return i;
-    return i.code !== locale.value;
-  });
-});
+    if (typeof i === 'string') return i
+    return i.code !== locale.value
+  })
+})
 
-const GetStartedCard = ref(null);
-const { elementX, elementY } = useMouseInElement(GetStartedCard);
+const GetStartedCard = ref(null)
+const { elementX, elementY } = useMouseInElement(GetStartedCard)
 
 const getStartedWrapperStyle = computed(() => {
   return {
-    "--x": `${elementX.value}px`,
-    "--y": `${elementY.value}px`,
-  };
-});
+    '--x': `${elementX.value}px`,
+    '--y': `${elementY.value}px`,
+  }
+})
 
-const I18nCard = ref(null);
-const { elementX: I18nX, elementY: I18nY } = useMouseInElement(I18nCard);
+const I18nCard = ref(null)
+const { elementX: I18nX, elementY: I18nY } = useMouseInElement(I18nCard)
 
 const I18nWrapperStyle = computed(() => {
   return {
-    "--translateX": `${I18nX.value}px`,
-    "--translateY": `${I18nY.value}px`,
-  };
-});
+    '--translateX': `${I18nX.value}px`,
+    '--translateY': `${I18nY.value}px`,
+  }
+})
 
-const ColorModeCard = ref(null);
-const { elementX: ColorModeX, elementY: ColorModeY } =
-  useMouseInElement(ColorModeCard);
+const ColorModeCard = ref(null)
+const { elementX: ColorModeX, elementY: ColorModeY }
+  = useMouseInElement(ColorModeCard)
 
 const ColorModeWrapperStyle = computed(() => {
   return {
-    "--colorX": `${ColorModeX.value}px`,
-    "--colorY": `${ColorModeY.value}px`,
-  };
-});
+    '--colorX': `${ColorModeX.value}px`,
+    '--colorY': `${ColorModeY.value}px`,
+  }
+})
 
-const DevExperienceCard = ref(null);
-const { elementX: DevExperienceX, elementY: DevExperienceY } =
-  useMouseInElement(DevExperienceCard);
+const DevExperienceCard = ref(null)
+const { elementX: DevExperienceX, elementY: DevExperienceY }
+  = useMouseInElement(DevExperienceCard)
 
 const DevExperienceWrapperStyle = computed(() => {
   return {
-    "--devX": `${DevExperienceX.value}px`,
-    "--devY": `${DevExperienceY.value}px`,
-  };
-});
+    '--devX': `${DevExperienceX.value}px`,
+    '--devY': `${DevExperienceY.value}px`,
+  }
+})
 </script>
 
 <style scoped>

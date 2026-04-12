@@ -61,7 +61,11 @@
       <h2 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-300">
         Textfield
       </h2>
-      <NXW-Textfield v-model="textValue" label="Test Input" placeholder="Type something..." />
+      <NXW-Textfield
+        v-model="textValue"
+        label="Test Input"
+        placeholder="Type something..."
+      />
       <p class="mt-2 text-sm text-gray-500">
         Value: {{ textValue }}
       </p>
@@ -72,7 +76,10 @@
       <h2 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-300">
         Checkbox
       </h2>
-      <NXW-Checkbox v-model="checked" label="Accept terms" />
+      <NXW-Checkbox
+        v-model="checked"
+        label="Accept terms"
+      />
       <p class="mt-2 text-sm text-gray-500">
         Checked: {{ checked }}
       </p>
